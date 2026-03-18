@@ -1,0 +1,15 @@
+Here are unique Google dorks to help you find target storage buckets left in the open:
+
+site:s3.amazonaws.com "target.com"
+site:blob.core.windows.net "target.com"
+site:googleapis.com "target.com"
+site:drive.google.com "target.com"
+site:dev.azure.com "target[.]com"
+site:onedrive.live.com "target[.]com"
+site:digitaloceanspaces.com "target[.]com"
+site:sharepoint.com "target[.]com"
+site:s3-external-1.amazonaws.com "target[.]com"
+site:s3.dualstack.us-east-1.amazonaws.com "target[.]com"
+site:dropbox.com/s "target[.]com"
+site:box.com/s "target[.]com"
+site:docs.google.com inurl:"/d/" "target[.]com"
