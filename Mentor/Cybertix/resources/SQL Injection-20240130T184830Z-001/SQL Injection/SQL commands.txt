@@ -1,0 +1,30 @@
+To check how many databases are there in MySQL 
+Ans: show databases;
+
+To create Database
+Ans:  create database cybertix;
+
+To use National database
+Ans: use cybertix;
+
+To create table in a Database
+Ans: create table employee(
+    -> ID int,
+    -> FirstName varchar(20),
+    -> Address varchar(50),
+    -> City varchar(10));
+
+To show how many tables are there in a Database
+Ans: show tables;
+
+To Insert a Value in a table in a database
+Ans: insert into employee value (1, "Chandan", "Mumbai India", "Male", 22);
+
+To see the information in a table
+Ans: select * from employee;
+
+To delete whole table in a Database
+Ans: drop table employee;
+
+To delete whole database
+Ans: drop database cybertix;

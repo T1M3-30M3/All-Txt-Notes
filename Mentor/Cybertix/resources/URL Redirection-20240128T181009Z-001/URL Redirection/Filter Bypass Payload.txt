@@ -1,0 +1,14 @@
+/\/google.com
+\/google.com
+\/\/google.com
+\\google.com
+//google.com
+https://google.com%3F.target.com/
+https://google?c=.target.com/
+//%2F/google.com
+////google.com
+https://target.com.google.com
+/%0D/google.com (%09,%00, %0a, %07)
+/%2F/google.com
+/%5Cgoogle.com
+//google%E3%80%82com

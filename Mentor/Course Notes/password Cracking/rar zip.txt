@@ -1,0 +1,37 @@
+zip2john chall.zip > hashing.txt
+cat hashing.txt
+clear
+john --wordlist=rockyou.txt hashing.txt
+
+rar2john chall.rar > hashing.txt
+cat hashing.txt
+clear
+john --wordlist=rockyou.txt hashing.txt
+
+
+NTLM : john hash.txt --wordlist=rockyou.txt
+john hash.txt --format=Raw-MD5 --wordlist=rockyou.txt
+john hash.txt --format=Raw-SHA1 --wordlist=rockyou.txt
+
+CVE-Engine by Md Nahid Alam
+
+*1. Find p0c by cve id
+*2. Web UI
+*3. Real Time Searching
+*4. Version 1.0
+
+> Website : http://nahid0x1.androidafe.tech/cve-engine/
+
+
+Bug Bounty Hunting Search Engine! 🔥 : https://www.bugbountyhunting.com
+
+
+zip2john /path/to/your/protected.zip > ziphash.txt
+john ziphash.txt
+john ziphash.txt --wordlist=/path/to/custom/wordlist.txt
+
+
+
+
+
+

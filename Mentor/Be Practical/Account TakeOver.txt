@@ -1,0 +1,46 @@
+Ways to find Accoount Takeover:
+* XSS
+* IDOR
+* SQLI
+* Brute Force
+* Social Engineering
+* Logical Bugs
+
+
+Logical Bugs:
+* Response Manipulation
+* Misconfigured OTP functionalllity
+* Abusing password reset functionality
+* Abusing weak cryptography implementation
+* IDOR
+
+Account TakeOver by Response Manipulation::
+01. Analyze the authentication flow of the web application
+02. Find the Injection point
+03. Exploit the Injection Point
+04. Hack the account
+
+Account TakeOver by Response Manipulation : 1st create a account in a site and when login the account intercept request and response also. then analyze that you should find True/False/1/0 in a plain text or decoding text. when you find the things copy that when correct login. After successful login again login 2nd account and give the wrong password. and intercept request and response also and analyze it and paste the plain/decoding text. if you login successfully that means here is Account TakeOver by Response Manipulation
+
+Account TakeOver by Misconfigured OTP functionality: Go to Forget Pass and put the right OTP and intercept request and response also. and focus on 200/1/success/true, etc. Now go to forget pass and put the wrong OTP and intercept request and response also. and change 404 to 200 or incorrect to correct or 0 to 1 or error to success or false to true, etc. If we bypass it, that means there is a bug. You can change your Gmail or phone number and maybe login to their account.
+
+Account TakeoverAbusing Password Reset Functionality: first go to forget password and enter your mail and intercept it before sending the request, and you can see your mail in JSON format. You are adding another email like this. If you receive both OTPs, that means there is an Attacount TakeOver Bug.
+{
+	"gmail" :[
+	"target@gmail.com",
+	"attacker@gmail.com"
+	]	
+}
+
+Account TakeOver By Reset Password Token Leak: First Create an account, then go to Forget Pass and intercept response with Burp Suite and try to find a token. If you find a token, that's great, and then go to the mail, and from the mail you also find the token. If the tokens match, that means there is an account takeover. You can change the victim email address as well.
+
+Auth Bypass: First of all, create an account, forget your password, intercept the request, and analyze whether you should find True/False/1/0 in plain text or decoded text. then again go to Create Another Account/Reset Password. Enter the random OTP after using Burp, and then when you find the OTP,forward this and do an intercept on the response. After that, manipulate this from 404 to 200, incorrect to correct, 0 to 1, error to success, or false to true.
+
+Account takeover based on userid : Start your Burp then do intercept to response and then change to id/userid/uid [Give the right OTP]
+
+OTP Expose : Start your Burp then do an intercept to response, then if you find the OTP that means you can easily login
+
+2 FA Bypass : Start your Burp then do intercept and go to repeater then find mfa then change to 0
+	      [1 means on and 0 means off][mfa means multifactor login]
+
+

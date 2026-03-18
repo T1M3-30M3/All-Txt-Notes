@@ -1,0 +1,5 @@
+GitDorker:   https://github.com/obheda12/GitDorker
+
+gitGraber:   https://github.com/hisxo/gitGraber
+
+trufflehog:  https://github.com/trufflesecurity/truffleHog

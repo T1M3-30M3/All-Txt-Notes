@@ -1,0 +1,19 @@
+PHP: .php, .php2, .php3, .php4, .php5, .php6, .php7, .phps, .phps, .pht, .phtm, .phtml, .pgif, .shtml, .htaccess, .phar, .inc, .hphp, .ctp, .module
+
+ASP: .asp, .aspx, .config, .ashx, .asmx, .aspq, .axd, .cshtm, .cshtml, .rem, .soap, .vbhtm, .vbhtml, .asa, .cer, .shtml
+
+Jsp: .jsp, .jspx, .jsw, .jsv, .jspf, .wss, .do, .action
+
+Coldfusion: .cfm, .cfml, .cfc, .dbm
+
+Flash: .swf
+
+Perl: .pl, .cgi
+
+======================================================================================
+Bypasses:
+1. If they apply, the check the previous extensions. Also test them using some uppercase letters: pHp, .pHP5, .PhAr
+
+2. Check adding a valid extension before the execution extension (use previous extensions also):
+    file.png.php
+
