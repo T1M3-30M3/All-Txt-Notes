@@ -1,0 +1,51 @@
+--Lab Setup:
+
+Install Kali + Windows in VMWare: 
+
+https://www.techworm.net/2022/08/download-windows-10-iso.html
+https://mega.nz/file/lmAFkC4I#IYsyI5B3BPrSs40rlEPpjH5972gVGUXYmJUQQBjhctc
+https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html
+https://dotnet.microsoft.com/download/dotnet-framework/net46
+https://www.microsoft.com/en-us/download/details.aspx?id=48145
+https://mega.nz/file/3tVnVYhJ#W4MrpBlVSQKusFRHgpH7_XmiyapHhNxnRdFWx9pg_u8
+All Resource available on Telegram Join: https://t.me/+obTZkzb1eto4YzZl
+
+-- Grabbing Links:
+Use Ginfinity crx in chrome. and create a bookmark and edit it and copy the JS Code in url bar.
+
+javascript: var a = document.getElementsByTagName('a'), arr = '';for(var i=0; i<a.length; i++) if (a[i].ping && !a[i].href.includes('google'))arr +=('<p>' + a[i].href + '</p>');var newWindow = window.open();newWindow.document.write(arr);newWindow.document.close();
+
+-- Finding Parameter:
+paramspider -d example.com
+paramspider -d example.com -e css
+paramspider -l domains.txt
+paramspider -d example.com -s
+paramspider -d example.com --proxy '127.0.0.1:7890'
+paramspider -d example.com -p '"><h1>reflection</h1>'
+paramspider -d example.com --level high
+paramspider -d example.com -e php,jpg -o url.txt
+
+
+Subdomain : https://github.com/danTaler/WordLists/blob/master/Subdomain.txt
+https://github.com/theMiddleBlue/DNSenum/blob/master/wordlist/subdomains-top1mil-20000.txt
+Php BruteForce : https://github.com/danTaler/WordLists/blob/master/Filenames_PHP_All.wordlist
+Lots of Subdomain : https://gist.github.com/cihanmehmet/5d7f6d6514b4c1c54c00ebf36d5f9e81
+
+Popular Port : 20,21,22,23,25,53,67,68,69,80,110,111,123,135,137,138,139,143,161,162,443,445,500,514,520,631,993,995,1434,1723,1900,3306,3389,4500,5900,8080,49152
+
+
+---Wordpress:
+
+--Keyword Finding:
+https://keywordtool.io/
+https://delim.co/
+
+
+Reverse Ip:
+https://github.com/zeerx7/reverse-ip
+https://github.com/Tux-MacG1v/Nosleep-reverseip
+https://github.com/Anon-Exploiter/ReVeRsE-IP
+https://github.com/eliemoutran/Mass-Reverse-IP-Lookup
+https://github.com/itslucifero/Reverse-IP-lookup
+https://github.com/Yudas1337/Reverse-IP
+https://hackertarget.com/reverse-ip-lookup/

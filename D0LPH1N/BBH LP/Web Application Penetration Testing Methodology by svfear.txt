@@ -1,0 +1,52 @@
+subfinder -d target.com -o subdomains.txt
+cat subdomains.txt | anew > unique_subdomains.txt
+rm subdomains.txt
+
+nmap -iL unique_subdomains.txt -o scan.txt
+nmap -p21 -sV svfear.com
+
+cat subdomains.txt | httpx -ports 80,443,8080,8443,8000,3000 -title -status-code -tech-detect -ip -path /
+cat targets.txt | httpx -ports 80,443,8080,8443,8000,3000 -title -status-code -tech-detect -ip -path /
+ffuf -u http://example.com:8080/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -mc 200,301,302
+ffuf -u http://example.com:8080/FUZZ -w /usr/share/wordlists/dirb/common.txt -mc 200,301,302
+dirsearch -u http://example.com:8000 -e php,html,js,txt -w /usr/share/wordlists/dirb/common.txt
+dirsearch -u http://example.com:8000 -e php,html,js,txt -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+nikto -h http://example.com:8080
+nikto -h http://example.com:8443
+nmap -p 80,443,8080,8443 -Pn --open -oG - target.txt | grep open | awk '{print $2}' | httpx -ports 80,443,8080,8443
+
+subzy run --targets unique_subdomains.txt --vuln --hide_fails
+
+cat unique_subdomains.txt | httpx -o httpx
+cat httpx | httpx -mc 200 -o httpx200.txt
+cat httpx | httpx -mc 404 -o httpx404.txt
+cat httpx | httpx -mc 301 -o httpx301.txt
+
+dirsearch -l $(pwd)/httpx -o dirsearch.txt -i 200 -e conf,config,bak,backup,swp,old,db,sql,asp,aspx,py,rb,php,bkp,cache,cgi,csv,html,inc,jar,js,json,jsp,lock,log,rar,sql.gz,sql.zip,tar,txt,wadl,zip,xml
+
+nuclei -l httpx -o nuclei.txt -t /root/nuclei-templates/
+
+cat httpx200.txt | waybackurls >> allurls.txt
+katana -list httpx200.txt -o katana.txt
+gospider -s httpx200.txt -o gospider_output
+cat waybackurls.txt katana.txt gospider_output/* >> allurls.txt
+
+cat allurls.txt | grep -E "\.js" >> js.txt
+cat allurls.txt | grep -E "\.php" >> php.txt
+
+cat js.txt | mantra
+nuclei -l js.txt -t /root/nuclei-templates/http/exposures/
+
+arjun -i php.txt -o arjun.txt
+arjun -i php.txt -m POST -o arjun_post.txt
+
+sqlmap -u "https://mars.com/file.php?id=*" --risk 3 --level 5 --random-agent --banner --batch --dbs --ignore-code 403
+sqlmap -u "https://google.com" --data="id=*&name=*&x=*" --dbs --banner --batch
+
+cat alive.txt | httpx -o ip.txt -silent
+
+
+wpscan --url target.com --enumerate u
+wpscan --url target.com --enumerate p
+wpscan --url target.com --enumerate t
+wpscan --url target.com --enumerate v

@@ -1,0 +1,88 @@
+echo	   - display text on screen
+echo off   - hide the text that normally output
+start	   - run a file with its default application
+rem        - comment
+mkdir/rmdir- make and remove directory
+del 	   - delete a file
+copy 	   - copy a file or files
+copy       - allows you to copy files with extra option
+for/in/do  - this cmnd lets you specify files
+title      - edit the title of the window
+cls        - clear
+echo.      - 1 line break
+
+###hello world
+@echo off
+echo hello world
+pause
+
+
+###loop
+@echo off
+goto 4 
+:4
+echo i am zaber
+goto 4
+pause
+
+
+##plus minus devide
+
+@echo off
+set /p var1="Enter your 1st number : "
+set /p var2="Enter your 2nd number : "
+set /a result=%var1%+%var2%
+echo Your addition result is %result%
+
+set /a result=%var1%-%var2%
+echo Your minus result is %result%
+
+set /a result=%var1%*%var2%
+echo Your multiply result is %result%
+
+set /a result=%var1%/%var2%
+echo Your devide result is %result%
+pause
+
+
+###pasword
+@echo off
+set /a var1=123456
+set /p var2="Give your 6 digit pin :"
+if %var1%==%var2% (echo password match!!you can login!!) else (echo password missmatch!!!try again later)
+pause
+
+
+@echo off
+set /p char1="Enter new password :"
+set /p char2="Again type password :"
+if %char1%==%char2% (echo password is updated) else (echo something went wrong!!)
+pause
+
+
+@echo off
+color 0a
+goto a
+:a
+echo %random%  %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random% %random%
+goto a
+pause
+
+###Copy any file
+cd/
+cd usrs
+cd zaber
+cd destop
+copy name.txt "path"
+
+##Del a file
+cd/ 
+E:
+del name.extention
+
+
+
+go to https://www.text-image.com/convert/matrix.html upload a picture and covert it and copy it  font is consoles style reguler and size 11
+@ech off
+all line in 1st type echo and last pause
+

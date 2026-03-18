@@ -1,0 +1,74 @@
+1.###display the text
+@echo off
+color 1 [for color]
+rem this is comment [rem use for comment] 
+echo hacker are every where
+pause
+
+
+2.###variable
+@echo off
+set /a var1=18
+set var2=T!M3-30M3
+echo The h43k3r who h43k is your system name is %var2% and his age is %var1%
+pause  
+
+
+3.###variable by input
+@echo off
+set /p var1="whats your name ::"
+set /p var2="where you come from ::"
+echo Whats your name %var1% and where you come from %var2%
+pause
+
+
+4.###if else
+@echo off
+set /p var2="What is your age ::"
+if %var2%==16 (echo you are perfect age for make love) else (echo go you are age to marry)
+pause
+
+
+4.1 ## if else
+@echo off
+set /p var3="Enter your name "
+set /p var4="enter your age"
+if %var4%==18 (echo your age is 18 and you can vote ) else (echo you cannot vote)
+pause
+
+5.##operator
+	1.Arithemic operator (+ - * / )
+	2.relatioinal operator (equal, less than, less equal, greater than equal, greater than)(equ neq lss leq gtr geq)
+	3.logical operator(and , or, not)
+	4.assignment operator (+=, -=, *=, /=)
+
+  1.Arithemic operator (+ - * / )
+@echo off
+set /p var1="Enter your 1st number :"
+set /p var2="Enter your 2nd number :"
+
+set /a variableplus=%var1%+%var2%
+set /a variableminus=%var1%-%var2%
+set /a variablemulti=%var1%*%var2%
+set /a variabledevide=%var1%/%var2%
+
+echo the additional of %var1%+%var2% is %variableplus%
+echo the additional of %var1%-%var2% is %variableminus%
+echo the additional of %var1%*%var2% is %variablemulti%
+echo the additional of %var1%/%var2% is %variabledevide%
+pause
+
+   2.relatioinal operator (equ neq lss leq gtr geq)
+@echo off
+set /a var1=8
+set /a var2=8
+
+if %var1% equ %var2% echo  8 is equal to 8
+if %var1% neq %var2% echo  8 is not equal to  8
+if %var1% lss %var2% echo  8 is less than 8
+if %var1% leq %var2% echo  8 is less than or equal to 8
+if %var1% gtr %var2% echo  8 is greater than 8
+if %var1% geq %var2% echo  8 is greater than or equal to 8
+
+pause
+

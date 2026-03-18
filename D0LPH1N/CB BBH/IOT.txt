@@ -1,0 +1,19 @@
+IOT Components:
+--> Sensors		: Collecting data
+--> Connectivity	: Sending data to cloud
+--> Data Processing	: Making data useful
+--> User Interface 	: Delivering information to user
+
+
+Phase :
+--> Planning and Preparation
+--> Recon
+--> Vulnerability Scanning
+--> Manual Scanning
+--> Device Firmware Analysis
+--> Network Analysis
+--> Exploitation
+--> Post-Exploitation Analysis
+--> Documentation and Reporting
+--> Recommendation and Remediation
+

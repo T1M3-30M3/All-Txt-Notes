@@ -1,0 +1,168 @@
+https://www.youtube.com/watch?v=Ie7FGHhbtV8&t=10248s
+
+@echo off for blck msge
+echo for msge print
+pause for popup pause
+color 0a for color
+rem for comment
+
+
+###
+@echo off 
+echo my name is unknown
+pause
+
+###
+@echo off 
+color 0a
+echo my name is unknown
+pause
+
+
+
+###
+@echo off 
+color 0a
+set /a var1=17
+set var2=Zaber
+echo the student name is %var2% and his age is %var1%
+
+pause
+
+###
+@echo off 
+color 0a
+echo WELCOME TO THE REGISTRATION IS REUNION IN DIC
+set /p var1="What is Your Name : "
+set /p var2="What is your passing year :"
+set /p var3="What is your Gender :"
+set /p var4="Which Batch :"
+set /p var5="What is your Group:"
+set /p var6="What is your Occupation:"
+set /p var7="What is your Bkah Number:"
+set /p var8="What is your Transjection Massage:"
+
+
+echo The student name is %var1% and his/her Passing year is %var2%. His/Her Gender is %var3%.His/her Batch is %Var4%.His/her Batch is %Var5%.His/her Batch is %Var5%.His/her Occupation is %Var6%.His/her Bkash Number is %Var7%.His/her Tranjection Massage is %Var8%
+
+echo Waiting For Reply!!
+
+echo CONGRASS YOU HAVE REGISTERED!!!
+pause
+
+
+####
+@echo off
+color 0a
+
+set /p var1="Please Enter your Age : "
+
+if %var1%==18 (echo you are now go to relationship) else (echo sry!! you donot fucked up!)
+
+pause
+
+
+###
+1.Arithmetic Operator (+ - * / %{modules} )
+2.Relational Operator (<, <=, >= >)
+3.Logical Operator (OR< NOT,AND)
+4.Assignment operator (+= , -=, *=, /=)
+
+1.
+@echo off
+
+set /p var1= "Enter the 1st Number : "
+set /p var2= "Enter the 2nd Number : "
+
+set /a varp = %var1% + %var2%
+set /a varmin = %var1% - %var2%
+set /a varmul = %var1% * %var2%
+set /a vardi = %var1% / %var2%
+
+
+echo The Addtion of %var1%+%var2% is %varp%
+echo The Minus of %var1%-%var2% is %varmin%
+echo The Multiply of %var1%*%var2% is %varmul%
+echo The Devide of %var1%/%var2% is %vardi%
+
+pause
+
+
+2.
+@echo off
+
+set /p var1= "Enter the 1st Number : "
+set /p var2= "Enter the 2nd Number : "
+
+if %var1% EQU %var2% echo 1st number is equal to 2nd Number
+if %var1% NEQ %var2% echo 1st number is not equal to 2nd Number
+if %var1% LSS %var2% echo 1st number is less than 2nd Number
+if %var1% LEQ %var2% echo 1st number is less than or equal 2nd Number
+if %var1% GTR %var2% echo 1st number greater than 2nd Number
+if %var1% NEQ %var2% echo 1st number is  greater than or equal 2nd Number
+ 
+
+pause
+
+
+3.
+
+
+
+
+4.
+
+
+###Array
+@echo off
+
+rem (Array)
+
+set n1[0]=1
+set n1[1]=2
+set n1[2]=3
+set n1[3]=4
+
+echo %n1[0]%  %n1[3]% %n1[1]% %n1[2]%
+pause
+
+
+
+@echo off
+
+rem (Array)
+
+set sad[0].name=shuktara
+set sad[1].age=19
+set sad[2].favclr=white,yellow
+set sad[3].favthing=reading Books, Watching Movie
+set sad[4].food=choclate specially Dairy Milk
+
+
+
+echo love name is %sad[0].name% age is %sad[1].age% Favourite color is %sad[2].favclr% and Favourite Things is %sad[3].favthing% Favourite Food is %sad[4].food%
+pause
+
+
+@echo off
+
+goto func
+:func
+echo Who am I
+goto func
+pause
+
+@echo off
+
+goto infinite
+:infinite
+echo %random% %random% %random% %random% %random% %random% %random% %random% %random% %random%
+goto infinite
+
+pause
+
+
+
+cmd >> telnet towel.blinkenlights.nl
+ 
+

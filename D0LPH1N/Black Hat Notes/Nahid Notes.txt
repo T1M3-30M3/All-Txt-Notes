@@ -1,0 +1,133 @@
+OverView:
+
+-- What is RDP
+-- How RDP Works
+-- How to crack RDP
+-- Why we need RDP
+-- Windows Servers
+-- How to connect RDP
+
+-- What is VPS
+-- How VPS works
+-- How to crack VPS
+-- Why we need VPS
+-- Linux Server - Ubuntu Servers
+-- How to connect VPS
+
+Tools:
+-- Microsoft Remote Desktop, putty, shell.cloud.google.com
+
+nmap -sV 127.0.0.1
+ssh 127.0.0.1@user
+ssh -p 22 127.0.0.1@user
+
+Common Port : http(80), https(443), ftp(21), RSTS(554) smtp(587) rdp(3389) ssh(22)
+
+Port Type:
+0 - 1023 -> well known Port
+1024 - 49151 -> Registered Ports
+49152 - 65535 -> Dynamic Ports
+
+CMD > netstat -a -b
+
+--RDP:
+
+need : IP Range, Port Scanner, UserName WordList, Password Wordlist, BruteForce Tool
+
+++ first gather the ip range by country wise so here is some site for gather ip range
+	https://www.beethink.com/BeeGuardian/IPBlocker/IPList.htm
+	https://www.iblocklist.com/lists.php?category=country&fileformat=p2p&archiveformat=gz
+	https://cable.ayra.ch/ip/
+	https://lite.ip2location.com/ip-address-ranges-by-country
+++ Open KPortScan3.0 [threads : 400, Port : 3389, With Port, append to file] and then start and you will find the result
+++ then Open NLBrute 1.2 [set the txt files and hit enter]
+	https://github.com/jeanphorn/wordlist/blob/master/usernames.txt
+	https://github.com/danielmiessler/SecLists/tree/master/Passwords/Common-Credentials
+	https://github.com/danielmiessler/SecLists/tree/master/Passwords/Common-Credentials/Language-Specific
+
+For Unique Ip Range : https://myip.ms/ > service Prodiver > go ip range by owner
+For Unique Password maker : VPS pass maker
+
+-- Make own random ip:
+++ Open illusionD3M0N.exe use 1 and 2 and then finding alive ip via nmap or smap
+
+-- After RDP Cracking:
+++ use rdp all tools
+++ CMD:
+net user <username> <pass> /add
+net localgroup Administrators <username> /add
+++ Kali:
+sudo useradd -m <useradd>
+sudo passwd <username>
+sudo usermod -aG sudo <username>
+su -a <username>
+
+--Create with own custom wp dorks:
+++ First target a paragraph and use keyword_convertor.py and then use WpDorkGen.exe and finding Domain
+
+--Domain to ip and ip range:
+++ use ip.exe use 1 and 2 and then use port.py for port scanner
+Domain to ip > ip ranged > filterd
+
+--For Reverse IP Lookup:
+https://mxtoolbox.com/ReverseLookup.aspx
+https://hackertarget.com/reverse-ip-lookup/
+https://dnschecker.org/reverse-dns.php
+https://www.yougetsignal.com/tools/web-sites-on-web-server/
+https://reverseip.domaintools.com/
+https://viewdns.info/reverseip/
+https://www.nslookup.io/reverse-ip-lookup/
+
+--Domain grabbing and exploit:
+++ use ip.exe use 1 and 2 and use rev.exe 
+
+--Domain to CMS:
+++ use cms.txt
+
+--Exploit Wordpress:
+++Use Brute XMLRPC WP
+
+--Automation Exploit:
+++Use CVE-2023-28121.py and run it try to use telegram bot in exploit and texttodomain.py
+
+--Shell Upload:
+++upload shell via file manager and remove .htaccess
+
+--Hacking Joomla:
+++ Goto profreehost.com and create a website or installing xmapp
+++ Create a joomla list and use goxploit
+++ then go to account and active and go to Cpanel and Online File Manager > htdocs > upload adminer.php
+++ or open xmapp and go to xtdocx and copy adminer.php and login with credentials
+++ then find users > select data > edit > change password
+
+joomla password genarator : https://www.danielmorell.com/tools/joomla/password-generator
+Brute Force : https://github.com/ajnik/joomla-bruteforce
+	      https://github.com/0rbz/JoomBrute
+	      https://github.com/phocean/Joomlabruter
+	      https://github.com/JavierOlmedo/UltimateCMSWordlists/tree/master/joomla
+	      https://github.com/rapid7/metasploit-framework/blob/master/data/wordlists/joomla.txt
+	      https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/CMS/joomla-plugins.fuzz.txt
+	      https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/URLs/urls-joomla-3.0.3.txt
+
+--Shell UPload:
+++ go to plg_jw_allvideos-v4.5.0.zip\plg_jw_allvideos-v4.5.0\plugin\jw_allvideos\tmpl\Framed\ paste the shell and zip it
+++ then go to joomla admin panel > system > extention > upload package file
+++ Shell call : http://127.0.0.1:1269/joomla/plugins/content/jw_allvideos/jw_allvideos/tmpl/Framed/b3.php
+
+--Database Access:
+++ Wordpress === wp-config.php
+++ go to Symlink and you will find same servers other credentials
+
+--SMTP:
+++ UPload wso.php and then go to smtp and find smtp info and then use smtp_checker_gui.py or CrackSmtp.php
+++ Tool : https://github.com/Tux-MacG1v/Mess-SMTP-Checker
+++ Laravel SMTP : find .env file and use BotManArmy.py
+
+Summary:
+- Find Some paragraph and create wordlist
+- then finding dorks and grab weblink
+- then domain to ip and create ip range
+- use reverse ip lookup or try to scan important ports
+- then filter cms and exploit
+
+

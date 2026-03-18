@@ -1,0 +1,53 @@
+Easy Recon:
+
+🧠 Step 1: Subdomain Discovery:
+subfinder -d target.com -o subdomains.txt
+assetfinder --subs-only target.com >> subdomains.txt
+amass enum -passive -d target.com >> subdomains.txt
+cat subdomains.txt | sort -u > unique_subs.txt
+
+dnsx -l unique_subs.txt -o resolved.txt
+httpx -l resolved.txt -o live_hosts.txt
+gowitness file -f live_hosts.txt -P screenshots/
+
+🕵️ Step 2: JavaScript File Hunting:
+subjs -i live_hosts.txt -o js_files.txt
+getJS --url https://target.com --output js_links.txt
+python3 linkfinder.py -i https://target.com/script.js -o cli
+
+arjun -u https://target.com/index.php
+arjun -u https://target.com/endpoint -m POST
+arjun -i urls.txt -o output.txt
+
+🛣️ Step 3: Parameter Discovery:
+gau target.com > urls.txt
+waybackurls target.com >> urls.txt
+paramspider -d target.com -o param_urls.txt
+cat urls.txt | grep '?' | tee params.txt
+
+🗂️ Step 4: Directory & File Bruteforce:
+ffuf -u https://target.com/FUZZ -w /path/to/wordlist.txt -o ffuf_results.txt
+dirsearch -u https://target.com -e php,html,txt -w /path/to/wordlist.txt
+feroxbuster -u https://target.com -w /path/to/wordlist.txt
+
+🔐 Step 5: Secrets & Exposed Stuff:
+python3 gitdorker.py -tf tokens.txt -q target -d dorks.txt -e
+trufflehog github --org=target
+
+💣 Step 6: Third-Party & Forgotten Apps:
+curl -X GET https://target.firebaseio.com/.json
+aws s3 ls s3://target-bucket-name --no-sign-request
+
+domain to js:
+
+subdomain -d abc.com
+httpx -l abc.txt -o alive.txt
+cat alive.txt | waybackurls > urls.txt
+cat urls.txt | grep ".js" | tee js.txt
+subjs -i urls.txt > subjs.txt
+katana -list urls.txt -silent | grep ".js" | tee katana.txt
+
+Finding Xss:
+gau target.com | grep '=' | gf xss > xss-params.txt
+dalfox file xss-params.txt -o xss_results.txt
+

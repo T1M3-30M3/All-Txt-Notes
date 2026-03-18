@@ -1,0 +1,63 @@
+cd
+cls
+color oc
+color /?
+control keyboard
+control mouse
+echo on
+echo off
+erase file.txt
+format
+explorer
+main.cpl
+osk
+start
+shutdown -s -t 20
+shutdown -a 
+time /t
+taskmgr
+ver
+write
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+source : https://www.youtube.com/watch?v=vleCMN3jJ1E

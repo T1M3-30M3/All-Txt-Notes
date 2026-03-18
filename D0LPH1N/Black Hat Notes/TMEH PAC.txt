@@ -1,0 +1,59 @@
+---install .net FrameWork 
+
+---Process:
+ComboList --> Keyword + proxy + combo maker
+Proxy
+Checker/config[tools]
+
+---Keyword site:
+keywordtool.io
+app.neilpatel.com
+keywordsheeter.com
+
+---Free Proxy:
+http > https > socks5 > socks5
+
+https://proxyscrape.com/free-proxy-list
+https://proxyscrape.com/proxy-checker
+https://proxyscrape.com/online-proxy-checker
+https://proxyscrape.com/proxy-filter
+https://spys.one/
+http://free-proxy.cz/en/
+https://gather-proxy.com/
+https://free-proxy-list.net/
+https://fineproxy.org/
+https://www.proxynova.com/proxy-server-list/
+https://openproxy.space/
+
+Virus and Thread Protection > Virus And Tread Protection Settings > Manage Settings 
+
+1st Class:
+-> Proxy Maker
+-> Proxy Checker
+-> Keyword Maker
+-> Keyword Checker
+-> Collecting Config
+-> use B3BAP and Slayer
+
+2nd Class:
+-> Account Checker
+-> AIO Checker [DARKAIO, SMAIO, BruteFlix, bazookaAIO]
+-> Combo Editor
+-> Domain Parser Sorter
+-> Combo Editor
+
+3rd Class:
+-> Collect Combo
+
+-> Public combo : By Public and useless
+-> Telegram/Website Combo : Good Combo
+-> HQ Combo : Advance Method
+
+Checker/Config:
+--> Checker : It program to check the site
+--> Config : .loli/ .anom/ .bbc/ .ing
+--> .loli : This is Openbullet Config FIle
+--> Anom : it are made by Anomaly Openbullet
+--> Svb : This is SIlverBullet COnfig FIle
+
+-> Use Open Bullet

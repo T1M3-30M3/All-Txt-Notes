@@ -1,0 +1,26 @@
+site:targetsite.com ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv 
+
+ntitle:"index of /" site:nasa.gov
+intitle:"index of /" "database" site:nasa.gov
+intitle:"index of /" "admin" site:nasa.gov
+intitle:"index of /" "contact" site:nasa.gov
+
+site:example.jcom inurl:api | site:*/rest | site:*/ v1 | site:*/v2 | site:*/v3
+
+site:example.com inurl:next= | inurl:url= | inurl:target= | inurl:rurl= | inurl:dest= | inurl:destination= | inurl:redir= | inurl:redirect_uri= | inurl:redirect_url= | inurl:redirectUri= | inurl:redirectUrl= | inurl:redirect= | inurl:/redirect/ | inurl:/cgi-bin/redirect.cgiinurl: | inurl:/out/ | inurl:/outinurl: | inurl:view= | inurl:/logininurl:to= | inurl:image_url= | inurl:go= | inurl:return= | inurl:returnTo= | inurl:return_to= | inurl:checkoutUrl= | inurl:checkout_url= | inurl:continue= | inurl:return_path= | inurl:returnPath=
+
+
+
+
+
+Some Dorking Site:
+https://taksec.github.io/google-dorks-bug-bounty/
+https://nitinyadav00.github.io/Bug-Bounty-Search-Engine/
+https://dorks.faisalahmed.me/#
+https://thegrayarea.tech/5-google-dorks-every-hacker-needs-to-know-fed21022a906
+https://hazanasec.github.io/2021-03-11-Dorking-on-Steriods/
+https://mr-koanti.github.io/github.html
+https://github.com/TakSec/google-dorks-bug-bounty/
+https://taksec.github.io/google-dorks-bug-bounty/
+
+

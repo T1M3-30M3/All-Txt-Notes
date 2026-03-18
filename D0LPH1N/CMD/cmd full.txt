@@ -1,0 +1,143 @@
+1.basic command using cmd
+
+cd.. [for goto 1 step back]
+cd/  [for goto home directory]
+cd users > cd name > cd desktop [go to desktop]
+dir [drive details]
+dir /ad [for show only drive folders]
+dir /a-d [only show drive file]
+cls [for clear]
+md name [for make folder]
+mkdir name [for make folder]
+rmdir name [for remove folder]
+mkdir name name2 name3 [for make multiple folder]
+rmdir name name2 name3 [for remove multiple folder]
+copy name.extention "where" [copy file to folder]
+copy *.extention "where" [copy same format file to folder]
+del name.extention [delete file or folder]
+move name.extention "where" [move file to folder]
+start notepad hello.txt[for make txt or any kind of file]
+copy con file.txt ---text----- ctrl+z [for exporting text]
+
+
+
+
+2.managing tasks and services cmnd
+
+tasklist [for show backgrpund task]
+notepad [for open notepad]
+calc [for open calculator]
+taskkil /pid number [stop the task]
+net start
+net stop "name" [for stop task]
+net start "name" [for start task]
+driverquery [show the driver list] 
+netsh advfirewall set all state off [firewall turn on]
+netsh advfirewall set all state on [firewall turn of]
+
+
+3.wmic cmnds
+wmic cpu [for know about cpu]
+wmic bios get serialnumber [for show serial number]
+wmic computersystem get totalphysicalmemory [for know ram size]
+wmic nic get macaddress [for know mac address]
+wmic process list brief [for know running task]
+wmic product get name,version [for know install software version]
+wmic partition get name,size,type [for show hdd partition]
+wmic process list
+wmic process where name="*.exe" call terminate [for stop the tasks]
+
+
+
+4.Getting information about system
+
+vol D: [for getting serial no]
+getmac [for getting mac address]
+winver [for getting windows version]
+chkdsk [chkdsk=checkdisk] [for getting health status of hdd]
+systeminfo [for getting info  about your system]
+diskpart > list disk > select disk 0 > detail disk [for getting about hdd partition] 
+diskpart > list disk > select disk [number] > clean > create partition primary > select partition [number] > active > format fs = fat32 quick >assign   [how to format sdcard/hdcard/pendrive by cmd]
+
+
+
+
+5.user management
+net user [for seeing users]
+net user username password /add [for adding user]
+net user username /del [for deleting user]
+net user administrator /active:yes [enable admin]
+net user administrator /active:no  [disable admin]
+net user username* [for bypassing password]
+
+
+6.best utility commands
+attrib +h +r +s [for hiding files]
+attrib -h -r -s [for getting back files]
+cipher /e [for entrypted files]
+cipher /d [for decrypted files]
+tasklist > list.txt [for exporting output file]
+copy con file.txt ---text----- ctrl+z [for exporting text]
+echo my name id > file.txt [for exporting written text file]
+type nul > file.pptx [for exporting any extention file]
+
+
+7.drive operation comd
+lavel E: [for giving name to drive]
+diskpart > list disk > select disk [number] > clean > create partition primary > select partition [number] > active > format fs=fat32 quick /format fs=ntfs quick >assign   [how to format sdcard/hdcard/pendrive by cmd]
+
+
+8. networking shell cmnds
+netsh wlan show profiles [for getting connected wifi networks]  [netsh means netshell wlan means wireless lan]
+netsh wlan show all [for getting all available networks]
+netsh wlan show 'profile name' key=clear [for checking connected wifi pass]
+netsh wlan delete profile name=name [dor deleting wifi network profile]
+
+
+	for creating hotspot
+netsh wlan set hostednetwork mode=allow ssid="name" key="123"
+netsh wlan start/stop hostednetwork
+
+
+
+9.basic network essential commands
+hostname [for getting computername]
+ipconfig [for getting ip address info]
+getmac [for getting mac address]
+ping website [for checking connextion]
+ping [about ping]
+tracert [for tracing route towards destination]
+netstat [getting end receive data info]
+netstat -e [network satistics]
+nslookup [for connection domain into ip]
+
+
+
+10.interesting cmnds
+color ? [about color]
+color 1-9 a-z [for changecolor]
+title name [for change title]
+prompt name 
+mode 30/50/90 [for change width]
+D: / E: / F: [for go to drive]  >  tree [for show all files]
+tree [for show all files]
+doskey/history
+date [for change date]
+time [for change time]
+shutdown -s -t 00 [-s for shoutdown, -r for restart time in seconds]
+hostname
+getmac
+
+
+
+extra:::
+cipher /E [for encrypted]
+color ?
+color help
+help color
+prompt help
+prompt name $G
+telnet towel.blinkenlights.nl
+attrib +h  +r +s foldername [hide folder]
+attrib -h  -r -s foldername [show folder]
+

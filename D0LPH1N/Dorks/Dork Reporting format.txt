@@ -1,0 +1,15 @@
+Hello,
+My name is Chirag Prajapati and I would like to report a new Google Dork.
+
+Description:  (YOUR GOOGLE DORK)
+
+This Google Dork will give us.............(EXPLAIN ABOUT YOUR DORK)
+
+Proof Of Concept (PoC):
+
+
+
+
+
+
+send to email: dorks@offsec.com

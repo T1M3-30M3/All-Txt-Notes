@@ -1,0 +1,148 @@
+###Create, Copy, Move, and Delete Commands 
+cd/ [for go to drive]
+cd users [for go to next step]
+cd usersname
+cd desktop
+cd.. [for reverse 1 step]
+mkdir name [for make a folder and name is your folder name]
+rmdir name [for delete a folder and name is your folder name]
+ren previousname nextname [for rename your folder]
+cd [use for goto next]
+type nul>name.extention [for make any kind of file]
+copy filename destinationfile/foldername [for copy file]
+move filename destinationfile/foldername [for move file]
+del filename [for delete file]
+del foldername[for delete all file in folder]
+cls[for clear]
+exit[for exit]
+
+
+
+
+###Start & Stop Commands for task manager
+tasklist[for show the tasklist]
+notepad[for opean a notepad]
+mspaint [for opean a paint]
+calc [for opean a calculator]
+taskkill /pid number [for stop the task]
+net start [for show running network service]
+net stop "name" [for used to stop a network service]
+net start "name" [for used to start a network service]
+driverquery [to openl ist install driver in system]
+
+
+
+###system information gathering
+wmic > /output:D:\insta.txt product get  name, version
+wmic > cpu  
+diskpart > list disk >select disk [number] > detail disk
+vol E: [for detaiils drive]
+chkdsk [for details c drive]
+getmac [for find mac address]
+ipconfig /all [for find mac address and find physical address]
+systeminfo
+diskpart > list disk > select disk [number] > clean > create partition primary > select partition [number] > active > format fs = fat32 quick >assign   [how to format sdcard/hdcard/pendrive by cmd]
+
+
+
+###Managing User Accounts
+
+open the run and type lusrmgr.msc
+net user[user account]
+net user  name /add paaspin [add user account] 
+net user name /del [delete user account]
+net user administrator /active:yes [for active administrator]
+net user administrator /active:no [for deactive administrator]
+net user username * 
+net user "username" * 
+Control Panel\User Accounts\User Accounts\Manage Accounts\choose user\[create a password]
+
+
+
+###Hide & Encrypt Files 
+goto folder where your file will hide and select the path and type cmd
+attrib +h +r +s [for hide file]
+attrib -h -r -s [for show hidden file]
+cipher /e [for encrypted file]
+cipher /d [for decrypted file]
+cipher /c [for seeing the files in directory]
+ciphrt /rekey [for update efc key]
+assoc..exe [for knowing about installed extention]
+
+
+
+###Creating & Exporting Files
+cd/ > cd users > cd username > cd desktop [for goto desktop]
+tasklist [for show the tasklist]
+tasklist > name.txt [for save the file]
+echo type anything > name.txt [echo for create and edit a file ]
+copy con warn.txt > type text (ctrl + z)
+type nul > name.extention
+type file.txt
+
+
+
+###Format, Boot & Label USB
+
+diskpart > list disk > select disk [number] > clean > create partition primary > select partition [number] > active > format fs = fat32 quick >assign   [how to format sdcard/hdcard/pendrive by cmd]
+label (C/D/E/F): > name [for reame]
+
+
+###Hotspot, Password & Network Commands
+netsh wlan show profiles > netsh wlan show profile name key-clear <your key content is password> [for see thw wifi pass]
+netsh wlan show all
+netsh wlan set hostednetwork mode=allow ssid=LINE key=[your pass] > netsh wlan start hostednetwork [make your device hotspot]
+
+
+
+###Ping, Tracert & Nslookup Commands
+hostname [for know your device name]
+ipconfig [know your ip details]
+ipconfig /all [know your details]
+getmac [for find mac address]
+ping websitename [for about your connection]
+tracert websitename [for know which ip pass by pass]
+netstat [for show local address and foreign address]
+nalookup websitename [for find website to ip]
+
+
+
+###Customization CMD Prompt Window
+
+color number [to change the color]
+
+0-black  1-blue 2-green 	3-aqua	 	4-red		 5-purple 	6-yellow 	7-white 	8-grey 
+9-light blue 	A-light green   B-Light aqua    C-light red      D-light purple E-light yellow  F-bright white 
+
+node number [change for  terminal size]
+title name [for change title name]
+
+
+
+###Shutdown, History & Tree Commands
+D: / E: / F: [for go to drive]  >  tree [for show all files]
+date [for change date]
+time [for change time]
+doskey/history [for see the history cmnds]
+shutdown -s -t 00 [s for shutdown r for restart time in seconds]
+
+
+###Impressive Command
+control panel > programme > turn windows features on/off > telnet client click
+telnet towel.blinkenlights.nl.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
