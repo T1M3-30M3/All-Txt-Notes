@@ -1,0 +1,55 @@
+Subdomain:
+https://exploits.shodan.io
+https://exposure.shodan.io/
+https://faviconmap.shodan.io/
+https://geonet.shodan.io/
+https://honeyscore.shodan.io/
+https://internetdb.shodan.io/
+
+Dork:
+asn:AS63086
+org:"Uber Technologies Inc"
+hostname:"example.com"
+ip:"1.1.1.1"
+net:5.136.0.0/13
+net:5.136.0.0/13,95.24.0.0/13
+http.component:wordpress city:Dhaka
+http.component:wordpress city:Dhaka port:80,443
+Apache/2.4.49
+os:"MikroTik RouterOS 6.42" country:ru 
+os: “windows 10”
+http.html:"/+CSCOE+/logon.html" org:"Sony Biz Networks Corporation" 
+http.title:”hacked by”
+http.title:”IP Webcam”
+os:MikroTik RouterOS 6.29
+http.title:"BIG-IP&reg;- Redirect" 
+android debug bridge
+android debug bridge "Name:"
+product:apache version:2.4.49
+hostname: sony.com
+hostname:sony.com,uber.com,yahoo.com
+ip:1.1.1.1
+ip:1.1.1.1,2.2.2.2
+net:8.8.0.0/16
+net:8.8.0.0/16,111.222.111.0/24
+org:”Uber Technologies Inc”
+org:”Uber Technologies Inc”,"Sony Media Software and Services Inc."
+ssl.cert.subject.cn:sony.com
+ssl.cert.subject.cn:sony.com,uber.com
+ssl.cert.subject.cn:addsmartpay.com product:apache version:2.4.49
+hostname:menandmice.com port:21 “230 Anonymous user logged in” 
+html:”userfiles/modules/microweber/css/ui.css”
+
+
+Link :
+https://ia800705.us.archive.org/17/items/shodan-book-extras/shodan/shodan.pdf
+https://www.shodan.io/download/create?query=%22authentication+disabled%22+%22RFB+003.008%22
+https://shodanio.wordpress.com/
+https://help.shodan.io/
+https://blog.shodan.io/
+https://tryhackme.com/room/shodan
+https://media.defcon.org/DEF%20CON%2018/DEF%20CON%2018%20presentations/DEF%20CON%2018%20-%20Schearer-SHODAN.pdf
+https://0xjoyghosh.medium.com/information-gathering-scanning-for-sensitive-information-reloaded-6ff3455e0d4e
+https://0xjoyghosh.medium.com/
+
+
