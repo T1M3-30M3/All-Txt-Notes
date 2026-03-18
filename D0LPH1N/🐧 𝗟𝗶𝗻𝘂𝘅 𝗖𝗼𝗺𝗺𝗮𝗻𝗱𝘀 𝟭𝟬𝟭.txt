@@ -1,0 +1,68 @@
+🐧 𝗟𝗶𝗻𝘂𝘅 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀 𝟭𝟬𝟭
+
+📂 𝟭. 𝗙𝗶𝗹𝗲 𝗮𝗻𝗱 𝗗𝗶𝗿𝗲𝗰𝘁𝗼𝗿𝘆 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 📂
+-𝚕𝚜: List all files and directories 📋
+- 𝚙𝚠𝚍: Print current directory's path 📍
+- 𝚌𝚍: Change directory 🚪
+- 𝚖𝚔𝚍𝚒𝚛: Create a new directory 📁
+- 𝚛𝚖𝚍𝚒𝚛: Remove directory (if empty) ❌📁
+- 𝚝𝚘𝚞𝚌𝚑: Create a new file 📄
+- 𝚌𝚙: Copy files or directories 📤📥
+- 𝚖𝚟: Move or rename files or directories 🚚
+- 𝚛𝚖: Remove files or directories 🗑️
+
+🔧 𝟮. 𝗣𝗿𝗼𝗰𝗲𝘀𝘀 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 🔄
+- 𝚙𝚜: List current processes 🏃
+- 𝚝𝚘𝚙: Display active processes in real-time ⏲️
+- 𝚑𝚝𝚘𝚙: Interactive process viewer 📊
+- 𝚔𝚒𝚕𝚕: Terminate a process ❌
+- 𝚔𝚒𝚕𝚕𝚊𝚕𝚕: Terminate all instances of a process ❌🔄
+- 𝚙𝚜𝚝𝚛𝚎𝚎: Display processes in a tree format 🌲
+
+👥 𝟯. 𝗨𝘀𝗲𝗿 𝗮𝗻𝗱 𝗚𝗿𝗼𝘂𝗽 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 👥
+- 𝚙𝚊𝚜𝚜𝚠𝚍: Change user password 🔑
+- 𝚞𝚜𝚎𝚛𝚊𝚍𝚍: Add a new user 👤➕
+- 𝚞𝚜𝚎𝚛𝚍𝚎𝚕: Remove a user 👤❌
+- 𝚐𝚛𝚘𝚞𝚙𝚜: Display groups a user belongs to 🧑‍🤝‍🧑
+- 𝚞𝚜𝚎𝚛𝚖𝚘𝚍: Modify user details ✏️👤
+- 𝚒𝚍: Display user ID and group ID info 🆔
+- 𝚐𝚛𝚘𝚞𝚙𝚊𝚍𝚍: Add a new group 🎉
+- 𝚐𝚛𝚘𝚞𝚙𝚍𝚎𝚕: Delete a group 🚫
+
+
+💾 𝟰. 𝗦𝘆𝘀𝘁𝗲𝗺 𝗜𝗻𝗳𝗼𝗿𝗺𝗮𝘁𝗶𝗼𝗻 🖥️
+- 𝚞𝚗𝚊𝚖𝚎: Display system information 💻
+- 𝚍𝚏: Disk space usage of file systems 💽
+- 𝚍𝚞: Estimate file and directory space usage 📊
+- 𝚏𝚛𝚎𝚎: Display memory usage 🧠
+- 𝚕𝚜𝚌𝚙𝚞: CPU architecture info 🤖
+- 𝚕𝚜𝚑𝚠: List hardware 🖨️🖱️
+- 𝚕𝚜𝚋𝚕𝚔: List block devices 💾
+
+🌐 𝟱. 𝗡𝗲𝘁𝘄𝗼𝗿𝗸 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻 𝗮𝗻𝗱 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 🕸️
+- 𝚒𝚏𝚌𝚘𝚗𝚏𝚒𝚐: Display and configure network interfaces 🖧
+- 𝚒𝚙: Show/manipulate routing, devices, policy routing, and tunnels 🌍
+- 𝚙𝚒𝚗𝚐: Test the reachability of a network host 📡
+- 𝚗𝚎𝚝𝚜𝚝𝚊𝚝: Network statistics 📊🌐
+- 𝚜𝚜: Another utility to investigate sockets 🔌
+- 𝚝𝚛𝚊𝚌𝚎𝚛𝚘𝚞𝚝𝚎: Display the route and transit delays of packets 🚀
+- 𝚜𝚜𝚑: Securely log into remote machines 🔐🖥️
+- 𝚗𝚌: Swiss army knife for TCP/IP 💼
+
+📦 𝟲. 𝗣𝗮𝗰𝗸𝗮𝗴𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 📦
+- 𝚊𝚙𝚝-𝚐𝚎𝚝, 𝚊𝚙𝚝: Package handler for Debian systems 📥📤
+- 𝚢𝚞𝚖, 𝚍𝚗𝚏: Package manager for RPM systems 🎁
+- 𝚛𝚙𝚖: Package manager for RPM packages 🌀
+- 𝚍𝚙𝚔𝚐: Package manager for Debian packages 📜
+- 𝚜𝚗𝚊𝚙: Universal Linux package system 🌍
+- 𝚣𝚢𝚙𝚙𝚎𝚛: Package manager for openSUSE 🍀
+
+📜 𝟳. 𝗙𝗶𝗹𝗲 𝗩𝗶𝗲𝘄𝗶𝗻𝗴 𝗮𝗻𝗱 𝗘𝗱𝗶𝘁𝗶𝗻𝗴 📝
+- 𝚌𝚊𝚝: Display file content 😺
+- 𝚕𝚎𝚜𝚜: View file content with navigation ⬆️⬇️
+- 𝚖𝚘𝚛𝚎: Another file viewer 📖
+- 𝚟𝚒𝚖: A powerful text editor ✍️
+- 𝚐𝚎𝚍𝚒𝚝: GNOME text editor 📝
+- 𝚗𝚊𝚗𝚘: Easy-to-use text editor in the terminal 🎵
+
+So there you have it, folks!

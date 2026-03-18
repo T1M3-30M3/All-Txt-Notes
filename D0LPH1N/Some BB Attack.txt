@@ -1,0 +1,32 @@
+http Debugger Pro : https://pesktop.com/en/windows/http-debugger-pro
+
+OTP Bypass Response Manipulation:
+-> First find the target website and find the create account or login function.
+-> Then 1st create an account and see the request and response and code.
+-> click on action -> Do intercept -> intercept response to this request.
+-> Then try to change 1/0, true/false, success/failed, ok, 404/200 etc.
+-> If you think that you can bypass OTP, then you can access any account.
+
+https://medium.com/@test123cybertest/simple-authentication-bypass-by-response-manipulation-44ba530e803b
+https://medium.com/@srivastavaankit7004/password-reset-via-otp-bypass-response-manipulation-d101b384941
+https://medium.com/@srivastavaankit7004/login-via-otp-bypass-72a4d31ebdd0
+https://hackerone.com/reports/1406471
+
+OTP Bypass BruteForce:
+-> Find out the number of digits
+-> Check if there are otp expiration
+-> Check out the limited failed attempts
+-> Check if there rate limit
+-> Check if there captcha
+
+Account TakeOver By OTP Bypass:
+-> If you see that the OTP is showing in the frontend, then try to decrypt (if it is encrypted) or try to use it. 
+
+Account TakeOver By IDOR:
+
+
+Price Manipulation:
+
+
+
+

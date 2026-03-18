@@ -1,0 +1,33 @@
+https://web-check.as93.net/
+https://www.web-check.net/
+https://web-check.xyz/
+https://github.com/Lissy93/web-check
+---------------------------------------------------------------
+https://www.revshells.com/
+https://tex2e.github.io/reverse-shell-generator/index.html
+https://weibell.github.io/reverse-shell-generator/
+https://chromewebstore.google.com/detail/hack-tools/cmbndhnoonmghfofefkcccljbkdpamhi?pli=1
+https://addons.mozilla.org/en-US/firefox/addon/hacktools/
+---------------------------------------------------------------
+https://weakpass.com/wordlist
+https://chaos.projectdiscovery.io/#/
+---------------------------------------------------------------
+C:\Users\WHO\AppData\Local\Google\Chrome
+C:\Users\WHO\AppData\Local\BraveSoftware\Brave-Browser
+C:\Users\WHO\AppData\Local\Microsoft\Edge
+C:\Users\WHO\AppData\Local\URBrowser
+C:\Users\WHO\AppData\Roaming\Microsoft\Internet Explorer
+
+userdata : all cookies
+---------------------------------------------------------------
+https://script-deface-generator.prinsh.com/
+https://www.prinsh.com/
+https://tools.prinsh.com/home/?index
+https://shell.prinsh.com/#home
+https://deface.prinsh.com/#home
+https://webtools.prinsh.com/
+---------------------------------------------------------------
+inurl:"home/000~ROOT~000"
+
+https://abc.xyz/home/000~ROOT~000/etc/passwd
+https://www.timaruclubs.co.nz/home/000~ROOT~000/etc/passwd

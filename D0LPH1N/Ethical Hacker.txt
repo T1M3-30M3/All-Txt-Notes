@@ -1,0 +1,29 @@
+10 point for become a Ethical hacker
+
+1.Computer Knowledge
+2.Networking
+3.OS Knowledge
+4.Programming language[c++, js, pytho, ruby, perl, html,php]
+5.Cryptography/Reverse Engineering
+6.Virtualization Technology
+7.cyber law
+8.Creative Thinging
+9.Problem Solving Skills
+10.Social Enginn=eering
+
+
+
+7 Steps For LEarn Advance Ethical Hacking:
+
+1.Basic Computer Knowledge
+2.Networking https://www.cisco.com/
+3.Windows Administration: microsoft.com
+4.Linux: redhat.com
+5.Progamming
+6.https://www.eccouncil.org/
+7.Npt https://www.offensive-security.com/
+
+There is No Place Like 127.0.0.1
+
+
+

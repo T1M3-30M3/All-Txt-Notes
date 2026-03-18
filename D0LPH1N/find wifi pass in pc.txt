@@ -1,0 +1,11 @@
+Only for wifi connected computers
+
+
+1st go to run and type ncpa.cpl
+2nd go to wifi
+3rd go to wireless properties
+4th go tosecurity
+
+
+CMD Command: NETSH WLAN SHOW PROFILE "connection name" KEY=CLEAR
+keycontent

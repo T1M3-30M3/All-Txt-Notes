@@ -1,0 +1,70 @@
+Requirments:
+
+Docker Desktop : https://www.docker.com/products/docker-desktop/
+CrAPI : https://github.com/OWASP/crAPI
+JWT Editor in BurpSuite
+
+http history > main domain > right click[add to scope] > filter[show only inscope items] > finding params
+
+API1: 2019: Broken Object Level Authorization
+
+Description: APIs tend to expose endpoints that handle object identifiers, creating a wide-attack surface-level access control issue. Object-level authorization checks should be considered in every function that accesses a data source using input from the user.
+
+Methadology:  Intercept with the burp, then analyze the response and request. If you find any API and if you find IDOR type, You can try IDOR.
+
+API2: 2019: Broken User Auhentication
+
+Description: Authentication mechanisms are often implemented incorrectly. Allowing attackers to compromise authentication tokens or exploit implementation flaws to assume other users identify them temporarily or permanently. Compromising the system's ability to 
+identify the client or user, and compromise API security overall.
+
+Methadology:  You can change v3 to v2 or v2 to v3. You may gain some extra scope.
+
+API3: 2019: Excusive Data Expose 
+
+Description: Looking forward to generic implementations, developers tend to expose all object properties without considering their individual sensitivity, relying on clients to perform the data filtering before displaying it to the user.
+
+Methadology: Intercept it and see the response and request. If you find any kind of information or data showing automatically by calling the API, that means it may be a bug
+
+
+API4: 2019: Rate Limiting and Lack of Resources
+
+Description: Quite often, APIs do not impose any restrictions on the size or number of resources that can be requested by the client or user. Not only can this affect the API server performance, leading to DOS, but it also leaves the door open to authentication flaws such as brute force.
+
+Methadology: use false to true or true to false, or you can modify any number. You may find any bugs.
+
+API5: 2019 - Broken Function Level Authorization
+
+Description : Complex access control policies with different hierarchies, groups and roles and an unclear separation between administrative and regular function tend to lead authorization flaws. y exploiting these issues, attackers gain access to other user,s resources and/or administrative functions 
+
+Methadology : You may check OPTIONS method then you will find what you will executive. then you will execute what you need.Change admin to user or user to admin
+
+Http Methods:
+GET : The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+HEAD : The HEAD method asks for a response identical to a GET request, but without the response body.
+POST : The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.
+PUT : The PUT method replaces all current representations of the target resource with the request payload.
+DELETE : The DELETE method deletes the specified resource.
+CONNECT : The CONNECT method establishes a tunnel to the server identified by the target resource.
+OPTIONS : The OPTIONS method describes the communication options for the target resource.
+TRACE : The TRACE method performs a message loop-back test along the path to the target resource.
+PATCH : The PATCH method applies partial modifications to a resource.
+
+API6: 2019 - Mass Assignment
+
+Description : Binding clients provided data, like JSON, to data models without proper property filtering based on a whitelist usually leads to mass assignment. either using object properties or exploring other APIs's endpoints. reading the documents or providing additional object properties in request payloads, which allows attackers to modify object properties they are not supposed to.
+
+Methadology : You can change the quantity; it may work, and then you may find the bug.
+
+API7: 2019 - NOSQL Injection
+
+Description : injection for such as SQL SQL command injection ETC occurs when untrusted data is sent to an interpreter as part of a command or query the attacker malicious data can trick the interpreter to executing an Internet command or accessing data without proper authorization
+
+Methadology : Use NoSQL payloads
+
+API8: 2019 - Broken Access Control
+
+Description : Vulnerabilities that allow attackers to bypass access controls and gain unauthorized access to resources or functionalities. This can occur when access controls are not properly implemented or enforced or when user input is not properly validated.
+
+Methadology : 
+
+

@@ -1,0 +1,33 @@
+john --single --format=raw-sha1 crack.txt
+john --wordlist=/usr/share/john/password.lst --format=raw-sha1 crack.txt
+john crack.txt
+unshadow /etc/passwd /etc/shadow > crack.txt
+john --wordlist=/usr/share/john/password.lst crack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=raw-sha1 crack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=raw-md5 rack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=raw-md4 crack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=raw-sha256 crack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=ripemd-128 crack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=whirlpool crack.txt
+john --list=formats
+john -si crack.txt -form=raw-md5
+john -w=/usr/share/wordlists/rockyou.txt crack.txt -form=raw-md5
+john -form=raw-md5 crack.txt md5.txt
+locate *2john
+ssh2john /home/pavan/.ssh/id_rsa > crack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+rar2john file.rar > crack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+zip -er file.zip file.txt
+zip2john file.zip > crack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+7z a -mhe file.7z file.txt -p"password"
+python 7z2john.py file.7z > crack.txt
+john –wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+python pdf2john.py file.pdf > crack.txt
+john –wordlist=/usr/share/wordlists/rockyou.txt crack.txt
+putty2john file.ppk > crack.txt
+john –w=/usr/share/wordlists/rockyou.txt crack.txt
+pwsafe2john ignite.psafe3 > crack.txt
+john –w=/usr/share/wordlists/rockyou.txt crack.txt

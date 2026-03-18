@@ -1,0 +1,162 @@
+Topic In VIdeo
+1.Intro of Powershell
+2.Basic Operator
+3.Task and Service
+4.System Info
+5.Network Info
+6.Wireless Opearator
+7.System Configuration
+8.Local User Management
+9.Disk User CMnds
+10.network truobleshooting
+11.Utility Cmds
+12.Into Of Powershell ISE
+13.$PS scripting Basic
+14.$PS scripting Projects
+
+1.What is Powershell::
+Windows PowerShell is a powerful tool for automating tasks and simplifying configuration and can be used to automate almost any task in the Windows ecosystem, including active directory and exchange. It's no wonder that it's become a popular tool among system admins and users.
+
+2.Basic Files & Folders Command & Operation
+pwd [for current location]
+Get-Location
+Get-LocalGroup
+Get-LocalGroupNumber
+Get-LocalUser
+cd ..
+cd
+cd\
+dir [for list]
+gci [for list]
+ls
+Get-ChildItem  [for list]
+Get-ChildItem -Name [use tab]
+cp copy xcopy name "destination"
+Copy-Item 
+move mv
+Move-Item
+del
+Remove-Item
+md mkdir New-Item
+type nul > name.exetention
+New-Item name.exetention
+cls clear Clear-Host
+get-command
+
+
+
+3. Task Management, Process & Services Commands
+tasklist get-process [for see task list]
+taskkill /pid number [for stop a task]
+get-process name | stop-process   [for stop a task]
+start-process name  [for start a task]
+net start
+net stop "name" 
+net start "name" 
+get-service
+get-service | Where-Object {$_.status -eq 'running'}
+stop-service "name"
+date get-date
+get-timezone
+set-date [time and date]
+get-timezone -listavailable >>> get-timezone -Id "Name"
+Hostname $env:computername
+
+4.System Info
+systeminfo
+msinfo32
+get-computerinfo
+getmac
+get-Wmiobject win32_networkadapterconfiguration | select description, macaddress
+get-Wmiobject win32_networkadapterconfiguration
+
+
+5.Network Info
+wmic cpu
+wmic >>> cpu
+get-wmiobject win32_processor
+chkdsk
+repair-volume -Filesystemlevel Levelname
+diskpart >>> list disk >>> select number >>> detail disk
+get-volume
+winver
+[system.environment]::OSVersion.version
+wmic
+Get-wmiobject win32_bios
+wmic >>> product get name, version
+Get-wmiobject win32_product
+h history
+invoke-history
+invoke-history -id number
+ipconpig
+Get-netIPAddress
+Get-netIPConfiguration
+Tracert website [curcuit rute]
+Test-NetConnection -Traceroute website
+wmic nic get name
+wmic >>> nic get name
+Get-netadapter
+
+6.Wireless Opearator
+Netsh wlan show interfaces [for laptop]
+Netsh wlan show profiles
+Netsh wlan show all
+Disable-netadapter "Wi-if"
+Enable-netadapter "Wi-if"
+nslookup
+nslookup website
+Resolve-dnsname website
+ncpa.cpl
+Remove-netIPAddress
+Netsh interface ipv4 set addressname=”WIFI” static IP SubbnessMask DG
+ping
+ping website
+test-connection website 
+Set-netfirewallprofile -name private -enabled true   [private/public/all]
+Set-netfirewallprofile -name private -enabled false
+Show-netfirewallrule
+Netsh wlan delete profile name="Wifi name"
+
+
+
+7.System Configuration
+cipher /e
+(get-item  metaspoilt.txt).Encrypt
+(get-item  metaspoilt.txt).decrypt
+attrib +h +r +s
+attrib -h -r -s
+(get-item file.txt).Attributes=’Hidden’
+net user
+net user name /add
+net user name /del
+new-Localuser
+remove-localuser name
+New-localgroup
+Remove-localgroup name
+$pass = = ConvertTo.securestring “pass” -asplaintext -force  >>> Enable-bitlocker -mountpoint “E:” -encryption aes128 -pin $pass
+
+this pc right click >>> manage >>> storage >>> disk management
+format-volume >>> choose your drive and format
+Echo hi I am adarssh > adi.txt
+Notepad adi.txt
+Type nul > file.txt
+Set-content t.txt ‘there is some text’
+Shutdown -s -t 00 (Shutdown)
+Shutdown -r -t 00 (Restart)
+
+
+12.Into Of Powershell ISE
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+

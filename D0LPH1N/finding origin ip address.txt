@@ -1,0 +1,38 @@
+Finding Origin IP Address:
+Process : ping <link> → nslookup <link> → https://securitytrails.com/ → https://search.censys.io/ → https://www.shodan.io/dashboard
+
+* Create a account https://securitytrails.com/ or https://search.censys.io/ or https://www.shodan.io/dashboard search by domain you may find real ip
+
+msfconsole
+use auxiliary/gather/censys_searh
+set CENSYS_DORK <site>
+set CENSYS_SEARCHTYPE ipv4
+set CENSYS_SECRET <secret key from website>
+set CENSYS_UID <secret uid from website>
+run
+
+pip install censys
+pip install --upgrade censys
+censys config [you must connect API ID and API Secret key]
+censys search <link>
+
+git clone https://github.com/censys/censys-python.git
+cd censys-python/
+poetry install
+censys config
+censys search <link>
+
+OneLiner : censys search hackerone.com | grep “ip” | egrep -v “description” | cut -d “:” -f2 | tr -d \”\,
+censys search hackerone.com | grep “ip” | egrep -v “description” | cut -d “:” -f2 | tr -d \”\, | tee ips.txt → cat ips.txt | httpx
+
+pip install -U --user shodan
+pip3 install shodan
+shodan
+shodan init YOUR_API_KEY
+easy_install -U --user shodan
+pip3 install -U --user shodan
+shodan search Ssl.cert.subject.CN:”hackerone.com” 200 — fields ip_str | httpx
+
+uncover -q “hackerone.com” -e censys,fofa,shodan,shodan-idb | httpx
+
+source : https://medium.com/@bobby.S/how-to-find-origin-ip-1f684f459942

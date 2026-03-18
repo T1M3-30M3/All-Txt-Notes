@@ -1,0 +1,21 @@
+1st download kalpurush form https://www.omicronlab.com/bangla-fonts.html
+then go to  terminal
+cd Downloads
+cp kalpurush.ttf /usr/share/fonts
+sudo !!
+then go to browser and go to settings and search fonts 
+go to advanced and select the kalpurush in 2nd option serif
+then hit Enter
+
+
+
+
+1st go to ngrok and create a account then go to terminal
+apt install wget
+apt install upzip
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+unzip ngrok-stable-linux-amd64.zip
+./ngrok authtoken --------------------------- [go to your ngrok account and 2nd you find that connect to account copy it and paste to the terminal ]
+
+ngrok config add-authtoken 2QKN56DHoT6n4ku4jnS0F0I5Ao7_5MXevPrmBjQHXLZSizryZ  
+Email : reneni6677@duscore.com  Pass :  Zaber@1269

@@ -1,0 +1,242 @@
+🌐 Some Most Useful Website 🌐
+
+Exploits Database 💥
+
+http://www.exploit-db.com/
+http://www.intelligentexploit.com
+http://www.shodanhq.com/
+http://packetstormsecurity.com/
+
+Vulnerabilities Database  ✅
+
+https://cve.mitre.org/cve/
+http://www.cvedetails.com/
+https://nvd.nist.gov/
+http://osvdb.org/
+https://www.kb.cert.org/vuls/
+https://secunia.com/community/advisories/search/
+http://www.securityfocus.com/bid
+http://lwn.net/Vulnerabilities/
+http://denimgroup.com/resources-threadfix/
+http://www.vulnerability-lab.com
+http://www.secdocs.org/
+
+
+Virus Scan ✅
+
+https://www.virustotal.com/nl/
+http://anubis.iseclab.org/
+http://virusscan.jotti.org/it
+
+
+--Not distribute to AV--
+
+http://v2.scan.majyx.net/?page=home
+http://fuckingscan.me/
+https://anonscanner.com/
+http://nodistribute.com/
+http://www.file2scan.net/
+
+Network Online Tools 🌐
+
+http://www.yougetsignal.com/
+http://www.dnswatch.info/
+http://www.nirsoft.net/countryip/
+http://www.tcpiputils.com/
+http://www.coffer.com/mac_find/
+http://bgp.he.net/
+http://www.sockets.com/services.htm
+http://services.ce3c.be/ciprg/
+
+
+IP Lookup 🔍
+
+http://ip-api.com/#
+http://www.my-ip-neighbors.com/
+http://www.whatismyip.com/
+http://www.ip2location.com/demo
+http://freegeoip.net/static/index.html
+http://whatstheirip.com
+http://ipaddress.com
+http://www.ip-adress.com/ipaddresstolocation/
+
+Encrypt / Decrypt ✅
+
+http://crypo.in.ua/tools/
+http://www.tools4noobs.com/online_tools/decrypt/
+http://codebeautify.org/encrypt-decrypt
+http://textmechanic.com/Encryption-Generator.html
+http://www.yellowpipe.com/yis/tools/encrypter/
+
+File Upload 📁
+
+https://anonfiles.com/
+https://mega.co.nz/
+https://www.mediafire.com/
+https://infotomb.com/m/welcome
+http://sharesend.com/
+http://www.wss-coding.com/upload
+https://thestarkarmyx.t.me/
+http://zippyshare.com/
+http://filetolink.com/
+http://ge.tt/
+http://largedocument.com/
+http://rghost.net/
+http://dox.abv.bg/files/share
+http://secureupload.eu/
+
+Share and Support us.
+
+
+------------------------------------------------------------------------------
+❇️ Information Gathering Tool Links 🔥
+
+❇️ Phoneinfoga - collect mobile number information 
+🔗 Link : https://github.com/sundowndev/PhoneInfoga
+
+
+❇️ information gathering angry tool 
+🔗 Link : https://github.com/ihebski/angryFuzzer
+
+❇️ Hakku Framework penetration testing tool
+🔗 Link : https://github.com/4shadoww/hakkuframework
+
+❇️ Check valid email address
+🔗 Link : https://github.com/4w4k3/KnockMail
+
+❇️ Santent online tool 
+🔗 Link : https://github.com/Gameye98/santet-online
+
+❇️ Harvester - collect emails,  Subdomain, name, etc. 
+🔗 Link : https://github.com/laramies/theHarvester
+
+❇️ Optiva framework 
+🔗 Link : https://github.com/joker25000/Optiva-Framework
+
+❇️ Forensic tool - cyberscan
+🔗 Link : https://github.com/medbenali/CyberScan
+
+❇️ Gloom framework - penetration testing 
+🔗 Link : https://github.com/StreetSec/Gloom-Framework
+
+❇️ Information gathering tool Recon 🐶 
+🔗 Link : https://github.com/s0md3v/ReconDog
+
+❇️ Android apps vulnerabilities scanner
+🔗 Link : https://github.com/AndroBugs/AndroBugs_Framewor
+
+❇️ AK47 project tool
+🔗 Link : https://github.com/nasirxo/AK47
+
+❇️ Darkfly tools installer
+🔗 Link : https://github.com/Ranginang67/DarkFly-Tool
+--------------------------------------------------------------------------------
+
+✅ WEB HACKING TOOL LINKS ✅
+
+
+❇️ WordPress admin finder 
+🔗 Link : https://github.com/kancotdiq/wpaf
+
+❇️ Smb scanner tool 
+🔗 Link : https://github.com/TechnicalMujeeb/smb-scanner
+
+❇️ Heart Bleed scanner 
+🔗 Link : https://github.com/TechnicalMujeeb/HeartBleed
+
+❇️ weevely php web shell
+ 🔗 Link : https://github.com/sunge/Weevely
+
+❇️ Webponized web shell
+🔗 Link : https://github.com/epinna/weevely3
+
+❇️ Nikto web scanner tool
+ 🔗 Link : https://github.com/sullo/nikto
+
+❇️ Auto Ip or domain Attacking Tool 
+🔗 Link : https://github.com/Bhai4You/Ip-Attack
+
+❇️ Click jacking vulnerability scanner 
+🔗 Link : https://github.com/D4Vinci/Clickjacking-Tester
+
+❇️ All in 1 information gathering and web penetration tool DTect
+🔗 Link : https://github.com/Audi0x01/D-TECT-1
+
+❇️ Detect phishing URL 
+🔗 Link : https://github.com/UndeadSec/checkURL
+
+❇️ Dos attack tool - Golden eye
+🔗 Link : https://github.com/jseidl/GoldenEye
+
+❇️ Dos attack with hulk
+🔗 Link : https://github.com/grafov/hulk
+
+❇️ Sql vulnerability scanner 
+🔗 Link : https://github.com/Pure-L0G1C/SQL-scanner
+
+❇️ hack website with sqlmap
+🔗 Link : https://github.com/sqlmapproject/sqlmap
+
+❇️ information and vulnerability scanner with striker 
+🔗 Link : https://github.com/s0md3v/Striker
+
+❇️ web server attacking tool with dost 
+🔗 Link : https://github.com/verluchie/dost-attack
+
+❇️ advanced multithreaded admin panel finder 
+🔗 Link : https://github.com/s0md3v/Breacher
+
+❇️ Ssl vulnerability scanner 
+🔗 Link : https://github.com/PortSwigger/ssl-scanner
+
+❇️ sublister - Subdomain enumeration
+🔗 Link : https://github.com/aboul3la/Sublist3r
+
+❇️ WordPress vulnerability scanner and attacker
+🔗 Link : https://github.com/wpscanteam/wpscan
+
+❇️ Hunner scanner framework
+🔗 Link : https://github.com/b3-v3r/Hunner
+
+❇️ Red hawk all in 1 information gathering and scanning tool
+🔗 Link : https://github.com/Tuhinshubhra/RED_HAWK
+
+❇️ Dos attack tool with Xerxes
+🔗 Link : https://github.com/sepehrdaddev/Xerxes
+
+❇️ social fish phishing tool 
+🔗 Link : https://github.com/UndeadSec/SocialFish
+
+❇️ weeman phishing tool no root 
+🔗 Link : https://github.com/evait-security/weeman
+
+❇️ WordPress security scanner Wpseku 
+🔗 Link : https://github.com/m4ll0k/WPSeku
+
+❇️ IDN homograph attack tool
+🔗 Link : https://github.com/UndeadSec/EvilURL
+
+❇️ Detect security flaws with CMS 
+🔗 Link : https://github.com/Dionach/CMSmap
+
+❇️ Fire crack , admin, finders,  deface, bing dorking etc 
+🔗 Link : https://github.com/Ranginang67/Firecrack
+
+❇️ Pish web tool
+ 🔗 Link : https://github.com/Cabdulahi/pish
+
+❇️ MITM attack tool 
+🔗 Link : https://github.com/websploit/websploit
+
+❇️ kill shot pentesting framework
+🔗 Link :https://github.com/bahaabdelwahed/killshot
+
+------------------------------------------------------------------------------------------------------
+
+
+How I Hacked NASA Using Google Dork in Just 10 Minutes : https://medium.com/@gaurish.main/how-i-hacked-nasa-using-google-dork-in-just-10-minutes-6ce3b3401512
+
+intitle:"index of /" site:nasa.gov
+intitle:"index of /" "database" site:nasa.gov
+intitle:"index of /" "admin" site:nasa.gov
+intitle:"index of /" "contact" site:nasa.gov

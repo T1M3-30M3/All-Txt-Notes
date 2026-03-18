@@ -1,0 +1,7 @@
+httpx -l urls.txt -mr "<(form|input|textarea)\b[^>]*>"
+
+httpx -l passiveurls.txt  -er "<(form|input|textarea)\b[^>]*>" | grep -iP "<(form|input|textarea)\b[^>]*>"
+
+https://x.com/mmnah1an/status/1782065427017039985?t=ftEm4L7JXCG9WC7XqQ3FFQ&s=07
+
+mainly ki domain theke subdomain then waybackurls use kore notepad.txt e save kore then ei script ta?

