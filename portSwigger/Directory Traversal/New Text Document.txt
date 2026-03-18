@@ -1,0 +1,2 @@
+Try this mass Wordlist for directory bruteforcing ;)
+https://github.com/six2dez/OneListForAll
