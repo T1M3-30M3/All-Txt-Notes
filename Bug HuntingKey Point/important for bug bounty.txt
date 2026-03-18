@@ -1,0 +1,436 @@
+01. Recon Methodology :
+
+* Find all subdomains as much as you can
+* EXtract 404 subdomains for check takeover
+* FInd all the links of each subdomains
+* Extract JS file from all links
+* Find Secret in the JS file Links
+* Github dorking each subdomain
+* Shodan dorking each subdomain
+* Search engine(google,bing) dorking each subdomains
+
+02. Recon Methodology :
+Finding subdomains > Resolving Ips > Reverse ip lookup > check alive subdomains > waybackurls, gau, wayback > Sorting > gf pattern > scanners, js secrets, dorking. 
+
+03. Recon Methodology :
+Subfinder[config with APIs] > httpx > gau or waymore > grep .js or jslinkfinder > MANTRA or nuclei > Gitdorkgo
+
+04. Recon Methodology :
+Subdomain finding [crt.sh] > crt.sh/?O=Facebook > crt.sh/?q=facebook.com > shodan > Other Info [securitytrails] > github recon > amass > httpx > nmap > Dirsearch/FFUF[Finding Enspoints] > web archieve 
+
+github recon : 
+org:facebookresearch https://
+org:facebookresearch http://
+org:facebookresearch ldap
+org:facebookresearch ftp
+org:facebookresearch sftp
+org:facebookresearch host:
+org:facebookresearch login
+"google.com" passwords
+
+amass : amass enum -passive -norecursive -noalts -df domains.txt -o subdomains.txt
+httpx : cat subdomains.txt | httpx -o live-subdomains.txt
+nmap : nmap -sV -iL subdomains.txt -oN scaned-port.txt --script=vuln
+burp : Burp ===> Spider this Host ===> while Spider working | Intruder ===> add WordList ===> Start Attack | 
+web archieve : https://web.archive.org/cdx/search/cdx?url=*.google.com&fl=original&collapse=urlkey
+
+Source : https://orwaatyat.medium.com/my-methodology-in-recon-and-find-bugs-my-methodology-in-hunting-using-phone-ccc9fe06dd2d
+
+Github Repo : https://github.com/NafisiAslH/KnowledgeSharing/tree/main
+https://github.com/Ractiurd?tab=repositories
+
+Azbug_Scanner:
+https://www.youtube.com/watch?v=DacTs09dmJY
+https://github.com/amazigh-kil3r/azbug_scanner
+
+Fatin Sirat Method : 
+
+Source : https://github.com/fatinsourav/Recon-Techniques
+
+Content Discovery:
+
+Manual Discovery : Robots.txt > Favicon > Sitemap.xml > HTTP Headers > Framework Stack > OSINT [Google Dorking] > OSINT [Wappalyzer] > OSINT [Wayback Machine] > OSINT [Github] > OSINT [S3 Bucket]
+
+robots.txt : www.abc.xyz/robotx.txt
+Favicon : curl https://xxx.com/sites/favicon/images/favicon.ico | md5sum
+Sitemap : www.abc.xyz/sitemap.xml
+Http Header : curl https://x.x.x.x -v
+
+cat domains.txt | waybackurls > urls
+cat domains.txt | gau --threads 5
+
+Recon Methodology:
+
+Finding programs :
+Awesome bug bounty: https://github.com/djadmin/awesome-bug-bounty
+Public bug bounty list: https://www.bugcrowd.com/bug-bounty-list/
+
+1. Check Initial Time To First Response
+2. Check Program Triage Time
+3. Check Report Resolve Time
+
+Scope : 
+1. Read and understand scope
+2. Which Assets are in scope?
+3. Automated tools are allowed?
+4. What bugs are accepted by the program?
+5. If in doubt send message to the support team
+
+Tools : subfinder, assetfinder, amass, findomain, subbrute,crt.sh
+Command: amass enum -d target.com && assetfinder --subs-only target && subfinder -d target.com && finddomain -t target.com && Crt.sh [Web Interface] && ./subbrute.py target.com
+
+Create a result.txt including all the tools outputs.
+
+cat results.txt | sort -u > resultsUnique.txt
+cat resultsUnique.txt | httprobe -c 100 > resultsAlive.txt
+
+Directory Bruteforcing: Dirb, Gobuster, Dirsearch, Ffuf
+
+SecLists:  https://github.com/danielmiessler/SecLists
+Assetnote: https://wordlists.assetnote.io/
+
+Command:
+dirb target.com wordlist
+gobuster dir -u target.com -w wordlist -x php,js,txt,bak,log
+dirsearch.py -u target.com -w wordlist -e php -b -t 200
+ffuf -w wordlist -u target.com/FUZZ mc 200 -c -v
+
+Shodan:
+Shodan Dorks: https://github.com/humblelad/Shodan-Dorks
+Shodan Tutorial: https://danielmiessler.com/study/shodan/
+https://pathakabhi24.medium.com/shodan-the-complete-guide-51c099cde0d3
+
+Github : Gitrob, Trufflehog, Gityleaks
+Github Dorks: https://github.com/H4CK3RT3CH/github-dorks
+Google Dorks Tutorials: https://www.exploit-db.com/google-hacking-database
+
+Nmap:
+nmap -sS -p target.com/IP
+nmap -sU -p target.com/IP
+nmap -sV -p target.com/IP
+
+Analyzing JS Files: LinkFinder
+https://github.com/GerbenJavado/LinkFinder
+
+python3 linkfinder -i target.com -o cli
+
+Keyword Search : api, http, https, api_key, apikey, token, secret, config, conf, cfg, ENV, env, apikey, api, username, password, dbuser, db_user, root_url, http://, https://
+
+cat results.txt | sudo waybackurls > urls
+
+Read Blog : https://0xprial.com/blog/
+
+Recon EveryThing:
+Source : https://infosecwriteups.com/recon-everything-48aafbb8987
+
+Web Tools:
+https://pentest-tools.com/
+https://virustotal.com/
+https://www.shodan.io/
+https://crt.sh/?q=%25target.com
+https://dnsdumpster.com/
+https://censys.io
+http://dnsgoodies.com
+
+Tools: sublist3r, subfinder, findomain, assetfinder, amass, censys, altdns, MassDNS, domains-from-csp, SPF record of DNS,
+
+https://github.com/0xbharath/domains-from-csp 
+
+sublist3r -d example.com
+subfinder -d freelancer.com
+subfinder -dL hosts.txt
+subfinder -d <domain> -recursive -silent -t 200 -v -o sub.txt
+findomain -t example.com
+assetfinder -subs-only <domain>
+cat domains | assetfinder -subs-only (without http:// or https://)
+amass enum -o subdomains.txt -d output_file.txt
+amass enum -o out.txt -df domains.txt
+amass intel -whois -d example.com
+python censys_enumeration.py —no-emails —verbose —outfile results.json domains.txt
+python altdns.py -i input_domains.txt -o ./output/path -w altdns/words.txt -i subdomains.txt -o data_output -w words.txt -s results_output.txt
+massdns -r lists/resolvers.txt -t A domains.txt > results.txt
+python csp_parser.py target_url — resolve
+python assets_from_spf.py target_url
+python assets_from_spf.py target_url — asn
+knockpy domain.com -w wordlist.txt
+
+ASN -> http://bgp.he.net 
+curl -s http://ip-api.com/json/192.30.253.113 | jq -r .as
+curl -s http://ip-api.com/json/142.250.196.46 | jq -r .as
+curl -s http://ip-api.com/json/136.243.90.249 | jq -r .as
+
+whois -h whois.radb.net — ‘-i origin ASN_Number’ | grep -Eo “([0–9.]+){4}/[0–9]+” | uniq
+whois -h whois.radb.net — ‘-i origin AS36459’ | grep -Eo “([0–9.]+){4}/[0–9]+” | uniq
+
+https://crt.sh/?q=%25domain.com
+
+Content Discovery Tools:
+
+• Use robots.txt
+• Also spider the host for API endpoints.
+• you see an open port on 8443
+• Directory brute force
+• /admin/ return 403
+• You bruteforce for more files/direcotries on /admin/
+• and let’s say /admin/users.php return 200
+• Repeat on other domain, ports, folders etc
+
+
+Tools : ffuf, dirsearch, Gobuster, wfuzz, Aquatone, Eyewitness, Webscreenshot
+
+ffuf -w /path/to/wordlist -u https://target/FUZZ
+ffuf -u https://HFUZZ/WFUZZ -w hosts.txt:HFUZZ -w wordlist.txt:WFUZZ -mode clusterbomb
+ffuf -w hosts.txt:HOSTS -w content.txt:FUZZ -u https://HOSTS/FUZZ
+ffuf -u url/FUZZ/FUZZ/FUZZ -w wordlist1.txt -w wordlist2.txt -w wordlist3.txt -mode clusterbomb
+curl -s -H “Host: nonexistent.example.com” http://example.com | wc -c
+ffuf -w /path/to/paramnames.txt -u https://target/script.php?FUZZ=test_value -fs 4242
+ffuf -w /path/to/values.txt -u https://target/script.php?valid_name=FUZZ -fc 401
+wfuzz -w raft-large-directories.txt — sc 200,403,302 http://testphp.vulnweb.com/FUZZ
+cat hosts.txt | aquatone -out ~/aquatone/example.com
+EyeWitness -f urls.txt — web
+EyeWitness -x urls.xml — timeout 8 — headless
+python webscreenshot.py -i list.txt -v
+
+Check CMS: Wappalyzer, Builtwith, Retire.js 
+WAF: WafW00f 
+
+Dorks:
+site:.eu responsible disclosure
+inurl:index.php?id=
+site:.nl bug bounty
+“index of” inurl:wp-content/ (Identify Wordpress Website)
+inurl:”q=user/password” (for finding drupal cms )
+site:codepad.co “company”
+site:scribd.com “keyword”
+site:npmjs.com “keyword”
+site:npm.runkit.com “keyword”
+site:libraries.io “keyword”
+site:ycombinator.com “keyword”
+site:coggle.it “keyword”
+site:papaly.com “keyword”
+site:google.com “keyword”
+site:trello.com “keyword”
+site:prezi.com “keyword”
+site:jsdelivr.net “keyword”
+site:codepen.io “keyword”
+site:codeshare.io “keyword”
+site:sharecode.io “keyword”
+site:pastebin.com “keyword”
+site:replt.it “keyword”
+site:productforums..google.com “keyword”
+site:gitter.im “keyword”
+site:bitbucket.org “keyword”
+site:*.atlassian.net “keyword”
+site:gitlab “keyword”
+
+Wordlists/Payloads
+
+raft-large-words.txt, https://github.com/danielmiessler/SecLists
+contentdiscoveryall.txt from jhaddix: https://gist.github.com/jhaddix/b80ea67d85c13206125806f0828f4d10
+all.txt from jhaddix — https://gist.github.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a
+PayloadAllTheThings — https://github.com/swisskyrepo/PayloadsAllTheThings
+XSS Payloads- http://www.xss-payloads.com/
+XSS Payloads — https://github.com/Pgaijin66/XSS-Payloads/blob/master/payload.txt
+SQL Injection Payloads — https://github.com/trietptm/SQL-Injection-Payloads
+Google-Dorks Payloads — https://gist.github.com/clarketm/919457847cece7ce40323dc217623054
+
+Recoon By Cterms:
+subfinder -d <domain> -t 50 -o name.txt
+assetfinder -subs-only <domain> > name01.txt
+sort *.txt | uniq > final.txt
+subzy -targets final.txt -concurrency 100
+cat final.txt | httpx -threads 100 final0.txt
+cat final0.txt | aquatone -out aquatoneresults.txt
+gau hackerne.com
+waybackurls hackerone.com
+gau hackerne.com -o gau.txt
+waybackurls hackerone.com -o hackerone.txt
+gau hackerne.com | tee gau.txt
+waybackurls hackerone.com | tee wayback.txt
+sort *.txt | uniq > final.txt
+cat final.txt | grep '\.js$'
+cat final.txt | grep '\.js$' > jsfinal.txt
+cat final.txt | gf xxs
+cat final.txt | gf lfi
+cat final.txt | gf sqli
+cat final.txt | gf redirect
+cat final.txt | gf ssrf
+
+
+Github Recon : Manual and Automated
+
+Source : https://shahjerry33.medium.com/github-recon-its-really-deep-6553d6dfbb1f
+
+Manual Recon:
+GitHub Dorks for Finding Files
+
+filename:manifest.xml
+filename:travis.yml
+filename:vim_settings.xml
+filename:database
+filename:prod.exs NOT prod.secret.exs
+filename:prod.secret.exs
+filename:.npmrc _auth
+filename:.dockercfg auth
+filename:WebServers.xml
+filename:.bash_history <Domain name>
+filename:sftp-config.json
+filename:sftp.json path:.vscode
+filename:secrets.yml password
+filename:.esmtprc password
+filename:passwd path:etc
+filename:dbeaver-data-sources.xml
+path:sites databases password
+filename:config.php dbpasswd
+filename:prod.secret.exs
+filename:configuration.php JConfig password
+filename:.sh_history
+shodan_api_key language:python
+filename:shadow path:etc
+JEKYLL_GITHUB_TOKEN
+filename:proftpdpasswd
+filename:.pgpass
+filename:idea14.key
+filename:hub oauth_token
+HEROKU_API_KEY language:json
+HEROKU_API_KEY language:shell
+SF_USERNAME salesforce
+filename:.bash_profile aws
+extension:json api.forecast.io
+filename:.env MAIL_HOST=smtp.gmail.com
+filename:wp-config.php
+extension:sql mysql dump
+filename:credentials aws_access_key_id
+filename:id_rsa or filename:id_dsa
+
+GitHub Dorks for Finding Languages
+
+language:python username
+language:php username
+language:sql username
+language:html password
+language:perl password
+language:shell username
+language:java api
+HOMEBREW_GITHUB_API_TOKEN language:shell
+
+GiHub Dorks for Finding API Keys, Tokens and Passwords
+
+api_key
+“api keys”
+authorization_bearer:
+oauth
+auth
+authentication
+client_secret
+api_token:
+“api token”
+client_id
+password
+user_password
+user_pass
+passcode
+client_secret
+secret
+password hash
+OTP
+user auth
+
+GitHub Dorks for Finding Usernames
+
+user:name (user:admin)
+org:name (org:google type:users)
+in:login (<username> in:login)
+in:name (<username> in:name)
+fullname:firstname lastname (fullname:<name> <surname>)
+in:email (data in:email)
+
+GitHub Dorks for Finding Information using Dates
+
+created:<2012–04–05
+created:>=2011–06–12
+created:2016–02–07 location:iceland
+created:2011–04–06..2013–01–14 <user> in:username
+
+GitHub Dorks for Finding Information using Extension
+
+extension:pem private
+extension:ppk private
+extension:sql mysql dump
+extension:sql mysql dump password
+extension:json api.forecast.io
+extension:json mongolab.com
+extension:yaml mongolab.com
+[WFClient] Password= extension:ica
+extension:avastlic “support.avast.com”
+extension:json googleusercontent client_secret
+
+Automated Recon:
+
+TruggleHog : https://github.com/dxa4481/truffleHog
+python3 trufflehog.py --regex --entropy=False https://github.com/<yourTargetRepo>
+
+Github-Dorks : https://github.com/techgaun/github-dorks
+python github-dork.py -u <username>
+
+Watchtower : https://radar.nightfall.ai/
+
+Tools:
+https://github.com/BishopFox/GitGot
+https://github.com/Talkaboutcybersecurity/GitMonitor
+https://github.com/michenriksen/gitrob
+https://github.com/tillson/git-hound
+https://github.com/kootenpv/gittyleaks
+https://github.com/awslabs/git-secrets https://git-secret.io/
+https://github.com/techgaun/github-dorks
+https://github.com/dxa4481/truffleHog
+
+Github Dorking:
+Tools : https://github.com/N0MoreSecr3ts/wraith
+https://github.com/techgaun/github-dorks
+List : https://github.com/random-robbie/keywords/blob/master/keywords.txt
+
+BLind XSS : https://husseinphp.github.io/
+Bug Bounty Helper :: https://dorks.faisalahmed.me/#
+Bug Bounty Search Engine : https://nitinyadav00.github.io/Bug-Bounty-Search-Engine/
+Github Dork :: https://mr-koanti.github.io/github.html
+Github Recon link : https://vsec7.github.io/
+Lopseg Osint :: https://www.lopseg.com.br/osint
+Repo Link : https://github.com/nitinyadav00/Bug-Bounty-Search-Engine/
+Shodan Dork :: https://mr-koanti.github.io/shodan
+
+trufflehog : https://chromewebstore.google.com/detail/trufflehog/bafhdnhjnlcdbjcdcnafhdcphhnfnhjc?pli=1
+https://addons.mozilla.org/en-US/firefox/addon/trufflehog/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

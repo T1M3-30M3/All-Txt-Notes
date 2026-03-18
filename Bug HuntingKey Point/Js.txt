@@ -1,0 +1,64 @@
+JS Analyzer for Bug Bounty:
+
+subfinder -d domain.com | httpx -mc 200 | tee subdomains.txt && cat subdomains.txt | waybackurls | httpx -mc 200 | grep .js | tee js.txt
+nuclei -l js.txt -t ~/nuclei-templates/exposures/ -o js_exposures_results.txt
+
+grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret" /path/to/directory/*.js
+
+JS Analyzer :
+https://github.com/KathanP19/JSFScan.sh
+https://github.com/machine1337/JSScanner
+https://github.com/zseano/JS-Scan
+https://github.com/0xsha/GoLinkFinder
+https://github.com/InitRoot/BurpJSLinkFinder
+https://github.com/aashishsec/JS.Scanner
+1. Hakrawler : https://lnkd.in/gnxm9b7s
+2. LinkFinder : https://lnkd.in/g783FFaG
+3. jsluice : https://lnkd.in/gKw7ypwH
+https://github.com/perfoon/JavaScript-analyser
+
+Finding js files:
+waybackurls <link> | tee urls.txt
+grep ".js$" urls.txt | tee urls2.txt
+
+Finding js files:
+subfinder -d domain.com | httpx -mc 200 | tee subdomains.txt && cat subdomains.txt | waybackurls | httpx -mc 200 | grep .js | tee js.txt
+cat js.txt | grep -r -E “aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret”
+
+Finding js files:
+cat domains.txt | getJS
+
+Finding js files:
+cat domains.txt | katana | grep js | httpx -mc 200 | tee js.txt
+nuclei -l js.txt -t ~/nuclei-templates/exposures/ -o js_bugs.txt
+grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret|smtp" *.js
+
+Finding JS Files:
+waybackurls example.com | grep “\.js” | uniq | sort | tee js.txt
+grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret" /path/to/directory/*.js
+
+
+Finding JS FIles:
+waybackurls app.wellhive.com | grep "\.js" | uniq | sort | tee -a js.txtDomain to JS:
+sudo subfinder -d rapyd.net -o 1.txt | sudo sublist3r -d rapyd.net -o 2.txt | sudo assetfinder --subs-only rapyd.net > 3.txt | sudo findomain -t rapyd.net --output
+cat * > full.txt | sort | uniq > final.txt
+cat final.txt | httpx > 200.txt
+cat 200.txt | subjs
+katana -u rapyd.net -d 5 -jc | grep ".js$"
+katana -list 200.txt -jc | grep ".js$" | uniq | sort
+katana -list 200.txt -jc -silent | grep ".js$" | tee katana.txt
+katana -list 200.txt -jc -silent -o katana.txt| grep ".js$"
+cat 1.txt 2.txt > 3.txt
+sort 1.txt 2.txt | uniq -d
+cat 3.txt | uniq | sort
+cat name.txt | while read url; do python3 SecretFinder/SecretFinder.py -i $url -o cli ; done
+cat name.txt | while read url; do python3 SecretFinder/SecretFinder.py -i $url -o cli > secret.txt; done
+grep -r -E 'aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret' x.txt
+nuclei -l x.txt -t nuclei-templates/javascript/
+cat x.txt | mantra
+
+
+
+
+
+

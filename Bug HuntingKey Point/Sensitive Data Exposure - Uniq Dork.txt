@@ -1,0 +1,16 @@
+site:targetsite.com ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv confidential and sensitive keywords like "phonenumber","email","password"
+
+site:testphp.vulnweb.com inurl:next= | inurl:url= | inurl:target= | inurl:rurl= | inurl:dest= | inurl:destination= | inurl:redir= | inurl:redirect_uri= | inurl:redirect_url= |inurl:redirectUri= | inurl:redirectUrl= | inurl:redirect= | inurl:/redirect/ | inurl:/cgi-bin/redirect.cgiinurl: | inurl:/out/ | inurl:/outinurl: | inurl:view= | inurl:/logininurl:to= | inurl:image_url= | inurl:go= | inurl:return= | inurl:returnTo= | inurl:return_to= | inurl:checkoutUrl= | inurl:checkout_url= | inurl:continue= | inurl:return_path= | inurl:returnPath=
+
+site: "example.com" ext:log | ext:txt | ext:conf | ext: cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git |ext:svn | ext:htpasswd | ext: htaccess
+
+inurl:url= | inurl: return= | inurl: next= | inurl: redirect= | inurl:redir= |inurl:ret= | inurl: r2= | inurl:page= inurl:& inurl:http site:example.com
+
+inurl:q= | inurl:s= | inurl: search= | inurl:query= | inurl: keyword= |inurl:lang= inurl:& site:example.com
+
+site:example.com inurl:api | site:*/rest | site:*/ v1 | site:*/v2 | site:*/v3
+site:example.com inurl:api | site:*/rest | site:*/v1 | site:*/v2 | site:*/v3
+
+inurl:login | inurl:signin | intitle:login | intitle:signin | inurl:secure site:example.com
+
+ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess site:example.com

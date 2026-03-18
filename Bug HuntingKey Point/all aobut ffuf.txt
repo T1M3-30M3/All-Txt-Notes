@@ -1,0 +1,35 @@
+ffuf -request req.txt -w passlist.txt:USER -w passlist.txt:PASS -mc all -fc 500,401 ["user":"USER","password":"PASS"]
+
+
+ffuf -u http://localhost:3000/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt
+ffuf -u http://localhost:3000/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-medium-words-lowercase.txt -e .php,.html,.txt
+ffuf -u http://localhost:3000/FUZZ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-medium-words-lowercase.txt -e .php,.html,.txt -mc 200
+ffuf -u http://FUZZ.mydomain.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+ffuf -w /usr/share/SecLists/Usernames/*.txt -X POST -d "username=FUZZ&&password=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://mydomain.com/login -mr "msge form webpage"
+ffuf -w usernames.txt:W1,passlist.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://localhost:3000/login -fc 200
+
+passlist: /usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt
+
+
+ffuf -w wordlist.txt -u http://website.com/FUZZ
+ffuf -w wordlist.txt -u http://website.com/FUZZ -e .aspx,.html,.php,.txt
+ffuf -w wordlist.txt -w http://website.com/FUZZ -e .aspx,.html -mc 200,302
+ffuf -w subdomains.txt -u http://website.com/ -H “Host: FUZZ.website.com”
+ffuf -w sublists.txt -u http://website.com/ -H “Host: FUZZ.website.com” -fw 3913
+ffuf -w wordlist.txt -u http://website.com/FUZZ -X POST
+ffuf -w wordlist.txt -X POST -d “username=admin\&password=FUZZ” -u http://website.com/FUZZ
+ffuf -w wordlist.txt -u http://website.com/FUZZ/backup.zip
+ffuf -request req.txt -request-proto http -mode clusterbomb -w usernames.txt:HFUZZ -w passwords.txt:WFUZZ
+
+
+-mc : to specify Status code.
+-ml: to specify amount of lines in response
+-mr: to specify regex pattern
+-ms: to specify response size
+-mw: to specify amount of words in response
+-fw : to filter by the amount of words
+-fl : to filter by the number of lines
+-fs : to filter by the size of the response
+-fc : to filter by the status code
+-fr : to filter by the regex pattern
+

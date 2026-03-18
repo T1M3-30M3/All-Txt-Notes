@@ -1,0 +1,37 @@
+XSS Dork
+
+inurl:".php?cmd="
+inurl:".php?z="
+inurl:".php?q="
+inurl:".php?search="
+inurl:".php?query="
+inurl:".php?searchstring="
+inurl:".php?keyword="
+inurl:".php?file="
+inurl:".php?years="
+inurl:".php?txt="
+inurl:".php?tag="
+inurl:".php?max="
+inurl:".php?from="
+inurl:".php?author="
+inurl:".php?pass="
+inurl:".php?feedback="
+inurl:".php?mail="
+inurl:".php?cat="
+inurl:".php?vote="
+Inurl:”php?q=”
+Inurl:”/feedpost.php?url=”
+Inurl:”php?id=”
+inurl:”php?sid=”
+inurl:”/poll/default.asp?catid=”
+inurl:”/search_results.php?search=”
+Finds search result pages with a 'search' parameter, a common target for XSS.
+inurl:”/main.php?sid=”
+inurl:”/news.php?id=”
+inurl:”/notice.php?msg=”
+inurl:”/site_search.php?sfunction=”
+inurl:”/view.php?PID=”
+inurl:”contentPage.php?id=”
+inurl:”displayResource.php?id=”
+inurl:”com/search.asp”
+inurl:”pages/match_report.php?mid=”

@@ -1,0 +1,36 @@
+Openly Hit : https://web.archive.org/cdx/search/cdx?url=uylab.org/*&output=txt&collapse=urlkey&fl=original&page=/
+Google Dork : https://gist.githubusercontent.com/ricsirigu/1325a39e8e562277f212399650218046/raw/a7cbb7465878bceec7f2810eb402ead8187b1a4c/redirect_dorks.txt
+Google Dork : https://github.com/EdOverflow/bugbounty-cheatsheet/blob/master/cheatsheets/open-redirect.md
+
+Process 01:
+paramspider -d <link> 
+paramspider -l urls.txt
+cat list_of_urls.txt |  openredirex -p payloads.txt -k "FUZZ" -c 50
+cat list_of_urls.txt |  openredirex -p "/home/kali/openredirex/payloads.txt" -k "FUZZ" -c 50
+
+Process 02:
+gau testphp.vulnweb.com | grep -a -i \=https | qsreplace 'http://evil.com' | while read host do;do curl -s -L $host -I | grep "evil.com" && echo -e "$host \033[0;31mVulnerable\n" ;done
+waybackurls testphp.vulnweb.com | grep -a -i \=http | qsreplace 'http://evil.com' | while read host do;do curl -s -L $host -I| grep "evil.com" && echo "$host \033[0;31mVulnerable\n" ;done
+subfinder -d testphp.vulnweb.com -all -silent | waybackurls | sort -u | gf redirect | qsreplace 'http://evil.com' | httpx -fr -title --match-string 'evil.com'
+
+Process 03:
+https://github.com/faiyazahmad07/WEBSTER
+python3 webster.py -u http://testphp.vulnweb.com/redir.php?r=/dashboard -w testphp.vulnweb.com -p payload.txt -t 2
+
+Process 04:
+waybackurls <link> | tee urls.txt
+grep "=http" urls.txt | tee urls2.txt
+grep ".js$" urls.txt | tee urls2.txt
+cat urls2.txt | gf redirect
+
+waybackurls <link> | gf redirect
+
+https://www.youtube.com/watch?v=dz052doAJSE
+
+Dorking:
+site:testphp.vulnweb.com inurl:next= | inurl:url= | inurl:target= | inurl:rurl= | inurl:dest= | inurl:destination= | inurl:redir= | inurl:redirect_uri= | inurl:redirect_url= | inurl:redirectUri= | inurl:redirectUrl= | inurl:redirect= | inurl:/redirect/ | inurl:/cgi-bin/redirect.cgiinurl: | inurl:/out/ | inurl:/outinurl: | inurl:view= | inurl:/logininurl:to= | inurl:image_url= | inurl:go= | inurl:return= | inurl:returnTo= | inurl:return_to= | inurl:checkoutUrl= | inurl:checkout_url= | inurl:continue= | inurl:return_path= | inurl:returnPath=
+
+
+
+
+

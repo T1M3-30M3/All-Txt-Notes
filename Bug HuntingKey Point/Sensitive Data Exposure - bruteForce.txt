@@ -1,0 +1,9 @@
+ffuf -c -ac -r -u https://<link>/FUZZ -w wordlist.txt
+dirsearch -u <link>
+gobuster dir -u <ip> -w directory-list-2.3-medium.txt -x php,html,txt
+gobuster dir -u <ip> -w /usr/share/wordlists/dirb/common.txt
+gobuster dir --url <link> -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+gobuster dir -u <ip> -w Discovery/Web-Content/directory-list-2.3-small.txt 
+gobuster dir -u <ip> -w /usr/share/dirb/wordlists/common.txt
+gobuster dir -u <ip> -w wordlist.txt -x php,txt,html
+gobuster dir -u <ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt

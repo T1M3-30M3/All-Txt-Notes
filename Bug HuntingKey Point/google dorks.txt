@@ -1,0 +1,191 @@
+site:example.com inurl:admin
+site:example.com inurl:login
+site:example.com inurl:panel
+site:example.com inurl:control
+site:example.com inurl:cpanel
+site:example.com inurl:dashboard
+site:example.com inurl:backend
+site:example.com inurl:manager
+site:example.com inurl:secure
+site:example.com filetype:php inurl:admin
+site:example.com filetype:asp inurl:login
+site:example.com filetype:jsp inurl:panel
+site:example.com filetype:aspx inurl:control
+site:example.com filetype:html inurl:cpanel
+site:example.com filetype:htm inurl:dashboard
+site:example.com filetype:pl inurl:backend
+site:example.com filetype:cgi inurl:manager
+site:example.com filetype:cfm inurl:secure
+site:example.com/admin/
+site:example.com/login/
+site:example.com/panel/
+site:example.com/control/
+site:example.com/cpanel/
+site:example.com/dashboard/
+site:example.com/backend/
+site:example.com/manager/
+site:example.com/secure/
+site:example.com intitle:wordpress admin
+site:example.com intitle:joomla admin
+site:example.com intitle:drupal admin
+site:example.com intitle:magento admin
+site:example.com intitle:prestashop admin
+site:example.com intitle:oscommerce admin
+site:example.com intitle:opencart admin
+site:example.com intitle:vbulletin admin
+site:example.com intitle:phpbb admin
+
+site:example.com "Error establishing a database connection"
+site:example.com "MySQL server has gone away"
+site:example.com "database is locked"
+site:example.com "database connection is not available"
+site:example.com "Database selection failed"
+site:example.com "wp-config.php"
+site:example.com "wp-config.bak"
+site:example.com "wp-config.old"
+site:example.com "wp-config.sample"
+site:example.com "wp-config.txt"
+site:example.com "wp-content/plugins/readme.txt"
+site:example.com "wp-content/plugins/license.txt"
+site:example.com "wp-content/plugins/*.sql"
+site:example.com "wp-content/plugins/*.php"
+site:example.com "wp-content/themes/readme.txt"
+site:example.com "wp-content/themes/license.txt"
+site:example.com "wp-content/themes/*.sql"
+site:example.com "wp-content/themes/*.php"
+Finding WordPress sites with leaked backup files:
+site:example.com "wp-content/uploads/backups/"
+site:example.com "wp-content/*.sql.gz"
+site:example.com "wp-content/*.sql.zip"
+site:example.com "wp-content/*.bak.gz"
+site:example.com "wp-content/debug.log"
+site:example.com "wp-content/error.log"
+site:example.com "wp-content/logs/"
+site:example.com "wp-content/uploads/user/" -inurl:(login|register)
+site:example.com "wp-content/plugins/user-pro/*.php"
+site:example.com "wp-content/plugins/user-directory/*.php"
+site:example.com "wp-content/plugins/profile-builder/*.php"
+site:example.com "wp-content/uploads/.*\.xlsx"
+site:example.com "wp-content/uploads/.*\.docx"
+site:example.com "wp-content/uploads/.*\.pdf"
+site:example.com "wp-content/uploads/.*\.csv"
+site:example.com "wp-content/uploads/.*\.txt"
+intitle:index.of.mysql.txt
+intitle:index.of.config.inc.php
+intitle:index.of.db.php
+intitle:index.of.database.php
+intitle:index.of.db_config.php
+intitle:index.of.db_connect.php
+intitle:index.of.dbaccess.php
+intitle:index.of.db_params.php
+intitle:index.of.db_pdo.php
+intitle:index.of.db_mysql.php
+intitle:index.of.config.php
+intitle:index.of.config.xml
+intitle:index.of.php.ini
+intitle:index.of.htaccess
+intitle:index.of.htpasswd
+intitle:index.of.env
+intitle:index.of.secrets
+intitle:index.of.private
+intitle:index.of.readme.txt
+intitle:index.of.license.txt
+intitle:index.of.plugin.php
+intitle:index.of.module.php
+intitle:index.of.extension.php
+intitle:index.of.component.php
+intitle:index.of.theme.php
+intitle:index.of.template.php
+intitle:index.of.style.css
+intitle:index.of.skin.css
+intitle:index.of.backup
+intitle:index.of.backups
+intitle:index.of.sql.gz
+intitle:index.of.sql.zip
+intitle:index.of.bak.gz
+intitle:index.of.bak.zip
+intitle:index.of.error.log
+intitle:index.of.debug.log
+intitle:index.of.logs
+intitle:index.of.users.txt
+intitle:index.of.user.txt
+intitle:index.of.passwd.txt
+intitle:index.of.members.txt
+intitle:index.of.registered.txt
+intitle:index.of.signup.txt
+intitle:index.of.emails.txt
+intitle:index.of.xlsx
+intitle:index.of.docx
+intitle:index.of.pdf
+intitle:index.of.csv
+intitle:index.of.txt
+intitle:index.of.confidential
+intitle:index.of.sensitive
+intitle:index.of.secret
+site:example.com filetype:pdf
+site:example.com filetype:doc
+site:example.com filetype:docx
+site:example.com filetype:xls
+site:example.com filetype:xlsx
+site:example.com filetype:csv
+site:example.com filetype:txt
+site:example.com filetype:rar
+site:example.com filetype:zip
+site:example.com filetype:7z
+site:example.com filetype:gz
+site:example.com filetype:tar
+site:example.com filetype:exe
+site:example.com filetype:dll
+site:example.com filetype:bat
+site:example.com filetype:ps1
+site:example.com filetype:jar
+site:example.com filetype:sql
+site:example.com filetype:xml
+site:example.com filetype:json
+site:example.com filetype:conf
+site:example.com filetype:ini
+site:example.com filetype:log
+site:example.com filetype:key
+site:example.com filetype:pem
+site:example.com filetype:crt
+site:example.com filetype:cer
+site:example.com "file.pdf"
+site:example.com "file.doc"
+site:example.com "file.docx"
+site:example.com "file.xls"
+site:example.com "file.xlsx"
+site:example.com "file.csv"
+site:example.com "file.txt"
+site:example.com "file.rar"
+site:example.com "file.zip"
+site:example.com "file.7z"
+site:example.com "file.gz"
+site:example.com "file.tar"
+site:example.com "file.exe"
+site:example.com "file.dll"
+site:example.com "file.bat"
+site:example.com "file.ps1"
+site:example.com "file.jar"
+site:example.com "file.sql"
+site:example.com "file.xml"
+site:example.com "file.json"
+site:example.com "file.conf"
+site:example.com "file.ini"
+site:example.com "file.log"
+site:example.com "file.key"
+site:example.com "file.pem"
+site:example.com "file.crt"
+site:example.com "file.cer"
+site:example.com *.pdf
+site:example.com *.doc
+site:example.com *.docx
+site:example.com *.xls
+site:example.com *.xlsx
+site:example.com *.csv
+site:example.com *.txt
+site:example.com *.rar
+site:example.com *.zip
+site:example.com *.7z
+site:example.com *.gz
+site:example.com *.tar
+intitle:"index of" site:*domain.com filetype:conf

