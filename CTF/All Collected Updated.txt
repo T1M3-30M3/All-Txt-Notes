@@ -1,0 +1,26 @@
+Osint:
+
+Domain Information : https://otx.alienvault.com/indicator/domain/nstechvalley.com
+UserName Search : https://whatsmyname.app/
+UserName Search : https://instantusername.com/
+UserName Search : https://namechk.com/
+UserName Search : https://whatsmyname.app/
+UserName Search : https://namecheckup.com/
+
+
+Networking:
+
+strings packets-file.pcapng| grep -i "Content-type:" | sort | uniq
+
+strings packets-file.pcapng| grep -i "user-agent:" | sort | uniq
+
+strings packets-file.pcapng| grep -i "Trace-Test:"   
+
+
+Dork:
+
+inurl:login
+filetype:env intext:DB_PASSWORD
+filetype:sql "password"
+filetype:xls OR filetype:xlsx "username | password"
+intitle:"index of" "password"

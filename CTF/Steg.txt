@@ -1,0 +1,101 @@
+steghide extract -sf image.jpg
+steghide info image.jpg
+steghide embed -cf image.jpg -ef secret.txt
+
+exiftool image.jpg
+
+binwalk -e image.jpg
+
+zsteg -a image.png
+
+strings image.jpg | less
+
+binwalk -e image.jpg
+
+steghide embed -cf audio.wav -ef secret.txt
+steghide extract -sf audio.wav
+
+ffmpeg -i video.mp4 -vn -acodec copy output.aac
+
+stegpy encode input.wav "hidden message"
+stegpy decode input.wav
+
+xxd file.png | less  # View hex
+xxd -r file.hex > file.png  # Reverse hex to binary
+
+stegsnow -C -m "Secret Message" output.txt
+stegsnow -C output.txt
+
+outguess -d secret.txt -p password image.jpg
+outguess -r image.jpg output.txt
+
+zbarimg qr.png
+
+steghide embed -cf qr.png -ef secret.txt
+
+foremost -i image.jpg -o output_folder
+
+strings file | less
+
+steganopayload create -i input.jpg -o output.jpg -p "secret.txt"
+
+file image.png
+
+strings image.png
+
+xxd image.png
+
+binwalk image.png
+
+steghide extract -sf image.jpg
+
+exiftool image.jpg
+
+foremost -i image.jpg
+
+zsteg image.png
+
+pngcheck -v image.png
+
+outguess -r image.jpg output.txt
+
+openstego extract -sf image.png -xf output.txt
+
+stegdetect image.jpg
+
+hexedit file
+
+🌐 Best Websites for Steganography CTF Practice
+Online Steganography Tools
+🔗 https://aperisolve.fr/ - Automated image analysis
+🔗 https://futureboy.us/stegano/ - LSB Steganography
+🔗 https://stylesuxx.github.io/steganography/ - Web-based Steganography
+🔗 https://georgeom.net/steghide/ - Online Steghide
+🔗 https://www.dcode.fr/steganography - General Steganography Solver
+
+CTF Challenge Platforms
+🏆 https://ctflearn.com - CTFLearn Stego Challenges
+🏆 https://hackthebox.com - HTB Stego Labs
+🏆 https://picoctf.org - picoCTF Stego Challenges
+🏆 https://tryhackme.com - TryHackMe Stego Rooms
+🏆 https://cryptohack.org - Cryptohack Steganography
+
+
+https://georgeom.net/StegOnline/upload
+https://futureboy.us/stegano/
+https://gchq.github.io/CyberChef/
+https://imagemagick.org/
+https://github.com/Paradoxis/StegCracker
+https://stegcloak.surge.sh/
+https://stylesuxx.github.io/steganography/
+https://github.com/abeluck/stegdetect
+
+
+Tips for Steganography Challenges
+
+* Always check the file type and metadata.
+* Look for hidden files using binwalk or foremost.
+* Use strings and xxd to inspect raw data.
+* Try different steganography tools for images, audio, and video.
+* Don’t forget to check spectrograms in audio files.
+* Use online tools like AperiSolve or CyberChef for quick analysis.

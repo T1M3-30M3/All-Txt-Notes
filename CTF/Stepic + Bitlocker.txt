@@ -1,0 +1,23 @@
+Stepic:
+pip install stepic
+stepic -d -i upz.png
+
+
+Bitlocker:
+file bitlocker-1.dd 
+bitlocker2john -i bitlocker
+echo bitlocker_hash > bitlocker.txt
+john --format=bitlocker bitlocker_hash.txt
+john --format=bitlocker --wordlist=/usr/share/wordlists/rockyou.txt bitlocker_hash.txt
+john --show bitlocker_hash.txt
+sudo mkdir -p /mnt/dislocker
+sudo dislocker -v -V bitlocker-1.dd -u jacqueline -- /mnt/dislocker
+cd /mnt/dislocker/
+ls
+strings dislocker-file | grep -i "ctf"
+
+
+sudo apt install dislocker
+dislocker --version
+
+hashcat -m 22100 bitlocker.hash /usr/share/wordlists/rockyou.txt --force

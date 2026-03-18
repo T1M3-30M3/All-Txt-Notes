@@ -1,0 +1,27 @@
+Idemtify Components -> Recognize Vulnerabilities -> Assess Threats -> Evaluate Attack Surfaces
+
+Red Teaming : Vulnerability Assessments -> Red Team Assesment -> Penetration Tests
+
+OWASP Machine Learning Security Top 10:
+1. Input Manipulation Attack (ML01)
+2. Data Poisoning Attack (ML02)
+3. Model Inversion Attack (ML03)
+4. Membership Inference Attack (ML04)
+5. Model Theft (ML05)
+6. AI Supply Chain Attacks (ML06)
+7. Transfer Learning Attack (ML07)
+8. Model Skewing (ML08)
+9. Output Integrity Attack (ML09)
+10. Model Poisoning (ML10)
+
+Owasp Top 10 Attacking Text Genaration:
+1. Prompt Injection(LLM01)
+2. Insecure Output Handling(LLM02)
+3. Traning Data Poisoning(LLM03)
+4. Model Denial of Service(LLM04)
+5. Supply Chain Vulnerabilities(LLM05)
+6. Sensitive Information Disclouse(LLM06)
+7. Insecure Plugin Design(LLM07)
+8. Excessive Agency(LLM08)
+9. Overrenliance(LLM09)
+10. Model Theft(LLM10)

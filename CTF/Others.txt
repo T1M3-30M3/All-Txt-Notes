@@ -1,0 +1,36 @@
+CTF Writeups : https://warlocksmurf.github.io/categories/ctf/
+Zero Charater Steg : https://330k.github.io/misc_tools/unicode_steganography.html
+Image Height : https://en.wikipedia.org/wiki/JPEG#Lossless_further_compression
+Writeups : https://cyberhacktics.com/hiding-information-by-changing-an-images-height/
+Whitespace Steg : https://naokikp.github.io/wsi/whitespace.html
+
+Audio LSB:
+https://github.com/ragibson/Steganography?tab=readme-ov-file#recovering-data
+stegolsb wavsteg -r -i challenge.wav -o output.txt -n 2 -b 10000
+
+Audio DeepSound:
+deepsound2john beep.wav > sound.txt
+john -w=/usr/share/wordlists/rockyou.txt sound.txt 
+
+SSTV (Slow Scan TV) : sstv -d Arecibo.wav  -o result.png
+
+It is related echoes that means this is ICMP:
+└─$ tshark -Y "icmp.ident == 0 && icmp.type == 8" -T fields -e data.data -r Echos\ Parody.pcap | awk '{ printf "%s", $1 }'
+546d563464584e4456455a37517a427362444e6a6446395561444e74587a52736243456866513d3d
+
+---------Source :https://warlocksmurf.github.io/posts/nexusctf2024/---------
+
+UserName Checker : https://brandsnag.com/social-media-handle-checker
+UserName Checker : https://inteltechniques.com/tools/Search.html
+Custom Morse Code[dah-di] : https://morsecode.ninja/reference/ 
+
+* From a mail avalon8973@gmail.com. First try to Email lookup or try to searching social media by username. ghunt email bbburn216@gmail.com
+
+---------Source :https://warlocksmurf.github.io/posts/ictf2024/---------
+
+Pdf to text : pdftotext invoice.pdf
+Zip Bomber : strings flag.zip | grep -i cit | sort | uniq -u
+RGB Value to Pixel : python code
+Music Searcher : https://www.aha-music.com/identify-songs-music-recognition-online
+
+---------Source :https://warlocksmurf.github.io/posts/ctf@cit2024/---------

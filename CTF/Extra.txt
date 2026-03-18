@@ -1,0 +1,49 @@
+http.request.method == "POST"
+http.request.method == "GET"
+http contains "username" || http contains "password"
+ftp.request.command == "USER" || ftp.request.command == "PASS"
+http.request.method == "POST" && frame contains "username"
+tshark -r capture.pcap -Y 'http.request' | grep -i "password"
+dns.qry.name contains "example.com"
+smtp.req.parameter contains "password"
+tcp contains "flag"
+udp contains "ctf"
+http contains "base64"
+
+Common Text: password=, username=, key=, Authorization: , user=, pass=, token=, host, hostname, 
+General Keywords : username, password, login, auth, token, session, cookie, csrf, key, hash, flag, secret
+Network Protocols : http, https, ftp, smtp, pop3, imap, telnet, ssh, dns, dhcp, snmp, sip, rtp
+Network Ports : port, 80, 443, 21, 22, 25, 53, 110, 143
+Hostname : hostname, servername, domain, host, fqdn, server, version, os, user-agent
+File and Path : path, uri, url, resource, endpoint, file, filename
+Potential Threads : alert, malware, phishing, exploit, vulnerability, payload, shell, backdoor, command, execute
+Additioal Keywords : api, data, query, sql, inject, debug, error, trace, output, input, sudo, awk 
+
+tshark -r capture.pcap | grep -Ei "password=|username=|key=|Authorization:|user=|pass=|token=|host|hostname"
+tcpdump -nn -r capture.pcap | grep -Ei "password=|username=|key=|Authorization:|user=|pass=|token=|host|hostname"
+
+Always see every packet note always hypertext Transfer protocol
+
+strings file.pcapng | grep -ai "linux" | grep -vi "app" | grep -vi "user"
+strings challenge_file.pcapng| grep -i "email=" | grep -i "password="
+strings challenge_file.pcapng| grep -i "password="
+strings challenge_file.pcapng| grep -i ".php"
+strings challenge_file.pcapng| grep -i ".txt"
+strings challenge_file.pcapng| grep -i ".sh"
+strings challenge_file.pcapng| grep -i ".py"
+tcp.port == 1337
+ip.addr == 192.198.1.9 && tcp.port == 1337
+
+
+--> Must be close HTTP, TCP, GET, POST
+
+
+
+
+
+
+
+
+
+
+https://medium.com/@kagimujkar/breached-ucc-cyberdrill-ctf-2024-writeup-27c48aeedce2

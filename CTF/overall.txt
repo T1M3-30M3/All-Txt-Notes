@@ -1,0 +1,61 @@
+Basic:
+-> First use search option and also use grep and strings also
+-> also use dork and osint 
+
+https://fileinfo.com/
+https://cryptii.com/pipes/decimal-text
+https://www.upsidedowntext.com/
+
+
+for a in {1..99}; do for z in *.zip; do unzip $z;rm $z;done;done
+for a in {1..99}; do for r in *.rar; do unrar x -o+ "$r" && rm "$r"; done; done
+for a in {1..99}; do for t in *.tar; do tar -xf "$t" && rm "$t"; done; done
+
+
+Steg:
+strings > file > exiftool > binwalk > steghide > stegcracker > zsteg > hxd > foremost > stegsolve > jsteg >  openstego > stegseek > quickstego > Hstego > f5 > Openfuff > Silent Eye > Exiv2 > Fcrackzip > Stegdetect > stegolego > stegoveritas > stegbreak > stegsnow
+
+sonic Visualizer > deep sound > steghide > HiddenWave > SilentEye > OpenPuff > Wavsteg > 
+
+https://futureboy.us/stegano/
+https://medium.com/@ria.banerjee005/steganography-tools-techniques-bba3f95c7148
+https://daniellerch.me/stego/intro/tools-en/
+https://blackarch.org/stego.html
+https://0xrick.github.io/lists/stego/
+https://github.com/cmaixen/CTF-Tools/blob/master/steganography/Readme.md
+
+Crypto:
+https://md5hashing.net/hash/
+https://gchq.github.io/CyberChef/
+https://www.dcode.fr/cipher-identifier
+https://www.dcode.fr/symbols-ciphers
+https://cryptii.com/
+https://www.dcode.fr/twin-hex-cipher
+https://www.calcresult.com/misc/cyphers/twin-hex.html
+https://www.boxentriq.com/code-breaking/tap-code
+https://www.boxentriq.com/
+https://cryptii.com/pipes/decimal-text
+https://base64.guru/converter/decode/image
+
+
+Forensics:
+-> Use Autopsy, Voladility, Wireshark, network miner etc
+
+Osint:
+https://www.pic2map.com/
+https://earth.google.com/web/
+https://www.google.com/maps/
+https://fotoforensics.com/
+
+Reverse:
+https://dogbolt.org/
+
+
+Web:
+
+if you find any js file so run with : node name.js [sudo apt install nodejs npm]
+
+
+curl -X POST http://ctf.securityvalley.org:7777/api/v1/validate -H 'Content-Type: application/json' -d '{"pass": "just_warming_up"}'
+
+

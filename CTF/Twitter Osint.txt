@@ -1,0 +1,124 @@
+from:username
+to:username
+keyword : hacker OR cybersecurity
+"exact phrase" : "data breach"
+"database leak" OR "data breach"
+#hashtag : #OSINT
+hacking lang:en
+filter:images - passport filter:images
+filter:videos - protest filter:videos
+filter:links filetype:pdf
+"confidential" OR "leaked data" OR "password"
+@username filter:replies
+"username:password" OR "admin password"
+"phone number" OR "credit card" OR "SSN"
+filter:verified
+"@gmail.com" OR "@yahoo.com" OR "@protonmail.com"
+"database leak" OR "data breach" OR "compromised account"
+"username:password" OR "admin password" OR "login credentials"
+"leaked report" filter:links filetype:pdf
+filter:images "screenshot" OR "email conversation"
+filter:videos "CCTV footage" OR "security camera"
+"deep web" OR "dark web" OR "Tor marketplace"
+"zero-day vulnerability" OR "CVE-2024" OR "exploit database"
+"database dump" OR "credit card dump" OR "selling CC"
+"telegram leaks" OR "telegram dump" OR "telegram database"
+"1Bitcoin" OR "3Bitcoin" OR "bc1"
+"192.168.1.1" OR "8.8.8.8"
+"hire hacker" OR "need hacker" OR "hack my account"
+"password123" OR "pass: admin"
+site:twitter.com "leaked database" OR "private data"
+site:web.archive.org/web/*/twitter.com/username
+"password123" OR "pass: admin" 
+"1Bitcoin" OR "3Bitcoin" OR "bc1" 
+site:web.archive.org/web/*/twitter.com/username 
+"database dump" OR "credit card dump" OR "selling CC"  
+"zero-day vulnerability" OR "CVE-2024" OR "exploit database" 
+"deep web" OR "dark web" OR "Tor marketplace" 
+filter:links filetype:pdf 
+filter:verified  
+to:username 
+from:username 
+
+
+Zaber Mahmud *
+* Mahmud Asif
+lsit: September 2024
+from:username1 to:username2
+from:username2 to:username1
+from:* to:username1
+from:username1 to:*
+from:username1 paytm
+filter:image
+filter:videos
+filter:periscope
+filter:twimg
+and/or
+@user1 and @user2
+@user1 or @user2
+@user near:bangladesh
+@user near:bangladesh within:5km
+@user and near:bangladesh within:5km
+@user since:2021-01-01 until:2023-01-01
+@user lang:en
+
+geocode:LATITUDE,LONGITUDE,RADIUS
+geocode:23.8103,90.4125,5km
+site:twitter.com "geocode:23.8103,90.4125,5km"
+
+('Bug Hunting') (since:2019-01-01 until:2021-01-01)
+(@remonsec) ('Bug Hunting') (since:2019-01-01 until:2021-01-01)
+(@remonsec) ('Bug Hunting') (since:2019-01-01 until:2021-01-01) (geocode:23.8103,90.4125,5km)
+since:2024-07-10 until:2024-08-05 ("Shahbag") (geocode:23.8103,90.4125,5km)
+
+ISO Language Codes: https://www.andiamo.co.uk/resources/iso-language-codes/
+ISO Language Codes: http://www.lingoes.net/en/translator/langcode.htm
+GeoCode : http://geocode.xyz/
+https://onemilliontweetmap.com/
+Old Twitter : https://chromewebstore.google.com/detail/old-twitter-layout-2024/jgejdcdoeeabklepnkdbglgccjpdgpmf
+Old Facebook : https://chromewebstore.google.com/detail/old-layout-for-facebook/abmkkackbbimmdbfjdilpnfaegaeagge?hl=en
+
+
+https://github.com/twintproject/twint
+https://github.com/falkensmz/tw1tter0s1nt
+
+https://twitter.com
+https://twitter.com/search-advanced?lang=en
+https://www.twdocs.com
+https://onemilliontweetmap.com
+https://twdown.net
+https://tinfoleak.com
+https://twimap.com
+https://www.happygrumpy.com
+https://followerwonk.com
+https://socialbearing.com
+https://tweetdeck.twitter.com/
+https://tweetbeaver.com/
+https://socialbearing.com/
+https://accountanalysis.app/
+https://tinfoleak.com/
+http://allmytweets.net/
+http://foller.me
+http://www.tweetstats.com/
+https://twitter.jeffprod.com/
+https://mentionmapp.com/
+https://chirpty.com/
+https://realtoptweeps.com/
+https://spoonbill.io/
+https://www.tweeplers.com/map/
+https://keitharm.me/projects/tweet/
+https://followerwonk.com/
+http://www.twitteraudit.com/
+https://medium.com/@Lets_0SINT
+https://medium.com/@anmolvats220703/get-to-know-social-media-osint-1a5dcc3f3abb
+https://stevemats.medium.com/twitter-osint-how-to-time-travel-back-in-time-and-make-things-right-before-its-too-late-63186c7f91f4
+https://imshewale.medium.com/complete-social-media-osint-fundamental-7c7a48f2f059
+https://osintteam.blog/mastering-osint-how-to-find-information-on-anyone-680e4086f17f
+https://medium.com/@thams-thamaraiselvam/exploring-osint-fundamentals-tcm-securitys-osint-course-overview-0aadb3eb349c
+
+"Ukrainian" AND "drone" filter: native_video
+"Ukrainian" OR "Donetsk" filter:native_video filter:blue_verified
+"Ukrainian" AND "Drone" -Russia AND -Russian filter:native_video filter:blue_verified
+"AK-12" AND "russia" filter:images
+"AK-12" AND "russia" filter:images filter:blue_verified
+"Ukrainian" from:WorldCrisi19621

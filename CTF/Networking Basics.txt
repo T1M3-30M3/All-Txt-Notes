@@ -1,0 +1,172 @@
+1. HTTP (Hypertext Transfer Protocol)
+
+    English: A protocol used for transferring web pages on the internet. It allows browsers to fetch resources from servers.
+    Bangla: এটি একটি প্রোটোকল যা ইন্টারনেটে ওয়েব পেজ স্থানান্তরের জন্য ব্যবহৃত হয়। এটি ব্রাউজারকে সার্ভার থেকে রিসোর্স নিয়ে আসতে সহায়তা করে।
+
+2. HTTPS (Hypertext Transfer Protocol Secure)
+
+    English: A secure version of HTTP that uses encryption (SSL/TLS) to protect data during transfer.
+    Bangla: এটি HTTP-এর একটি সুরক্ষিত সংস্করণ যা তথ্য স্থানান্তরের সময় এনক্রিপশন (SSL/TLS) ব্যবহার করে।
+
+3. FTP (File Transfer Protocol)
+
+    English: A standard network protocol used to transfer files from one host to another over a TCP-based network.
+    Bangla: এটি একটি মানক নেটওয়ার্ক প্রোটোকল যা TCP-ভিত্তিক নেটওয়ার্কের মাধ্যমে একটি হোস্ট থেকে অন্য হোস্টে ফাইল স্থানান্তরের জন্য ব্যবহৃত হয়।
+
+4. SFTP (SSH File Transfer Protocol)
+
+    English: A secure version of FTP that uses SSH to provide a secure channel for file transfers.
+    Bangla: এটি FTP-এর একটি সুরক্ষিত সংস্করণ যা ফাইল স্থানান্তরের জন্য একটি সুরক্ষিত চ্যানেল প্রদান করতে SSH ব্যবহার করে।
+
+5. SMTP (Simple Mail Transfer Protocol)
+
+    English: A protocol used for sending emails across networks.
+    Bangla: এটি নেটওয়ার্কের মাধ্যমে ইমেইল পাঠানোর জন্য ব্যবহৃত একটি প্রোটোকল।
+
+6. IMAP (Internet Message Access Protocol)
+
+    English: A protocol used by email clients to retrieve emails from a mail server, allowing multiple devices to access the same account.
+    Bangla: এটি ইমেইল ক্লায়েন্ট দ্বারা মেইল সার্ভার থেকে ইমেইল পুনরুদ্ধার করতে ব্যবহৃত একটি প্রোটোকল, যা একাধিক ডিভাইসকে একই অ্যাকাউন্ট অ্যাক্সেস করতে দেয়।
+
+7. POP3 (Post Office Protocol version 3)
+
+    English: A protocol used by email clients to retrieve emails from a mail server, typically downloading them and removing them from the server.
+    Bangla: এটি ইমেইল ক্লায়েন্ট দ্বারা মেইল সার্ভার থেকে ইমেইল পুনরুদ্ধার করতে ব্যবহৃত একটি প্রোটোকল, সাধারণত এগুলিকে ডাউনলোড করে এবং সার্ভার থেকে মুছে ফেলে।
+
+8. TCP (Transmission Control Protocol)
+
+    English: A core protocol that ensures reliable, ordered, and error-checked delivery of data between applications.
+    Bangla: এটি একটি মূল প্রোটোকল যা অ্যাপ্লিকেশনগুলির মধ্যে ডেটার নির্ভরযোগ্য, সজ্জিত এবং ত্রুটি-পরীক্ষিত বিতরণের নিশ্চয়তা দেয়।
+
+9. UDP (User Datagram Protocol)
+
+    English: A protocol used for low-latency and loss-tolerating connections, allowing faster data transfer but without error checking.
+    Bangla: এটি নিম্ন ল্যাটেন্সি এবং ক্ষতি-সহনশীল সংযোগের জন্য ব্যবহৃত একটি প্রোটোকল, যা দ্রুত ডেটা স্থানান্তরের অনুমতি দেয় তবে ত্রুটি পরীক্ষা ছাড়াই।
+
+10. DHCP (Dynamic Host Configuration Protocol)
+
+    English: A protocol that automatically assigns IP addresses and other network configuration to devices on a network.
+    Bangla: এটি একটি প্রোটোকল যা স্বয়ংক্রিয়ভাবে নেটওয়ার্কে ডিভাইসগুলিকে IP ঠিকানা এবং অন্যান্য নেটওয়ার্ক কনফিগারেশন নির্ধারণ করে।
+
+11. DNS (Domain Name System)
+
+    English: A system that translates domain names into IP addresses, allowing users to access websites using easy-to-remember names.
+    Bangla: এটি একটি ব্যবস্থা যা ডোমেইন নামগুলিকে IP ঠিকানায় রূপান্তর করে, ব্যবহারকারীদের সহজে মনে রাখা যায় এমন নাম ব্যবহার করে ওয়েবসাইটে প্রবেশ করতে সহায়তা করে।
+
+12. ICMP (Internet Control Message Protocol)
+
+    English: A protocol used for sending error messages and operational information regarding network conditions.
+    Bangla: এটি একটি প্রোটোকল যা নেটওয়ার্ক অবস্থার বিষয়ে ত্রুটি বার্তা এবং কার্যকরী তথ্য প্রেরণের জন্য ব্যবহৃত হয়।
+
+13. ARP (Address Resolution Protocol)
+
+    English: A protocol used to map an IP address to a physical MAC address on a local network.
+    Bangla: এটি একটি প্রোটোকল যা একটি IP ঠিকানাকে স্থানীয় নেটওয়ার্কে একটি শারীরিক MAC ঠিকানায় মানচিত্রিত করতে ব্যবহৃত হয়।
+
+14. RDP (Remote Desktop Protocol)
+
+    English: A protocol that allows remote access to a computer's desktop, enabling users to control it from another location.
+    Bangla: এটি একটি প্রোটোকল যা একটি কম্পিউটারের ডেস্কটপে দূরবর্তী অ্যাক্সেসের অনুমতি দেয়, ব্যবহারকারীদের অন্য একটি স্থান থেকে এটি নিয়ন্ত্রণ করতে সক্ষম করে।
+
+
+------------------------------------------------------------------------------------------
+Http Methods:
+
+1. GET
+
+    English: Used to request data from a specified resource. It retrieves information without changing the server state.
+    Bangla: একটি নির্দিষ্ট রিসোর্স থেকে ডেটা অনুরোধ করার জন্য ব্যবহৃত হয়। এটি সার্ভারের অবস্থান পরিবর্তন ছাড়াই তথ্য সংগ্রহ করে।
+
+2. POST
+
+    English: Used to submit data to be processed to a specified resource, often resulting in a change in server state.
+    Bangla: একটি নির্দিষ্ট রিসোর্সে প্রক্রিয়াকরণের জন্য ডেটা জমা দেওয়ার জন্য ব্যবহৃত হয়, যা সাধারণত সার্ভারের অবস্থানে পরিবর্তন ঘটায়।
+
+3. PUT
+
+    English: Used to update or create a resource at a specified URI. If the resource does not exist, it can create a new one.
+    Bangla: একটি নির্দিষ্ট URI তে একটি রিসোর্স আপডেট বা তৈরি করার জন্য ব্যবহৃত হয়। যদি রিসোর্সটি বিদ্যমান না থাকে, তবে এটি একটি নতুন তৈরি করতে পারে।
+
+4. DELETE
+
+    English: Used to delete a specified resource from the server.
+    Bangla: সার্ভার থেকে একটি নির্দিষ্ট রিসোর্স মুছতে ব্যবহৃত হয়।
+
+5. PATCH
+
+    English: Used to apply partial modifications to a resource. Unlike PUT, it does not require the entire resource to be sent.
+    Bangla: একটি রিসোর্সে আংশিক পরিবর্তন প্রয়োগ করার জন্য ব্যবহৃত হয়। PUT এর বিপরীতে, এটি সম্পূর্ণ রিসোর্স পাঠানোর প্রয়োজন হয় না।
+
+6. HEAD
+
+    English: Similar to GET, but it retrieves only the headers of the response, not the body. Useful for checking if a resource is available.
+    Bangla: GET এর মতো, কিন্তু এটি প্রতিক্রিয়ার কেবল হেডারগুলি পুনরুদ্ধার করে, শরীর নয়। একটি রিসোর্স উপলব্ধ কিনা তা পরীক্ষা করার জন্য উপযোগী।
+
+7. OPTIONS
+
+    English: Used to describe the communication options for the target resource. It can indicate which HTTP methods are supported.
+    Bangla: লক্ষ্য রিসোর্সের জন্য যোগাযোগের বিকল্পগুলি বর্ণনা করতে ব্যবহৃত হয়। এটি কোন HTTP পদ্ধতিগুলি সমর্থিত তা নির্দেশ করতে পারে।
+
+8. TRACE
+
+    English: Used for diagnostic purposes to echo the received request back to the client, allowing for debugging of the request chain.
+    Bangla: নির্ণায়ক উদ্দেশ্যের জন্য ব্যবহৃত হয় যাতে প্রাপ্ত অনুরোধটি ক্লায়েন্টের কাছে প্রতিধ্বনিত হয়, যা অনুরোধের চেইন ডিবাগ করতে সহায়তা করে।
+
+------------------------------------------------------------------------------------------
+
+GET:
+
+    ব্যবহার: GET পদ্ধতি সাধারণত তথ্য সংগ্রহ করার জন্য ব্যবহৃত হয়। এটি সার্ভার থেকে ডেটা পাওয়ার জন্য ক্লায়েন্ট দ্বারা প্রেরিত হয়।
+    ডেটা স্থান: GET অনুরোধের মাধ্যমে প্রেরিত ডেটা URL এর অংশ হিসেবে যুক্ত হয়। উদাহরণস্বরূপ: example.com/page?param=value
+    নিরাপত্তা: GET অনুরোধ সাধারণত নিরাপদ নয়, কারণ এটি URL-এ তথ্য প্রেরণ করে, যা সহজেই দেখা যায়।
+    ক্যাশিং: GET অনুরোধগুলি ক্যাশ করা যায়, ফলে পুনরায় একই অনুরোধ করা হলে দ্রুত উত্তর পাওয়া যায়।
+
+POST:
+
+    ব্যবহার: POST পদ্ধতি নতুন তথ্য তৈরি বা বিদ্যমান তথ্য আপডেট করার জন্য ব্যবহৃত হয়। এটি সাধারণত ফর্ম ডেটা বা বড় তথ্য পাঠাতে ব্যবহৃত হয়।
+    ডেটা স্থান: POST অনুরোধের মাধ্যমে প্রেরিত ডেটা অনুরোধের শরীরের (body) মধ্যে থাকে, তাই এটি URL-এ প্রদর্শিত হয় না।
+    নিরাপত্তা: POST সাধারণত নিরাপদ, কারণ এটি ডেটা URL-এ প্রকাশ করে না। তবে এটি এখনও HTTPS ব্যবহার করা উচিত সুরক্ষার জন্য।
+    ক্যাশিং: POST অনুরোধ সাধারণত ক্যাশ করা হয় না।
+
+PUT:
+
+    ব্যবহার: PUT পদ্ধতি একটি নির্দিষ্ট URI তে একটি রিসোর্স আপডেট বা তৈরি করার জন্য ব্যবহৃত হয়।
+    ডেটা স্থান: PUT অনুরোধের মাধ্যমে প্রেরিত ডেটা অনুরোধের শরীরের মধ্যে থাকে, যা রিসোর্সের নতুন মান নির্দেশ করে।
+    নিরাপত্তা: PUT নিরাপদ নয় যদি সঠিকভাবে সুরক্ষিত না হয়; এটি সঠিক নিরাপত্তা ব্যবস্থা ব্যবহার করতে হবে।
+    ক্যাশিং: PUT অনুরোধ সাধারণত ক্যাশ করা হয় না।
+
+DELETE:
+
+    ব্যবহার: DELETE পদ্ধতি সার্ভার থেকে একটি নির্দিষ্ট রিসোর্স মুছতে ব্যবহৃত হয়।
+    ডেটা স্থান: DELETE অনুরোধের মাধ্যমে প্রেরিত তথ্য সাধারণত প্রয়োজন হয় না, কারণ এটি শুধুমাত্র রিসোর্সের উল্লেখ করে।
+    নিরাপত্তা: DELETE সাধারণত নিরাপদ নয়; সঠিক প্রমাণীকরণ প্রয়োজন।
+    ক্যাশিং: DELETE অনুরোধ সাধারণত ক্যাশ করা হয় না।
+
+PATCH:
+
+    ব্যবহার: PATCH পদ্ধতি একটি রিসোর্সে আংশিক পরিবর্তন প্রয়োগ করার জন্য ব্যবহৃত হয়।
+    ডেটা স্থান: PATCH অনুরোধের মাধ্যমে প্রেরিত ডেটা অনুরোধের শরীরের মধ্যে থাকে, যা শুধু পরিবর্তনগুলো নির্দেশ করে।
+    নিরাপত্তা: PATCH নিরাপদ নয়; HTTPS ব্যবহার করা উচিত।
+    ক্যাশিং: PATCH অনুরোধ সাধারণত ক্যাশ করা হয় না।
+
+HEAD:
+
+    ব্যবহার: HEAD পদ্ধতি GET এর মতো, কিন্তু এটি কেবল রিসোর্সের হেডারগুলি পুনরুদ্ধার করে, শরীর নয়।
+    ডেটা স্থান: HEAD অনুরোধের মাধ্যমে কোন তথ্য প্রেরিত হয় না; এটি শুধুমাত্র রিসোর্সের তথ্য প্রাপ্তির জন্য ব্যবহৃত হয়।
+    নিরাপত্তা: HEAD সাধারণত নিরাপদ, কারণ এটি শুধুমাত্র তথ্য অনুসন্ধানের জন্য ব্যবহৃত হয়।
+    ক্যাশিং: HEAD অনুরোধগুলি ক্যাশ করা যেতে পারে।
+
+OPTIONS:
+
+    ব্যবহার: OPTIONS পদ্ধতি লক্ষ্য রিসোর্সের জন্য যোগাযোগের বিকল্পগুলি বর্ণনা করার জন্য ব্যবহৃত হয়।
+    ডেটা স্থান: OPTIONS অনুরোধের মাধ্যমে প্রেরিত তথ্য সাধারণত প্রয়োজন হয় না; এটি সার্ভার দ্বারা উপলব্ধ HTTP পদ্ধতিগুলি নির্দেশ করে।
+    নিরাপত্তা: OPTIONS সাধারণত নিরাপদ, তবে কিছু সীমাবদ্ধতা থাকতে পারে।
+    ক্যাশিং: OPTIONS অনুরোধ সাধারণত ক্যাশ করা হয় না।
+
+TRACE:
+
+    ব্যবহার: TRACE পদ্ধতি নির্ণায়ক উদ্দেশ্যের জন্য ব্যবহৃত হয়, যা ক্লায়েন্টের কাছে প্রাপ্ত অনুরোধটি প্রতিধ্বনিত করে।
+    ডেটা স্থান: TRACE অনুরোধের মাধ্যমে কোন অতিরিক্ত তথ্য প্রেরিত হয় না; এটি শুধুমাত্র ত্রুটি নির্ধারণের জন্য ব্যবহৃত হয়।
+    নিরাপত্তা: TRACE সাধারণত নিরাপদ নয়; এটি নিরাপত্তার দৃষ্টিকোণ থেকে সমস্যা সৃষ্টি করতে পারে।
+    ক্যাশিং: TRACE অনুরোধ সাধারণত ক্যাশ করা হয় না।
+------------------------------------------------------------------------------------------

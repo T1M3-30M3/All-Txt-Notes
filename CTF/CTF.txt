@@ -1,0 +1,100 @@
+Steganography:
+
+diff name1.bmp name2.bmp
+strings name1.bmp > name1.txt
+strings name2.bmp > name2.txt
+diff 1.txt 2.txt
+
+file name.jpg
+steghide extract -sf name.jpg
+
+Link:
+https://stylesuxx.github.io/steganography/
+https://futureboy.us/stegano/decinput.html
+https://www.desmondcheong.com/projects/code/steganography/decode
+https://georgeom.net/StegOnline/upload
+https://www.mobilefish.com/services/steganography/steganography.php
+https://www.edchart.com/free-online-converters/steganographic-decoder.php
+https://www.pelock.com/products/steganography-online-codec
+https://www.beautifyconverter.com/steganographic-decoder.php
+https://incoherency.co.uk/image-steganography/
+https://manytools.org/hacker-tools/steganography-encode-text-into-image/
+https://www.xhcode.com/converter/steganographic-decoder.html
+https://2cyr.com/decode/
+https://ftfy.vercel.app/
+https://www.irongeek.com/i.php?page=security/unicode-steganography-homoglyph-encoder
+
+Aperisolve : zsteg, steghide, outsteg, exiftool, binwalk, foremost, strings
+
+tools : stegosuite, Deepsound, Openpuff,
+
+Linux Tools : strings, file, exiftool, binwalk, zsteg, steghide, foremost, stegsolve, jsteg, wavsteg, stegcracker, stegseek
+
+strings a.jpg
+strings -n 10 a.jpg
+exiftool a.jpg
+
+binwalk a.jpg
+binwalk -e a.jpg
+
+zsteg -a a.jpg
+zsteg -E a.jpg
+foremost -i a.jpg
+
+steghide --info a.jpeg
+steghide --extract -sf 
+
+stegdetect \*.jpg
+stegbreak -tj dscf0002.jpg
+
+exiv2 a.jpg
+python3 WavSteg.py -r -s soundfile -o outputfile
+
+fcrackzip -u -D -p wordlist.txt file.zip
+
+Toolkit : https://github.com/DominicBreuker/stego-toolkit
+Toolkit : https://github.com/WiseLife42/Steganography_Tools
+Resources : https://0xrick.github.io/lists/stego/
+
+file name.zip
+pdfcrack x.pdf -w /usr/share/wordlists/rockyou.txt
+binwalk -D '.*' x.zip
+
+Forensics:
+
+volatility_2.6_lin64_standalone -f 0zapftis.vmem imageinfo
+volatility_2.6_lin64_standalone -f 0zapftis.vmem pslist
+volatility_2.6_lin64_standalone -f 0zapftis.vmem psscan
+volatility_2.6_lin64_standalone -f 0zapftis.vmem pstree
+volatility_2.6_lin64_standalone -f 0zapftis.vmem psxview
+volatility_2.6_lin64_standalone -f 0zapftis.vmem cmdscan
+volatility_2.6_lin64_standalone -f 0zapftis.vmem consoles
+volatility_2.6_lin64_standalone -f 0zapftis.vmem procdump --dump-dir /home/kali/Desktop/ProcDump -p 608
+volatility_2.6_lin64_standalone -f 0zapftis.vmem procdump --dump-dir /home/kali/Desktop/ProcDump -p 544
+
+
+cat secret.chunk* > recovered_file
+mv recovered_file recovered_file.png
+echo -ne '\x89\x50\x4E\x47' | cat - recovered_file > fixed_image.png
+
+
+
+Networking:
+
+Serching for Port in shell : $port
+Searching for IP in shell  : $ip
+
+tshark -T fields -e http.host -r capture1.pcap | sort | uniq -c | sort -nr | head 
+tshark -r capture1.pcap -Y 'http contains "User-Agent:"' -T fields -e http.user_agent | sort | uniq -c | sort -nr
+tshark -o 'gui.column.format:"Source","%us","Src Port","%S","Protocol","%p","Destination","%ud","Dst Port","%D"' -r capture1.pcap | column -t
+tcpdump -r capture1.pcap -A | grep "{string}"
+tshark -nr capture1.pcap -T fields -e ip.src -e ip.dst
+tshark -r capture1.pcap -Y "tcp" -T fields -e tcp.srcport | sort | uniq -c | sort -nr
+
+
+
+
+
+
+
+

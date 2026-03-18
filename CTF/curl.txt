@@ -1,0 +1,34 @@
+curl https://www.example.com
+curl -i https://www.example.com
+curl -o output.html https://www.example.com
+curl -o myfile.zip https://www.example.com/file.zip
+curl -L https://www.example.com
+curl -X POST https://www.example.com
+curl -d "param1=value1&param2=value2" -X POST https://www.example.com
+curl -H "Content-Type: application/json" -d '{"key":"value"}' -X POST https://www.example.com
+curl -H "Authorization: Bearer YOUR_TOKEN" https://www.example.com
+curl -H "Header1: value1" -H "Header2: value2" https://www.example.com
+curl -u username:password https://www.example.com
+curl -O https://www.example.com/file.zip
+curl -o /dev/null -s -w "%{http_code}\n" https://www.example.com
+curl -x http://proxyserver:port https://www.example.com
+curl -A "MyUserAgent/1.0" https://www.example.com
+curl --limit-rate 100K https://www.example.com
+curl -F "file=@/path/to/file.txt" https://www.example.com/upload
+curl -# -O https://www.example.com/file.zip
+curl -v https://www.example.com
+curl --connect-timeout 5 https://www.example.com
+curl -k https://self-signed.badssl.com/
+curl -G "https://api.example.com/data" --data-urlencode "id=123"
+curl -X POST https://api.example.com/submit -d "name=John&age=30"
+curl -X POST https://api.example.com/data -H "Content-Type: application/json" -d '{"name":"John", "age":30}'
+curl -H "Authorization: Bearer token" https://api.example.com/protected
+curl -I https://www.example.com
+curl --limit-rate 100K https://www.example.com/file.zip
+curl -T myfile.txt ftp://ftp.example.com/
+curl -u user:pass https://www.example.com/protected
+curl -b cookies.txt https://www.example.com
+curl -s https://www.example.com
+curl -X DELETE https://api.example.com/resource/1
+curl -F "file=@image1.png" -F "file=@image2.png" https://api.example.com/upload
+curl -A "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36" https://www.example.com

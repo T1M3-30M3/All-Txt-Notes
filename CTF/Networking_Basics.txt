@@ -1,0 +1,105 @@
+🔻Networking Basic - 01
+
+‼️Network Protocol Terminologies 
+
+▪️LAN: LAN stands for “Local Area Network” and refers to a network that is not publicly accessible by the internet. Examples of this are home or office network.
+
+▪️WAN: WAN stands for “Wide Area Network” and generally refers to large dispersed networks and, more broadly, the internet.
+
+▪️ISP: ISP stands for “Internet Service Provider” and refers to the company responsible for providing you access to the internet.
+
+▪️NAT: Network Address Translation allows requests from outside your local network to be mapped to devices within your local network.
+
+▪️Firewall: A firewall is a piece of hardware or software that enforces what type of network traffic is and is not allowed. This is generally done by establishing rules for which ports should be externally accessible.
+
+▪️Router: A router is a network device whose main goal is to transfer data back and forth between different networks. This device allows requests to be made to the internet and for information to be sent back to the devices on a local network.
+
+▪️Switch: The basic function of a switch is to provide access between devices on a local network. An example is an Ethernet switch.
+
+▪️Network Interface: This component allows you to connect to a public or private network. It provides the software required to utilize networking hardware. An example of this is the Network Interface Cards (NICs).
+
+▪️Port: A port is a logically defined connection location. Ports provide a destination endpoint for communication and the transfer of data. The ports range from 0 to 65535.
+
+▪️Packet: A packet is the basic unit of data transferred over a network. A packet has a header that gives information about the packet (source, destination, etc) and a body or payload containing the actual data being sent.
+
+—————————
+🔻Networking Basic - 02
+
+Application Layer - HTTP, FTP, IRC, SSH, DNS
+Presentation Layer - SSL, FTP, IMAP, SSH
+Session Layer - Various API's, Sockets
+Transport Layer - TCP, UDP, ECN, SCTP, DCCP
+Network Layer - IP, IPSec, ICMP, IGMP
+Data-Link Layer - Ethernet, SLIP, PPP, FDDI
+Physical Layer - Coax, Fiber, Wireless
+
+—————————
+🔻Networking Basic - 03
+
+▪️ FTP stands for File transfer protocol.
+▪️ FTP is a standard internet protocol provided by TCP/IP used for transmitting the files from one host to another.
+▪️ It is mainly used for transferring the web page files from their creator to the computer that acts as a server for other computers on the internet.
+▪️ It is also used for downloading the files to computer from other servers.
+
+—————————
+🔻Networking Basic - 04
+
+Ports :
+
+Ports are a kind of subaddress. The IP address is the primary address and the port is the subaddress. Think of the IP address as the street address of a building and then the port as the apartment number. I need the street address to get to the right building, but I need the apartment address to find who I am looking for. This is the same with ports. The IP address gets us to right machine, but the port takes us to correct service, say HTTP on port 80.
+
+▪️ There are 65,536 ports. The first 1,024 are generally referred to as the common ports. People obviously don't remember all 65,536 ports (unless they are savant), or even the 1,024 most common ports. As a hacker, there are a few ports that you should know by heart:
+
+🔻 20 FTP
+🔻 21 FTP
+🔻 22 SSH
+🔻 23 Telnet
+🔻 25 SMTP
+🔻 53 DNS
+🔻 69 TFTP
+🔻 80 HTTP
+🔻 443 HTTPS or HTTP over SSL
+🔻 3389 RDP
+
+—————————
+
+🔻Networking Basic - 06
+
+▪️What is a port?
+A port is a virtual point where network connections start and end. Ports are software-based and managed by a computer's operating system. Each port is associated with a specific process or service. Ports allow computers to easily differentiate between different kinds of traffic: emails go to a different port than webpages, for instance, even though both reach a computer over the same Internet connection.
+
+▪️What is a port number?
+Ports are standardized across all network-connected devices, with each port assigned a number. Most ports are reserved for certain protocols — for example, all Hypertext Transfer Protocol (HTTP) messages go to port 80. While IP addresses enable messages to go to and from specific devices, port numbers allow targeting of specific services or applications within those devices.
+
+
+▪️What are the different port numbers?
+
+There are 65,535 possible port numbers, although not all are in common use. Some of the most commonly used ports, along with their associated networking protocol, are:
+
+🔻Ports 20 and 21: File Transfer Protocol (FTP). FTP is for transferring files between a client and a server.
+
+🔻Port 22: Secure Shell (SSH). SSH is one of many tunneling protocols that create secure network connections.
+
+🔻Port 25: Simple Mail Transfer Protocol (SMTP). SMTP is used for email.
+
+🔻Port 53: Domain Name System (DNS). DNS is an essential process for the modern Internet; it matches human-readable domain names to machine-readable IP addresses, enabling users to load websites and applications without memorizing a long list of IP addresses.
+
+🔻Port 80: Hypertext Transfer Protocol (HTTP). HTTP is the protocol that makes the World Wide Web possible.
+
+🔻Port 123: Network Time Protocol (NTP). NTP allows computer clocks to sync with each other, a process that is essential for encryption.
+
+🔻Port 179: Border Gateway Protocol (BGP). BGP is essential for establishing efficient routes between the large networks that make up the Internet (these large networks are called autonomous systems). Autonomous systems use BGP to broadcast which IP addresses they control.
+
+🔻Port 443: HTTP Secure (HTTPS). HTTPS is the secure and encrypted version of HTTP. All HTTPS web traffic goes to port 443. Network services that use HTTPS for encryption, such as DNS over HTTPS, also connect at this port.
+
+🔻Port 500: Internet Security Association and Key Management Protocol (ISAKMP), which is part of the process of setting up secure IPsec connections.
+
+🔻Port 3389: Remote Desktop Protocol (RDP). RDP enables users to remotely connect to their desktop computers from another device.
+
+The Internet Assigned Numbers Authority (IANA) maintains the full list of port numbers and protocols assigned to them.
+
+Source: https://www.cloudflare.com/learning/network-layer/what-is-a-computer-port/
+
+—————————
+
+

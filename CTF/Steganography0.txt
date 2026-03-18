@@ -1,0 +1,113 @@
+--Wav--
+strings file.wav | less
+exiftool file.wav
+steghide extract -sf file.wav
+steghide info file.wav
+binwalk -e file.wav
+fcrackzip -v -D -u -p wordlist.txt extracted.zip
+sox file.wav -n spectrogram -o output.png
+zsteg file.wav
+zsteg -a a.jpg
+zsteg -E a.jpg
+foremost -i a.jpg
+xxd file.wav | less
+aubio pitch file.wav
+multimon-ng -t wav -a DTMF file.wav
+
+stegcracker file.wav wordlist.txt
+stegcracker file.jpg wordlist.txt
+stegseek file.wav wordlist.txt
+stegbreak -t p -f wordlist.txt file.jpg
+stegbreak -t jphide -f rockyou.txt secret.jpg
+stegdetect secret.jpg
+
+
+john --wordlist=wordlist.txt --format=zip hash.txt
+zip2john extracted.zip > hash.txt
+
+
+Steganography Tools:
+
+stegcracker : Python-based brute-force tool for steghide.
+stegseek : Fastest steghide cracker using optimized algorithms.
+stegsolve : Java-based GUI tool for analyzing steganographic images.
+stegdetect : Detects steganography in JPEG images.
+stegbreak : Cracks jphide-based steganography.
+stegosuite : GUI-based tool for hiding and extracting data in images.
+stegsnow : Hides messages in whitespace (SnowSteg).
+stegano : Python library for steganography operations.
+stegify : Tool for hiding files inside PNG images.
+steg : CLI tool for steganography in images.
+steganabara : Steganography analysis and detection tool
+
+For WAV files → stegcracker, stegseek, stegdetect
+For images → stegsolve, stegosuite, stegify
+For text-based hiding → stegsnow
+For brute-force attacks → stegseek, stegbreak
+
+For steganography password cracking → stegcracker, stegseek, stegbreak
+For ZIP/RAR cracking → fcrackzip, rarcrack, john
+For general CTF password cracking → hashcat, hydra, medusa
+
+Steganography Password Cracking Tools:
+
+stegcracker : Brute-force steghide-protected files.
+stegseek : Fast steghide password cracker.
+stegbreak : Cracks jphide-based steganography (JPEG images).
+stegdetect : Detects and extracts hidden data from images.
+
+Genaral Password Cracking Tools : John the Ripper, Hashcat, fcrackzip, rarcrack, zip2john & rar2john, hydra, medusa, cewl, crunch	
+
+stegcracker file.jpg wordlist.txt
+stegseek file.jpg wordlist.txt
+stegbreak -t p -f wordlist.txt file.jpg
+fcrackzip -v -D -u -p wordlist.txt protected.zip
+
+stegsnow -m "Hidden Message" -p password input.txt output.txt
+stegsnow -C output.txt
+stegsnow -C -p password output.txt
+stegsnow -m "$(cat secret.txt)" input.txt output.txt
+
+cat file.txt | sed 's/[^ \t]//g' | python3 -c 'import sys; print(bytes(int("".join(["0" if c==" " else "1" for c in sys.stdin.read().replace("\t", "1").replace(" ", "0").split()]), 2).decode())'
+
+
+John The ripper:
+
+zip2john protected.zip > hash.txt
+john --wordlist=rockyou.txt hash.txt
+
+rar2john protected.rar > hash.txt
+john --wordlist=rockyou.txt hash.txt
+
+wpapcap2john capture.pcap > hash.txt
+john --wordlist=rockyou.txt hash.txt
+
+wav2john file.wav > hash.txt
+john --wordlist=rockyou.txt hash.txt
+
+For CTF challenges :  use zip2john, rar2john, pdf2john, and office2john.
+For network cracking :  use wpapcap2john.
+For system cracking :  use ssh2john, bitlocker2john, and mac2john
+
+
+Install All tools : 
+
+pip install stegcracker
+
+wget https://github.com/RickdeJager/stegseek/releases/download/v0.6/stegseek-0.6-linux.zip
+unzip stegseek-0.6-linux.zip
+chmod +x stegseek
+sudo mv stegseek /usr/local/bin/
+
+wget http://www.caesum.com/handbook/Stegsolve.jar
+java -jar Stegsolve.jar
+
+sudo apt install stegdetect stegbreak
+
+sudo apt install stegosuite
+
+sudo apt install stegsnow
+
+go install github.com/DimitarPetrov/stegify@latest
+
+

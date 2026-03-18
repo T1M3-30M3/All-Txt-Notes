@@ -1,0 +1,87 @@
+PicoCTF Crypto:
+
+https://www.dcode.fr/cipher-identifier
+
+Vigenere : https://www.dcode.fr/vigenere-cipher
+transposition-trial : https://tholman.com/other/transposition/
+substitution0 : https://planetcalc.com/8047/ + https://www.guballa.de/substitution-solver + https://www.dcode.fr/monoalphabetic-substitution
+substitution1 : https://www.quipqiup.com/
+substitution2 : https://www.dcode.fr/monoalphabetic-substitution
+rail-fence : https://www.boxentriq.com/code-breaking/rail-fence-cipher + https://cryptii.com/pipes/rail-fence-cipher
+Morse Code : https://morsecode.world/international/translator.html + https://morsecode.world/international/decoder/audio-decoder-adaptive.html
+credstuff : https://cryptii.com/pipes/caesar-cipher + https://www.thewordfinder.com/caesar-cipher-solver/ + https://www.boxentriq.com/code-breaking/caesar-cipher
+basic-mod1 : python code 
+basic-mod2 : python code 
+rot : https://www.dcode.fr/rot-cipher + https://theblob.org/rot.cgi + https://www.dcode.fr/rot-47-cipher + https://rot13.com/ + https://www.dcode.fr/rot-13-cipher
+number : https://www.dcode.fr/letter-number-cipher
+interencdec : file > base64 > base64 > caesar 
+la cifra de : https://cryptii.com/pipes/vigenere-cipher
+Tapping : https://morsecode.world/international/translator.html
+Flags : https://en.wikipedia.org/wiki/International_maritime_signal_flags
+waves over lambda : https://www.quipqiup.com/ + https://www.guballa.de/substitution-solver 
+
+
+
+Forensics:
+https://infosecwriteups.com/picoctf-2024-write-up-forensics-c471e79e6af9
+https://kamransaifullah.medium.com/picoctf-2019-forensics-challenges-dd1101ebd57b
+https://github.com/DominicBreuker/stego-toolkit
+https://wiki.sleuthkit.org/index.php?title=The_Sleuth_Kit_commands
+
+https://www.pdfyeah.com/view-pdf-metadata/
+https://hexed.it/
+http://stylesuxx.github.io/steganography/
+https://en.wikipedia.org/wiki/List_of_file_signatures
+
+aircrack-ng "cap file path" -w "pass file"
+echo "cGljb0NURntNRTc0RDQ3QV9ISUREM05fZGVjYTA2ZmJ9Cg==" | base64 -d
+pdfinfo name.pdf
+sha256sum * | grep "03b52eabed517324828b9e09cbbf8a7b0911f348f76cf989ba6d51acede6d5d8"
+zsteg buildings.png
+zsteg -s first buildings.png
+
+srch_strings dds1-alpine.flag.img
+srch_strings dds1-alpine.flag.img | grep pico
+
+
+file name
+binwalk name
+zsteg -s first name
+steghide extract -sf picture1.bmp -p "DUEDILIGENCE"
+
+when you are finding whitespace problems. copy the text and paste to the sublime or vscode and replace by 0 and 1 and convert to the ascii.
+
+WireShark:
+tftp.type
+udp.stream
+ip.src == ip
+udp.port == 22
+ip.addr == ip
+dns && ip.dst == ip
+dns && ip.dst == ip && redshrimpandherring.com
+
+
+
+
+Web:
+
+-> check robots.txt, source code, js/css file, cookie, header,.htaccess,.DS_Store,.Head etc
+-> try to use bookmark example : https://medium.com/@viscidCTF/picoctf-2024-bookmarklet-502c08e5659a
+-> always digging the directory, manually or automation
+
+-> Try to always intercept with burp
+-> Eye is always on url
+
+https://www.postgresqltutorial.com/postgresql-cheat-sheet/
+
+wget link
+wget -r link
+curl --user-agent "picobrowser" "https://2019shell1.picoctf.com/problem/32205/flag"
+curl -i -X OPTIONS http://103.191.241.52:33380/em_secret
+
+
+
+Web Gauntlet:
+https://github.com/onealmond/hacking-lab/blob/master/picoctf-2020/web-gauntlet/writeup.md
+https://medium.com/@shaunak007/picogym-web-gauntlet-983b17732b3d
+
