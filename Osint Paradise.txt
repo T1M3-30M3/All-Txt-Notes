@@ -1,0 +1,74 @@
+--- If you have your suspect name only , then try this sites to find their social accounts😀 
+site - https://whatsmyname.app/
+
+--- If you have only facial image of your suspect then try this sites to find them on internet 😀 
+site - https://pimeyes.com/en  
+
+--- if you have a picture and know the location then you can spice your investigation more further knowing the exact time when the picture was taken.This is an excellent site that can calculate time by date and sun position . 
+site - http://suncalc.net/
+
+--- If you want to do osint investigation on dark web this github repository will be best to use at this situation.😊🤩
+site - https://github.com/apurvsinghgautam/dark-web-osint-tools
+
+--- if you want to do good at geolocation OSINT ,then this site is best ! you can play game and solve many geolocation OSINT chalanges 
+site - https://www.geoguessr.com/
+
+--- while searching files in the internet go search on this websites instead 😊😊
+
+FileChef
+File Search Engine
+de digger 
+FilePursuit
+SearchFiles.de
+NAPALM FTP Indexer
+FileListing
+
+-- find telegram bot with name 
+Site - https://telegramic.org/bots/
+
+-- To know any exact location present situation you can try social media location service for this ,
+site - https://www.instagram.com/explore/locations/?hl=en
+site - https://map.snapchat.com/ 
+
+-- If you want to investigate Data breach .This real case example with with screenshots, links to tools and detailed explanations will help you more detailed.
+Site- https://amr-git-dot.github.io/forensic%20investigation/Breach_Investigation/
+
+-- Sherlock Linux is a all in one installer tool that will install many OSINT tools with once and many more ..
+site - https://github.com/SherlockLinux/SherlockLinux 
+
+-- For tracking someone's location using their photos' metadata, use ExifTool to extract hidden geographical information.
+site - https://exiftool.org/
+
+-- To identify a person based on a video snippet, try Betaface for video analysis and facial recognition.
+site -  https://betaface.com/demo.html
+
+--- If you have an email address/user name  and need to find associated accounts, try Social Searcher for cross-platform search.
+site - https://www.social-searcher.com/ 
+
+
+--- Exploring a target's online behavior? Tools like SocialBlade can provide statistics and analytics on their social media activity.
+site - https://socialblade.com/
+
+--- If you are doing investigation on cctv image,  but their quality is very low and some time we find blur low quality mage.To solve this issue here is an AI website that clear the blur or low quality image to its high form 🔥
+site - https://replicate.com/megvii-research/nafnet
+
+
+--- When exploring a target's digital footprint, Wayback Machine can reveal historical snapshots of websites.
+site -  https://web.archive.org/
+
+
+--- Searching for academic papers authored by your target? Google Scholar provides access to scholarly articles and publications.
+site - https://scholar.google.com/
+
+
+--- Interested in investigating a target's travel history? Explore flight tracking websites like FlightAware for flight details.
+site - https://www.flightaware.com/
+
+--- Wholeaked - a file-sharing tool that allows you to find the responsible person in case of a leakage.Wholeaked is a tool that lets you track who leaked your files. Share your files with others, and Wholeaked adds a secret fingerprint. If your file leaks, Wholeaked will identify the leaker by matching the fingerprint. 🤫Works with various file formats and even emails. 
+
+Download - https://www.telemodsapk.com/2023/12/wholeaked-catching-leaky-fingers-with.html
+
+--- Another online tool for determining location by uploaded photo.
+https://picarta.ai/
+
+

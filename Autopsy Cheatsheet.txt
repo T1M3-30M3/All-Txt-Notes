@@ -1,0 +1,177 @@
+OS Information : Data Artifacts > Operating System Information
+For FileMetadata : Select Image > File Metadata
+OS Name : Case > Data Source Summary > Select Image 
+OS Name : Select Image > Data Artifacts
+Os Name : Results > Extracted Content > Operating System Information
+Os Info : C:\boot.ini
+Find Install Data : Select Image > File Metadata
+Find Registerd Owner : Select Image > Data Artifacts
+Find Registerd Owner : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\RegisteredOwner
+computer account name : Select Image > Data Artifacts
+All Accounts Name : C:\windows\system32\config\SAM > Domains > Users > Names
+Total Suumary : \WINDOWS\system32\config\software\Microsoft\WindowNT\CurrentVersion
+Find Exittime/ShutDown : \WINDOWS\system32\config\software\Microsoft\WindowNT\CurrentVersion\Prefetcher\ExitTime
+Find Starttime : \WINDOWS\system32\config\software\Microsoft\WindowNT\CurrentVersion\Prefetcher\StartTime
+Find LastDiskLayout : \WINDOWS\system32\config\software\Microsoft\WindowNT\CurrentVersion\Prefetcher\LastDiskLayoutTImeString
+Time Zone : C:\windows\system32\config\system\CurrentControlSet\Control\TimeZoneInformation
+How Many Account : Os account > you will find 
+How Many Account : Results > Extracted Content > Operating System User Account
+last user to login : Results > Extracted Content > Operating System User Account > Date Accessed column
+last user to login : Os Account > you will find all account > click every account and you will find other information
+last user to login : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\Winlogon > DefaultuserName
+Find the network Card : \WINDOWS\system32\config\software\Microsoft\Windows NT\CurrentVersion\NetworkCards\
+IP and MAC : C:/Program Files/Look@LAN/irunin.ini
+Find install programs : Results > Extracted Content > Installed Programs
+Find install programs : Data Artifacts > Installed Programms
+EMail By CLient : C:/WINDOWS/system32/config/Clients/Mail
+SMTP Email : C:\Program Files\Agent\Data\AGENT.INI
+Recycle : C:/RECYCLER 
+Find Virus : Results > Interesting Items > Possible ZipBomb > Interesting Files 
+IRC :  C:\Program Files\mIRC\mirc.ini
+Primary Domain Name : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\Winlogon
+Pathname : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\PathName
+SourcePath : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\SourcePath
+CurrentBuild : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\CurrentBuild
+ProductName : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\ProductName
+RegisteredOrganization : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\RegisteredOrganization 
+RegisterdOwner : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\RegisterdOwner
+SoftwareType : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\SoftwareType
+CurrentVersion : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\CurrentVersion
+CurrentVersionNumber : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\CurrentVersionNumber
+SystemRoot : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\SystemRoot
+ProductID : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\WPAEvents\ProductID
+For StartTime and ExitTime : \WINDOWS\system32\config\software\Microsoft\WindowNT\CurrentVersion and then https://www.epochconverter.com/
+Network Card Information : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\NetworkCards
+OUI Lookup : https://rst.im/
+Installed Files : C:\Program Files
+Find SMTP Email Address : search > smtp email address > analyze it > text option
+Find SMTP Email Address : C:\Documents and Settings\{user}\NTUSER.DAT
+Find NNTP User : search > NNTP > analyze it > text option
+Find NNTP User : C:\Documents and Settings\{user}\NTUSER.DAT
+Find Mail Information : C:\windows\system32\config\software\clients\mail
+Find IRC/MIRC : C:\Program Files\mIRC\mirc.ini
+Inestigaet IRC : C:\Program Files\mIRC\logs
+Recent File : C:\Documents and Settings\{user}\Application Data\Ethereal\recent
+Fining Operating System : Source->image file->file metadata
+Fining Operating System : C:\Boot.ini
+Finding Install Date : C:\Windows\system32\config\Software\Microsoft\Windows NT\CurrentVersion\InstallDate
+Finding Timing Zone : C:\windows\system32\config\system\CurrentControlSet\Control\TimeZoneInformation
+Finding Registed Owner : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\RegisteredOwner
+Finding COmputer Name : C:\windows\system32\config\SAM
+Finding Primary Domain Name : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\Winlogon
+Findinf shutdown date/time : C:\windows\system32\config\system\CurrentControlSet001\Control\Windows\ShutdownTime
+Finding shutdown date/time : C:\WINDOWS\system32\config\software\Microsoft\WindowNT\CurrentVersion\Prefetcher\ExitTime
+Time COnvertor : https://www.digital-detective.net/dcode/
+Finding The Name who Mostly used : OS Accounts > Analyze it 
+Finding Last Logon : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\Winlogon
+Finding Network Cards : C:\windows\system32\config\software\Microsoft\Windows NT\CurrentVersion\NetworkCards
+Finding IP and MAC : C:\Program Files\Look@LAN\irunin.ini
+Finding Install Programms : go to installed Program
+Finding SMTP : C:\Documents and Settings\{user}\NTUSER.DAT > text 
+Finding NNTP : C:\Documents and Settings\{user}\NTUSER.DAT > text 
+Finding Mail Clients : C:\windows\system32\config\software\clients\mail
+Searing .dbx keyword for outlook files
+Finding OutLook Mail : C:\Document and Settings\{user}\Local Settings\Application Data\Identities\{EF086998–1115–4ECD-9B13 9ADC067B4929}\Microsoft\Outlook Express
+Finding MIRC : C:\Program Files\mIRC\mirc.ini
+Finding IRC : C:\Program Files\mIRC\logs
+Finding Recent info : C:\Documents and Settings\Mr. Evil\Application Data\Ethereal\recent
+Finding EMail Address : search > @gmail.com, @outlook.com, @yahoo.com
+Finding Information From Recycle Bin : C:\RECYCLER
+Finding Hash : Case > Data Source Summary > md5/sha1
+Computer Account Name : Data Artifacts > Operating System Information
+Computer Account Name : Result > Operating System Information
+All User Account : result > Operating System User Account 
+IP and MAC : Data Source > Program Files(x86) > Look@LAN > irunin.ini
+Network Card : ROOT/Microsoft/Windows NT/CurrentVersion/NetworkCards/
+Finding BookMarks : WebBookMarks
+check Image/Videos for Looking more Image
+Powershell Command History : Microsoft\Windows\PowerShell\PSReadLine 
+Powershell Command History : C:\Users\{user}\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+Powershell Command History : search > ConsoleHost_history.txt
+Finding Hosts : C:\Windows\System32\drivers\etc
+Finding services : C:\Windows\System32\drivers\etc
+Finding protocol : C:\Windows\System32\drivers\etc
+Finding networks : C:\Windows\System32\drivers\etc
+Finding History : C:\ProgramData\Microsoft\Windows Defender\Scans\History
+TimeZone : Disk > File MetaData > TimeZone
+Find SID : os Accounts > Profile > Os Account
+Find SID : Disk > users > {profile} > Documents > Security Id
+Find SID : Disk > vol > users > {username} > Document > File Metadata > Security Id/SID
+Finding All user : Disk > Document and setting > find all users
+Finding Password Hint : Os Accounts > {user} > Os accounts > hint
+Finding Img/Video/Pdf : Disk > Documents and Settings > {user} > My Documents 
+
+
+* Create a New case : New Case > case name > info > finish > genarate new host >
+* windows image file : .RAW , .SMART, .E01 and .AFF [Disk Image or vm file]
+* Windows default Crypto Format is NTLM
+* outlook > pst google > eml
+* Use keyword search for searching.
+* flag{.*}
+* case > Data Success Summary
+* Check FileMetaData for the file Info
+* Check Operating System Information for the Computer Name and OS Installation Date
+* Check USB device Attached for see the connected usb device name and id
+* Goto Keyword Search and type Wireless for know the name of network card
+* Goto Keyword Search and type mac for knowing the Mac address
+* Goto Keyword Search and type mac address for knowing ip address
+* Check OS Accounts For Knowing the User Accounts
+* Check OS Accounts For the last user login
+* Check OS Accounts For the last user login Date and Time
+* Check the account go to Data Source > Document and Settings
+* Check Image/Videos for seeing all image or videos
+* Check Web History,Web Downlaods, Web BookMarks For the Last visited URL
+* Check USB device Attchment for the Sd device
+* Check Email message for check the emails
+* Check User Content Suspected for Suspected file
+* Check for Find the last shutdown Time
+* Check OS account for the os information
+* Go to Disk and Check File MetaData For Finding FIle Information
+* Check disk metadata for hash and time Zone
+* Check Operating System Info For Operating System Info
+* Check Operating System user account for Operating System user account information
+* Check ExifMetada For Check the Image
+* Check Email For finding email
+
+Find Image Metadata : Data source > disk Image > File Metadata
+Find Operating System Info : Operating System Information
+Find all Accounts : Os accounts
+Find IP Information : Image > Windows > System32 > drivers > etc > hosts > text/file metadata
+Find IP Information : image > Programming FIles[x86] > Look@LAN > inurin.ini[LANIP]
+Find MAC Information : image > Programming FIles[x86] > Look@LAN > inurin.ini[LANNIC]
+Find Network Card : Operating System Information > Software > Application > Microsoft > WindowsNT > CurrentVersion > NetworkCards
+	            SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkCards
+Find BookMarks : Web BookMark
+Find PowerShell History : ConsoleHost_History.txt
+Find the Hacking tools : /ProgramData/Microsoft/Windows Defender/Scans/History/Service/DetectionHistory
+
+
+* How to Find windows Passwords
+
+In Windows:
+reg save hklm\sam c:\sam
+reg save hklm\system c:\system
+
+In Autopsy:
+Export sam and system from C:\windows\system32\config
+
+Download Mimikatz from https://github.com/ParrotSec/mimikatz and Open it
+
+Grabbing NTLM Hash:
+lsadump::sam /system:path /sam:path
+lsadump::sam /system:C:\Users\WHO\Desktop\Autopsy\x\system /sam:C:\Users\WHO\Desktop\Autopsy\x\sam
+
+samdump2 system sam 
+
+Cracking Hash:
+NTLM : john hash.txt --wordlist=rockyou.txt
+NTLM : john --format=NT hash.txt
+NTLM : john --wordlist=rockyou.txt --format=NT hash.txt
+NTLM : hashcat -m 1000 -a 0 filename rockyou.txt  [1000 = NTLM]
+
+Source: https://sanjumalhotra26.medium.com/dumping-credentials-from-sam-file-using-mimikatz-and-cracking-with-john-the-ripper-and-hashcat-ce5bbf2f4f5a
+
+
+
+
+

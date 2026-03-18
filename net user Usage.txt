@@ -1,0 +1,21 @@
+List All User Accounts: net user
+
+View Details of a Specific User: net user [username]
+
+Add a New User: net user [username] [password] /add
+
+Delete a User: net user [username] /delete
+
+Change a User’s Password: net user [username] [newpassword]
+
+Modify User Account Properties: net user [username] /active:yes|no
+
+Set User Account Expiration: net user [username] /expires:[date] Replace [date] with a specific date or never.
+
+Set User Account as an Administrator: net localgroup administrators [username] /add
+
+Remove User from Administrators Group: net localgroup administrators [username] /delete
+
+Display Command Help: net user /?
+
+Delete Password : net user [username] *

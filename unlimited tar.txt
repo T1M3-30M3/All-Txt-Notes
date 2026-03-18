@@ -1,0 +1,49 @@
+import tarfile
+
+for i in range(1000,0,-1):
+    tarfile.open(str(i) + '.tar').extractall()
+--------------------------------------------------------------
+#!/bin/bash
+for i in {1000..1}
+do
+   tar -xvf $i.tar
+   rm $i.tar
+done
+--------------------------------------------------------------
+for i in {1000..1} ; do tar -xvf $i.tar;done
+--------------------------------------------------------------
+import tarfile 
+
+for i in range(999, 0, -1): 
+	filename = str(i) + '.tar' 
+	
+	tar = tarfile.open(filename) 
+	tar.extractall() 
+	tar.close() 
+
+--------------------------------------------------------------
+#!/bin/bash
+
+for i in $(seq 1000 -1 1)
+do
+  tar xvf $i.tar
+  rm filler.txt
+  rm $i.tar
+done
+--------------------------------------------------------------
+#!/bin/bash
+
+cp 1000.tar out
+cd out
+for ((i = 1000; i > 0; i--)); do
+    if [ ! -f "$i.tar" ]; then
+        break
+    fi
+    tar -xvf $i.tar
+    rm $i.tar
+done
+cd ..
+--------------------------------------------------------------
+for a in {1..99}; do for z in *.zip; do unzip $z;rm $z;done;done
+for a in {1..99}; do for r in *.rar; do unrar x -o+ "$r" && rm "$r"; done; done
+for a in {1..99}; do for t in *.tar; do tar -xf "$t" && rm "$t"; done; done

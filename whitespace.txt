@@ -1,0 +1,31 @@
+text = '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                '
+
+firstType = ' '
+secondType =  ' '
+binaryString = ''
+
+for char in text: 
+	if char == firstType: 
+		binaryString += '0'
+	else:
+		binaryString += '1' 
+
+print(binaryString) 
+-------------------------------------------------------------------------------------
+from pwn import *
+
+with open("whitepages.txt", "rb") as bin_file:
+    data = bytearray(bin_file.read()) 
+    data = data.replace(b'\xe2\x80\x83', b'0')
+    data = data.replace(b'\x20', b'1')
+    data = data.decode("ascii")
+    print unbits(data)
+-------------------------------------------------------------------------------------
+from pwn import *
+
+with open('whitepages.txt', 'rb') as f:
+    data = f.read()  # data is a bytearray
+
+data = data.replace(b'\xe2\x80\x83', b'0').replace(b' ', b'1')
+data = data.decode("ascii")
+print(unbits(data).decode("ascii"))

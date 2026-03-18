@@ -1,0 +1,97 @@
+Osint CB:
+
+Google : https://www.google.com/
+Google Advanced Search : https://www.google.com/advanced_search
+Bing : https://www.bing.com/
+Yandex : https://yandex.com/
+DucDuckGo : https://duckduckgo.com/
+Baidu : http://www.baidu.com/
+
+Google Dorking:
+allintext:username filetype:log
+intitle:"index of" /ftp
+intitle:"webcampXP 5"
+db_password filetype:env
+filetype:inc php -site:github.com -site:sourceforce.net
+site:tesla.com
+site:tesla.com password
+site:tesla.com password filetype:pdf
+site:tesla.com -www -forums
+intext:password , inurl:index.php?q= ,intitle:password
+site:target.com ext:txt passwd
+ext:txt passwd
+ext:txt passwd site:in
+
+https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06
+https://gist.github.com/ikuamike/c2611b171d64b823c1c1956129cbc055
+https://github.com/chr3st5an/Google-Dorking
+https://gist.github.com/mehdichaouch/d702212b69f79258f245c9e444b3764a
+
+Tool:
+https://github.com/dwisiswant0/go-dork
+https://github.com/Ekultek/Zeus-Scanner
+
+Reverse Image Search:
+https://images.google.com
+https://yandex.com
+https://tineye.com
+https://smallseotools.com/reverse-image-search/
+https://www.duplichecker.com/reverse-image-search.php
+https://dnschecker.org/reverse-image-search.php
+
+Email Osint:
+https://hunter.io/
+https://phonebook.cz/
+https://www.voilanorbert.com/
+https://tools.verifyemailaddress.io/
+https://email-checker.net/validate
+https://epieos.com/
+https://www.aware-online.com/en/osint-tools/email-address-tools/
+Clearbit Connect - Supercharge Gmail : https://chrome.google.com/webstore/detail/clearbit-connect-supercha/pmnhcgfcafcnkbengdcanjablaabjplo?hl=en
+
+Hunting Phone Numbers:
+https://www.truecaller.com/
+https://calleridtest.com/
+https://infobel.com/
+https://www.okcaller.com/
+
+https://sundowndev.github.io/phoneinfoga/
+https://github.com/sundowndev/phoneinfoga
+./phoneinfoga serve -p 8080
+
+FrameWork:
+https://github.com/the5orcerer/Oh-Shit
+https://map.malfrats.industries/
+https://osintframework.com/
+
+AirCraft:
+https://www.liveatc.net/
+https://www.aviationdb.com/Aviation/AircraftQuery.shtm
+https://www.flightradar24.com/
+https://www.flightaware.com/live/
+https://www.flightstats.com/v2/flight-tracker/search
+https://www.flightaware.com/
+https://planefinder.net/
+
+Social Media:
+https://github.com/sherlock-project/sherlock
+
+GPS:
+https://www.gps-coordinates.net/
+https://gps-coordinates.org/
+https://www.itilog.com/
+
+Extra:
+https://www.virustotal.com/gui/
+https://search.censys.io/
+https://beefproject.com/
+https://securitytrails.com/
+
+
+
+
+
+
+
+
+

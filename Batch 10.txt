@@ -1,0 +1,36 @@
+steg:
+
+file name.extention
+exiftool name.extention
+exiftool name.extention -H
+exiftool name.extention -v
+exiftool -comment="This is a text" HackArt.png
+steghide embed -cf horseriding.jpg -ef text.txt
+steghide extract -sf horseriding.jpg
+zsteg image.png
+ategseek name.jpg rockyou.txt
+binwalk -e [imageName]
+binwalk --dd=".*" smile.png
+foremost [fileName]
+diff image01 image02
+strings mountain01.bmp > text1.txt
+strings mountain02.bmp > text2.txt
+diff text1.txt text2.txt
+For lots of picture must be check file size.
+
+
+https://github.com/foysalhossain12/Steganography-_CTF
+https://www.aperisolve.com/
+https://stylesuxx.github.io/steganography/
+https://aperisolve.fr/
+https://morsecode.world/international/decoder/audio-decoder-adaptive.html
+https://morsecode.world/international/translator.html
+https://futureboy.us/stegano/decinput.html
+
+
+Use Openstego-Deepsound-stegsolver-Coagula-Sonic
+
+cmd :
+
+copy /b x.jpg + test.rar
+ren down.jpg test.rar

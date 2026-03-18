@@ -1,0 +1,19 @@
+Osint:
+wappalyzer > extention
+whatweb > linux
+what is my user-agent
+whois > linux, online, extention
+dig > linux
+waybackmachine > linux
+
+whatweb link
+dig link CN
+dig link NS
+dig link AAA
+whois link
+
+For Finding Subdomain : cofumbus.elmasy.com
+Extra Information : hunter.how, shodan.io, search.censys.io
+Found api key : api_key=
+
+more Writeups : imaginaryctf.org

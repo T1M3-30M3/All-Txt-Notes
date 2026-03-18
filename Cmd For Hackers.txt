@@ -1,0 +1,66 @@
+arp -a
+chkdsk /f
+cipher /w:C:\path\to\directory
+dir C:\ /s /b | findstr "suspiciousFileName"
+driverquery
+eventvwr
+fsutil dirty query C:
+hostname
+ipconfig
+ipconfig /all
+ipconfig /all | findstr /i "IPv4"
+ipconfig /all | findstr /i "ipv4 phy"
+net accounts
+net localgroup administrators
+net localgroup administrators hacker /add
+net share
+net share shareName=C:\path\to\folder
+netstat
+netstat -an
+netstat -ano
+netstat -b
+netstat -f
+netstat -s
+nslookup google.com
+ping 192.168.1.1
+ping google.com
+powercfg /energy
+shutdown /r /f /t 0
+shutdown /s /f /t 0
+shutdown /s /f /t 30
+shutdown -s -t 0
+shutdown -s -t 30
+systeminfo
+taskkill /PID 1234
+taskkill /pid 5180
+tasklist
+tasklist /M
+tasklist /M <module>
+tasklist /SVC
+tracert www.google.com
+tracert google.com
+whoami
+whoami /all
+wmic bios
+wmic group list brief
+wmic group list /format:list
+wmic logicaldisk where drivetype=3 get name,freespace,systemname,filesystem,size,volumeserialnumber
+wmic ntdomain list /format:list
+wmic process call create "process_name"
+wmic process get caption,executablepath,commandline
+wmic process list brief
+wmic process list /format:list
+wmic process where name="process_name" call terminate
+wmic qfe
+wmic qfe get hotfixid
+wmic service
+wmic share get /ALL
+wmic startup
+wmic startup list brief
+wmic startup list full
+wmic useraccount
+wmic useraccount get /ALL
+wmic useraccount list /format:list
+wmic os
+wmic computersystem list
+wmic /node:"hostname" bios get serialnumber

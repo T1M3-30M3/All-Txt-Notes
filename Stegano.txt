@@ -1,0 +1,118 @@
+🧪 Full Linux Command Checklist for Stego in .jpg
+
+🔍 1. Basic File Info:
+file image.jpg         # Check if it’s really a JPG
+exiftool image.jpg     # View metadata (EXIF, hidden comments, etc.)
+identify image.jpg     # From ImageMagick: get dimensions and type
+
+🧬 2. Extract Hidden Data (Appended Files / Embedded Files)
+strings image.jpg | less            # Look for readable text or flag patterns
+xxd image.jpg | less                # Hexdump to spot anomalies
+binwalk image.jpg                   # Scan for embedded files
+binwalk -e image.jpg                # Extract embedded files
+
+🔓 3. Steghide
+steghide extract -sf image.jpg              # Try extracting hidden data
+steghide extract -sf image.jpg -p ""        # Try with empty password
+steghide extract -sf image.jpg -p yourpass  # Try with known password
+
+🧠 4. Zsteg (PNG/BMP, but sometimes helps with weird JPEGs)
+zsteg image.jpg    # Usually better for PNGs but worth a shot
+
+🎨 5. Visual & Layer Analysis
+# Convert to BMP for LSB tools (if needed)
+convert image.jpg image.bmp
+
+# Use Stegsolve (Java tool — download and run)
+java -jar stegsolve.jar
+
+🧩 6. Other Useful Tools
+exiv2 image.jpg              # Another tool for metadata
+jpeginfo -c image.jpg        # Check for corruption/malformed data
+
+🧬 7. Advanced / Niche Tools
+# Check for ZIP inside JPG
+binwalk -e image.jpg
+
+# Rename and try extracting like ZIP
+cp image.jpg test.zip
+unzip test.zip
+
+# Look for Base64 encoded chunks
+strings image.jpg | grep -E "[A-Za-z0-9+/=]{20,}" | less
+
+🔓 All Cracking & Extraction Tools for Steganography
+
+steghide extract -sf file.jpg
+stegcracker file.jpg /path/to/wordlist.txt
+
+binwalk file.jpg
+binwalk -e file.jpg    # Auto-extract hidden files
+
+exiftool file.jpg
+
+strings file.jpg | less
+strings file.jpg | grep -i "flag"
+strings file.jpg | grep -E '[A-Za-z0-9+/=]{20,}'  # Base64 patterns
+
+xxd file.jpg | less
+hexdump -C file.jpg | less
+
+openstego extract -sf file.jpg -p password
+
+stegseek file.jpg /path/to/wordlist.txt
+snow -C -Q -p "pass" -o output.txt input.txt
+outguess -r file.jpg extracted.txt
+
+stegcracker example.png wordlist.txt
+stegseek example.jpg wordlist.txt
+StegSnow -i example.png -w wordlist.txt
+stegoCrack hidden_image.jpg wordlist.txt
+
+🖼️ PNG Steganography – Full Command Toolkit 🔍
+
+file image.png                  # Confirm it's a PNG
+exiftool image.png              # Check for metadata (EXIF, comments)
+identify image.png              # ImageMagick: get dimensions & format
+
+strings image.png | less                 # Look for readable text or flags
+xxd image.png | less                     # Hexdump to spot anomalies
+binwalk image.png                        # Scan for embedded data
+binwalk -e image.png                     # Extract anything embedded
+
+zsteg image.png                       # Auto-analysis for LSB, colors, etc.
+zsteg -E b1,rgb,lsb image.png         # Extract LSB bits from all channels
+zsteg -a image.png                    # Full auto brute-force
+
+stegseek image.png /path/to/wordlist.txt
+
+pngcheck -v image.png                   # Shows PNG chunk structure
+strings image.png | grep -i "flag"
+
+
+🔊 WAV Steganography – Full Command Toolkit 🎧
+
+file audio.wav                      # Confirm it's really a WAV
+exiftool audio.wav                  # Extract metadata (comments, tags)
+mediainfo audio.wav                 # Media structure details
+
+strings audio.wav | less                            # Look for readable strings, base64, flags
+strings audio.wav | grep -i "flag"
+strings audio.wav | grep -E "[A-Za-z0-9+/=]{20,}"    # Look for base64
+xxd audio.wav | less                                 # Manual hexdump
+binwalk audio.wav                                    # Look for embedded files
+binwalk -e audio.wav                                 # Extract anything hidden
+
+steghide extract -sf audio.wav                # Prompt for password
+steghide extract -sf audio.wav -p ""          # Try empty password
+
+stegseek audio.wav /path/to/wordlist.txt
+
+sox audio.wav -n spectrogram -o spectro.png
+
+
+Install:
+sudo apt install steghide exiftool binwalk imagemagick stegosuite exiv2
+pip install stegcracker  # Python tool for bruteforcing steghide
+
+

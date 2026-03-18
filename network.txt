@@ -1,0 +1,84 @@
+Networking:
+
+ip.src == ip
+ip.dst == ip
+ip.addr == ip
+ip.src == x.x.x.x
+ip.dst == x.x.x.x
+ip.addr == ip && ip.addr == ip
+tcp.port == port
+udp.port == port
+http.request.method == GET
+http.request.method == POST
+http.request.method == GET && ip.addr == ip
+http.request.method == POST && ip.addr == ip
+tcp.srcport == port_number
+tcp.dstport == port_number
+http && tcp.port == 80
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+tcp.flags.fin == 1
+dns.qr == 0
+dns.qr == 1
+http.request.method == "GET"
+http.request.method == "POST"
+ip.addr == x.x.x.x
+ip.addr == 192.168.1.1
+ip.addr == 10.0.0.1 && tcp.port == 80
+
+use Strings Command.you may got something.
+Source : Server IP, Destination : Attacker IP
+Serching for Port : $port
+Finding the how many user search passwd and finding like how many user
+find the admin endpoint search admin and find the path
+which user and password is compromised search su 
+find the admin password search root
+find the reverse shell search wget
+Find the linux version of the server search linux
+find the binary root permission search root
+find the root access search root
+find the vulnerability name search process_task
+Find the dataabase flag search flag
+
+First Visit Statistics > Protocol Hierarchy, staticstics > Converation, staticstics > End Point, staticstics > Packet Length
+Find Any windows name search DESKTOP
+Find Any exe file search .exe
+find the exploit server filter ftp and search vsftpd
+if you find bruteforce path search admin or login or adminlogin etc common path
+
+dos attack is 503 service unavailable . first search "service unavailable" and find the packet
+source > attacker IP destination > server IP/victim IP
+for Searching a ip  ip.addr == 192.168.57.7
+for finding ARP filter arp
+for searching userid filter user
+statistics > capture the properties  then go to comments some time this is flag
+for finding the attacker ip filter ftp and analyze it 
+for knowing ftp vulnerable server filter ftp
+for knowing ftp userid and password filter ftp and then search "Login successful" or "correct"
+For searching correct login time or other things from logs file search "OK" or "OK LOGIN"
+For searching correct upload file from logs file search "OK" or "OK UPLOAD"
+For knowing hacker name filter ftp-data
+for the find admin panel id and password filter http.request.method == "POST" and find the last packet
+for the finding shell or backdoor filter http and search ".php?cmd="
+if you find tools name filter http and search nikto/metasploit/nmap/hydra
+for exploting try metasploit
+find robots.txt filter http and then search robots.txt and export it
+for knowing the php version filter http and then target any .php file and see the x-powered by 
+Total Number of endpoint : statistics > endpoints > IPv4 [Find the ip range]
+Common version vsFTPd 2.3.4
+for finding user search user/USER
+for finding password search PASS
+For Finding Desktop name Search Desktop [finding the packet] > Netbios name service > Additional Records 
+For Finding Desktop name Search Desktop you can knowing the desktop name
+strings name.pcap | grep -i "Desktop"
+for finding which file uploaded search "Transfer complete" and Filter FTP
+for finding admin id password use http.request.method == "POST"
+
+Find the victim machine search Desktop or use -> strings NCD-2021.pcap| grep -i "desktop"
+Find user,pass, port search PORT, USER, PASS . here disenication is Attack machine
+Find robots.txt search in robots.txt or go to export and search it
+Find the username and password try to search "302 Found" or  "confrim.php" or "dashboard.php"
+
+
+BDSec CTF 2023 : https://www.youtube.com/watch?v=HxZ6NgF-n5k
+NCD 2020 : https://www.youtube.com/watch?v=Bpp53N7XBmk ==== https://www.youtube.com/watch?v=_kbgyL5Zaqw
+NCD 2022 : https://www.youtube.com/watch?v=e8Ybd4KwN9U

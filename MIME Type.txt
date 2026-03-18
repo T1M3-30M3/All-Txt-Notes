@@ -1,0 +1,185 @@
+Text Types
+
+    text/plain: Plain text
+    text/html: HTML document
+    text/css: Cascading Style Sheets
+    text/javascript: JavaScript (often application/javascript is used)
+    text/xml: XML document
+
+Image Types
+
+    image/jpeg: JPEG images
+    image/png: PNG images
+    image/gif: GIF images
+    image/svg+xml: SVG images
+    image/webp: WebP images
+
+Audio Types
+
+    audio/mpeg: MP3 audio
+    audio/wav: WAV audio
+    audio/ogg: Ogg audio
+    audio/aac: AAC audio
+    audio/flac: FLAC audio
+
+Video Types
+
+    video/mp4: MP4 video
+    video/x-msvideo: AVI video
+    video/x-matroska: MKV video
+    video/ogg: Ogg video
+    video/webm: WebM video
+
+Application Types
+
+    application/json: JSON data
+    application/xml: XML data
+    application/pdf: PDF document
+    application/zip: ZIP archive
+    application/x-www-form-urlencoded: Form data
+
+Font Types
+
+    font/woff: WOFF font
+    font/woff2: WOFF2 font
+    font/ttf: TrueType font
+    font/otf: OpenType font
+
+Miscellaneous
+
+    multipart/form-data: Form data with files
+    application/octet-stream: Binary data
+
+
+Image MIME Types
+
+    image/jpeg: JPEG images
+    image/png: PNG images
+    image/gif: GIF images
+    image/svg+xml: SVG images
+    image/webp: WebP images
+    image/bmp: BMP images
+    image/tiff: TIFF images
+    image/x-icon: ICO images
+
+PDF MIME Type
+
+    application/pdf: PDF document
+
+PHP MIME Type
+
+    application/x-httpd-php: PHP script
+    text/x-php: PHP script (less common)
+
+HTML MIME Type
+
+    text/html: HTML document
+    text/xhtml: XHTML document
+
+Excel MIME Types
+
+    application/vnd.ms-excel: Excel 97-2003 (.xls)
+    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: Excel 2007 and later (.xlsx)
+    application/vnd.oasis.opendocument.spreadsheet: OpenDocument spreadsheet (.ods)
+
+Audio MIME Types
+
+    audio/mpeg: MP3 audio
+    audio/wav: WAV audio
+    audio/ogg: Ogg audio
+    audio/aac: AAC audio
+    audio/flac: FLAC audio
+    audio/mp4: MP4 audio
+
+Video MIME Types
+
+    video/mp4: MP4 video
+    video/x-msvideo: AVI video
+    video/x-matroska: MKV video
+    video/ogg: Ogg video
+    video/webm: WebM video
+
+GIF MIME Type
+
+    image/gif: GIF images
+
+SVG MIME Type
+
+    image/svg+xml: SVG images
+
+HTML and Related Types
+
+    text/html: HTML document
+    text/xhtml: XHTML document
+    text/xml: XML document
+    text/plain: Plain text
+    text/css: Cascading Style Sheets (CSS)
+    text/javascript: JavaScript (often application/javascript is used)
+
+JavaScript Types
+
+    application/javascript: JavaScript
+    application/json: JSON data
+
+Image Types
+
+    image/jpeg: JPEG images
+    image/png: PNG images
+    image/gif: GIF images
+    image/svg+xml: SVG images
+    image/webp: WebP images
+    image/bmp: BMP images
+    image/tiff: TIFF images
+    image/x-icon: ICO images
+
+Audio Types
+
+    audio/mpeg: MP3 audio
+    audio/wav: WAV audio
+    audio/ogg: Ogg audio
+    audio/aac: AAC audio
+    audio/flac: FLAC audio
+    audio/mp4: MP4 audio
+
+Video Types
+
+    video/mp4: MP4 video
+    video/x-msvideo: AVI video
+    video/x-matroska: MKV video
+    video/ogg: Ogg video
+    video/webm: WebM video
+
+Document Types
+
+    application/pdf: PDF document
+    application/msword: Microsoft Word document (.doc)
+    application/vnd.openxmlformats-officedocument.wordprocessingml.document: Word document (.docx)
+    application/vnd.ms-excel: Microsoft Excel document (.xls)
+    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: Excel document (.xlsx)
+    application/vnd.oasis.opendocument.text: OpenDocument text (.odt)
+    application/vnd.oasis.opendocument.spreadsheet: OpenDocument spreadsheet (.ods)
+
+Archive Types
+
+    application/zip: ZIP archive
+    application/x-tar: TAR archive
+    application/gzip: GZIP archive
+    application/x-rar-compressed: RAR archive
+
+Font Types
+
+    font/woff: WOFF font
+    font/woff2: WOFF2 font
+    font/ttf: TrueType font
+    font/otf: OpenType font
+
+Multipart Types
+
+    multipart/form-data: Form data with files
+    multipart/related: Related parts (e.g., HTML with images)
+    multipart/alternative: Alternative representations (e.g., HTML and plain text)
+
+Other Types
+
+    application/octet-stream: Binary data (often used for file downloads)
+    application/x-www-form-urlencoded: Form data

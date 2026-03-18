@@ -1,0 +1,154 @@
+live response and forensics with powershell:
+
+--> Local User And Group:
+Get-LocalUser
+Get-LocalGroup
+Get-LocalGroupMember
+
+--> Retrive First 10 Runing Process and Service:
+Get-Process | Select-Object -First 10
+Get-Service | Select-Object -First 10
+
+--> Retrive Local User and Group:
+Get-LocalUser | Select-Object Name, Enabled | Format-Table -AutoSize
+Get-LocalGroup | Select-Object Name, SID | Format-Table -AutoSize
+
+--> Retrieve Computer Information
+Get-ComputerInfo
+
+--> Retrieve Computer Network Information
+Get-NetAdapter | select-Object Name, Status, LinkSpeed
+Get-NetIPAddress | Select-Object IPAddress, InterfaceIndex, AddressFamily
+Get-NetRoute
+
+--> Retrieve first 10 running processes and service
+Get-CimInstance -ClassName Win32_Process | Select-Object -First 10
+Get-CimInstance -ClassName Win32_Service | Select-Object -First 10
+
+--> Retrieve local users and groups
+Get-CimInstance Win32_UserAccount | Select-Object Name, Caption
+Get-CimInstance Win32_Group | Select-Object Name, Caption
+
+--> Retrieve computer information
+Get-CimInstance -ClassName Win32_ComputerSystem
+Get-CimInstance -ClassName Win32_Processor
+Get-CimInstance -ClassName Win32_OperatingSystem
+
+--> Workstation information
+Get-CimInstance Win32_BIOS
+Get-CimInstance Win32_ComputerSystem
+Get-CimInstance Win32_DiskDrive
+Get-CimInstance Win32_DiskPartition
+Get-CimInstance Win32_IP4RouteTable
+Get-CimInstance Win32_LogicalDisk
+Get-CimInstance Win32_NetworkAdapter
+Get-CimInstance Win32_NetworkAdapterConfiguration
+Get-CimInstance Win32_NTLogEvent
+Get-CimInstance Win32_OperatingSystem
+Get-CimInstance Win32_PhysicalMemory
+Get-CimInstance Win32_Printer
+Get-CimInstance Win32_Processor
+Get-CimInstance Win32_Product
+Get-CimInstance Win32_Service
+Get-CimInstance Win32_SystemDriver
+Get-CimInstance Win32_Battery
+Get-CimInstance Win32_BaseBoard
+Get-CimInstance Win32_Environment
+Get-CimInstance Win32_OperatingSystem
+Get-CimInstance Win32_ComputerSystem
+Get-CimInstance Win32_Process
+Get-CimInstance Win32_PhysicalMemory
+Get-CimInstance Win32_VideoController
+Get-CimInstance Win32_ComputerSystem | Select-Object Name, TotalPhysicalMemory
+Get-CimInstance Win32_Processor | Format-Table Name, Manufacturer, MaxClockSpeed
+
+--> Running services and processes
+Get-CimInstance Win32_Service
+Get-CimInstance Win32_Process
+Get-Process
+Get-Service
+
+--> Networking information
+Get-CimInstance Win32_NetworkAdapter
+Get-NetIPAddress
+Get-DnsClientCache
+Get-NetNeighbor
+Get-NetRoute
+
+--> Scheduled tasks and autoruns
+Get-CimInstance Win32_StartupCommand
+Get-CimInstance Win32_ScheduledJob
+
+--> Files, folders, and sessions
+Get-ChildItem
+Get-SmbSession
+Get-CimInstance Win32_Share
+
+--> Event logs
+Get-WinEvent
+
+Get-Process | FT
+Get-Process | Select-Object *
+Get-CimInstance Win32_Process | Select-Object *
+Get-CimInstance Win32_OperatingSystem | Select-Object *
+
+Review auto running process : .\autorunsc.exe /acceptEula
+Review all auto running processes and hide Microsoft entries : .\autorunsc.exe -a * -m /acceptEula
+Review auto running process and select properties using PowerShell : .\autorunsc.exe -a * -m -c /acceptEula | ConvertFrom-Csv | ` Select-Object "Entry", "Description", "Image Path", "Enabled"
+
+Executive Supporting Tools : tcpvcon64.exe, autorunsc.exe, psloggedon64.exe, logonsessions64.exe, handle.exe, klist.exe, wmic
+
+.\tcpvcon64.exe -a -c /acceptEula | ` Out-File -FilePath .\PortInformation.log
+.\handle.exe -v /acceptEula | ` Out-File -FilePath .\OpenProcesses.log
+wmic nteventlog list brief | ` Out-File -FilePath .\EventLogList.log
+
+tcpvcon64.exe -a -c /accepteula -nobanner
+tcpvcon64.exe -a -c /accepteula -nobanner | Out-String | ConvertFrom-Csv -Delimiter ',' -Header Protocol, Processor, ID, State, Local, Remote
+
+
+
+
+whoami
+whoami /all
+whoami /priv
+
+Get-Process
+Get-Process -Name system
+Get-Process -Name sys*, win*
+Get-Process -ID 896
+
+Get-Service
+Get-Service -Name power
+
+netstat -a -n -o
+netstat -ano
+
+arp -a
+ipconfig
+ipconfig /all
+
+net user abc pass /add
+net localgroup administrators abc /add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
