@@ -1,0 +1,255 @@
+Subdomain Hunting :
+
+subdomain -d <link>
+python3 knock.py <link>
+
+Best Nulnerability Scanner : Nikto, uniscan
+
+nikto -h <link>
+uniscan -u <link>
+uniscan -u <link> -qweds
+
+Gathering Email Address : theharvester -d <link> -b google
+
+Firefox Extention : Foxy Proxy, Wappalyzer, Ublock Origin, Cookie Editor, Shodan, jwt.io, Hack Tools, HackBar V2, retire.js, trufflehog
+
+Directory Hunting :
+
+dirb www.abc.xyz
+ffuf -w /root/Tools/dictionaries/ -u www.abc.xyz/FUZZ
+
+dirsearch -u example.com
+dirsearch -e php,html,js -u example.com
+dirsearch -e php,html,js -u example.com common.txt
+
+XSS: <img src=x onerror="alert(1)">
+
+Google Dorking :
+
+site:tesla.com
+site:tesla.com filetype:txt
+inurl:tesla
+intitle: index of
+
+Link : https://www.exploit-db.com/google-hacking-database
+https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06
+
+Github Recon:
+
+"tesla" password
+"tesla" username
+"tesla" uname
+"tesla" passwd
+
+Link : https://gist.githubusercontent.com/EdOverflow/8bd2faad513626c413b8fc6e9d955669/raw/06a0ef0fd83920d513c65767aae258ecf8382bdf/gistfile1.txt
+
+Recon:
+
+Whatweb > wappalyzer > whois > Shodan > Source Code Check
+
+subfinder -d <link> | tee x.txt
+cat tee x.txt | sudo waybackurls
+cat tee x.txt | sudo waybackurls | tee x.txt
+cat x.txt | grep users
+cat x.txt | grep api
+cat x.txt | grep -i .js
+cat x.txt | grep -i .json
+
+Link : https://github.com/six2dez/reconftw
+./reconftw.sh -d target.com -r
+./reconftw.sh -l sites.txt -r -o /output/directory/
+./reconftw.sh -d target.com -r --deep -o /output/directory/
+./reconftw.sh -m company -l domains_list.txt -r
+
+cat x.txt | wc -l
+cat x.txt | httpx
+cat x.txt | httpx -td
+cat x.txt | httpx -status-code
+cat x.txt | httpx -location
+cat x.txt | httpx -status-code -server
+cat x.txt | httpx -status-code -server -title
+cat x.txt | httpx -status-code -server -title | tee x.txt
+
+https://intelx.io/
+https://phonebook.cz
+
+
+Basic Recon > Subdomains > http/https > http status > Input > 
+
+Basic Recon : Wappalyzer, BuiltWith, Whois, Data braches, emails, social Media
+
+Subdomain Hunting : 
+▶ sudo subfinder -d tesla.com -o 1.txt | sudo sublist3r -d tesla.com -o 2.txt | sudo assetfinder --subs-only tesla.com > 3.txt | sudo findomain -t tesla.com --output
+▶ cat * > full.txt | sort | uniq > final.txt
+
+using Httprove:
+▶ cat domains.txt
+▶ cat domains.txt | httprobe
+▶ cat domains.txt | httprobe -p http:81 -p https:8443
+▶ cat domains.txt | httprobe -c 50
+
+Using UrlProve:
+▶ cat urls.txt | urlprobe 
+▶ cat urls.txt | urlprobe -c 1000 -t 10
+▶ assetfinder --subs-only test.com | waybackurls | gf redirect | urlprobe -c 1000 -t 05
+▶ Subfinder -d test.com | gau | gf ssrf | urlprobe -c 1000 -t 05
+▶ cat hosts | urlprobe -c 1000 -t 01 | grep 200 | awk '{print $5}' | tee -a lol-200.txt 
+
+Github Recon :
+"tesla" password
+"tesla" username
+"tesla" uname
+"tesla" passwd
+
+Link : https://gist.githubusercontent.com/EdOverflow/8bd2faad513626c413b8fc6e9d955669/raw/06a0ef0fd83920d513c65767aae258ecf8382bdf/gistfile1.txt
+
+ScreenShor Taker : Gowithness, EyeWitmess, WitnessMe, SnapBack, Aquatone, CutyCapt
+
+▶ cat targets.txt | aquatone
+▶ cat hosts.txt | aquatone -out example.com
+▶ cat hosts.txt | aquatone -ports 80,443,3000,3001
+▶ cat hosts.txt | aquatone -ports large
+▶ amass -active -brute -o hosts.txt -d yahoo.com
+
+▶ cutycapt --url=www.abc.xyz
+▶ cutycapt --url=www.abc.xyz --out=name.png
+
+Fuzzing: FFUF Then sqlmap, Wpscan 
+
+Osint:
+
+Metagoofil : https://github.com/opsdisk/metagoofil
+metagoofil -d google.com -t pdf,txt -l 10
+
+MOSINT : https://github.com/alpkeskin/mosint
+mosint abc@gmail.com
+mosint abc@gmail.com -s -o out.json
+
+Web Osint : https://centralops.net/co/
+https://dnslytics.com/reverse-ip/
+https://spyonweb.com/
+https://www.virustotal.com/gui/home/url
+https://visualping.io/
+https://backlinkwatch.com/index.php
+https://viewdns.info/
+https://www.crunchbase.com/
+https://hackertarget.com/reverse-ip-lookup/
+https://www.site24x7.com/find-ip-address-of-web-site.html
+
+Password Cracking:
+
+Zydra : https://github.com/hamedA2/Zydra
+python3 Zydra.py –f file.zip –d rockyou.txt
+python3 Zydra.py –f file.zip -b digits, lowercase -m 2 -x 8
+
+fcrackzip -u -D -p rockyou.txt secret.zip
+fcrackzip -b -c "a1" secret.zip -u
+fcrackzip -u -D -p rockyou.txt secret.zip
+
+Port Scanning:
+
+naabu -host google.com
+echo AS14421 | naabu -p 80,443
+naabu -host 104.16.99.52 -json
+echo hackerone.com | dnsx -resp-only -a -aaaa -silent | naabu -p 80 -silent
+echo 142.250.77.78 | naabu 
+echo 142.250.77.78 | naabu --passive
+echo 142.250.77.78 | naabu -nmap-cli 'nmap -sV'
+
+Create Wordlist:
+
+Bopscrk : https://github.com/r3nt0n/bopscrk
+bopscrk -i
+
+NameMash:
+https://github.com/krlsio/python/blob/main/namemash.py
+https://gist.github.com/superkojiman/11076951
+python3 namemash.py user.txt > names.txt
+
+Bypassing 2FA:
+
+▶ 2Fa additional check before loggin in, like sms. auth etc
+▶ Response Manipulation:
+	▶ Give some dummy code and try to work on the response.
+	▶ Try to change the response to some true-representing term.
+	▶ Or give a valid code, capture the response, and then use the same response for an invalid code.
+	▶ Just keep on testing.
+	▶ Response manipulation works most of the time.
+▶ Status Code Manipulation:
+	▶ As the name suggests, sometime after giving an invalid code, we get a response with the response code 4xx.
+	▶ Change it to something like 2xx and see if it works.
+▶ Code leakage in response; thoroughly check the response, as sometimes it may reveal the valid code.
+▶ JS analysis
+	▶ JS files relevant to the server may contain logic and leaks regarding the codes.
+▶ Exploiting the no-rate limit on the 2FA accepting code
+▶ Able to use User-A code for User-B
+▶ CSRF on 2FA is disabled; as the name CSRF suggests, there won't be any protection for disabling 2FA.
+▶ Social engineering to disable 2FA
+▶ By trying some null codes
+▶ 2FA always has some feature called backup codes; we can abuse its functionality using the above-mentioned techniques.
+
+-- Nmap Scan -- 
+
+nmap <target>
+nmap -p <port> <target>
+nmap -p <start port>-<end port> <target>
+nmap -A <target>
+nmap <target> <target> 
+nmap -oN out.txt <target>
+nmap -sV <target>
+nmap -O <target>
+nmap -sU <target>
+nmap -sn <target>
+nmap -sC <target>
+nmap -F <target> -sC <target>
+
+Sensitive Information Disclose: Google Dorking > Fuzzing [Subdomains/Wordlist] > Github Dorking > JS Files > extention in burp suite
+
+Phone and Email Osint : https://osint.industries/
+
+Extract URLS from the source code:
+
+GoLinkFinder : https://github.com/0xsha/GoLinkFinder
+
+GoLinkFinder -d https://github.com
+GoLinkFinder -d https://github.com | grep api
+GoLinkFinder -d https://github.com | grep uname
+GoLinkFinder -d https://github.com | grep password
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

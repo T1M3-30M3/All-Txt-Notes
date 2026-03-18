@@ -1,0 +1,156 @@
+source : Linux Command Line Terminal Basic for Beginners (हिंदी)
+
+1. Basic command in Terminal
+for turn on terminul {ctrl+T}
+for show date and time type date
+for show date and calender type cal / cal -y / cal (year name)/ cal 1 2020
+for clear type clear
+for exit type ext
+---------------------------------------------------------------------------------
+2. Navigating the file system
+for travel directory to directory;
+for current directory type pwd
+for see list ls
+for go to directory type cd (name)
+for any directory to home type cd ~
+for back to directory cd ..
+---------------------------------------------------------------------------------
+Linux Links
+
+iNode :
+•	Every file in the system has an inode(Index Node)
+•	Contains all the file information except the file contents & name.
+•	Just like a personal ID or a passport(Without a name!)
+
+They contain the following -
+➢	Inode number
+➢	File size
+➢	Owner information
+➢	Permissions
+➢	File type
+➢	Number of links etc.
+
+Types of Links :
+
+1. Soft Links :
+✔	Just like a shortcut in Window
+✔	It is a pointer to the original file
+✔	Different iNode number
+✔	Smaller file size
+
+Note :- If we delete the original file then softlink will become useless!
+
+2.  Hard Links :
+✔	Different name of the same file
+✔	Same file size
+✔	Same iNode number
+
+Note :- If the original File is deleted, the Hard link will still contain the data that were in the original file.
+---------------------------------------------------------------------------------
+4. Hard Link V/S Soft Link Practical Implementation
+to know inode number type ls -i
+to make hardlink type ln original (file name)
+to make softlink type ln -s original (filename)
+---------------------------------------------------------------------------------
+6. A directory loop
+Lets have some fun with links
+Creating loops
+● Imagine the following scenario
+● We have a directory named a on your 
+desktop.
+Inside directory a,  we have a directory 
+named b.
+And inside b we have a short link 
+(Directory) named c that points to a.
+---------------------------------------------------------------------------------
+7. ls Command options 
+longlisting more about type ls -l
+for create a folder type touch (file name)
+all thing type ls -a
+for list itme ls -t
+for reverce ls -r
+for recersive ls -R (folder name)
+for all recersive ls -R 
+for cancel ctrl+c
+---------------------------------------------------------------------------------
+make directory type mkdir (file name)
+empty remve directory type rmdir (filename)
+remve file type rm -r (file name)
+remve directory recersively type rm -R (name)
+remve file with confirm type rm -i filename
+remve force fully type  rm -f filename
+get summuary type rm -v
+for copy type cp from to
+for confrim type cp -i
+
+or refresh type alt+f2
+For change extension :
+For change  name: mv (present name) (future name)
+For extention know: file (filename)
+For space in filename:
+1. mkdir 'filename'
+2.mkdir "filename"
+3.mkdir my\cat  [\=escape character]
+For include caracter type mkdir \$dollar
+Use tab and shortcut :
+Shortcut Keys:
+Ctrl+A go to front Alphabet 
+Ctrl+E go to last Alphabet 
+Ctrl+D delete
+Ctrl+F forward
+Ctrl+B backwards 
+Alt+F Skip 1 word
+Alt+B backskip 1 word
+Alt+U uppercase
+Alt+L lowercase
+Ctrl+K cut
+Ctrl+Y Paste
+Ctrl+L clear
+Use gedit type gedit (filename)
+For edit txt file nano (filename)
+For see to story type history
+For to open type  (!serialnumber)
+For to see last something type history (5/10)
+For clear history type -c
+
+for see 1st x line line type  head -n (x) filename{x=1-any number}
+for see last x line type tail -n (x) filename {x=1-any number}
+for wordcount type wc filename
+for line number type wc -l filename
+for word type wc -w filename
+for size type wc -c filename
+for long caracter type wc -L filename
+
+command type :
+Executable cmnds; shell Builtins; Shell Script; alias
+for find which type od cmnd type (type cmndname)
+for know path type which cmndname
+for whatis cmnd type whatis cmndname
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

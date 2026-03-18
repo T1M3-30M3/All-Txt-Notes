@@ -1,0 +1,16 @@
+/admin/index.php
+admin.php
+/admin
+/Admin
+admin/login.php
+adminlogin.php
+adminhome.php
+admin_login.php
+administratorlogin.php
+administrator/login.php
+administrator.php
+admin/user.asp
+/Manager/index.php
+login/administrator.php
+administrator_login.php
+admin/adminuser.asp

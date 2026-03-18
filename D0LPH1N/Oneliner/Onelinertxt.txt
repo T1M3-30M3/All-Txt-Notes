@@ -1,0 +1,5 @@
+https://github.com/dwisiswant0/awesome-oneliner-bugbounty
+https://github.com/thecybertix/One-Liner-Collections
+https://github.com/twseptian/oneliner-bugbounty
+https://github.com/daffainfo/Oneliner-Bugbounty
+https://github.com/Elsfa7-110/Elsfa7110-Oneliner-bughunting

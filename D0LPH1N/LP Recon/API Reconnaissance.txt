@@ -1,0 +1,136 @@
+Day 01:
+
+Introduction to API Reconnaissance:
+
+In order to target APIs, we must first be able to find them. How an API is meant to be consumed will determine how easily it can be found. 
+
+Public API - Partner API - Private API
+
+Public APIs : Public APIs are meant to be easily found and used by end-users.Public APIs may be entirely public without authentication or be meant for use by authenticated users. Authentication for a public API primarily depends on the sensitivity of the data that is handled. If a public API only handles public information then there is no need for authentication, in most other instances authentication will be required. Public APIs are meant to be consumed by end-users. In order to facilitate this, API providers share documentation that serves as an instruction manual for a given API. This documentation should be end-user friendly and relatively straightforward to find.
+
+Partner APIs : Partner APIs are intended to be used exclusively by partners of the provider. These might be harder to find if we are not a partner. Partner APIs may be documented, but documentation is often limited to the partner.
+
+Private APIs : Private APIs are intended for use, privately, within an organization. These APIs are often documented less than partner APIS, if at all, and if any documentation exists it is even harder to find. In all instances where API documentation is unavailable, we can reverse engineer API requests.
+
+Web API Indicators : The goal is to find APIs to attack and this can be accomplished by discovering the API itself or the API documentation. If we can find the target's API and documentation as an end-user then mission accomplished, we have successfully discovered an API. Another way to find an API provided by a target is to look around the target's landing page.we need to Look through a landing page for links to API or development portal.When searching for APIs there are several signs that will indicate that we have discovered the existence of a web API. 
+
+We need to be on the lookout for obvious URL naming schemes:
+
+https://example.com/api/v1
+https://api.example.com/v1
+https://example.com/docs
+https://dev.example.com/rest
+
+We should also look for API indicators within directory names like : /api, /api/v1, /v1, /v2, /v3, /rest, /swagger, /swagger.json, /doc, /docs, /graphql, /graphiql, /altair, /playground
+
+we can also look for subdomains that can also be indicators of web APIs :
+
+api.example.com
+uat.example.com
+dev.example.com
+developer.example.com
+test.example.com
+
+Another indicator of web APIs is the HTTP request and response headers. The use of JSON or XML can be a good indicator that we have discovered an API. HTTP Request and Response Headers containing "Content-Type: application/json, application/xml"
+
+One of the most obvious indicators of an API would be through gathering information using third-Party Sources like Github and API directories.
+
+Gitub : https://github.com/ 
+Postman Explore : https://www.postman.com/explore/apis
+ProgrammableWeb API Directory : https://www.programmableweb.com/apis/directory 
+APIs Guru : https://apis.guru/ 
+Public APIs Github Project : https://github.com/public-apis/public-apis 
+RapidAPI Hub : https://rapidapi.com/search/ 
+ 
+When searching for a target's APIs we should use a target's web application as it was designed. Use a browser go to the web application and see if an API is advertised. Once we have an idea of how the web app functions, we can dig deeper by deploying passive and active reconnaissance techniques.
+
+Day 02:
+
+Passive Reconnaissance : Passive API Reconnaissance is the act of obtaining information about a target without directly interacting with the target's systems. When we take this approach, our goal is to find and document public information about the target's attack surface. Typically, passive reconnaissance leverages open-source intelligence (OSINT), which is data collected from publicly available sources. We should look out for API endpoints, exposed credentials, version information, API documentation, and information about the API's business purpose. Any discovered API endpoints will become our targets later, during active reconnaissance. Here are some passive reconnaissance techniques that can be used to discover APIs, including Google Dorking, Git Dorking, the Way Back Machine, and Shodan.
+
+Google Dorking : Google Dorking, also known as Google Hacking, is a technique that uses advanced search operations in Google to find specific information that is not easily accessible through typical search queries. It leverages Google’s search algorithms to locate specific text strings within search results. This technique is used by hackers and security researchers to find sensitive information on websites using Google’s search engine. It involves using advanced search operators and strings called dorks. These operators can be combined to create more powerful search queries that can reveal information that would not be easily accessible otherwise. Even without any Dorking techniques, finding an API as an end-user could be as easy as a quick search. However, sometimes we may not get the exact results we were hoping for. If we are getting too many irrelevant results then we could deploy some Google Dorking techniques to more effectively discover APIs.
+
+here are some of the dorking example queries we can use :
+
+inurl:"/wp-json/wp/v2/users" 
+intitle:"index.of" intext:"api.txt"
+inurl:"/api/v1" intext:"index of /"
+ext:php inurl:"api.php?action="
+intitle:"index of" api_key OR "api key" OR apiKey -pool
+
+Git Dorking : Git Dorking, also known as GitHub Dorking, is a method used to find sensitive information in public repositories on GitHub. It is similar to Google Dorking, but instead of using Google’s search engine, it uses GitHub’s search functionality. Developers often share their code by open sourcing it on GitHub. However, sometimes they accidentally publish source files that might contain sensitive information, like API keys or database credentials. Git Dorking uses specific search keys to find this kind of sensitive information.
+
+with GitHub, we can specify parameters like:
+filename:swagger.json
+extension: .json
+
+Begin by searching GitHub for our target organization’s name paired with potentially sensitive types of information, such as “api key,” "api keys", "apikey", "authorization: Bearer", "access_token", "secret", or “token.” Then investigate the various GitHub repository tabs to discover API endpoints and potential weaknesses. we can Analyze the source code in the Code tab, find bugs in the Issues tab, and review proposed changes in the Pull requests tab.
+
+The code tab contains the current source code, readme files, and other files. This tab will provide us with the name of the last developer who committed to the given file, when that commit happened, contributors, and the actual source code. 
+
+Using the Code tab, we can review the code in its current form or use ctrl-F to search for terms that may seem interesting (such as API, key, and secret). Additionally, view historical commits to the code by using the History button found near the top-right corner of the above image. If we came across an issue or comment that led us to believe there were once vulnerabilities associated with the code, we can look for historical commits to see if the vulnerabilities are still viewable.
+
+When looking at a commit, we can use the Split button to see a side-by-side comparison of the file versions to find the exact place where a change to the code was made.
+
+The Split button (top right of the above image) allows us to separate the previous code (left) and the updated code (right). 
+
+The Issues tab is a space where developers can track bugs, tasks, and feature requests. If an issue is open, there is a good chance that the vulnerability is still live within the code.
+
+The Pull requests tab is a place that allows developers to collaborate on changes to the code. If we review these proposed changes, we might sometimes get lucky and find an API exposure that is in the process of being resolved. As this change has not yet been merged with the code, we can easily see that the API key is still exposed under the Files changed tab. The Files changed tab reveals the section of code the developer is attempting to change. 
+
+If we don’t find weaknesses in a GitHub repository,we can use it instead to develop the profile of our target. We can take note of programming languages in use, API endpoint information, and usage documentation, all of which will prove useful moving forward.
+
+The Wayback Machine : The Wayback Machine is an archive of various web pages over time. This is great for passive API reconnaissance because this allows us to check out historical changes to the target. If, for example, the target once advertised a partner API on their landing page, but now hides it behind an authenticated portal, then you might be able to spot that change using the Wayback Machine. Another use case would be to see changes to existing API documentation. If the API has not been managed well over time, then there is a chance that we could find retired endpoints that still exist even though the API provider believes them to be retired. These are known as Zombie APIs. Zombie APIs fall under the Improper Assets Management vulnerability on the OWASP API Security Top 10 list. Finding and comparing historical snapshots of API documentation can simplify testing for Improper Assets Management. 
+
+Shodan : Shodan is the go-to search engine for devices accessible from the internet. Shodan regularly scans the entire IPv4 address space for systems with open ports and makes their collected information public on https://shodan.io. we can use Shodan to discover external-facing APIs and get information about the target’s open ports, making it useful if we have only an IP address or organization’s name to work from. Like with Google dorks, we can search Shodan casually by entering the target’s domain name or IP addresses; alternatively, we can use search parameters like we would when writing Google queries. 
+
+some of the useful Shodan queries are :
+
+hostname:"targetname.com"
+"content-type: application/json"
+"content-type: application/xml"
+"200 OK"
+"wp-json"
+
+Day 03:
+
+Active API Reconnaissance:
+Active reconnaissance is the process of interacting directly with the target, primarily through the use of scanning. We will use our recon to search for our target’s APIs and any useful information. During this process, we will be scanning systems, enumerating open ports, and finding ports that have services using HTTP. Once we have found systems hosting HTTP, we can open a web browser and investigate the web application. We could find an API being advertised to end users, or we may have to dig deeper. Finally, we can scan the web app for API-related directories. Essentially, we will be building out the target’s API attack surface. During active recon, we will use tools like nmap, gobuster, kiterunner, and DevTools.
+
+Nmap
+Nmap is a powerful tool for scanning ports, searching for vulnerabilities, enumerating services, and discovering live hosts. 
+For API discovery, we need to run two Nmap scans in particular : general detection and all port
+
+scan uses default scripts (-sC)
+service enumeration (-sV) against a target and then saves the output in three formats for later review (-oX for XML, -oN for Nmap, -oG for greppable, or -oA for all three)
+
+nmap -sC -sV [target address or network range] -oA nameofoutput
+nmap -p- [target address] -oA allportscan
+nmap -sV --script=http-enum <target> -p 80,443,8000,8080
+
+Directory Brute-force with Gobuster: 
+Gobuster can be used to brute-force URIs and DNS subdomains from the command line. In Gobuster, we can use wordlists for common directories and subdomains to automatically request every item in the wordlist and send them to a web server and filter the interesting server responses. The results generated from Gobuster will provide us with the URL path and the HTTP status response codes. Whenever we’re using a brute-force tool, we’ll have to balance the size of the wordlist and the length of time needed to achieve results. Kali has directory wordlists stored under /usr/share/wordlists/dirbuster that are thorough but will take some time to complete. Instead, we can use an API-related wordlist, which will speed up our Gobuster scans since the wordlist is relatively short and only contains directories related to APIs. 
+
+gobuster dir -u <url> -w <wordlist> 
+gobuster dir -h
+gobuster dir -u <url> -w <wordlist> -x 200,202,301 -b 302
+
+Kiterunner: Kiterunner is an excellent tool that was developed and released by Assetnote. Kiterunner is currently the best tool available for discovering API endpoints and resources. While directory brute force tools like Gobuster/Dirbuster/ work to discover URL paths, it typically relies on standard HTTP GET requests. Kiterunner will not only use all HTTP request methods common with APIs (GET, POST, PUT, and DELETE) but also mimic common API path structures. In other words, instead of requesting GET /api/v1/user/create, Kiterunner will try POST /api/v1/user/create, mimicking a more realistic request.
+
+kr scan <target> -w <wordlist>
+kr kb replay "<request>" -w <wordlist>
+
+DevTools: DevTools, often referred to as web developer tools or inspect element, are a set of tools that we use directly in web browsers like Google Chrome and Microsoft Edge. They help us edit pages on-the-fly, diagnose problems quickly, and build better websites faster. We use DevTools to inspect and debug webpages and web applications. They allow us to inspect, tweak, and change the styles of elements in the webpage, inspect where the browser stored content to construct the webpage, emulate how our website behaves on different devices, inspect network traffic, debug JavaScript, find memory problems and rendering issues with our web apps, and more.
+
+When we're doing API penetration testing, DevTools can be particularly useful. Here's how we can use DevTools for API testing:
+
+Open the DevTools : We go to our browser (e.g., Chrome) > Click on the Right Corner 3 Vertical Dots > More Tools > Developer Tools.
+Hit Our Endpoint : In the URL tab, we hit our endpoint or the URL we want to test.
+Inspect the Results : Once we've hit the endpoint, we can see the results in the Network tab of the DevTools. This includes all the details related to our API, such as headers, payloads, responses, etc.
+Put Some Values and See What Happens : We can also input some values and observe the changes in the API responses.
+
+
+
+
+
+

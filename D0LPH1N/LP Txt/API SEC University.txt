@@ -1,0 +1,91 @@
+--LAB--
+
+--> Install Kali
+--> Install BurpSuite, ZapProxy and postman
+--> install Arjun
+--> Extention : Autorize, 
+
+Install PostMan:
+https://nitish08.medium.com/postman-setup-on-kali-linux-5073000cfc88
+https://www.youtube.com/watch?v=P_Szn6ZSzvw
+
+-- API Recon --
+
+Try Those Links:
+https://target-name.com/api/v1 
+https://api.target-name.com/v1 
+https://target-name.com/docs
+https://dev.target-name.com/rest
+
+Directories : /api, /api/v1, /v1, /v2, /v3, /rest, /swagger, /swagger.json, /doc, /docs, /graphql, /graphiql, /altair, /playground
+
+Try Subdomains:
+api.target-name.com
+uat.target-name.com
+dev.target-name.com
+developer.target-name.com
+test.target-name.com
+
+
+--passive Recon--
+
+* What we are looking after when we recon an API is:
+--> Public information about the API
+--> Documentations about an API
+--> Exposed Credentials or Tokens
+--> Version information
+--> API business purpose to get a better understanding about the expected functionality
+
+Sites : Google Dorking, Github Dorking, Shodan, WayBackUrls, TuffleHog
+
+inurl:"/wp-json/wp/v2/users"
+intitle:"index.of"
+inurl:"/api/v1"
+inurl:"api.php?action="
+intitle:"index of" api_key OR "api key" OR apiKey -pool
+ext:php inurl:"api.php?action="
+inurl:"/api/v1" intext:"index of /"
+intitle:"index.of" intext:"api.txt"
+intitle:"api" site:google.com
+inurl:"/api/v1" site:google.com
+intitle: json site:google.com
+
+Common API Endpoints:
+https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common-api-endpoints-mazen160.txt
+https://gist.github.com/yassineaboukir/8e12adefbd505ef704674ad6ad48743d
+
+--Active Recon--
+nmap -sC -sV <ip>
+nmap -p- <ip>
+nmap -sV <ip> -p <port number>
+amass enum -list
+amass enum -active -a <link>
+amass enum -active -a <link> | grep api
+gobuster dir -u <link> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+gobuster dir -u <link> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --wildcard -b 200
+
+https://github.com/daviddias/node-dirbuster/blob/master/lists/directory-list-2.3-medium.txt
+
+--Endpoint Analysis--
+
+
+GET: To retrieve user information.
+POST: To create a new user.
+PUT: To update a user (sometimes interchangeable with PATCH).
+PATCH: To partially update a user.
+DELETE: To delete a user.
+
+Content-Type: Specifies the media type of the resource.
+Cache-Control: Directs caching mechanisms on how to handle the response.
+X-Powered-By: Indicates the technology used by the server.
+X-RateLimit: Provides information about the rate limits for the API.
+
+--API Authentication Attacks--
+
+--> go to login page and fillup it and Intercept it
+--> Try to Username Enum and Bruteforcing by Burp Suite
+
+wfuzz -d '{"email":"xxx@gmail.com","password":"FUZZ"}' -H 'Content-Type: application/json' -z file,rockyou.txt -u link/login --hc 500
+
+grep -e "[a-zA-Z0-9._-]\+@[a-zA-Z]\+.[a-zA-Z]\+" >  emails_file.txt
+grep -oE '\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b' > yourfile.txt

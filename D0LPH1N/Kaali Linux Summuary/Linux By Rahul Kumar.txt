@@ -1,0 +1,71 @@
+Touch cmnd
+For create file type touch filename 
+For see list type ls
+For see file details type ls -l
+For modify time type touch -am filename 
+For see file type type file Filename
+
+Rm cmnd
+For remove type rm foldername
+For prevent type rm -i folder name 
+
+Cp
+For copy type cp from to
+For prevent type cp -i ftom to
+
+Rm
+For move type mv from to
+
+For change file name
+For type mv from to
+For goto home type cd .. 
+
+Head/Tail
+For see 1st some line type head -n filename 
+For see last some line type tail -n filename
+
+Cat
+For see in txt file type cat filename 
+For type or add something cat > filename 
+
+For show present director type pwd
+For change ditectory type cd
+For go back to home type cd ~
+For go to parent ditectory type cd ..
+
+
+For details command type man toolname
+For print rype echo anything
+For see history rype history
+For txt file to save destop type echo anything > filename
+Search particular filr type cat filename|gep keyword
+
+Linux Tool:
+Find
+Sleep
+Time
+Date
+Cal
+
+Intro of vi
+For create  file type vi Filename
+For read only mode vi -R filename
+view filename
+
+vi/vim/nano  >> TEXTEDITOR
+
+
+Add user
+useradd nane
+passwd name
+
+For see process type ps
+To stop process kill ps id
+For To stop by Force kill -9 ps id
+To make script type vim name.sh
+
+Kali Linux Tool > jhon >pass cracking. > to run type john /etc/shadow
+
+
+**qucikstago>>open img>>txt>>Hide txt>>save
+**To clone a website httrack.com

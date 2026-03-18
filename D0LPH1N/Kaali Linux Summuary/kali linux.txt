@@ -1,0 +1,182 @@
+BEGINNER TO EXPERT GUARANTEED
+
+KALI LINUX COURSE
+ACCESS MORE COURSES PLAYLIST LINK IN DESCRIPTION
+
+SUBSCRIBE!!!
+
+TOPICS
+1. INTRODUCTION TO KALI LINUX
+2. DOWNLOADING & INSTALLING KALI
+3. UNDERSTANDING KALI LINUX INTERFACE
+4. BASIC COMMANDS AND OPERATIONS
+5. DIRECTORY TREE HIERARCHY IN LINUX
+6. TYPES OF USERS IN KALI LINUX
+7. FILES PERMISSIONS AND USERS GROUPS
+8. HOW TO INSTALL PACKAGES IN LINUX
+9. TRYING PHISHING (HIDDENEYE) IN KALI
+10.TRYING DATA HIDING (STEGHIDE) IN KALI
+11.TRYING KEYLOGGER (BEELOGGER) IN KALI
+12.TRYING NMAP (NETWORK MAPPER) IN KALI
+13.BASH SCRIPTING BASICS
+
+1. Introduction to KALI LINUX
+
+Kali Linux?
+Kali Linux is a Debian-derived Linux distribution that is maintained by Offensive
+Security. It was developed by Mati Aharoni and Devon Kearns. Kali Linux is a
+specially designed OS for network analysts, Penetration testers, or in simple words,
+it is for those who work under the umbrella of cybersecurity and analysis. The
+official website of Kali Linux is Kali.org.
+
+Advantages:
+•It has 600+ Penetration testing and network security tools pre-installed.
+•It is completely free and open source. So you can use it for free and even contribute for its
+development.
+•It supports many laguages.
+•Great for those who are intermediate in linux and have their hands on Linux commands.
+•Could be easily used with Rasberry Pi.
+
+Disadvanatges:
+•It is not recommended for those who are new to linux and want to learn linux.
+•It is a bit slower.
+•It is Quite unfamiliar
+
+•Kernel :- The kernel is a computer program that is the core of a computer’s operating system,
+with complete control over everything in the system. It manages following resources of the
+Linux like File management, Process management, I/O management, Memory management,
+Device management
+•Shell :- A shell is special user program which provide an interface to user to use operating
+system services. Shell accept human readable commands from user and convert them into
+something which kernel can understand. It is a command language interpreter that execute
+commands read from input devices such as keyboards or from files. Shell gets started when
+the user logs in or start the terminal.
+•Terminal :- We can say the terminal is a dumb thing so it does not know what to do with the
+input, so it needs another program to process it. The terminal is a program that provides the
+user with a simple command-line interface.
+•Console :- In the case of Windows OS, the “Console” performs the same operations
+performed by the terminal, so we can say for Windows OS, the Console is the alias name for
+the Terminal.
+
+Shell Scripting :- As shell can also take commands as input from file we can write these
+commands in a file and can execute them in shell to avoid this repetitive work. These files are
+called Shell Scripts or Shell Programs. Shell scripts are similar to the batch file in MS-DOS.
+
+2. Downloading & Installing Kali Linux
+
+Let’s Get Started
+
+3. Understanding Kali Linux Interface
+
+Let’s Get Started
+
+4. Basic Commands and Operations
+
+Let’s Get Started
+
+5. Directory Tree Hierarchy in Linux
+
+Tree Hierarchy
+
+Let’s Verify it!
+
+6. Types of Users in kali Linux
+
+Types of Users
+
+Let’s Verify it!
+
+7. Files Permissions and Users Groups
+
+Users & Groups
+Users and groups are used on GNU/Linux for access control—that is, to control access to
+the system's files, directories, and peripherals. Linux offers relatively simple/coarse access
+control mechanisms by default.
+
+Files Permissions
+On a Linux system, each file and directory is assigned access rights for the owner of
+the file, the members of a group of related users, and everybody else. Rights can be
+assigned to read a file, to write a file, and to execute a file (i.e., run the file as a program).
+
+8. How to Install Packages in Linux
+
+Packages ???
+
+Let’s Try it!
+
+9. Trying Phishing in Kali Linux
+
+Phishing?
+Phishing is a type of social engineering attack often used to steal user data, including
+login credentials and credit card numbers. It occurs when an attacker, masquerading as a
+trusted entity, dupes a victim into opening an email, instant message, or text message.
+
+Hidden Eye?
+HiddenEye is an advanced phishing tool that has some additional features like
+keylogging and location tracking. The tool supports almost all major social media, ecommerce, and business pages to be used as an attack vector against online targets.
+
+Let’s Try it!
+
+10. Trying Steghide in Kali Linux
+
+Stenography?
+Cybercriminals now tunnel their malicious data to your devices in a different way. It's
+called “steganography”—and it involves hiding a document, video, or photograph inside
+another file that seems legit. ... The technique makes it easy for criminals to
+surreptitiously transmit data-stealing malware
+
+StegHide?
+Steghide is a steganography program that is able to hide data in various kinds of
+image- and audio-files. The color- respectivly sample-frequencies are not changed thus
+making the embedding resistant against first-order statistical tests.
+
+Let’s Try it!
+
+11. Trying Keylogger in Kali Linux
+
+Keylogger?
+Keyloggers or keystroke loggers are software programs or hardware devices that track
+the activities (keys pressed) of a keyboard. ... Keylogger software typically stores your
+keystrokes in a small file, which is either accessed later or automatically emailed to the
+person monitoring your actions.
+
+BEELOGGER?
+Beelogger is a tool which works like Keylogger in Kali Linux. It records your activities,
+strokes & Steps and mail all the logs to hackers given destination email address.
+
+Let’s Try it!
+
+12. Trying NMAP in Kali Linux
+
+NMAP?
+Nmap (“Network Mapper”) is a free and open source (license) utility for network discovery
+and security auditing. Many systems and network administrators also find it useful for
+tasks such as network inventory, managing service upgrade schedules, and monitoring
+host or service uptime.
+
+Let’s Try it!
+
+13. BASH Scripting in Kali Linux
+
+BASH SCRIPTING?
+Bash is a Unix shell, which is a command line interface (CLI) for interacting with
+an operating system (OS). Any command that you can run from the command line
+can be used in a bash script. Scripts are used to run a series of
+commands. Bash is available by default on Linux and macOS operating systems.
+
+1. Variables (with Datatypes)
+2. Comments
+3. If-else Statement
+4. Switch case Statement
+5. Taking input
+6. Showing output
+7. Operators
+8. Arrays
+9. Loops
+10.Functions
+
+Let’s do it!
+
+Hope Guys You got the point of the Video
+
+

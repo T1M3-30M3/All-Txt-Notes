@@ -1,0 +1,34 @@
+"inurl:admin.asp"  
+
+"inurl:login/admin.asp"  
+
+ "inurl:admin/login.asp" 
+
+"inurl:adminlogin.asp"
+
+ "inurl:adminhome.asp" 
+
+ "inurl:admin_login.asp" 
+
+ "inurl:administratorlogin.asp" 
+
+"inurl:login/administrator.asp"
+ "inurl:administrator_login.asp"
+
+"inurl: admin.php"
+
+ "inurl: login/admin.php" 
+
+ "inurl: admin/login.php" 
+
+ "inurl: adminlogin.php" 
+
+ "inurl: adminhome.php" 
+
+ "inurl: admin_login.php" 
+
+ "inurl: administratorlogin.php" 
+
+ "inurl: login/administrator.php" 
+
+ "inurl: administrator_login.php"

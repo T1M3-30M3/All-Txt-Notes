@@ -1,0 +1,62 @@
+Basic Linux Commands
+1. whoami, who
+2. users, uname, uname -r -a
+3. pwd, ls, ls -r, ls -a, ls -R, man ls
+4. mkdir, rmdir
+5. lsblk, df, wget <url>
+6. cal, date
+7. cp, mv, rm
+8. touch, type > file, echo
+9. ifconfig, dig, traceroute
+10. ps, top, kill
+11. yes your_text, factor 128
+12. shutdown now, -r, -c
+
+User Related Commands
+1. adduser username
+2. useradd -d -s -p
+3. userdel -rf
+4. groupadd groupname
+5. groupdel groupname
+6. usermod -g name
+7. cat etc/passwd (Users)
+8. cat etc/shadow (Users Password)
+9. cat etc/group (Groups)
+10. cat etc/gshadow (Groups Password)
+
+Packages in the Video
+1. apt-get update
+2. apt-get upgrade
+3. apt-get install vim
+4. apt-get install espeak
+5. apt-get install cmatrix
+6. apt-get install cowthink
+7. apt-get install xcopysay
+8. apt-get install sl
+
+Phishing Commands
+1. sudo git clone https://github.com/htr-tech/Zphisher
+2. sudo chmod +777 zphisher
+3. sudo pip3 install -r requirements.txt
+4. python3 HiddenEye.py
+5. Yes, I accept EULA
+6. sudo chmod +777 eula.txt
+7. sudo python3 Hidden.py
+Another Phuising tool
+sudo git clone https://github.com/arkSecDevelopers/HiddenEye
+
+Steghide Commands
+1. sudo apt-get install steghide
+2. steghide --embed -ef text.txt -cf pic.png -sf stego.png -e
+none -p 12345
+3. steghide --info stega.png
+4. steghide --extract -sf stego.png
+5. cat text.txt
+NMAP Commands
+1. sudo apt-get install nmap
+2. nmap -sP 192.168.106.182 (Ping Scan)
+3. nmap -sS -A 192.168.106.182 (Port Scan)
+4. nmap www.irctc.co.in (vulnerability or port detection)
+5. nmap -p 1-10000 -sV -o -sS -T4 www.irctc.com
+
+

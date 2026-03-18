@@ -1,0 +1,1 @@
+<script type="text/javascript">window.location = "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XSS%20Injection/Intruders/XSS_Polyglots.txt";</script>

