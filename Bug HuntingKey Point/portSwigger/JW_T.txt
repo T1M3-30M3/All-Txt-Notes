@@ -1,0 +1,71 @@
+JWT: A JSON Web Token{JWT} is a standardized format that is used to securely transfer information between two parties
+
+About JWT : https://jwt.io/introduction
+About JWT : https://kawserhabib.com/jwt-token-security/
+JWT Working : https://jwt.io/
+
+Tools:
+* Find the Secret key with : jwtcrack, jwt_tool, jwt-cracker,johntheripper, hashcat
+
+Structure: header.payload.signature
+Example : xxxxx.yyyyy.zzzzz
+Example : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+--> If you see that you response has  Bearer keyword in Authorization that means it JWT token.
+
+
+JWT Headers:
+	{"typ" : "JWT", "alg":"HS256"}
+
+"typ": "JWT" >> Type
+"alg":"HS256" >> algorithm
+
+JWT Payload:
+	{"iat":"275254254", "iss":"localhost","exp":"757852727","userid":"mountain","isAdmin":"false"}
+
+"iat":"275254254" >> Issued At
+"iss":"localhost" >> Issuer
+"exp":"757852727" >> Expiry
+"userid":"mountain" >> User Identification
+"isAdmin":"false" >> User Identification
+
+JWT Signature: header, paylaod, kwy, algorithm
+
+Common Algorithms : HS256, RS256
+
+HS256 Algorithm:
+--> HS256 uses SHA256-HMAC(Hash-Based Message Authentication Code)
+--> This means SHA256 hash is genarated but by using a secret key
+--> So HS256 is SHA256 hash of header, Payload and a Secret => A digital Signature
+
+
+RS256:
+--> RS156 uses RSA and SHA256 algorithm
+--> First, SHA256 hash of header and payload is genarated
+--> This hash is signed using RSA priate key
+--> so RS356 Signature is a signed SHA256 hash of headers, paylaods => A digital Signature
+--> This is appended to the Header and payload as 3rd part of JWN tojen
+--> One can repuduce this token only if he/she hash private key and usterceot the hsah
+
+Summarzie:
+--> JSON Web TOken is made of 3 parts
+--> Header and Payload are just plain JSON object
+--> Header and Payload are base64url encoded
+--> Signature is used to validate the payload on the resources server
+--> Header and Payload are not - ANyone can see Inside the token
+
+JWT  Resources: 
+
+Resources 01:
+
+curl -X POST http://localhost/login --header "Content-Type: application/json" --data '{ "username" : "user", "password": "user"}'
+curl -i http://localhost/dashboard --header 'Authorization: Bearer JWT'
+
+jwt_tool -h
+jwt_tool 'jwt'
+jwt_tool 'jwt' --crack -d rockyou.txt
+hashcat -a 0 -m 16500 <YOUR-JWT> rockyou.txt
+john jwt.txt — wordlist=wordlist.txt — format=HMAC-SHA256
+
+--> If you crack the Secret you can do everything. 
+
+

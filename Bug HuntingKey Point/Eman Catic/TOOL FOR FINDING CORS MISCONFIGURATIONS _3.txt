@@ -1,0 +1,7 @@
+TOOL FOR FINDING CORS MISCONFIGURATIONS <3
+
+GitHub: https://github.com/s0md3v/Corsy
+
+Installation: cd Corsy | pip3 install -r requirements.txt 
+
+Usage: python3 corsy.py -u https://target.com 

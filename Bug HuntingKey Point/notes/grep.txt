@@ -1,0 +1,47 @@
+cat subdomains.txt | waybackurls | tee waybackurls.txt | grep -E "\\.xls|\\.xlsx|\\.json|\\.pdf|\\.sql|\\.doc|\\.docx|\\.pptx|\\.env|\\.svn|\\.txt|\\.old|\\.php|\\.bak|\\.db|\\.csv|\\.conf|\\.config|\\.git|\\.zip|\\.com|\\.htaccess|\\.htpasswd|\\.bak|\\.svg"
+
+cat allurls.txt | grep -E "\.txt|\.log|\.cache|\.secret|\.db|\.backup|\.yml|\.json|\.gz|\.rar|\.zip|\.config|\.env"
+
+cat allurls.txt | grep -E '\.php|\.asp'
+
+grep -E "\\.xls|\\.xlsx|\\.json|\\.pdf|\\.sql|\\.doc|\\.docx|\\.pptx|\\.env|\\.svn|\\.txt|\\.old|\\.php|\\.bak|\\.db|\\.csv|\\.conf|\\.config|\\.git|\\.zip|\\.com|\\.htaccess|\\.htpasswd|\\.bak|\\.svg"
+
+grep -E "php|jsp|asp|aspx|pid=|id=|category=|cat=|action=|sid=|dir=|page=|search|class=|file=|url=|path=|news=|menu=|item=|term=|locate=|inc=|page=|include=|folder=|prefix=|download=|detail=|board=|doc=|show=|lang=|name=|ref=|title=|conf=|topic=|mod=|document=|type=|site=|content=|thread=|date=|form=|join=|main=|nav=|region=|mail|log=|register=|login=|/geoserver/ows/|cid=|username=|firstname=lastname=|Password=|time=|view=|select=|report=|role=|update=|query=|user=|sort=|sort=|where=|params=|process=|row=|table=|from=|results=|sleep=|fetch=|order=|keyword=|column=|field=|delete=|string=|number=|filter=|audio=|/api/|/asset|country=|/actuator/jolokia/"
+
+IDOR : grep -E 'id=|user=|account=|number=|order=|no=|doc=|key=|email=|group=|profile=|edit=|report='
+
+Image Traversal : grep -E '=.*\.jpg|=.*\.jpeg|=.*\.gif|=.*\.png'
+
+Interesting : grep -E "\\.action|\\.adr|\\.ascx|\\.asmx|\\.axd|\\.backup|\\.bak|\\.bkf|\\.bkp|\\.bok|\\.achee|\\.cfg|\\.cfm|\\.cgi|\\.cnf|\\.conf|\\.config|\\.crt|\\.csr|\\.csv|\\.dat|\\.doc|\\.docx|\\.eml|\\.env|\\.exe|\\.gz|\\.ica|\\.inf|\\.ini|\\.java|\\.json|\\.key|\\.log|\\.lst|\\.mai|\\.mbox|\\.mbx|\\.md|\\.mdb|\\.nsf|\\.old|\\.ora|\\.pac|\\.passwd|\\.pcf|\\.pdf|\\.pem|\\.pgp|\\.pl|\\.plist|\\.pwd|\\.rdp|\\.reg|\\.rtf|\\.skr|\\.sql|\\.swf|\\.tpl|\\.txt|\\.url|\\.wml|\\.xls|\\.xlsx|\\.xml|\\.xsd|\\.yml"
+
+Intersting subs : grep -E 'admin|jenkins|test|proxy|stage|dev|devops|staff|db|qa|internal' 
+
+LFI: grep -E 'file=|document=|folder=|root=|path=|pg=|style=|pdf=|template=|php_path=|doc=|page=|name=|cat=|dir=|action=|board=|date=|detail=|download=|prefix=|include=|inc=|locate=|show=|site=|type=|view=|content=|layout=|mod=|conf=|url='
+
+RCE: grep -E 'daemon=|upload=|dir=|download=|log=|ip=|cli=|cmd=|exec=|command=|execute=|ping=|query=|jump=|code=|reg=|do=|func=|arg=|option=|load=|process=|step=|read=|function|req=|feature=|exe=|module=|payload=|run=|print='
+
+OpenRedirect : grep -E 'Lmage_url=|Open=|callback=|cgi-bin/redirect.cgi|cgi-bin/redirect.cgi?|checkout=|checkout_url=|continue=|data=|dest=|destination=|dir=|domain=|feed=|file=|file_name=|file_url=|folder=|folder_url=|forward=|from_url=|go=|goto=|host=|html=|image_url=|img_url=|load_file=|load_url=|login?to=|login_url=|logout=|navigation=|next=|next_page=|out=|page=|page_url=|path=|port=|redir=|redirect=|redirect_to=|redirect_uri=|redirect_url=|reference=|return=|returnTo=|return_path=|return_to=|return_url=|rt=|rurl=|show=|site=|target=|to=|uri=|url=|val=|validate=|view=|window='
+
+SQLI : grep -E 'id=|select=|report=|role=|update=|query=|user=|name=|sort=|where=|search=|params=|process=|row=|view=|table=|from=|sel=|results=|sleep=|fetch=|order=|keyword=|column=|field=|delete=|string=|number=|filter='
+
+SSTI : grep -E 'template=|preview=|id=|view=|activity=|name=|content=|redirect='
+
+XSS : grep -E 'q=|s=|search=|lang=|keyword=|query=|page=|keywords=|year=|view=|email=|type=|name=|p=|callback=|jsonp=|api_key=|api=|password=|email=|emailto=|token=|username=|csrf_token=|unsubscribe_token=|id=|item=|page_id=|month=|immagine=|list_type=|url=|terms=|categoryid=|key=|l=|begindate=|enddate='
+
+LFI : cat fullfinal.txt | grep -E '\?cat=|\?dir=|\?action=|\?board=|\?date=|\?detail=|\?file=|\?download=|\?path=|\?folder=|\?prefix=|\?include=|\?page=|\?inc=|\?locate=|\?show=|\?doc=|\?site=|\?type=|\?view=|\?content=|\?document=|\?layout=|\?mod=|\?conf=' > LFI_Top25.txt
+
+Redirect : cat fullfinal.txt | grep -E '\?next=|\?url=|\?target=|\?rurl=|\?dest=|\?destination=|\?redir=|\?redirect_uri=|\?redirect_url=|\?redirect=|\/redirect\/|\?payload=|\/cgi-bin\/redirect.cgi\?|\?payload=|\/out\/|\?payload=|\/out\?|\?payload=|\?view=|\/login\?to=|\?image_url=|\?go=|\?return=|\?returnTo=|\?return_to=|\?checkout_url=|\?continue=|\?return_path=' > Redirect_Top25.txt
+
+RCE : cat fullfinal.txt | grep -E '\?cmd=|\?exec=|\?command=|\?execute=|\?ping=|\?query=|\?jump=|\?code=|\?reg=|\?do=|\?func=|\?arg=|\?option=|\?load=|\?process=|\?step=|\?read=|\?function=|\?req=|\?feature=|\?exe=|\?module=|\?payload=|\?run=|\?print=' > RCE_Top25.txt
+
+XSS : cat fullfinal.txt | grep -E '\?q=|\?s=|\?search=|\?id=|\?lang=|\?keyword=|\?query=|\?page=|\?keywords=|\?year=|\?view=|\?email=|\?type=|\?name=|\?p=|\?month=|\?image=|\?list_type=|\?url=|\?terms=|\?categoryid=|\?key=|\?login=|\?begindate=|\?enddate=' > XSS_Top25.txt
+
+SSRF : cat fullfinal.txt | grep -E '\?dest=|\?redirect=|\?uri=|\?path=|\?continue=|\?url=|\?window=|\?next=|\?data=|\?reference=|\?site=|\?html=|\?val=|\?validate=|\?domain=|\?callback=|\?return=|\?page=|\?feed=|\?host=|\?port=|\?to=|\?out=|\?view=|\?dir=' > SSRF_Top25.txt
+
+SQLI : cat fullfinal.txt | grep -E '\?id=|\?page=|\?dir=|\?search=|\?category=|\?file=|\?class=|\?url=|\?news=|\?item=|\?menu=|\?lang=|\?name=|\?ref=|\?title=|\?view=|\?topic=|\?thread=|\?type=|\?date=|\?form=|\?join=|\?main=|\?nav=|\?region=' > SQLI_Top25.txt
+
+
+
+
+
+

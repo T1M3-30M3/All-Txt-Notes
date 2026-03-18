@@ -1,0 +1,11 @@
+TOOL FOR SCANNING FOR CORS MISCONFIGURATIONS <3
+
+Name: CORScanner
+Link: https://github.com/chenjj/CORScanner
+
+Installation: 
+1. git clone https://github.com/chenjj/CORScanner.git
+2. cd CORScanner || pip3 install -r requirements.txt
+
+Usage: 
+python cors_scan.py -u target.com

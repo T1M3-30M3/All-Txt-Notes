@@ -1,0 +1,9 @@
+Tool: GitJacker
+
+https://github.com/liamg/gitjacker
+
+Installation: 
+curl -s "https://raw.githubusercontent.com/liamg/gitjacker/master/scripts/install.sh" | bash
+
+Usage: 
+gitjacker https://target.com/ 

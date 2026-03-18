@@ -1,0 +1,14 @@
+Information disclosure:
+https://portswigger.net/web-security/information-disclosure
+
+Lab : Information disclosure in error messages - APPRENTICE
+--> If find any parameter not only try only number but also try alphabhet too.some time server only understand number or aphabhet or both
+
+Lab: Information disclosure on debug page
+--> cgi-bin/phpinfo.php
+
+Lab: Source code disclosure via backup files
+--> /robots.txt
+
+Lab: Authentication bypass via information disclosure
+

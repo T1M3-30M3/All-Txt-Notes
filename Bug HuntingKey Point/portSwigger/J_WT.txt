@@ -1,0 +1,94 @@
+Lab 01 : JWT Hacking - Account TakeOver
+
+--> We need endpoint Functionability
+--> First finding JWT token
+--> Try to crack it by hashcat, johntheRipper, JWTCracker, JWTCrack, JWT_Tool
+--> If you crack successfully try modify request and test with burp suite or Curl
+
+Lab 02:
+--> I have JWT TOken suppose : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+--> Uky Lets Play with with this.
+--> Lets copy the paylaod part and decode it and modify it and again incode it 
+--> Decode the header and change the algorithm "alg":"none" and again incode it 
+--> and remove the key or crack it but remove is better
+--> So the final JWT is : eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0=.eyJzdWIiOiIwMDAwMDAwMDAwIiwibmFtZSI6IlphYmVyIE1haG11ZCIsImlhdCI6MTUxNjIzOTAyMn0=.
+--> If website has issue then it will loginn.
+
+eyJzdWIiOiIwMDAwMDAwMDAwIiwibmFtZSI6IlphYmVyIE1haG11ZCIsImlhdCI6MTUxNjIzOTAyMn0= ===>>> Payload
+eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0= ===>>> Header
+
+From Website : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+Modified JWT : eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0=.eyJzdWIiOiIwMDAwMDAwMDAwIiwibmFtZSI6IlphYmVyIE1haG11ZCIsImlhdCI6MTUxNjIzOTAyMn0=.
+
+Blog:
+https://blog.pentesteracademy.com/hacking-jwt-tokens-bruteforcing-weak-signing-key-jwt-cracker-5d49d34c44
+https://blog.pentesteracademy.com/hacking-jwt-tokens-bruteforcing-weak-signing-key-johntheripper-89f0c7e6a87
+https://blog.pentesteracademy.com/hacking-jwt-tokens-bruteforcing-weak-signing-key-jwtcrack-49037fd88ddb
+https://medium.com/mii-cybersec/crack-jwt-secret-key-using-hashcat-34de9be94c15
+https://medium.com/@shivam_bathla
+https://authlab.digi.ninja/JWT_Cracking
+https://medium.com/@vipulparveenjain
+https://blog.pentesteracademy.com/search?q=jwt
+https://medium.com/search?q=jwt
+
+
+BurpSuite: JSON Web Tokens, jwt-editor, json web token attacker
+
+Common Keyword in response: access_token, token, Authorization, Bearer, JWT
+
+Youtube :https://www.youtube.com/watch?v=SuDN35-aefY
+
+
+
+Lab: JWT authentication bypass via unverified signature
+
+--> First Connect this extention in Burp JSON Web Tokens, jwt-editor, json web token attacker
+--> First login in your Site and see the history and find the jwt toekn 
+--> The common token has access_token, token, Authorization, Bearer, JWT, session keywords
+--> After finding token then try to decode it and modify the payload like id,user,role etc
+--> then send to it . If you find that 200 or 302 or login any another user that means this is bug 
+
+
+Lab: JWT authentication bypass via flawed signature verification
+
+--> First login in your Site and see the history and find the jwt toekn 
+--> The common token has access_token, token, Authorization, Bearer, JWT, session keywords
+--> After finding this try to modify alg of header like none, NONE, None, n0nE etc and remove signature 
+--> If you see that something is happening try to move fast
+
+
+Lab: JWT authentication bypass via weak signing key
+
+--> First login in your Site and see the history and find the jwt toekn 
+--> The common token has access_token, token, Authorization, Bearer, JWT, session keywords
+--> Then try to crack secret key via jwtcrack, jwt_tool, jwt-cracker, hashcat, johntheripper etc
+--> If you crack the key lets you can do anything
+
+
+
+Lab: JWT authentication bypass via jwk header injection
+
+--> First login in your Site and see the history and find the jwt toekn 
+--> The common token has access_token, token, Authorization, Bearer, JWT, session keywords
+--> Go to JWT Editor and Create RSA key and OK
+--> Go to Attack > Embed JWK
+--> then hint send
+--> if you see that something is happening go forward
+
+** Here mainly RS256 sometimes accept another random RSA algorithm. So first we create and try that our RSA key will accept or not 
+** RS256 the signature is genarated by hashing the header and payload by using SHA256 and they are encrypted with a private key and RSA encryption technique
+
+Lab: JWT authentication bypass via jku header injection
+
+--> First login in your Site and see the history and find the jwt toekn 
+--> The common token has access_token, token, Authorization, Bearer, JWT, session keywords
+
+
+
+
+
+Summary :
+--> Try to changing payload option like id, user, role etc
+--> Try to changing header alg of payload like none, NONE, None, n0nE etc
+--> Try to crack secret key via bruteforce
+--> Create JWK algorithm

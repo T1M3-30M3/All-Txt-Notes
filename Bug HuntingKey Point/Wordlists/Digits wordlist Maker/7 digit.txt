@@ -1,0 +1,12 @@
+fp = open("7digit_wordlist.txt", "w")
+
+for i in range(10):
+    for j in range(10):
+        for k in range(10):
+            for l in range(10):
+                for m in range(10):
+                    for n in range(10):
+                        for o in range(10):
+                            fp.write(str(i) + str(j) + str(k) + str(l) + str(m) + str(n) + str(o) + "\n")
+
+fp.close()

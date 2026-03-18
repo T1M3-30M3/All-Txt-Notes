@@ -1,0 +1,9 @@
+Use the tool waybackurls and grep 
+
+Installation:
+go install github.com/tomnomnom/waybackurls@latest
+
+Usage:
+1. waybackurls http://target.com 
+2. grep "/gifts/?id=" 
+3. IDOR???

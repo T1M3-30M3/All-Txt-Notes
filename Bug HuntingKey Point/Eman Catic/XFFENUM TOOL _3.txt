@@ -1,0 +1,9 @@
+Tool: https://github.com/vavkamil/XFFenum
+
+Installation: 
+1. git clone https://github.com/vavkamil/XFFenum
+2. cd XFFenum 
+3. pip install -r requirements.txt 
+
+Usage: 
+python3 xffenum.py -u https://target.com -i IP_RANGE

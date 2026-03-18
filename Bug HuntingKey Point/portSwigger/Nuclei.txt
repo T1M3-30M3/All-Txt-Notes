@@ -1,0 +1,58 @@
+--Nuclei--
+
+nuclei -u <link>
+nuclei -l list.txt
+nuclei -u <link> -t nuclei-templates/http/technologies
+nuclei -u <link> -t nuclei-templates -tags xss
+nuclei -u <link> -t nuclei-templates -author hackergautam
+nuclei -u <link> -t nuclei-templates -severity low,medium,high,critical
+nuclei -u http://testphp.vulnweb.com/ -t nuclei-templates/http/technologies -severity low -rl 30
+nuclei -u http://testphp.vulnweb.com/ -t nuclei-templates -severity low -bs 25
+nuclei -u http://testphp.vulnweb.com/ -t nuclei-templates -etags xss
+nuclei -u https://www.mafengwo.cn/ -o result.txt
+
+
+Bug Huting:
+
+Tools : https://github.com/Cyber-Guy1/Subdomainer
+
+subdomainer -t rollbar.com -f true
+cat all.txt | gauplus -subs -b png,jpg,gif,jpeg,swf,woff,gif,svg -o allUrls.txt ; cat allUrls.txt | httpx -mc 200,403 -o liveallurls.txt
+nuclei -t /root/nuclei-templates/ -l all-live.txt -es info -o nucleiall.txt
+
+https://infosecwriteups.com/gauing-nuclei-for-instant-bounties-7a8a07979fff
+
+--Nuclei--
+
+tools : 
+https://github.com/projectdiscovery/nuclei
+https://github.com/projectdiscovery/nuclei-templates
+https://www.yamllint.com/
+https://bugbounty.requestcatcher.com/
+
+nuclei -update
+nuclei -u <link>
+nuclei -u <link> -t nuclei-templates/technologies
+nuclei -u <link> -t <template> -debug -v
+nuclei -u <link> -t nuclei-templates -tags xss
+nuclei -u <link> -t nuclei-templates -tags author <name>
+nuclei -u <link> -t nuclei-templates -tags severity low
+nuclei -u <link> -t nuclei-templates -tags severity medium
+nuclei -u <link> -t nuclei-templates -tags severity high
+nuclei -u <link> -t nuclei-templates -tags severity low -rl 50
+nuclei -u <link> -t nuclei-templates -tags severity low -bs 2
+nuclei -u <link> -t nuclei-templates -tags severity low -c 500
+nuclei -u <link> -t nuclei-templates -header 'User-Agent:Mozila(WhoAmi)'
+nuclei -u <link> -t nuclei-templates -p http://127.0.0.1:8080 >> Intercept Burp
+
+curl -sk "https://bugbounty.requestcatcher.com/test"
+curl -X POST -d 'Hello World' https://bugbounty.requestcatcher.com/test
+
+--Bug Bounty--
+subfinder -d <website> -o sub.txt
+httpx -l sub.txt -o live.txt
+cat live.txt | nuclei -t <template>
+
+
+
+

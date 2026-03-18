@@ -1,0 +1,8 @@
+Inject your Blind XSS payloads in these fields: 
+
+Contact Forms
+Ticket support fields
+Referrer Header
+User Agents
+Administrative Panel logs
+Comments

