@@ -1,0 +1,57 @@
+Tools:
+https://github.com/LuffySec/Automation-JS-Recon
+https://github.com/aravind0x7/JS-Snooper
+
+Extracting JS from Urls:
+cat urls.txt | grep -iE '\.js' | grep -ivE '\.json' | httpx-toolkit -mc 200 >> js.txt
+cat urls.txt | grep -iE '\.js' | grep -ivE '\.json' | sort -u > js.txt
+
+waybackurls url | grep '\.js' | awk -F '?' '{print $1}' | sort -u | tee js_urls.txt | xargs -I{} python3 lazyegg.py "{}" --js_urls --domains --ips && cat js_urls.txt | grep '\.js' | sort -u | xargs -I{} httpx -silent -u {} -sc -title -td
+
+waybackurls url | grep '\.js' | awk -F '?' '{print $1}' | sort -u | xargs -I{} python lazyegg{}.py "{}" --js_urls --domains --ips && cat urls | grep '\.js' | sort -u | xargs -I{}
+
+httpx --silent -u {} -sc -title -td
+
+JS Paths:
+
+/js/config.js
+/js/credentials.js
+/js/secrets.js
+/js/keys.js
+/js/password.js
+/js/api_keys.js
+/js/auth_tokens.js
+/js/access_tokens.js
+/js/sessions.js
+/js/authorization.js
+/js/encryption.js
+/js/certificates.js
+/js/ssl_keys.js
+/js/passphrases.js
+/js/policies.js
+/js/permissions.js
+/js/privileges.js
+/js/hashes.js
+js/salts.js
+js/nonces.js
+js/signatures.js
+js/digests.js
+js/tokens.js
+js/cookies.js
+
+cat file.txt | grep -E "/js/(config|credentials|secrets|keys|password|api_keys|auth_tokens|access_tokens|sessions|authorization|encryption|certificates|ssl_keys|passphrases|policies|permissions|privileges|hashes|salts|nonces|signatures|digests|tokens|cookies)\.js"
+
+We can add the words which we think they are sensitive : api_key, api-key, apikey, api, access, AccessToken, gmap, gmaps, algolia_api_key, credentials,
+
+grep -E 'ANACONDA_TOKEN=|ANALYTICS=|ANDROID_DOCS_DEPLOY_TOKEN=|android_sdk_license=|android_sdk_preview_license=|ANSIBLE_VAULT_PASSWORD=|aos_key=|aos_sec=|API_KEY_MCM=|API_KEY_SECRET=|API_KEY_SID=|API_KEY=|API_SECRET=|APIARY_API_KEY=|APIDOC_KEY=|APIGW_ACCESS_TOKEN=|apiKey=|apiSecret=|APP_BUCKET_PERM=|APP_ID=|APP_NAME=|APP_REPORT_TOKEN_KEY=|APP_SECRETE=|APP_SETTINGS=|APP_TOKEN=|appClientSecret=|APPLE_ID_PASSWORD=|APPLE_ID_USERNAME=|APPLICATION_ID_MCM=|APPLICATION_ID=|applicationCacheEnabled=|ARGOS_TOKEN=|ARTIFACTORY_KEY=|ARTIFACTORY_USERNAME=|ARTIFACTS|ARTIFACTS_AWS_ACCESS_KEY_ID=|ARTIFACTS_AWS_SECRET_ACCESS_KEY=|ARTIFACTS_BUCKET=|ARTIFACTS_KEY=|ARTIFACTS_SECRET=|ASSISTANT_IAM_APIKEY=|ASYNC_MQ_APP_SECRET=' file.txt
+
+cat .env | grep -E 'ANACONDA_TOKEN=|ANALYTICS=|ANDROID_DOCS_DEPLOY_TOKEN=|android_sdk_license=|android_sdk_preview_license=|ANSIBLE_VAULT_PASSWORD=|aos_key=|aos_sec=|API_KEY_MCM=|API_KEY_SECRET=|API_KEY_SID=|API_KEY=|API_SECRET=|APIARY_API_KEY=|APIDOC_KEY=|APIGW_ACCESS_TOKEN=|apiKey=|apiSecret=|APP_BUCKET_PERM=|APP_ID=|APP_NAME=|APP_REPORT_TOKEN_KEY=|APP_SECRETE=|APP_SETTINGS=|APP_TOKEN=|appClientSecret=|APPLE_ID_PASSWORD=|APPLE_ID_USERNAME=|APPLICATION_ID_MCM=|APPLICATION_ID=|applicationCacheEnabled=|ARGOS_TOKEN=|ARTIFACTORY_KEY=|ARTIFACTORY_USERNAME=|ARTIFACTS|ARTIFACTS_AWS_ACCESS_KEY_ID=|ARTIFACTS_AWS_SECRET_ACCESS_KEY=|ARTIFACTS_BUCKET=|ARTIFACTS_KEY=|ARTIFACTS_SECRET=|ASSISTANT_IAM_APIKEY=|ASYNC_MQ_APP_SECRET='
+
+cat js.txt | httpx -mc 200 -silent > 200.txt
+cat 200.txt | while read url; do wget -q "$url"; done
+cat 200.txt | while read url; do wget -q -P js_files "$url"; done
+
+subfinder -d domain.com | httpx -mc 200 | tee subdomains.txt && cat subdomains.txt | waybackurls | httpx -mc 200 | grep .js | tee js.txt
+cat js.txt | grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret"
+
+

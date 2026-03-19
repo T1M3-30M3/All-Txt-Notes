@@ -1,0 +1,33 @@
+site:target.com inurl:admin | administrator | adm | login | l0gin | wp-login
+intitle:"login" "admin" site:target.com
+intitle:"index of / admin" site:target.com
+inurl:admin intitle:admin intext:admin
+
+httpx -l hosts.txt -paths /root/admin-login.txt -threads 100 -random-agent -x GET, POST -tech-detect -status-code -follow-redirects -title -content-length
+httpx -l hosts.txt -ports 80,443,8009,8080,8081,8090,8180,8443 -paths /root/admin-login.txt -threads 100 -random-agent -x GET, POST -tech-detect -status-code -follow-redirects -title -content-length
+
+Github Link:
+https://github.com/the-c0d3r/admin-finder
+https://github.com/JehadAlqurashi/HitURL
+https://github.com/mIcHyAmRaNe/okadminfinder
+https://github.com/fnk0c/cangibrina
+
+Shodan dorks for admin Panels:
+ssl.cert.subject.cn:"company.com" http.title:"admin"
+ssl:"company.com" http.title:"admin"
+ssl.cert.subject.cn:"company.com" admin
+ssl:"company.com" admin
+
+Fofa Dorks For Finding the Admin Panel :
+cert="company.com" && title="admin"
+cert.subject="company" && title="admin"
+cert="company.com" && body="admin"
+cert.subject="company" && body="admin"
+
+ZoomEye Dorks For Finding the Admin Panel:
+ssl:company.com + title:"admin"
+ssl:company.com + admin
+
+
+
+

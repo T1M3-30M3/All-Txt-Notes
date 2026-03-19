@@ -1,0 +1,12 @@
+here are some tips that are used to easily find sql-Injection 100%
+
+/?q=1
+/?q=1'
+/?q=1"
+/?q=[1]
+/?q[]=1
+/?q=1`
+/?q=1\
+/?q=1/**/ 
+/?q=1/*!1111'*/
+/?q=1"asd" <== concat string

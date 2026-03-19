@@ -1,0 +1,29 @@
+# Scan a single IP : nmap 192.168.1.1
+# Scan a range of IPs : nmap 192.168.1.1-10
+# Scan an entire subnet : nmap 192.168.1.0/24
+# Scan specific ports : nmap -p 22,80,443 192.168.1.1
+# Detect OS and services : nmap -A 192.168.1.1
+# Aggressive scan with OS, version detection, script scanning, and traceroute : nmap -A -T4 192.168.1.1
+# Run scripts (NSE) to detect vulnerabilities : nmap --script vuln 192.168.1.1
+# Scan using TCP SYN scan (stealth scan) : nmap -sS 192.168.1.1
+# UDP scan : nmap -sU -p 53,161 192.168.1.1
+# Output in all formats (XML, grepable, normal) : nmap -oA output_filename 192.168.1.1
+# Exclude IPs : nmap 192.168.1.0/24 --exclude 192.168.1.5,192.168.1.10
+
+# Basic scan with URL : sqlmap -u "http://example.com/index.php?id=1"
+# Scan a POST request : sqlmap -u "http://example.com/login.php" --data="user=admin&pass=123"
+# Find DBs : sqlmap -u "http://example.com/index.php?id=1" --dbs
+# Dump data from a specific database and table : sqlmap -u "http://example.com/index.php?id=1" -D dbname -T tablename --dump
+# Get DBMS banner : sqlmap -u "http://example.com/index.php?id=1" --banner
+# Use TOR network : sqlmap -u "http://example.com/index.php?id=1" --tor --check-tor
+# Level 5 risk scan with techniques : sqlmap -u "http://example.com/index.php?id=1" --risk=3 --level=5 --technique=BEUSTQ
+# Identify parameter to test : sqlmap -u "http://example.com/index.php" --forms --batch --crawl=2
+
+# Basic scan : nikto -h http://example.com
+# Scan using HTTPS : nikto -h https://example.com
+# Save output to file : nikto -h http://example.com -o output.txt
+# Use specific plugins : nikto -h http://example.com -Plugins "apache,userdir"
+# Scan a list of hosts : nikto -h targets.txt
+# Scan specific port : nikto -h http://example.com -p 8080
+# Use proxy : nikto -h http://example.com -useproxy http://127.0.0.1:8080
+# Disable SSL verification : nikto -h https://example.com -nossl
