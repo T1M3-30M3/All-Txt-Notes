@@ -1,0 +1,51 @@
+# Vulnerable Endpoint Finding Techniques
+
+## Web Crawling & Manual Exploration
+
+* Use tools like curl, wget, or Burp Suite's crawler to map the application's structure.
+* Manually browse the application, clicking all links and forms.
+* Inspect browser developer tools (Network tab) for API calls and hidden endpoints.
+* Look for common admin paths: /admin, /administrator, /login.
+* Check for backup files: .bak, .old, .zip.
+
+## Directory and File Discovery
+
+* Use dirb, dirbuster, ffuf for brute-forcing directories and files.
+* Use wordlists tailored to the application's technology (e.g., PHP, Java).
+* Look for sensitive files: config.ini, database.sql, .git/.
+
+## JavaScript Analysis
+
+* Examine JavaScript files for API endpoints, hardcoded credentials, and sensitive data.
+* Use browser developer tools or static analysis tools.
+* Look for AJAX requests and dynamically generated URLs.
+* Use tools like LinkFinder.
+
+## API Discovery
+
+* Check for API documentation (Swagger, OpenAPI).
+* Inspect network traffic for API calls.
+* Fuzz API endpoints with tools like ffuf or Burp Suite's Intruder.
+* Look for versioning in API endpoints (e.g., /api/v1/, /api/v2/).
+
+## Vulnerability Scanning
+
+* Use automated scanners like Burp Suite, OWASP ZAP, or Nessus Essentials.
+* Focus on common vulnerabilities: SQL injection, XSS, SSRF.
+* Manually verify and expand on scanner findings.
+
+## Tools
+
+* Burp Suite: Comprehensive web security toolkit.
+* OWASP ZAP: Free and open-source web scanner.
+* Nmap: Network scanning and service discovery.
+* ffuf: Fast web fuzzer.
+* curl/wget: Command-line HTTP request tools.
+* Postman/Insomnia: API testing tools.
+
+## General Tips
+
+* Pay attention to file extensions: .php, .jsp, .aspx, etc.
+* Look for parameters in URLs (e.g., ?id=, ?page=, ?file=).
+* Test all input fields for unexpected behavior.
+* Document your findings.

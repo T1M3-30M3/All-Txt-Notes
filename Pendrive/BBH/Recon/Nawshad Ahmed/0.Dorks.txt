@@ -1,0 +1,39 @@
+There are some fast and simple Google Dorks that you should definitely apply to your target during recon.
+These can often reveal sensitive information like .env files, database dumps, config files, and even backups.
+
+
+Exposed .env Files
+
+intitle:"Index of" ".env"
+"DB_PASSWORD" filetype:env
+"APP_ENV=local" | "DB_HOST=127.0.0.1"
+
+
+Exposed SQLite Databases
+
+intitle:"Index of" ".sqlite"
+intitle:"Index of" "db.sqlite"
+filetype:sqlite | filetype:sqlite3 | filetype:db
+
+
+Misconfigured Laravel or Public Folder Exposure
+
+inurl:/public/.env
+inurl:/public/db.sqlite
+intitle:"Index of" inurl:/public/
+
+
+Backup / Config Files (often contain sensitive info)
+
+intitle:"Index of" "backup"
+intitle:"Index of" "config"
+ext:sql | ext:bak | ext:old | ext:backup
+
+
+Generic Index Dump
+
+intitle:"Index of /" +passwd
+intitle:"Index of /" +passwords
+
+
+ Before using these dorks, start by narrowing down your scope with site:target.com, then apply the specific dork to focus only on your target.

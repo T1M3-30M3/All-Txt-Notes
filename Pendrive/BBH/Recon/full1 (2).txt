@@ -1,0 +1,52 @@
+1- Subdomain discovery with Subfinder: 
+subfinder -dL targets.txt -all -recursive -o facebook.txt
+cat facebook.txt | wc -l
+
+2- Discover subdomains via http://crt.sh: 
+curl -s https://crt.sh\?q\=\http://facebook.com\&output\=json | jq -r '.[].name_value' | grep -Po '(\w+\.\w+\.\w+)$' | anew subdomains-faceboo.txt
+cat subdomains-faceboo.txt | wc -l
+
+3- Check live subdomains with HTTPX: 
+curl -s https://crt.sh\?q\=\http://facebook.com\&output\=json | jq -r '.[].name_value' | grep -Po '(\w+\.\w+\.\w+)$' | anew subdomains-faceboo.txt
+cat subdomains-faceboo.txt | wc -l
+
+4- Port scanning with Naabu: 
+naabu -list subdomains-faceboo.txt -c 50 -nmap-cli 'nmap -sV -sC' -o naabu-full.txt
+
+5- Directory brute-forcing using Dirsearch: 
+python3 /home/prv8/tools/dirsearch/dirsearch.py -l subdomains-faceboo-alive.txt -x 500,502,429,404,400 -R 5 --random-agent -t 100 -F -o directory-facebook.txt -w /home/prv8/cyber-event/OneListForAll/onelistforallshort.txt
+
+6- Gather parameters with Gau: 
+cat subdomains-faceboo-alive.txt | sudo gau > facebook-params.txt
+cat facebook-params.txt | wc -l
+
+7- Filter parameters with Uro: 
+cat facebook-params.txt | uro -o facebook-filterparameters.txt
+cat facebook-filterparameters.txt | wc -l
+
+8- Extract JavaScript files: 
+cat facebook-filterparameters.txt | grep ".js$" > facebook-jsfiles.txt
+cat facebook-jsfiles.txt | wc -l
+
+9- Find secrets with SecretFinder: 
+cat facebook-jsfiles.txt | while read url; do python3 /home/prv8/tools/SecretFinder/SecretFinder.py -i $url -o cli > facebook-secret-finder.txt; done
+
+10- Sort wordlist:
+# Code snippet in http://sort.py
+
+# Read the word list from the file
+with open('/home/prv8/cyber-event/facebook-filterparameters.txt', 'r') as file:
+ lines = file.readlines()
+
+# Sort the lines
+lines.sort()
+
+# Take the first 10,000 lines
+lines = lines[:10000]
+
+# Write the sorted list to a new file
+with open('sorted_wordlist_10000.txt', 'w') as file:
+ file.writelines(lines)
+
+11- Scan with Nuclei:
+nuclei -l sorted_wordlist_10000.txt -c 70 -rl 200 -fhr -lfa -t /home/prv8/tools/nuclei/Custom-Nuclei-Templates/ -o facebook-nuclei.txt -es info

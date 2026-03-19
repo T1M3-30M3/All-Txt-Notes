@@ -1,0 +1,20 @@
+Github Recon:
+
+--> Automated - Different tools are used
+--> Manual - Manual Human 
+
+Github Recon : https://drive.google.com/file/d/1rem0npoB9_EQoSMr4QxPsRcJQhgTUL4f/view
+Github Recon : https://raw.githubusercontent.com/Vaidik-pandya/Github_recon_dorks/main/gitdork.txt
+
+ApprGitDorker:   https://github.com/obheda12/GitDorker
+gitGraber:   https://github.com/hisxo/gitGraber
+trufflehog:  https://github.com/trufflesecurity/truffleHog
+
+Note : https://medium.com/@pawan_rawat/github-recon-for-finding-sensitive-information-aecdeb9c9dce
+
+
+apt install python3-termcolor
+apt install python3-tqdm
+
+
+Github API : Account > Settings > Developer > Personal Access TOken > Token > 

@@ -1,0 +1,20 @@
+subfinder -d sony.com >> sony.com.txt
+cat sony.com.txt | httpx-toolkit >> sub.txt
+cat sub.txt | httpx-toolkit -mc 200 >> 200sub.txt
+cat sub.txt | httpx-toolkit -mc 403 >> 403sub.txt
+cat sub.txt | httpx-toolkit -mc 404 >> 404sub.txt
+
+ffuf -w directory-list-2.3-small.txt -u https://target.com/FUZZ -t 40 -fc 403,404,401,500,502,400,504,405,409,410 -e .conf,.config,.bak,.backup,.swp,.old,.db,.sql,.zip,.aspx,.asp,.jsp,.py,.php,.phtml,.pht,.php3,.php4
+
+dirsearch -l sub.txt -t 50 -x 429,404,404,502,503,400,500,403,428 -e conf,config,bak,backup,swp,old,db,sql,asp,aspx,aspx~,asp~,py,py~,rb,rb~,php,php~,bkp
+
+cat sub.txt | xargs -n 1 -I {} python3 paramspider.py --domain {} --level high >> /home/kali/Documents/paramters.txt
+
+cat sub.txt | waybackurls >> url.txt
+
+cat url.txt | uro | grep -E '\.xls|\.xml|\.xlsx|\.json|\.pdf|\.sql|\.doc|\.docx|\.pptx|\.txt|\.zip|\.tar\.gz|\.tgz|\.bak|\.7z|\.rar|\.log|\.cache|\.secret|\.db|\.backup|\.yml|\.gz|\.config|\.csv|\.yaml|\.md|\.md5|\.exe|\.dll|\.bin|\.ini|\.bat|\.sh|\.tar|\.deb|\.rpm|\.iso|\.img|\.apk|\.msi|\.dmg|\.tmp|\.crt|\.pem|\.key|\.pub|\.asc'
+
+cat url.txt | uro | unfurl format %p
+
+
+

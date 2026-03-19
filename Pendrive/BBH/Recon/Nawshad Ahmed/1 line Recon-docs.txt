@@ -1,0 +1,42 @@
+🔍 Bug Bounty Recon Tip: 5 One-Liner Commands for Effective Reconnaissance
+
+1️⃣ Google Dorks for Recon:
+
+site:*.google.*
+site:google.*
+site:*.google[.]com
+site:*.google.-*.*
+
+site:groups[.]google[.]com "example[.]com"
+
+Find juicy Endpoints for further testing 🎯
+
+Great for uncovering specific Domain-related vulnerabilities.
+
+2️⃣ Extract JS Files with Katana:
+
+- katana -u https://test[.]com -jc -d 2 | grep ".js$" | uniq | sort > js.txt
+
+Ideal for discovering JavaScript files on a target domain.
+
+
+3️⃣ Fuzz Finding Hidden Directories:
+
+/.FUZZ
+/-FUZZ
+/~FUZZ
+/../FuZZ
+
+Helps in locating hidden directories and files.
+
+
+4️⃣ Search for Login Pages:
+inurl:login | inurl:signin | intitle:login | intitle:signin | inurl:secure site:test[.]com
+
+Useful for identifying login portals and potentially vulnerable endpoints.
+
+
+5️⃣ Find Emails:
+grep -E -o "\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b" file.txt
+
+Extracts email addresses from text files, aiding in contact discovery.

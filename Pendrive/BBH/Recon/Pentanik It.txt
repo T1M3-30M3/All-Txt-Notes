@@ -1,0 +1,27 @@
+Subdomain Finder:
+
+https://crt.sh/
+https://subdomainfinder.c99.nl/
+https://www.virustotal.com/gui
+site:*.yoursitedomain.com
+
+BurpSuite Extension:
+https://github.com/theLSA/burp-sensitive-param-extractor
+https://github.com/snoopysecurity/awesome-burp-extensions
+https://github.com/Hack-with-Github/Powerful-Plugins/blob/master/Burp.md
+https://github.com/topics/burp-extensions?o=asc&s=stars
+https://github.com/topics/burp-extensions?o=desc&s=updated
+https://github.com/topics/burpsuite-extension
+
+CheckList :
+https://github.com/sehno/Bug-bounty/blob/master/bugbounty_checklist.md
+
+
+Common Directory Search wordlist : \seclists\Discovery\Web-Content
+For Subdomain Wordlist : \seclists\Discovery\DNS
+
+ffuf -w wordlist.txt -u <link>
+ffuf -w wordlist.txt -u <link> -mc 200,301
+ffuf -w wordlist.txt -u <link> -recursion -mc 200,301
+ffuf -w wordlist.txt -u <link> -fc 200,301
+ffuf -w wordlist.txt -u <link> -H "HOST: FUZZ.link"

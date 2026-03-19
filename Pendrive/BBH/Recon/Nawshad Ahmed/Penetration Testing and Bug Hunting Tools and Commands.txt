@@ -1,0 +1,78 @@
+# Penetration Testing / Bug Hunting Tools and Commands
+
+## 1. Reconnaissance (Passive & Active)
+
+### Passive
+
+* dig: DNS lookup tool.
+    * dig example.com (basic lookup)
+    * dig example.com ANY (retrieves all records)
+* whois: Domain registration information.
+    * whois example.com
+* theHarvester: Gathers email addresses, subdomains, etc.
+    * theharvester -d example.com -l 500 -b google
+* fierce: Subdomain enumeration.
+    * fierce -d example.com
+* dnsrecon: DNS enumeration and zone transfer attempts.
+    * dnsrecon -d example.com
+* Search Engines (Google, Bing, etc.): Use dorks.
+    * site:example.com filetype:pdf
+
+### Active
+
+* Nmap: Port scanner and service detection.
+    * nmap -sV -O example.com (service/OS detection)
+    * nmap -p- example.com (scan all ports)
+* Masscan: Fast port scanner.
+* RustScan: Modern and fast port scanner.
+* ZMap: Fast network scanner.
+* hping3: Network packet crafting tool.
+
+## 2. Scanning and Enumeration
+
+### Web Vulnerability Scanners
+
+* OWASP ZAP: Open-source web app scanner.
+* Nikto: Web server scanner.
+    * nikto -h example.com
+* wpscan: WordPress vulnerability scanner.
+    * wpscan --url example.com
+* joomscan: Joomla vulnerability scanner.
+
+### Network Vulnerability Scanners
+
+* OpenVAS: Open-source vulnerability scanner.
+* Nessus Essentials: Free (limited) vulnerability scanner.
+
+## 3. Vulnerability Analysis
+
+* Manual Testing: Crucial!
+* Browser Developer Tools: Inspect HTTP requests/responses.
+* Burp Suite (Community Edition): Intercept/modify web traffic.
+
+## 4. Exploitation
+
+* Metasploit Framework: Penetration testing framework.
+    * msfconsole
+* Custom Exploits: Requires programming skills (Python, Ruby, etc.).
+
+## 5. Post-Exploitation
+
+* Metasploit Modules: Privilege escalation, data exfiltration, etc.
+
+## 6. Reporting
+
+* Keep Detailed Notes
+* Document Everything (screenshots, outputs, descriptions)
+
+## General Utilities
+
+* curl: Transfer data with URLs.
+    * curl example.com
+* wget: Download files.
+    * wget example.com/file.txt
+* tcpdump: Network packet capture.
+    * tcpdump -i eth0
+* Wireshark: Network protocol analyzer.
+* netcat (nc): Network connections.
+    * nc -zv example.com 80

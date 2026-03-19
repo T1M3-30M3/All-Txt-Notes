@@ -1,0 +1,69 @@
+- Step-by-Step Guide: How to Get URLs via Command Line: 
+
+🔹 1. Get Historical URLs (Wayback Machine) This fetches all URLs ever indexed by archive.org 
+Tool: waybackurls
+- Command: waybackurls example.com > urls.txt
+
+🔹 2. Get URLs from Google’s Cache: 
+Tool: gau (Google Archives URL)
+-  gau example.com >> urls.txt
+This gets URLs cached by Google for the target domain.
+
+🔹 3. Crawl Live Pages: 
+Tool: katana
+- katana -u https://kayak.com  >> urls.txt
+Katana crawls the site and finds more paths dynamically.
+
+- Tool: hakrawler
+- echo https://kayak.com  | hakrawler >> urls.txt
+Hakrawler follows links and JS files to extract deep URLs.
+
+🔹 4. Extract Unique URLs & Remove Duplicates: 
+- sort -u urls.txt > unique_urls.txt
+Removes duplicate lines to clean your list.
+
+🔹 5. Check Which URLs Are Live: 
+Tool: httpx
+- cat unique_urls.txt | httpx -silent > live_urls.txt
+Filters only the URLs that return HTTP responses (like 200, 403, etc.)
+
+🔹 6. Optional: Find Subdomains First (to expand scope)
+Tool: subfinder
+- subfinder -d kayak.com -o subs.txt
+
+🔹 7. 📋 Full Automation Script: 
+#!/bin/bash
+
+DOMAIN="example.com"
+
+# Get subdomains
+subfinder -d $DOMAIN -o subs.txt
+
+# Get URLs from Wayback Machine
+cat subs.txt | xargs -I{} waybackurls {} >> all_urls.txt
+
+# Get URLs from Google's cache
+cat subs.txt | xargs -I{} gau {} >> all_urls.txt
+
+# Crawl live pages
+katana -list subs.txt >> all_urls.txt
+
+# Remove duplicates
+sort -u all_urls.txt > unique_urls.txt
+
+# Filter live URLs
+cat unique_urls.txt | httpx -silent > live_urls.txt
+
+echo "[+] Done! Live URLs saved to live_urls.txt"
+
+
+🔹 8. Save it as get_urls.sh, make it executable, and run:
+chmod +x get_urls.sh ( to run this command: ./get_urls.sh)
+
+
+
+
+Bonus Tips
+To filter specific file types: grep "\.js$\|\.css$\|\.php" live_urls.txt > js_css_php.txt
+
+To filter admin/login pages: grep "login\|admin\|dashboard" live_urls.txt > sensitive_pages.txt

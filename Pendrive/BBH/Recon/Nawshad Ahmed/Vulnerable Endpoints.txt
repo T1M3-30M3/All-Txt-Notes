@@ -1,0 +1,17 @@
+# Vulnerable Endpoints:
+
+/login - User authentication endpoint.
+/admin/dashboard - Administrative control panel.
+/api/v1/users - API for user data retrieval.
+/search?q=test - Search functionality with query parameter.
+/products/123 - Specific product display.
+/upload - File upload handler.
+/profile/settings - User profile configuration.
+/reset_password - Password reset process.
+/images/avatar.jpg - Static image file serving.
+/api/data - General API data access.
+/submit_form - Form submission processing.
+/download/report.pdf - File download endpoint.
+/api/v2/items?category=electronics - API with category filter.
+/api/v1/comments?post_id=456 - API with post ID filter.
+/vulnerable_script.php?param=value - Dynamic script with parameter.

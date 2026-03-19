@@ -1,0 +1,27 @@
+- Google Dorking: 
+
+site:http://drive.google.com inurl:folder
+site:http://drive.google.com inurl:open
+site:http://docs.google.com inurl:d
+site:http://drive.google.com "confidential"
+site:http://docs.google.com inurl:d filetype:docx
+site:tesla.com inurl:folder
+site:tesla.com inurl:open
+site:tesla.com filetype:pdf
+site:tesla.com inurl:/files/
+site:tesla.com filetype:pptx
+site:tesla.com filetype:xlsx
+site:tesla.com confidential
+site:tesla.com filetype:docx
+site:tesla.com inurl:/docs/
+
+Mostly Google Dorks Used by me
+Filetype:env "DB PASSWORD" site:*.indrive.com
+Filetype:txt "Passwd" site:*.indrive.com
+Filetype:pdf "Confidential" site:*.indrive.com
+Filetype:sql "DUMP" site:*.indrive.com
+Inurl: "Index of /" "Parent Directory" site:*.indrive.com
+Inurl: config.php" site:*.indrive.com
+Filetype:xls "Password" site:*.indrive.com
+Filetype:bak "backup" site:*.indrive.com
+Inurl:"file" inurl:"index.php" site:*.indrive.com

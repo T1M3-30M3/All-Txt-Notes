@@ -1,0 +1,99 @@
+- 1 Liner Dork For open redirection: 
+- site:*.com inurl:redirection
+- site:.com inurl:redir | inurl:url | inurl:redirect | inurl:return | inurl:src=http | inurl:r=http | inurl:src=prve
+- site:.com inurl:redir | inurl:url | inurl:return | inurl:src=http | inurl:r=http
+
+
+2. => Examples of Common Google Dorks: 
+=========================================
+> filetype:pdf "strictly confidential" site:yourcompany.de- Finds sensitive PDF documents on your website.
+> intitle:"index of" "parent directory" site:yourcompany.de- Finds open directories with sensitive files.
+> inurl:admin intitle:"login" site:yourcompany.de- Finds unprotected admin logins.
+
+
+3. 1 Liner Dork For Find SQLi: 
+===============================
+- site:example.com inurl:id= | inurl:page= | inurl:category= | inurl:product= | inurl:news= | inurl:article=
+- site:example.com inurl:index.php?id= | inurl:view.php?id= | inurl:show.php?id= | inurl:details.php?id= | inurl:item.php?id=
+- site:example.com inurl:profile.php?user= | inurl:users.php?id= | inurl:search.php?q= | inurl:download.php?file= | inurl:gallery.php?id=
+- site:example.com inurl:get.php?id= | inurl:list.php?id= | inurl:select.php?id= | inurl:display.php?id= | inurl:action.php?id=
+- site:example.com inurl:option.php?id= | inurl:lang= | inurl:name= | inurl:cat= | inurl:dir= | inurl:file=
+- site:example.com inurl:title= | inurl:year= | inurl:month= | inurl:day= | inurl:p= | inurl:pid= | inurl:cid=
+- site:example.com inurl:aid= | inurl:uid= | inurl:mid= | inurl:sid= | inurl:nid= | inurl:did= | inurl:lid=
+- site:example.com inurl:fid= | inurl:gid= | inurl:vid= | inurl:bid= | inurl:tid= | inurl:qid= | inurl:rid=
+- site:example.com inurl:eid= | inurl:oid= | inurl:wid= | inurl:hid= | inurl:zid= | inurl:xid= | inurl:yid=
+- site:example.com inurl:value= | inurl:data= | inurl:code= | inurl:num= | inurl:number= | inurl:user=
+- site:example.com inurl:email= | inurl:username= | inurl:password= | inurl:submit= | inurl:action= | inurl:do=
+- site:example.com inurl:function= | inurl:process= | inurl:execute= | inurl:run= | inurl:cmd= | inurl:query=
+- site:example.com inurl:sql= | inurl:select= | inurl:from= | inurl:where= | inurl:order= | inurl:group=
+- site:example.com inurl:limit= | inurl:union= | inurl:and= | inurl:or= | inurl:xor= | inurl:not=
+- site:example.com inurl:null= | inurl:true= | inurl:false= | inurl:version= | inurl:database= | inurl:table=
+- site:example.com inurl:column= | inurl:row= | inurl:count= | inurl:length= | inurl:substring= | inurl:ascii=
+- site:example.com inurl:char= | inurl:concat= | inurl:sleep= | inurl:benchmark= | inurl:if= | inurl:case=
+- site:example.com inurl:when= | inurl:then= | inurl:else=
+
+4. ISS Server dork's:
+=========================
+- intitle:"ISS Windows Server" site:gov  ( we can change site like us,uk,ban)
+
+=> Dork Examples (Use with extreme caution and only in ethical contexts):
+
+* `intitle:"IIS 7.0" filetype:aspx` (Targets specific IIS versions and file types)
+* `inurl:/uploads/ filetype:config "IIS"` (Searches for potentially exposed configuration files)
+* `intitle:"Index of /" "IIS"` (Finds directories with directory listing enabled)
+* `"IIS Server" ext:log` (Searches for log files that might reveal information)
+* `"ASP.NET_SessionId" "IIS"` (Looks for session ID cookies, which could be relevant for session hijacking)
+* `"Server: Microsoft-IIS" ext:config` (searches for config files that are on IIS servers)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

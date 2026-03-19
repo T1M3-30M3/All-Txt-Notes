@@ -1,0 +1,213 @@
+OWASP Top 10 Penetration Testing Checklist
+
+A01:2021-Broken Access Control
+
+[ ] Horizontal Privilege Escalation:
+    * Test: Manipulate user IDs, session tokens.
+    * Tools: Burp Suite Intruder, custom scripts.
+    * Commands: (Example Burp Intruder) - Configure Intruder to iterate through user IDs in a request.
+
+[ ] Vertical Privilege Escalation:
+    * Test: Manipulate roles, permissions.
+    * Tools: Burp Suite, OWASP ZAP.
+    * Commands: (Example Burp) - Attempt to access admin endpoints with a regular user session.
+
+[ ] Insecure Direct Object References (IDOR):
+    * Test: Manipulate object IDs in URLs.
+    * Tools: Burp Suite, custom scripts.
+    * Commands: (Example): Change numeric ID in URL parameters and observe responses.
+
+[ ] Missing Function Level Access Control:
+    * Test: Access restricted functions without authorization.
+    * Tools: Burp Suite, curl.
+    * Commands: (Example curl) - `curl -i "http://example.com/admin/deleteUser?id=123"` (Without proper admin session).
+
+[ ] Metadata Manipulation:
+    * Test: Manipulate metadata to bypass checks.
+    * Tools: Burp Suite, exiftool.
+    * Commands: `exiftool -all= image.jpg` (to view metadata), `exiftool -Comment="Malicious" image.jpg` (to modify).
+
+[ ] CORS Misconfiguration:
+    * Test: Cross-origin requests.
+    * Tools: Browser developer tools, curl.
+    * Commands: (Example curl) - `curl -H "Origin: malicious.com" -i "http://example.com/api"`
+
+A02:2021-Cryptographic Failures
+
+[ ] Weak Cryptographic Algorithms:
+    * Test: Identify weak algorithms.
+    * Tools: SSL Labs, testssl.sh, nmap scripts.
+    * Commands: `testssl.sh example.com`, `nmap --script ssl-enum-ciphers -p 443 example.com`.
+
+[ ] Insecure Key Management:
+    * Test: Key storage and handling.
+    * Tools: Manual code review, grep.
+    * Commands: `grep -r "password" .` (for code review), `grep -r "private_key" .`
+
+[ ] Data in Transit Protection:
+    * Test: HTTPS/TLS configuration.
+    * Tools: SSL Labs, Burp Suite.
+    * Commands: (SSL Labs) - Input domain into SSL Labs test.
+
+[ ] Data at Rest Protection:
+    * Test: Encryption of stored data.
+    * Tools: OS tools, database queries.
+    * Commands: (Database example) - `SELECT * FROM sensitive_table WHERE encrypted_column IS NULL;`
+
+[ ] Insecure Random Number Generation:
+    * Test: Random number quality.
+    * Tools: Python scripts, statistical tests.
+
+A03:2021-Injection
+
+[ ] SQL Injection:
+    * Test: SQL injection vulnerabilities.
+    * Tools: SQLMap, Burp Suite.
+    * Commands: `sqlmap -u "http://example.com/page?id=1" --dbs`, (Burp Intruder with SQL payloads).
+
+[ ] OS Command Injection:
+    * Test: Command injection vulnerabilities.
+    * Tools: Burp Suite, custom payloads.
+    * Commands: (Example) - `http://example.com/ping?ip=127.0.0.1;ls`
+
+[ ] LDAP Injection:
+    * Test: LDAP injection vulnerabilities.
+    * Tools: JXplorer, custom scripts.
+
+[ ] XML Injection (XXE):
+    * Test: XXE vulnerabilities.
+    * Tools: Burp Suite, custom payloads.
+    * Commands: (XXE Payload example) - `<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]><foo>&xxe;</foo>`
+
+[ ] Server-Side Template Injection (SSTI):
+    * Test: SSTI vulnerabilities.
+    * Tools: Tplmap, Burp Suite.
+
+A04:2021-Insecure Design
+
+[ ] Threat Modeling:
+    * Test: Design flaws.
+    * Tools: OWASP Threat Dragon, Microsoft Threat Modeling Tool.
+
+[ ] Security Requirements Analysis:
+    * Test: Review security requirements.
+    * Tools: Manual review.
+
+[ ] Secure Development Lifecycle (SDLC):
+    * Test: SDLC process.
+    * Tools: Manual review.
+
+[ ] Design Patterns:
+    * Test: Secure design patterns.
+    * Tools: Manual review.
+
+[ ] Defense in depth:
+    * Test: Defense in depth strategies.
+    * Tools: Manual review.
+
+A05:2021-Security Misconfiguration
+
+[ ] Default Credentials:
+    * Test: Default credentials.
+    * Tools: Hydra, Medusa, default password lists.
+    * Commands: `hydra -l admin -P passwords.txt example.com http-get /login.php`.
+
+[ ] Unnecessary Services and Features:
+    * Test: Unnecessary services.
+    * Tools: Nmap, netstat.
+    * Commands: `nmap -sV example.com`, `netstat -tulnp`.
+
+[ ] Error Handling:
+    * Test: Error message exposure.
+    * Tools: Burp Suite, manual testing.
+
+[ ] Security Headers:
+    * Test: Security headers.
+    * Tools: securityheaders.com, Burp Suite.
+    * Commands: (Burp) - Analyze HTTP response headers.
+
+[ ] Cloud Storage Misconfigurations:
+    * Test: Cloud storage security.
+    * Tools: AWS CLI, gcloud CLI, Azure CLI, bucket_finder.
+
+A06:2021-Vulnerable and Outdated Components
+
+[ ] Software Composition Analysis (SCA):
+    * Test: Vulnerable components.
+    * Tools: OWASP Dependency-Check, Snyk, DependencyTrack.
+
+[ ] Version Control:
+    * Test: Software versions.
+    * Tools: Nmap, manual inspection.
+
+[ ] Known Vulnerabilities:
+    * Test: CVE lookups.
+    * Tools: CVE Details, NIST NVD.
+
+A07:2021-Identification and Authentication Failures
+
+[ ] Brute-Force Attacks:
+    * Test: Brute-force resistance.
+    * Tools: Hydra, Burp Suite Intruder.
+    * Commands: `hydra -l user -P passwords.txt example.com ssh`.
+
+[ ] Session Management:
+    * Test: Session vulnerabilities.
+    * Tools: Burp Suite, OWASP ZAP.
+
+[ ] Multi-Factor Authentication (MFA) Bypass:
+    * Test: MFA bypass.
+    * Tools: Burp Suite, manual testing.
+
+[ ] Credential Stuffing:
+    * Test: Credential stuffing.
+    * Tools: Hydra, custom scripts.
+
+A08:2021-Software and Data Integrity Failures
+
+[ ] Code Injection:
+    * Test: Code integrity.
+    * Tools: Manual code review.
+
+[ ] Deserialization Attacks:
+    * Test: Deserialization vulnerabilities.
+    * Tools: ysoserial, Burp Suite.
+
+[ ] CI/CD Pipeline Integrity:
+    * Test: CI/CD security.
+    * Tools: Manual review.
+
+[ ] Software Updates:
+    * Test: Update signing.
+    * Tools: Manual review.
+
+A09:2021-Security Logging and Monitoring Failures
+
+[ ] Logging:
+    * Test: Logging effectiveness.
+    * Tools: grep, Splunk, ELK stack.
+    * Commands: `grep "ERROR" access.log`.
+
+[ ] Monitoring:
+    * Test: Monitoring effectiveness.
+    * Tools: Nagios, Zabbix.
+
+[ ] Alerting:
+    * Test: Alerting effectiveness.
+    * Tools: Manual review.
+
+A10:2021-Server-Side Request Forgery (SSRF)
+
+[ ] Internal Resource Access:
+    * Test: Internal access.
+    * Tools: Burp Suite, curl.
+    * Commands: (Example) - `http://example.com/proxy?url=http://127.0.0.1`.
+
+[ ] External Resource Access:
+    * Test: External access.
+    * Tools: Burp Suite, curl.
+
+[ ] Metadata Access:
+    * Test: Cloud metadata access.
+    * Tools: curl.
+    * Commands: (AWS example) - `curl http://169.254.169.254/latest/meta-data/`.

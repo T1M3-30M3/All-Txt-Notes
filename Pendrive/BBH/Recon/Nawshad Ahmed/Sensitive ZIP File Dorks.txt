@@ -1,0 +1,51 @@
+# Sensitive ZIP File Dorks (Use Responsibly and Ethically)
+
+# Finding potential sensitive ZIP files:
+
+site:example.com filetype:zip inurl:backup
+site:example.com filetype:zip inurl:dump
+site:example.com filetype:zip inurl:config
+site:example.com filetype:zip inurl:private
+site:example.com filetype:zip inurl:secret
+site:example.com filetype:zip inurl:credentials
+site:example.com filetype:zip inurl:database
+site:example.com filetype:zip inurl:archive
+site:example.com filetype:zip inurl:export
+site:example.com filetype:zip inurl:old
+site:example.com filetype:zip inurl:logs
+site:example.com filetype:zip inurl:sql
+site:example.com filetype:zip inurl:passwords
+site:example.com filetype:zip inurl:keys
+site:example.com filetype:zip inurl:source
+site:example.com filetype:zip inurl:code
+site:example.com filetype:zip inurl:app
+site:example.com filetype:zip intitle:"backup"
+site:example.com filetype:zip intitle:"dump"
+site:example.com filetype:zip intitle:"config"
+
+# More specific combinations:
+
+site:example.com filetype:zip inurl:backup inurl:sql
+site:example.com filetype:zip inurl:private inurl:keys
+site:example.com filetype:zip inurl:credentials inurl:database
+site:example.com filetype:zip inurl:source inurl:code
+site:example.com filetype:zip inurl:backup intitle:"database"
+site:example.com filetype:zip intitle:"private keys"
+
+# Finding potential password-protected ZIP files (use cautiously):
+
+site:example.com filetype:zip inurl:password
+site:example.com filetype:zip intitle:password
+
+# Important Notes:
+
+# - Always respect robots.txt.
+# - Avoid automated downloading without permission.
+# - Report vulnerabilities responsibly.
+# - Stay within legal boundaries.
+# - Obtain explicit permission before testing.
+# - Do not attempt to access or modify data without permission.
+# - These dorks are for ethical research and finding publicly available information.
+# - Misuse is unethical and potentially illegal.
+# - The internet is constantly changing, so these dorks may not always return results.
+# - Downloading and attempting to crack password protected files without permission, is illegal.

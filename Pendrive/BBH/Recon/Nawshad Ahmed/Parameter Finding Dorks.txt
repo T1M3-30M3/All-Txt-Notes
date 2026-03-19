@@ -1,0 +1,78 @@
+# Parameter Finding Dorks (Use Responsibly and Ethically)
+
+# Basic parameter discovery:
+site:example.com inurl:?
+site:example.com inurl:=
+site:example.com inurl:id=
+site:example.com inurl:page=
+site:example.com inurl:category=
+site:example.com inurl:product=
+site:example.com inurl:file=
+site:example.com inurl:action=
+site:example.com inurl:view=
+site:example.com inurl:lang=
+site:example.com inurl:debug=
+site:example.com inurl:source=
+site:example.com inurl:include=
+site:example.com inurl:path=
+site:example.com inurl:dir=
+site:example.com inurl:redirect=
+site:example.com inurl:url=
+site:example.com inurl:out=
+site:example.com inurl:input=
+site:example.com inurl:data=
+site:example.com inurl:name=
+site:example.com inurl:value=
+site:example.com inurl:search=
+site:example.com inurl:q=
+site:example.com inurl:p=
+site:example.com inurl:print=
+site:example.com inurl:download=
+site:example.com inurl:popup=
+site:example.com inurl:mode=
+site:example.com inurl:type=
+site:example.com inurl:module=
+site:example.com inurl:option=
+site:example.com inurl:config=
+site:example.com inurl:template=
+site:example.com inurl:report=
+site:example.com inurl:date=
+site:example.com inurl:time=
+site:example.com inurl:user=
+site:example.com inurl:email=
+site:example.com inurl:pass=
+site:example.com inurl:password=
+site:example.com inurl:username=
+site:example.com inurl:token=
+site:example.com inurl:key=
+site:example.com inurl:session=
+site:example.com inurl:auth=
+
+# Combining parameters and filetypes:
+site:example.com filetype:php inurl:id=
+site:example.com filetype:aspx inurl:page=
+site:example.com filetype:jsp inurl:category=
+site:example.com filetype:html inurl:file=
+
+# Finding specific parameter patterns:
+site:example.com inurl:id=[0-9]+
+site:example.com inurl:page=[a-zA-Z0-9]+
+site:example.com inurl:file=.*\.php
+site:example.com inurl:redirect=http
+
+# Finding potential open redirects:
+site:example.com inurl:redirect=http
+site:example.com inurl:url=http
+site:example.com inurl:out=http
+
+# Finding potential Local File Inclusion (LFI)
+site:example.com inurl:file=..
+site:example.com inurl:page=..
+site:example.com inurl:include=..
+site:example.com inurl:path=..
+
+# Finding potential SQL injection points
+site:example.com inurl:id='
+site:example.com inurl:id="
+site:example.com inurl:id=1'
+site:example.com inurl:id=1"

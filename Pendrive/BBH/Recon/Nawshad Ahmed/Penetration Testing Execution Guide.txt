@@ -1,0 +1,100 @@
+# Penetration Testing Execution Guide
+
+## 1. Planning and Scoping
+
+* **Communication:**
+    * Establish clear communication channels with the client.
+    * Document all communication.
+* **Rules of Engagement:**
+    * Create a detailed document outlining allowed testing activities.
+    * Specify timeframes, IP ranges, and excluded systems.
+* **Authorization:**
+    * Obtain written authorization from the client.
+* **Business Objectives:**
+    * Understand the client's business needs and prioritize testing accordingly.
+
+## 2. Information Gathering (Reconnaissance)
+
+* **Passive Reconnaissance:**
+    * **DNS Enumeration:**
+        * Use `nslookup` or `dig` to gather DNS records.
+        * Example: `dig target.com`
+    * **WHOIS:**
+        * Use online WHOIS lookup tools.
+    * **Google Dorking:**
+        * Use Google search operators (e.g., `site:`, `filetype:`) to find sensitive information.
+    * **Social Media:**
+        * Analyze social media profiles for information.
+    * **Website Mirroring:**
+        * Use `wget` or `httrack` to create a local copy.
+        * Example: `wget -r target.com`
+* **Active Reconnaissance:**
+    * **Nmap:**
+        * Scan for open ports and services.
+        * Example: `nmap -sV -sC target.com`
+        * Example: `nmap -p 1-65535 target.com`
+    * **Vulnerability Scanning:**
+        * Use Nessus Essentials or OpenVAS.
+    * **Web Crawling:**
+        * Use Burp Suite's crawler or OWASP ZAP.
+    * **Directory Brute-forcing:**
+        * Use `ffuf` or `dirb`.
+        * Example: `ffuf -w wordlist.txt -u http://target.com/FUZZ`
+
+## 3. Vulnerability Analysis
+
+* **Manual Code Review (if applicable):**
+    * Review source code for vulnerabilities.
+* **Web Application Testing:**
+    * **Broken Access Control:**
+        * Test for IDOR vulnerabilities.
+    * **SQL Injection:**
+        * Use SQL injection payloads or SQLMap.
+    * **XSS:**
+        * Inject JavaScript payloads.
+    * **SSRF:**
+        * Manipulate URL parameters and headers.
+    * **Security Misconfiguration:**
+        * Check for default credentials and insecure configurations.
+* **Vulnerability Scanners:**
+    * Use Burp Suite, OWASP ZAP.
+* **Manual Testing:**
+    * Combine automated scans with manual testing.
+
+## 4. Exploitation
+
+* **Metasploit:**
+    * Use Metasploit to exploit known vulnerabilities.
+* **Burp Suite Intruder:**
+    * Use Intruder for fuzzing and brute-force attacks.
+* **Custom Scripts:**
+    * Write custom scripts for specific exploits.
+* **Proof of Concept (PoC):**
+    * Document successful exploits with screenshots and steps.
+
+## 5. Post-Exploitation
+
+* **Privilege Escalation:**
+    * Attempt to gain higher-level access.
+* **Data Exfiltration:**
+    * Simulate the theft of sensitive data.
+* **Persistence:**
+    * Establish a persistent connection (if within scope).
+* **Cleanup:**
+    * Remove any tools or files left on the target system.
+
+## 6. Reporting
+
+* **Detailed Report:**
+    * Include executive summary, vulnerability descriptions, PoCs, risk assessments, and remediation recommendations.
+* **Clear Communication:**
+    * Present the report to the client.
+
+## 7. Remediation and Retesting
+
+* **Remediation Assistance:**
+    * Provide guidance on fixing vulnerabilities.
+* **Retesting:**
+    * Verify that vulnerabilities have been fixed.
+* **Ongoing Monitoring:**
+    * Recommend ongoing security monitoring.

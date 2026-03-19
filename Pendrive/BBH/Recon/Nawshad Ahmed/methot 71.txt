@@ -1,0 +1,57 @@
+sublist3r -d example.com -o subdomain1.txt
+
+cat subdomain1.txt | wc -l
+
+subfinder -d example.com -v -o subdomain2.txt
+
+cat subdomain2.txt | wc -l
+
+chaos -d example.com -v > subdcaomain3.txt
+
+cat subdomain1.txt subdomain2.txt subdomain3.txt > subfinal.txt
+
+cat subfinal.txt | wc -l
+
+Remove dublicats
+
+sort subfinal.txt | uniq -d 
+
+sort subfinal.txt | uniq -d | wc -l
+
+sort subfinal.txt | uniq > subuniq.txt
+
+cat subuniq.txt | wc -l 
+
+ httpx-toolkit Remove all off 
+
+cat subuniq.txt | httpx-toolkit | wc -l
+
+cat subuniq.txt | httpx-toolkit > subdomainlive.txt
+
+cat subdomainlive.txt | wc -l
+
+https://github.com/Dheerajmadhukar/4-ZERO-3
+
+python3 GitDorker.py  -d Dorks/medium_dorks.txt -tf tf/TOKENSFILE -q example.com -lb
+
+dirsearch -u https://example.com -e php,cgi,htm,html,shtm,shtml,js,txt,bak,zip,old,conf,log,pl,asp,aspx,jsp,sql,db,sqlite,mdb,tar,gz,7z,rar,json,xml,yml,yaml,ini,java,py,rb,php3,php4,php5 --random-agent --recursive -R 3 -t 20 --exclude-status=404 --follow-redirects --delay=0.1
+
+katana -u rapyd.net -jc | grep ".js$"
+
+katana -list subfinal.txt -jc | grep ".js$" 
+
+katana -list subfinal.txt -jc | grep ".js$" | uniq | sort
+
+katana -u subdomains_alive.txt -d 5 -ps -pss waybackarchive, commoncrawl, alienvault -hf -jc -fx -ef woff, css, png, svg, jpg, woff2, jpeg, gif, svg -o allurls.txt
+
+cat allurls.txt | grep -E "\.txt|\.log|\.cache|\.secret|\.db|\.backup|\.yml|\.json|\.gz|\.rar|\.zip|\.config"
+
+cat allurls.txt | grep -E "\.js$" >> js.txt
+
+cat js.txt | nuclei -t /home/kali/.local/nuclei-templates/Nuclei-template/ -severity 'critical,high,medium'
+
+cat allurls.txt | gf lfi | nuclei -tags lfi
+
+waybackurls https://example.com
+
+waybackurls http://testphp.vulnweb.com/ | gf xss

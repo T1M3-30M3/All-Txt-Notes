@@ -1,0 +1,37 @@
+site:shopify.dev filetype:txt  (pdf,zip)
+
+
+# Google Dorks for Finding Sensitive Information on Development Sites (Bug Hunting)
+# Use responsibly and only on websites you have explicit permission to test.
+# Replace the example domains with the actual targets you are authorized to test.
+
+# Focus on Common Development Configurations and Files:
+site:example.dev filetype:log
+site:example.staging filetype:log
+site:example.test filetype:log
+site:example.dev inurl:config.php
+site:example.staging inurl:config.ini
+site:example.test inurl:web.config
+site:example.dev "SQL dump" filetype:sql
+site:example.staging "backup" filetype:zip OR filetype:tar.gz
+site:example.test inurl:phpinfo.php
+site:example.dev "API Key" OR "Secret Key"
+
+# Looking for Exposed Development Tools and Information:
+site:example.dev inurl:"/.git"
+site:example.staging inurl:"/svn/"
+site:example.test inurl:"/composer.json"
+site:example.dev inurl:"/package.json"
+site:example.staging "debug mode" OR "error reporting"
+
+
+site:*.dev filetype:log
+site:*.staging filetype:log
+site:*.test filetype:log
+site:*.dev inurl:config.php
+site:*.staging inurl:config.ini
+site:*.test inurl:web.config
+site:*.dev "SQL dump" filetype:sql
+site:*.staging "backup" filetype:zip OR filetype:tar.gz
+site:*.test inurl:phpinfo.php
+site:*.dev "API Key" OR "Secret Key"

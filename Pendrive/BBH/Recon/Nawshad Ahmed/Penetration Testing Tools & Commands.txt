@@ -1,0 +1,59 @@
+# Penetration Testing Tools & Commands
+
+## I. Planning & Scoping
+
+* **Documentation:**
+    * Text Editors: VS Code, Sublime Text, Notepad++
+    * Spreadsheets: Microsoft Excel, Google Sheets
+* **Communication:**
+    * Email clients
+    * Messaging: Slack, Microsoft Teams
+
+## II. Information Gathering (Reconnaissance)
+
+* **Passive Intelligence:**
+    * DNS: `dig <domain>`, `nslookup <domain>`
+    * WHOIS: `whois <domain>`
+    * Google Dorking: Google search operators
+    * Social Media: Manual browsing
+* **Active Scanning:**
+    * Nmap:
+        * `nmap -sV -sC <target>` (service/version, scripts)
+        * `nmap -p <port range> <target>` (port scan)
+        * `nmap -A <target>` (aggressive scan)
+    * Vulnerability Scanners: Nessus Essentials, OpenVAS
+    * Web Crawlers: Burp Suite, OWASP ZAP, `curl`, `wget`
+    * Directory Brute-forcing: `ffuf -w <wordlist> -u <URL>/FUZZ`, `dirb <URL> <wordlist>`
+
+## III. Vulnerability Analysis
+
+* **Manual Inspection:**
+    * Browser DevTools: Chrome DevTools, Firefox DevTools
+    * Code Review: Text editors
+    * Web Proxies: Burp Suite, OWASP ZAP
+* **Automated Scanning:** Burp Suite, OWASP ZAP
+* **Prioritization:** CVSS calculators (online)
+
+## IV. Exploitation
+
+* Metasploit: `msfconsole`, `search`, `use`, `set`, `exploit`
+* Burp Suite Intruder: GUI
+* Custom Scripts: Python (Requests, Scapy), Bash
+
+## V. Post-Exploitation
+
+* Metasploit: Post-exploitation modules
+* OS Commands: Linux (`whoami`, `id`, `ls`, `cat`), Windows (`whoami`, `ipconfig`, `dir`, `type`)
+* Data Exfiltration: `scp`, `sftp`, `nc`
+
+## VI. Reporting
+
+* Word Processors: Microsoft Word, LibreOffice Writer
+* Screenshot Tools: Snipping Tool, Screenshot (macOS), Shutter (Linux)
+* Markdown Editors
+
+## VII. Remediation & Retesting
+
+* Vulnerability Scanners: For verification
+* Manual Testing: For confirmation
+* Version Control: Git

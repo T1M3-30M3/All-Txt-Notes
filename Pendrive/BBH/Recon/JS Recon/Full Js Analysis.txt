@@ -1,0 +1,140 @@
+-- All About JavaScript Analysis For Bug Bounty Hunting::
+
+echo "domain.com/s" > target.txt
+subfinder -dL target.txt -all -recursive -o Subs01.txt
+subenum -l target.txt -u wayback,crt,abuseipdb,bufferover,Findomain,Subfinder,Amass,Assetfinder -o Subs02.txt
+cat Subs*.txt | anew | tee AllSubs.txt
+cat AllSubs.txt | httpx -o AliveSubs.txt
+cat AliveSubs.txt | waybackurls | tee urls.txt
+cat urls.txt | grep -iE '.js'|grep -ivE '.json'|sort -u | tee js.txt
+cat urls.txt | subjs | tee subjs.txt
+Download All links in js.txt and do search about these code : while IFS= read -r link; do wget "$link"; done < "js.txt"
+grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret" /path/to/directory/*.js
+JavaScript Analysis using nuclei : nuclei -l js.txt -t ~/nuclei-templates/exposures/
+Automating reading .js files : https://github.com/003random/getJS
+
+-- Easiest way to find hidden api from js files::
+
+subfinder -d indeed.com -v -o subdomains.txt
+cat subdomains.txt | waybackurls > waybackurls.txt
+waymore -i subdomains.txt -mode U > waymore.txt
+cat js.txt  | while read url; do python3 /home/kali/tools/SecretFinder/SecretFinder.py  -i $url -o cli; done
+
+-- Go Tool For Extracting All The Possible Endpoints From The JS Files::
+
+▶ brew install go
+▶ git clone https://github.com/SirBugs/endext.git
+
+echo 'target.com' | waybackurls | tee waybackresults.txt; cat waybackresults.txt | grep "\.js" > js_files.txt; go run main.go js_files.txt
+
+-- Finding Basic Authtoken in JAVASCRIPT file BY Full Automation
+
+gau -subs example.com | grep ".js$" >> jsfile.txt
+subfinder -d example.com -silent | waybackurls | grep ".js$" >> jsfile.txt
+subfinder -d example.com -silent | httpx -silent | subjs >> jsfile.txt
+cat jsfile.txt | sort -u | anew | httpx -silent >> jsfile_totest.txt
+
+cat jsfile_totest.txt | xargs -I % -P 10 curl -sk "%" | grep -E -i -w -n 'BASIC[\\-|_|A-Z0–9]*(\'|\")?(:|=)(\'|\")?[\\-|_|A-Z0–9]{10}' — color
+
+-- Analyzing JavaScript Files To Find Bugs::
+
+cat domains.txt | katana | grep js | httpx -mc 200 | tee js.txt
+nuclei -l js.txt -t ~/nuclei-templates/exposures/ -o js_bugs.txt
+Download All links in js.txt and do search about these code : while IFS= read -r link; do wget "$link"; done < "js.txt"
+grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret|smtp" *.js
+
+-- How to JS for Pentest: Edition 2023
+
+grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret" /path/to/directory/*.js
+
+subfinder -d domain.com | httpx -mc 200 | tee subdomains.txt && cat subdomains.txt | waybackurls | httpx -mc 200 | grep .js | tee js.txt
+nuclei -l js.txt -t ~/nuclei-templates/exposures/ -o js_exposures_results.txt
+
+-- Hunting for Hidden API Endpoints Using Katana and Hakraler::
+
+echo "http://target.com" | waybackurls | anew urls.txt
+cat urls.txt | katana | hakrawler -d 3 | anew katana.txt
+cat katana.txt urls.txt | unfurl format %p | anew paths.txt
+cat katana.txt urls.txt | unfurl format %d | anew subs.txt
+
+-- This is the easiest bug you can find right now:
+
+katana -list {domains.txt} -d 5 -jc | grep ".js$"  | uniq | sort
+cat {jsfilesgottenfromkatana.txt} | while read url; do python3 SecretFinder/SecretFinder.py  -i $url -o cli; done
+
+-- Bugs & JS :A Closer Look at JavaScript for Successful Bug Hunting:
+
+Tools : https://github.com/byt3hx/jsleak
+https://github.com/raoufmaklouf/jsecret
+
+echo "http://target.com" > target.txt
+cat traget.txt| grep ".js$" | uniq | jsleak -l -s
+cat traget.txt| grep ".js$" | uniq | jsecret
+
+-- Hunting JavaScript Files for Bug Hunters:
+
+Tool : https://github.com/KathanP19/JSFScan.sh
+
+cat target.txt | gau | grep ".js" | tee js.txt
+cat target.txt | waybackurls | grep ".js" | tee -a js.txt
+cat target.txt | subjs | httpx -mc 200 | tee -a js.txt
+nuclei -l js.txt -t /root/nuclei-templates/http/exposures/ -o js_bugs.txt
+cat js.txt | Mantra
+cat js.txt | while read url; do python3 SecretFinder.py -i "$url" -o cli; done > endpoints
+bash JSFScan.sh -l target -all -r -o result.ru
+
+-- JS for Bug Bounties 2.0 Extreme Edition 2024:
+
+subfinder -d domain.com | httpx -mc 200 | tee subdomains.txt && cat subdomains.txt | waybackurls | httpx -mc 200 | grep .js | tee js.txt
+waybackurls "site.com" | grep -Eo "https?://[^/]+/[^"]+\.js" | sed "s|^https\?://[^/]\+/||" | awk -F "/" "{print $NF}"
+dirsearch -u http://127.0.0.1/ -w JSFUZZ.txt --full-url
+
+curl -s https://app.site.com/config.js | grep -E "environment: 'Production'|storageUrl: 'https://buildxact.blob.core.windows.net/'|googleApiKey: '|appInsightsInstrumentationKey: '|globalApiEndpoint: '|streamChatApiKey: '|auth0ClientId: '|auth0Domain: '|flatfileApiKey: '|webSpellCheckerServiceId: '|webSpellCheckerServiceUrl: '|clientPortalUrl: '|appVersion: '|appVersionDate: '|appDomainUrl: '|oneBuildKey: '|flatfilePlatformPublishableKey: '|flatfilePlatformEnvironmentId: '" | sed "s/.*'\(.*\)'.*/\1/"
+
+nuclei -l js.txt -t ~/nuclei-templates/exposures/ -o js_exposures_results.txt
+
+-- The goldmine that are Javascript files for bug bounties:
+
+Tool : https://github.com/ArpitKubadia/JS-Secret-Finder
+
+echo <javascript_url> | ./js_secret_finder.sh
+python3 ~/tools/LinkFinder/linkfinder.py -d -i "https://target.com/app.js" -o cli | anew wordlist.txt
+
+-- Beginners Guide On How You Can Use Javascript In BugBounty:
+
+Tool: https://github.com/dwisiswant0/gf-secrets
+https://github.com/tomnomnom/gf
+https://codebeautify.org/jsviewer
+https://github.com/KathanP19/JSFScan.sh
+
+cat abc.com | gau | grep ".js$" | uniq | sort >> jsfile_links.txt
+cat abc.com | subjs >> jsfile_links.txt
+cat jsfile_links.txt | hakcheckurl | grep "200" | cut -d" " -f2 | sort -u > live_jsfile_links.txt
+cat live_jsfile_links.txt | while read url; do python3 ./tools/LinkFinder/linkfinder.py -d -i $url -o cli; done > endpoints.txt
+cat endpoints.txt | grep "admin"
+cat live_jsfile_links.txt | while read url; do python3 ./tools/SecretFinder/SecretFinder.py -i $url -o cli >> jslinksecret.txt; done
+
+mkdir jsfiles
+cp live_jsfile_links.txt ./jsfiles/hosts
+cd ./jsfiles/
+meg -d 1000 -v /
+
+
+
+-- Grep tips for Javascript Analysis | Bug Bounty
+
+Searching for API Keys and Secrets : cat * | grep -rE "apikey|api_key|secret|token|password|auth|key|pass|user"
+
+Detecting Dangerous Function Calls : cat * | grep -rE "eval|document\.write|innerHTML|setTimeout|setInterval|Function"
+
+Checking for URL Manipulation : cat * | grep -rE "location\.href|location\.replace|location\.assign|window\.open"
+
+Searching for Cross-Origin Requests : cat * | grep -rE "XMLHttpRequest|fetch|Access-Control-Allow-Origin|withCredentials" /path/to/js/files
+
+Analyzing `postMessage` Usage : cat * | grep -r "postMessage"
+
+Finding Hardcoded URLs or Endpoints : cat * | grep -rE "https?://|www\."
+
+Locating Debugging Information : cat * | grep -rE "console\.log|debugger|alert|console\.dir"
+
+Investigating User Input Handling : cat * | grep -rE "document\.getElementById|document\.getElementsByClassName|document\.querySelector|document\.forms"

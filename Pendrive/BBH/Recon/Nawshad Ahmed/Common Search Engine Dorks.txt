@@ -1,0 +1,68 @@
+# Common Search Engine Dorks (with example.com as the target)
+
+# Site-specific searches:
+site:example.com
+site:example.com filetype:pdf
+site:example.com inurl:admin
+site:example.com intitle:"index of"
+
+# URL-based searches:
+site:example.com inurl:login
+site:example.com inurl:admin
+site:example.com inurl:upload
+site:example.com inurl:php?id=
+site:example.com inurl:viewtopic.php?f=
+
+# Title-based searches:
+site:example.com intitle:"index of"
+site:example.com intitle:"phpinfo()"
+site:example.com intitle:"SQL syntax"
+site:example.com intitle:"error"
+
+# File type searches:
+site:example.com filetype:pdf
+site:example.com filetype:doc
+site:example.com filetype:xls
+site:example.com filetype:sql
+site:example.com filetype:log
+site:example.com filetype:txt
+site:example.com filetype:xml
+site:example.com filetype:conf
+
+# Content-based searches:
+site:example.com intext:"password ="
+site:example.com intext:"username ="
+site:example.com intext:"SQL syntax"
+site:example.com intext:"error"
+
+# Cache and related searches:
+cache:example.com
+related:example.com
+info:example.com
+
+# Extension based searches.
+site:example.com ext:xml
+site:example.com ext:json
+site:example.com ext:config
+
+# Combining dorks:
+site:example.com inurl:admin filetype:php
+site:example.com intitle:"index of" filetype:pdf
+site:example.com inurl:login intext:"username" intext:"password"
+
+# Example usage for finding potential vulnerabilities (use responsibly!):
+site:example.com filetype:sql "INSERT INTO"
+site:example.com inurl:php?id= intitle:"SQL syntax"
+site:example.com intext:"Warning: mysqli_"
+
+# Important Notes:
+
+# - Always respect robots.txt.
+# - Avoid automated scanning without permission.
+# - Report vulnerabilities responsibly.
+# - Stay within legal boundaries.
+# - Obtain explicit permission before testing.
+# - Do not attempt to access or modify data without permission.
+# - These dorks can be used for various ethical purposes such as research, documentation, and finding publicly available information.
+# - Misuse of this information is unethical and potentially illegal.
+# - The internet is constantly changing, so these dorks may not always return results.

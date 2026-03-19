@@ -1,0 +1,34 @@
+-Manual Osint Technique-
+--> Google Dorking
+--> Social Media Browsing
+--> Web Source code analysis
+--> Public database and Archives
+--> Reverse Image Search
+
+username Osint: sudo apt install sherlock -> sherlock username -> sherlock username --output name.txt -> sherlock elonmusk mark kohli
+
+Google Account Intelligence: pip install ghunt -> ghunt login -> ghunt --help
+
+Web Recon:
+Whois : whois abc.xyz -> https://hackertarget.com/whois-lookup/
+
+Admin Panel Finder:
+https://github.com/s0md3v/Breacher
+https://dev.adminbooster.com/tool/site_review
+https://tools.prinsh.com/home/?tools=adfind
+https://exploit99.my.id/tools/defacer/adminfinder.php
+https://tools.zone-xsec.com/defacer/admin-finder
+
+Subdomain Finder:
+
+subfinder -d abc.xyz
+assetfinder abc.xyz
+amass enum -d abc.xyz
+
+
+
+
+
+
+
+

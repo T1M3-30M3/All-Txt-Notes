@@ -1,0 +1,10 @@
+Setting Up a Reconnaissance Lab:
+
+• Oracle VM VirtualBox: https://www.virtualbox.org/
+• Oracle VM VirtualBox Extension Pack: https://www.virtualbox.org/wiki/Downloads
+• 7-zip: https://www.7-zip.org
+• Kali Linux 2022.4: https://www.kali.org/get-kali/
+• Trace Labs OSINT VM 2022.1: https://www.tracelabs.org/initiatives/osint-vm
+• Vagrant: https://www.vagrantup.com/
+• OWASP Juice Shop: https://owasp.org/www-project-juice-shop/
+• Metasploitable 3: https://app.vagrantup.com/rapid7/boxes/metasploitable3-win2k8

@@ -1,0 +1,73 @@
+10 Easy Bugs for Starting Bug Bounty:
+
+1.  **Missing Security Headers:**
+    * Check for headers like `Strict-Transport-Security` (HSTS), `X-Frame-Options`, `X-Content-Type-Options`, and `Content-Security-Policy` (CSP).
+    * Use browser developer tools or online header analysis tools.
+
+2.  **Exposed `.git` or `.svn` Directories:**
+    * Append `/.git/` or `/.svn/` to website URLs.
+    * If accessible, it can reveal source code and sensitive information.
+
+3.  **Cross-Site Scripting (XSS) in Search Fields:**
+    * Enter simple JavaScript payloads (e.g., `<script>alert(1)</script>`) into search fields.
+    * Check if the payload executes in the browser.
+
+4.  **Open Redirects:**
+    * Look for URLs with redirect parameters (e.g., `redirect_url`, `next`).
+    * Try changing the parameter to a malicious URL.
+
+5.  **HTTP Method Tampering:**
+    * Try changing HTTP methods (e.g., GET to POST, or vice versa) using tools like Burp Suite.
+    * See if it leads to unexpected behavior.
+
+6.  **Clickjacking:**
+    * Check if the website can be embedded in an iframe.
+    * Use clickjacking testing tools or create a simple HTML iframe to test.
+
+7.  **Insecure Cookie Flags:**
+    * Inspect cookies using browser developer tools.
+    * Look for missing `Secure` and `HttpOnly` flags.
+
+8.  **Server Version Disclosure:**
+    * Check HTTP headers for server version information.
+    * Vulnerable versions can be exploited.
+
+9.  **Missing Rate Limiting:**
+    * Test login forms or other rate-limited functionalities.
+    * Try sending multiple requests in a short period to see if there's any rate limiting.
+
+10. **Basic SQL Injection:**
+    * test for SQL injection on parameters, by adding a single quote (') to the end of a parameter.
+    * If an error occurs, it could be a sign of SQL injection.
+
+Where to Find These Bugs:
+
+1.  **Missing Security Headers:**
+    * Every webpage and API endpoint. Login pages, account settings, sensitive data pages, all API endpoints.
+
+2.  **Exposed `.git` or `.svn` Directories:**
+    * Root directory of web applications, subdirectories.
+
+3.  **Cross-Site Scripting (XSS) in Search Fields:**
+    * Search bars, comment sections, user profile fields, any unsanitized input fields.
+
+4.  **Open Redirects:**
+    * Login pages, account recovery pages, URLs with redirect parameters.
+
+5.  **HTTP Method Tampering:**
+    * API endpoints, forms, any data modification/retrieval endpoints.
+
+6.  **Clickjacking:**
+    * Interactive element pages, sensitive information pages, any user interaction pages.
+
+7.  **Insecure Cookie Flags:**
+    * Login pages, session management pages, any cookie-setting pages.
+
+8.  **Server Version Disclosure:**
+    * Every web server response, all API endpoints.
+
+9.  **Missing Rate Limiting:**
+    * Login forms, password reset forms, registration forms, authentication/sensitive API endpoints.
+
+10. **Basic SQL Injection:**
+    * URLs with parameters, login forms, search fields, database interaction forms.
