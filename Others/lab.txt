@@ -1,0 +1,15 @@
+Install apache2 [ sudo apt install apache2 ]
+Install php [sudo apt install php]
+Extract and move the files to /var/www/html/ 
+Configure PHP.ini 
+/etc/php/8.2/apache2/php.ini
+Modify the php.ini change the allow_url_include=on
+
+
+
+To run this lab apache2 is required and php should be installed on your linux machine
+STEP-1: sudo apt install apache2
+STEP-2: sudo apt install php
+STEP-3: Extract the rar and move all the files to /var/www/html
+STEP-4: sudo apache2ctl start
+Now you can visit it from http://localhost

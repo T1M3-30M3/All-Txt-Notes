@@ -1,0 +1,71 @@
+Passive Recon::
+
+* Osint : Maltego, Recon-ng, theHarvester, shodan, metagoofil, searchcode, spiderfoot, babel X
+* Using Search Enigne : Google Dork, shodan.io, hunter.io, hunter.how
+* Terminal Command : nslookup, whois, dig
+* Misc : DNSenum, netcraft and dmistry, Banner Grabbing
+* Automation Tools : SpiderFoot, Recon-ng, TheHarvester  
+
+Google Dork : intitle, allintext, inurl, filetype, ext, intext, site, cache
+
+intitle: "Admin login"
+intitle: "webcamxp 5"
+intitle: "index of" inurl:"ftp"
+
+Commands: nslookup, dig, traceroute, ping, whatweb, whois, wafw00f
+
+ping abc.xyz
+traceroute abc.xyz
+nslookup abc.xyz
+dig abc.xyz
+dig abc.xyz MX
+dig abc.xyz AAAA
+dig abc.xyz NS
+whois abc.xyz
+whatweb abc.xyz
+wafw00f abc.xyz
+
+dnsenum -enum <url>
+dnsenum -f <file> -r <url>
+
+https://sitereport.netcraft.com/
+dmitry --wise google.com x.txt
+
+whatweb <url>
+curl -s -l <url>
+wget -q -S <url>
+
+nc <url> <port>
+HEAD / HTTP/1.0
+
+nikto -h <url>
+dmitry --pb <url>
+
+theHarvester -d abc.xyz -l 500 -b google
+theHarvester -d abc.xyz -l 500 -b sublist3r
+
+ipconfig
+spiderfoot -l <ip>:<port>
+
+Active Recon :
+
+Nmap, nikto, birbuster, dirsearch, ZAP, burp, OpenVas, Nessus
+
+nmap -O <target>
+nmap -sV <target>
+
+nikto -h <target>
+nikto -h <target> -ssl
+nikto -h <target> -Format txt -o x.txt
+
+dirsearch -u example.com
+dirsearch -e php,html,js -u example.com
+dirsearch -e php,html,js -u example.com common.txt
+dirsearch -e php,html,js -u example.com -r
+dirsearch -e php,html,js -u example.com -r -R 3
+dirsearch -e php,html,js -u example.com -t 30
+dirsearch -e php,html,js -u example.com  -i 200l204,400,403 -x 500,501,429
+dirsearch -e php,html,js -u example.com -proxy 127.0.0.1:8080
+dirsearch -e php,html,js -u example.com -o x.txt
+
+Burpsuite : Proxy, Spider, Intruder/Fuzzing, Repeater, Scanenr

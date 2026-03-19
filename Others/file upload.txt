@@ -1,0 +1,6 @@
+File Uploading :
+
+--> Target your Target and find the uploading option if you find thats great
+--> Then try to upload image file and intercept it with burp and save request as a txt file  filename="abc.FUZZ" Content-Type: image/jpeg
+--> ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt
+--> ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt ms <size>

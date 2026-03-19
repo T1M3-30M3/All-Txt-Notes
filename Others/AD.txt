@@ -1,0 +1,23 @@
+Course : https://www.youtube.com/watch?v=H-YfH5ZepQU
+
+Example of some of the object in an Active Directory:
+- User
+- Group 
+- Printer
+- Device
+- Computer
+
+Powershell Command:
+
+Get Their Information : Get-WindowsFeature
+
+Finding IPV4:
+Method 01 : ipconfig | findstr /i "IPv4"
+Method 02 : Open Network and Internet Settings -> Change Adapter Options -> Properties -> IPv4
+
+Adding DNS Server Feature : Install-WindowsFeature -Name DNS -IncludeManagementTools
+
+
+
+
+

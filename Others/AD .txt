@@ -1,0 +1,96 @@
+Course : https://www.udemy.com/course/attacking-and-defending-active-directory/
+
+Active Directory Basics:
+
+Component of AD:
+Domain                 : A logical group of network objects (users, computers, etc.) that share the same AD database and security policies.
+Domain Controller      : A server that hosts the AD database and responds to authentication and authorization requests.
+Trees                  : A hierarchical arrangement of one or more domains that share a contiguous namespace (e.g., child.domain.com).
+Forest                 : The topmost logical container in AD that holds one or more domain trees. All domains in a forest share the same schema and trust each other.
+Organizational Unit    : A container within a domain used to organize users, groups, and computers. Helps delegate administrative control.
+Global Catalog         : A special domain controller that stores a searchable, partial replica of all objects in the forest to speed up queries and logins.
+
+Windows Stores Password:
+
+Default Path : C:\Windows\System32\config\
+
+# Extract hashes: samdump2 SYSTEM SAM > hashes.txt
+# Crack with John: john --format=NT hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt
+# OR crack with Hashcat: hashcat -m 1000 -a 0 hashes.txt /usr/share/wordlists/rockyou.txt
+
+Hash Extractor : https://github.com/Seabreg/pwdump
+
+Powershell:
+
+Get-Service
+Get-Service | Select name
+Get-Process
+
+🔰 Common PowerShell Commands for Active Directory:
+
+| Command                                                             | Description                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------- |
+| `Import-Module ActiveDirectory`                                     | Import the AD module (needed before running AD cmdlets) |
+| `Get-ADUser -Identity username`                                     | Get details of a specific user                          |
+| `Get-ADUser -Filter *`                                              | List all users                                          |
+| `New-ADUser -Name "John Doe"`                                       | Create a new user                                       |
+| `Set-ADUser -Identity john -Title "Manager"`                        | Update user properties                                  |
+| `Enable-ADAccount -Identity john`                                   | Enable a user account                                   |
+| `Disable-ADAccount -Identity john`                                  | Disable a user account                                  |
+| `Unlock-ADAccount -Identity john`                                   | Unlock a user account                                   |
+| `Remove-ADUser -Identity john`                                      | Delete a user                                           |
+| `Get-ADGroup -Filter *`                                             | List all groups                                         |
+| `New-ADGroup -Name "HR" -GroupScope Global -GroupCategory Security` | Create a new AD group                                   |
+| `Add-ADGroupMember -Identity HR -Members john`                      | Add a user to a group                                   |
+| `Remove-ADGroupMember -Identity HR -Members john`                   | Remove a user from a group                              |
+| `Get-ADGroupMember -Identity GroupName`                             | Show all members of a group                             |
+| `Get-ADComputer -Filter *`                                          | List all computers in the domain                        |
+| `Get-ADOrganizationalUnit -Filter *`                                | List all OUs (Organizational Units)                     |
+| `Move-ADObject -Identity john -TargetPath "OU=HR,DC=domain,DC=com"` | Move a user to another OU                               |
+| `Get-ADDomain`                                                      | Show current domain info                                |
+| `Get-ADForest`                                                      | Show forest-wide info                                   |
+
+🔰 File Transfer in Windows — PowerShell, CMD, and Netcat :
+
+🔹 PowerShell:
+# Copy file locally
+Copy-Item -Path "C:\source\file.txt" -Destination "C:\target\"
+
+# Remote copy using PowerShell Remoting
+Invoke-Command -ComputerName REMOTE-PC -ScriptBlock { Copy-Item "C:\source\file.txt" -Destination "C:\target\" }
+
+# Encode file as Base64 for transfer
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("file.txt"))
+
+# Download file from URL
+Invoke-WebRequest -Uri "http://server/file.txt" -OutFile "file.txt"
+
+# Copy file from SMB share
+Copy-Item "\\192.168.1.5\share\file.txt" -Destination "C:\local\"
+
+🔹 CMD:
+# Simple file copy
+copy C:\source\file.txt C:\target\
+
+# Copy folder with all contents
+xcopy C:\source\folder D:\target /E /I /H
+
+# Robust file/folder transfer
+robocopy C:\source D:\target /MIR
+
+🔹 Netcat (nc.exe):
+# On receiver (listening)
+nc.exe -l -p 4444 > received.txt
+
+# On sender (sending file)
+nc.exe 192.168.1.10 4444 < file.txt
+
+# Send a zipped folder
+# Step 1: Compress the folder
+Compress-Archive -Path C:\folder -DestinationPath C:\folder.zip
+
+# Step 2: Send the zip
+nc.exe 192.168.1.10 4444 < C:\folder.zip
+
+
+

@@ -1,0 +1,91 @@
+Basicː
+1. use search option in a file
+2. use grep command
+3. use strings command
+
+cryptoː
+01. www.dcode.fr/
+02. cryptii.com
+03. gchq.github.io/CyberChef
+04. crackstation.net
+05. theblob.org/rot.cgi
+06. https://rot13.com/
+07. https://exif.tools
+08. https://www.urldecoder.org/
+09. www.calcresult.com/misc/cyphers/twin-hex.html
+
+
+forensicsː
+01. use diff tools exampleː diff img1 img2
+binwalk --dd=".*" name.jpg
+md5sum name.jpg
+sha1sum name.jpg
+
+
+
+webː
+git clone https://github.com/iamj0ker/bypass-403
+cd bypass-403
+chmod +x bypass-403.sh
+./bypass-403.sh [ip] [foldername]
+
+
+
+
+ip.addr == 127.0.0.1 [ip filtering]
+ip.src == 127.0.0.1 [source filtering]
+tcp.port == 80 [port filtering]
+http.request.method == GET
+http.request.method == POST	
+tcp.port == 21
+ssh protocol always encrypted
+
+
+
+
+
+Forensics:: 
+https://stegonline.georgeom.net/image
+https://incoherency.co.uk/image-steganography
+https://ncviewer.com/
+https://nraynaud.github.io/webgcode/
+https://codewithrockstar.com/online
+
+
+cryptography::
+for String Reverse :: s[::-1]
+
+
+
+Networking::
+1.Try to export and show that all Objects and Select what you want.
+find ftp details search ftp or ftp-data
+
+
+Web::
+https://www.dcode.fr/javascript-unobfuscator
+system(ls)
+system('cat flag.txt')
+system('cat *')
+php://filter/convert.base64-encode/resource=index.php
+x-Authorised-For: Token
+
+
+
+
+Forensics::
+https://zxing.org/w/decode.jspx
+stegseek name.jpg
+https://29a.ch/photo-forensics/#forensic-magnifier
+
+
+zip2john name.zip > hash.txt
+sudo john hash.txt
+
+dd conv=swap < name > test
+
+
+
+
+
+

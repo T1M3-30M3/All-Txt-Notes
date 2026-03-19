@@ -1,0 +1,414 @@
+GoOsint A collectiom of Cybersecurity, Threat Intelligence and OSINT Resources : https://goosint.com/
+
+A Cyber Security Search Engine For CTF and Bug Bounty : https://hackyx.io/
+
+https://github.com/hisxo/ReconAIzer
+
+https://github.com/Syslifters/OffSec-Reporting
+
+https://wizardzines.com/comics/
+
+https://github.com/SeifElsallamy/Blind-XSS-Manager
+
+https://github.com/MantisSTS/GoCloud
+
+https://exploit-notes.hdks.org/
+
+https://github.com/R0X4R/Parshu
+
+https://github.com/root-tanishq/userefuzz
+
+https://github.com/metlo-labs/metlo
+
+https://nuclei-templates.netlify.app/
+
+https://osv.dev/
+
+https://ossinsight.io/collections/security-tool/
+
+https://urlhaus.abuse.ch/
+
+https://github.com/wallarm/gotestwaf
+
+https://github.com/signorrayan/RedTeam_toolkit
+
+https://github.com/edoardottt/cariddi
+
+https://github.com/ThreatUnknown/jsubfinder
+
+https://github.com/cisagov/RedEye
+
+https://github.com/iamnihal/warf
+
+https://github.com/Idov31/MrKaplan
+
+https://github.com/devXprite/infoooze
+
+https://app.netlas.io/host/
+
+https://github.com/hahwul/mad-metasploit
+
+https://github.com/hansmach1ne/lfimap
+
+https://github.com/blacklanternsecurity/bbot
+
+https://github.com/OWASP/wrongsecrets
+
+https://github.com/hahwul/WebHackersWeapons
+
+https://github.com/t3l3machus/toxssin
+
+https://github.com/GhostTroops/scan4all
+
+https://github.com/thenurhabib/collector
+
+https://github.com/doyensec/inql
+
+https://h.43z.one/ipconverter/
+
+https://pts-project.org/
+
+https://github.com/punk-security/dnsReaper
+
+https://github.com/Mr-Robert0/Logsensor
+
+https://github.com/d4rckh/gorilla
+
+https://github.com/micro-joan/BlackStone
+
+https://www.damnvulnerabledefi.xyz/
+
+https://github.com/c0brabaghdad1/DVPA
+
+https://github.com/0xPugal/SubDomz
+
+https://github.com/oppsec/Pinkerton
+
+https://github.com/xm1k3/cent
+
+https://github.com/m3n0sd0n4ld/GooFuzz
+
+https://inteltechniques.com/tools/
+
+https://github.com/xnl-h4ck3r/xnLinkFinder
+
+https://github.com/projectdiscovery/tlsx
+
+https://github.com/veo/vscan
+
+https://github.com/bigb0sss/RedTeam-OffensiveSecurity
+
+https://viz.greynoise.io/cheat-sheet/
+
+https://github.com/GamehunterKaan/AutoPWN-Suite
+
+https://github.com/0xDexter0us/Scavenger
+
+https://github.com/t3l3machus/toxssin
+
+https://github.com/sepehrdaddev/zap-scripts
+
+https://github.com/hakluke/hakoriginfinder
+
+https://github.com/volkandindar/agartha
+
+https://github.com/abdulkadir-gungor/JPGtoMalware
+
+https://cheatsheetseries.owasp.org/Glossary.html
+
+https://exposure.shodan.io/#/
+
+https://0x1.gitlab.io/pentesting/Red-Teaming-Toolkit/
+
+https://nuclei-templates.netlify.app/
+
+https://github.com/Li4n0/revsuit
+
+https://github.com/Li4n0/revsuit
+
+https://github.com/zhzyker/dismap
+
+https://github.com/RistBS/Awesome-RedTeam-Cheatsheet/
+
+https://github.com/Raghavd3v/CRLFsuite
+
+https://archive.org/details/OWASP
+
+https://cvetrends.com/
+
+https://xss.pwnfunction.com/
+
+https://start.me/p/DPYPMz/the-ultimate-osint-collection
+
+https://github.com/ninoseki/mihari
+
+https://github.com/p0dalirius/ipsourcebypass
+
+https://github.com/OWASP/DevSecOpsGuideline
+
+https://github.com/emalderson/ThePhish
+
+https://github.com/API-Security/APIKit
+
+https://apackets.com/
+
+https://github.com/aquasecurity/kube-hunter/
+
+https://github.com/Yavuzlar/VulnLab
+
+https://github.com/authcov/authcov
+
+https://github.com/Karmaz95/crimson
+
+https://github.com/ethicalhackingplayground/TProxer
+
+https://houdini.secsi.io/
+
+https://tools.intigriti.io/redirector/
+
+https://github.com/projectdiscovery/nuclei-burp-plugin
+
+https://github.com/Zeyad-Azima/Offensive-Resources
+
+https://github.com/Ostorlab/oxo
+
+https://github.com/Bandit-HaxUnit/haxunit
+
+https://github.com/cyprosecurity/API-SecurityEmpire/
+
+https://www.revshells.com/
+
+https://github.com/0xDexter0us/Log4J-Scanner/
+
+https://www.ncsc.admin.ch/govcert
+
+https://amsi.fail/
+
+https://github.com/bigb0sss/RedTeam-OffensiveSecurity
+
+https://github.com/stefan2200/aparoid
+
+https://0xffsec.com/handbook/
+
+https://github.com/vavkamil/awesome-bugbounty-tools/
+
+https://github.com/Sunlight-Rim/SQLbit
+
+https://many-passwords.github.io/
+
+https://github.com/1modm/petereport
+
+https://github.com/knassar702/lorsrf
+
+https://github.com/synacktiv/HopLa
+
+https://wizardzines.com/comics/
+
+https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp
+
+https://github.com/DamnVulnerableCryptoApp/DamnVulnerableCryptoApp
+
+https://github.com/mentebinaria/retoolkit#reverse-engineers-toolkit
+
+https://nmap.online/
+
+https://github.com/edoardottt/scilla
+
+https://search.brave.com/
+
+https://tidepool.atlassian.net/wiki/spaces/PUBSEC/pages/1405354039/Security+Disclosure+Program
+
+https://github.com/SKVNDR/FastDork
+
+https://github.com/wtsxDev/reverse-engineering?tab=readme-ov-file#courses
+
+https://cryptohack.org/
+
+https://hoppscotch.io/
+
+https://github.com/HashPals/Search-That-Hash
+
+https://tinyxss.terjanq.me/
+
+https://securityzines.com/flyers/printable/hrs.html
+
+https://github.com/gnothiseautonlw/burp-shell-fwd-lfi
+
+https://book.hacktricks.xyz/
+
+https://www.kali.org/tools/
+
+https://github.com/truerandom/crawleet
+
+https://www.pethuraj.com/blog/bigbasket-bug-bounty-writeup/
+
+https://explainshell.com/
+
+https://github.com/sundowndev/hacker-roadmap
+
+https://github.com/pry0cc/axiom
+
+https://github.com/iinc0gnit0/RVuln/blob/master/installation.md
+
+https://github.com/iinc0gnit0/RVuln
+
+https://infocon.org/
+
+https://github.com/Securityinfos/Black-Friday-Deals
+
+https://www.zoomeye.hk/
+
+https://domsignal.com/toolbox
+
+https://www.youtube.com/watch?v=PMKnPaGWxtg
+
+https://docs.google.com/presentation/d/1gK2vYdvwFn8r8dSawIWRRIF4yDF4qmMY2qEelS1M7rI/edit#slide=id.p
+
+https://github.com/anshumanpattnaik/http-request-smuggling
+
+https://github.com/portswigger/scope-monitor
+
+https://justgetmydata.com/
+
+https://www.nimbox.co.uk/vulnerability-reporting/
+
+https://github.com/DontPanicO/jwtXploiter/wiki/Common-Usage
+
+https://github.com/DontPanicO/jwtXploiter/wiki/Installation
+
+https://github.com/DontPanicO/jwtXploiter
+
+https://www.avast.com/en-in/ransomware-decryption-tools#pc
+
+https://blog.blockmagnates.com/server-side-template-injection-payloads-895c6fc273e4
+
+https://leak.sx/
+
+https://javierolmedo.github.io/OWASP-Calculator/
+
+https://github.com/PortSwigger/autowasp
+
+https://bazaar.abuse.ch/verify-ua/
+
+https://twitter.com/i/flow/login?newtwitter=true
+
+https://haveibeenpwned.com/
+
+https://www.pethuraj.com/blog/
+
+https://application.security/free/owasp-top-10
+
+https://shellgenerator.github.io/
+
+https://weibell.github.io/reverse-shell-generator/
+
+https://www.revshells.com/
+
+https://termshark.io/
+
+https://www.pethuraj.com/blog/
+
+https://breakdev.org/pwndrop/
+
+https://github.com/santoru/shcheck
+
+https://phonebook.cz/
+
+
+https://gisanddata.maps.arcgis.com/apps/dashboards/bda7594740fd40299423467b48e9ecf6
+
+https://www.gruppotim.it/en.html
+
+https://owasp.org/www-project-web-security-testing-guide/assets/archive/OWASP_Testing_Guide_v4.pdf
+
+https://www.bbc.com/backstage/security-disclosure-policy/acknowledgements
+
+https://github.com/bit4woo/domain_hunter
+
+https://github.com/r0075h3ll/Oralyzer
+
+https://github.com/truerandom/crawleet
+
+https://exploit-notes.hdks.org/
+
+
+Collection of Penetration Testing Resources, Cheat sheets, Mind map & Tools - [1500+ Resources, 2300+ Tools]
+• 𝗔𝘄𝗲𝘀𝗼𝗺𝗲-𝗣𝗲𝗻𝘁𝗲𝘀𝘁 𝗖𝗼𝗹𝗹𝗲𝗰𝘁𝗶𝗼𝗻: http://tiny.cc/hjdfhjer
+• 𝗣𝗘𝗡𝗧𝗘𝗦𝗧𝗜𝗡𝗚-𝗕𝗜𝗕𝗟𝗘 [𝗖𝗼𝗹𝗹𝗲𝗰𝘁𝗶𝗼𝗻 𝗼𝗳 𝗩𝗮𝗿𝗶𝗼𝘂𝘀 𝗣𝗲𝗻𝘁𝗲𝘀𝘁 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 & 𝗧𝗼𝗼𝗹𝘀] [𝟭𝟱𝟬𝟬+ 𝗔𝗿𝘁𝗶𝗰𝗹𝗲𝘀] : http://tiny.cc/hr4Io
+• 𝗣𝗲𝗻𝘁𝗲𝘀𝘁-𝘄𝗶𝗸𝗶 : http://tiny.cc/56oO9
+• 𝗣𝗲𝗻𝗲𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝗧𝗲𝘀𝘁𝗶𝗻𝗴 - 𝗦𝗲𝘁𝘁𝗶𝗻𝗴 𝗨𝗽 𝘁𝗵𝗲 𝗟𝗮𝗯 𝗘𝗻𝘃𝗶𝗿𝗼𝗻𝗺𝗲𝗻𝘁 : http://tiny.cc/jf57Ll
+• 𝗣𝗘𝗡𝗘𝗧𝗥𝗔𝗧𝗜𝗢𝗡 𝗧𝗘𝗦𝗧𝗜𝗡𝗚 𝗣𝗥𝗔𝗖𝗧𝗜𝗖𝗘 𝗟𝗔𝗕 [𝗠𝗜𝗡𝗗𝗠𝗔𝗣]: http://tiny.cc/mind-map
+• 𝗣𝗲𝗻𝘁𝗲𝘀𝘁𝗶𝗻𝗴 𝗖𝗵𝗲𝗮𝘁𝘀𝗵𝗲𝗲𝘁: http://tiny.cc/ctsht
+• 𝗣𝗲𝗻𝗲𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝗧𝗲𝘀𝘁𝗶𝗻𝗴 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗧𝗼𝗼𝗹𝘀 𝗟𝗶𝘀𝘁 [𝟮𝟯𝟬𝟬+ 𝗧𝗼𝗼𝗹𝘀]: http://tiny.cc/jdf7ht
+
+This curated list is for anyone wishing to learn Penetration Testing.
+∙ 𝗣𝗲𝗻𝗲𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝘁𝗲𝘀𝘁𝗶𝗻𝗴 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 & 𝘁𝗼𝗼𝗹𝘀 : https://lnkd.in/fE3y_J3
+∙ 𝗖𝗼𝗹𝗹𝗲𝗰𝘁𝗶𝗼𝗻 𝗼𝗳 𝗮𝘄𝗲𝘀𝗼𝗺𝗲 𝗽𝗲𝗻𝗲𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝘁𝗲𝘀𝘁𝗶𝗻𝗴 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 : https://lnkd.in/fGuJnbf
+∙ 𝗪𝗲𝗯 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗣𝗲𝗻𝘁𝗲𝘀𝘁𝗶𝗻𝗴 : https://lnkd.in/fZrtWu6
+∙ [𝟱𝟬𝟬+] 𝗟𝗶𝗻𝗸𝘀 𝗳𝗼𝗿 𝗣𝗲𝗻𝘁𝗲𝘀𝘁𝗲𝗿𝘀 [𝗕𝗹𝗼𝗴] : https://lnkd.in/fGGyPyr
+∙ 𝗖𝗼𝗹𝗹𝗲𝗰𝘁𝗶𝗼𝗻 𝗼𝗳 𝗰𝗵𝗲𝗮𝘁𝘀𝗵𝗲𝗲𝘁𝘀 𝘂𝘀𝗲𝗳𝘂𝗹 𝗳𝗼𝗿 𝗽𝗲𝗻𝘁𝗲𝘀𝘁𝗶𝗻𝗴 : https://lnkd.in/fFyX67j
+∙ 𝗣𝗲𝗻𝗲𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝘁𝗲𝘀𝘁𝗶𝗻𝗴 𝘁𝗲𝘀𝘁 𝗰𝗮𝘀𝗲𝘀 [𝗢𝗪𝗔𝗦𝗣] : https://lnkd.in/fq6imnb
+∙ 𝗽𝗲𝗻𝘁𝗲𝘀𝘁-𝘁𝗼𝗼𝗹𝘀 : https://lnkd.in/fnuv8hv
+∙ 𝗣𝗔𝗞𝗨𝗥𝗜 𝗣𝗲𝗻𝘁𝗲𝘀𝘁 𝗙𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸 : https://lnkd.in/fCed-jV
+
+
+JWT References: 
+» https://lnkd.in/g-qrTVp
+» https://lnkd.in/gRKwtPc
+» https://lnkd.in/gNhg9U2
+» https://lnkd.in/gDbpsyE
+
+🔺Some alternatives include:
+▪️ https://lnkd.in/gR5bU7dP
+▪️ https://lnkd.in/gRi35REN
+▪️ https://cirt.net/passwords
+▪️ https://lnkd.in/gR9XVqJe
+▪️ https://lnkd.in/gZVGfwXc
+
+#DataBreach Search Engines
+🔍 Some of the best data breach search engines I've come across.
+∙ Intelligence X - https://intelx.io
+∙ leakcheck - https://leakcheck.io
+∙ weleakinfo - https://weleakinfo.to
+∙ leakpeek - https://leakpeek.com
+∙ snusbase - https://snusbase.com
+∙ GlobaLeaks - https://lnkd.in/gJqT83f
+∙ Firefox Monitor - https://lnkd.in/gW7EqXr
+∙ haveibeenpwned? - https://lnkd.in/gMKpTef
+∙ ScatteredSecrets - https://lnkd.in/gZM6-7j
+∙ AmIBreched - https://amibreached.com
+∙ Leak Lookup - https://leak-lookup.com
+∙ Breach Checker - https://breachchecker.com
+∙ RSLookup - https://rslookup.com
+
+learn Penetration Testing:
+∙ 𝗣𝗲𝗻𝗲𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝘁𝗲𝘀𝘁𝗶𝗻𝗴 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 & 𝘁𝗼𝗼𝗹𝘀 : https://lnkd.in/fE3y_J3
+∙ 𝗖𝗼𝗹𝗹𝗲𝗰𝘁𝗶𝗼𝗻 𝗼𝗳 𝗮𝘄𝗲𝘀𝗼𝗺𝗲 𝗽𝗲𝗻𝗲𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝘁𝗲𝘀𝘁𝗶𝗻𝗴 𝗿𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 : https://lnkd.in/fGuJnbf
+∙ 𝗪𝗲𝗯 𝗔𝗽𝗽𝗹𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗣𝗲𝗻𝘁𝗲𝘀𝘁𝗶𝗻𝗴 https://lnkd.in/fZrtWu6
+∙ [𝟱𝟬𝟬+] 𝗟𝗶𝗻𝗸𝘀 𝗳𝗼𝗿 𝗣𝗲𝗻𝘁𝗲𝘀𝘁𝗲𝗿𝘀 [𝗕𝗹𝗼𝗴] https://lnkd.in/fGGyPyr
+∙ 𝗖𝗼𝗹𝗹𝗲𝗰𝘁𝗶𝗼𝗻 𝗼𝗳 𝗰𝗵𝗲𝗮𝘁𝘀𝗵𝗲𝗲𝘁𝘀 𝘂𝘀𝗲𝗳𝘂𝗹 𝗳𝗼𝗿 𝗽𝗲𝗻𝘁𝗲𝘀𝘁𝗶𝗻𝗴 : https://lnkd.in/fFyX67j
+∙ 𝗣𝗲𝗻𝗲𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝘁𝗲𝘀𝘁𝗶𝗻𝗴 𝘁𝗲𝘀𝘁 𝗰𝗮𝘀𝗲𝘀 [𝗢𝗪𝗔𝗦𝗣] : https://lnkd.in/fq6imnb
+∙ 𝗽𝗲𝗻𝘁𝗲𝘀𝘁-𝘁𝗼𝗼𝗹𝘀 :  https://lnkd.in/fnuv8hv
+∙ 𝗣𝗔𝗞𝗨𝗥𝗜 𝗣𝗲𝗻𝘁𝗲𝘀𝘁 𝗙𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸  : https://lnkd.in/fCed-jV
+
+Learning Ethical Hacking and Penetration Testing.
+• 𝗔𝘄𝗲𝘀𝗼𝗺𝗲 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 𝗙𝗼𝗿 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗛𝗮𝗰𝗸𝗶𝗻𝗴 & 𝗣𝗲𝗻𝘁𝗲𝘀𝘁𝗶𝗻𝗴 : http://tiny.cc/s5Ig
+• 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀-𝗳𝗼𝗿-𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴-𝗛𝗮𝗰𝗸𝗶𝗻𝗴 : http://tiny.cc/7OiG
+• 𝗘𝘁𝗵𝗶𝗰𝗮𝗹 𝗛𝗮𝗰𝗸𝗶𝗻𝗴 & 𝗖𝘆𝗯𝗲𝗿 𝘀𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗕𝗶𝗯𝗹𝗲 : http://tiny.cc/0wGg
+• 𝗖𝘆𝗯𝗲𝗿 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 : http://tiny.cc/m6Ig
+• 𝗔𝘄𝗲𝘀𝗼𝗺𝗲 𝗛𝗮𝗰𝗸𝗶𝗻𝗴 𝗥𝗲𝘀𝗼𝘂𝗿𝗰𝗲𝘀 : http://tiny.cc/pqJg
+• 𝗲𝘁𝗵𝗶𝗰𝗮𝗹-𝗵𝗮𝗰𝗸𝗶𝗻𝗴-𝗿𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 : http://tiny.cc/IqYg
+• 𝗙𝗿𝗲𝗲 𝗘𝘁𝗵𝗶𝗰𝗮𝗹 𝗛𝗮𝗰𝗸𝗶𝗻𝗴 𝗲𝗕𝗼𝗼𝗸𝘀 : http://tiny.cc/b6Rg
+
+🌐 Reverse Shell Generators, Online hosted. No installation required.
+» https://www.revshells.com/
+» https://lnkd.in/g_fYQai
+» https://lnkd.in/gTFeV5M
+
+Burp Collaborator Alternative:
+https://app.interactsh.com/#/
+https://requestrepo.com/
+
+
+
+

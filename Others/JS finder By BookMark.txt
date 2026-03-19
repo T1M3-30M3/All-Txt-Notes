@@ -1,0 +1,33 @@
+This regex is made by our great Ethical Hacker Muhammad Usman aka HackerSSG
+
+
+
+Open your browser’s Bookmarks Manager.
+
+Create a new bookmark named: Extract Endpoints Type 1
+
+Paste the following code into the URL field of the bookmark:
+
+javascript:(function(){var scripts=document.getElementsByTagName("script"),regex=/(?<=(\"|\%27|\`))\/[a-zA-Z0-9_?&=\/\-\#\.]*(?=(\"|\'|\%60))/g;const%20results=new%20Set;for(var%20i=0;i<scripts.length;i++){var%20t=scripts[i].src;""!=t&&fetch(t).then(function(t){return%20t.text()}).then(function(t){var%20e=t.matchAll(regex);for(let%20r%20of%20e)results.add(r[0])}).catch(function(t){console.log("An%20error%20occurred:%20",t)})}var%20pageContent=document.documentElement.outerHTML,matches=pageContent.matchAll(regex);for(const%20match%20of%20matches)results.add(match[0]);function%20writeResults(){results.forEach(function(t){document.write(t+"<br>")})}setTimeout(writeResults,3e3);})()
+
+
+Open your browser’s Bookmarks Manager.
+Create a new bookmark named: Extract Endpoints Type 2
+Paste the following code into the URL field of the bookmark:
+
+javascript:(function(){  const regex = /(?<=(["%27`]))(https?:\/\/|\/)[^"%27`<>\\\s]+(?=(["%27`]))/g;  const jsFiles = new Set();  const apiPaths = new Set();  const s3Buckets = new Set();  const otherPaths = new Set();  const scripts = document.getElementsByTagName("script");  for (let i = 0; i < scripts.length; i++) {    const src = scripts[i].src;    if (src) categorize(src);    fetch(src)      .then(res => res.text())      .then(text => {        const matches = text.matchAll(regex);        for (const match of matches) {          categorize(match[0]);        }      })      .catch(err => console.warn("Fetch error:", err));  }  const htmlMatches = document.documentElement.outerHTML.matchAll(regex);  for (const match of htmlMatches) {    categorize(match[0]);  }  function categorize(url) {    const lower = url.toLowerCase();    if (lower.startsWith("http://") || lower.startsWith("https://")) {      if (lower.endsWith(".js")) jsFiles.add(url);      else if (lower.includes("/api")) apiPaths.add(url);      else if (lower.includes("s3.amazonaws.com") || lower.includes(".s3.") || lower.includes(".s3-")) s3Buckets.add(url);      else otherPaths.add(url);    }  }  function writeSection(win, title, dataSet, emptyMessage) {    win.document.write(`<h2 style="font-family:monospace;">${title}</h2><pre>`);    if (dataSet.size > 0) {      Array.from(dataSet).sort().forEach(url => win.document.write(url + '\n'));    } else {      win.document.write(`❌ ${emptyMessage}\n`);    }    win.document.write('</pre>');  }  function showResults() {    const win = window.open('', '_blank');    writeSection(win, '📦 JavaScript Files (.js)', jsFiles, 'No JavaScript files found');    writeSection(win, '🧪 API Endpoints (/api)', apiPaths, 'No API URLs found');    writeSection(win, '🔣 S3 Bucket URLs', s3Buckets, 'No S3 Bucket URLs found');    writeSection(win, '🌐 Other URLs / Paths', otherPaths, 'No other URLs found');  }  setTimeout(showResults, 4000);})()
+
+
+
+Add a third bookmark named: Find Secret In Js Files
+Paste the following code into the URL field:
+
+
+javascript:(function() {  const jsRegex = /^https?:\/\/.*\.js$/i;  const sensitiveRegex = /(-password|basic-payment-profiles|_password|aws_|aws-|-secret|_secret|-key|_key|-token|_token|bearer|authorization).{0,160}/gi;  const scripts = Array.from(document.getElementsByTagName("script"))    .map(s => s.src)    .filter(src => jsRegex.test(src));  if (scripts.length === 0) {    alert("❌ No external JS files found starting with http/https.");    return;  }  const win = window.open('', '_blank');  win.document.write(`    <html>      <head>        <title>Sensitive Data in JS</title>        <style>          body { font-family: Consolas, monospace; background: #1e1e1e; color: #d4d4d4; padding: 10px; }          .url { color: #ffd700; font-weight: bold; }          .match { color: #00ff7f; margin-left: 20px; }          .error { color: #ff4c4c; }        </style>      </head>      <body>        <h2>🔍 Scanning External JS Files for Sensitive Info</h2>        <pre id="results"></pre>      </body>    </html>`);  const resultContainer = () => win.document.getElementById("results");  scripts.forEach(js_url => {    fetch(js_url)      .then(res => res.text())      .then(content => {        const matches = content.match(sensitiveRegex);        if (matches && matches.length > 0) {          resultContainer().innerHTML += `<div class="url">📄 ${js_url}</div>`;          matches.forEach(m => {            const sanitized = m.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");            resultContainer().innerHTML += `<div class="match">${sanitized}</div>`;          });          resultContainer().innerHTML += `<br>`;        }      })      .catch(err => {        resultContainer().innerHTML += `<div class="error">❌ Error loading ${js_url}: ${err}</div><br>`;      });  });})()
+
+
+https://chromewebstore.google.com/detail/endpoint-extractor/jpkbcgdafcpbnjhdaecnakgjoijiecph?pli=1
+
+
+
+

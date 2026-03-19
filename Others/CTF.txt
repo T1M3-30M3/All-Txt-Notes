@@ -1,0 +1,63 @@
+== what is CTF
+== Types of CTF
+== Importance of CTF
+== Catagory of CTF
+
+== What is CTF??
+
+CTF is computer security is an exercise in which participants attempts to find text strings call flags which are security hidden in purposefully-vulnerable programs or website
+
+it is legal hacking Content
+it was first developed in 1996 at DEFCON.
+
+== Types of CTF
+
+Jeopardy CTF
+Attack and Defence CTF
+Mixed
+
+== Importance of CTF content
+
+Increase the Hacking knowledge
+Create hqacking bridze and network
+help to improve raise your thinking knowledge
+Job
+Increase Repotation
+
+
+== Jeopardy CTF Categories
+
+MISC. Crypto, Steg, Forensics, Web, Reverse Engineering, Hardware Hacking, AI Security, Mobile Application Hacking, Osint
+
+
+
+== National CTF content
+
+National Cyber Drill = December
+Inter University Cyber Drill = August
+Flag HUnt = October
+Sust CTF Content = January
+DU CTF Contest = November
+Buet CTF Contest = July
+DIU CTF Contest = October
+
+
+== How to Learn CTF
+
+Practice and practice[HTB, THM, LD, CD, CTFtime]
+Read and Understanding the Writeups
+Create a team
+Collab with other Team
+Follow the Hacking Community
+Collab with Seniors
+Blog, Tutorials, POC
+
+
+== Assigments
+
+Install Kali Linux in Local Machine
+Practice Linux command
+Open your account in PicoCTF and THM
+Describe the uses: ls strings mkdir cat cd nano
+Collect your National CTF Contest Footfrint
+Share your Opinion about the national CTF Content

@@ -1,0 +1,97 @@
+Finding Subdomain Via crt.sh:::
+
+curl 'https://crt.sh/?q=%.'$1'&output=json' | jq -r '.[].name_value' | grep -v '*' | sort | uniq
+
+curl -s "https://crt.sh/?q=%25.example.com&output=json" | jq -r '.[].name_value' | grep -v '\*' | sort -u
+
+curl "https://crt.sh/?q=tesla.com&output=json" | jq -r '.[].name_value' | grep -v '*' | sort | uniq
+
+curl -s "https://crt.sh/?q=%25.HOST&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
+
+curl 'https://crt.sh/?q=%.google.com&output=json' | jq -r '.[].name_value' | grep -v '*' | sort | uniq
+
+curl -s 'https://crt.sh/?q=%.google.com&output=json' | jq -r '.[].name_value' | grep -v '\*' | sort -u | xargs -n1 dig +short | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u
+
+curl -s 'https://crt.sh/?q=%.google.com&output=json' | jq -r '.[].name_value' | grep -v '\*' | sort -u | while read domain; do ip=$(dig +short "$domain" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | head -n1); [[ -n "$ip" ]] && echo "$domain - $ip"; done
+
+
+Subdomain Finder Online:
+https://pentest-tools.com/information-gathering/find-subdomains-of-domain
+https://subdomainfinder.c99.nl/
+https://osint.sh/subdomain/
+https://hackertarget.com/find-dns-host-records/
+https://www.virustotal.com/gui/home/upload
+https://chaos.projectdiscovery.io/
+https://github.com/zorox0x/chaospy
+
+sublist3r -d example.com
+amass enum -d example.com
+assetfinder --subs-only example.com
+subfinder -d example.com
+findomain -t example.com
+python3 knockpy.py example.com
+dnsrecon -d example.com
+fierce -dns example.com
+dnsenum example.com
+
+python chaospy.py -h
+python chaospy.py -list
+python chaospy.py -download uber
+python chaospy.py --download-new
+python chaospy.py --list-bugcrowd 
+python chaospy.py --list-hackerone
+python chaospy.py --download-all 
+
+nslookup -type=A ewubd.edu
+nslookup -type=AAAA ewubd.edu
+nslookup -type=cname ewubd.edu
+nslookup -type=ns ewubd.edu
+nslookup -type=mx ewubd.edu
+nslookup -type=ptr ewubd.edu
+nslookup -type=soa ewubd.edu
+nslookup -type=srv ewubd.edu
+nslookup -type=txt ewubd.edu
+nslookup -type=any ewubd.edu
+
+ping 10.10.10.10
+ping -c 6 10.10.10.10
+fping -a -g 10.10.10.10 2> /dev/null
+
+cat limeurl.txt | grep ".js" | tee limejs.txt
+katana -list abc.xyz -jc -silent | grep ".js$" > katana.txt
+
+cat domains.txt | getjs
+cat domains.txt | subjs
+cat urls.txt | subjs
+subjs -i urls.txt
+cat hosts.txt | gau | subjs
+
+httpx -l limejs.txt -fc 404 -o live.txt
+cat live.txt | sudo waybackurls > urls.txt
+
+https://github.com/securi3ytalent/regexHunter
+
+# Requires SecretFinder installed
+mkdir -p output && while read -r url; do
+  fname=$(echo "$url" | sed 's/[^a-zA-Z0-9]/_/g')
+  python3 /full/path/to/SecretFinder/SecretFinder.py -i "$url" -o cli > output/"$fname".txt
+done < js.txt
+
+# Extract JS from URLs in gau, wayback, etc.
+gau target.com | grep ".js" | uniq | sort > alljs.txt
+
+# Run LinkFinder on all collected JS
+mkdir jslinks && while read -r js; do
+  name=$(echo "$js" | sed 's/[^a-zA-Z0-9]/_/g')
+  python3 linkfinder.py -i "$js" -o cli > jslinks/"$name".txt
+done < alljs.txt
+
+
+
+
+
+
+
+
+
+

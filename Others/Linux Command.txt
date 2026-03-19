@@ -1,0 +1,499 @@
+ls : List the files and directories in the current directory
+
+ls -l	List files in long format
+ls -a	List all files, including hidden files
+ls -lh	List files in long format with human-readable file sizes
+ls -R	Recursively list all subdirectories
+
+cd : Change the current directory to the user's home directory
+
+cd			Change the current directory to the user's home directory	
+cd /path/to/directory	Change the current directory to a specific directory
+cd ..			Move up one level in the directory structure
+cd -			Change the current directory to the previous directory
+
+
+mkdir : Create a new directory
+
+mkdir directory			Create a directory with the given name in the current directory
+mkdir -p /path/to/directory	Create a directory along with its parent directories
+mkdir -m 777 directory		Create a directory with the given permissions
+
+
+grep : Searches for a specific pattern in a file or input
+
+grep "pattern" file.txt			Search for the pattern in a specific file
+grep -r "pattern" /path/to/directory	Search for the pattern in all files in the given directory and its subdirectories
+cat file.txt | grep "pattern"		Search for the pattern in the output of a command
+
+
+touch : Create a new empty file or update modification and access timestamps of an existing file
+
+touch file.txt		Create a new empty file with the given name
+touch -a file.txt	Update only the access timestamp of the file
+touch -m file.txt	Update only the modification timestamp of the file
+
+cp : Copy files and directories
+
+cp file.txt /path/to/destination		Copy a file to a specific directory
+cp -r directory /path/to/destination		Copy a directory to a specific directory
+cp -a source destination			Preserve file attributes and permissions while copying
+cp file1.txt file2.txt /path/to/destination	Copy multiple files to a specific directory
+
+rm : Delete files and directories
+
+rm file.txt	Delete a file
+rm -r directory	Delete a directory and its contents
+rm -f file.txt	Delete a file without prompting for confirmation
+rm -i file.txt	Delete a file and prompt for confirmation before deleting
+
+
+mv : Move or rename files and directories
+
+mv file.txt /path/to/destination	Move a file to a specific directory
+mv directory /path/to/destination	Move a directory to a specific directory
+mv file.txt newfile.txt			Rename a file
+mv -i file.txt /path/to/destination	Move a file and prompt for confirmation before overwriting
+
+pwd : Show the current working directory
+
+pwd	Show the current working directory
+pwd -P	Show the physical current working directory (all symbolic links resolved)
+pwd -L	Show the logical current working directory (the path without symbolic links)
+
+
+cat : Concatenate and display the contents of files
+
+cat file1			Display the contents of file1
+cat file1 file2 file3		Display the contents of file1, file2 and file3
+cat file1 > newfile		Redirect the contents of file1 to create a new file named newfile
+cat file1 >> existingfile	Append the contents of file1 to an existing file named existingfile
+
+less : View the contents of a file one screen at a time
+
+less file1	View the contents of file1 one screen at a time
+less +10 file1	Start viewing the contents of file1 from line number 10
+ls -l | less	Display the output of ls command one screen at a time
+
+
+more : View the contents of a file one screen at a time
+
+more file1	View the contents of file1 one screen at a time
+more +10 file1	Start viewing the contents of file1 from line number 10
+ls -l | more	Display the output of ls command one screen at a time
+
+whoami : Show the username of the current user	
+
+sudo : Execute a command as the superuser (root user)
+
+sudo command	Execute the given command as root user
+sudo -i		Log in as the superuser (root user) and execute the shell
+sudo su		Switch to the superuser (root user) account
+
+
+find : Search for files and directories in a directory hierarchy
+
+find directory/ -name "filename"		Find all files with the given name in the specified directory
+find directory/ -type f -mtime +7 -delete	Delete all files in the specified directory that are older than 7 days
+find directory/ -type d -empty -delete		Delete all empty directories in the specified directory
+
+du : Estimate file space usage
+
+du -sh *		Display the total size of all files and directories in the current directory
+du -sh directory/	Display the total size of the specified directory
+du -sh directory/*	Display the total size of all files and directories in the specified directory
+
+head : Output the first part of files
+
+head file.txt		Display the first 10 lines of the specified file
+head -n 20 file.txt	Display the first 20 lines of the specified file
+head -c 100 file.txt	Display the first 100 bytes of the specified file
+
+tail : Displays the last part of a file
+
+tail filename.txt	Display the last 10 lines of filename.txt
+tail -n 20 filename.txt	Display the last 20 lines of filename.txt
+tail -f filename.txt	Displays the last 10 lines of filename.txt and waits for new data to be appended to the file
+
+tar : Compresses and archives files
+
+tar -cvf archive.tar file1.txt file2.txt	Create a tar archive of file1.txt and file2.txt
+tar -xvf archive.tar				Extracts the files from archive.tar
+tar -czvf archive.tar.gz 			folder	Create a gzipped tar archive of folder
+
+
+chmod : Changes the permissions of a file or directory
+
+chmod 777 file.txt	Gives read, write and execute permissions to the owner, group and others on file.txt
+chmod u+x file.txt	Adds executable permission for the owner of file.txt
+chmod 644 file.txt	Gives read and write permissions to the owner and read permissions to the group and others on file.txt
+
+chown: Change the ownership of files and directories
+
+chown user:group file		Change the ownership of a file to a specific user and group
+chown user:group directory/	Change the ownership of a directory and its contents to a specific user and group
+chown -R user:group directory/	Recursively change the ownership of a directory and its contents to a specific user and group
+
+kill : Terminate running processes
+
+kill process_id		Terminate a process with the given process ID
+killall process_name	Terminate all processes with the given name
+kill -9 process_id	Forcefully terminate a process with the given process ID
+
+top : Display and manage running processes
+
+top			Display a list of running processes, sorted by CPU usage
+top -u username		Display a list of running processes for a specific user
+top -p process_id	Display information about a specific process with the given process ID
+
+
+htop : Interactive process viewer
+
+htop			Display a list of running processes, sorted by CPU usage
+htop -u username	Display a list of running processes for a specific user
+htop -p process_id	Display information about a specific process with the given process ID
+
+ping : Send ICMP ECHO_REQUEST packets to network hosts
+
+ping hostname			Send ICMP ECHO_REQUEST packets to the specified hostname or IP address
+ping -c count hostname		Send a specified number of packets to the specified hostname or IP address
+ping -i interval hostname	Send packets at a specified interval (in seconds) to the specified hostname or IP address
+
+
+wget : Download files from the web
+
+wget URL		Download the file at the specified URL
+wget -O filename URL	Download the file at the specified URL and save it with the specified filename
+wget -r URL		Recursively download all files linked from the specified URL
+
+
+history : Show a list of previously executed commands
+
+history		Show the full history of executed commands
+history n	Show the last n executed commands
+
+
+man : Display the manual page for a command	
+
+man command	Display the manual page for the specified command
+man -k keyword	Search for manual pages containing the specified keyword
+
+
+zip : Compress files into a zip archive
+
+zip archive.zip file1 file2 dir1	Create a new zip archive containing file1, file2, and dir1
+zip -r archive.zip dir1			Create a new zip archive containing the contents of dir1 recursively
+zip -u archive.zip file1		Add file1 to an existing zip archive or update it if it already exists
+
+
+unzip : Extract files from a ZIP archive
+
+unzip archive.zip		Extract all files from the archive
+unzip archive.zip file.txt	Extract a specific file from the archive
+unzip -l archive.zip		List the contents of the archive
+
+
+echo : Print a string or value to the terminal
+
+echo "Hello, world!"		Print the string "Hello, world!" to the terminal
+echo $PATH			Print the value of the PATH environment variable to the terminal
+echo -e "Line 1\nLine 2"	Print a string with a newline character
+
+
+hostname : Display the system's hostname
+
+hostname				Display the system's hostname
+hostname -I				Display the system's IP address
+hostnamectl set-hostname newhostname	Set the system's hostname to "newhostname"
+
+
+useradd : Create a new user account
+
+useradd username		Create a new user account with the given username
+useradd -m username		Create a new user account with the given username and create a home directory for the user
+useradd -g groupname username	Create a new user account with the given username and add the user to the specified group
+
+
+userdel : Delete a user account
+
+userdel username	Delete the user account with the given username
+userdel -r username	Delete the user account with the given username and remove the user's home directory and mail spool
+
+su : Switch to another user account
+
+su username	Switch to the specified user account
+su -		Switch to the root user account
+
+clear : Clear the terminal screen
+
+export : Set environment variables
+
+export VAR=value	Set the value of the environment variable VAR to "value"
+export VAR		Display the value of the environment variable VAR
+
+
+apt : Advanced Package Tool
+
+apt update			Update the package list from the repositories
+apt upgrade			Upgrade all installed packages to the latest versions
+apt install package_name	Install a package from the repositories
+apt remove package_name		Remove a package from the system
+apt search search_term		Search for a package in the repositories
+
+pacman : Package manager for Arch Linux
+
+pacman -Sy		Update the package database
+pacman -S package_name	Install a package
+pacman -Syu		Upgrade all installed packages
+pacman -Q		List all installed packages
+pacman -R package_name	Remove a package
+
+
+yum : Yellowdog Updater Modified
+
+yum install package_name	Install a package
+yum remove package_name		Remove a package
+yum update			Update all installed packages
+yum upgrade package_name	Upgrade a package to the latest version
+
+
+yay : Arch Linux package manager (AUR helper)
+
+yay -S package_name	Install a package from the AUR and its dependencies
+yay -Syu		Update all packages in the system including the AUR packages
+yay -Ss package_name	Search for a package in the AUR and repositories
+
+
+uname : Print system information
+
+uname		Display the name of the current operating system
+uname -a	Display all system information, including the kernel version
+uname -r	Display the kernel release
+
+
+file : Determine file type
+
+
+file filename		Display the type of the specified file
+file *			Display the type of all files in the current directory
+file -i filename	Display the MIME type of the specified file
+
+
+date : Display the current date and time
+
+date '+%A, %B %-d %Y %T %Z'	Display the date and time in a specific format
+date '+%s'			Display the number of seconds since the Unix Epoch
+
+cal : Display a calendar for the current month
+
+cal 2023	Display a calendar for the year 2023
+cal 03 2023	Display a calendar for March 2023
+
+
+uptime : Display how long the system has been running and the average system load over the past 1, 5, and 15 minutes
+
+uptime -p	Display the uptime in a more human-readable format
+
+
+curl : Transfer data from or to a server
+
+curl URL		Download the content of the URL
+curl -O URL		Download the file from the URL and save it with the original name
+curl -o filename URL	Download the file from the URL and save it with the specified name
+
+wc : Print newline, word, and byte counts for each file
+
+wc filename	Print newline, word, and byte counts for the file
+wc -l filename	Print only the newline count for the file
+wc -w filename	Print only the word count for the file
+
+ip : Show/manipulate routing, network devices, interfaces and tunnels
+
+ip address	Show IP addresses assigned to network interfaces
+ip route	Show the routing table
+ip link		Show information about network interfaces
+
+
+ssh : Secure Shell - Connect to a remote server securely
+
+ssh username@remote_host		Connect to a remote host as a user named 'username'
+ssh -p 2222 username@remote_host	Connect to a remote host on port 2222
+ssh -X username@remote_host		Enable X11 forwarding for GUI applications
+
+uniq : Remove duplicate lines from a file
+
+uniq file.txt		Print the unique lines in a file
+uniq -c file.txt	Count the number of occurrences of each line in a file
+sort file.txt | uniq	Remove duplicate lines from a sorted file
+
+
+sort : Sort lines of text files
+
+sort file.txt		Sort contents of file.txt in ascending order
+sort -r file.txt	Sort contents of file.txt in descending order
+sort -n file.txt	Sort contents of file.txt numerically
+
+cryptsetup : Utility for setting up encrypted filesystems
+
+cryptsetup luksFormat /dev/sdb1			Create an encrypted partition on /dev/sdb1 using LUKS
+cryptsetup luksOpen /dev/sdb1 myencrypteddisk	Unlock the encrypted partition /dev/sdb1 and mount it as myencrypteddisk
+cryptsetup luksClose myencrypteddisk		Close the encrypted partition named myencrypteddisk
+
+
+mount : Mount a filesystem	
+mount /dev/sdb1 /mnt/usb			Mount the filesystem on /dev/sdb1 to /mnt/usb
+mount -o remount,rw /mnt/usb			Remount the /mnt/usb filesystem with read-write permissions
+mount -t nfs 192.168.1.100:/mnt/nfs /mnt/local	Mount the NFS share from 192.168.1.100:/mnt/nfs to /mnt/local
+
+
+umount: Unmount a filesystem	
+
+umount /mnt/usb		Unmount the filesystem mounted on /mnt/usb
+umount -l /mnt/usb	Force unmount the filesystem mounted on /mnt/usb (if it is busy)
+umount -a		Unmount all currently mounted filesystems
+
+fdisk : Partition table manipulator for Linux	
+fdisk -l		List all available disks and partitions
+fdisk /dev/sdX		Interactively create a new partition table on /dev/sdX
+fdisk -l /dev/sdX	List the partitions on /dev/sdX
+
+cfdisk : Interactive disk partitioning tool
+	
+cfdisk /dev/sdX	Interactively partition /dev/sdX
+
+nano : A friendly, easy-to-use text editor
+	
+nano filename	Edit the file "filename" with nano
+Ctrl+G		Show the help screen
+Ctrl+X		Exit nano and save changes
+
+
+vi : A classic, powerful text editor	
+
+vi filename	Edit the file "filename" with vi
+i	Enter insert mode to begin editing the file
+Esc	Exit insert mode and return to command mode
+:w	Save changes to the file
+:q	Quit vi
+:q!	Force quit vi and discard changes
+
+
+nc : Network utility for reading from and writing to network connections
+	
+nc host port	Connect to the specified host and port
+nc -l port	Listen on the specified port for incoming connections
+nc -u host port	Use UDP instead of the default TCP protocol
+
+
+netstat : Print network connections, routing tables, interface statistics, etc.	
+
+netstat -t	Show TCP connections
+netstat -u	Show UDP connections
+netstat -r	Show routing table
+
+tcpdump : Packet analyzer for network traffic	
+
+tcpdump -i interface		Listen on the specified network interface
+tcpdump host ip_address		Capture packets for the specified host IP address
+tcpdump -n			Do not resolve hostnames
+
+nmap : Network exploration tool and security scanner	
+
+nmap host	Scan a single host
+nmap -sS host	Perform a stealth SYN scan
+nmap -O host	Enable OS detection on the target host
+
+awk : Pattern scanning and processing language	
+
+awk '/pattern/ {print $1}' file		Print the first field of each line that matches a pattern in a file
+awk '{print $1, $3}' file		Print the first and third fields of each line in a file
+awk -F: '{print $1}' /etc/passwd	Print the first field of each line in the /etc/passwd file using colon as the field separator
+
+
+cut : Extracts sections from each line of a file
+	
+cut -f1,3 -d: /etc/passwd	Extract the first and third fields of each line in the /etc/passwd file using colon as the field separator
+cut -c1-5 file			Extract the first five characters of each line in a file
+cut -f2- file			Extract all fields from the second field to the end of each line in a file
+
+
+passwd : Change user password	
+
+passwd			Change the password for the current user
+passwd username		Change the password for the specified user
+passwd -l username	Lock the specified user's password, disabling login
+passwd -u username	Unlock the specified user's password, enabling login
+
+tee : Read from standard input and write to standard output and files
+	
+command | tee file.txt		Write the output of 'command' to both the console and the file 'file.txt'
+command1 | tee >(command2)	Write the output of 'command1' to both the console and the input of 'command2'
+command | tee -a file.txt	Append the output of 'command' to the end of the file 'file.txt'
+
+
+git : Version control system for software development	
+git init				Initialize a new Git repository in the current directory
+git clone [repository_url]		Clone a Git repository from a remote URL
+git add [file]				Add a file to the staging area for the next commit
+git commit -m "[commit_message]"	Create a new commit with the changes in the staging area and a commit message
+git push [remote] [branch]		Push changes to a remote repository on a specific branch
+git pull [remote] [branch]		Pull changes from a remote repository on a specific branch
+git merge [branch]			Merge a branch into the current branch
+
+ftp : File Transfer Protocol	
+ftp hostname			Connect to the FTP server with the specified hostname
+ftp -u username hostname	Connect to the FTP server with the specified username and hostname
+ftp ftp://username@hostname	Connect to the FTP server with the specified username and hostname using FTP URL syntax
+get remote-file [local-file]	Download the remote file from the FTP server to the local system. If local-file is not specified, the file is downloaded to the current 				working directory with the same name.
+put local-file [remote-file]	Upload the local file to the FTP server. If remote-file is not specified, the file is uploaded to the current directory on the FTP 				server with the same name.
+
+scp : Secure Copy	
+scp [options] source destination				Copy files securely between hosts on a network
+scp file.txt user@192.168.0.10:/home/user/			Copy the file.txt from the local system to the remote system at IP address 192.168.0.10 and save it to 									the /home/user/directory.
+scp user@192.168.0.10:/home/user/file.txt .	            	Copy the file.txt from the remote system at IP address 192.168.0.10 to the current directory on the local 								system.
+scp -r /path/to/local/dir user@remote:/path/to/remote/dir	Recursively copy the local directory to the remote system.
+
+dig : DNS lookup utility
+	
+dig example.com			Perform a DNS lookup for the domain name example.com
+dig -x IP_address		Perform a reverse DNS lookup for the given IP address
+dig @DNS_server example.com	Perform a DNS lookup using the specified DNS server
+
+telnet : Remote login client	
+telnet example.com		Connect to the remote host example.com using the telnet protocol
+telnet IP_address		Connect to the remote host with the given IP address using the telnet protocol
+telnet example.com port_number	Connect to the specified port on the remote host example.com using the telnet protocol
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

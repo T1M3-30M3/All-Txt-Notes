@@ -1,0 +1,22 @@
+Burp Extention :
+
+uplaod scanner 
+Reflected Parameters
+paraminer
+Activescan++
+Burp Customizer
+
+Source : https://www.youtube.com/watch?v=Oeoic0qeaT0
+
+xss validator , NET Beautifier, Wsdler , Bypass WAF, J2EEScan , Param Miner, Collaborator Everywhere, Wayback Machine, JS Link Finder, Upload Scanner, Nucleus Burp Extension, Software Vulnerability Scanner, Active Scan++,  Acunetix Scanner or If you Looking for something free and cool [reNgine], toggle, jsminer, Sensitive Discoverer
+
+
+
+
+For Waf Bypass:
+X-Originating-IP: 127.0.0.1 
+X-Forwarded-For: 127.0.0.1 
+X-Remote-IP: 127.0.0.1 
+X-Remote-Addr: 127.0.0.1 
+
+BurpSuite Auto Completion, Burp Headup, BurpSuite_403Bypasser, Content type convertor, XSS Validator, JWT Editor, PWNFox, Paramalyzer, HTTP Request Smuggler, Fake IP

