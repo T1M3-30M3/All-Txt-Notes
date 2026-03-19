@@ -1,0 +1,29 @@
+dig educacionit.com any
+dig +short educacionit.com
+dig educacionit.com MX        # For mail servers
+dig educacionit.com NS        # Name servers
+dig educacionit.com A         # IPv4 address
+dig educacionit.com AAAA      # IPv6 address
+dig educacionit.com SOA       # Start of Authority
+
+
+host educacionit.com
+host -t ns educacionit.com    # Get name servers
+host -t mx educacionit.com    # Get mail servers
+host -a educacionit.com       # Get all records
+
+
+nslookup educacionit.com
+nslookup -type=ns educacionit.com
+nslookup -type=mx educacionit.com
+nslookup -type=soa educacionit.com
+
+dnsenum educacionit.com
+dnsenum --dnsserver 8.8.8.8 educacionit.com
+dnsenum --enum educacionit.com
+
+
+dnsrecon -d educacionit.com
+dnsrecon -d educacionit.com -t std        # Standard enumeration
+dnsrecon -d educacionit.com -t brt        # Bruteforce subdomains
+dnsrecon -d educacionit.com -a            # All techniques (AXFR, zonewalk, etc.)

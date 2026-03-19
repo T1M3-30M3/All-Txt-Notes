@@ -1,0 +1,14 @@
+pip install --upgrade python
+
+subfinder -d example.com
+amass enum -d example.com
+assetfinder --subs-only example.com
+findomain -t example.com
+sublist3r -d example.com
+
+OneLiner : sudo subfinder -d tesla.com -o 1.txt | sudo sublist3r -d tesla.com -o 2.txt | sudo assetfinder --subs-only tesla.com > 3.txt | sudo findomain -t tesla.com --output
+cat * > full.txt | sort | uniq > final.txt
+
+sort file1.txt file2.txt > sorted_output.txt
+cat 1stfile.txt 2nd.file.txt > subdomain.txt
+sort subdomain.txt | uniq > root-domain.txt

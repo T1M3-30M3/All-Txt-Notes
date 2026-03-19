@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)https://devdasgupta.in/Tool/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Reconnaissance Tool</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #2C3E50;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-section input {
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #34495E;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .command {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px 40px 10px 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #3498DB;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #1ABC9C;
+        }
+
+        .copied-message {
+            display: none;
+            position: absolute;
+            top: 5px;
+            right: 80px;
+            background: #2ecc71;
+            color: white;
+            padding: 3px 7px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+        }
+
+        footer {
+            background-color: #2C3E50;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Advanced Reconnaissance Tool</h1>
+    </header>
+    <div class="container">
+        <div class="input-section">
+            <h2>Enter Your Domain</h2>
+            <input type="text" id="domainInput" placeholder="Enter your domain (e.g., example.com)" oninput="updateCommands()">
+        </div>
+        <div class="section command-section">
+            <h2>Finding Subdomains</h2>
+            <div class="command" id="findSubdomains">
+                subfinder -d www.example.com -all -recursive -o subdomains.txt
+                <span class="copied-message" id="copiedMessage1">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;findSubdomains&#39;, &#39;copiedMessage1&#39;)">Copy</button>
+            </div>
+        </div>
+        <div class="section command-section">
+            <h2>Filtering Live Subdomains</h2>
+            <div class="command" id="filterSubdomains">
+                cat subdomains.txt | httpx -ports 80,443,8080 | tee live_subdomains.txt
+                <span class="copied-message" id="copiedMessage2">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;filterSubdomains&#39;, &#39;copiedMessage2&#39;)">Copy</button>
+            </div>
+        </div>
+        <div class="section command-section">
+            <h2>Finding JavaScript Files</h2>
+            <div class="command" id="findJavaScriptFiles">
+                katana -u https://example.com -d 5 -jc | grep '\.js$' | tee alljs.txt
+                <span class="copied-message" id="copiedMessage3">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;findJavaScriptFiles&#39;, &#39;copiedMessage3&#39;)">Copy</button>
+            </div>
+        </div>
+        <div class="section command-section">
+            <h2>Finding JavaScript Files Using GAU</h2>
+            <div class="command" id="findJavaScriptFilesUsingGAU">
+                echo https://example.com | gau | grep '\.js$' | anew alljs.txt
+                <span class="copied-message" id="copiedMessage4">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;findJavaScriptFilesUsingGAU&#39;, &#39;copiedMessage4&#39;)">Copy</button>
+            </div>
+        </div>
+        <div class="section command-section">
+            <h2>Extracting Unique and Valid URLs</h2>
+            <div class="command" id="extractUniqueValidURLs">
+                cat Your.txt | uro | sort -u | httpx-toolkit -mc 200 -o OUTPUT.txt
+                <span class="copied-message" id="copiedMessage5">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;extractUniqueValidURLs&#39;, &#39;copiedMessage5&#39;)">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Scanning for Leaks in JavaScript Files</h2>
+            <div class="command" id="scanForLeaksInJS">
+                cat OUTPUT.txt | jsleak -s -l -k | tee jsleak.txt
+                <span class="copied-message" id="copiedMessage6">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;scanForLeaksInJS&#39;, &#39;copiedMessage6&#39;)">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Credentials Disclosure Search Using nuclei</h2>
+            <div class="command" id="CredentialsDisclosureSearch">
+                cat OUTPUT.txt | nuclei -t /home/jiraiya/nuclei-templates/http/exposures/ -c 30
+                <span class="copied-message" id="copiedMessage7">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;CredentialsDisclosureSearch&#39;, &#39;copiedMessage7&#39;)">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Using Lazyegg for Scanning</h2>
+            <div class="command" id="lazyeggScan">
+                cat /home/Your/OUTPUT.txt | xargs -i{} bash -c 'echo -e "\ntarget : {}\n" &amp;&amp; python lazyegg.py "{}"
+                --js_urls --domains --ips --leaked_creds --local_storage'
+                <span class="copied-message" id="copiedMessage8">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;lazyeggScan&#39;, &#39;copiedMessage8&#39;)">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Directory Fuzzing with FFUF</h2>
+            <div class="command" id="directoryFuzzingFFUF">
+                ffuf -request req.txt -request-proto https -w playloadpath -c -mr "root:"
+                <span class="copied-message" id="copiedMessage9">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;directoryFuzzingFFUF&#39;, &#39;copiedMessage9&#39;)">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Finding Local File Inclusions (LFI)</h2>
+            <div class="command" id="findLFI">
+                echo www.example.com | waybackurls | gf lfi | urldedupe | tee crawlfi.txt
+                <span class="copied-message" id="copiedMessage10">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;findLFI&#39;, &#39;copiedMessage10&#39;)">Copy</button>
+            </div>
+        </div>
+        <div class="section command-section">
+            <h2>Finding XSS Vulnerabilities</h2>
+            <div class="command" id="findXSSVulnerabilities">
+                echo https://example.com | gau | gf xss | uro | Gxss | kxss | tee xss.txt
+                <span class="copied-message" id="copiedMessage7">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;findXSSVulnerabilities&#39;, &#39;copiedMessage11&#39;)">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Filtering XSS URLs</h2>
+            <div class="command" id="filterXSSURLs">
+                cat xss.txt | grep -oP '^URL: \K\S+' | sed 's/=.*/=/' | sort -u &gt; final.txt
+                <span class="copied-message" id="copiedMessage12">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;filterXSSURLs&#39;, &#39;copiedMessage12&#39;)">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Scanning for Alive Subdomains</h2>
+            <div class="command" id="scanAliveSubdomains">
+                echo https://example.com | httpx-toolkit -ports 80,443,8080,8000,8888 -threads 200 &gt; alivesubdomain.txt
+                <span class="copied-message" id="copiedMessage13">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;scanAliveSubdomains&#39;, &#39;copiedMessage13&#39;)">Copy</button>
+            </div>
+        </div>
+
+       <div class="section command-section">
+            <h2>Finding All URLs Using Katana</h2>
+            <div class="command" id="findAllURLsKatana">
+                katana -list https://example.com -d 5 -ps -pss waybackarchive, commoncrawl, alienvault -kf -jc -fx -ef woff, css,png,svg,jpg,woff2,jpeg,gif,svg &gt; allurls.txt
+                <span class="copied-message" id="copiedMessage14" style="display: none;">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard(&#39;findAllURLsKatana&#39;, &#39;copiedMessage14&#39;)">Copy</button>
+            </div>
+        </div>
+
+        <!-- <div class="section command-section">
+            <h2>Checking CORS - Part 2</h2>
+            <div class="command" id="checkCORS2">
+                curl -H 'Origin: http://example.com' https://etoropartners.com/wp-json/ | grep -i -e
+                'access-control-allow-origin'
+                <span class="copied-message" id="copiedMessage11">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('checkCORS2', 'copiedMessage11')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Information Disclosure Dork</h2>
+            <div class="command" id="infoDisclosure">
+                site:*.example.com (ext:doc OR ext:docx OR ext:odt OR ext:pdf OR ext:rtf OR ext:ppt OR ext:pptx OR
+                ext:csv OR ext:xls OR ext:xlsx OR ext:txt)
+                <span class="copied-message" id="copiedMessage12">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('infoDisclosure', 'copiedMessage12')">Copy</button>
+            </div> -->
+        <!-- </div>
+        <div class="section command-section">
+            <h2>Directory Bruteforce - Part 2</h2>
+            <div class="command" id="directoryBruteforce">
+                echo example.com | katana -d 5 | grep -E '\.js$' | nuclei -t nuclei-templates/http/exposures/ -c 30
+                <span class="copied-message" id="copiedMessage15">Copied!</span>
+                <button class="copy-btn"
+                    onclick="copyToClipboard('directoryBruteforce', 'copiedMessage15')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>JS File Hunting - Part 1</h2>
+            <div class="command" id="jsFileHunting1">
+                cat alljs.txt | nuclei -t /home/coffinxp/nuclei-templates/http/exposures/
+                <span class="copied-message" id="copiedMessage16">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('jsFileHunting1', 'copiedMessage16')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>JS File Hunting - Part 2</h2>
+            <div class="command" id="jsFileHunting2">
+                subzy run --targets subdomains.txt --concurrency 100-hide_fails --verify_ssl
+                <span class="copied-message" id="copiedMessage17">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('jsFileHunting2', 'copiedMessage17')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Finding CORS</h2>
+            <div class="command" id="findingCORS">
+                python3 corsy.py i subdomains_alive.txt -t 10-headers 'User-Agent: GoogleBot\nCookie: SESSION=Hacked'
+                <span class="copied-message" id="copiedMessage18">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('findingCORS', 'copiedMessage18')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Testing Header Based Blind XSS</h2>
+            <div class="command" id="blindXSS">
+                subfinder -d example.com | gau | bxss -payload > -header 'X-Forwarded-For'
+                <span class="copied-message" id="copiedMessage19">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('blindXSS', 'copiedMessage19')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Checking Single XSS on All URLs</h2>
+            <div class="command" id="singleXSS">
+                echo 'example.com | gau | qsreplace | xsschecker -match "-vuln"
+                <span class="copied-message" id="copiedMessage20">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('singleXSS', 'copiedMessage20')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Shodan Dork</h2>
+            <div class="command" id="shodanDork">
+                Ssl.cert.subject.CN: 'example.com' 200
+                <span class="copied-message" id="copiedMessage21">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('shodanDork', 'copiedMessage21')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>XSS Method - Part 1</h2>
+            <div class="command" id="xssMethod1">
+                echo https://example.com | gau | gf xss | uro | Gxss | kxss | tee xss_output.txt
+                <span class="copied-message" id="copiedMessage22">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('xssMethod1', 'copiedMessage22')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>XSS Method - Part 2</h2>
+            <div class="command" id="xssMethod2">
+                cat xss_output.txt | grep -OP URL: \K\S+' | sed 's/=.*/=/' | sort -u final.txt
+                <span class="copied-message" id="copiedMessage23">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('xssMethod2', 'copiedMessage23')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Naabu Scan</h2>
+            <div class="command" id="naabuScan">
+                naabu list ip.txt c 50 nmap-cli 'nmap -SV -SC -o naabu-full.txt'
+                <span class="copied-message" id="copiedMessage24">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('naabuScan', 'copiedMessage24')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Nmap Scan</h2>
+            <div class="command" id="nmapScan">
+                nmap -p---min-rate 1000 -T4 -A target.com -oA fullscan
+                <span class="copied-message" id="copiedMessage25">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('nmapScan', 'copiedMessage25')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>Masscan</h2>
+            <div class="command" id="masscan">
+                masscan -p0-65535 target.com --rate 100000 OG masscan-results.txt
+                <span class="copied-message" id="copiedMessage26">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('masscan', 'copiedMessage26')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>FFUF Request File Method - Part 1</h2>
+            <div class="command" id="ffufRequestFile1">
+                ffuf -request lfi -request-proto https -w /root/wordlists/offensive payloads/LFI\ payload.txt -c -mr
+                'root:'
+                <span class="copied-message" id="copiedMessage27">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('ffufRequestFile1', 'copiedMessage27')">Copy</button>
+            </div>
+        </div>
+
+        <div class="section command-section">
+            <h2>FFUF Request File Method - Part 2</h2>
+            <div class="command" id="ffufRequestFile2">
+                ffuf request xss -request-proto https -w /root/wordlists/xss-payloads.txt -c -mr
+                <span class="copied-message" id="copiedMessage28">Copied!</span>
+                <button class="copy-btn" onclick="copyToClipboard('ffufRequestFile2', 'copiedMessage28')">Copy</button>
+            </div>
+        </div> -->
+
+    </div>
+    <footer>
+        <p>© 2025 - Built for cybersecurity professionals and researchers by
+            <a href="https://devdasgupta.in/" style="text-decoration: none; color: white;">Devdas Kumar</a>
+        </p>
+    </footer>
+    <script>
+        function updateCommands() {
+            const domain = document.getElementById('domainInput').value.trim();
+            if (domain) {
+                const commands = {
+                    findSubdomains: `subfinder -d www.${domain} -all -recursive -o subdomains.txt`,
+                    filterSubdomains: `cat subdomains.txt | httpx -ports 80,443,8080 | tee live_subdomains.txt`,
+                    findJavaScriptFiles: `katana -u https://${domain} -d 5 -jc | grep '\\.js$' | tee alljs.txt`,
+                    findJavaScriptFilesUsingGAU: `echo https://${domain} | gau | grep '\\.js$' | anew alljs.txt`,
+                    extractUniqueValidURLs: `cat Your.txt | uro | sort -u | httpx-toolkit -mc 200 -o OUTPUT.txt`,
+                    scanForLeaksInJS: `cat OUTPUT.txt | jsleak -s -l -k | tee jsleak.txt`,
+                    CredentialsDisclosureSearch: `cat OUTPUT.txt | nuclei -t /home/jiraiya/nuclei-templates/http/exposures/ -c 30`,
+                    lazyeggScan: `cat /home/Your/OUTPUT.txt | xargs -i{} bash -c 'echo -e "\ntarget : {}\n" && python lazyegg.py "{}" --js_urls --domains --ips --leaked_creds --local_storage'`,
+                    directoryFuzzingFFUF: `ffuf -request req.txt -request-proto https -w playloadpath -c -mr "root:"`,
+                    findLFI: `echo www.${domain} | waybackurls | gf lfi | urldedupe | tee crawlfi.txt`,
+                    findXSSVulnerabilities: `echo https://${domain} | gau | gf xss | uro | Gxss | kxss | tee xss.txt'`,
+                    filterXSSURLs: `cat xss.txt | grep -oP '^URL: \K\S+' | sed 's/=.*/=/' | sort -u > final.txt`,
+                    scanAliveSubdomains: `echo https://${domain} | httpx-toolkit -ports 80,443,8080,8000,8888 -threads 200 > alivesubdomain.txt`,
+                    findAllURLsKatana: `katana -list https://${domain} -d 5 -ps -pss waybackarchive, commoncrawl, alienvault -kf -jc -fx -ef woff, css,png,svg,jpg,woff2,jpeg,gif,svg > allurls.txt`,
+                    // checkCORS2: `curl -H 'Origin: http://${domain}' https://etoropartners.com/wp-json/ | grep -i -e 'access-control-allow-origin'`,
+                    // infoDisclosure: `site:*.${domain} (ext:doc OR ext:docx OR ext:odt OR ext:pdf OR ext:rtf OR ext:ppt OR ext:pptx OR ext:csv OR ext:xls OR ext:xlsx OR ext:txt)`,
+                    // directoryBruteforce: `echo ${domain} | katana -d 5 | grep -E '\\.js$' | nuclei -t nuclei-templates/http/exposures/ -c 30`,
+                    // jsFileHunting1: `cat alljs.txt | nuclei -t /home/coffinxp/nuclei-templates/http/exposures/`,
+                    // jsFileHunting2: `subzy run --targets subdomains.txt --concurrency 100-hide_fails --verify_ssl`,
+                    // findingCORS: `python3 corsy.py i subdomains_alive.txt -t 10-headers 'User-Agent: GoogleBot\nCookie: SESSION=Hacked'`,
+                    // blindXSS: `subfinder -d ${domain} | gau | bxss -payload > -header 'X-Forwarded-For'`,
+                    // singleXSS: `echo '${domain} | gau | qsreplace | xsschecker -match "-vuln"`,
+                    // shodanDork: `Ssl.cert.subject.CN: '${domain}' 200`,
+                    // xssMethod1: `echo https://${domain} | gau | gf xss | uro | Gxss | kxss | tee xss_output.txt`,
+                    // xssMethod2: `cat xss_output.txt | grep -OP URL: \\K\\S+ | sed 's/=.*/=/' | sort -u final.txt`,
+                    // naabuScan: `naabu list ip.txt c 50 nmap-cli 'nmap -SV -SC -o naabu-full.txt'`,
+                    // nmapScan: `nmap -p---min-rate 1000 -T4 -A ${domain} -oA fullscan`,
+                    // masscan: `masscan -p0-65535 ${domain} --rate 100000 OG masscan-results.txt`,
+                    // ffufRequestFile1: `ffuf -request lfi -request-proto https -w /root/wordlists/offensive payloads/LFI\\ payload.txt -c -mr 'root:'`,
+                    // ffufRequestFile2: `ffuf request xss -request-proto https -w /root/wordlists/xss-payloads.txt -c -mr`
+                };
+                Object.keys(commands).forEach(id => {
+                    document.getElementById(id).firstChild.textContent = commands[id];
+                });
+            }
+        }
+
+        function copyToClipboard(elementId, messageId) {
+            const command = document.getElementById(elementId).firstChild.textContent.trim();
+            navigator.clipboard.writeText(command).then(() => {
+                const message = document.getElementById(messageId);
+                message.style.display = 'inline';
+                setTimeout(() => message.style.display = 'none', 2000);
+            }).catch(() => alert('Failed to copy command.'));
+        }
+    </script>
+
+
+</body></html>

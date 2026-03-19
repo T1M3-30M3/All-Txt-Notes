@@ -1,0 +1,417 @@
+*** Process:
+
+--> Domain
+--> Horizontal Subdomain
+--> Vertical Subdomain
+--> Origin Ip
+--> lots of ip block
+
+
+*** Links:
+
+https://www.whoxy.com/
+ASN : https://bgp.he.net/AS15169
+More Info : http://whois.arin.net/ui/
+https://mxtoolbox.com/SuperTool.aspx
+https://viewdns.info/
+https://www.ipaddressguide.com/
+https://www.ipaddressguide.com/ipv6-cidr
+https://www.site24x7.com/find-ip-address-of-web-site.html
+https://hackertarget.com/reverse-ip-lookup/
+https://chaos.projectdiscovery.io/#/
+
+https://www.lopseg.com.br/osint
+https://www.lopseg.com.br/dork-helper
+https://www.lopseg.com.br/google-dork
+
+https://taksec.github.io/google-dorks-bug-bounty/
+https://nitinyadav00.github.io/Bug-Bounty-Search-Engine/ 
+https://dorks.faisalahmed.me/#
+https://mr-koanti.github.io/github.html
+https://mr-koanti.github.io/shodan
+
+For knowing web structure : Wappalyzer, builtwith
+
+*** How to find ASN and CIDR and IP Address
+--> First go to http://whois.arin.net/ui/ or https://bgp.he.net/ for finding ASN number
+--> Then go to https://mxtoolbox.com/SuperTool.aspx and searching with ASN number and you find CIDR Number
+--> Then go to https://www.ipaddressguide.com/ipv6-cidr for converting CIDN to IP address
+--> You can see the IP Range and attack with Angry IP Scanner
+
+*** Find Reverse IP lookup
+--> https://www.site24x7.com/find-ip-address-of-web-site.html
+--> https://hackertarget.com/reverse-ip-lookup/
+
+
+*** Recon with Amass 
+
+amass enum -passive -norecursive -noalts -d target.com -o sub-list.txt
+amass enum -active -d target.com -o sub-list.txt
+amass intel -ip -d target.com
+amass intel -whois -addr <target IP address>
+amass enum -d target.com -o sub-list.txt
+amass intel -include <target domain name> -whois -src -active -o online-assets.txt
+amass viz -d target.com -o target.png
+amass intel -asn <number>
+amass cidr -asn <number>
+
+Source : https://medium.com/@cuncis/amass-an-overview-of-the-network-reconnaissance-tool-79049f34bb46
+
+Shodan FIlters : https://www.shodan.io/search/filters
+shodan host <ip>
+
+
+Hunting with Shodan:
+--> Shodan fitlers
+--> Shodan cli
+--> Shodan Api
+--> ffuf intro
+--< hunter.how
+--> Findiing Secrets using shodan and web archieve CDX API
+
+Subdomain Enum:
+--> crt.sh
+--> amass
+--> subfinder and ffuf
+--> sorting and anew duplicate
+--> sublist3r and httpx/dnsx/httprobe
+--> chaos and eyewitness
+--> NsLookup
+
+link : 
+https://crt.sh/
+https://dnsdumpster.com/
+https://subdomainfinder.c99.nl/
+https://osint.sh/subdomain/
+https://chaos.projectdiscovery.io/
+
+subfiner -ls
+ show hidden files > root > config > subfinder
+subfinder -d <domain> -o link.txt
+cat link.txt | sort | uniq
+
+--> Download config.yaml and datasource.yaml from amass repo
+--> and copy to root > config > amass and paste it
+amass enum -passive -d <link> -o link.txt
+Source : https://medium.com/offensive-black-hat-hacking-security/amass-new-config-file-update-e95d09b6eb70
+
+chaos -d uber.com -silent
+chaos -d uber.com -silent -o x.txt
+
+
+nslookup : https://network-tools.webwiz.net/nslookup.htm
+https://www.nslookup.io/
+https://dnschecker.org/ns-lookup.php
+
+
+▶ subfinder -silent -d hackerone.com -o link.txt | dnsx -silent
+
+▶ subfinder -silent -d hackerone.com | dnsx -silent -a -resp
+▶ subfinder -silent -d hackerone.com | dnsx -silent -a -resp-only
+▶ subfinder -silent -d hackerone.com | dnsx -silent -cname -resp
+▶ subfinder -silent -d hackerone.com | dnsx -silent -asn
+▶ subfinder -silent -d hackerone.com | dnsx -silent -rcode noerror,servfail,refused
+▶ echo 173.0.84.0/24 | dnsx -silent -resp-only -ptr
+▶ echo AS17012 | dnsx -silent -resp-only -ptr
+
+▶ cat domains.txt | httprobe
+▶ cat domains.txt | httprobe -p http:81 -p https:8443
+▶ cat domains.txt | httprobe -c 50
+▶ cat domains.txt | httprobe -t 20000
+▶ cat domains.txt | httprobe -s -p https:8443
+
+▶ cat domains.txt | httpx
+▶ cat domains.txt | httpx -fc 200,403
+▶ cat domains.txt | httpx -mc 200,403
+
+▶ apt install eyewitness
+▶ eyewitness -f urls.txt --web
+▶ eyewitness -f urls.txt --web  --timeout 120
+▶ eyewitness  -x urls.xml --timeout 8
+
+▶ ffuf -u "http.//FUZZ.abc.com" -w <wordlist> -mc 200
+▶ ffuf -u "https://abc.com/FUZZ" -w <wordlist> -mc 200
+▶ ffuf -u "https://abc.com/script.php?FUZZ=test_value"  -w paramnames.txt -fs 4242
+▶ ffuf -u "https://abc.com/script.php?valid_name=FUZZ" -w values.txt  -fc 401
+▶ ffuf -u "https://abc.com/login.php" -w password.txt -X POST -d "username=admin\&password=FUZZ" -fc 401
+▶ ffuf -u "https://abc.com/script.php?valid_name=FUZZ" -w values.txt -mc 401
+▶ ffuf -u "https://abc.com/login.php" -w password.txt -X POST -d "username=admin\&password=FUZZ" -mc 401
+▶ ffuf -u "https://abc.com/script.php?FUZZ=test_value" -w paramnames.txt -ms 4242
+
+https://github.com/n0kovo/n0kovo_subdomains
+https://github.com/danielmiessler/SecLists/tree/master/Discovery/DNS
+https://wordlists.assetnote.io/
+
+1. Select a target
+2. Found all possible subdomains using methods and tools
+3. Removed the duplicate subdomains
+4. Filtered the live and final subdomains
+5. Took sceenshot and analyzed
+
+Next:
+1. Analyze the screenshots for possible vuln
+2. Do a directory bruteforce
+3. JS file analyze
+4. Github Recon
+
+--> Domain > subdomain > sorted > dnsx/httpx/httprove[for active subdomain] + nmap [for open port] + dirsearch [directroy bruteforce] + nuclei [Automation] + eyewitness [Screenshots]
+
+▶ subfinder -d <link> -all -silent -o name.txt
+▶ cat name.txt | httpx
+▶ ffuf -c -u "http.//FUZZ.abc.com" -w <wordlist> -mc 200 -rate 50
+▶ python3 oneforall.py --target example.com run
+▶ python3 oneforall.py --targets example.txt run
+▶ shuffledns -d example.com -list wordlist.txt -r resolvers.txt -o subdomain.txt
+▶ eyewitness --web -f x.txt --timeout 30 --threads 100
+▶ dirsearch -l x.txt -e php,asp,aspx,html,js,json -i 200,404 -t 100
+
+For installing:
+▶ git clone https://github.com/shmilylty/OneForAll.git
+▶ cd OneForAll/
+▶ python3 -m pip install -U pip setuptools wheel
+▶ pip3 install -r requirements.txt
+▶ python3 oneforall.py --help
+
+▶ apt install massdns
+
+▶ shuffledns -d example.com -list wordlist.txt -r resolvers.txt -o subdomain.txt
+▶ subfinder -d example.com | shuffledns -d example.com -r resolvers.txt -mode resolve
+▶ shuffledns -d hackerone.com -w wordlist.txt -r resolvers.txt -mode bruteforce
+▶ echo hackerone.com | shuffledns -w wordlist.txt -r resolvers.txt -mode bruteforce
+
+https://www.secrash.com/
+https://tools.prinsh.com/
+https://tools.zone-xsec.com/
+
+JS Analysis:
+
+Motive:
+--> Find a target
+--> Find all the possible subdomains or links from the target as well its subdomains
+--> Find all urls of domains
+--> Filters js urls
+--> Sort them and try to find secrets in js links
+
+Tools : katana, subjs, mantra
+BurpExtention : jsminer, Sensitive Discoverer, JS link finder
+
+JS Analyzer:
+https://github.com/ayadim/Nuclei-bug-hunter/blob/main/file/web/js/js-analyse.yaml
+
+
+Domain to JS:
+sudo subfinder -d rapyd.net -o 1.txt | sudo sublist3r -d rapyd.net -o 2.txt | sudo assetfinder --subs-only rapyd.net > 3.txt | sudo findomain -t rapyd.net --output
+cat * > full.txt | sort | uniq > final.txt
+cat final.txt | httpx > 200.txt
+cat 200.txt | subjs
+katana -u rapyd.net -d 5 -jc | grep ".js$"
+katana -list 200.txt -jc | grep ".js$" | uniq | sort
+katana -list 200.txt -jc -silent | grep ".js$" | tee katana.txt
+katana -list 200.txt -jc -silent -o katana.txt| grep ".js$"
+cat 1.txt 2.txt > 3.txt
+sort 1.txt 2.txt | uniq -d
+cat 3.txt | uniq | sort
+cat name.txt | while read url; do python3 SecretFinder/SecretFinder.py -i $url -o cli ; done
+cat name.txt | while read url; do python3 SecretFinder/SecretFinder.py -i $url -o cli > secret.txt; done
+grep -r -E 'aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret' x.txt
+nuclei -l x.txt -t nuclei-templates/javascript/
+cat x.txt | mantra
+
+Details:
+cat 200.txt | subjs
+cat 200.txt | subjs -c 40 -t 30
+subjs -i 200.txt
+cat 200.txt| gau | subjs
+
+katana -u https://tesla.com
+katana -u https://tesla.com,https://google.com
+cat url_list.txt
+echo https://tesla.com | katana
+cat domains | httpx | katana
+katana -u https://youtube.com
+
+cat x.txt | mantra
+
+git clone https://github.com/m4ll0k/SecretFinder
+python -m pip install -r requirements.txt or pip install -r requirements.txt
+
+Github Recon:
+
+--> Automated - Different tools are used
+--> Manual - Manual Human 
+
+Github Recon : https://drive.google.com/file/d/1rem0npoB9_EQoSMr4QxPsRcJQhgTUL4f/view
+Github Recon : https://raw.githubusercontent.com/Vaidik-pandya/Github_recon_dorks/main/gitdork.txt
+
+ApprGitDorker:   https://github.com/obheda12/GitDorker
+gitGraber:   https://github.com/hisxo/gitGraber
+trufflehog:  https://github.com/trufflesecurity/truffleHog
+
+Note : https://medium.com/@pawan_rawat/github-recon-for-finding-sensitive-information-aecdeb9c9dce
+
+apt install python3-termcolor
+apt install python3-tqdm
+
+Github API : Account > Settings > Developer > Personal Access TOken > Token > 
+
+--Port Scan--
+
+01. Find subdomain as much as you can
+02. To collect as many IP address of those subdomains
+03. Do a reverse DNS
+04. Find some juice Info/bug
+
+ping <link>
+nmap <ip>
+nmap <ip> -sV
+searchsploit <version name>
+
+Nmap CheatSheet : www.stationx.net/nmap-cheat-sheet
+
+ASNLookup:
+http://whois.arin.net/ui/
+https://bgp.he.net/
+https://asnlookup.com/asn/
+
+AsnMap : github.com/projectdiscovery/asnmap
+▶ go to ASNlookup and try to domain to ASN
+▶ asnmap -a AS714
+▶ asnmap -a AS714 | wc -l
+▶ asnmap -a AS714 > applecidr.txt
+▶ echo AS714 | asnmap
+▶ echo AS714 | asnmap | wc -l
+
+▶ asnmap -a AS714 -silent
+▶ asnmap -i <ip> -silent
+▶ asnmap -d <domain> -slient
+▶ asnmap -org GOOGLE -silent
+
+mapcidr : github.com/projectdiscovery/mapcidr
+▶ mapcidr -h 
+▶ mapcidr -cidr applecidr.txt
+▶ mapcidr -cidr <ip range> 
+▶ mapcidr -cidr <ip range> | wc -l
+▶ mapcidr -cidr <ip range> -c 
+▶ echo <ip range> | mapcidr -silent
+▶ echo <ip range> | mapcidr -silent | wc -l
+▶ mapcidr -cidr <ip range> -o appleip.txt
+
+▶ echo AS17012 | mapcidr -silent | dnsx -silent -resp-only -ptr
+▶ mapcidr -cidr applecidr.txt | dnsx -silent -resp-only -ptr
+▶ dnsx -l appleip.txt -ptr -resp-only -t 1000 -stats
+
+Naabu:
+▶ naabu -host apple.com
+▶ naabu -host apple.com -tp 1000
+▶ naabu -l appleip.txt -p 80,443
+▶ naabu -l appleip.txt -rate 3000 -retries 1 -warm-up-time 0 -c 50 -top-ports full
+
+▶ naabu -l appleip.txt
+▶ echo AS17012 | naabu -p 80,443
+▶ naabu -l host.txt -p 80,443 -nmap-cli 'nmap -sV'
+
+MassScan:
+▶ masscan -p 80,443 <CIDR> --rate=100
+▶ masscan -p 0-1023 <CIDR> --rate=10000
+
+cheatsheet.haax.fr
+
+RustScan:
+▶ rustscan google.com --no-nmap --ulimit 10000 
+▶ rustscan -a host.txt -u 10000 
+
+--Domain to ASN and ASN to IP:
+▶ use http://whois.arin.net/ui/ or https://bgp.he.net/ or https://asnlookup.com/asn/ and find the ASN 
+▶ use AsnMap for finding IP Range
+▶ use mapcidr for IP Range to IP 
+▶ use Angry Ip Scanner for crack this alive or not
+
+01. Collect all the IPs with open ports of the target
+02. Run services version via nmap
+03. Try to get access to that services or exploit it
+
+--Nmap--
+
+nmap -PR -sn 192.168.0.1/24 
+nmap -PR -sn 192.168.0.1/24 --reason
+nmap =PR <ip> --reason -p80
+nmap -PE -sn <ip>
+nmap -PE -sn <ip> --reason
+nmap -PS -sn <ip> --reason
+nmap -PS <ip> -p-
+nmap -PA <ip> --reason
+nmap -pU <ip> --reason -sn 
+nmap -PU <ip> -Pn
+nmap -iL name.txt -PR -sn
+
+-PR > ARP discovery
+-PU > UDP discovery
+-Pn > Port Scan
+-PS > TCP Syn
+-PA > TCP ACK
+-sn > DIsable port Scanning
+
+State of Ports: Open, Close, Filtered, Unfiltered, Open Filtered, Close Filterd
+
+masscan -IL x.txt --rate=50000 --ports 0-65535 
+nmap -iL x.txt -sn -T5
+nmap -iL allsorted.txt -sn -PR
+nmap <ip> -Pn -sV -T4
+nmap <ip> -sV -T4
+nmap <ip> -sV -T5 -Pn 
+nmap -sV -T4 <ip> -vv
+nmap -sV -T4 <ip> -vv -p 0-65535
+nmap -sV <ip>
+nmap -sV <ip> -Pn
+searchsploit <version name>
+
+msfconsole
+search vsftpd
+use exploit/unix/ftp/vsftpd_234_backdoor
+show info
+set RHOSTS <ip>
+exploit
+
+intitle : information disclosure
+
+--Nmap = Port - IP/Domain/IP Range/CIDR
+01. Port Scan
+02. To find which services are running on ports
+03. Which services are vulnerable and old 
+04. Can we exploit those services
+
+cd /usr/share/nmap/scripts
+ls
+locate .nse
+ls | grep http
+ls | http*
+nmap <ip> -T4 --script="http-vuln*"
+nmap <ip> -T4 --scriot="http*"
+nmap <ip> -sV
+nmap <ip> -sV --script "http-vuln*"
+locate .nse | grep whois
+nmap <ip> -sV --script=who-is.nse
+nmap <ip> -sV --script=who-is.nse --vv -T4
+nmap <ip> -sV --script="ftp-*"
+
+sandmap
+list
+show modulename
+show
+set dest <ip>
+init 4
+init 0
+main list
+use service_detection
+set dest <ip>
+init 1
+
+ScanCanon
+scancanon.sh cidr.txt
+
+
+
+
+
+
+

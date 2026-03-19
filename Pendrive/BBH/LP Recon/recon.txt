@@ -1,0 +1,80 @@
+Recon:
+
+Whatweb > wappalyzer > whois > Shodan > Source Code Check
+
+subfinder -d <link> | tee x.txt
+cat tee x.txt | sudo waybackurls
+cat tee x.txt | sudo waybackurls | tee x.txt
+cat x.txt | grep users
+cat x.txt | grep api
+cat x.txt | grep -i .js
+cat x.txt | grep -i .json
+
+Link : https://github.com/six2dez/reconftw
+./reconftw.sh -d target.com -r
+./reconftw.sh -l sites.txt -r -o /output/directory/
+./reconftw.sh -d target.com -r --deep -o /output/directory/
+./reconftw.sh -m company -l domains_list.txt -r
+
+cat x.txt | wc -l
+cat x.txt | httpx
+cat x.txt | httpx -td
+cat x.txt | httpx -status-code
+cat x.txt | httpx -location
+cat x.txt | httpx -status-code -server
+cat x.txt | httpx -status-code -server -title
+cat x.txt | httpx -status-code -server -title | tee x.txt
+
+https://intelx.io/
+https://phonebook.cz
+
+
+Basic Recon > Subdomains > http/https > http status > Input > 
+
+Basic Recon : Wappalyzer, BuiltWith, Whois, Data braches, emails, social Media
+
+Subdomain Hunting : 
+▶ sudo subfinder -d tesla.com -o 1.txt | sudo sublist3r -d tesla.com -o 2.txt | sudo assetfinder --subs-only tesla.com > 3.txt | sudo findomain -t tesla.com --output
+▶ cat * > full.txt | sort | uniq > final.txt
+
+using Httprove:
+▶ cat domains.txt
+▶ cat domains.txt | httprobe
+▶ cat domains.txt | httprobe -p http:81 -p https:8443
+▶ cat domains.txt | httprobe -c 50
+
+Using UrlProve:
+▶ cat urls.txt | urlprobe 
+▶ cat urls.txt | urlprobe -c 1000 -t 10
+▶ assetfinder --subs-only test.com | waybackurls | gf redirect | urlprobe -c 1000 -t 05
+▶ Subfinder -d test.com | gau | gf ssrf | urlprobe -c 1000 -t 05
+▶ cat hosts | urlprobe -c 1000 -t 01 | grep 200 | awk '{print $5}' | tee -a lol-200.txt 
+
+Github Recon :
+"tesla" password
+"tesla" username
+"tesla" uname
+"tesla" passwd
+
+Link : https://gist.githubusercontent.com/EdOverflow/8bd2faad513626c413b8fc6e9d955669/raw/06a0ef0fd83920d513c65767aae258ecf8382bdf/gistfile1.txt
+
+ScreenShor Taker : Gowithness, EyeWitmess, WitnessMe, SnapBack, Aquatone, CutyCapt
+
+▶ cat targets.txt | aquatone
+▶ cat hosts.txt | aquatone -out example.com
+▶ cat hosts.txt | aquatone -ports 80,443,3000,3001
+▶ cat hosts.txt | aquatone -ports large
+▶ amass -active -brute -o hosts.txt -d yahoo.com
+
+▶ cutycapt --url=www.abc.xyz
+▶ cutycapt --url=www.abc.xyz --out=name.png
+
+Fuzzing: FFUF Then sqlmap, Wpscan 
+
+
+
+
+
+
+
+

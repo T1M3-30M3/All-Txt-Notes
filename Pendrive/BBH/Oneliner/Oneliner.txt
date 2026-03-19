@@ -1,0 +1,30 @@
+Finding Subdomain and Sorting:
+amass enum -d <link> -o amass.txt -nocolor -v | grep -Eo "([a-zA-Z0-9.-]+\.)*<link>" > name.txt && subfinder -d <link> -o subfinder.txt && cat amass.txt subfinder.txt | sort -u > sorted.txt
+
+OneLiner : sudo subfinder -d tesla.com -o 1.txt | sudo sublist3r -d tesla.com -o 2.txt | sudo assetfinder --subs-only tesla.com > 3.txt | sudo findomain -t tesla.com --output
+cat * > full.txt | sort | uniq > final.txt
+
+Extract js files from subdomain:
+cat subs.txt | waybackurls | grep "\.js" | uniq | sort | tee -a js.txt
+
+Finding all links:
+echo "<link>" | gau > gau.txt && echo "<link>" | waybackurls > way.txt && cat gau.txt way.txt | sort -u >sorted.txt
+
+Open Redirect:
+gau testphp.vulnweb.com | grep -a -i \=https | qsreplace 'http://evil.com' | while read host do;do curl -s -L $host -I | grep "evil.com" && echo -e "$host \033[0;31mVulnerable\n" ;done
+gau testphp.vulnweb.com | tee -a archive 1>/dev/null && gf redirect archive | cut -f 3- -d ':' | qsreplace "https://evil.com" | httpx -silent -status-code –location
+gau testphp.vulnweb.com | tee -a archive 1>/dev/null && gf redirect archive | qsreplace FUZZ | cut -f 3- -d ':' | while read url; do ffuf -w word -u "$url"  -c=true -sa=true  -sf=true -se=true -mc=302  -v 2>/dev/null ; done
+
+
+whois -h whois.radb.net  -- '-i origin ASN' | grep -Eo "([0-9.]+){4}/[0-9]+" | uniq -u | tee -a ip_range.txt
+censys search hackerone.com | grep “ip” | egrep -v “description” | cut -d “:” -f2 | tr -d \”\,
+
+SSRF:
+cat subdomins.txt | waybackurls | anew urls.txt | gf ssrf urls.txt | grep "=" | qsreplace burp_collaborator.net | httpx -follow-redirect
+
+tools:
+sudo go install -v github.com/tomnomnom/anew@latest && sudo cp /root/go/bin/anew /usr/bin/
+
+curl "http://testphp.vulnweb.com" | grep -oP '(https*://|www\.)[^ ]*'
+
+

