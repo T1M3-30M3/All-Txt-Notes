@@ -1,0 +1,33 @@
+| Command                                           | Description                                  |
+|---------------------------------------------------|----------------------------------------------|
+| vol.py -h                                         | options and the default values               |
+| vol.py -f imageinfo                               | image identification                         |
+| vol.py -f –profile=Win7SP1x64 pslist              | system processes                             |
+| vol.py -f –profile=Win7SP1x64 pstree              | view the process listing in tree form        |
+| vol.py -f –profile=Win7SP1x64 psscan              | inactive or hidden processes                 |
+| vol.py -f –profile=Win7SP1x64 dlllist             | DLLs                                         |
+| vol.py -f –profile=Win7SP1x64 cmdscan             | commands on cmd                              |
+| vol.py -f –profile=Win7SP1x64 notepad             | notepad                                      |
+| vol.py -f –profile=Win7SP1x64 iehistory           | IE history                                   |
+| vol.py -f –profile=Win7SP1x64 connscan            | active and terminated connections            |
+| vol.py -f –profile=Win7SP1x64 sockets             | TCP/UDP connections                          |
+| vol.py -f –profile=Win7SP1x64 hivescan            | physical addresses of registry hives         |
+| vol.py -f –profile=Win7SP1x64 hivelist            | virtual addresses of registry hives          |
+| vol.py -f –profile=Win7SP1x64 svcscan             | running services                             |
+| vol.py -f –profile=Win7SP1x64 mimikatz            | get the passwords                            |
+| vol.py -f –profile=Win7SP1x64 malfind             | hidden, malicious code analysis              |
+| vol.py -f –profile=Win7SP1x64 psxview             | processes that try to hide themselves        |
+| vol.py -f –profile=Win7SP1x64 connections         | network connections                          |
+| vol.py -f –profile=Win7SP1x64 filescan            | files in physical memory                     |
+| vol.py -f –profile=Win7SP1x64 modules             | loaded kernel drivers                        |
+| vol.py -f –profile=Win7SP1x64 driverscan          | drivers in physical memory                   |
+| vol.py -f –profile=Win7SP1x64 apihooks            | hooked processes                             |
+| vol.py -f –profile=Win7SP1x64 memmap -p <PID>     | shows which pages are memory resident        |
+| vol.py -f –profile=Win7SP1x64 memdump -p <PID> -D | dump all memory resident pages               |
+| vol.py -f –profile=Win7SP1x64 procdump -D dump/ -p <PID> | dump the malware                      |
+| vol.py -f –profile=Win7SP1x64 modscan             | hidden/unlinked drives                       |
+| vol.py -f –profile=Win7SP1x64 hollowfind          | find evidence of process hollowing           |
+| vol.py -f –profile=Win7SP1x64 netscan             | scan for network artifacts                   |
+| vol.py -f –profile=Win7SP1x64 hashdump            | extract and decrypt cached domain credentials|
+| vol.py -f –profile=Win7SP1x64 hivedump            | list all subkeys in a hive recursively       |
+| vol.py -f –profile=Win7SP1x64 clipboard           | recover data from users’ clipboards          |

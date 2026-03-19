@@ -1,0 +1,56 @@
+# Extract only ICMP packets
+tshark -r file.pcap -Y "icmp"
+
+# Extract only HTTP packets
+tshark -r file.pcap -Y "http"
+
+# Extract only TCP packets on port 80 (HTTP traffic)
+tshark -r file.pcap -Y "tcp.port == 80"
+
+# 2. Extracting specific fields from packets
+
+# Extract source and destination IP addresses from a PCAP
+tshark -r file.pcap -T fields -e ip.src -e ip.dst
+
+# Extract and format timestamp, source, destination, and protocol
+tshark -r file.pcap -T fields -e frame.time -e ip.src -e ip.dst -e ip.proto
+
+# Extract only DNS queries
+tshark -r file.pcap -Y "dns.qry.name" -T fields -e dns.qry.name
+
+# Extract HTTP hostnames
+tshark -r file.pcap -Y "http.host" -T fields -e http.host
+
+# 3. Live Packet Capture
+
+# Capture live traffic on a specific interface (eth0)
+tshark -i eth0
+
+# Capture only TCP packets on port 443 (HTTPS)
+tshark -i eth0 -f "tcp port 443"
+
+# Capture packets with only IP addresses and ports displayed
+tshark -i eth0 -T fields -e ip.src -e ip.dst -e tcp.srcport -e tcp.dstport
+
+# 4. Extracting and Processing Data
+
+# Extract payload (data field) from TCP packets
+tshark -r file.pcap -Y "tcp" -T fields -e data.data
+
+# Extract and convert hex payload to ASCII (useful for extracting text from packets)
+tshark -r file.pcap -Y "tcp" -T fields -e data.data | xxd -r -p
+
+# Extract and save payload to a file
+tshark -r file.pcap -Y "tcp" -T fields -e data.data | xxd -r -p > output.txt
+
+# 5. Other Useful Commands
+
+# List all available interfaces
+tshark -D
+
+# List all available protocol fields
+tshark -G fields
+
+# Display only packet summary (shorter output)
+tshark -r file.pcap -qz conv,tcp
+EOF

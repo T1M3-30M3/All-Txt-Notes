@@ -1,0 +1,7 @@
+Steg/File Forensics: 
+
+Exiftool -> Binwalk -> File -> List of File Sign -> 
+
+
+Web:
+-> Url Encoding + Double URL Encoding

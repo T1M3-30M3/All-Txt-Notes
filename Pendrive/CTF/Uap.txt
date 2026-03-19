@@ -1,0 +1,50 @@
+Admin username and password::
+strings traffic.pcap | grep -i "email="  
+strings traffic.pcap | grep -Eoi '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+strings traffic.pcap | grep -i 'ironman@xyz.com' 
+strings traffic.pcap | grep -i -A 10 'ironman@xyz.com'
+
+Hidden Flag:
+tshark -r traffic.pcap -Y 'http.request.uri matches ".*.(conf|env|bak|ini|log|txt)$"' -T fields -e http.host -e http.request.uri 
+strings traffic.pcap | grep -i ".htaccess"  
+tshark -r traffic.pcapng -Y 'frame contains ".htaccess"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+
+Which Tool are using:
+strings traffic.pcap | grep -i "User-agent: "  
+
+Find the Access Code Like OTP:
+strings traffic.pcap | grep -i "access_code="
+
+Attacker Username:
+strings traffic.pcap | grep -i "email="  
+strings traffic.pcap | grep -i "username="
+strings traffic.pcap | grep -i "password="
+
+API Key:
+strings traffic.pcap | grep -i "debug"  
+tshark -r traffic.pcap -Y 'http.request.uri' -T fields -e http.request.uri 2>/dev/null | grep -i 'debug'
+frame contains "debug"
+
+Command Prefix:
+tshark -r traffic.pcapng -Y 'frame contains "ls -la"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "AiController.php"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+
+AI Model: Gemini
+
+Reverse Shell:
+tshark -r traffic.pcapng -Y 'frame contains "nc 192.168."' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+
+Finding the Port:
+tshark -r traffic.pcapng -Y 'frame contains "nc 192.168."' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "/home/kshackzone/"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+or try to search php reverse shell or pentest monkey
+
+AI Endpoint:
+tshark -r traffic.pcapng -Y 'frame contains "ls -la"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "AiController.php"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+
+Hidden Role:
+strings traffic.pcap | grep -i '<option value="'
+
+frame contains "AiController.php"
+

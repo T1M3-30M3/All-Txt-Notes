@@ -1,0 +1,266 @@
+Vodality Cheat Sheet::
+
+volatility -h
+volatility -f ram.mem imageinfo
+volatility -f ram.mem kdbgscan
+volatility -f dump.mem --profile=Win7SP1x86 cmdline
+volatility -f ram.mem --profile=Win7SP1x64 pslist -P
+volatility -f ram.mem --profile=Win7SP1x64 psscan
+volatility -f ram.mem --profile=Win7SP1x64 pstree
+volatility -f ram.mem --profile=Win7SP1x64 dlllist -p 116,788
+volatility -f ram.mem --profile=Win7SP1x64 dlldump –dump-dir
+volatility -f ram.mem --profile=Win7SP1x64 handles
+volatility -f ram.mem --profile=Win7SP1x64 getsids -p 464
+volatility -f ram.mem --profile=Win7SP1x64 netscan
+volatility -f ram.mem --profile=Win7SP1x64 hivelist
+volatility -f ram.mem --profile=Win7SP1x64 timeliner
+volatility -f ram.mem --profile=Win7SP1x64 hashdump
+volatility -f ram.mem --profile=Win7SP1x64 lsadump
+volatility -f ram.mem --profile=Win7SP1x64 modscan
+volatility -f ram.mem --profile=Win7SP1x64 filescan
+volatility -f ram.mem --profile=Win7SP1x64 svcscan
+volatility -f ram.mem --profile=Win7SP1x64 cmdscan
+volatility -f ram.mem --profile=Win7SP1x64 iehistory
+volatility -f ram.mem --profile=Win7SP1x64 dumpregistry --dump-dir /root/ramdump/
+volatility -f ram.mem --profile=Win7SP1x64 moddump --dump-dir /root/ramdump/
+volatility -f ram.mem --profile=Win7SP1x64 procdump --dump-dir /root/ramdump/
+volatility -f ram.mem --profile=Win7SP1x64 memdump --dump-dir /root/ramdump/
+volatility -f ram.mem --profile=Win7SP1x64 notepad
+
+vol.py -f “/path/to/file” windows.pslist
+vol.py -f “/path/to/file” windows.psscan
+vol.py -f “/path/to/file” windows.pstree
+vol.py -f “/path/to/file” windows.handles ‑‑pid <PID>
+vol.py -f “/path/to/file” windows.dlllist ‑‑pid <PID>
+vol.py -f “/path/to/file” windows.cmdline
+vol.py -f “/path/to/file” windows.netscan
+vol.py -f “/path/to/file” windows.netstat
+vol.py -f “/path/to/file” windows.registry.hivescan
+vol.py -f “/path/to/file” windows.registry.hivelist
+vol.py -f “/path/to/file” windows.registry.printkey
+vol.py -f “/path/to/file” windows.registry.printkey ‑‑key “Software\Microsoft\Windows\CurrentVersion”
+vol.py -f “/path/to/file” windows.filescan
+vol.py -f “/path/to/file” windows.malfind
+vol.py -f “/path/to/file” windows.vadyarascan ‑‑yara-rules <string>
+vol.py -f “/path/to/file” windows.vadyarascan ‑‑yara-file “/path/to/file.yar”
+vol.py -f “/path/to/file” yarascan.yarascan ‑‑yara-file “/path/to/file.yar”
+vol.py -f “/path/to/file” -o “/path/to/dir” windows.dumpfiles
+vol.py -f “/path/to/file” -o “/path/to/dir” windows.dumpfiles ‑‑virtaddr <offset>
+vol.py -f “/path/to/file” -o “/path/to/dir” windows.dumpfiles ‑‑physaddr <offset>
+vol.py -f “/path/to/file” -o “/path/to/dir” windows.dumpfiles ‑‑pid <PID>
+vol.py -f “/path/to/file” -o “/path/to/dir” windows.memmap ‑‑dump ‑‑pid <PID>
+
+strings dump.raw | grep -i 'Linux version' | uniq
+vol -f dump.mem mac_get_profile
+
+volatility -f mem.dmp --profile=Win7SP1x86 plugin
+volatility -f mem.dmp --profile=LinuxUbuntu1204x64 linux_plugin
+volatility -f mem.dmp --profile=MacMountainLion_10_8_3_AMDx64 mac_plugin
+
+
+volatility imageinfo -f file.dmp
+volatility kdbgscan -f file.dmp
+
+./vol.py -f file.dmp windows.info.Info
+./vol.py -f file.dmp windows.hashdump.Hashdump 
+./vol.py -f file.dmp windows.cachedump.Cachedump 
+./vol.py -f file.dmp windows.lsadump.Lsadump 
+
+volatility -f file.dmp --profile=Win7SP1x86 memdump -p 2168 -D conhost/
+python3 vol.py -f file.dmp windows.pstree.PsTree
+python3 vol.py -f file.dmp windows.pslist.PsList
+python3 vol.py -f file.dmp windows.psscan.PsScan
+
+./vol.py -f file.dmp windows.dumpfiles.DumpFiles --pid <pid>
+
+python3 vol.py -f file.dmp windows.cmdline.CmdLine
+python3 vol.py -f file.dmp windows.envars.Envars
+python3 vol.py -f file.dmp windows.privileges.Privs
+
+./vol.py -f file.dmp windows.getsids.GetSIDs [--pid <pid>] 
+./vol.py -f file.dmp windows.getservicesids.GetServiceSIDs 
+./vol.py -f file.dmp windows.handles.Handles 
+./vol.py -f file.dmp windows.dlllist.DllList [--pid <pid>] 
+./vol.py -f file.dmp windows.dumpfiles.DumpFiles --pid <pid>
+
+strings file.dmp > /tmp/strings.txt
+./vol.py -f /tmp/file.dmp windows.strings.Strings --strings-file /tmp/strings.txt
+./vol.py -f file.dmp windows.registry.userassist.UserAssist
+./vol.py -f file.dmp windows.svcscan.SvcScan
+./vol.py -f file.dmp windows.getservicesids.GetServiceSIDs 
+./vol.py -f file.dmp windows.netscan.NetScan
+./vol.py -f file.dmp windows.registry.hivelist.HiveList 
+./vol.py -f file.dmp windows.registry.printkey.PrintKey 
+./vol.py -f file.dmp windows.registry.printkey.PrintKey --key "Software\Microsoft\Windows NT\CurrentVersion"
+
+volatility --profile=Win7SP1x86_23418 hivedump -o 0x9aad6148 -f file.dmp 
+volatility --profile=Win7SP1x86_23418 hivedump -f file.dmp
+volatility --profile=SomeLinux -f file.dmp linux_mount
+volatility --profile=SomeLinux -f file.dmp linux_recover_filesystem 
+
+./vol.py -f file.dmp windows.filescan.FileScan 
+./vol.py -f file.dmp windows.dumpfiles.DumpFiles --physaddr <0xAAAAA> 
+./vol.py -f file.dmp windows.registry.certificates.Certificates
+./vol.py -f file.dmp windows.malfind.Malfind [--dump]
+./vol.py -f file.dmp windows.driverirp.DriverIrp 
+./vol.py -f file.dmp windows.ssdt.SSDT 
+./vol.py -f file.dmp linux.check_afinfo.Check_afinfo 
+./vol.py -f file.dmp linux.check_creds.Check_creds
+./vol.py -f file.dmp linux.check_idt.Check_idt 
+./vol.py -f file.dmp linux.check_syscall.Check_syscall 
+./vol.py -f file.dmp linux.check_modules.Check_modules
+./vol.py -f file.dmp linux.tty_check.tty_check 
+./vol.py -f file.dmp windows.symlinkscan.SymlinkScan
+./vol.py -f file.dmp windows.mutantscan.MutantScan
+./vol.py -f file.dmp timeLiner.TimeLiner
+./vol.py -f file.dmp linux.bash.Bash
+
+
+vol.py -f file.dmp windows.info
+vol.py -f file.dmp windows.pslist
+vol.py -f file.dmp windows.psscan
+vol.py -f file.dmp windows.pstree
+vol.py -f file.dmp -o “/path/to/dir” windows.dumpfiles ‑‑pid <PID>
+vol.py -f file.dmp -o “/path/to/dir” windows.memmap ‑‑dump ‑‑pid <PID>
+vol.py -f file.dmp windows.handles ‑‑pid <PID>
+vol.py -f file.dmp windows.dlllist ‑-pid <PID>
+vol.py -f file.dmp windows.cmdline
+vol.py -f file.dmp windows.envars --pid <PID>
+vol.py -f file.dmp windows.netscan
+vol.py -f file.dmp windows.netstat
+vol.py -f file.dmp windows.registry.hivescan
+vol.py -f file.dmp windows.registry.hivelist
+vol.py --profile=Win7SP1x86_23418 hivedump -o 0x9aad6148 -f file.dmp 
+vol.py --profile=Win7SP1x86_23418 hivedump -f file.dmp 
+vol.py -f file.dmp windows.registry.printkey
+vol.py -f file.dmp windows.registry.printkey ‑‑key “Software\Microsoft\Windows\CurrentVersion”
+vol.py -f file.dmp ‑‑profile <profile> printkey
+vol.py -f file.dmp windows.filescan
+vol.py -f file.dmp -o “/path/to/dir” windows.dumpfiles
+vol.py -f file.dmp -o “/path/to/dir” windows.dumpfiles ‑‑virtaddr <offset>
+vol.py -f file.dmp -o “/path/to/dir” windows.dumpfiles ‑‑physaddr <offset>
+vol.py -f file.dmp windows.malfind
+vol.py -f file.dmp yarascan -y “/path/to/file.yar”
+vol.py -f file.dmp windows.hashdump 
+vol.py -f file.dmp windows.cachedump 
+vol.py -f file.dmp windows.lsadump 
+vol.py -f file.dmp windows.driverscan
+
+vol.py -f <image> imageinfo
+vol.py -f <image> pslist
+vol.py -f <image> psscan
+vol.py -f <image> modscan
+vol.py -f <image> dlllist <pid>
+vol.py -f <image> connections
+vol.py -f <image> handles <pid>
+vol.py -f <image> malfind
+vol.py -f <image> memmap
+vol.py -f <image> vadtree <pid>
+vol.py -f <image> pstree
+vol.py -f <image> hivedump <hive>
+vol.py -f <image> registry --key <key> --value <value>
+
+
+
+volshell: Starts an interactive shell where you can use Volatility commands.
+volshell -h: Displays help information for the volshell command.
+volshell -p <PID>: Opens a memory dump and automatically sets the context to the specified process ID.
+volshell -f <MEMORY_DUMP>: Opens a specific memory dump file.
+imageinfo: Retrieves basic information about the memory dump, such as the operating system, architecture, and time of acquisition.
+windows.pslist: Lists the running processes.
+windows.pstree: Displays a process tree.
+windows.psxview: Lists hidden processes.
+windows.netscan: Scans for network-related artifacts.
+windows.net: Lists network connections and related information.
+windows.netstat: Shows network connections.
+windows.sockets: Lists network sockets.
+windows.registry.hivelist: Lists the active registry hives.
+windows.registry.printkey: Prints the contents of a registry key.
+windows.registry.find: Searches for specific values or keys within the registry.
+windows.registry.apihooks: Lists registry API hooks.
+windows.registry.userassist: Lists UserAssist information from the registry.
+windows.registry.shellbags: Lists shellbags information from the registry.
+windows.registry.userassist: Lists UserAssist information from the registry.
+windows.registry.userassist.history: Lists UserAssist history.
+linux.pslist: Lists processes in a Linux memory dump.
+linux.pstree: Displays a process tree in Linux.
+macosx.lsadump: Dumps the LSASS process memory on macOS.
+windows.info
+windows.registryapi
+windows.registry.hivelist
+windows.registry.hivefind
+windows.registry.hivedump
+windows.registry.hive
+windows.registry.registryprint
+windows.registry.registryvalues
+windows.registry.keyvalues
+windows.registry.registrykeys
+windows.registry.hiveapi
+windows.registry.ustrings
+windows.registry.cell
+windows.registry.analyze
+windows.registry.exceptions
+windows.registry.registryanalyze
+windows.registry.hivediff
+windows.registry.hivescan
+windows.registry.hiveinfo
+windows.registry.ustringsvalues
+windows.registry.ustringskeys
+windows.registry.ustringsvalue
+windows.registry.ustringskey
+
+
+vol.py -f "filename" imageinfo
+vol.py -f "filename" kdbgscan
+vol.py -f "filename" ‑‑profile <profile> pslist
+vol.py -f "filename" ‑‑profile <profile> psscan
+vol.py -f "filename" ‑‑profile <profile> pstree
+vol.py -f "filename" ‑‑profile <profile> psxview
+vol.py -f "filename" ‑‑profile <profile> procdump -p <PID> ‑‑dump-dir="output/dir"
+vol.py -f "filename" ‑‑profile <profile> memdump -p <PID> ‑‑dump-dir="output/dir"
+vol.py -f "filename" ‑‑profile <profile> handles -p <PID>
+vol.py -f "filename" ‑‑profile <profile> dlllist -p <PID>
+vol.py -f "filename" ‑‑profile <profile> netscan
+vol.py -f "filename" ‑‑profile <profile> netstat
+vol.py -f "filename" ‑‑profile <profile> connscan
+vol.py -f "filename" ‑‑profile <profile> connections
+vol.py -f "filename" ‑‑profile <profile> sockscan
+vol.py -f "filename" ‑‑profile <profile> sockets
+vol.py -f "filename" ‑‑profile <profile> dlllist -p <PID>
+vol.py -f "filename" ‑‑profile <profile> hivescan
+vol.py -f "filename" ‑‑profile <profile> hivelist
+vol.py -f "filename" ‑‑profile <profile> printkey
+vol.py -f "filename" ‑‑profile <profile> printkey -K “Software\Microsoft\Windows\CurrentVersion”
+vol.py -f "filename" ‑‑profile <profile> hivedump -o <offset> 
+vol.py -f "filename" ‑‑profile <profile> filescan
+vol.py -f "filename" ‑‑profile <profile> dumpfiles ‑‑dump-dir="output/dir"
+vol.py -f "filename" ‑‑profile <profile> dumpfiles ‑‑dump-dir="output/dir" -Q <offset>
+vol.py -f "filename" ‑‑profile <profile> dumpfiles ‑‑dump-dir="output/dir" -p <PID>
+
+vol3 -f "filename" windows.info
+vol3 -f "filename"  windows.pslist
+vol3 -f "filename"  windows.psscan
+vol3 -f "filename"  windows.pstree
+vol3 -f "filename" -o "output/dir" windows.dumpfiles ‑‑pid <PID>
+vol3 -f "filename" -o "output/dir" windows.memmap ‑‑dump ‑‑pid <PID>
+vol3 -f "filename" windows.handles ‑‑pid <PID>
+vol3 -f "filename" windows.dlllist ‑‑pid <PID>
+vol3 -f "filename" windows.netscan
+vol3 -f "filename" windows.netstat
+vol3 -f "filename" windows.dlllist ‑‑pid <PID>
+vol3 -f "filename" windows.registry.hivescan
+vol3 -f "filename" windows.registry.hivelist
+vol3 -f "filename" windows.registry.printkey
+vol3 -f "filename" windows.registry.printkey ‑‑key “Software\Microsoft\Windows\CurrentVersion”
+vol3 -f "filename" windows.filescan
+vol3 -f -o "output/dir"  "filename" windows.dumpfiles
+vol3 -f -o "output/dir"  "filename" windows.dumpfiles ‑‑virtaddr <offset>
+vol3 -f -o "output/dir"  "filename" windows.dumpfiles ‑‑physaddr <offset>
+
+
+https://hackmd.io/@TuX-/BymMpKd0s
+https://hippie.cat/post/cheatsheet/Volatility3
+https://book.hacktricks.xyz/generic-methodologies-and-resources/basic-forensic-methodology/memory-dump-analysis/volatility-cheatsheet#volatility3-1
+https://hackmd.io/@TuX-/BymMpKd0s
+https://heisenberk.github.io/Profile-Memory-Dump/
+https://blog.onfvp.com/post/volatility-cheatsheet/

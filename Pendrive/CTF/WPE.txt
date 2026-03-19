@@ -1,0 +1,80 @@
+###Tools + Resources :
+https://github.com/Tib3rius/Windows-PrivEsc-Setup
+https://github.com/frizb/Windows-Privilege-Escalation
+https://github.com/0dayhunter/Windows-Privilege-Escalation-Resources
+https://github.com/peass-ng/PEASS-ng/blob/master/winPEAS/winPEASexe/README.md
+https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS
+https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc
+https://github.com/rasta-mouse/Watson
+https://github.com/HarmJ0y/PowerUp
+
+###CheckList:
+https://github.com/intotheewild/OSCP-Checklist/blob/main/03b.%20Windows%20Privilege%20Escalation.md
+https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_windows.html
+
+###Windows Enum command:
+systeminfo
+hostname
+whoami
+echo %username%
+
+net user
+net user username
+net user username *
+net user username /add
+net user username /delete
+net user username /passwordchg
+net user username /active:yes
+net user username /active:no
+net user username /expires:never
+
+netsh firewall show state
+netsh firewall show config
+
+ipconfig /all
+route print
+arp -A
+
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+
+findstr /si password *.txt
+findstr /si password *.xml
+findstr /si password *.ini
+
+dir /s *pass* == *cred* == *vnc* == *.config*
+
+findstr /spin "password" *.*
+findstr /spin "password" *.*
+
+dir c:\*vnc.ini /s /b
+dir c:\*ultravnc.ini /s /b 
+dir c:\ /s /b | findstr /si *vnc.ini
+
+netstat -ano
+
+NetUser:
+https://www.lifewire.com/net-user-command-2618097
+https://www.linkedin.com/pulse/20-net-user-commands-you-can-use-troubleshoot-users-active-decelles
+
+###Common Password Hunting:
+
+SAM/SYSTEM default Path : C:\Windows\System32\config
+
+pwdump.py SYSTEM SAM
+samdump2 system sam 
+
+also mimikitz also
+
+
+###Kernel Exploit:
+
+https://github.com/SecWiki/windows-kernel-exploits
+https://github.com/AonCyberLabs/Windows-Exploit-Suggester
+https://github.com/7Ragnarok7/Windows-Exploit-Suggester-2
+https://github.com/bitsadmin/wesng
+
+Application -> Kernel -> CPU + Memory + Devices
+
+
+
+

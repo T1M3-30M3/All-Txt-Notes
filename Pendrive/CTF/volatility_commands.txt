@@ -1,0 +1,65 @@
+
+Volatility 2 and Volatility 3 Commands with Examples
+
+======================
+Volatility 2 Commands
+======================
+
+Category              | Command            | Description                                           | Example
+-----------------------------------------------------------------------------------------------------------
+Core Information      | imageinfo          | Identifies memory profile of the image.              | vol.py -f memory.dmp imageinfo
+                      | kdbgscan           | Scans for KDBG structures to verify the memory.      | vol.py -f memory.dmp kdbgscan
+
+Processes and Threads | pslist             | Lists active processes.                              | vol.py -f memory.dmp --profile=Win7SP1x64 pslist
+                      | pstree             | Displays processes in tree structure.               | vol.py -f memory.dmp --profile=Win7SP1x64 pstree
+                      | psscan             | Scans for all processes, including hidden ones.      | vol.py -f memory.dmp --profile=Win7SP1x64 psscan
+                      | dlllist            | Lists DLLs loaded by each process.                  | vol.py -f memory.dmp --profile=Win7SP1x64 dlllist
+                      | handles            | Displays open handles for processes.                | vol.py -f memory.dmp --profile=Win7SP1x64 handles
+
+Networking            | netscan            | Lists network connections and listening ports.       | vol.py -f memory.dmp --profile=Win7SP1x64 netscan
+                      | sockscan           | Scans for open sockets in memory.                   | vol.py -f memory.dmp --profile=Win7SP1x64 sockscan
+
+Files and Registry    | filescan           | Scans for file objects in memory.                   | vol.py -f memory.dmp --profile=Win7SP1x64 filescan
+                      | dumpfiles          | Extracts files from memory.                         | vol.py -f memory.dmp --profile=Win7SP1x64 dumpfiles -Q <offset> -D output_directory
+                      | hivelist           | Lists registry hives in memory.                     | vol.py -f memory.dmp --profile=Win7SP1x64 hivelist
+                      | printkey           | Displays registry key values.                       | vol.py -f memory.dmp --profile=Win7SP1x64 printkey -K "Software\Microsoft\Windows\CurrentVersion\Run"
+
+Memory Analysis       | memmap             | Displays memory mapping of a process.               | vol.py -f memory.dmp --profile=Win7SP1x64 memmap -p <pid>
+                      | vadinfo            | Displays Virtual Address Descriptor details.        | vol.py -f memory.dmp --profile=Win7SP1x64 vadinfo -p <pid>
+
+Malware and Forensics | malfind            | Detects injected code or suspicious processes.       | vol.py -f memory.dmp --profile=Win7SP1x64 malfind
+                      | modscan            | Scans for kernel modules in memory.                 | vol.py -f memory.dmp --profile=Win7SP1x64 modscan
+                      | apihooks           | Identifies API hooks for stealthy malware.          | vol.py -f memory.dmp --profile=Win7SP1x64 apihooks
+                      | ssdt               | Displays the System Service Descriptor Table.       | vol.py -f memory.dmp --profile=Win7SP1x64 ssdt
+
+Advanced Analysis     | procdump           | Dumps executables for further analysis.             | vol.py -f memory.dmp --profile=Win7SP1x64 procdump -p <pid> -D output_directory
+                      | timeliner          | Generates a timeline of events.                     | vol.py -f memory.dmp --profile=Win7SP1x64 timeliner
+                      | shellbags          | Extracts shellbag info (user activity tracking).     | vol.py -f memory.dmp --profile=Win7SP1x64 shellbags
+
+======================
+Volatility 3 Commands
+======================
+
+Category              | Command                     | Description                                           | Example
+-----------------------------------------------------------------------------------------------------------
+Core Information      | windows.info               | Displays details about the memory sample.            | vol.py -f memory.dmp windows.info
+
+Processes             | windows.pslist             | Lists active processes.                              | vol.py -f memory.dmp windows.pslist
+                      | windows.pstree             | Displays processes in tree format.                  | vol.py -f memory.dmp windows.pstree
+                      | windows.cmdline            | Extracts command-line arguments.                    | vol.py -f memory.dmp windows.cmdline
+
+Networking            | windows.netscan            | Lists all network connections and ports.            | vol.py -f memory.dmp windows.netscan
+
+Files and Registry    | windows.filescan           | Scans for file objects in memory.                   | vol.py -f memory.dmp windows.filescan
+                      | windows.registry.hivelist  | Lists registry hives in memory.                     | vol.py -f memory.dmp windows.registry.hivelist
+                      | windows.registry.printkey  | Displays registry key values.                       | vol.py -f memory.dmp windows.registry.printkey --key "Software\Microsoft\Windows\CurrentVersion\Run"
+
+Memory Analysis       | windows.memmap             | Displays memory mappings for processes.             | vol.py -f memory.dmp windows.memmap
+                      | windows.vadinfo            | Provides Virtual Address Descriptor (VAD) info.     | vol.py -f memory.dmp windows.vadinfo
+
+Malware and Forensics | windows.malfind            | Identifies injected code and potential malware.      | vol.py -f memory.dmp windows.malfind
+                      | windows.ssdt               | Displays the System Service Descriptor Table.       | vol.py -f memory.dmp windows.ssdt
+                      | windows.callbacks          | Enumerates kernel callbacks.                        | vol.py -f memory.dmp windows.callbacks
+
+Advanced Analysis     | windows.modules            | Lists kernel modules loaded in memory.              | vol.py -f memory.dmp windows.modules
+                      | windows.mutantscan         | Scans for mutex objects in memory.                  | vol.py -f memory.dmp windows.mutantscan

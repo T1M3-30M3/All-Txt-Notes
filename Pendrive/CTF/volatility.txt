@@ -1,0 +1,275 @@
+Memlabs Solve::
+
+https://github.com/stuxnet999/MemLabs
+
+Lab 0 :
+volatility -f <filename> imageinfo [see that suggest profiles]
+volatility -f <filename> --profile=Win7SP1x86_23418 pslist
+volatility -f <filename> --profile=Win7SP1x86_23418 cmdscan
+volatility -f <filename> --profile=Win7SP1x86_23418 consoles
+volatility -f <filename> --profile=Win7SP1x86_23418 envars
+volatility -f <filename> --profile=Win7SP1x86_23418 hashdump 
+
+For Analyzing Hash :: cybershef > analyze hash
+For Hash Cracking :: https://md5decrypt.net/en/
+
+Lab 1:
+volatility -f <filename> imageinfo
+volatility -f <filename> --profile=Win7SP1x64 pslist
+volatility -f <filename> --profile=Win7SP1x64 cmdscan
+volatility -f <filename> --profile=Win7SP1x64 consoles
+volatility -f <filename> --profile=Win7SP1x64 pslist
+volatility -f <filename> --profile=Win7SP1x64 memdump -p <pid> -D .
+volatility -f <filename> --profile=Win7SP1x64 cmdline
+volatility -f <filename> --profile=Win7SP1x64 filescan | grep -i <filename>
+volatility -f <filename> --profile=Win7SP1x64 dumpfiles -Q <location address> -D .
+volatility -f <filename> --profile=Win7SP1x64 dumpfiles -n "filename.ext" -D .
+volatility -f <filename> --profile=Win7SP1x64 hashdump
+
+for image:
+mv <name>.dmp <name>.data
+gimp <name>.data
+
+Lab 2:
+
+volatility -f <filename> imageinfo
+volatility -f <filename> --profile=<profilename> pslist
+volatility -f <filename> --profile=<profilename> cmdline
+volatility -f <filename> --profile=<profilename> filescan | grep -i <filename>
+volatility -f <filename> --profile=<profilename> dumpfiles -Q <locationAddress> -D . [check file command]
+volatility -f <filename> --profile=<profilename> envars
+volatility --plugins=../volatility-plugins/ -f <filename> --profile=<profilename> chromehistory
+
+
+Lab 3:
+
+volatility -f <filename> imageinfo
+volatility -f <filename> --profile=Win7SP1x64 pslist
+volatility -f <filename> --profile=Win7SP1x64 cmdline
+volatility -f <filename> --profile=Win7SP1x64 filescan | grep -i "name\|name"
+volatility -f <filename> --profile=Win7SP1x64 dumpfiles -Q <location_add>,<location_add> -D .
+volatility -f <filename> --profile=Win7SP1x64 filescan | grep -i "jpg\|jpeg\|bmp"
+volatility -f <filename> --profile=Win7SP1x64 dumpfiles -Q <location_add>,<location_add> -D .
+
+Lab 4:Recovering Delete Files
+volatility -f <filename> imageinfo
+volatility -f <filename> --profile=Win7SP1x64 pslist
+volatility -f <filename> --profile=Win7SP1x64 cmdline
+volatility -f <filename> --profile=Win7SP1x64 clipboard
+volatility -f <filename> --profile=Win7SP1x64 screenshot -D .
+volatility -f <filename> --profile=Win7SP1x64 filescan | grep -i '\\User\\' | grep -i "jpeg\|jpg\|png\|txt\|py\|exe"
+volatility -f <filename> --profile=Win7SP1x64 dumpfiles -Q <location_add>,<location_add> -D .
+volatility -f <filename> --profile=Win7SP1x64 mftparser > mdtdata
+cat mdtdata | grep -i {file name}
+volatility -f <filename> --profile=Win7SP1x64 -A 30
+
+Lab 5:
+
+volatility -f <filename> imageinfo
+volatility -f <filename> --profile=<profilename> pslist
+volatility -f <filename> --profile=<profilename> cmdline
+volatility -f <filename> --profile=<profilename> filescan | grep -i <filename>
+volatility -f <filename> --profile=<profilename> screenshot -D .
+volatility -f <filename> --profile=<profilename> clipboard
+
+
+KnightCTF Forensics:-----
+
+
+OS Version : windbg
+
+Finding Hash:
+volatility -f <filename> imageinfo
+volatility -f <filename> --profile=<profilename> hivelist
+volatility -f <filename> --profile=<profilename> hashdump -s <profile_address> -y <system_address> >> hash.txt
+
+for Cracking password use john the ripper or https://crackstation.net/ or https://md5decrypt.net/en/
+
+Ip Address:
+volatility -f <filename> --profile=<profilename> netscan
+
+Finding the files:
+volatility -f <filename> --profile=<profilename> filescan | grep -i "jpg\|jpeg\|bmp"
+volatility -f <filename> --profile=<profilename> dumpfiles -Q <location_add>,<location_add> -D .
+
+Execution:
+volatility -f <filename> --profile=<profilename> consoles
+
+Malicious:
+volatility -f <filename> --profile=<profilename> filescan | grep -i "startup"
+volatility -f <filename> --profile=<profilename> printkey -K "Software\Microsoft\Windows\CurrentVersion\RUN"
+
+Finding Ip Address:
+du poi(poi(srvnet!SrvAdminIpAddressList)) > du
+
+Finding Hash and Pass:
+volatility -f <filename> --profile=<profilename> hashdump -s <profile_address> -y <system_address> >> hash.txt
+cat hash.txt
+john hash.txt --format=NT --wordlist=rockyou.txt
+
+Ip address: 
+vol2.exe -f KnightSquad.DMP --profile=Win7SP1x64 netscan
+
+HashDump :
+vol2.exe -f KnightSquad.DMP --profile=Win7SP1x64 hashdump
+
+Finding a File:
+vol2.exe -f KnightSquad.DMP --profile=Win7SP1x64 filescan | grep "Documents"
+vol2.exe -f <filename> --profile=<profilename> dumpfiles -Q <location_add>,<location_add> -D .
+
+Finding a File:
+vol2.exe -f KnightSquad.DMP --profile=Win7SP1x64 filescan
+
+-----END------
+
+CB Batch 3:
+
+vol -f <filename> imageinfo
+vol -f <filename> --profile=<name> pslist
+vol -f <filename> --profile=<name> psscan
+vol -f <filename> --profile=<name> pstree
+vol -f <filename> --profile=<name> psxview
+vol -f <filename> --profile=<name> malfind --offset=ramloction [find sanduiche method: ABA ]
+vol -f <filename> --profile=<name> malfind --offset=ramloction -D .
+clamscan -o process.*
+vol -f <filename> --profile=<name> filescan -v | grep -i <name>
+vol -f <filename> --profile=<name> hashdump
+vol -f <filename> --profile=<name> netscan
+vol -f <filename> --profile=<name> enetscan
+vol -f <filename> --profile=<name> iehistory
+
+
+Common Command for CTF:
+volatility -f memdump.raw imageinfo
+volatility -f memdump.raw --profile=Win7SP1x86_23418 hashdump
+volatility -f memdump.raw --profile=Win7SP1x86_23418 hivelist
+volatility -f memdump.raw --profile=Win7SP1x86_23418 lsadump
+volatility -f memdump.raw --profile=Win7SP1x86_23418 netscan
+volatility -f memdump.raw --profile=Win7SP1x86_23418 compname
+volatility -f memdump.raw --profile=Win7SP1x86_23418 clipboard
+volatility -f memdump.raw --profile=Win7SP1x86_23418 cmsscan
+
+
+Sample memory : https://github.com/volatilityfoundation/volatility/wiki/Memory-Samples
+Command : https://github.com/volatilityfoundation/volatility/wiki/Command-Reference
+
+volatility -f <filename> imageinfo
+volatility -f <filename>  --profile=<name> pslist
+volatility -f <filename>  --profile=<name> pstree
+volatility -f <filename>  --profile=<name> psxview
+volatility -f <filename>  --profile=<name> connscan
+volatility -f <filename>  --profile=<name> sockets
+volatility -f <filename>  --profile=<name> netscan
+volatility -f <filename>  --profile=<name> cmdline
+volatility -f <filename>  --profile=<name> procdump -p <PID> --dump-dir .
+volatility -f <filename>  --profile=<name> memdump -p <PID> --dump-dir .
+volatility -f <filename>  --profile=<name> hivelist
+volatility -f <filename>  --profile=<name> printkey -K "Software\Microsoft\Windows\CurrentVersion\Run"
+
+
+Source : https://monliclican.medium.com/hsb-presents-otterctf-2018-memory-forensics-write-up-c3b9e372c36c
+
+volatility -f <filename> imageinfo
+volatility -f <filename>  --profile=<name> hivelist
+volatility -f <filename>  --profile=<name> hashdump
+volatility -f <filename>  --profile=<name> lsadump
+volatility -f <filename>  --profile=<name> netscan
+volatility -f <filename>  --profile=<name> compname
+volatility -f <filename>  --profile=<name> clipboard
+volatility -f <filename>  --profile=<name> pslist
+volatility -f <filename>  --profile=<name> cmdline
+volatility -f <filename>  --profile=<name> fliescan
+volatility -f <filename>  --profile=<name> fliescan | grep -i \History
+volatility -f <filename>  --profile=<name> iehistory
+volatility -f <filename>  --profile=<name> dumpfiles -n --dump-dir=/tmp 
+volatility -f <filename>  --profile=<name> procdump
+volatility -f <filename>  --profile=<name>
+volatility -f <filename>  --profile=<name>
+volatility -f <filename>  --profile=<name> procdump -p <PID> --dump-dir .
+volatility -f <filename>  --profile=<name> memdump -p <PID> --dump-dir . → strings name.ext | grep -a Lunar\-3 -C 5
+volatility -f <filename>  --profile=<name> dumpregistry -o <mem_location> -D .
+rip -r <registry file> -f <sam/security/software/system> > <output file>
+
+C:\Users\<name>\AppData\Local\Google\Chrome\User Data\Default\History
+
+Volatility info : vol.py --info | more
+Tools : Dumplt, Magnet Ram Capture, Belkasoft Ram Capturer, FTK, Redline, Fast Dump
+
+vol.py -f <filename> imageinfo
+vol.py -f <filename> kdbgscan
+vol.py -f <filename> --profile=<name> imagecopy -O <filename>
+vol.py -f <filename> --profile=<name> pslist
+vol.py -f <filename> --profile=<name> pslist > pslist.txt
+grep -E -i "(system|wininit|lsass|lsm|services|sms|taskhost|winlogon|iexplore|explorer|svchost|csrss)" pslist.txt > name.txt
+cut -d " " -f 2 psscan.txt | sort | uniq -c > sort.txt
+
+Finding malware through process analysis : pslist,psscan,pstree,psxview
+Finding malware loaded in memory : malfind, moddump,dlldump, detecting shellcode, leveraging AV, File reputation checks
+Finding malware though other artifacts : shimcache, shimcachemen, MFTparser
+
+
+1.Image Info: volatility -f memory.vmem imageinfo
+2. Show Running Process at the time of memory capture: volatility -f memory.vmem pslist
+3. List all the Processes: volatility -f memory.vmem psscan
+4. Parent and Child Process: volatility -f memory.vmem pstree
+5. Hidding Process: volatility -f memory.vmem psxview
+6. Connections: volatility -f memory.vmem connscan
+7. Command Lines: volatility -f memory.vmem cmdline
+8. Dumping Process: volatility -f memory.vmem procdump -p <PID> — dump-dir
+9. Scan all files: volatility -f memory.vmem filescan
+
+
+vol.py -f infected.vmem — profile=Win7SP1x86 psscan | grep 2732
+vol.py -f infected — profile=Win7SP1x86 dlllist | grep or4qtckT.exe
+vol.py -f infected — profile=Win7SP1x86 filescan | grep eky
+volatility -f infected.vmem --profile=Win7SP1x86 psscan
+volatility -f infected.vmem --profile=Win7SP1x86 pstree
+volatility -f infected.vmem --profile=Win7SP1x86 cmdline
+volatility -f infected.vmem --profile=Win7SP1x86 memdump -p 2732 --dump-dir .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

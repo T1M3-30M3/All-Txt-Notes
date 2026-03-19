@@ -1,0 +1,94 @@
+ip.addr == 192.168.1.1
+tcp.port == 80
+udp.port == 53
+http
+ssl or tls
+ip.addr == 192.198.1.9 && tcp.port == 1337
+ ip.src == 192.168.1.1 && tcp.flags.syn == 1
+tcp.flags.syn == 1
+tcp.flags.reset == 1
+dns.flags.response == 1
+frame contains "example.com"
+tcp.analysis.retransmission 
+tcp.analysis.flags
+icmp
+arp
+
+Statistics > Protocol Hierarchy
+Statistics > Conversations
+Statistics > Conversations
+Statistics > Flow Graph
+Statistics > I/O Graph
+Statistics > Resolved Addresses
+Analyze > Expert Information
+Right-click a packet > Follow > TCP Stream
+Right-click a packet > Follow > UDP Stream
+Right-click a packet > Follow > HTTP Stream
+Statistics > Protocol Hierarchy
+Statistics > Conversations
+Statistics > Flow Graph
+Statistics > Service Response Time
+
+
+● Open Capture File: Ctrl + O
+● Save Capture File: Ctrl + S
+● Close Wireshark: Ctrl + Q
+● Start/Stop Capture: Ctrl + E
+● Restart Capture: Ctrl + R
+● Apply Display Filter: Press Enter in the Filter Bar
+● Clear Display Filter: Ctrl + Shift + X
+● Toggle Between Capture and Display Filters: Shift + Ctrl + T
+● Move to Next Packet: ↓
+● Move to Previous Packet: ↑
+● Go to First Packet: Ctrl + Home
+● Go to Last Packet: Ctrl + End
+● Jump to Packet: Ctrl + G
+● Expand Packet Details: →
+● Collapse Packet Details: ←
+● Expand All Details: Shift + →
+● Collapse All Details: Shift + ←
+● Show/Hide Packet Details Pane: Ctrl + Shift + D
+● Show/Hide Packet Bytes Pane: Ctrl + Shift + B
+● Zoom In: Ctrl + =
+● Zoom Out: Ctrl + -
+● Reset Zoom: Ctrl + 0
+● Find Packet: Ctrl + F
+● Repeat Find (Next): Ctrl + N
+● Repeat Find (Previous): Ctrl + Shift + N
+
+
+ip.addr == 192.168.1.1
+tcp.port == 80 
+http
+dns
+icmp
+ssh
+dhcp
+telnet
+smtp
+sip
+http.request.method == "GET"
+smb.cmd == 0x73
+dns.qry.name
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+arp.duplicate-address-frame
+dns.flags.rcode != 0
+http.user_agent
+ftp.request.command == "USER"
+ssl.handshake.type == 11
+tcp.port == 3389
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+http.request.uri contains "SELECT"
+http contains "cmd.exe"
+ssl.record.version < 0x0303
+http.request.method == "POST"
+
+
+
+
+
+
+
+
+
+
