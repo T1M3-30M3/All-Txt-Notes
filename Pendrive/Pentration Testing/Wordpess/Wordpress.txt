@@ -1,0 +1,15 @@
+.htaccess
+robots.txt
+wp-config.php
+wp-content/plugins
+wp-content/themes
+wp-content/uploads
+wp-includes/
+wp-includes/css
+wp-includes/js/
+wp-includes/js/jquery
+wp-json/
+wp-json/wp
+wp-json/wp/v2/
+wp-json/wp/v2/users
+wp-login.php
