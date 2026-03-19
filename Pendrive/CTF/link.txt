@@ -1,0 +1,7 @@
+https://github.com/lukechilds/reverse-shell
+https://github.com/Kiosec/Shells
+https://github.com/ivan-sincek/php-reverse-shell
+https://github.com/xdayeh/Php-Reverse-Shell
+https://github.com/nop-tech/Pentesting/blob/main/Reverse-Shells/php-reverse-shell.php
+https://github.com/sallar-ba/PythonReverseShellBasic
+https://github.com/iteong/reverse-shell

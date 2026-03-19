@@ -1,0 +1,11 @@
+Common Things:
+
+File name
+checksec --file=name
+strings name
+ltrace name
+strace name
+
+
+Online:
+https://gchq.github.io/CyberChef/#recipe=Magic(3,false,false,'')

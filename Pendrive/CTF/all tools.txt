@@ -1,0 +1,109 @@
+exiftool a.jpg
+exiftool *
+exiftool -artist=me a.jpg
+exiftool -artist=me a.jpg b.jpg c.jpg
+exiftool -artist=me c:/images
+exiftool -artist="Phil Harvey" -copyright="2011 Phil Harvey" a.jpg
+
+strings name
+strings -a name
+strings -e B name
+strings -e l name
+strings -n 2 name
+strnigs name | less
+
+file *
+file -b filename.txt
+file -f filelist.txt
+file file1.txt file2.jpg
+file filename.txt
+file -i filename.txt
+
+curl https://www.example.com
+curl -i https://www.example.com
+curl -o output.html https://www.example.com
+curl -o myfile.zip https://www.example.com/file.zip
+curl -L https://www.example.com
+curl -X POST https://www.example.com
+curl -X HEAD -v https://www.example.com
+curl -X POST http://saturn.picoctf.net:50920/admin.php --data hash=2196812e91c29df34f5e217cfd639881
+curl -d "param1=value1&param2=value2" -X POST https://www.example.com
+curl -H "Content-Type: application/json" -d '{"key":"value"}' -X POST https://www.example.com
+curl -H "Authorization: Bearer YOUR_TOKEN" https://www.example.com
+curl -H "Header1: value1" -H "Header2: value2" https://www.example.com
+curl -u username:password https://www.example.com
+curl -O https://www.example.com/file.zip
+curl -o /dev/null -s -w "%{http_code}\n" https://www.example.com
+curl -x http://proxyserver:port https://www.example.com
+curl -A "MyUserAgent/1.0" https://www.example.com
+curl --limit-rate 100K https://www.example.com
+curl -F "file=@/path/to/file.txt" https://www.example.com/upload
+curl -# -O https://www.example.com/file.zip
+curl -v https://www.example.com
+curl --connect-timeout 5 https://www.example.com
+curl -k https://self-signed.badssl.com/
+curl -G "https://api.example.com/data" --data-urlencode "id=123"
+curl -X POST https://api.example.com/submit -d "name=John&age=30"
+curl -X POST https://api.example.com/data -H "Content-Type: application/json" -d '{"name":"John", "age":30}'
+curl -H "Authorization: Bearer token" https://api.example.com/protected
+curl -I https://www.example.com
+curl --limit-rate 100K https://www.example.com/file.zip
+curl -T myfile.txt ftp://ftp.example.com/
+curl -u user:pass https://www.example.com/protected
+curl -b cookies.txt https://www.example.com
+curl -s https://www.example.com
+curl -X DELETE https://api.example.com/resource/1
+curl -F "file=@image1.png" -F "file=@image2.png" https://api.example.com/upload
+curl --user-agent "picobrowser" "https://2019shell1.picoctf.com/problem/32205/flag"
+curl -X POST http://ctf.securityvalley.org:7777/api/v1/validate -H 'Content-Type: application/json' -d '{"pass": "just_warming_up"}'
+
+ip.src == x.x.x.x
+ip.dst == x.x.x.x
+tcp.srcport == port_number
+tcp.dstport == port_number
+http && tcp.port == 80
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+tcp.flags.fin == 1
+dns.qr == 0
+dns.qr == 1
+http.request.method == "GET"
+http.request.method == "POST"
+ip.addr == x.x.x.x
+ip.addr == 192.168.1.1
+ip.addr == 10.0.0.1 && tcp.port == 80
+
+
+grep "abc" filename
+grep "abc" *
+strings filename | grep "abc" 
+strings filename | grep -i "abc"
+strings * | grep -i "abc"
+cat filename | grep -i "abc"
+cat * | grep -i "abc"
+
+-i: Ignore case (case insensitive).
+-v: Invert match (show lines that do not match the pattern).
+-r: Recursively search directories.
+-l: Show only the names of files with matching lines.
+-n: Show line numbers with output lines.
+-c: Count the number of matching lines.
+-E: Use extended regular expressions (like egrep).
+-w: Match whole words only.
+
+https://www.geeksforgeeks.org/grep-command-in-unixlinux/
+https://www.digitalocean.com/community/tutorials/grep-command-in-linux-unix
+https://www.freecodecamp.org/news/grep-command-in-linux-usage-options-and-syntax-examples/
+https://phoenixnap.com/kb/grep-command-linux-unix-examples
+
+
+
+https://exiftool.org/examples.html
+🖼️ ExifTool - https://exiftool.org/
+🔍 Hachoir - https://lnkd.in/dTKbD4J8
+📜 Kaitai Struct - https://kaitai.io/
+📄 peepdf - https://lnkd.in/dSDJr5kC
+⚙️ Veles - https://codisec.com/veles/
+🔒 PEiD - https://lnkd.in/djfvxKrw
+📦 binwalk - https://lnkd.in/gGCsv4g
+📊 PDF Stream Dumper - https://lnkd.in/dwc39-x5
+

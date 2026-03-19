@@ -1,0 +1,35 @@
+https://github.com/Fuwad9096/CTF_WriteUPs/blob/main/KnightCTF-2025/Server%26Attacker_IP.md
+https://github.com/Fuwad9096/CTF_WriteUPs/blob/main/KnightCTF-2025/Real_Admin's_IP.md
+https://github.com/Fuwad9096/CTF_WriteUPs/blob/main/KnightCTF-2025/Initial_Reconnaissance.md
+https://github.com/Fuwad9096/CTF_WriteUPs/blob/main/KnightCTF-2025/The_Gatekeeper.md
+https://github.com/Fuwad9096/CTF_WriteUPs/blob/main/KnightCTF-2025/The_Overseer.md
+
+
+!(ip.addr == 192.168.1.9) && http
+ip.addr == 192.168.1.9 && http
+ip.src == 192.168.1.9 && http
+Statistics -> Endpoint List -> Address
+ip.addr == 192.168.1.1 || ip.addr == 10.0.0.1
+!(ip.addr == 192.168.1.9 || ip.addr == 10.0.0.10)
+For Finding Admin Dashboard : http -> /admin/dashboard
+tshark -r capture_file.pcap -T fields -e ip.src -e ip.dst | sort | uniq
+strings capture3.pcapng | grep -i ".php"
+strings capture3.pcapng | grep -i "sudo"
+strings capture2.pcapng | grep -i "localhost" | grep -i "hostname"
+strings capture2.pcapng | grep -i "localhost" | grep -i "host"
+
+
+
+https://05t3.github.io/posts/Knight-CTF/
+
+strings file.pcap | grep -i "php"
+strings file.pcap | grep -i "server"
+strings file.pcap | grep -i "x-powered-by"
+strings file.pcap | grep -i "email_id"
+strings file.pcap | grep -i "pass"
+strings file.pcap | grep -A 20 "pass"
+
+
+
+Filter : ftp, Ftp-data, http, post/get, mysql, tcp
+

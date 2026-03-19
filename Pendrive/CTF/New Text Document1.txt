@@ -1,0 +1,41 @@
+To Hexdump:
+https://lnkd.in/dGHTiicK
+
+To Base64:
+https://lnkd.in/d_YhrjP3
+
+To Brainfuck:
+https://lnkd.in/dPpS8D3P
+
+To AES:
+https://lnkd.in/d2cuXV4W
+
+XOR:
+https://lnkd.in/dkNDW6P3
+
+Bcrypt:
+https://lnkd.in/di_CUuWq
+
+PGP:
+https://lnkd.in/dwjUh3y5
+
+RSA:
+https://lnkd.in/dqfqgED8
+
+ROT13:
+https://lnkd.in/dnqAvFfx
+
+Raw Inflate:
+https://lnkd.in/dQChzHcS
+
+Zlib Inflate:
+https://lnkd.in/d6PYJBhu
+
+Serious Cryptography, 2nd Edition by 
+https://lnkd.in/d9AFHjtB
+
+Cyber Chef Tools:
+https://gchq.github.io/
+
+French dCode Tools:
+https://www.dcode.fr/en

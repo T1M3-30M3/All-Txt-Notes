@@ -1,0 +1,119 @@
+🔎 Open Source Intelligence (OSINT) GitHub Repositories 🔎
+1. Sherlock:
+Hunt down social media accounts by username across social networks>> https://github.com/sherlock-project/sherlock
+2. Trape:People tracker on the Internet: OSINT analysis and research tool by Jose Pino>> https://github.com/jofpin/trape
+3. Twint:An advanced Twitter scraping & OSINT tool written in Python that doesn't use Twitter's API, allowing you to scrape a user's followers, following, Tweets and more while evading most API limitations. >>https://github.com/twintproject/twint
+4. GHunt:Investigate Google emails and documents.>>https://github.com/mxrch/GHunt
+5. Social-analyzer:API, CLI & Web App for analyzing & finding a person's profile across 400+ social media \ websites (Detections are updated regularly)
+>>https://github.com/qeeqbox/social-analyzer
+
+
+
+
+🔰 This Tool is a Very Powerful  OSINT Tool For gathering information of email using Termux🔰
+Description : MOSINT is a fastest OSINT Tool for emails. It helps you gather information about the target email. 
+☢️ Feature :
+~> Email validation
+~> Check social accounts
+~> Check data breaches and password leaks
+~> Find related emails and domains
+~> Scan Pastebin Dumps
+~> Google Search
+~> DNS Lookup
+🔴 Installation  :-
+$  apt update && apt upgrade -y
+$  apt install git -y
+$  apt install golang
+$  git clone https://github.com/alpkeskin/mosint.git
+$  cd mosint
+$  go run main.go <victimemail>
+
+
+
+
+🔰 This Tool is a OSINT Tool For UPI  information gathering Termux 🔰
+Description : UPI-INT is an Indian osint tool based on recon on UPI for information gathering and analysis.
+🔴 Installation  :-
+$  apt update && apt upgrade -y
+$  apt install git -y
+$  apt install nodejs-lts -y
+$  apt install nodejs -y
+$  git clone https://github.com/BiswajeetRay7/UPI-INT.git
+$  cd UPI-INT
+$  npm install
+$  npm start
+
+
+
+
+🌐 OSINT Search Engines 🌐
+🌐 http://censys.io 
+🌐 http://shodan.io
+🌐 http://greynose.io
+🌐 http://hunter.io
+🌐 http://zoomeye.org
+🌐 https://netlas.io/
+
+
+
+
+📦 OSINT Virtual machines and distributions for Practice 📦
+•  Osintux;(http://www.osintux.org/)
+•  BackBox;(https://www.backbox.org/)
+•  osintBOX;(https://github.com/Dimaslg/osintBOX)
+•  CSI Linux; (https://csilinux.com/)
+•  Kali Linux;(https://t.me/Social_engineering/2323)
+•  ArchStrike;(https://archstrike.org/)
+•  Offen Osint;(https://github.com/Double2Sky/OffenOsint)
+•  Huron Osint;(https://github.com/HuronOsint/OsintDistro)
+•  Septor Linux;(https://septor.sourceforge.io/)
+•  Pentoo Linux;(https://www.pentoo.ch/)
+•  Tsurugi Linux;(https://t.me/Social_engineering/1982)
+•  BlackArch Linux;(https://www.blackarch.org/)
+•  Falcon Arch Linux;(https://sourceforge.net/projects/falcon-archlinux/)
+•  Fedora Security Lab;(https://labs.fedoraproject.org/security/download/index.html)
+•  TraceLabs OSINT VM. (https://t.me/Social_engineering/1698)
+
+
+
+👁‍🗨We Are Back With Sites And Tools  Useful For OSINT👁‍🗨
+𝙀𝙢𝙖𝙞𝙡𝙨 𝘼𝙣𝙙 𝙋𝙝𝙤𝙣𝙚𝙨
+♾https://tools.epieos.com/email.php
+♾https://demo.phoneinfoga.crvx.fr/#/
+♾https://intelx.io/
+♾https://github.com/megadose/holehe/
+♾https://www.thephonebook.bt.com/person/
+♾https://hunter.io/
+♾https://freecarrierlookup.com/
+♾https://www.411.com/
+♾https://www.fonefinder.net/
+𝐖𝐄𝐁𝐒𝐈𝐓𝐄𝐒 𝐀𝐍𝐃 𝐍𝐄𝐓𝐖𝐎𝐑𝐊𝐒
+♾https://lookup.icann.org/lookup
+♾https://whois.domaintools.com/
+♾https://ipgeolocation.io/
+♾https://www.macvendorlookup.com/
+♾https://www.robtex.com/
+𝗜𝗠𝗔𝗚𝗘𝗦 𝗔𝗡𝗗 𝗩𝗜𝗗𝗘𝗢𝗦
+♾https://exifdata.com/
+♾https://tineye.com/
+♾https://github.com/bishopfox/unredacter/
+♾https://pimeyes.com/
+♾https://citizenevidence.amnestyusa.org/
+
+
+♻️ Installation Linux ♻️
+sudo apt install git python3
+git clone https://github.com/Lulz3xploit/LittleBrother
+cd LittleBrother
+python3 -m pip install -r requirements.txt 
+python3 LittleBrother.py
+
+Instagram OSINT Tools >> https://instadp.io
+
+
+📦 Some Good OSINT extentions 📦
+1. https://www.osintme.com/index.php/2021/06/30/30-best-osint-extensions-for-google-chrome/
+2. https://securitytrails.com/blog/top-osint-web-browser-extensions
+3. https://www.exifdata.com/
+4. http://fotoforensics.com/
+5. https://web.archive.org/

@@ -1,0 +1,63 @@
+--Flag Fest 2024:
+
+** If this is web. try to read source code, wappalyzer, dirsearch, robots.txt, secret file etc.
+** if you find login panel try username fuzzing. you can use burpsuite or ffuf
+** use web content discovery. you can use ffuf or burpsuite or dirsearch
+** if you find any upload try reverse shell. 
+** If you find any rsa key save as pub
+
+nmap -sC -sV 127.0.0.1
+nmap --script=http* 127.0.0.1 -p 80
+smap 127.0.0.1
+smap -sV 127.0.0.1
+
+ffuf -u http://10.10.39.226/FUZZ -w common.txt -e .txt
+
+
+ftp 127.0.0.1
+get name.txt
+ls -a
+
+use kali and cmd also:
+python -m http.server 800
+
+ssh user@password -i key.pub
+
+
+interactive Shell:
+ping ip
+ping ip -c 3
+cd ..
+ls ../
+ls ../../../../../
+
+
+ssh user@password -i key.pub
+cd /var/www/html/user_upload/
+mv linpeas.txt linpeas.sh
+cp linpeas.txt linpeas.sh
+cp linpeas.txt /tmp
+cd /tmp
+cp linpeas.txt linpeas.sh
+chmod +x *
+./linpeas.sh {notice file with interesting permission}
+
+Content Discovery:
+ffuf -u http://127.0.0.1/FUZZ -w /path/to/wordlist.txt -mc all
+ffuf -u http://127.0.0.1/FUZZ -w /usr/share/wordlists/dirb/common.txt -mc all
+ffuf -u http://127.0.0.1/FUZZ -w /usr/share/wordlists/dirb/common.txt -e .php,.html,.txt
+ffuf -u http://127.0.0.1/FUZZ -w /usr/share/wordlists/dirb/common.txt -mc all -o results.json -of json
+dirsearch -u http://127.0.0.1 -w /path/to/wordlist.txt
+dirsearch -u http://127.0.0.1 -w /usr/share/wordlists/dirb/common.txt
+dirsearch -u http://127.0.0.1 -w /usr/share/wordlists/dirb/common.txt -e php,html,txt
+dirsearch -u http://127.0.0.1 -w /usr/share/wordlists/dirb/common.txt -a "Mozilla/5.0"
+
+Username Fuzzing:
+https://github.com/raytheon0x21/fuzzing/blob/main/username.txt
+https://github.com/jeanphorn/wordlist/blob/master/usernames.txt
+https://github.com/danielmiessler/SecLists/blob/master/Usernames/top-usernames-shortlist.txt
+https://github.com/danielmiessler/SecLists/tree/master/Discovery/Web-Content
+
+https://gist.github.com/mrpapercut/9e4f511e74fdf3796d0abcc4de182b65
+
+https://gtfobins.github.io/

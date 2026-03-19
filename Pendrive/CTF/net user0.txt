@@ -1,0 +1,49 @@
+List All User Accounts: net user
+
+View Details of a Specific User: net user [username]
+
+Add a New User: net user [username] [password] /add
+
+Delete a User: net user [username] /delete
+
+Change a User’s Password: net user [username] [newpassword]
+
+Modify User Account Properties: net user [username] /active:yes|no
+
+Set a User Account to Never Expire : net user [username] /expires:never
+
+Set a User Account Expiry Date : net user [username] /expires:[mm/dd/yyyy]
+
+Add a User to a Group : net localgroup [groupname] [username] /add
+
+Remove a User from a Group : net localgroup [groupname] [username] /delete
+
+Display User Account Information (Including Groups) : net user [username] /domain
+
+Set User Account to Require a Password Change on Next Login : net user [username] /logonpasswordchg:yes
+
+Disable a User Account : net user [username] /active:no
+
+Enable a User Account : net user [username] /active:yes
+
+Change the Full Name or Description of a User Account : net user [username] /fullname:"[Full Name]"
+
+Set User Account as Password Never Expires : net user [username] /passwordchg:no
+
+Set User Account to Require a Password : net user [username] /passwordreq:yes
+
+Change the Logon Hours for a User Account : net user [username] /times:[times]
+
+Set or Remove a User Account's Description : net user [username] /comment:"[description]"
+
+Set User Account to Require a Password Change After Specific Period : net user [username] /maxpwage:[days]
+
+Set User Account Expiration: net user [username] /expires:[date] Replace [date] with a specific date or never.
+
+Set User Account as an Administrator: net localgroup administrators [username] /add
+
+Remove User from Administrators Group: net localgroup administrators [username] /delete
+
+Display Command Help: net user /?
+
+Delete Password : net user [username] *

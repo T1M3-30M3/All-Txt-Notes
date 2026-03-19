@@ -1,0 +1,14 @@
+[
+  {
+    "product": "Binary Ninja Personal",
+    "email": "butters.stotch@southpark.com",
+    "serial": "b7c0414884cb27da154b2a77de2a10da",
+    "created": "Tue, 04 Feb 2020 13:41:14 GMT",
+    "type": "user",
+    "count": 1,
+    "data": "k76ZgeQkgSCTKC3+7eBBbUb+7v/bgO1BH5UZ8ATD/SeEwTN2wbXCAJ1P5xL5SqqMva7Q09Lm29f6bwxvSV8M7wmzXUVlHBMbFEPlTN1AA0dJERm0lD4Z9fXGLI4hAtBiYNzeteR6M5dyAPYzNVMusGOHtpcszz6OuIYN8UL0nzrT8fVdlfldsKbXxWHYMP2s2xRaVdbzsdF0oqyVsEb9xWJkuvqmEqhG7j0+mFbvjJwU60GyBAR0KU+Z43nJafNOUlgJRsxs3/a5q/aXyxh3pZScRpDcWoX08pnrD6Rs6SC1NGemy3BzD58MvbvtHgIns6D84wTIv3I73Bq1GEAYSb2lQXUfnPbDa6T3fTdl9orxeu+ESVe+Tw==",
+    "signature": "nLTcDJi+Caqfj1JhdNPr8zRYYYbrLODHniGUlAuDCtpOPOzdTnMNKSl027reKD12eLiGuLkUrjcrwOCq5w+b9XE+zY0tCo0uABj50k3Q9NrZ4XnSqjXgOvE4wWCxZVMH2iQr3WnByfMkUB42fYxfkh/GzXqDuCrtvmDyAfam7bJQgpuGuaCCzdN0AQTHQ38EmtkRX4qpRnD0tLQtc6tu0VYha3zRDGO946moMRjm95Fq75jC+qedJhiOQcJzY8rGGzwYCEI5671ppkjPyVf0Lks30F4ZfVRwen9bU341QMjg+gFWBXlRVEpgbd24NxcZDAnAYC58HyMn9MOjojStjg==",
+    "expiresEpoch": 4102407674,
+    "expires": "Thu, 31 Dec 2099 13:41:14 GMT"
+  }
+]

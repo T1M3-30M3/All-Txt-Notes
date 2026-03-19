@@ -1,0 +1,139 @@
+Nmap :
+
+For Single Website >>     nmap 192.168.1.100   
+For Dual Website   >>     nmap 192.168.1.100 192.168.1.101
+Scan The IP Adress >>     nmap 192.168.1.100-255
+Scan Site          >>     nmap ewubd.edu
+Output Format      >>     nmap -oN scan.txt 192.168.1.1 [Txt File]
+			  nmap -oX scan.xml 192.168.1.1 [Xml File]
+			  nmap -oG scan.txt 192.168.1.1 [Graph Format]
+Port scan          >>     nmap -p 80 192.168.1.1 [specific Port]
+			  nmap -p 80-200 192.168.1.1 [specific Port Range]
+			  nmap -p- 192.168.1.1 [All Port Scan]
+			  nmap -F  192.168.1.1 [Fast Port]
+Nmap Timing Option >>     nmap -T0 -p- 192.168.1.1[slowest Scan]
+			  nmap -T1 -p- 192.168.1.1[Tricky Scan to avoid IDS]
+			  nmap -T2 -p- 192.168.1.1[Timely Scan]
+			  nmap -T3 -p- 192.168.1.1[Default Scan]
+			  nmap -T4 -p- 192.168.1.1[Aggressive Scan]
+			  nmap -T5 -p- 192.168.1.1[Very Aggressive Scan]
+Version And OS     >>     nmap -A www.dlnsbd.net [OS and Version]
+			  nmap -O www.dlnsbd.net [OS]
+			  nmap -sV www.dlnsbd.net [Version]
+Nmap Script        >>     cd/usr/share/nmap/scripts/
+			  locate *.nse
+Commands           >>     sudo nmap --script-updated
+			  nmap --script=name of script 10.1.1.0/24
+			  nmap --script=default <target IP>
+			  nmap --script=mysql <target IP>
+			  nmap --script=vulners <target IP>
+NMap Standard      >>     nmap -sC -sV <ip>
+			  nmap -sC -sV -Pn <ip> [-Pn > donot perform host discovery Again, -sC > default Scrpit , -sV > Sevice Version]
+
+Nikto:
+Quick Scan         >>     nikto -h <ip>
+Scan an SSL        >>     nikto -h <ip> -ssl
+nikto Report Save  >>     nikto -h <ip>
+github             >>     https://github.com/nmav/ipcalc   https://github.com/kjokjo/ipcalc
+install            >>     sudo apt install ipcalc
+command            >>     iocalc <ip>
+
+Scan an IP Address Using Nikto >>
+                          ifconfig
+                          ipcalc < ip address>
+                          nmap –p 80 <host range> -oG hunter.txt [ P = Port, oG = grepable output ]
+                          cat hunter.txt | awk '/Up$/{print $2}' | cat >> targetip.txt
+                          cat targetip.txt
+                          nikto -h targetip.txt 
+
+WPscan:
+
+First Create a Account wpscan.com
+Update             >> wpsacn --update
+normal scan        >> wpscan --url www.uiu.ac.bd
+Ignore Direct      >> wpscan --url www.uiu.ac.bd --ignore-main-redirect
+normal scan save   >> wpscan --url www.uiu.ac.bd -o abc.txt
+
+Standard Commands::
+Perfect Scan       >> wpscan --url www.site.com -e --api-token [#token_value]
+All About          >> wpscan --url www.site.com p/vp/t/vt --api-token [#token_value]
+Find UserName      >> wpscan --url www.site.com -e u --api-token [#token_value]
+
+Password Bruteforce Attack
+Find UserName      >> wpscan --url www.site.com -e u –passwords file path
+Find Password      >> wpscan --url www.site.com --usernames [username] --passwords file path
+find Password in multiple username  >> wpscan --url www.site.com -U [file path] -P file path		  
+
+
+wpscan --url www.abc.xyz -e u --api-token gUL4y18pes98Ma0uGlvUVggsda3a0n6OOyhsyK3ox94
+wpscan --url www.abc.xyz -U home/kali/Desktop/username.txt -P /home/kali/Desktop/rockyou.txt
+wpscan --url www.abc.xyz --usernames innocent --passwords /home/kali/Desktop/rockyou.txt
+
+wpscan --url imperialcollege.edu.bd -e u --api-token gUL4y18pes98Ma0uGlvUVggsda3a0n6OOyhsyK3ox94
+wpscan --url vitap.ac.in --ignore-main-redirect -e u --api-token gUL4y18pes98Ma0uGlvUVggsda3a0n6OOyhsyK3ox94
+
+
+
+OSINT:
+For Ip Track  >> https://iplogger.org/
+		 grabify.link
+                 https://www.iplocation.net/
+		 www.google.com/maps
+
+Domain        >> Domain Owner Info
+		 https://whois.domaintools.com/
+		 https://domainbigdata.com/
+		 ❑ DNS
+		 https://smallseotools.com/domain-ip-lookup/
+		 https://dnsdumpster.com/
+		 https://www.ultratools.com/tools/dnsLookup
+		 https://dnschecker.org/ns-lookup.php
+		 ❑ Site Hosting Company Info
+		 https://smallseotools.com/domain-hosting-checker/
+		 https://hostingchecker.com/
+		 ❑ Reverse Ip
+		 https://www.yougetsignal.com/tools/web-sites-on-web-server/
+		 https://hackertarget.com/reverse-ip-lookup/
+		 https://www.whoishostingthis.com/
+		 https://smallseotools.com/reverse-ip-lookup/
+
+CMS           >> CMS Check
+		 https://whatcms.org/
+                 https://cmsdetect.com/
+                 https://www.wpthemedetector.com/
+                 ❑ Chrome Extension
+                 https://chrome.google.com/webstore/detail/what-cms-isthis/gamohlpmdjkdjepgdgjohkbfpmeelmem
+                 https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg?hl=en
+		 https://chrome.google.com/webstore/detail/cms-detect-what-cms-is-th/hkkdnbjbdnfjmnldiogaepcokpldimao
+
+Site BuildWith>> ❑ Chrome Extension
+	      >>https://chrome.google.com/webstore/detail/whatruns/cmkdbmfndkfgebldhnkbfhlneefdaaip?hl=en
+		BuiltWith
+		❑ Online Tools
+		 https://builtwith.com/
+		 https://sitereport.netcraft.com/
+		 https://w3techs.com/sites
+Extra Info   >> ❑ Domain Country Checker
+		❑ Alexa >> https://chrome.google.com/webstore/detail/alexa-traffic-rank/cknebhggccemgcnbidipinkifmmegdel/related?hl=bn
+		❑ Country Flag Etc Browser Extension >> https://chrome.google.com/webstore/detail/country-flag-%2B/afphlhklnamnlglgnmnidbcpiigodhaj/related
+		❑ Domain Age Checker >> https://www.duplichecker.com/domain-age-checker.php
+		❑ SSL Checker >> https://www.digicert.com/help/
+		❑ Check Server Status >>https://smallseotools.com/check-server-status/
+		❑ Website Speed Checker >>https://tools.pingdom.com/
+		                         https://gtmetrix.com/
+		❑ WEBSITE LINK COUNTER CHECKER >>https://smallseotools.com/website-links-count-checker/
+						 https://www.adminbooster.com/tool
+Email Header >> Online Tools
+		https://mxtoolbox.com/EmailHeaders.aspx
+		https://www.whatismyip.com/email-header-analyzer/
+		https://chrome.google.com/webstore/detail/email-tracker-for-gmailm/ndnaehgpjlnokgebbaldlmgkapkpjkkb
+Valid Mail   >> Online Valid Mail Checker
+		https://quickemailverification.com/
+		https://network-tools.com/
+Email Recon  >> https://epieos.com
+
+			  
+
+
+
+

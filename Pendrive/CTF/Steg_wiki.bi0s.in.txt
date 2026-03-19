@@ -1,0 +1,37 @@
+Source : https://wiki.bi0s.in/steganography
+
+exiftool <file-name>
+strings  <file-name>
+
+ghex image.jpg
+
+binwalk -e <file-name>
+
+steghide extract -sf image.jpg
+stegdetect secret.jpg
+find /path/to/images/ -iname "*jpg" -print0 | while IFS= read -r -d '' img; do ./stegdetect -tF "$img"; done
+
+stegcracker <file> [<wordlist>]
+fcrackzip -v -b -u <file_name.zip>
+
+stegoveritas -meta -imageTransform -lsb -strings -extract image.png
+
+pdftotext input.pdf output.txt
+
+sudo apt install python3-pdfminer
+pdf2txt.py input.pdf > output.txt
+
+sudo apt install poppler-utils
+pdftotext input.pdf output.txt
+
+stegsnow -C NewColossusMod.txt
+stegsnow -C -p "hail-hydra" NewColossusMod.txt
+SnowCracker : https://github.com/0xHasanM/SnowCracker
+
+pngcheck -v image.png
+
+Audio : Audacity, Sonic Visualiser, Deepsound
+
+http://www.caesum.com/handbook/Stegsolve.jar
+
+

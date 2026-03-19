@@ -1,0 +1,78 @@
+🔍 1. File Verification & Metadata
+file image.jpg             # Verify file type
+identify image.jpg         # Get image dimensions and format (ImageMagick)
+exiftool image.jpg         # Extract metadata (EXIF, comments, tags)
+exiv2 image.jpg            # Alternative EXIF metadata tool
+jpeginfo -c image.jpg      # Check for corruption/malformed JPEGs
+
+🧬 2. Hidden/Embedded Data Discovery
+strings image.jpg | less                           # Look for readable text
+strings image.jpg | grep -i "flag"                 # Flag pattern search
+strings image.jpg | grep -E "[A-Za-z0-9+/=]{20,}"  # Look for Base64
+xxd image.jpg | less                               # Hex dump
+hexdump -C image.jpg | less                        # Colored hex view
+
+binwalk image.jpg                # Scan for embedded files
+binwalk -e image.jpg             # Extract embedded files
+
+🔓 3. Steganography Extraction Tools
+steghide extract -sf image.jpg               # Prompts for password
+steghide extract -sf image.jpg -p ""         # Try empty password
+steghide extract -sf image.jpg -p password   # With known password
+
+stegseek image.jpg /path/to/wordlist.txt
+stegcracker image.jpg /path/to/wordlist.txt
+outguess -r image.jpg extracted.txt
+openstego extract -sf image.jpg -p password
+
+🧠 4. Advanced Image Steganalysis
+zsteg image.jpg
+convert image.jpg image.bmp        # Convert for better LSB analysis
+java -jar stegsolve.jar            # GUI tool for bit plane and filter analysis
+
+🖼️ PNG Steganography Toolkit
+file image.png
+exiftool image.png
+identify image.png
+pngcheck -v image.png              # View chunk structure
+
+strings image.png | grep -i "flag"
+xxd image.png | less
+binwalk -e image.png
+
+zsteg -a image.png                 # Full brute-force LSB scan
+zsteg -E b1,rgb,lsb image.png      # Extract RGB LSB bits
+
+🔊 WAV Steganography Toolkit
+file audio.wav
+exiftool audio.wav
+mediainfo audio.wav
+
+strings audio.wav | grep -i "flag"
+xxd audio.wav | less
+binwalk -e audio.wav
+
+steghide extract -sf audio.wav -p ""
+stegseek audio.wav /path/to/wordlist.txt
+
+sox audio.wav -n spectrogram -o spectro.png  # Visualize hidden messages
+
+📂 1. Checking for Hidden Files in Unusual Ways
+foremost -i image.jpg -o output_folder      # Carve embedded files (images, docs, etc.)
+scalpel image.jpg -o output_folder          # Alternative to foremost
+
+🧬 2. File Header/Footer Analysis
+xxd image.jpg | grep -i "ffd8"              # JPG header
+xxd image.jpg | grep -i "ffd9"              # JPG footer
+
+xxd image.jpg | grep -Ei '50 4b 03 04|89 50 4e 47|25 50 44 46'  # ZIP, PNG, PDF
+
+🎶 3. Audio Deep Stego
+sox audio.wav -n spectrogram -o spec.png             # Generate a spectrogram
+audacity                                             # Use GUI to inspect audio visually
+
+stegcracker image.jpg /usr/share/wordlists/rockyou.txt
+fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt hidden.zip
+
+
+

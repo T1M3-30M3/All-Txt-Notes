@@ -1,0 +1,57 @@
+for file in *.pcapng; do editcap -F pcap "$file" "${file%.pcapng}.pcap"; done
+tshark -r traffic.pcap -Y 'http.request.method == "POST"' -T fields -e http.file_data 2>/dev/null | grep -iE 'email=|username=|user=|login=|password=|pass='
+tshark -r traffic.pcap -T fields -e data.text 2>/dev/null | grep -Eoi '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+tshark -r traffic.pcap -T fields -e data.text | grep -Eoi '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+strings traffic.pcap | grep -Eoi '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+strings traffic.pcap | grep -Eoi 'ironman@xyz.com'
+strings traffic.pcap | grep -i 'ironman@xyz.com'
+strings traffic.pcap | grep -i -A 10 'ironman@xyz.com'
+tshark -r traffic.pcap -Y 'http.request.uri matches ".*\.(conf|env|bak|ini|log|txt)$"' -T fields -e http.host -e http.request.uri
+strings traffic.pcap | grep -Ei 'ffuf|gobuster|dirbuster|sqlmap|burp|nikto|fuzz' | sort -u | uniq
+tshark -r traffic.pcap -Y 'http.request' -T fields -e http.user_agent | sort | uniq -c
+tshark -r traffic.pcap -Y 'http.request.method == "POST"' -T fields -e http.file_data | grep -iE 'username=|user=|email='
+tshark -r traffic.pcap -Y 'http.request.method == "POST"' -T fields -e http.file_data | grep -i 'username=|user=|email='
+tshark -r traffic.pcap -Y 'http.request.method == "GET"' -T fields -e http.file_data | grep -i 'username=|user=|email='
+strings traffic.pcap | grep -i "cmd="
+strings traffic.pcap | grep -i "cmd=wget"
+strings traffic.pcap | grep -i ".php"
+strings traffic.pcap | grep -i ".php" | sort -u | uniq
+strings traffic.pcap | grep -i "php-reverse-shell - " | sort -u | uniq
+strings traffic.pcap | grep -i "php-reverse-shell" | sort -u | uniq
+strings traffic.pcap | grep -i "User-agent: "
+strings traffic.pcap | grep -i ".htaccess"
+tshark -r challenge_file.pcapng -Y 'frame contains ".htaccess"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains ".htaccess"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcap -Y 'http.request' -T fields -e http.request.uri | grep -iE 'access[_-]?code|token|key'
+tshark -r traffic.pcapng -Y 'frame contains "/cosign.key"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+strings traffic.pcap | grep -i "Hacked by"
+strings traffic.pcap | grep -i "dashboard"
+strings traffic.pcap | grep -i "/dashboard"
+tshark -r traffic.pcapng -Y 'frame contains "dashboard"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+strings traffic.pcap | grep -i "access_code="
+tshark -r traffic.pcapng -Y 'frame contains "/verify-code"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "access_code=5425"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+strings traffic.pcap | grep -i "access_code=5425"
+strings traffic.pcap | grep -i "api="
+strings traffic.pcap | grep -i "api_key="
+strings traffic.pcap | grep -i "gemini"
+tshark -r traffic.pcapng -Y 'frame contains "gemini"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "cd | ls"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcap -Y 'http' -T fields -e data.text 2>/dev/null | grep -iE 'ls -la|cd|pwd|rm|cp|mv|cat|touch|echo'
+strings traffic.pcap | grep -iE 'ls -la|cd|pwd|rm|cp|mv|cat|touch|echo'
+strings traffic.pcap | grep -iE 'ls -la'
+tshark -r traffic.pcapng -Y 'frame contains "ProfileController.php"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "nc"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "nc 192.168."' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "/home/kshackzone/"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+strings traffic.pcap | grep -i '<option value="'
+strings traffic.pcap | grep -i 'gemini'
+strings traffic.pcap > uap.txt
+tshark -r traffic.pcapng -Y 'frame contains "ls -la"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "cat /home/kshackzone/SecureChat/app/Http/Controllers/AiController.php"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcapng -Y 'frame contains "AiController.php"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+strings traffic.pcap | grep -i "email="
+tshark -r traffic.pcapng -Y 'frame contains "/api/debug"' -T fields -e frame.number -e frame.time -e ip.src -e ip.dst
+tshark -r traffic.pcap -Y 'http.request.uri' -T fields -e http.request.uri 2>/dev/null | grep -i '/api/'
+tshark -r traffic.pcap -Y 'http.request.uri' -T fields -e http.request.uri 2>/dev/null | grep -i 'debug'
+strings traffic.pcap | grep -i "debug"

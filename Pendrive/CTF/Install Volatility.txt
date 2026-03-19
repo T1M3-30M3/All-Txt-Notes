@@ -1,0 +1,28 @@
+Volatility Install in Kali:
+
+Volatility 02::
+wget http://downloads.volatilityfoundation.org/releases/2.6/volatility_2.6_lin64_standalone.zip
+extract it 
+cd volatility_2.6_lin64_standalone
+chmod +x *
+./volatility_2.6_lin64_standalone -h
+
+
+volatility 03:: 
+git clone https://github.com/volatilityfoundation/volatility3
+cd volatility3
+pip3 install -r requirements-minimal.txt
+pip3 install -r requirements.txt
+python3 vol.py -h
+
+
+Volatility Install in Windows:
+download http://downloads.volatilityfoundation.org/releases/2.6/volatility_2.6_win64_standalone.zip
+extract it and open cmd
+volatility_2.6_win64_standalone.exe -h
+
+
+Volatility GUI : https://www.osforensics.com/tools/volatility-workbench.html
+
+
+

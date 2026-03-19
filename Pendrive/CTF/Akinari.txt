@@ -1,0 +1,31 @@
+https://akinarisekigawa.medium.com/
+
+
+
+Networking:
+strings a.pcap | grep -i "userid="
+strings a.pcap | grep -i "pswrd="
+strings a.pcap | grep -i "%3D%3D"
+
+
+Web:
+curl http://chall.ycfteam.in:6375/elite -H "User-Agent: Elite"
+curl http://chall.ycfteam.in:6375/elite -H "User-Agent: Elite" -H "X-Forwarded-For: 50.23.41.34, 3.54.85.90, 110.34.87.34, 10.43.21.25"
+curl http://chall.ycfteam.in:6375/elite -H "User-Agent: Elite" -H "X-Forwarded-For: 50.23.41.34, 3.54.85.90, 110.34.87.34, 10.43.21.25" -H "X-Forwarded-Port: 31173"
+curl http://chall.ycfteam.in:6375/elite -H "User-Agent: Elite" -H "X-Forwarded-For: 50.23.41.34, 3.54.85.90, 110.34.87.34, 10.43.21.25" -H "X-Forwarded-Port: 31173" -H "Origin: http://chall.ycfteam.in:6375/"
+curl http://chall.ycfteam.in:6375/elite -H "User-Agent: Elite" -H "X-Forwarded-For: 50.23.41.34, 3.54.85.90, 110.34.87.34, 10.43.21.25" -H "X-Forwarded-Port: 31173" -H "Origin: http://chall.ycfteam.in:6375/" -H "Age: 20"
+curl http://chall.ycfteam.in:6375/elite -H "User-Agent: Elite" -H "X-Forwarded-For: 50.23.41.34, 3.54.85.90, 110.34.87.34, 10.43.21.25" -H "X-Forwarded-Port: 31173" -H "Origin: http://chall.ycfteam.in:6375/" -H "Age: 20" -H "Date: Mon, 27 May 2024 04:30:00 GMT"
+curl "http://3.0.19.78:15002/flag.php" -H "X-Forwarded-For: 127.0.0.1"
+
+Steganography:
+-> "If you see a long string of bits or suspicious crypto output, always try visualizing it a picture might be hiding in plain sight. Decode, reshape, and render with Python!
+
+CryptoGraphy:
+https://www.dcode.fr/rsa-cipher
+
+
+
+Web Links:
+http://www.kloth.net/services/dig.php
+https://crackstation.net/
+https://md5hashing.net/hash/md5

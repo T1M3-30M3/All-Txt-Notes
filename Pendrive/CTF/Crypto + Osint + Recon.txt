@@ -1,0 +1,395 @@
+CryptoGraphy:
+
+https ://gchq.github.io/CyberChef/
+https://www.dcode.fr/
+https://cryptii.com/
+https://crackstation.net/
+https://md5hashing.net/
+https://www.dcode.fr/symbols-ciphers
+
+openssl genrsa --out private.pem 1048 
+cat private.pem
+openssl rsa --in private.pem --out public.pem --outform PEM --pubout
+openssl pkeyutl --encrypt --inkey public.pem --pubin --in a.txt --out a.enc
+openssl pkeyutl --decrypt --inkey private.pem --in a.enc --out b.txt
+
+gpg --full-generate-key > 1 > 1024 > 0 > y > name and email > pass.
+gpg -r email -e b.txt
+gpg -d b.txt.gpg
+
+git clone https://github.com/Mebus/cupp
+cd cupp
+python3 cupp.py -i
+python3 cupp.py -w pass.txt
+
+NTLM : john hash.txt --wordlist=rockyou.txt
+john hash.txt --format=Raw-MD5 --wordlist=rockyou.txt
+john hash.txt --format=Raw-SHA1 --wordlist=
+
+zip2john chall.zip > hashing.txt
+john --wordlist=rockyou.txt hashing.txt
+
+rar2john chall.rar > hashing.txt
+john --wordlist=rockyou.txt hashing.txt
+
+john filename show
+
+GCD Calculator : http://www.alcula.com/calculators/math/gcd/#gsc.tab=0
+MOD Calculator : https://www.calculatorsoup.com/calculators/math/modulo-calculator.php
+
+RSA:
+P = 3
+Q = 11
+
+N = p*q = 3*11 = 33
+phi(N) = (p-1) * (q-1) = 2 * 10 = 20
+
+1< E < 20 [find E from gcd calculator] 
+D = (d*e) mod phi(n) = 1
+
+E = 7
+
+phi * 2
+20 + 1 = 21/7 = 3
+40 + 1 = 41/7 = 5.85
+60 + 1 = 61/7 = 8.71
+80 + 1 = 81/7 = 1.57
+
+then e is 3
+D = 3
+
+E = 7 [Public Key]
+D = 3 [Private key]
+
+M = 31 [Imagine]
+C = M^E mod n = 31*7 mod 33 = 4
+
+D = c^D mod n = 4^3 mod 33 = 31
+
+For RSA Solving :
+https://www.dcode.fr/rsa-cipher
+http://factordb.com/
+https://devglan.com/online-tools/rsa-encryption-decryption
+
+
+Steganography:
+
+srting name.jpg
+file name.txt
+exiftool name.png
+exiftool -comment="A message" name.png
+exiftool name.png -H
+steghide embed -cf name.png -ef name.txt
+steghise extract -sf name.jpg
+zsteg name.png
+stegseek name.jpg rockyou.txt
+binwalk -e [imageName]
+binwalk --dd=".*" smile.png
+foremost [fileName]
+diff image01 image02
+strings mountain01.bmp > text1.txt
+strings mountain02.bmp > text2.txt
+diff text1.txt text2.txt
+For lots of picture must be check file size.
+
+Tools : Openstego, deepsound, stegsolve.jar, 
+Links :
+https://exif.tools
+https://github.com/foysalhossain12/Steganography_CTF
+https://aperisolve.com 
+https://github.com/foysalhossain12/Steganography-_CTF
+https://www.aperisolve.com/
+https://stylesuxx.github.io/steganography/
+https://aperisolve.fr/
+https://morsecode.world/international/decoder/audio-decoder-adaptive.html
+https://morsecode.world/international/translator.html
+https://futureboy.us/stegano/decinput.htm
+
+Osint:
+wappalyzer > extention
+whatweb > linux
+what is my user-agent
+whois > linux, online, extention
+dig > linux
+waybackmachine > linux
+
+whatweb link
+dig link CN
+dig link NS
+dig link AAA
+whois link
+
+For Finding Subdomain : cofumbus.elmasy.com
+Extra Information : hunter.how, shodan.io, search.censys.io
+Found api key : api_key=
+
+more Writeups : imaginaryctf.org
+
+
+Web :
+
+website > Static
+web Application > Dynamic
+
+Website > login, blog, about, search etc
+Web application > user input/output, server, logic, response
+
+DNS : The domain name system (DNS) is a naming database in which internet domain names are located and translated into Internet Protocol (IP) addresses. The domain name system maps the name people use to locate a website to the IP address that a computer uses to locate that website.
+
+Domain Record Type:
+
+A > domain.com > 127.0.0.1
+CNAME  > i.github.io > 127.0.0.1
+
+SSL Certificate : An SSL certificate is a digital certificate that authenticates a website's identity and enables an encrypted connection. SSL stands for Secure Sockets Layer, a security protocol that creates an encrypted link between a web server and a web browser.
+
+http://abc.xyz:443/projects/search=hackers&sort=most_viewed#header
+
+https > protocol
+abc.xyz > domain
+443 > port
+projects > path/URI/Route
+search= > Parameter
+#header > Anchor/Fragment
+
+HTTP Methods:
+
+GET > Request to load a web page
+HEAD > Request to read a web page header 
+PUT > Request to store a web page
+POST > Append to a named resources
+DELETE > Remove the web Page
+TRACE > Echo the incoming request
+CONNECT > Reversed for future use
+OPTIONS > Query certain options
+
+TRACE method is used for debugging.It intructs the server  to send back the request.This is useful when requests are not processed correctly and the client wants to know it sends the proper requests
+
+CONNECT - is not used at the moment
+OPTIONS - provides a way for the client to fuery the server about its properties or those of a specified file
+
+curl -X OPTIONS <link>
+curl -X OPTIONS <link> -I
+
+Status Code : 
+200 - OK - The serverdidnot its job perfectly. It like when your pizza arrives hot, on time and they donot forget the extra cheese
+201 - Created - COngrats, Your request has given birth to something new. It like the server just had a baby and named it after a request
+204 - No Content - The server response is as empty as your unsubscribe from all those spam emails, Its like ordering a sandwich and getting just the bread
+301 - Moved Permanently - The resources you wanted has moved to a new home and its not leaving 
+400 - Bad Request - Opps You made a mistake! The server saying you had one job. Its like to trying to microwave your food in a fridze
+401 - Unauthorized -  You are at the door you forget your key
+403 - Forbidden - Access Denied
+404 - Not Found - Its a internet way to saying 
+500 - Internal Server Error
+503 - Server unavailable
+
+200 - 299 > OK
+300 - 399 > redirect
+400 - 499 > Client Side Error
+500 - 599 > Server side error
+
+
+Information Gathering:
+
+01. Active Information Gathering
+02. Passive Information Gathering
+
+01 + 02 > Hybrid Information Gathering
+
+Enumeration and Other Technique:
+
+* DNS Record
+* ASN Record
+* Acquisitions
+* Subdomain
+* Technology
+* Visual Recon
+* Links
+* Parameter
+* Path/Directory
+
+Information Gathering : 
+
+Whois > Horizontal Enumeration/finding acquisitions > Vertical Enumeration/Subdomain Enumeration > ASN lookup > Web-Screenshot > Crawling & Collecting Pagelinks > Javascript Files Crawling > Parameter discovery > Subdomain Cname extraction > Domain/Subdomain Version > Sensitive information discovery     
+
+whois :
+
+whois [link] > reversewhois.io > digging with NS > dig
+
+ERN : Email, Reverse searching, Finding Name Server
+
+whois $domain | grep "Registrant Email" | egrep -ho "[[:graph:]]+@[[:graph:]]+"
+https://www.reversewhois.io/?
+whois example.com | grep -Ei "(Name Server|Nameserver):" | awk '{print $NF}
+dig <link>
+host <link>
+whatwb <link>
+wafw00f <link>
+
+Email :
+https://mha.azurewebsites.net/
+https://dnschecker.org/email-header-analyzer.php
+https://www.whatismyip.com/email-header-analyzer/
+https://mxtoolbox.com/Public/Tools/EmailHeaders.aspx
+
+DNS Information : 
+https://mxtoolbox.com/DNSLookup.aspx
+https://dnschecker.org/all-dns-records-of-domain.php
+https://hackertarget.com/
+https://viewdns.info/reversewhois/
+https://domaineye.com/reverse-whois
+https://www.reversewhois.io/
+https://viewdns.info/reversewhois/
+https://domaineye.com
+https://www.reversewhois.io/
+https://www.whoxy.com/
+http://reversewhois.domaintools.com/
+https://drs.whoisxmlapi.com/reverse-whois-search
+
+Dorking:
+site:, intitle:, inurl:, intext:, cache:, filetype:
+intitle:"Index of" site:*.org intext:"www.zip"
+intitle:"Index of" site:*.org intext:"password"
+intitle:"Index of" site:*.org intext:"password" filetype:.txt
+
+site:http://ewubd.edu/ inurl:login | inurl:signin | intitle:Login | intitle:"sign in" | inurl:auth
+site:http://ewubd.edu/ ext:php intitle:phpinfo "published by the PHP Group"
+site:*.http://ewubd.edu/
+site:*.ewubd.edu
+site:*.*.ewubd.edu
+site:ewubd.edu/*
+site:*.ewubd.edu/*
+site:*.*.http://ewubd.edu/
+
+Automated >  https://dorksearch.com/
+Automated >  https://dorkgenius.com/
+Manual >  https://cxsecurity.com/dorks/
+Manual > https://www.exploit-db.com/google-hacking-database
+Automated > https://pentest-tools.com/information-gathering/google-hacking
+
+Subdomain:
+Domain : abc.com
+level 1 subdomain : a.abc.com
+level 2 subdomain : b.a.abc.com
+level 3 subdomain : c.b.a.abc.com
+
+Online Vulnerability scanners:
+https://pentest-tools.com/website-vulnerability-scanning/website-scanner
+https://snyk.io/website-scanner/
+https://hostedscan.com/owasp-vulnerability-scan
+https://scantrics.io/website-scanner/
+https://wpsec.com/
+https://www.getastra.com/website-scanner
+
+Best Website For Bug Hunter:
+https://pentest-tools.com/
+https://hackertarget.com/
+https://ping.eu/
+https://www.webtoolhub.com/tools.aspx
+https://osint.sh/
+https://offsec.tools/
+https://www.yougetsignal.com
+
+Finding ASN : example ASN number
+
+In Depth Search Engine:
+https://shodan.io
+https://hunter.how
+https://criminalip.io
+https://censys.io
+https://zoomeye.org
+https://netlas.io
+https://fofa.info
+https://builtwith.com
+https://sitesleith.io
+https://publicwww.com
+https://spyonweb.com
+https://www.greynoise.io
+https://leakix.net
+https://urlscan.io/
+
+Chinese Exploit:
+https://www.seebug.org/
+https://github.com/knownsec/pocsuite3
+
+Subdomain FInding:
+subfinder -d <link> -o subfind.txt
+httpx -l subfind.txt -o httplist.txt
+httpx -l subfind.txt -title -o httptitle.txt
+
+wordlist : https://github.com/danTaler/WordLists/blob/master/Subdomain.txt
+GoaltDNS : https://github.com/subfinder/goaltdns
+Best wordlist :https://github.com/danielmiessler/SecLists/blob/master/Discovery/DNS/subdomains-top1million-5000.txt
+Resolver : https://github.com/trickest/resolvers
+
+goaltdns -h hackerone.com -w subdomains-top1million-5000.txt -o x.txt
+puredns resolve x.txt --resolvers resolvers.txt
+httpx -l x.txt -o resolve.txt
+
+gowithness file -f subdomain.txt
+
+subdomain by online:
+
+https://google.com
+https://virustotal.com
+https://dnsdumpster.com
+https://crt.sh
+https://censys.io
+https://ci-www.threatcrowd.org
+
+subdomain takeover:
+
+Source: https://github.com/EdOverflow/can-i-take-over-xyz
+
+takeovering with github:
+-> create a github account . suppose username is abc
+-> create a repo abc.github.io
+-> then go to settings > pages > custom domains
+-> analyze the results
+
+nuclei subdomain.txt -t nuclei-templates/http/takeovers/ -o takeover.txt
+nuclei -v subdomain.txt -t nuclei-templates/http/takeovers/ -o takeover.txt
+nuclei subdomain.txt -o takeover.txt
+
+
+Xss Payload : https://github.com/gprime31/WAF-bypass-xss-payloads
+git-dumper : https://github.com/arthaud/git-dumper
+ssh user@website > pass
+
+git-dumper:
+https://127.0.0.1/.git/config
+
+python3 git-dumper.py https://127.0.0.1/.git name
+
+CMS Technology :
+
+whatcms.org
+cmsdetect.com
+builtwith.com
+sitereport.netcraft.com
+
+Link Extractor:
+
+Link grobe > extention
+
+gospider gospider -s <link> -o name.txt -c 10 -d 1
+
+cat example.com | gau
+cat domains.txt | gau --threads 5
+gau example.com google.com
+gau --o example-urls.txt example.com
+gau --blacklist png,jpg,gif example.com
+
+https://hackertarget.com/extract-links/
+https://www.prepostseo.com/link-extractor
+https://www.webtoolhub.com/tn561364-link-extractor.aspx
+
+Parameter Discovery:
+
+arjun -u <link>
+
+Website to target filetype: 
+gau example.com | tee example.txt
+cat example.txt | grep .txt
+cat example.txt | grep .js
+cat example.txt | grep .php

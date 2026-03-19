@@ -1,0 +1,42 @@
+Image Steg:
+
+https://futureboy.us/stegano/decinput.html
+https://georgeom.net/StegOnline/upload
+https://futureboy.us/stegano/decinput.html
+http://stylesuxx.github.io/steganography/
+https://www.mobilefish.com/services/steganography/steganography.php
+https://manytools.org/hacker-tools/steganography-encode-text-into-image/
+https://steganosaur.us/dissertation/tools/image
+https://georgeom.net/StegOnline
+http://magiceye.ecksdee.co.uk/
+https://fareedfauzi.gitbook.io/ctf-playbook/steganography
+https://www.aperisolve.com/
+https://incoherency.co.uk/image-steganography/#unhide
+https://manytools.org/hacker-tools/steganography-encode-text-into-image/
+
+file > strings > exiftool > formost > binwalk > stegsolve > stegseek > stegcracker > jsteg > zsteg > hex editor > file sign > steghide > pngcheck > 
+
+
+Osint:
+
+Old Rwitter : https://chromewebstore.google.com/detail/old-twitter-layout-2024/jgejdcdoeeabklepnkdbglgccjpdgpmf
+Reverse Image : https://pimeyes.com/en
+Music Searcher : https://www.aha-music.com/identify-songs-music-recognition-online
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

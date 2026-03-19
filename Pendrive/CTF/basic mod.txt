@@ -1,0 +1,67 @@
+def decode(number):
+    r = number % 37
+    return r
+
+def main():
+    f = open("message.txt", "r", encoding="UTF-8")
+    lst = f.read().split()
+    # print(lst[0])
+
+    dec_lst = []
+
+    for i in range(len(lst)):
+        dec_lst.append(decode(int(lst[i])))
+
+    print(dec_lst)
+
+if __name__ == '__main__':
+    main()
+---------------------------------------------------------------
+import string
+alfabeto = string.ascii_lowercase
+alfabeto += "0123456789_"
+
+flag_enc = [202,137,390,235,114,369,198,110,350,396,390,383,225,258,38,291,75,324,401,142,288,397]
+flag = ""
+for c in flag_enc:
+    pos = c % 37
+    flag += alfabeto[pos]
+
+print(flag)
+---------------------------------------------------------------
+arr = [165, 248, 94, 346, 299, 73, 198, 221, 313, 137, 205, 87, 336, 110, 186, 69, 223, 213, 216, 216, 177, 138]
+characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
+flag = "picoCTF{"
+
+for i in range(len(arr)):
+	arr[i] = arr[i] % 37
+	flag += characterSet[arr[i]]
+
+flag += "}"
+print(flag)
+
+---------------------------------------------------------------
+arr = [268, 413, 438, 313, 426, 337, 272, 188, 392, 338, 77, 332, 139, 113, 92, 239, 247, 120, 419, 72, 295, 190, 131]
+characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
+flag = "picoCTF{"
+
+for i in range(len(arr)):
+        arr[i] = pow(arr[i], -1, 41)
+        flag += characterSet[arr[i]-1]
+
+flag += "}"
+print(flag)
+---------------------------------------------------------------
+import string
+alphabet = string.asciiuppercase + string.digits + ""
+code = "104 85 69 354 344 50 149 65 187 420 77 127 385 318 133 72 206 236 206 83 342 206 370"
+words = code.split(" ")
+result = ""
+for word in words:
+    module = int(word) % 41
+    for i in range (41):
+        if((module * i ) % 41 == 1 ):
+            result += alphabet[i-1]
+            break
+print(result)
+

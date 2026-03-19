@@ -1,0 +1,43 @@
+pwd                     # Show current directory
+cd /                    # Change to root directory
+ls -l                   # Long listing
+ls -la                  # List all files including hidden with permissions
+ls -a                   # Show hidden files
+ls -l script.sh         # Check permissions of a specific file
+
+find . -name ".*"                           # Find hidden files in current dir
+find /etc -name "*.backup"                 # Find backup config files
+find / -perm 777 2>/dev/null               # Find world-writable files
+locate nginx.conf                          # Locate nginx config
+
+ls -la ~/.ssh                              # List SSH keys and authorized_keys
+chmod 600 id_rsa                           # Secure SSH private key file
+ssh-keygen -t rsa                          # Generate a new SSH key pair
+
+grep -r "PermitRootLogin" /etc/ssh/        # Check if root SSH login is allowed
+grep -i "password" /etc/* 2>/dev/null      # Search for password-related settings
+grep -i "user" /etc/* 2>/dev/null          # Search for user configs
+
+whoami                                     # Current user
+id                                         # UID, GID
+hostname                                   # Hostname
+uname -a                                   # Kernel version
+cat /etc/os-release                        # OS version info
+
+cat /etc/passwd                            # List all users
+cat /etc/shadow                            # Check password hashes (if readable)
+cut -d: -f1 /etc/passwd                    # List usernames
+groups                                     # Show groups of current user
+
+find / -perm -4000 -type f 2>/dev/null     # SUID binaries
+find / -perm -2000 -type f 2>/dev/null     # SGID binaries
+
+find / -name "*.log" 2>/dev/null           # Log files
+find / -name "*.conf" 2>/dev/null          # Config files
+find / -name "*.bak" 2>/dev/null           # Backup files
+find / -name "*.old" 2>/dev/null           # Old files
+
+ps aux | grep root                         # Processes run by root
+ps -ef | grep -iE 'cron|bash|sh'           # Suspicious cron/bash jobs
+which python perl gcc wget curl            # Check for binaries for exploitation
+

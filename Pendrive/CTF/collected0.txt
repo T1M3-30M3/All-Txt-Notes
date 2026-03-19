@@ -1,0 +1,21 @@
+https://apackets.com
+gps-coordinates.net
+https://www.pic2map.com/
+https://dogbolt.org/
+
+NTLM : john hash.txt --wordlist=rockyou.txt
+john hash.txt --format=Raw-MD5 --wordlist=rockyou.txt
+john hash.txt --format=Raw-SHA1 --wordlist=rockyou.txt
+
+
+If you find that any protected excel sheet:
+--> change to extention .xlsx to .zip
+--> then you can open via winrar or 7zip
+--> then you can find xl > worksheets > find some XML file 
+--> Open with notepad and seatch protect keyword
+--> starting with <sheetProtection. You will Remove opening tag (<) to closing tag (/>).
+--> Change to .zip to xlsx
+--> Done
+
+Reference : https://agio.com/how-to-unlock-protected-excel-sheets-without-a-password/#gref
+YT Video : https://www.youtube.com/watch?v=2x23vZIRYRs

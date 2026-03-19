@@ -1,0 +1,136 @@
+🔍 Recon & Information Gathering
+-> Check HTTP headers (with Burp Suite, curl, etc.)
+-> View source code of HTML pages
+-> Explore robots.txt, sitemap.xml, /.git/, /.env, backup files (.bak, ~)
+-> Use dirsearch, ffuf, gobuster, etc., to find hidden endpoints
+-> Enumerate subdomains and parameters
+
+🧪 Input & Parameter Testing
+-> Test GET/POST/PUT/DELETE methods
+-> Try changing hidden form values or client-side tokens
+-> Tamper with URL parameters (id=1, admin=false, etc.)
+-> Test for HTTP parameter pollution (param=value&param=hacked)
+-> Fuzz JSON/XML input for SSRF, injection, etc.
+
+🧠 Authentication / Session / Logic Bugs
+-> Check for default creds, weak passwords
+-> Try JWT manipulation (e.g. alg: none, key guessing)
+-> Replay/modify cookies or tokens
+-> Abuse password reset / registration / invitation flows
+-> Look for role confusion (e.g. escalate from user to admin)
+
+💉 Common Vulnerabilities to Test:
+
+🔹 Injection
+-> SQLi (' OR 1=1--, time-based payloads, UNION)
+-> NoSQLi ({"$ne":null}, {"$gt":""})
+-> Command Injection (; ls, | whoami)
+-> SSTI (e.g. {{7*7}}, ${7*7} in template fields)
+-> LDAP / XPath Injection
+
+🔹 XSS
+-> Reflected, stored, DOM-based
+-> Try payloads: <script>alert(1)</script>, <img src=x onerror=alert(1)>
+-> Test in all input fields and query parameters
+-> Use "><svg onload=alert(1)> for escaping attributes
+
+🔹 CSRF / Clickjacking
+-> Check if actions can be performed without tokens
+-> Test X-Frame-Options header for clickjacking
+
+🔹 File Upload
+-> Try uploading .php, .jpg.php, .htaccess, etc.
+-> Bypass file type checks (magic bytes, content-type header)
+-> LFI via uploaded files
+
+🔹 SSRF
+-> Interact with internal services (127.0.0.1, 169.254.169.254)
+-> DNS logging with Burp Collaborator or interact.sh
+
+🔹 Open Redirect
+-> Use ?redirect=https://evil.com
+-> Try payloads like //evil.com, /\evil.com
+
+🧱 Access Control
+-> Insecure Direct Object Reference (IDOR): /user/123, try incrementing IDs
+-> Test unauthorized actions as a lower-privilege user
+-> Force browsing to hidden endpoints (e.g., /admin, /debug)
+
+🛠️ Tools to Use
+-> Burp Suite (must-have)
+-> curl / Postman for quick manual testing
+-> FFUF / Gobuster for dirbusting
+-> sqlmap (use with caution, can be noisy)
+-> jwt.io, CyberChef, HackTools (browser extension)
+
+🔍 Recon & Info Gathering
+-> Check HTML source, comments, JS files
+-> Look for robots.txt, sitemap.xml, .git/, .env, backup files
+-> Use tools: dirsearch, ffuf, gobuster – directory fuzzing, whatweb, wappalyzer – tech stack fingerprinting
+-> Enumerate subdomains, paths, and parameters
+
+📥 Input Testing
+-> GET/POST/PUT/DELETE methods
+-> Hidden fields tampering
+-> Changing cookies, headers
+-> HTTP Parameter Pollution: ?param=1&param=2
+-> JSON/XML inputs – test for injections or parsing flaws
+
+🔐 Auth / Session Bugs
+-> Check for default or weak creds (admin:admin)
+-> JWT: Change alg to none,Brute force secret key
+-> Try session fixation, replay, or tampering
+-> Abuse registration, password reset, email change flows
+
+💉 Injection Attacks:
+-> ' OR 1=1 --
+-> ' UNION SELECT NULL, NULL --
+-> ' AND SLEEP(5) --
+
+💻 Command Injection: ; whoami, | ls, `id`
+🧾 SSTI : {{7*7}}, {% print(7*7) %}, ${7*7}
+🔥 XSS Payloads:
+<script>alert(1)</script>
+"><svg onload=alert(1)>
+<img src=x onerror=alert(1)>
+
+🧪 CSRF & Clickjacking
+-> Check if critical requests can be made cross-origin
+-> Look for missing CSRF tokens
+-> Test iframe embedding → check X-Frame-Options header
+
+📂 File Upload Vulns
+-> Upload .php, .jpg.php, .phtml, .htaccess
+-> Bypass checks:Rename extension, Change MIME type, Add fake magic bytes
+-> Check for LFI via upload directory
+
+🌐 SSRF Testing
+-> http://127.0.0.1
+-> http://169.254.169.254/latest/meta-data/
+-> http://yourcollaborator.interact.sh
+
+🚨 IDOR & Access Control
+-> Try incrementing user/resource IDs
+-> Access other users' resources without proper auth
+-> Change role=user → role=admin in cookies or requests
+
+🧭 Open Redirect
+-> ?next=https://evil.com
+-> ?redirect=//evil.com
+-> ?url=/\evil.com
+
+🛠 Tools
+-> Burp Suite
+-> FFUF, Gobuster – Dir fuzzing
+-> Postman, curl – Manual requests
+-> sqlmap – Automated SQLi
+-> CyberChef, HackTools, jwt.io
+
+✅ Final Notes
+-> Always test everything client-side AND server-side
+-> Check all JS files (can hide clues)
+-> Decode base64, hex, JWTs
+-> Watch for weird behavior → logic bugs!
+-> Read challenge description thoroughly
+
+

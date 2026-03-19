@@ -1,0 +1,116 @@
+CTF (Capture The Flag) প্রতিযোগিতাগুলো বিভিন্ন ক্যাটাগরিতে বিভক্ত থাকে। নিচে CTF-এর প্রধান ক্যাটাগরি এবং তাদের বিস্তারিত ব্যাখ্যা বাংলায় দেওয়া হলো—
+
+১. Crypto (ক্রিপ্টো)
+
+এই ক্যাটাগরিতে বিভিন্ন এনক্রিপশন (encryption) এবং ডিক্রিপশন (decryption) সম্পর্কিত সমস্যা সমাধান করতে হয়।
+
+🔹 সাব-ক্যাটাগরি:
+
+    Classical Ciphers: Caesar cipher, Vigenère cipher, XOR cipher
+    Modern Cryptography: AES, RSA, ECC
+    Hashing Attacks: MD5, SHA1, SHA256 collisions
+    Encoding & Obfuscation: Base64, Base32, Morse Code, ROT13
+    Quantum Cryptography: Lattice-based attacks (সাধারণত Hard CTF-এ দেখা যায়)
+
+
+২. Reversing (রিভার্স ইঞ্জিনিয়ারিং)
+
+এখানে দেওয়া হয় কোনো একটি প্রোগ্রাম বা বাইনারি ফাইল, যা বিশ্লেষণ করে ফ্ল্যাগ বের করতে হয়।
+
+🔹 সাব-ক্যাটাগরি:
+
+    Basic Reversing: Strings, XOR, Simple Debugging
+    x86/x64 Assembly Analysis
+    Android Reversing: APK decompilation, smali analysis
+    Obfuscation & Patching: Anti-debugging, VM-based obfuscation
+
+৩. Pwn (পাউন / এক্সপ্লয়টেশন)
+
+এখানে কোনো বাইনারি এক্সপ্লয়ট (exploit) করে ফ্ল্যাগ বের করতে হয়।
+
+🔹 সাব-ক্যাটাগরি:
+
+    Buffer Overflow (BOF)
+    Format String Vulnerabilities
+    Return-Oriented Programming (ROP)
+    Heap Exploitation
+    Shellcode Writing
+
+৪. Web (ওয়েব এক্সপ্লয়টেশন)
+
+ওয়েব অ্যাপ্লিকেশনে থাকা দুর্বলতাগুলো খুঁজে বের করে ফ্ল্যাগ বের করতে হয়।
+
+🔹 সাব-ক্যাটাগরি:
+
+    SQL Injection (SQLi)
+    Cross-Site Scripting (XSS)
+    Cross-Site Request Forgery (CSRF)
+    Server-Side Request Forgery (SSRF)
+    Remote Code Execution (RCE)
+    Local File Inclusion (LFI) / Remote File Inclusion (RFI)
+
+৫. Forensics (ফরেনসিক্স)
+
+ডিজিটাল ফরেনসিক্স অ্যানালাইসিস করে ফ্ল্যাগ বের করতে হয়।
+
+🔹 সাব-ক্যাটাগরি:
+
+    Memory Dump Analysis
+    Network Traffic Analysis (PCAP files)
+    Steganography (Image/Audio/Video hiding techniques)
+    File Recovery & Metadata Analysis
+
+৬. OSINT (ওপেন সোর্স ইন্টেলিজেন্স)
+
+ইন্টারনেট থেকে তথ্য সংগ্রহ করে ফ্ল্যাগ বের করতে হয়।
+
+🔹 সাব-ক্যাটাগরি:
+
+    Social Media Intelligence (SOCMINT)
+    Geolocation Tracking
+    Metadata Analysis
+    Email & Domain Intelligence
+
+৭. Steganography (স্টেগানোগ্রাফি)
+
+ইমেজ, অডিও বা অন্যান্য মিডিয়াতে লুকানো তথ্য বের করতে হয়।
+
+🔹 সাব-ক্যাটাগরি:
+
+    Image Steganography: LSB (Least Significant Bit), StegHide
+    Audio Steganography: Hidden signals, Spectrogram analysis
+    Text Steganography: Zero-width characters, White-space encoding
+
+৮. Misc (বিবিধ)
+
+এই ক্যাটাগরিতে বিভিন্ন রকম চ্যালেঞ্জ থাকে যা অন্য ক্যাটাগরির সাথে সরাসরি সংযুক্ত নাও হতে পারে।
+
+🔹 সাব-ক্যাটাগরি:
+
+    Programming Challenges (Python, C, Bash)
+    Regex & Logic Puzzles
+    Encoding/Decoding
+
+৯. Networking (নেটওয়ার্কিং)
+
+এই ক্যাটাগরিতে নেটওয়ার্ক ট্রাফিক বিশ্লেষণ, প্রোটোকল এনালাইসিস এবং বিভিন্ন নেটওয়ার্ক এক্সপ্লয়টেশন সম্পর্কিত চ্যালেঞ্জ থাকে।
+
+🔹 সাব-ক্যাটাগরি:
+
+1️⃣  Packet Analysis (প্যাকেট বিশ্লেষণ)
+
+    Wireshark দিয়ে .pcap ফাইল অ্যানালাইসিস
+    HTTP, TCP, UDP ট্রাফিক বিশ্লেষণ
+    DNS Query & Response বিশ্লেষণ
+    FTP, SMTP, POP3, IMAP ট্রাফিক বিশ্লেষণ
+    ARP Spoofing & Man-in-the-Middle (MITM) অ্যাটাক
+
+
+
+Extra:
+
+https://www.youtube.com/watch?v=X2eTiktwfSc
+https://www.youtube.com/watch?v=L36h6M9Rklg
+https://www.youtube.com/watch?v=IxLzldAANNg
+https://www.youtube.com/watch?v=UL5wWt0Pwp4
+https://www.youtube.com/watch?v=_3mr8nxch6U

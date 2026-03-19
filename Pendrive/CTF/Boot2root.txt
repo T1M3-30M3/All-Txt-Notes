@@ -1,0 +1,12 @@
+GameServer:
+https://tryhackme.com/room/gamingserver
+https://medium.com/@agapehearts/gaming-server-walkthrough-b88e764e7fd2
+https://medium.com/@wilklins/gamingserver-tryhackme-writeup-16707cbc6c32
+https://infosecwriteups.com/tryhackme-gaming-server-191d2f142a12
+https://www.infosecarticles.com/tryhackme-gaming-server-walkthrough/
+
+PsychoBreak:
+https://tryhackme.com/room/psychobreak
+https://hafiqiqmal93.medium.com/tryhackme-psycho-break-7aad8f809454
+https://systemweakness.com/tryhackme-psycho-break-writeup-b508bbad0243
+

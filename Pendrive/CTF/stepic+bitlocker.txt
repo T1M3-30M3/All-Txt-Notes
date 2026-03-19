@@ -1,0 +1,169 @@
+Bitlocker-1
+
+└─$ file bitlocker-1.dd
+bitlocker-1.dd: DOS/MBR boot sector, code offset 0x58+2, OEM-ID "-FVE-FS-", sectors/cluster 8, reserved sectors 0, Media descriptor 0xf8, sectors/track 63, heads 255, hidden sectors 124499968, FAT (32 bit), sectors/FAT 8160, serial number 0, unlabeled; NTFS, sectors/track 63, physical drive 0x1fe0, $MFT start cluster 393217, serial number 02020454d414e204f, checksum 0x41462020
+
+└─$ bitlocker2john -i bitlocker-1.dd
+Encrypted device bitlocker-1.dd opened, size 100MB
+
+Signature found at 0x3
+Version: 8
+Invalid version, looking for a signature with valid version...
+
+Signature found at 0x2195000
+Version: 2 (Windows 7 or later)
+
+VMK entry found at 0x21950c5
+
+VMK encrypted with Recovery Password found at 0x21950e6
+Salt: 2b71884a0ef66f0b9de049a82a39d15b
+Searching AES-CCM from 0x2195102
+Trying offset 0x2195195....
+VMK encrypted with AES-CCM!!
+RP Nonce: 00be8a46ead6da0106000000
+RP MAC: a28f1a60db3e3fe4049a821c3aea5e4b
+RP VMK: a1957baea68cd29488c0f3f6efcd4689e43f8ba3120a33048b2ef2c9702e298e4c260743126ec8bd29bc6d58
+
+
+VMK entry found at 0x2195241
+
+VMK encrypted with User Password found at 2195262
+VMK encrypted with AES-CCM
+UP Nonce: d04d9c58eed6da010a000000
+UP MAC: 68156e51e53f0a01c076a32ba2b2999a
+UP VMK: fffce8530fbe5d84b4c19ac71f6c79375b87d40c2d871ed2b7b5559d71ba31b6779c6f41412fd6869442d66d
+
+
+Signature found at 0x2c1d000
+Version: 2 (Windows 7 or later)
+
+VMK entry found at 0x2c1d0c5
+
+VMK entry found at 0x2c1d241
+
+Signature found at 0x373a000
+Version: 2 (Windows 7 or later)
+
+VMK entry found at 0x373a0c5
+
+VMK entry found at 0x373a241
+
+User Password hash:
+$bitlocker$0$16$cb4809fe9628471a411f8380e0f668db$1048576$12$d04d9c58eed6da010a000000$60$68156e51e53f0a01c076a32ba2b2999afffce8530fbe5d84b4c19ac71f6c79375b87d40c2d871ed2b7b5559d71ba31b6779c6f41412fd6869442d66d
+Hash type: User Password with MAC verification (slower solution, no false positives)
+$bitlocker$1$16$cb4809fe9628471a411f8380e0f668db$1048576$12$d04d9c58eed6da010a000000$60$68156e51e53f0a01c076a32ba2b2999afffce8530fbe5d84b4c19ac71f6c79375b87d40c2d871ed2b7b5559d71ba31b6779c6f41412fd6869442d66d
+Hash type: Recovery Password fast attack
+$bitlocker$2$16$2b71884a0ef66f0b9de049a82a39d15b$1048576$12$00be8a46ead6da0106000000$60$a28f1a60db3e3fe4049a821c3aea5e4ba1957baea68cd29488c0f3f6efcd4689e43f8ba3120a33048b2ef2c9702e298e4c260743126ec8bd29bc6d58
+Hash type: Recovery Password with MAC verification (slower solution, no false positives)
+$bitlocker$3$16$2b71884a0ef66f0b9de049a82a39d15b$1048576$12$00be8a46ead6da0106000000$60$a28f1a60db3e3fe4049a821c3aea5e4ba1957baea68cd29488c0f3f6efcd4689e43f8ba3120a33048b2ef2c9702e298e4c260743126ec8bd29bc6d58
+
+
+
+└─$ echo '$bitlocker$1$16$cb4809fe9628471a411f8380e0f668db$1048576$12$d04d9c58eed6da010a000000$60$68156e51e53f0a01c076a32ba2b2999afffce8530fbe5d84b4c19ac71f6c79375b87d40c2d871ed2b7b5559d71ba31b6779c6f41412fd6869442d66d' > bitlocker.hash
+
+└─$ hashcat -m 22100 bitlocker.hash /mnt/d/f-drive/wordlist/rockyou.txt --force
+hashcat (v6.2.6) starting
+
+You have enabled --force to bypass dangerous warnings and errors!
+This can hide serious problems and should only be done when debugging.
+Do not report hashcat issues encountered when using --force.
+
+OpenCL API (OpenCL 3.0 PoCL 6.0+debian  Linux, None+Asserts, RELOC, LLVM 18.1.8, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+============================================================================================================================================
+Device #1: cpu-haswell-Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz, 1417/2899 MB (512 MB allocatable), 8MCU
+
+
+Minimum password length supported by kernel: 4
+Maximum password length supported by kernel: 256
+
+Hashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Optimizers applied:
+Single-Hash
+Single-Salt
+Slow-Hash-SIMD-LOOP
+
+
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Host memory required for this attack: 0 MB
+
+Dictionary cache built:
+Filename..: /mnt/d/f-drive/wordlist/rockyou.txt
+Passwords.: 14344391
+Bytes.....: 139921497
+Keyspace..: 14344384
+Runtime...: 2 secs
+
+
+$bitlocker$1$16$cb4809fe9628471a411f8380e0f668db$1048576$12$d04d9c58eed6da010a000000$60$68156e51e53f0a01c076a32ba2b2999afffce8530fbe5d84b4c19ac71f6c79375b87d40c2d871ed2b7b5559d71ba31b6779c6f41412fd6869442d66d:jacqueline
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 22100 (BitLocker)
+Hash.Target......: $bitlocker$1$16$cb4809fe9628471a411f8380e0f668db$10...42d66d
+Time.Started.....: Sat Mar  8 07:47:57 2025, (1 min, 7 secs)
+Time.Estimated...: Sat Mar  8 07:49:04 2025, (0 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: File (/mnt/d/f-drive/wordlist/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:       29 H/s (21.75ms) @ Accel:128 Loops:4096 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 1920/14344384 (0.01%)
+Rejected.........: 0/1920 (0.00%)
+Restore.Point....: 1792/14344384 (0.01%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:1044480-1048576
+Candidate.Engine.: Device Generator
+Candidates.#1....: clifford -> hercules
+
+Started: Sat Mar  8 07:46:58 2025
+Stopped: Sat Mar  8 07:49:06 2025
+
+
+
+
+└─# sudo mkdir -p /mnt/dislocker
+
+─# sudo dislocker -v -V bitlocker-1.dd -ujacqueline -- /mnt/dislocker
+
+└─# cd /mnt/dislocker/
+
+
+└─# ls
+dislocker-file
+
+└─# strings dislocker-file | grep -i "ctf"
+CTfL`
+CtF+p
+CTf1BR
+CTF[
+cTF}r
+i?.OCTF
+ cTFi
+wcTf
+ACtFHe-
+picoCTF{us3_b3tt3r_p4ssw0rd5_pl5!_3242adb1}
+ctfl
+cTfC
+cTFN
+L)CTF{
+CtfvU2
+StCTFJX
+DcTF
+CtfN
+JVctF2>
++D]ctF
+CtF:m
+CtfE:.
+ICtF
+ACtF
+Ctf2KA
+4ctf
+ctfi
+nctf
+rZcTf
+QPCtF
+

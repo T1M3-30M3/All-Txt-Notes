@@ -1,0 +1,59 @@
+gobuster dir -u http://target.com -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,txt
+gobuster dir -u http://target.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+
+ffuf -u http://target.com/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+ffuf -u http://target.com/FUZZ.php -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+ffuf -u http://FUZZ.target.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H "Host: FUZZ.target.com"
+ffuf -u "http://target.com/page.php?FUZZ=test" -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt
+ffuf -u "http://target.com/page.php?param=FUZZ" -w /usr/share/seclists/Fuzzing/quick-win.txt
+ffuf -u "http://target.com/page.php?FUZZ=FUZZ" -w /usr/share/seclists/Fuzzing/quick-win.txt
+
+dirsearch -u http://b2r-target.com/ -e php,html,txt -x 403,404 -t 40 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+dirsearch -u http://b2r-target.com/ -e php,html,txt -x 403,404 
+dirsearch -u https://202.72.5.130/ -t 50 -x 429,404,502,503,400,500,403,428 -e conf,config,bak,backup,swp,old,db,sql,asp,aspx,py,rb,php,bkp
+dirsearch -u http://target.com -e php,html,js,txt
+dirsearch -u http://target.com -e php,html,js --recursive
+dirsearch -u http://example.com/ --recursive --max-recursion-depth 3
+dirsearch -u http://example.com/ --exclude-status 403,404
+dirsearch -u http://example.com -e php,html,txt,js -x 403,404
+dirsearch -u http://example.com -r 2 -x 403,404
+dirsearch -u https://202.72.5.130/ -t 50 -x 429,404,502,503,400,500,403,428 -e conf,config,bak,backup,swp,old,db,sql,asp,aspx,py,rb,php,bkp
+
+🧾 Important Wordlists
+🗂️ Location: /usr/share/wordlists/ or /usr/share/seclists/
+
+📁 Directory and File Brute Forcing
+dirbuster/directory-list-2.3-medium.txt
+common.txt 
+big.txt 
+
+📁 Subdomain Enumeration
+Discovery/DNS/subdomains-top1million-5000.txt
+dns-Jhaddix.txt 
+
+📁 Parameter Fuzzing
+Discovery/Web-Content/burp-parameter-names.txt
+Fuzzing/parameter-names.txt
+
+📁 Backup and Config Files
+Discovery/Web-Content/raft-large-words.txt
+Discovery/Web-Content/common-backups.txt
+
+
+🧩 Top Wordlists for Parameter Names
+📁 Location: /usr/share/seclists/Discovery/Web-Content/
+burp-parameter-names.txt	
+param-names.txt	
+raft-large-params.txt	
+common.txt	
+api-parameter-names.txt
+
+💥 Top Wordlists for Parameter Values
+📁 Location: /usr/share/seclists/Fuzzing/ or /usr/share/seclists/Injections/
+Fuzzing/quick-win.txt	
+Fuzzing/Injections/	
+Fuzzing/xss-quick.txt
+Fuzzing/sql-injection.txt	
+Payloads/Authentication/bypass.txt	
+Discovery/Web-Content/common.txt
+

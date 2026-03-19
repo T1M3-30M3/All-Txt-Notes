@@ -1,0 +1,34 @@
+CTF Tools
+https://stegonline.georgeom.net/upload
+
+https://www.metadata2go.com/
+
+https://incoherency.co.uk/image-steganography (LSB)
+
+https://stylesuxx.github.io/steganography/
+
+https://0xrick.github.io/lists/stego/
+
+https://gchq.github.io/CyberChef/
+
+https://lelinhtinh.github.io/de4js/
+
+http://jsnice.org/
+
+https://www.dcode.fr/javascript-unobfuscator
+
+https://cryptii.com/
+
+https://gchq.github.io/CyberChef/
+
+https://www.dcode.fr/
+
+https://neatnik.net/salty/
+
+https://www.dcode.fr/symbols-ciphers
+
+https://www.dcode.fr/cipher-identifier
+
+https://www.boxentriq.com/code-breaking/cipher-identifier
+
+https://gchq.github.io/CyberChef/#recipe=Analyse_hash()

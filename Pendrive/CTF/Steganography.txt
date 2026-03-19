@@ -1,0 +1,42 @@
+steghide extract -sf yourfile.wav
+zsteg yourfile.wav
+binwalk yourfile.wav
+exiftool yourfile.wav
+binwalk -e file.wav
+strings file.wav
+zsteg -a file.png
+file audio.wav
+xxd audio.wav
+hexdump -C audio.wav
+sox audio.wav -n spectrogram -o spectrogram.png
+ffmpeg -i audio.wav -f wav - | xxd
+stegolsb wavsteg -h -i audio.wav -o output.txt -n 1
+
+
+file audio.wav
+strings audio.wav
+exiftool audio.wav
+stegolsb wavsteg -h -i audio.wav -o output.txt -n 1
+sox audio.wav -n spectrogram -o spectrogram.png
+binwalk audio.wav
+
+file yourfile.wav
+exiftool yourfile.wav
+soxi yourfile.wav  # Part of SoX
+sox yourfile.wav -n spectrogram -o output.png
+
+
+stegcracker yourfile.wav /usr/share/wordlists/rockyou.txt
+python3 WavSteg.py -r -s yourfile.wav -o output.txt
+sox yourfile.wav -n spectrogram -o spectrogram.png
+
+
+python3 WavSteg.py -r -s soundfile.wav -o outputfile
+
+
+
+import wave
+with wave.open("yourfile.wav", "rb") as wav:
+    frames = wav.readframes(wav.getnframes())
+    lsb = "".join(str(b & 1) for b in frames)  # Extract LSB of each byte
+    print(lsb[:1000])  # Check first 1000 bits, convert to ASCII manually if needed

