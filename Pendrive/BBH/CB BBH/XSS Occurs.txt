@@ -1,0 +1,49 @@
+Store XSS occurs:
+
+Admin Dashboards : User-generated content (e.g., feedback, reviews, or profile data) displayed in admin panels without sanitization.
+Advertising Management Panels : Platforms where ad metadata (e.g., titles or descriptions) provided by users is shown to administrators.
+Advertising Systems : User-uploaded ads or banners displayed on a website.
+Audit or Activity Logs : Logs capturing user actions or inputs, which are later reviewed by admin staff.
+Chat Applications : Messages in real-time communication systems that are stored and redisplayed.
+Comment Sections : Input fields in blogs, forums, or content platforms where users can post comments.
+Content Management Systems (CMS) : Admin or user-generated content fields in CMS platforms that are later rendered on a webpage.
+Content Moderation Queues : Systems where moderators review user submissions, like posts, comments, or media descriptions.
+Custom Reporting Features : Reports generated from user inputs and viewed by authorized personnel.
+Customer Support Systems : Inputs submitted by users in support tickets that are viewed by support staff or admins.
+Customer Support or Ticket Systems : Fields where users submit issues or questions, and the data is displayed to support staff.
+Email Notifications : Emails sent to administrators with user-generated content embedded in the message.
+File Upload Metadata : Descriptions, tags, or filenames associated with uploaded files that are displayed to privileged users.
+File Uploads with Metadata Display : Uploaded files with metadata (e.g., filenames or descriptions) that can execute scripts when displayed. 
+Internal Chat Systems : Messages submitted by users that are later read by admins or moderators.
+Message Boards and Forums : Posts, threads, or private messages that store and display user input.
+Monitoring Tools : Logs or analytics dashboards displaying unsanitized user-agent strings, referer headers, or error messages.
+Product Reviews or Feedback Forms : E-commerce platforms where users leave reviews or feedback.
+User Profiles : Fields like usernames, bios, or profile descriptions that are displayed to other users.
+Web Application Logs : Logging systems that store user-generated input, such as error messages or user-agent strings, and later display them without sanitization.
+
+Reflected XSS occurs:
+
+Search Fields : Search query parameters that display user input in search results.
+Error Messages : Error pages or debug messages that reflect user-provided input.
+URL Parameters : Query strings, such as ?name=, used to customize or personalize webpage content.
+Form Fields : Input forms, such as login forms or feedback forms, where user input is echoed back on error pages or confirmation messages.
+GET and POST Parameters : Dynamic parameters included in HTTP GET or POST requests that are directly included in the response.
+Headers : Unsanitized HTTP headers, like the Referer or User-Agent, that are reflected in the server response.
+Search Engine Results or Link Previews : Systems that reflect a user’s query string or input directly in the preview.
+Redirect URLs : Redirect mechanisms that include user-provided input in the response (e.g., URL redirection without sanitization).
+Dynamic Content : Web applications that include user input in dynamically generated content, such as pop-ups or alerts.
+
+Blind XSS Occurs:
+
+Administrative Dashboards : XSS payload is submitted in a user-facing form and triggers when an admin views the data.
+Log Files : Malicious input is logged by the system and executed when logs are viewed in a browser.
+Email Content : XSS payloads embedded in emails execute when opened in an email client that renders HTML.
+Chat Applications : Payload is sent in a chat message and triggers when viewed by another user.
+User Profiles : XSS occurs when the attacker inputs a payload in their profile, which is later viewed by another user or admin.
+Customer Support Systems : Payloads embedded in support tickets or messages execute when support staff view them.
+Content Moderation Panels : Submissions with malicious payloads trigger XSS when moderators review them.
+Exported Reports : XSS is triggered when CSV, PDF, or other exported reports containing malicious data are opened.
+Notifications or Alerts : Malicious content embedded in a notification system triggers XSS when the notification is displayed.
+Feedback and Surveys : Payload is submitted via feedback forms or surveys and executes when viewed by reviewers.
+Third-party Webhooks : A webhook receiver is exploited by injecting malicious payloads into the data sent to third-party systems.
+

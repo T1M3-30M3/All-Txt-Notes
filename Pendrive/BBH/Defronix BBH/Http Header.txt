@@ -1,0 +1,5 @@
+Http Header Attack:
+
+Http Request Header Bypass:
+https://github.com/six2dez/pentest-book/blob/master/enumeration/web/header-injections.md
+https://github.com/danielmiessler/SecLists/tree/bbb4d86ec1e234b5d3cfa0a4ab3e20c9d5006405/Miscellaneous/web/http-request-headers

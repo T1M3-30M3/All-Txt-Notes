@@ -1,0 +1,56 @@
+Low Hanging Fruits:
+
+▶ Broken Link Hijacking
+▶ Missing SPF Record
+▶ Origin IP Disclose
+▶ Session not Expiring after logout
+▶ Long Password Dos Attack
+
+▶ Broken Link Hijacking : Broken Link Hijacking (BLH) is a web-based attack where the attackers take over expired, stale, and invalid external links on credible websites/ web applications for malicious/ fraudulent purposes. 
+
+--> Broken Link Hijacker:
+apt update
+sudo apt upgrade
+apt install npm
+npm install broken-link-checker -g
+blc -h
+
+blc https://shopify.com -ro > broken-link.txt
+cat broken-link.txt | grep BROKEN
+
+blc https://shopify.com -ro -i > broken-link.txt
+cat broken-link.txt | grep BROKEN
+
+blc https://shopify.com -ro -e > broken-link.txt
+
+https://github.com/stevenvachon/broken-link-checker
+https://medium.com/@jeetpal2007/easiest-way-to-find-broken-links-in-a-website-cccbc1f0b6d2
+
+Tools :
+https://github.com/MayankPandey01/BrokenLinkHijacker
+https://github.com/CyberCommands/Broken-Link-Hijacker
+https://chromewebstore.google.com/detail/broken-link-checker/bjcoimpfplliplknnmgbffboiihamekf?pli=1
+https://chromewebstore.google.com/detail/broken-link-checker/bibmanadepphlfkempfmolbkgldiijhp?hl=bn
+
+Resources : D:\D0LPH1N\Common Method\Broken Link Checker
+
+▶ Origin IP Disclosure:
+
+--> Mass DDOS, XSS, Sqli, Can Find open Ports
+
+Try this:
+--> https://sShodan.io
+--> https://search.censys.io/ 
+--> https://securitytrails.com/
+--> https://www.zoomeye.hk/
+--> https://www.kitterman.com/spf/validate.html
+
+nmap -sV <ip>
+
+▶ Session not Expiring after logout:
+--> Create an account
+--> Login 2 different browser
+--> login from 1 browser
+--> if you see that the other browser still login that means something is problem
+
+

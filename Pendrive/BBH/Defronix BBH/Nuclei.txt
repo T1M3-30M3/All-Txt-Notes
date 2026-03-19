@@ -1,0 +1,54 @@
+Install Process:
+
+Default Path : home > .local > nuclei templates
+dvwp : https://github.com/vavkamil/dvwp
+Multiple Git Repo oneliner : while read repo; do git clone "$repo"; done < repos.txt [repos.txt git list]
+
+apt-get install nuclei
+nuclei
+
+go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+nuclei -h
+nuclei -target https://example.com
+nuclei -targets urls.txt
+nuclei -target 192.168.1.0/24
+nuclei -u https://example.com -t /path/to/your-template.yaml
+
+nuclei -u https://my.target.site
+nuclei -u my.target.site:5759
+nuclei -l /path/to/list-of-targets.txt
+nuclei -u https:// my.target.site -as
+nuclei -u https://my.target.site -nt
+nuclei -u https://my.target.site/ -rl 3 -c 2
+nuclei -l list-of-targets.txt -timeout 1
+
+nuclei -u https://my.target.site -t file/logs/python-app-sql-exceptions.yaml -t exposures/files/pyproject-disclosure.yaml
+subfinder -d targetdomain.com -silent | httpx | nuclei -t technologies/tech-detect.yaml
+
+Resources : https://projectdiscovery.io/blog/ultimate-nuclei-guide
+
+For Updating:
+nuclei -update-templates
+git clone https://github.com/projectdiscovery/nuclei-templates.git /home/kali/nuclei-templates
+nuclei -version
+nuclei -update
+
+nuclei -u www.abc.xyz -tags wordpress
+nuclei -u www.abc.xyz -tags cve
+nuclei -u www.abc.xyz -tags xss
+nuclei -u www.abc.xyz -s medium
+nuclei -u www.abc.xyz -s info
+nuclei -u www.abc.xyz -s critical
+
+nuclei -u http://127.0.0.1:3133/ -t /root/.local/nuclei-templates/http/vulnerabilities/wordpress -rl 50
+subfinder -d targetdomain.com -silent | httpx-toolkit | nuclei -t technologies/tech-detect.yaml
+
+
+
+
+
+
+
+
+
+

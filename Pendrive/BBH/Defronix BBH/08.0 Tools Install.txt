@@ -1,0 +1,22 @@
+কমান্ডগুলো হলোঃ
+
+sudo cp assetfinder gf httpx nuclei puredns subjs dalfox httprobe kxss otxurls subjack waybackurls /usr/local/bin
+
+দ্বিতীয় কমান্ড।
+
+sudo cp assetfinder gf httpx nuclei puredns subjs dalfox httprobe kxss otxurls subjack waybackurls /usr/bin
+
+
+এরপর
+
+git clone https://github.com/1ndianl33t/Gf-Patterns
+
+mkdir .gf
+
+mv ~/Gf-Patterns/*.json ~/.gf
+
+
+https://medium.com/@sherlock297/how-to-install-gf-tool-in-kali-linux-fc672053a943
+https://systemweakness.com/how-to-install-gf-tool-and-patterns-on-kali-linux-8692d2627607
+https://medium.com/@sherlock297/gf-tool-patterns-installation-on-kali-linux-instructions-3e097ee4d0c1
+gf -list

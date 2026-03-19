@@ -1,0 +1,11 @@
+https://github.com/daffainfo/AllAboutBugBounty
+https://github.com/KathanP19/HowToHunt
+https://github.com/reddelexc/hackerone-reports
+https://securitycipher.com/security-tools/
+https://github.com/fuzzdb-project/fuzzdb
+https://github.com/swisskyrepo/PayloadsAllTheThings/
+https://github.com/Ignitetechnologies/Mindmap
+https://github.com/InfoSecWarrior/Offensive-Payloads
+https://www.secrash.com/p/admin-login-finder.html?
+https://tools.zone-xsec.com/defacer/admin-finder
+https://github.com/InfoSecWarrior/Offensive-Payloads/

@@ -1,0 +1,14 @@
+---Android pentest 101---
+
+--Main Component:
+--> Activity : implicit intent, explicit intent
+--> Serice
+--> BroadCast
+--> Content provider
+
+--Lab Setup:
+Android Studio : https://developer.android.com/studio
+JDK : https://www.oracle.com/java/technologies/downloads/
+JDK : https://www.oracle.com/java/technologies/downloads/archive/
+
+ 

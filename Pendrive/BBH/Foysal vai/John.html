@@ -1,0 +1,69 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="john-the-ripper-part-1-">john-the-ripper part 1:</h1>
+<h3 id="-john-the-ripper-part-1-crack-hash-">-------------------------  John The Ripper Part 1 - Crack Hash  : ---------------------------</h3>
+<p>Basic Command:</p>
+<pre><code>                   <span class="hljs-keyword">john </span>target_file
+<span class="hljs-symbol">
+                   Example:</span> 
+                                   <span class="hljs-keyword">john </span>hash.txt
+
+                   <span class="hljs-keyword">john </span>modes target_file
+<span class="hljs-symbol">
+                   Example:</span>
+                                   <span class="hljs-keyword">john </span>--single hash.txt
+
+                                   <span class="hljs-keyword">john </span>--wordlist hash.txt
+
+                                   <span class="hljs-keyword">john </span>--incremental hash.txt
+</code></pre><p>Best Command :</p>
+<pre><code>                     <span class="hljs-comment">john</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">format=hash_type</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">wordlist=wordlist</span> <span class="hljs-comment">target_file</span>
+
+
+                     <span class="hljs-comment">Example:</span>
+
+                                   <span class="hljs-comment">john</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">format=raw</span><span class="hljs-literal">-</span><span class="hljs-comment">md5</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">wordlist=/usr/share/wordlist/rockyou</span><span class="hljs-string">.</span><span class="hljs-comment">txt</span> <span class="hljs-comment">hash</span><span class="hljs-string">.</span><span class="hljs-comment">txt</span>
+</code></pre><h3 id="example-hash-for-crack-hash-using-john-the-ripper-">Example Hash For Crack hash Using John the ripper:</h3>
+<pre><code>   <span class="hljs-number">1</span><span class="hljs-selector-class">.f9d4049dd6a4dc35d40e5265954b2a46</span>    -----
+
+   <span class="hljs-number">2</span><span class="hljs-selector-class">.b7a875fc1ea228b9061041b7cec4bd3c52ab3ce3</span>  -----
+
+   <span class="hljs-number">3.1</span>C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032 ----
+</code></pre><h3 id="note-">Note :</h3>
+<pre><code>      Cracked Hash store <span class="hljs-keyword">in</span> .pot path 
+
+       <span class="hljs-regexp">//</span><span class="hljs-regexp">/ john.pot /</span><span class="hljs-regexp">//</span>
+</code></pre><h3 id="john-the-ripper-part-2-crack-zip-rar-file-and-ssh-private-key-password-">John the ripper part 2 - crack zip,rar file and ssh private key password :</h3>
+<h3 id="-ssh-rsa-private-key-crack-">---------- SSH - RSA private key crack  --------</h3>
+<p>1.Convert  RSA private key into Hash using ssh2john.py </p>
+<pre><code>  <span class="hljs-string">Command :</span>
+
+           <span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/john/</span>ssh2john.py target_rsa_file &gt; name.hash
+</code></pre><ol>
+<li><p>Crack  name.hash value using john the ripper</p>
+<pre><code><span class="hljs-symbol">Command:</span>
+
+      john name.hash --wordlist=<span class="hljs-meta-keyword">/usr/</span>share<span class="hljs-meta-keyword">/wordlist/</span>rockyou.txt
+</code></pre></li>
+<li><p>Use this  password for  SSH Login  </p>
+</li>
+</ol>
+<pre><code>     <span class="hljs-attribute">Bonush</span>:
+             ssh -i  rsa_private_key username<span class="hljs-variable">@ip</span>
+</code></pre><h3 id="-zip-file-password-crack-">----    Zip File Password Crack --------</h3>
+<ol>
+<li>Convert the content of  target zip file into hash value </li>
+</ol>
+<pre><code>               <span class="hljs-selector-tag">zip2john</span> <span class="hljs-selector-tag">zipfile</span><span class="hljs-selector-class">.zip</span> &gt; <span class="hljs-selector-tag">zip_hash</span><span class="hljs-selector-class">.txt</span>
+</code></pre><ol>
+<li><p>Crack password :</p>
+<pre><code>     john --wordlist=<span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/wordlists/</span>rockyou.txt zip_hash.txt
+</code></pre></li>
+</ol>
+<h3 id="-rar-file-password-crack-">------- Rar File Password Crack --------</h3>
+<p>1.Convert into Hash:</p>
+<pre><code>        <span class="hljs-selector-tag">rar2john</span> <span class="hljs-selector-tag">rarfile</span><span class="hljs-selector-class">.rar</span> &gt; <span class="hljs-selector-tag">rar_hash</span><span class="hljs-selector-class">.txt</span>
+</code></pre><p>2.Crack password:</p>
+<pre><code>       john --wordlist=<span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/wordlists/</span>rockyou.txt rar_hash.txt
+</code></pre></body></html>

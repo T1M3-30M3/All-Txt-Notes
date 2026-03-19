@@ -1,0 +1,78 @@
+Wordpress Hunting:
+
+Tools : wpscan, CmsMap, searchsploit
+
+01. Admin Panel/Dashboard
+02. Plugins
+03. Themes
+
+Old Plugin and Themes - vulnerable
+
+offline Server:
+--> Xampp
+--> Wordpress old version zip file
+--> Start web server and sql
+
+Xampp Old Version : https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/
+Wordpress Old Version: https://wordpress.org/download/releases/
+
+apt install exploitdb
+cd /usr/share/exploitdb/
+
+git clone https://github.com/dionach/CMSmap
+cd CMSmap/cmsmap/cmsmap.conf
+pip3 install .
+cmsmap
+
+wpscan --url <ip> -e vp
+wpscan --url <ip> -e vt
+wpscan --url <ip> -e ap
+wpscan --url <ip> --api-token <api>
+wpscan --url <ip> -e u
+
+cmsmap https://example.com
+cmsmap https://example.com -f W -F --noedb -d
+cmsmap https://example.com -i targets.txt -o output.txt
+cmsmap https://example.com -u admin -p passwords.txt
+cmsmap -k hashes.txt -w passwords.txt
+
+Repo : https://github.com/rm-onata/xmlrpc-attack
+
+Method 01:
+▶ First find that if xmlrpc.php enable or not
+▶ send to intruder and repeater and GET to POST
+▶ then try to xml attack [system.listMethods]
+▶ then go to https://www.postb.in/ and create a bin and try to pingbacks attack
+
+Wpscan Online : https://hackertarget.com/wordpress-security-scan/
+
+Note: slug is username
+
+XmlRpc Resources : 
+https://the-bilal-rizwan.medium.com/wordpress-xmlrpc-php-common-vulnerabilites-how-to-exploit-them-d8d3c8600b32
+https://ms-official5878.medium.com/xml-rpc-php-wordpress-vulnerabilities-9a7d66068bde
+https://systemweakness.com/penetration-testing-xml-rpc-uncovering-the-weaknesses-cda2acd14629
+https://medium.com/@0xlucifer/wordpress-brute-force-attack-7b5b5054cee9
+https://nitesculucian.github.io/2019/07/02/exploiting-the-xmlrpc-php-on-all-wordpress-versions/
+
+▶ Find all the subdomain of the target
+▶ Find all the IP related
+▶ Hunt on those subdomain and IPS
+▶ Try to find sensitive directories
+▶ Try to find vulnerable plugins and theme
+▶ USe CMSmap wpscan and Nmap
+
+cmsmap <ip>
+nmap -sV <ip>
+wpscan --url <ip> --api-token <api> -t 30 --rua
+
+msfconsole
+search type:auxiliary wordpress xmlrpc
+use number
+info
+set RHOSTS <ip>
+set RPORT 443
+run
+
+
+

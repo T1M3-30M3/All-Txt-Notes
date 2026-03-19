@@ -1,0 +1,34 @@
+--robots.txt--
+
+intitle : bug bounty program
+
+https://github.com/Bo0oM/fuzz.txt/blob/master/fuzz.txt
+
+ffuf -u https://abc.xyz/FUZZ -w FUZZ.txt -mc 200,403
+
+Dorking : https://www.exploit-db.com/google-hacking-database
+
+Dork:
+intitle:"index of" "*robots.txt" site:.edu
+inurl: /wp-content/uploads/ inurl:"robots.txt" "Disallow:" filetype:txt
+intitle:index.of /cftp /robots.txt
+intitle:index.of /email /robots.txt
+intitle:index.of /CMS /robots.txt
+intitle:index.of /Snowflake /robots.txt
+intitle:"index of" "robots.txt"
+intitle:"index of" "robots.txt"
+site:*/phpMyAdmin/robots.txt
+site:*/robots.txt intext:User-agent:
+inurl:ftp://ftp robots.txt
+inurl:robots.txt site:gov + intext:password
+inurl:robots.txt intext:Disallow: /web.config
+inurl:robots.txt intext:CHANGELOG.txt intext:disallow ext:txt -site:github.com
+(inurl:"robot.txt" | inurl:"robots.txt" ) intext:disallow filetype:txt
+"robots.txt" "Disallow:" filetype:txt
+intitle:index.of robots.txt
+
+Motive:
+--> Finding hidden pages that may contain sensitive data
+--> If we found the login panel, we can try to bruteforce using Burp.
+--> We can try for XSS on various pages found in the disallowed list.
+--> Directory bruteforcing disallowed pages to find sensitive directories.

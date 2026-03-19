@@ -1,0 +1,81 @@
+1. Information Gathering: 
+→ Verify error messages for details about valid usernames/accounts.
+→ Check HTML source for hidden fields or sensitive metadata.
+→ Analyze HTTP headers for misconfigurations (e.g., Server, X-Powered-By).
+→ Ensure SSL/TLS is properly enforced and check for mixed content issues.
+
+2. Brute Force and Credential Stuffing
+→ Test login using automated tools like Hydra or Burp Suite.
+→ Attempt weak/default credentials (e.g., admin:admin, root:password).
+→ Verify if account lockout policies are in place after failed attempts.
+→ Check for login throttling to mitigate brute force attacks.
+
+3. Authentication Bypass
+→ Test SQL Injection in username/password fields (' OR '1'='1' --).
+→ Attempt cookie or token manipulation to bypass authentication.
+→ Inspect "Remember Me" feature for insecure implementation.
+→ Test bypass techniques using HTTP request smuggling.
+
+4. Session Management
+→ Validate session cookie attributes (Secure, HttpOnly, SameSite=Strict).
+→ Check if session ID changes after login/logout.
+→ Test for session fixation with predefined session IDs.
+→ Verify session expiration after inactivity or logout.
+→ Test for session hijacking or replay attacks.
+
+5. Input Validation
+→ Test for sanitization of special characters, long inputs, and malformed data.
+→ Attempt XSS injection (<script>alert('XSS')</script>).
+→ Inject unexpected data types (e.g., numbers instead of strings).
+→ Test for open redirects in login parameters (e.g., redirect_uri).
+
+6. Multi-Factor Authentication (MFA)
+→ Test for predictable or reusable OTPs.
+→ Attempt MFA bypass by altering parameters or intercepting OTP requests.
+→ Brute force OTP fields to check for lack of alerts.
+→ Verify the security of backup codes and recovery options.
+
+7. Password Recovery and Reset
+→ Check "Forgot Password" for token leakage or brute force issues.
+→ Test for predictable reset tokens (e.g., sequential or timestamp-based).
+→ Verify if old passwords are invalidated after a reset.
+→ Ensure no sensitive data is exposed in reset emails.
+
+8.CAPTCHA Testing
+→ Attempt CAPTCHA bypass using OCR tools or reusable tokens.
+→ Test CAPTCHA predictability or token brute forcing.
+→ Check if CAPTCHA is disabled after multiple failed attempts.
+
+9. Token-Based Authentication
+→ Verify secure token storage (e.g., avoid local storage).
+→ Test for weak token signing algorithms (e.g., none, HS256).
+→ Check token expiration and revocation mechanisms.
+→ Attempt replay attacks using stolen tokens.
+
+10. Logging and Monitoring
+→ Verify failed login attempts are logged with details (IP, timestamp).
+→ Verify failed login attempts are logged with details (IP, timestamp).
+→ Check if alerts are triggered for suspicious activities.
+
+11. Account Enumeration
+→ Test for differing error messages for valid vs. invalid usernames.
+→ Use timing analysis to detect subtle differences in response times.
+
+12. API or Backend Calls
+→ Test API endpoints for public exposure or lack of validation.
+→ Inspect API requests for manipulable parameters.
+→ Verify API rate limiting and input validation.
+
+13. Secure Storage
+→ Ensure strong password hashing algorithms (e.g., bcrypt, Argon2).
+→ Check for plaintext password storage or weak hashes (e.g., MD5/SHA1).
+
+14. Cross-Site Request Forgery (CSRF)
+→ Test login forms for CSRF token inclusion and validation.
+→ Attempt token reuse or bypass CSRF protections.
+
+15. Logout Functionality
+→ Verify session tokens are invalidated immediately upon logout.
+→ Check if logout endpoints can be accessed without authentication.
+→ Confirm tokens cannot be reused after logout.
+

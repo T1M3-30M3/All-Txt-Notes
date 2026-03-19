@@ -1,0 +1,81 @@
+No Rate Limit [Business Logical Flaw]
+
+A limit that has been implemented on a server or computer states how many requests a server can process in a given time frame. Sometimes it can be 100 requests per second or 1000 requests per second, according to the API configuration.
+
+Process 01:
+--> First, find the forgotten password, give the email, intercept it, and send it to the intruder
+--> copy the email
+--> and paste lots of times as a paylaod and start attack.
+--> if you see that lots of time you recieve the request that means here is error
+
+Process 02:
+--> First, find the forgotten password, give the email, intercept it, and send it to the intruder
+--> Use %00 in the intruder, like: abc@gmail.com. %00
+--> use null payloads and continue and start attack
+--> if you see that lots of time you recieve the request that means here is error
+
+Process 03:
+--> First, find the forgotten password, give the email, intercept it, and send it to the intruder
+--> Use %00 in the intruder, like: abc@gmail.com.
+--> Use null payloads, generate 100, and start the attack
+--> if you see that lots of time you recieve the request that means here is error
+
+Process 04:
+--> First, find the forgotten password, give the email, intercept it, and send it to the intruder
+--> Use %00 in the intruder, like: abc@gmail.com.
+--> Select any kind of number and add it
+--> set payload as a number
+--> if you find lots of message that means it is bug
+
+Target Section:
+--> On sign-up confirmation
+--> Login Confirmation
+--> Comment Section
+--> OTP Section
+--> Forgot Password Section
+--> Email/Phone Verification Section
+
+Sequener > Form Field > Start Live capture
+
+No Rate Limit Bypass:
+--> Using Custom Headers
+X-Forwarded-For: 127.0.0.1
+X-Forwarded: 127.0.0.1
+X-Forwarded-HOST: 127.0.0.1
+X-Remote-IP: 127.0.0.1
+X-Remote-Addr: 127.0.0.1
+X-Client-IP: 127.0.0.1
+True-Client-IP: 127.0.0.1
+Proxy-Client-IP: 127.0.0.1
+--> Inserting blank bytes : %00, %0d%0a, %0d, %0a, %09, %0C, %20, %2e, %0 blank space after email info 
+--> Proxy Network
+--> Using IP Rotate Burp Extention
+
+
+Use this python code:
+email = 'abc@gmail.com'
+
+for _ in range(100):
+    print(email)
+
+
+No Rate Limit Bypass:
+X-Forwarded-For: 127.0.0.1 
+
+You can also use headers like:
+X-Originating-IP: 127.0.0.1
+X-Forwarded-For: 127.0.0.1
+X-Remote-IP: 127.0.0.1
+X-Remote-Addr: 127.0.0.1
+X-Client-IP: 127.0.0.1
+X-Host: 127.0.0.1
+X-Forwared-Host: 127.0.0.1
+
+or use double X-Forwared-For header
+X-Forwarded-For:
+X-Forwarded-For: 127.0.0.1
+
+%00, %0d%0a, %09, %0C, %20, %0, %0d , %2e , %09
+
+
+

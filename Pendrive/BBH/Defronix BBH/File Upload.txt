@@ -1,0 +1,45 @@
+Keypoint:
+▶ Defronix.php - upload
+▶ name - filename
+▶ extentions : exe, txt, php, jsp, html
+▶ content type : image/jpeg, image/png, text/html
+▶ size : size of file
+
+Motive:
+▶ Web shell upload
+▶ upload functions
+▶ RCE
+
+Try This:
+▶ Direct Shell upload
+▶ double extensions for the uploaded file : .php.jpg, .php.jpeg, .php.png, etc
+▶ Just only change Content Type
+▶ Change FileName and Content Type
+▶ Try to use Path traversal in filename
+▶ Try to use null bytes
+▶ Try to add header signature like GIF89a;
+▶ Try to randomly capital Like : file.pHP5
+▶ Try to unpopular php extensions (php4,php5,php6,phtml)
+
+https://github.com/daffainfo/AllAboutBugBounty/blob/master/Arbitrary%20File%20Upload.md
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Upload%20Insecure%20Files/README.md
+https://en.wikipedia.org/wiki/List_of_file_signatures
+
+Backdoor :
+https://github.com/backdoorhub/shell-backdoor-list
+https://github.com/1337r0j4n/php-backdoors
+https://github.com/22XploiterCrew-Team/Gel4y-Mini-Shell-Backdoor
+https://github.com/ZildanZ/Shell-Backdoor
+https://github.com/tennc/webshell/tree/master
+https://github.com/ItsMeAlf404/Backdoor
+https://github.com/xl7dev/WebShell
+https://github.com/mattiasgeniar/php-exploit-scripts
+https://github.com/fuzzdb-project/fuzzdb/tree/master/attack/file-upload/malicious-images
+
+Tools:
+https://github.com/WSP-LAB/FUSE
+https://github.com/almandin/fuxploider
+https://github.com/De-Technocrats/dvwaupsploit
+
+
+python3 fuxploider.py --url https://awesomeFileUploadService.com --not-regex "wrong file type"

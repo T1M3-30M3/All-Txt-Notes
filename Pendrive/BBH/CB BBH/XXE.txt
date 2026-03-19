@@ -1,0 +1,27 @@
+XXE:
+
+XXE stands for "XMS External Entity." It is an application layer cyber security attack that exploits an XXE vulnerability to parse XML input. It is basically used to read sensitive files such as id_rsa, config.php, etc. This can damage organizations in various ways, including DOS, sensitive data exposure, SSRF, and port scanning from the processor's locations.
+
+Payload:
+https://github.com/payloadbox/xxe-injection-payload-list/blob/master/Intruder/xxe-injection-payload-list.txt.txt
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XXE%20Injection/README.md
+https://github.com/HackTricks-wiki/hacktricks/blob/master/pentesting-web/xxe-xee-xml-external-entity.md
+
+Tools:
+https://github.com/luisfontes19/xxexploiter
+https://github.com/enjoiz/XXEinjector
+
+Attack:
+▶ Recon - Try to find xml pattern
+▶ Find out the entity ehich value display in backend
+▶ Create a payload according to recon
+▶ Try to read sensitive file
+▶ Try to do post-exploitation
+
+entity:
+to, from, heading, body for more https://tryhackme.com/r/room/owasptop10
+
+
+Cheatsheet:
+https://gist.github.com/mgeeky/4f726d3b374f0a34267d4f19c9004870
+

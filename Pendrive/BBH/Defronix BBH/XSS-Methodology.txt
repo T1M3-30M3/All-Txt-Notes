@@ -1,0 +1,51 @@
+
+    \\\\\\\\\\\\\\\\\\\\\\\\             #IBRAHIMXSS Methodology for Crawling Potential URLs for XSS Testing     ////////////////////////////
+
+
+
+
+
+#Crawling dead & alive Urls:
+
+waybackurls http://testphp.vulnweb.com | tee -a 1.txt               #https://github.com/tomnomnom/waybackurls
+getallurls http://testphp.vulnweb.com  | tee -a 2.txt               #https://github.com/lc/gau
+gau http://testphp.vulnweb.com | tee -a 3.txt
+python waymore.py -i http://testphp.vulnweb.com -mode U -oU 4.txt    #https://github.com/xnl-h4ck3r/waymore
+katana -u http://testphp.vulnweb.com -kf 3 | tee -a 5.txt            #https://github.com/projectdiscovery/katana
+
+cat *.txt > output.txt   #merging files into 1
+
+cat output.txt | uniq > unique_urls1.txt   #sorting unique urls
+
+
+
+
+#Enumerating Domains:
+
+subdominator -d testphp.vulnweb.com -o domains.txt   #https://github.com/RevoltSecurities/Subdominator
+
+
+#Crawling Links
+
+cat domains.txt | hakrawler | tee -a links.txt
+subprober -f domains.txt -sc -ar -o 200-codes-urls.txt -nc -mc 200 -c 30    #https://github.com/RevoltSecurities/SubProber for ALIVE filtering Urls
+
+
+#Extension filter:
+
+cat urls.txt | grep -E -v '\.css$|\.js$|\.jpg$|\.JPG$|\.PNG$|\.GIF$|\.avi$|\.dll$|\.pl$|\.webm$|\.c$|\.py$|\.bat$|\.tar$|\.swp$|\.tmp$|\.sh$|\.deb$|\.exe$|\.zip$|\.mpeg$|\.mpg$|\.flv$|\.wmv$|\.wma$|\.aac$|\.m4a$|\.ogg$|\.mp4$|\.mp3$|\.bat$|\.dat$|\.cfg$|\.cfm$|\.bin$|\.jpeg$|\.JPEG$|\.ps.gz$|\.gz$|\.gif$|\.tif$|\.tiff$|\.csv$|\.png$|\.ttf$|\.ppt$|\.pptx$|\.ppsx$|\.doc$|\.woff$|\.xlsx$|\.xls$|\.mpp$|\.mdb$|\.json$|\.woff2$|\.icon$|\.pdf$|\.docx$|\.svg$|\.txt$|\.jar$|\.0$|\.1$|\.2$|\.3$|\.4$|\.m4r$|\.kml$|\.pro$|\.yao$|\.gcn3$|\.PDF$|\.egy$|\.par$|\.lin$|\.yht$' > filtered_links.txt
+
+#Removing duplicates:   #https://github.com/s0md3v/uro
+
+cat filtered_links.txt | uro -b css js jpg JPG PNG GIF avi dll pl webm c py bat tar swp tmp sh deb exe zip mpeg mpg flv wmv wma aac m4a ogg mp4 mp3 bat dat cfg cfm bin jpeg JPEG ps.gz gz gif tif tiff csv png ttf ppt pptx ppsx doc woff xlsx xls mpp mdb json woff2 icon pdf docx svg txt jar 0 1 2 3 4 m4r kml pro yao gcn3 PDF egy par lin yht | tee -a lista.txt
+
+cat lista.txt | uniq > unique_urls2.txt
+
+#Filtering:
+
+grep '=' your_urls_file.txt > filtered_urls_with_params.txt         #for query urls
+grep -v '=' your_urls_file.txt > filtered_urls_without_params.txt   #for paths urls  --path
+cat uro.txt | grep -E "\.php|\.asp|\.aspx|\.cfm|\.jsp" | sort > output.txt   #for php files for XSS & SQLi tools
+
+grep -v "http[^ ]*\.[^/]*\." uro.txt | grep "http" | sort > clean_urls.txt  #for urls without any extension
+

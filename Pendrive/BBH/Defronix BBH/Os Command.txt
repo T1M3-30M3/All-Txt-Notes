@@ -1,0 +1,14 @@
+Payloads:
+https://github.com/payloadbox/command-injection-payload-list
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Command%20Injection/README.md
+
+
+Method:
+--> Find a target
+--> Find all live subdomains of the target if in in scope
+--> Try to crawl each domain and subdomains one by one and find out all possible parameters to hunt on
+--> Now apply method to find that particular vulnerability using burp repeater on intruder 
+
+
+Tool:
+https://github.com/commixproject/commix

