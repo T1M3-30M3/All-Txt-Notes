@@ -1,0 +1,27 @@
+HTTP request smuggling:
+
+-- Pick an endpoint
+-- Prepare Repeater for Request Smugging
+	-- Downgrade HTTP protocol to HTTP/1.1
+	-- Change request method to POST [right click > Change request method] remove without POST/HOST/Content-Type/Content-length
+	-- Disable Automatic update to content-Length [Settings > Disable update content-length]
+	-- Show non pritable characters
+-- Detect the CL.TE vulnerability [Try to adding 6 line]
+-- Confrim the CL.TE vulnerability
+
+CL.TE vulnerability:
+Content-Length: 6
+Transfer-Encoding: Chunked
+\r\n
+3\r\n
+abc\r\n
+X\r\n
+
+
+Lab: HTTP request smuggling, confirming a CL.TE vulnerability via differential responses
+
+
+
+
+
+

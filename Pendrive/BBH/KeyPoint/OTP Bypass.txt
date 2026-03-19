@@ -1,0 +1,39 @@
+****Response Manipulation : 
+--> First Login your website and understanding the logic flaw
+--> If you notice that there is 2FA thats good
+--> first give the correct otp and see the response and note all the things 
+--> Try to finding boolean try : true/false, success/unsuccess, 1/0, successful/unsuccessful like that
+--> If you find that try to Changing and Forwarding
+--> Some times website can not check the real OTP.
+
+****MFA Code Leakage in response
+--> it found Some Banking site or other websites 
+--> When Intercepting to request when login successful
+--> Some times 2FA leaked in response 
+--> Ultimately MFA leaked in response time
+
+****Brute Force MFA Code
+--> Some time most of the website cracked pin by Bruteforce
+--> Try brute force for crack pin
+--> Try to read or analyze JS file. many developers hides endpoint in JS files
+--> Example: API keys, passwords, auth- tokens, insecure admin- panels, etc. in GitHub repos or in JS files.
+
+
+JS Analyzer :
+https://github.com/KathanP19/JSFScan.sh
+https://github.com/machine1337/JSScanner
+https://github.com/zseano/JS-Scan
+https://github.com/0xsha/GoLinkFinder
+https://github.com/InitRoot/BurpJSLinkFinder
+
+
+
+
+
+
+
+
+
+
+Source : 
+https://icecream23.medium.com/5-common-methods-to-bypass-otp-authentication-in-bug-hunting-1899df84441d

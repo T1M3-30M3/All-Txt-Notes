@@ -1,0 +1,25 @@
+Some Common Parameter in JSON:
+
+dest=
+path=
+window=
+next=
+site=
+reference=
+data=
+load=
+html=
+validate=
+page=
+return=
+callback=
+domain=
+view=
+dict=
+pdf=
+file=
+imageuri=
+url=
+key=
+oauth
+redirect=

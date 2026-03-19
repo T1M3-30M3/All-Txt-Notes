@@ -1,0 +1,32 @@
+HTTP Host header attacks:
+
+Lab: Basic password reset poisoning
+--> First go to forget password and send a request and understand the logic and you can find a token also
+--> then go to again forget password send the same request and intercept it and change to host url and also change username
+--> then recieve a token also and replace the token and send it
+--> exploit it and if you change the password that means BHOOM!!
+
+Lab: Host header authentication bypass
+--> Try to change host: localhost
+--> You can add header also
+
+Host: www.example.com%0d%0a
+X-Forwarded-For: 192.168.1.1
+
+Host: www.example.com.attacker.com
+
+Host: www.example.com
+X-Forwarded-For: attacker.com
+
+Host: www.example.com
+X-Forwarded-Host: www.vulnweb.com
+
+Host: www.example.com
+Host: www.vulnweb.com
+
+Lab: Web cache poisoning via ambiguous requests
+-->
+-->
+-->
+-->
+-->

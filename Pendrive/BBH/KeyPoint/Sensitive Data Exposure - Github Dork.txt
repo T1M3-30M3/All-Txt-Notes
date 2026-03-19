@@ -1,0 +1,28 @@
+https://github.com/techgaun/github-dorks
+https://github.com/cipher387/Dorks-collections-list
+https://github.com/techgaun/github-dorks
+https://github.com/jcesarstef/ghhdb-Github-Hacking-Database
+https://github.com/H4CK3RT3CH/github-dorks
+
+"https://www.google.com" password
+"https://www.google.com" key
+"https://www.google.com" secret
+"https://www.google.com" pass
+"https://www.google.com" credentials
+"https://www.google.com" login
+"https://www.google.com" token
+"https://www.google.com" ftp
+"https://www.google.com" config
+"https://www.google.com" pwd
+"https://www.google.com" security_credentials
+"https://www.google.com" connectionstring
+"https://www.google.com" JDBC
+"https://www.google.com" ssh2_auth_password
+"https://www.google.com" send_keys or send,keys
+"https://www.google.com" vsphere
+
+"Target.com" language:yml
+"Target. com" language:yml "_key"
+"Target. com" language:yml "admin"
+"Target. com" language:yml "root"
+"Target. com" language:yml "host"

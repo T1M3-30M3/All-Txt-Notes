@@ -1,0 +1,25 @@
+dirsearch -u http://testphp.vulnweb.com/
+dirsearch.py -u http://testphp.vulnweb.com/ --full-url
+dirsearch.py -u http://testphp.vulnweb.com/ -x 301,302,403
+dirsearch.py -u http://testphp.vulnweb.com/ -x 301,302,403 --minimal=2048
+dirsearch.py -u http://testphp.vulnweb.com/ -x 301,302,403 --minimal=2048 --maximal=5120
+dirsearch.py -u http://testphp.vulnweb.com/ -x 301,302,403 --random-agent
+dirsearch.py -u http://testphp.vulnweb.com/ -i 200
+dirsearch.py -u http://testphp.vulnweb.com/ -i 200,301,302
+dirsearch.py -u http://testphp.vulnweb.com/ --suffixes=.php
+dirsearch.py -u http://testphp.vulnweb.com/ --prefixes=index
+dirsearch.py -u http://testphp.vulnweb.com/ -i 200 -t 100
+dirsearch.py -u http://testphp.vulnweb.com/ -i 200 --only-selected
+dirsearch.py -u http://testphp.vulnweb.com/ -U
+dirsearch.py -u http://testphp.vulnweb.com/ -i 200 -L
+dirsearch.py -u http://testphp.vulnweb.com/ -i 200 -C
+
+
+dirsearch -u https://example.com
+dirsearch -u https://example.com/directory
+dirsearch -e xml,json,sql,db, log, yml,ymal -u https://example.com/directory
+wget -q https://example.com/directory/file
+
+
+https://www.geeksforgeeks.org/how-to-find-hidden-web-directories-with-dirsearch/
+

@@ -1,0 +1,6 @@
+https://github.com/T1M3-30M3/One-Liner-Collections
+https://github.com/T1M3-30M3/One-Liners
+https://github.com/T1M3-30M3/awesome-oneliner-bugbounty
+https://github.com/daffainfo/Oneliner-Bugbounty
+https://github.com/twseptian/oneliner-bugbounty
+https://github.com/devanshbatham/awesome-bughunting-oneliners

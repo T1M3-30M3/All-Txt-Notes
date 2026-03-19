@@ -1,0 +1,4 @@
+https://github.com/zoros3c/susano
+https://github.com/savitarrrrr/Automation
+https://github.com/venom26/recon/blob/master/ultimate_recon.sh
+https://github.com/venom26/recon-in-bash

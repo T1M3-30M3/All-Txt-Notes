@@ -1,0 +1,7 @@
+https://github.com/TakSec/google-dorks-bug-bounty
+https://medium.com/@qaafqasim/40-google-dorks-to-find-bug-bounty-programs-unveiling-the-hidden-site-98e134762886
+https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06
+https://github.com/sushiwushi/bug-bounty-dorks
+https://github.com/Proviesec/google-dorks
+https://github.com/0xPugal/Awesome-Dorks
+https://github.com/InfoSecWarrior/Offensive-Payloads/

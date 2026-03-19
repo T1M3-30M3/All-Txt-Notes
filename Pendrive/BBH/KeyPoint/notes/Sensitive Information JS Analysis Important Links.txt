@@ -1,0 +1,4 @@
+https://github.com/TakSec/google-dorks-bug-bounty
+https://github.com/Vaidik-pandya/Github_recon_dorks
+https://github.com/Vaidik-pandya/Google-dorks-by-vaidik-pandya
+https://github.com/Vaidik-pandya/iptool/blob/main/iptool.sh

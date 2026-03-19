@@ -1,0 +1,97 @@
+💥Complete Bug Bounty tool List💥
+
+dnscan lnkd.in/gP47a9Ny
+
+Knockpy lnkd.in/gNnBx_42
+
+Sublist3r lnkd.in/ghRKMZma
+
+massdns lnkd.in/gMKV6_6g
+
+nmap nmap.org
+
+masscan lnkd.in/gkz3cTcs
+
+EyeWitness lnkd.in/gaeHUyz4
+
+DirBuster lnkd.in/gp5NpbC2
+
+dirsearch lnkd.in/gznnrW7e
+
+Gitrob lnkd.in/gG6cJGZS 
+
+git-secrets lnkd.in/g-MVy3jd
+
+sandcastle lnkd.in/gQUyHRN6
+
+bucket_finder lnkd.in/gdvTuCwQ
+
+GoogD0rker lnkd.in/gfb3sxaK
+
+Wayback Machine web.archive.org
+
+waybackurls lnkd.in/gPq2G72H 
+
+Sn1per lnkd.in/gGsYUF-D
+
+XRay lnkd.in/gdyk5NXV
+
+wfuzz lnkd.in/gv-a5tSn
+
+patator lnkd.in/gjNvbwpK
+
+datasploit lnkd.in/gnT--Shh
+
+hydra lnkd.in/g6KisNkC
+
+changeme lnkd.in/gQQhP8bU
+
+MobSF lnkd.in/gVWiQ7UY 
+
+Apktool lnkd.in/gJ_H96T8
+
+dex2jar lnkd.in/gQ6eWrgs
+
+sqlmap sqlmap.org
+
+oxml_xxe lnkd.in/gCFgYuV6 
+
+XXE Injector lnkd.in/gBYcPhQa
+
+The JSON Web Token Toolkit lnkd.in/gBqxBQwi
+
+ground-control lnkd.in/g_Vf4neV
+
+ssrfDetector lnkd.in/gwfDeTp8
+
+LFISuit lnkd.in/gt_nqZV4
+
+GitTools lnkd.in/gFyiFAQG
+
+dvcs-ripper lnkd.in/gQh7QSXv
+
+tko-subs lnkd.in/g-KXuqJi
+
+HostileSubBruteforcer lnkd.in/gsYtkHzN 
+
+Race the Web lnkd.in/gs5c_y-R
+
+ysoserial lnkd.in/g2kxupjV
+
+PHPGGC lnkd.in/g9KB-UxF
+
+CORStest lnkd.in/gWxvaqt2
+
+retire-js lnkd.in/gKp-mjmD
+
+getsploit lnkd.in/ggSMdidf
+
+Findsploit lnkd.in/gAzpYxdx
+
+bfac lnkd.in/g6k__zkE
+
+WPScan wpscan.org
+
+CMSMap lnkd.in/gNPGXQaR
+
+Amass lnkd.in/gBzSGMiD

@@ -1,0 +1,166 @@
+--> Sensitive Information Disclosure:
+
+ffuf -c -ac -r -u https://<link>/FUZZ -w wordlist.txt
+dirsearch -u <link>
+gobuster dir -u <ip> -w directory-list-2.3-medium.txt -x php,html,txt
+gobuster dir -u <ip> -w /usr/share/wordlists/dirb/common.txt
+gobuster dir --url <link> -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+gobuster dir -u <ip> -w Discovery/Web-Content/directory-list-2.3-small.txt 
+gobuster dir -u <ip> -w /usr/share/dirb/wordlists/common.txt
+gobuster dir -u <ip> -w wordlist.txt -x php,txt,html
+gobuster dir -u <ip> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+
+--> Wordlists:
+https://lnkd.in/eH5P9wPs
+https://lnkd.in/erngaQyC
+https://lnkd.in/eBKn9jSb 
+
+--> Google Dork:
+https://github.com/cipher387/Dorks-collections-list/
+https://github.com/Zarcolio/sitedorks
+https://github.com/BullsEye0/google_dork_list
+https://github.com/sushiwushi/bug-bounty-dorks
+https://github.com/rootac355/SQL-injection-dorks-list
+https://github.com/unexpectedBy/SQLi-Dork-Repository
+https://github.com/thomasdesr/Google-dorks
+https://github.com/arimogi/Google-Dorks
+https://github.com/aleedhillon/7000-Google-Dork-List
+
+site:example.com ext: php inurl:?
+site:openbugbounty.org inurl: reports intext: "example.com"
+
+cache:example.com
+site:example.com
+filetype:pdf
+filetype:pdf & (before:2022-01-01 after:2023-01-01)
+related:www.google.com
+intext:"Google Dork Query"
+inanchor:"cyber attacks"
+example1 | example2 - dork
+example1 | example2
+intitle:"Index of /"
+intitle:"Apache2 Debian Default Page"
+intitle:"Index of /" or intitle:"Browse Directory"
+intitle:"config.json"
+intitle:"index of" inurl:.git
+intitle:"remote desktop inurl:rdweb"
+intitle:"Index of /ftp"
+
+intitle:"index of /" site:nasa.gov
+intitle:"index of /" "database" site:nasa.gov
+intitle:"index of /" "admin" site:nasa.gov
+intitle:"index of /" "contact" site:nasa.gov
+
+--> Github Dorking:
+https://github.com/techgaun/github-dorks
+https://github.com/cipher387/Dorks-collections-list
+https://github.com/techgaun/github-dorks
+https://github.com/jcesarstef/ghhdb-Github-Hacking-Database
+https://github.com/H4CK3RT3CH/github-dorks
+
+"https://www.google.com" password
+"https://www.google.com" key
+"https://www.google.com" secret
+"https://www.google.com" pass
+"https://www.google.com" credentials
+"https://www.google.com" login
+"https://www.google.com" token
+"https://www.google.com" ftp
+"https://www.google.com" config
+"https://www.google.com" pwd
+"https://www.google.com" security_credentials
+"https://www.google.com" connectionstring
+"https://www.google.com" JDBC
+"https://www.google.com" ssh2_auth_password
+"https://www.google.com" send_keys or send,keys
+"https://www.google.com" vsphere
+
+"Target.com" language:yml
+"Target. com" language:yml "_key"
+"Target. com" language:yml "admin"
+"Target. com" language:yml "root"
+"Target. com" language:yml "host"
+
+--> Some Dorking Site:
+https://taksec.github.io/google-dorks-bug-bounty/
+https://nitinyadav00.github.io/Bug-Bounty-Search-Engine/ 
+https://dorks.faisalahmed.me/#
+https://mr-koanti.github.io/github.html
+https://mr-koanti.github.io/shodan
+https://mr-koanti.github.io/github.html
+https://dorks.faisalahmed.me/#
+https://github.com/TakSec/google-dorks-bug-bounty/
+https://taksec.github.io/google-dorks-bug-bounty/
+https://github.com/cipher387/Dorks-collections-list/
+https://github.com/sushiwushi/bug-bounty-dorks
+
+Important Dork:
+site:targetsite.com ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv confidential and sensitive keywords like "phonenumber","email","password"
+
+site:testphp.vulnweb.com inurl:next= | inurl:url= | inurl:target= | inurl:rurl= | inurl:dest= | inurl:destination= | inurl:redir= | inurl:redirect_uri= | inurl:redirect_url= |inurl:redirectUri= | inurl:redirectUrl= | inurl:redirect= | inurl:/redirect/ | inurl:/cgi-bin/redirect.cgiinurl: | inurl:/out/ | inurl:/outinurl: | inurl:view= | inurl:/logininurl:to= | inurl:image_url= | inurl:go= | inurl:return= | inurl:returnTo= | inurl:return_to= | inurl:checkoutUrl= | inurl:checkout_url= | inurl:continue= | inurl:return_path= | inurl:returnPath=
+
+site: "example.com" ext:log | ext:txt | ext:conf | ext: cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git |ext:svn | ext:htpasswd | ext: htaccess
+
+inurl:url= | inurl: return= | inurl: next= | inurl: redirect= | inurl:redir= |inurl:ret= | inurl: r2= | inurl:page= inurl:& inurl:http site:example.com
+
+inurl:q= | inurl:s= | inurl: search= | inurl:query= | inurl: keyword= |inurl:lang= inurl:& site:example.com
+
+site:example.com inurl:api | site:*/rest | site:*/ v1 | site:*/v2 | site:*/v3
+site:example.com inurl:api | site:*/rest | site:*/v1 | site:*/v2 | site:*/v3
+
+inurl:login | inurl:signin | intitle:login | intitle:signin | inurl:secure site:example.com
+
+ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess site:example.com
+
+Shodan Dorking:
+https://github.com/humblelad/Shodan-Dorks
+https://github.com/AustrianEnergyCERT/ICS_IoT_Shodan_Dorks
+https://github.com/lothos612/shodan
+https://github.com/jakejarvis/awesome-shodan-queries
+https://github.com/IFLinfosec/shodan-dorks
+
+SQLI:
+inurl:index.php?id= site:gov.uk
+inurl:index.php?id= site:gov
+inurl:news.php?id= site:gov.uk
+inurl:oferta.php?id= site:gov.uk
+inurl:trainers.php?id= site:gov.uk
+inurl:article.php?ID= site:gov.uk
+inurl:play_old.php?id= site:gov.uk
+inurl:declaration_more.php?decl_id= site:gov.uk
+inurl:Pageid= site:gov
+inurl:pagina.php?left= site:.gov.au
+inurl:pagina.php?file= site:.gov.fr
+inurl:layout.php?id=120' site:gov.uk
+inurl:principal.php?id=123' site:gov.uk
+inurl:standard.php?base_dir= site:gov
+inurl:home.php?where= site:gov.uk
+inurl:page.php?sivu= site:gov.uk
+inurl:*inc*.php?adresa= site:gov
+inurl:padrao.php?str= site:gov
+inurl:include.php?my= site:.gov.uk
+inurl:show.php?home= site:gov.uk
+inurl:index.php?lid=20 site:gov.uk
+inurl:principal.php?id=30 site:gov
+inurl:file.php?id=205 site:gov.uk
+inurl:info.php?id=25155 site:gov.um
+inurl:enter.php?id=203 site:gov.uk
+inurl:general.php?id=50 site:gov
+inurl:principal.php?id=705 site:gov.za
+inurl:standard.php?id=303 site:.gov.ie
+nurl:nota.php?v= site:gov.bc.ca
+inurl:home.php?str= site:ed.gov
+inurl:press.php?panel= site:gov.mu
+inurl:page.php?mod= site:gov
+inurl:default.php?param= site:gov
+inurl:down*.php?texto= site:go.af
+inurl:mod*.php?dir= site:gov.ie
+inurl:view.php?where= site:gov.za
+inurl:blank.php?subject= site:gov.br
+inurl:path.php?play= site:gov.uk
+inurl:base.php?l= site:gov.au
+
+
+
+
+
