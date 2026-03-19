@@ -1,0 +1,74 @@
+Nmap Install            >> apt-get install nmap
+		           pkg install nmap
+wireshirk Install       >> apt-get update && apt-get install wireshark -y
+Namp Scan Type 		>>
+			   SYN > nmap -sS <target ip>
+			   ACK > nmap -sA <target ip>
+			   ZOMBIE > nmap -sI <zombie i><target ip>
+			   NULL > nmap -sn <target ip>
+ 			   XMAS > nmap -sX <target ip>
+			   TCP > nmap -sT <target ip>
+			   UDP > nmap -sU <target ip>
+			   FIN > nmap -sF <target ip>
+Scanning An ip          >> nmap <target ip>
+Scannig a Range of ip   >> nmap <ip address/24>
+nmap host Subnet Scan   >> pkg install ipcalc
+			    ipcalc <ip>
+			    nmap <ip/24> -F
+			    nmap <ip/24>
+Nmap host Discovey      >>  nmap -sP <ip/24>
+host identification     >>  netdiscover -r <ip/24>
+		            nmap <ip/24>
+host discovert 		>>  pkg install arp-scan
+		   	    arp-scan -l
+		            nmap -F <ip/24>
+scanning a Targets from a text file >> nmap -iL <list.txt>
+Nmap random host Network >> nmap -iR <quantity>
+exclude Host 		>> nmap <ip/24> --exclude <ip> 
+			   nmap <ip/24> --excludefile <filename.txt>
+scanning target and ignore discovery >> nmap -Pn <target ip> <ports>
+port scan by Name 	>> nmap <ip> -p ftp,ssh,smtp,dns,http,pop3,nntp,ntp,imap,snmp,irc,https
+scan open ports 	>> nmap <ip> -p- -v --open
+port knocking 		>> for x in 1-10000;do nmap -p - $x <server ip >;done
+fast port Scan 		>> nmap <ip> -F
+Append Output 		>> nmap <ip> -F | grep open | cat >> name.txt
+no randomise Port Scan  >> nmap <ip> -r
+nmap top ports Scan 	>> nmap <ip> --top-ports <number>
+port ratio scan 	>> nmap <ip> --port-ratio
+service Detection 	>> nmap <ip> -sV                               [standard Service Detection]
+		     	   nmap <ip> -p9999 --open -sV --version-light [service Version Light]
+		     	   nmap <ip> -p9999 --open -sV --version-all   [service version All]
+		     	   nmap <ip> -p9999 --open -sV --version-trace [service version trace] 
+Nmap Os Detection 	>> nmap <ip> -O -Pn 		   [Os Detection] 
+		     	   nmap <ip> -O -max-os-tries 1 -Pn [Max OS detection]
+		     	   nmap <ip> -O --osscan-limit -Pn -p80 [Os Detection Scan Limit]
+		     	   nmap -sP <ip/24> -v [os detection Fuzzy]
+		     	   nmap <ip> --script smb-os-discovery -sV [Os Detection Script]
+Output Format     	>> nmap <ip> -p- -oN name.txt [txt file]
+		           nmap <ip> -p- -oX name.xml [xml file]
+		           xsltproc name.xml name.html > name.html [xml file to html file]
+		           Online tool [xml to CSV,xml tp html]
+		           nmap <ip> -p- -oG name.txt [greppable Output]
+		           nmap <ip> -p- -oS name.txt [scRipT k1dd3 Output]
+		           nmap <ip> -p1-200 -oA Allfilebase [all type of File]
+nmap for recon 		>> nmap <ip> --traceroute [traceroute Scan]
+		  	   nmap --script traceroute-geollocation.nse <ip> [trace traffic and GEO]
+		           nmap <ip> --script dns.brute.nse [DNS brute Force]
+		           nmap <ip> --script whois-ip [whois Scan]
+		           nmap <ip> --sctipt http-robots.txt [robots file scan]
+		           nmap <ip> --script http-waf-detect [WAF decection]
+		           nmap <ip> --script http-waf-fingerprint [WAF fingerprint]
+		           wafw00f <ip> [waf detection]
+		           nmap <ip> --script firewalk-traceroute [firewalk Detect Ports]
+		           nmap <ip> --script http-grep [email Enumeration]
+		           nmap <ip> --script http-sitemap-genarator [sitemap genarator]
+		           nmap <ip> --script http-useragent-tester  [crawler tester]
+		           nmap <ip> --script http-enum [discovery Directories]
+		           python3 dirsearch.py -u <ip> -e php,zip,zaspx,env,xml,bak,conf
+mail exploation		>> nmap -sV <ip> --script smtp-open-relay [open relay scan]
+		           nmap -sV <ip> --script smtp-enum-users[smtp user Enum Scan]
+		           nmap -sV <ip> --script smtp-brute [smtp password Attack]
+		           nmap -sV <ip> --script smtp-strangeport[smtp backdoor Detect]
+		           nmap -sV <ip> --script pop3-capabilities[pop3 capabilities Scan]
+		           nmap -sV <ip> --script imap-capabilities[imap capabilities]
+
