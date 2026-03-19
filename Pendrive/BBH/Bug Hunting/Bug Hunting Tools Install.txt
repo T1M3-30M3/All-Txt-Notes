@@ -1,0 +1,49 @@
+apt update 
+apt upgrade -y
+
+apt remove --purge golang -y
+sudo apt update && sudo apt install -y golang
+
+apt install -y python3 python3-pipx golang snap knockpy sublist3r nmap photon arjun dirbuster dirb cewl feroxbuster jq nmap phantomjs npm chromium parallel
+
+
+go install -v github.com/bp0lr/gauplus@latest
+go install -v github.com/d3mondev/puredns/v2@latest
+go install -v github.com/ffuf/ffuf/v2@latest
+go install -v github.com/gwen001/github-subdomains@latest
+go install -v github.com/hahwul/dalfox/v2@latest
+go install -v github.com/hakluke/hakrawler@latest
+go install -v github.com/lc/gau/v2/cmd/gau@latest
+go install -v github.com/lc/subjs@latest
+go install -v github.com/LukaSikic/subzy@latest
+go install -v github.com/mrco24/mrco24-blaind_sql@latest
+go install -v github.com/mrco24/mrco24-error-sql@latest
+go install -v github.com/mrco24/mrco24-lfi@latest
+go install -v github.com/mrco24/open-redirect@latest
+go install -v github.com/mrco24/parameters@latest
+go install -v github.com/mrco24/time-sql@latest
+go install -v github.com/mrco24/web-archive@latest
+go install -v github.com/MrEmpy/Mantra@latest
+go install -v github.com/owasp-amass/amass/v4/...@master
+go install -v github.com/owasp-amass/oam-tools/cmd/oam_subs@master
+go install -v github.com/projectdiscovery/asnmap/cmd/asnmap@latest
+go install -v github.com/projectdiscovery/chaos-client/cmd/chaos@latest
+go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
+go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+go install -v github.com/projectdiscovery/katana/cmd/katana@latest
+go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+go install -v github.com/tomnomnom/anew@latest
+go install -v github.com/tomnomnom/assetfinder@latest
+go install -v github.com/tomnomnom/gf@latest
+go install -v github.com/tomnomnom/httprobe@latest
+go install -v github.com/tomnomnom/waybackurls@latest
+go install -v github.com/utkusen/socialhunter@latest
+
+echo 'export PATH=$PATH:$HOME/go/bin' >> ~/.bashrc
+source ~/.bashrc
+
+
+ls -lhS --block-size=M
+du -sh --block-size=M folder_name

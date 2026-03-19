@@ -1,0 +1,98 @@
+Wordlist : /usr/share/metasploit-framework/data/wordlists/
+
+TCP:
+msfconsole
+search tcp
+use auxiliary/scanner/portscan/tcp
+show options
+set PORTS 1-65535
+set RHOSTS XX.XX.XX.XX
+run/exploit
+
+SNMP:
+msfconsole
+use auxiliary/scanner/discovery/udp_sweep
+show options
+set THREADS 100
+set RHOSTS XX.XX.XX.XX
+run/exploit
+
+FTP:
+msfconsole
+use auxiliary/scanner/ftp/ftp_login
+show options
+set RHOSTS XX.XX.XX.XX
+set USERPASS_FILE password.txt
+run
+
+msfconsole
+use auxiliary/scanner/ftp/anonymous
+show options
+set RHOSTS XX.XX.XX.XX
+run
+
+Ftp WordList:
+https://github.com/1N3/BruteX/tree/master/wordlists
+https://github.com/Typing0x/wordlist/blob/main/ftp%20brute%20force
+
+SMB:
+msfconsole
+use auxiliary/scanner/smb/smb_version
+set RHOSTS XX.XX.XX.XX
+run
+
+msfonsole
+use auxiliary/scanner/smb_enumusers
+set RHOSTS XX.XX.XX.XX
+run
+
+php and apache:
+msfconsole
+use auxiliary/scanner/http/http_version
+set RHOSTS XX.XX.XX.XX
+run
+
+msfconsole
+use auxiliary/scanner/http/backup_file
+set RHOSTS XX.XX.XX.XX
+run
+
+msfconsole
+use auxiliary/scanner/http/dir_listing
+show options
+set RHOSTS XX.XX.XX.XX
+run
+
+msfconsole
+use auxiliary/scanner/http/ssl
+show options
+set RHOSTS XX.XX.XX.XX
+run
+
+msfconsole
+use auxiliary/scanner/http/http_header
+show options
+set RHOSTS XX.XX.XX.XX
+run
+
+SSH:
+msfconsole
+use auxiliary/scanner/ssh/ssh_enumusers
+set RHOSTS XX.XX.XX.XX
+set USERNAME admin
+set USER_FILE rpc_names.txt
+run
+
+msfconsole
+use auxiliary/scanner/ssh/ssh_login
+show options
+set RHOSTS XX.XX.XX.XX
+set USERPASS_FILE ssh.txt
+run
+
+
+
+
+
+
+

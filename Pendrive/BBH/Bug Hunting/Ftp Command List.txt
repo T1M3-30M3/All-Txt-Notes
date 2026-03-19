@@ -1,0 +1,17 @@
+USER: Sends the username to the server for authentication.
+PASS: Sends the password for the specified user.
+LIST: Lists files and directories in the current directory on the server.
+CWD: Changes the working directory on the server.
+PWD: Prints the current working directory on the server.
+RETR: Retrieves a file from the server to the client.
+STOR: Uploads a file from the client to the server.
+DELE: Deletes a file on the server.
+RNFR: Specifies the file to be renamed (rename from).
+RNTO: Specifies the new name for the file (rename to).
+MKD: Creates a new directory on the server.
+RMD: Removes a directory on the server.
+QUIT: Ends the FTP session.
+
+
+https://www.exavault.com/blog/essential-ftp-commands-list
+https://www.serv-u.com/ftp-server-windows/commands

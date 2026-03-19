@@ -1,0 +1,60 @@
+-> First Use Wappalyzer and shodan extention
+
+ping www.abc.xyz
+dnsrecon -d www.abc.xyz
+wafw00f www.abc.xyz
+
+Method 01: 
+Use Shodan : Ssl.cert.subject.CN:"rapfame.app" 200 and try to find IP and also try wappalyzer and wafw00f and use nmap --script=ssl-cert -p 443 <IP Address>
+Use Shodan : Ssl:"rapfame.app" 200
+
+Method 02:
+use : https://favicons.teamtailor-cdn.com/
+use : https://favicon-hash.kmsec.uk/
+
+Method 03:
+Go to https://viewdns.info/ and use IP history or use https://viewdns.info/iphistory/?domain=
+
+Method 04:
+Go to https://mxtoolbox.com/ and use SPF Record Lookup
+
+Method 05:
+Try to use shodan.io, censys, security trails, fofa, hunter.io, hunter.how, zoomeye.hk
+
+Method 06:
+https://www.virustotal.com/vtapi/v2/domain/report?apikey=<APIKEY>&domain=dell.com
+curl -s "https://www.virustotal.com/vtapi/v2/domain/report?domain=<domain>&apikey=<API>" | jq -r '.. | .ip_address? // empty' | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | httx-toolkit sc -td -title -server
+
+Method 07:
+https://otx.alienvault.com/api/v1/indicators/hostname/<DOMAIN>/url_list?limit=500&page=1
+curl -s "https://otx.alienvault.com/api/v1/indicators/hostname/dell.com/url_list?limit=500&page=1" | jq -r '.url_list[].result?.urlWorker?' | empty | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | httx-toolkit sc -td -title -server
+
+Method 08:
+https://urlscan.io/api/v1/search/?q=domain:<DOMAIN>&size=10000
+curl -s "https://urlscan.io/api/v1/search/?q=domain=dell.com&size=10000" | jq -r '.results[].page?.ip' | empty | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+Method 09:
+Automated Tools
+
+
+
+
+CoffinXp Commands:
+
+https://www.virustotal.com/vtapi/v2/domain/report?apikey=<APIKEY>&domain=dell.com
+curl -s "https://www.virustotal.com/vtapi/v2/domain/report?domain=nasa.gov&apikey=<APIKEY>" | jq -r '. | .ip_address[]?' | empty | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
+curl -s "https://www.virustotal.com/vtapi/v2/domain/report?apikey=<APIKEY>" | jq -r '.domain_siblings[]'
+curl -s "https://www.virustotal.com/vtapi/v2/domain/report?domain=rapfome.app&apikey=98268bb1787c5d9719a025e15028e60d1e5abbb2a610b869195858d576c" | jq -r '.. | .ip_address? // empty' | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | httx-toolkit sc -td -title -server
+
+
+https://otx.alienvault.com/api/v1/indicators/hostname/<DOMAIN>/url_list?limit=500&page=1
+curl -s "https://otx.alienvault.com/api/v1/indicators/hostname/dell.com/url_list?limit=500&page=1" | jq -r '.url_list[].result?.urlWorker?' | empty | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+https://urlscan.io/api/v1/search/?q=domain:<DOMAIN>&size=10000
+curl -s "https://urlscan.io/api/v1/search/?q=domain=dell.com&size=10000" | jq -r '.results[].page?.ip' | empty | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+https://web.archive.org/cdx/search/cdx?url=<DOMAIN>&fl=original&collapse=urlkey
+
+shodan search Ssl.cert.subject.CN:"rapfame.app" 200 --fields ip_str | httx-toolkit -sc -title -server -td
+
+nmap --script ssl-cert -p 443 <IP Address>

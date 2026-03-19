@@ -1,0 +1,13 @@
+ssl:target.com  http.title:"Whitelabel Error Page"
+ssl:target.com http.html:"Whitelabel Error Page"
+org:”Comany Name” html:"Whitelabel Error Page"
+http.status:500 html:"Whitelabel Error Page"
+
+curl -s "https://api.shodan.io/shodan/host/search?key=APIkey&query=target.com" | jq -r '.matches[].ip_str' | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+cat ips | httpx | tee -a target
+
+dirsearch -l target -w /root/wordlist/Seclist/Discovery/Web-Content/spring-boot.txt -o output
+
+
+Resource : https://0xshuvo.medium.com/whitelevel-error-page-spring-boot-actuators-hunting-b0290c4ccdbd

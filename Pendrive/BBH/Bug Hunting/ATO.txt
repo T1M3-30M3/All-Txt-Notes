@@ -1,0 +1,103 @@
+☄️𝗔𝗰𝗰𝗼𝘂𝗻𝘁 𝗧𝗮𝗸𝗲𝗼𝘃𝗲𝗿 𝗕𝘂𝗴 𝗕𝗼𝘂𝗻𝘁𝘆 𝗧𝗶𝗽𝘀 𝗳𝗼𝗿 𝗡𝗲𝘄 𝗕𝘂𝗴 𝗛𝘂𝗻𝘁𝗲𝗿𝘀☄️
+
+⚠️Simplified Tips for Account Takeover (ATO)
+ 
+1. Pre-Account Takeover
+- How to Hunt:
+ - Register an email without verifying it.
+ - Register again using a different method (e.g., 'sign up with Google') with the same email.
+ - Check if the application links both accounts.
+ - Try logging in to see if you can access information from the other account.
+
+ 2. Account Takeover due to Improper Rate Limiting
+- How to Hunt:
+ - Capture the login request.
+ - Use tools like Burp Suite's Intruder to brute-force the login.
+ - Analyze the response and length to detect anomalies.
+
+ 3. Account Takeover by Utilizing Sensitive Data Exposure
+- How to Hunt:
+ - Pay attention to the request and response parts of the application.
+ - Look for exposed sensitive data like OTPs, hashes, or passwords.
+
+ 4. Login Vulnerabilities
+- Check for:
+ - Brute-force vulnerabilities.
+ - OAuth misconfigurations.
+ - OTP brute-forcing.
+ - JWT misconfigurations.
+ - SQL injection to bypass authentication.
+ - Proper validation of OTP or tokens.
+
+ 5. Password Reset Vulnerabilities
+- Check for:
+ - Brute-force vulnerabilities in password reset OTPs.
+ - Predictable tokens.
+ - JWT misconfigurations.
+ - IDOR vulnerabilities.
+ - Host header injection.
+ - Leaked tokens or OTPs in HTTP responses.
+ - Proper validation of OTP or tokens.
+ - HTTP parameter pollution (HPP).
+
+ 6. XSS to Account Takeover
+- How to Hunt:
+ - Try to exfiltrate cookies or auth tokens.
+ - Craft XSS payloads to change user email or password.
+
+ 7. CSRF to Account Takeover
+- Check for:
+ - Vulnerabilities in email update endpoints.
+ - Vulnerabilities in password change endpoints.
+
+ 8. IDOR to Account Takeover
+- Check for:
+
+ - Vulnerabilities in email update endpoints.
+ - Vulnerabilities in password change endpoints.
+ - Vulnerabilities in password reset endpoints.
+
+9. Account Takeover by Response & Status Code Manipulation- How to Hunt:
+ - Look for vulnerabilities where manipulating response or status codes can lead to account takeover.
+
+10. Account Takeover by Exploiting Weak Cryptography- Check for:
+ - Weak cryptographic implementations in password reset processes.
+
+🔷 𝗔𝗰𝗰𝗼𝘂𝗻𝘁 𝗧𝗮𝗸𝗲𝗼𝘃𝗲𝗿 𝗕𝘂𝗴 𝗕𝗼𝘂𝗻𝘁𝘆 𝗧𝗶𝗽𝘀 𝗳𝗼𝗿 𝗡𝗲𝘄 𝗕𝘂𝗴 𝗛𝘂𝗻𝘁𝗲𝗿𝘀 🔷 hashtag#PART2
+
+⚠️Simplified Tips for Account Takeover (ATO)
+
+
+1. Password or Email Change Function- How to Hunt:
+ - If you see email parameters in password change requests, try changing your email to the victim's email.
+
+2. Sign-Up Function- How to Hunt:
+ - Try signing up with the target email directly. - Use third-party sign-ups with phone numbers, then link the victim's email to your account.
+
+3. Rest Token
+- How to Hunt: - Try using your REST token with the target account.
+ - Brute 13. Rest Token- How to Hunt:
+ - Try using your REST token with the target account. - Brute force the REST token if it is numeric.
+ - Try to figure out how the tokens are generated. For example, check if they are generated based on timestamp, user ID, or email.
+
+4. Host Header Injection- How to Hunt:
+ - Intercept the REST account request. - Change the Host header value from the target site to your own domain (e.g., `POST /PassRest HTTP/1.1 Host: Attacker.com`).
+
+5. CORS Misconfiguration to Account Takeover
+- How to Hunt: - Check if the application has CORS misconfigurations.
+ - If so, you might be able to steal sensitive information from the user to take over their account or make them change authentication information. - Refer to [CORS Bypass](https://lnkd.in/e54-f5s9) for more details.
+
+6. Account Takeover via Leaked Session Cookie
+- How to Hunt: - Look for vulnerabilities where session cookies are leaked.
+- Refer to [HackerOne Report 745324](https://lnkd.in/eWRhvmeb) for more details.
+
+7. HTTP Request Smuggling to ATO- How to Hunt:
+ - Look for HTTP request smuggling vulnerabilities.
+ - Refer to [HackerOne Reports 737140 and 740037](https://lnkd.in/esTE_sSe) and [HackerOne Report 740037](https://lnkd.in/erV_t8Ys) for more details.
+
+8. Bypassing Digits Origin Validation Which Leads to Account Takeover- How to Hunt:
+ - Look for vulnerabilities where digits origin validation can be bypassed. - Refer to [HackerOne Report 129873](https://lnkd.in/exJmH2xu) for more details.
+
+9. Top ATO Reports in HackerOne
+- How to Hunt: - Review top account takeover reports in HackerOne.
+ - Refer to [TOP ACCOUNT TAKEOVER](https://lnkd.in/e-3-deyu) for more details.

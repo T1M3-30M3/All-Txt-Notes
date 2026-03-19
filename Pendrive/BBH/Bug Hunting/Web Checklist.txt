@@ -1,0 +1,115 @@
+🔍 Reconnaissance
+✅ Subdomain Enumeration (amass, subfinder, crt.sh)
+✅ Port Scanning (nmap, rustscan)
+✅ Directory Bruteforcing (ffuf, dirsearch)
+✅ Wayback Machine / Archive Recon
+✅ JS File Analysis (endpoints, keys, secrets)
+✅ ASN/CIDR Discovery
+✅ Virtual Host Discovery
+✅ Content Discovery (robots.txt, sitemap.xml)
+✅ GitHub Dorking (company leaks, tokens)
+✅ Search Engine Dorks (Google, Shodan, Censys)
+✅ WHOIS & DNS Recon
+✅ DNS Zone Transfers
+
+💣 Injection Attacks
+✅ SQL Injection (classic, blind, time-based)
+✅ Command Injection (OS injection, chained commands)
+✅ XML External Entity (XXE)
+✅ Server-Side Template Injection (SSTI)
+✅ LDAP Injection
+✅ CRLF Injection
+✅ HTTP Host Header Injection
+✅ GraphQL Injection
+✅ NoSQL Injection (MongoDB, Firebase abuse)
+
+💥 XSS (Cross-Site Scripting)
+✅ Reflected XSS
+✅ Stored XSS
+✅ DOM-Based XSS
+✅ Self-XSS (sometimes still exploitable!)
+✅ CSP Bypass Techniques
+✅ Mutation XSS
+✅ Angular/React/Vue-specific XSS
+✅ XSS in SVG/MathML
+✅ WAF/Filter Bypass Payloads
+
+🔓 Authentication & Session
+✅ Authentication Bypass
+✅ 2FA Bypass Techniques
+✅ Session Fixation
+✅ Session Hijacking
+✅ JWT Attacks (none alg, key confusion)
+✅ Cookie Poisoning / Tampering
+✅ Login CSRF
+✅ Password Reset Abuse
+✅ Email Enumeration
+✅ Username Enumeration
+✅ Brute-force/Ratelimiting Bypass
+✅ MFA Abuse (fallback channels, reuse)
+
+🔐 Authorization & Access Control
+✅ Broken Access Control (BAC)
+✅ Insecure Direct Object Reference (IDOR)
+✅ Horizontal Privilege Escalation
+✅ Vertical Privilege Escalation
+✅ Role Confusion / Scope Abuse
+✅ Function-level Access Control Flaws
+✅ Admin Panel Access via Frontend/API
+
+📂 File Handling & Uploads
+✅ Unrestricted File Uploads
+✅ Content-Type Validation Bypass
+✅ Polyglot Files
+✅ SVG Upload with XSS Payload
+✅ Upload Path Traversal
+✅ Remote File Inclusion (RFI)
+✅ Local File Inclusion (LFI)
+✅ File Deserialization (PHP, Java, etc.)
+✅ ImageTragick (ImageMagick Exploits)
+
+🌐 Web Infrastructure
+✅ SSRF (Server-Side Request Forgery)
+✅ Open Redirects
+✅ CORS Misconfigurations
+✅ Clickjacking (X-Frame-Options issues)
+✅ Host Header Injection
+✅ DNS Rebinding
+✅ HTTP Request Smuggling
+✅ HTTP Parameter Pollution
+✅ Cache Poisoning
+✅ Subdomain Takeover
+✅ CDN Misconfiguration
+✅ Path Traversal (../ abuse)
+
+
+🔄 Business Logic & API
+✅ Logic Flaws (order bypass, payment manipulation)
+✅ Race Conditions
+✅ Mass Assignment
+✅ Insecure API Rate Limiting
+✅ Broken Object Level Authorization (BOLA)
+✅ GraphQL Misconfig (introspection, object access)
+✅ Unprotected Endpoints
+✅ Lack of Input Validation (trust boundaries)
+✅ Misuse of HTTP Verbs (PUT, DELETE, PATCH)
+
+☁️ Cloud & External Services
+✅ AWS/GCP/Azure Misconfig (S3 buckets, secrets)
+✅ Leaky Environment Variables
+✅ CI/CD Secrets (GitHub Actions, GitLab CI)
+✅ Publicly Exposed Dashboards (Kibana, Grafana, Jenkins)
+✅ Metadata Services Access (AWS IMDS, GCP metadata)
+✅ Exposed .env, .git, .DS_Store, backup files
+
+⚙️ Misc & Advanced
+✅ Prototype Pollution
+✅ Deserialization Attacks (PHP, Java, Ruby)
+✅ WebSocket Hijacking
+✅ Caching Bugs (Varnish, NGINX configs)
+✅ DNS Cache Poisoning
+✅ Frontend Framework Bypasses
+✅ CVEs on Outdated Libraries
+✅ Supply Chain Attacks
+✅ Software-Specific Exploits (WordPress, Magento, etc.)
+✅ Secret Discovery (API keys, tokens in source or logs)

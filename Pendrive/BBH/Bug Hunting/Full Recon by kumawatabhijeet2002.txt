@@ -1,0 +1,67 @@
+Full Recon:
+
+1. Scope Review : .target.com
+
+2. Subdomain Enumeration : bbot -d target.com [https://github.com/blacklanternsecurity/bbot]
+
+3. Alive Subdomain Check : cat subdomains.txt | httpx -silent -o alive_subdomains.txt
+
+4. Crawling Alive Subdomains  : katana -list alive_subdomains.txt -o endpoints.txt
+
+5. Screenshotting : eyewitness --web -f alive_subdomains.txt --threads 5 -d screenshots/
+
+6. Automated Scanning (N-Qube) : cat alive_subdomains.txt | nuclei -t templates/ -o nuclei_results.txt
+
+6. Automated Scanning (N-Qube) : nmap -sVC -T4 -iL alive_subdomains.txt -oN nmap_results.txt
+
+6. Automated Scanning (N-Qube) : nikto -h alive_subdomains.txt -output nikto_results.txt
+
+7. Technology Fingerprinting : Wappalyzer, Builtwith, WhatRuns
+
+8. Subdomain Takeover : subzy run --targets alive_subdomains.txt
+
+9. Broken Link Hijacking: socialhunter -f alive_subdomains.txt
+
+10. Cross-Site Scripting (XSS): paramspider -d target.com | qsreplace '"/><script>confirm(1)</script>' > xss.txt
+cat xss.txt | while read url; do curl --silent --path-as-is --insecure "$url" | grep -qs "<script>confirm(1)" && echo "$url \\033[0;31mVulnerable\\n" || echo "$url \\033[0;32mNot Vulnerable\\n"; done
+
+11. URL Gathering : cat alive_subdomains.txt | waybackurls | tee -a urls.txt
+cat urls.txt | httpx -silent -o alive_urls.txt
+
+12. Google Dorking : https://freelancermijan.github.io/reconengine/
+https://github.com/Viralmaniar/BigBountyRecon/releases/tag/v0.1
+
+13. Subdomains : 
+dirb <http://target.com> /usr/share/wordlists/dirb/common.txt
+ffuf -u <http://target.com/FUZZ> -w /usr/share/wordlists/dirb/common.txt
+ffuf -u <http://target.com/search?FUZZ=test> -w /usr/share/wordlists/parameters.txt
+gobuster dir -u <http://target.com> -w /usr/share/wordlists/dirb/common.txt -x php,html,js
+
+14. Customizing Wordlists: SecLists, Orwagodfather's Wordlists, Karanxa's Wordlists, HacktivistRO's Wordlists
+
+15. Finding Parameters : 
+
+pip3 install arjun > arjun -u <https://target.com> -oJ params.json 
+cat params.txt | kxss
+
+16. Finding JS Files : katana -u <https://target.com> -jc -d 2 | grep ".js$" | uniq | sort > js.txt
+
+17. Extracting Secrets and Endpoints : cat js.txt | while read url; do python3 SecretFinder.py -i $url -o cli >> secrets.txt; done
+
+18. Extracting Secrets and Endpoints : python3 linkfinder.py -i js.txt -o endpoints.txt
+
+19. Identifying Exposed API Endpoints : ffuf -u <http://api.target.com/FUZZ> -w /usr/share/wordlists/api_endpoints.txt -t 50
+
+20. Checking for Backup and Old Files : gobuster dir -u <http://target.com> -w /usr/share/wordlists/dirb/common.txt -x .bak,.old,.zip,.tar.gz
+
+
+
+
+
+
+
+
+
+
+
+

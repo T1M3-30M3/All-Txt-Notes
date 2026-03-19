@@ -1,0 +1,64 @@
+site:target.com inurl:api inurl:&
+site:target.com inurl:api inurl:=
+site:target.com inurl:api inurl:?
+site:target.com inurl:v1 inurl:&
+site:target.com inurl:v1 inurl:=
+site:target.com inurl:v1 inurl:?
+site:target.com inurl:api inurl:& inurl:= inurl:?
+
+site:linkedin.com working at "east west university"
+
+intitle:, inurl:, filetype:, ext:, intext:, site:, cache:aa.com, allintext:, intext:, allintitle:, allinurl:, filetype:, link:, 
+
+intitle:"index of" "Apache/2.4.7 (Ubuntu) Server"
+filetype:pdf site: abc.com
+intitle:"index of" inurl:backup
+inurl: index.php?id=
+intitle:"Index of" inurl:admin
+
+site:example.com filetype:sql
+site:example.com intitle:"index of"
+site:.com inurl:login
+filetype:txt intext:"password"
+inurl:/view/view.shtml
+cache:example.com
+
+intext:"index of" "parent directory"
+site:instagram.com | site:github.com
+site:github.com & site:twitter.com
+(site:instagram.com | site:twitter.com) (intext:"admin")
+(site:instagram.com | site:twitter.com) & intext:"admin"
+site:twitter.com +site:twitter.*
+site:twitter.* -site:twitter.com
+site:*.site.com
+site:*.*.site.com
+site:*.*.*.site.com
+
+site:*.zomato.com intext:login
+site:zomato.com -www
+filetype:pdf "confidential"
+inurl:login
+intitle:"index of"
+link:example.com
+site:pastebin.com "example.com"
+site:pastebin.com | site:codepen.io "tesla.com"
+site:example.com ext:php inurl:?
+(site:example.com | site:example.org) "choose file"
+(site:tesla.com | site:teslamotors.com) "choose file"
+site:openreports.org inurl:reports intext:"example.com"
+site:pastebin.com "example.com"
+ext:php inurl:?
+
+site:example.com -www -blog
+site:pastebin.com "example.com"
+site:pastebin.com | site:jsfiddle.net "tesla.com"
+site:example.com ext:php inurl:?
+
+(shopify.com) (site:*.*.255.* | site:*.*.254.* | site:*.*.253.* | site:*.*.252.* | site:*.*.251.* | site:*.*.250.* | site:*.*.249.* | site:*.*.248.* | site:*.*.247.* | site:*.*.246.* | site:*.*.245.* | site:*.*.244.* | site:*.*.243.* | site:*.*.242.* | site:*.*.241.* | site:*.*.240.*)
+
+https://reconshell.com/google-dorks-for-hackers/
+https://grok.com/
+https://www.cyberhacks.org/dorking-tool
+https://taksec.github.io/google-dorks-bug-bounty/
+ 
+

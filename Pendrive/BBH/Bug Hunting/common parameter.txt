@@ -1,0 +1,410 @@
+1. Session & User Data
+
+    session_id
+    user_id
+    user_token
+    login
+    email
+    password
+    auth_token
+    csrf_token
+    access_token
+    refresh_token
+    account_id
+    user_hash
+    is_logged_in
+    device_id
+    cookie_id
+    user_agent
+    client_id
+    redirect_uri
+    state
+    state_token
+    scopes
+    ip_address
+    session_key
+    user_session
+    session_start
+    session_end
+    current_session
+    previous_session
+
+2. Tracking & Analytics
+
+    utm_source
+    utm_medium
+    utm_campaign
+    utm_term
+    utm_content
+    gclid
+    fbclid
+    referrer
+    source
+    campaign
+    ref
+    cid
+    ad_id
+    aff_id
+    network_id
+    source_id
+    tracking_id
+    click_id
+    device
+    platform
+    adgroup_id
+    placement
+    creative_id
+    utm_referrer
+    utm_id
+    pco_id
+    source_data
+    track_id
+    utm_keyword
+    sub_id
+    ad
+    campaign_id
+    campaign_term
+    source_campaign
+    scid
+
+3. Search & Query Parameters
+
+    search
+    query
+    q
+    keywords
+    term
+    category
+    filter
+    filters
+    type
+    page
+    page_number
+    size
+    limit
+    limit_to
+    sort
+    order
+    order_by
+    direction
+    price_min
+    price_max
+    rating
+    location
+    zipcode
+    date
+    start_date
+    end_date
+    date_range
+    is_advanced
+    include_out_of_stock
+    brand
+    vendor
+    model
+    color
+    size
+    manufacturer
+    material
+
+4. Pagination & Navigation
+
+    page
+    page_size
+    limit
+    start
+    end
+    offset
+    per_page
+    page_token
+    next_page
+    previous_page
+    page_count
+    max_page
+    last_page
+
+5. Content Parameters
+
+    id
+    content_id
+    post_id
+    article_id
+    slug
+    name
+    title
+    description
+    summary
+    text
+    body
+    content_type
+    lang
+    locale
+    theme
+    header
+    footer
+    section
+    subsection
+    category_id
+    taxonomy
+    tag
+    tags
+    keywords
+    category_slug
+    item_id
+    product_id
+    service_id
+    brand_id
+    author
+    publisher
+
+6. Social Media & Sharing Parameters
+
+    share
+    social_id
+    social_type
+    platform
+    referral
+    social_share
+    tweet_id
+    fb_share
+    linkedin_share
+    whatsapp_share
+    pin_share
+    social_url
+    social_profile
+    channel_id
+    media_id
+
+7. E-commerce & Product Parameters
+
+    product_id
+    product_name
+    sku
+    cart_id
+    order_id
+    quantity
+    price
+    total_price
+    discount
+    coupon_code
+    tax
+    shipping_cost
+    shipping_address
+    billing_address
+    delivery_method
+    payment_method
+    payment_status
+    shipping_status
+    order_status
+    invoice_id
+    transaction_id
+    order_reference
+    item_code
+    tracking_number
+    delivery_date
+    subscription_id
+    plan_id
+    trial_period
+    subscription_status
+    cart_action
+
+8. Geolocation & Location Parameters
+
+    lat
+    long
+    latitude
+    longitude
+    geo
+    location
+    city
+    state
+    country
+    postal_code
+    zipcode
+    region
+    neighborhood
+    address
+    location_id
+    coordinates
+    place
+    geo_coordinates
+
+9. Error Handling & Debugging Parameters
+
+    debug
+    error
+    error_code
+    error_msg
+    status_code
+    status
+    message
+    response_code
+    stack_trace
+    exception
+    trace_id
+    log_level
+    log
+    debug_level
+
+10. File & Media Handling Parameters
+
+    file
+    filename
+    media_id
+    media_type
+    image_id
+    image_url
+    video_url
+    audio_url
+    file_id
+    file_type
+    file_size
+    upload
+    download
+    image_size
+    file_format
+    download_url
+    media_link
+    media_source
+
+11. Time & Date Parameters
+
+    time
+    timestamp
+    epoch
+    datetime
+    date
+    day
+    month
+    year
+    hour
+    minute
+    second
+    timezone
+    date_range
+    time_period
+    time_zone
+    expiry_date
+    start_time
+    end_time
+
+12. Product & Service Rating Parameters
+
+    rating
+    review_score
+    reviews
+    feedback
+    stars
+    user_rating
+    vote
+    comment_id
+    rating_score
+    rating_value
+    review_count
+    feedback_score
+    recommendation
+
+13. Referrals & Affiliate Parameters
+
+    referrer
+    affiliate_id
+    ref_code
+    referral_code
+    ref_id
+    partner_id
+    tracking_code
+    affiliate_code
+    aff_link
+    invite_code
+    referral_link
+    referral_source
+
+14. API & Integration Parameters
+
+    api_key
+    client_key
+    endpoint
+    resource_id
+    method
+    api_version
+    action
+    resource
+    param
+    request_id
+    token
+    scope
+    grant_type
+    access_key
+    signature
+    response_format
+    callback
+    callback_url
+    webhook
+    event
+    json_response
+
+15. Miscellaneous Parameters
+
+    session_time
+    user_type
+    time_zone
+    theme
+    mode
+    layout
+    view
+    style
+    skin
+    configuration
+    platform_type
+    ref_lang
+    city_code
+    distance
+    size_unit
+    quantity_unit
+    measurement_unit
+    shipping_type
+    payment_type
+    plan_type
+    user_level
+    access_level
+    group_id
+    membership_id
+    team_id
+    group_code
+
+16. Payment & Billing Parameters
+
+    invoice_id
+    payment_status
+    transaction_id
+    transaction_status
+    amount_paid
+    amount_due
+    payment_date
+    payment_gateway
+
+17. Device & Client Parameters
+
+    device_type
+    os
+    browser
+    user_agent
+    screen_resolution
+    platform
+    network_type
+    is_mobile
+
+18. Session & State Management Parameters
+
+    session_id
+    session_key
+    state
+    user_session
+    view_id
+    lang
+    theme
+    locale
+    country_code
+    session_start
+    session_end
+    current_session
+    previous_session

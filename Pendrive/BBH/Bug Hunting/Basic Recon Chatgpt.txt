@@ -1,0 +1,82 @@
+Basic Recon Form Chatgpt:
+
+amass enum -passive -d target.com
+amass enum -active -d target.com
+subfinder -d target.com
+assetfinder --subs-only target.com
+findomain -t target.com
+cat domains.txt | httprobe
+massdns -r resolvers.txt -t A -o S domains.txt
+
+nmap -sV -sC -p- target.com
+masscan -p1-65535 --rate 10000 target.com
+
+python3 dirsearch.py -u https://target.com -e php,html,js
+gobuster dir -u https://target.com -w /usr/share/wordlists/dirb/common.txt
+
+python3 paramspider.py --domain target.com
+python3 linkfinder.py -i https://target.com/script.js -o output.html
+
+sqlmap -u "http://target.com/page.php?id=1" --dbs --batch
+xsstrike -u "http://target.com/page.php?param=test"
+dalfox url "http://target.com/page.php?param=test"
+nuclei -u https://target.com -t vulnerabilities/
+
+python3 gopherus.py
+ffuf -u "http://target.com/page.php?param=FUZZ" -w /usr/share/wordlists/dirb/common.txt
+
+kiterunner wordlists routes-large.kite -u https://target.com
+python3 GitDorker.py -q "target.com" -d dorks.txt -o output.txt
+
+jwt_tool target.jwt -C -S
+echo "target.com" | waybackurls
+
+cat urls.txt | gf xss
+cat urls.txt | gf lfi
+
+whois example.com
+nslookup example.com
+dig example.com
+dig mx example.com  # Get Mail server records
+host example.com
+host -t ns example.com  # Get nameservers
+
+theHarvester -d example.com -l 500 -b google
+theHarvester -d example.com -b bing
+metagoofil -d example.com -t pdf -o output/
+
+sublist3r -d example.com
+amass enum -d example.com
+
+nmap -sV -A example.com
+nmap -p- -T4 example.com  # Scan all ports
+masscan -p1-65535 --rate 10000 192.168.1.0/24
+zmap -p 80 192.168.1.0/24 -o results.txt
+netdiscover -r 192.168.1.0/24
+hping3 -S -p 80 -c 4 example.com
+
+whatweb example.com
+wafw00f example.com
+wpscan --url example.com --enumerate
+droopescan scan drupal -u example.com
+
+gobuster dir -u example.com -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+gobuster dns -d example.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+ffuf -u http://example.com/FUZZ -w /usr/share/wordlists/dirb/common.txt
+
+
+dirb http://example.com /usr/share/wordlists/dirb/common.txt
+nikto -h example.com
+
+python3 sherlock.py username
+python3 ghunt.py email@gmail.com
+
+git clone https://github.com/nahamsec/LazyRecon.git
+cd LazyRecon
+./lazyrecon.sh example.com
+
+osmedeus -t example.com
+
+
+
+

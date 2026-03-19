@@ -1,0 +1,16 @@
+Example ; inurl:php?id= site:.in
+site:.co.in
+inurl:php?news=
+site:.in inurl:upload intext:"Upload Your Html file"
+intitle:"admin panel" India site:.in
+intext:"website dashboard" India 2021
+intitle:index.of intext:"Index of /" "upload your html file" site:in
+inurl:/redirect.php?url=india site:.in
+site:inurl:cpanel india intitle:cpanel -demo
+intitle:"cPanel" inurl:cpanel/index.php?type=user&mode=main&user= India
+site:in inurl:wp-login.php
+inurl:/admin/login.php site:gov.in India
+inurl:/admin/index.php site:.gov.in
+inurl:/admin/admin.php site:gov.in
+inurl:/admin1/admin.php site:gov.in
+inurl:/admin/ site:gov.in

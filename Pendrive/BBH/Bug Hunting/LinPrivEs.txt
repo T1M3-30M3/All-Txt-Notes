@@ -1,0 +1,58 @@
+-- TCM --
+
+https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md
+https://book.hacktricks.xyz/linux-hardening/linux-privilege-escalation-checklist
+https://book.hacktricks.xyz/linux-hardening/privilege-escalation
+https://sushant747.gitbooks.io/total-oscp-guide/content/privilege_escalation_-_linux.html
+
+hostname
+uname -a
+cat /proc/version
+cat /etc/issue
+lscpu
+ps aux 
+whoami
+id
+sudo -l
+cat /etc/passwd | cut -d : -f 1
+cat /etc/group
+history
+ifconfig
+ip a
+ip route
+arp -a
+netstat -ano
+grep --color=auto -rvw '/' -ie "PASSWORD" --color=always 2> /dev/null
+grep --color=auto -rvw '/' -ie "PASSWORD=" --color=always 2> /dev/null
+grep --color=auto -rvw '/' -ie "PASS" --color=always 2> /dev/null
+grep --color=auto -rvw '/' -ie "PASS=" --color=always 2> /dev/null
+locate password | more
+locate pass | more
+find / -name id_rsa 2> /dev/null
+cat myvpn.ovpn
+cat /etc/openvpn/auth.txt
+
+https://github.com/rebootuser/LinEnum
+https://github.com/The-Z-Labs/linux-exploit-suggester
+https://github.com/sleventyeleven/linuxprivchecker
+https://github.com/xairy/linux-kernel-exploitation
+
+Tools : dirtycow, exim, linenum, linpeas, nfsshell, ngix 
+
+find . -type f -exec grep -i -I "PASSWORD" {} /dev/null \;
+
+ls -la /etc/passwd
+ls -la /etc/shadow
+unshadow passwd shadow
+find / -name authorized_keys 2> /dev/null
+find / -name id_rsa 2> /dev/null
+
+sudo -l
+
+https://hashcat.net/wiki/doku.php?id=example_hashes
+https://gtfobins.github.io/
+
+
+
+
