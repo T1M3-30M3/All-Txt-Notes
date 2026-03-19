@@ -1,0 +1,81 @@
+OSINT Basics & Mindset
+
+    What is OSINT in CTFs
+
+    Ethics & Rules in CTF OSINT challenges
+
+    Types of OSINT data sources
+
+Social Media OSINT
+
+    Username enumeration & pattern recognition
+
+    Image & video metadata extraction
+
+    Reverse image search (Google, Yandex, TinEye)
+
+    Finding hidden clues in posts & profiles
+
+Website & Domain Recon
+
+    WHOIS lookups & historical records
+
+    Subdomain enumeration (crt.sh, VirusTotal, Sublist3r)
+
+    Wayback Machine & archive exploration
+
+    DNS record analysis
+
+Image & Metadata Analysis
+
+    EXIF data extraction (ExifTool)
+
+    Identifying locations from images (GeoGuess-style)
+
+    Detecting steganography in media files
+
+Geolocation & Map OSINT
+
+    Street View & satellite imagery matching
+
+    Landmark recognition
+
+    Time-of-day & shadow analysis for location clues
+
+Email & Username Investigation
+
+    Breach data lookups (HaveIBeenPwned, DeHashed)
+
+    Linked accounts & profile correlation
+
+    PGP key server lookups
+
+Public Records & Deep Search
+
+    Court, business, and government records
+
+    Academic & research paper OSINT
+
+    Code repositories (GitHub, GitLab clues)
+
+Advanced Tools & Automation
+
+    Maltego, SpiderFoot, Recon-ng basics
+
+    Automating OSINT tasks with Python scripts
+
+    CTF-specific OSINT toolkits
+
+OSINT in Real CTF Scenarios
+
+    Common OSINT puzzle types in CTFs
+
+    Red herrings & how to avoid rabbit holes
+
+    Step-by-step solving of sample OSINT CTF challenges
+
+Practice & Case Studies
+
+    Walkthrough of famous OSINT CTF challenges (e.g., Trace Labs, PicoCTF OSINT)
+
+    Group hands-on OSINT challenge

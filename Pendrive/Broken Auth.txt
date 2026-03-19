@@ -1,0 +1,17 @@
+--Broken Auth:
+
+++ Rate limiting: First see that is there bruteForce lots of times, if it will not Use http header and try again
+
+https://gist.github.com/kaimi-/6b3c99538dce9e3d29ad647b325007c1
+https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/special-http-headers
+
+curl -X POST "http://127.0.0.1:2222/name" -H "X-Forwarded-For: 127.0.0.1" -d "userid=admin&password=admin&submit-submit"
+
+++ BruteForce Username:
+You can bruteforce Username via burpSUite
+
+https://github.com/danielmiessler/SecLists/tree/master/Usernames
+https://github.com/jeanphorn/wordlist/blob/master/usernames.txt
+https://github.com/danielmiessler/SecLists/blob/master/Usernames/top-usernames-shortlist.txt
+https://gist.github.com/kivox/920c271ef8dec2b33c84e1f2cc2977fc
+

@@ -1,0 +1,18 @@
+WriteUps:
+https://razvioverflow.github.io/ctfwriteups/Hackplayers%20H-c0n%20Qualifiers%202020/
+https://medium.com/@LambdaMamba/ctf-writeup-1337up-ctf-2022-20d0120969d8
+
+
+
+
+Tools:
+https://copy.sh/brainfuck/
+https://github.com/RsaCtfTool/RsaCtfTool
+https://github.com/TapanSoni/BPStegano
+https://holloway.nz/steg/
+https://www.babelstone.co.uk/Unicode/whatisit.html
+
+Command:
+openssl -rsa -pubin -in kojonomai.txt -text -noout
+RsaCtfTool.py --publickey publick_key.key --verbose --private
+openssl rsautl -decrypt -in cipher -out plaintext -inkey private_key

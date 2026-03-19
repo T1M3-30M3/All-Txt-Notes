@@ -1,0 +1,21 @@
+5.PHP mailer: PHP mailer is a script which is used
+to spam our leads, this is another method of
+spamming. In this we don’t use AMS tool, we
+spam via this PHP script.
+-----------------------------------------------------
+6.Cpanel: Cpanel is is the hosting panel of a
+website, in simple language it’s a panel from
+where a admin of a particular site manages
+his/her website. We use cpanel to host our scam
+page
+Shell or Cpanel
+-----------------------------------------------------
+7.SMTP (Simple mail Transfer Protocol): SMTP is
+generally an application which runs on a server
+which is used to transmit and receive emails, in
+simple language we use SMTP to send our
+mails to our victims
+-----------------------------------------------------
+8.Leads 
+These and iclude boundle of emails 
+like test@yahoo.com 30k 

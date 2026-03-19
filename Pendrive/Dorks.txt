@@ -1,0 +1,78 @@
+cache:https://xyz.nu.edu.pk/Login XYZ
+allintext:"username" "password"
+filetype:log 
+allintext:username filetype:log
+intitle:"ip camera"
+allintitle:"ip camera" "dvr"
+allinurl:tesla lambo
+site: https://global.honda/
+site:https://www.ford.com/ ext:pdf
+inposttitle:weight loss goals
+allintitle:how to write content for seo
+allinanchor:"how to draw anime"
+inanchor:"digital painting"
+mangoes @facebook
+mangoes @linkedin
+mangoes @youtube
+"search term 1"
+"Related:domainname.com"
+"Info:domainname.com"
+intitle:"Weather Wing WS-2"
+inurl:zoom.us/j and intext:scheduled for
+intitle:"Apache2 Ubuntu Default Page: It works"
+"Index of" inurl:phpmyadmin
+inurl:Dashboard.jspa intext:"Atlassian Jira Project Management Software"
+inurl:app/kibana intext:Loading Kibana
+inurl:_cpanel/forgotpwd
+intitle:"index of" inurl:ftp
+Intitle:"webcamXP 5"’
+"Italian foods"
+site:facebook.com | site:twitter.com
+site:facebook.com & site:twitter.com
+(site:facebook.com | site:twitter.com) & intext:"login"
+(site:facebook.com | site:twitter.com) (intext:"login")
+-site:facebook.com +site:facebook.*
+site:*.com
+intitle:"george bush"
+allintitle:"money supply" economics
+inurl:help
+allinurl:search help
+intext:"yahoo.com"
+intext:html
+inanchor:"tom peters"
+site:loc.gov
+site:thomas.loc.gov
+site:edu
+site:nc.us
+link:www.google.com
+filetype:html
+related:www.yahoo.com
+related:www.cnn.com
+info:www.oreilly.com
+info:www.nytimes.com/technology
+phonebook:John Doe CA
+phonebook:(510) 555-1212
+
+
+Link:
+https://hackr.io/blog/google-dorks-cheat-sheet
+https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06
+https://cdn-cybersecurity.att.com/blog-content/GoogleHackingCheatSheet.pdf
+https://github.com/chr3st5an/Google-Dorking
+https://www.stationx.net/google-dorks-cheat-sheet/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

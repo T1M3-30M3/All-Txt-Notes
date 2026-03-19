@@ -1,0 +1,46 @@
+##System Enumeration:
+uname -a
+cat /proc/version
+cat /etc/issue
+lscpu
+ps aux
+ps aux | grep root
+
+##User Enumeration:
+whoami
+id
+sudo -l
+cat /etc/passwd
+cat /etc/passwd | cut -d ":" -f 1
+cat /etc/shadow
+cat /etc/group
+history
+
+##Network Enumeration:
+ifconfig
+ip a
+ip route
+ip neigh
+netstat -ano
+
+##Password Hunting:
+grep --color=auto -rnw '/' -ie "PASSWORD=" --color=always 2> /dev/null
+grep --color=auto -rnw '/' -ie "PASS=" --color=always 2> /dev/null
+find . -type f -exec grep -i -I "PASSWORD" {} /dev/null \;
+find / -name id_rsa 2> /dev/null
+
+##Automated Tools:
+https://github.com/rebootuser/LinEnum
+https://github.com/The-Z-Labs/linux-exploit-suggester
+https://github.com/jondonas/linux-exploit-suggester-2
+https://github.com/0dayhunter/Linux-exploit-suggester
+https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS
+https://github.com/sleventyeleven/linuxprivchecker
+
+https://github.com/lucyoa/kernel-exploits
+
+uname -a and search by kernel name
+
+
+
+

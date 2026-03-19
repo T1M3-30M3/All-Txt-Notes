@@ -1,0 +1,41 @@
+keyword > Combolist[leacher or sqli]
+
+Keyword : 
+keyword Scraper by Xrisky
+
+https://keywordtool.io/
+https://www.keyword.io/
+https://www.wordstream.com/keywords
+
+ComboList:
+Slayer Leacher
+Tsp Dork Genarator + Dork Searcher xRisky + Sqli Dumper + SilverBullet
+----------------------------------------------------------------------------------
+
+Lab : VmWare + Windows 7 / Sandbox
+Tools:
+
+--> Sentry mba or software
+--> Proxylist
+--> Combos
+--> Configs
+
+Make HQ Dorks:
+--> Go to https://keywordtool.io/ collect the keywords
+--> then go to http://www.unit-conversion.info/texttools/reverse-text/ for reverse text
+--> and copy space with -
+--> Use tsp dork genarator
+--> use Dork Searcher 
+ 
+Source : https://medium.com/@hrofficial62/make-uhq-dorks-for-cracking-accounts-11b62c52e647
+
+Proxy:
+--> Find the best proxy via online and filtered those proxy via proxy Scraper.
+
+----------------------------------------------------------------------------------
+
+
+
+
+
+
