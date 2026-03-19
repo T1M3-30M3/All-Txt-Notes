@@ -1,0 +1,101 @@
+Hunting with Shodan:
+--> Shodan fitlers
+--> Shodan cli
+--> Shodan Api
+--> ffuf intro
+--< hunter.how
+--> Findiing Secrets using shodan and web archieve CDX API
+
+Subdomain Enum:
+--> crt.sh
+--> amass
+--> subfinder and ffuf
+--> sorting and anew duplicate
+--> sublist3r and httpx/dnsx/httprobe
+--> chaos and eyewitness
+--> NsLookup
+
+link : 
+https://crt.sh/
+https://dnsdumpster.com/
+https://subdomainfinder.c99.nl/
+https://osint.sh/subdomain/
+https://chaos.projectdiscovery.io/
+
+subfiner -ls
+ show hidden files > root > config > subfinder
+subfinder -d <domain> -o link.txt
+cat link.txt | sort | uniq
+
+--> Download config.yaml and datasource.yaml from amass repo
+--> and copy to root > config > amass and paste it
+amass enum -passive -d <link> -o link.txt
+Source : https://medium.com/offensive-black-hat-hacking-security/amass-new-config-file-update-e95d09b6eb70
+
+chaos -d uber.com -silent
+chaos -d uber.com -silent -o x.txt
+
+
+nslookup : https://network-tools.webwiz.net/nslookup.htm
+https://www.nslookup.io/
+https://dnschecker.org/ns-lookup.php
+
+
+▶ subfinder -silent -d hackerone.com -o link.txt | dnsx -silent
+
+▶ subfinder -silent -d hackerone.com | dnsx -silent -a -resp
+▶ subfinder -silent -d hackerone.com | dnsx -silent -a -resp-only
+▶ subfinder -silent -d hackerone.com | dnsx -silent -cname -resp
+▶ subfinder -silent -d hackerone.com | dnsx -silent -asn
+▶ subfinder -silent -d hackerone.com | dnsx -silent -rcode noerror,servfail,refused
+▶ echo 173.0.84.0/24 | dnsx -silent -resp-only -ptr
+▶ echo AS17012 | dnsx -silent -resp-only -ptr
+
+▶ cat domains.txt | httprobe
+▶ cat domains.txt | httprobe -p http:81 -p https:8443
+▶ cat domains.txt | httprobe -c 50
+▶ cat domains.txt | httprobe -t 20000
+▶ cat domains.txt | httprobe -s -p https:8443
+
+▶ cat domains.txt | httpx
+▶ cat domains.txt | httpx -fc 200,403
+▶ cat domains.txt | httpx -mc 200,403
+
+▶ apt install eyewitness
+▶ eyewitness -f urls.txt --web
+▶ eyewitness -f urls.txt --web  --timeout 120
+▶ eyewitness  -x urls.xml --timeout 8
+
+▶ ffuf -u "http.//FUZZ.abc.com" -w <wordlist>
+▶ ffuf -u "https://abc.com/FUZZ" -w <wordlist>
+▶ ffuf -u "https://abc.com/script.php?FUZZ=test_value"  -w paramnames.txt -fs 4242
+▶ ffuf -u "https://abc.com/script.php?valid_name=FUZZ" -w values.txt  -fc 401
+▶ ffuf -u "https://abc.com/login.php" -w password.txt -X POST -d "username=admin\&password=FUZZ" -fc 401
+
+▶ ffuf -u "https://abc.com/script.php?valid_name=FUZZ" -w values.txt -mc 401
+▶ ffuf -u "https://abc.com/login.php" -w password.txt -X POST -d "username=admin\&password=FUZZ" -mc 401
+
+▶ ffuf -u "https://abc.com/script.php?FUZZ=test_value" -w paramnames.txt -ms 4242
+
+https://github.com/n0kovo/n0kovo_subdomains
+https://github.com/danielmiessler/SecLists/tree/master/Discovery/DNS
+
+1. Select a target
+2. Found all possible subdomains using methods and tools
+3. Removed the duplicate subdomains
+4. Filtered the live and final subdomains
+5. Took sceenshot and analyzed
+
+Next:
+1. Analyze the screenshots for possible vuln
+2. Do a directory bruteforce
+3. JS file analyze
+4. Github Recon
+
+---> Use dirsearch with filter and nmap with port for fast recon
+
+
+
+
+
+

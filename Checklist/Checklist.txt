@@ -1,0 +1,238 @@
+==============================
+WEB PENTESTING CHECKLIST
+==============================
+
+==============================
+RECON PHASE
+==============================
+
+[Scope Types]
+- Large: whole company (multiple domains)
+- Medium: single domain
+- Small: single website
+
+------------------------------
+LARGE SCOPE
+------------------------------
+- Get ASN for IP ranges (amass, asnlookup, metabigor, bgp)
+- Review latest acquisitions
+- Find registrant relationships (viewdns)
+- Move to medium scope per domain
+
+------------------------------
+MEDIUM SCOPE
+------------------------------
+- Subdomain enumeration (amass, subfinder)
+- Subdomain bruteforce (puredns)
+- Subdomain permutation (gotator, ripgen)
+- Identify alive subdomains (httpx)
+- Subdomain takeover (nuclei-takeovers)
+- Cloud asset discovery (cloudenum)
+- Shodan search
+- DNS zone transfer
+- Recursive subdomain search
+- Screenshot services (gowitness, aquatone)
+
+------------------------------
+SMALL SCOPE
+------------------------------
+- Identify technologies (httpx)
+- Check:
+  /robots.txt
+  /sitemap.xml
+  /.well-known/
+  /crossdomain.xml
+  /clientaccesspolicy.xml
+- Review source code comments
+- Directory enumeration
+- Fuzzing (ffuf)
+- Leak detection (pwndb)
+- Identify WAF (wafw00f, whatwaf)
+- Google dorking
+- GitHub dorking (githound, gitdorks_go)
+- Collect URLs (gau, waybackurls, gospider)
+- Filter vulnerable URLs (gf-patterns)
+- XSS scan (dalfox)
+- Find admin/login panels
+- Broken link hijacking (blc)
+- Collect JS files (subjs, xnLinkFinder)
+- Extract secrets from JS (nuclei-tokens)
+- JS analysis tools
+- Automated scan (nuclei)
+- Test CORS (corsy)
+
+------------------------------
+NETWORK
+------------------------------
+- Check ICMP
+- SPF/DMARC (spoofcheck)
+- Open ports (Shodan)
+- Full port scan (nmap)
+- UDP scan
+- SSL test (testssl)
+- Password spraying (if creds available)
+
+==============================
+PREPARATION
+==============================
+- Study site structure
+- List test cases
+- Understand business logic
+- Collect assets:
+  all_subdomains.txt
+  live_subdomains.txt
+  waybackurls.txt
+  hidden_directories.txt
+  nmap_results.txt
+  GitHub_search.txt
+  vulnerable_links.txt
+  js_files.txt
+
+==============================
+USER MANAGEMENT
+==============================
+
+[Registration]
+- Duplicate registration bypass
+- Overwrite existing user
+- Username uniqueness
+- Weak password policy
+- Email verification bypass
+- Disposable emails allowed
+- Spaces in password
+- Long password DoS
+- Account activation flaws
+- JSON parameter injection
+- OAuth issues (state parameter)
+- Open redirect after login
+- Rate limit bypass
+- XSS in input fields
+
+[Authentication]
+- Username enumeration
+- Brute-force resistance
+- Account recovery flaws
+- Remember me issues
+- Fail-open logic
+- SQL Injection
+- Weak HTTPS/HTTP handling
+- Account lockout issues
+- OTP brute force / bypass
+- JWT vulnerabilities
+- Cache issues
+- Open redirect
+
+==============================
+SESSION MANAGEMENT
+==============================
+- Session token predictability
+- Session fixation
+- Token leakage
+- Cookie security (HTTPOnly, Secure)
+- Cookie reuse
+- CSRF protection
+- Logout issues
+
+==============================
+ACCESS CONTROL
+==============================
+- IDOR testing
+- Role-based access bypass
+- Multi-account testing
+- Referer/header bypass
+- Concurrent sessions
+- CSRF bypass
+- Weak security questions
+
+==============================
+PROFILE / ACCOUNT
+==============================
+- IDOR via user ID
+- CSRF on account actions
+- Email change validation
+- File upload vulnerabilities (RCE, bypass)
+- CSV injection
+- Image metadata leak
+- Account deletion bypass
+- Parameter pollution
+- Role escalation
+
+==============================
+PASSWORD RESET
+==============================
+- Token reuse
+- Token predictability
+- Expiration issues
+- Host header injection
+- Email injection
+- IDOR in reset
+- Rate limit bypass
+- Token leakage (referer)
+- Weak encryption
+
+==============================
+INPUT HANDLING
+==============================
+- Fuzz all parameters
+- Reflected XSS
+- Stored XSS
+- SQL Injection
+- Command Injection
+- File inclusion (LFI/RFI)
+- XXE
+- NoSQL Injection
+- HTTP Request Smuggling
+- SSRF
+- Open redirect
+- Hidden parameters (arjun)
+
+==============================
+ERROR HANDLING
+==============================
+- Custom error pages
+- Invalid inputs
+- HTTP verb tampering
+- Fuzz responses
+- Unexpected behaviors
+
+==============================
+APPLICATION LOGIC
+==============================
+- Business logic flaws
+- Client-side trust issues
+- Payment manipulation
+- Discount abuse
+- IDOR in transactions
+- Test credit cards
+- Unsubscribe abuse
+- POST to GET bypass
+
+==============================
+INFRASTRUCTURE
+==============================
+- Shared hosting issues
+- Virtual host misconfig
+- Internal IP exposure
+- Cloud storage exposure
+- Alternate channels (m.site.com)
+
+==============================
+CAPTCHA
+==============================
+- Replay old captcha
+- Remove captcha param
+- Change request method
+- OCR bypass
+- Header injection
+
+==============================
+SECURITY HEADERS
+==============================
+- X-XSS-Protection
+- HSTS
+- CSP
+- X-Frame-Options
+- X-Content-Type-Options
+- Referrer-Policy
+- Cache-Control
+- Expires

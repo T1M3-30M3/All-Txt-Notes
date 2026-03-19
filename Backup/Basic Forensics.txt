@@ -1,0 +1,22 @@
+volatility -h 
+volatility -f <filename> imageinfo
+volatility -f <filename> --profile=<name> pslist
+volatility -f <filename> --profile=<name> pslist | findstr <name>
+volatility -f <filename> --profile=<name> psxview
+volatility -f <filename> --profile=<name> idrmodules
+volatility -f <filename> --profile=<name> idrmodules | findstr <name>
+volatility -f <filename> --profile=<name> apihooks
+volatility -f <filename> --profile=<name> dlldump --pid <name> -D .
+volatility -f <filename> --profile=<name> malfind
+volatility -f <filename> --profile=<name> 
+
+
+https://www.hybrid-analysis.com/
+https://www.virustotal.com/gui/home/upload
+https://manpages.ubuntu.com/manpages/xenial/man1/volatility.1.html
+
+
+
+https://www.youtube.com/watch?v=SUkWtar5PtI
+https://www.youtube.com/watch?v=Dlrn3ZRzn2I
+https://www.youtube.com/watch?v=CphJwggW274

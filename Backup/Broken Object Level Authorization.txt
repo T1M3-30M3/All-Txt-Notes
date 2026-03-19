@@ -1,0 +1,35 @@
+Tools:
+https://portswigger.net/burp
+https://www.postman.com/
+
+Demo Websites for Practice:
+
+http://fakerestapi.azurewebsites.net/index.html
+http://dummy.restapiexample.com/
+https://reqres.in/
+
+Online:
+https://www.site24x7.com/tools/restapi-tester.html
+https://reqbin.com/
+
+--Broken Object Level Authorization--
+
+Description:
+--> Attacker can exploit API endpoints that are vulnerable to broken object level authorization by manupulating the ID of an object is sent within the request
+--> This may lead to unauthorized access to sensitive data
+--> This issue is extreamly common in API based applications because the server component usually does not fully track the clients state and instead, relies more on parameters like object IDs that are sent from the client to decide which object to access
+
+Identify using Burp:
+--> Use postMan software to hit any API
+--> Capture the request in the burp suite and identify the parameter on which request is dependent
+--> Send the request in the repeater tab and modify the parameter to access other resources
+
+Example:
+https://reqres.in/api/users/2
+https://reqres.in/api/users/3
+https://reqres.in/api/users/4
+https://reqres.in/api/users/5
+
+--> Use Comparer for comparing 
+
+--Broken Authentication--

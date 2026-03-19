@@ -1,0 +1,272 @@
+========================================
+WEB PENTESTING CHECKLIST (ADVANCED POC)
+========================================
+
+========================================
+AUTHENTICATION & AUTHORIZATION
+========================================
+
+[Authentication Bypass]
+- Access post-auth URLs directly without session
+- Check if URL is guessable/bruteforceable
+
+[2FA Bypass]
+- Submit invalid creds + valid captcha
+- Capture request and replay multiple times
+
+[CAPTCHA Bypass - X-Forwarded]
+- Inject random IP in X-Forwarded-For header
+
+[Missing Password Confirmation]
+- Change email
+- Change password
+- Delete account
+
+[Missing Email Verification]
+- Register account without verifying email
+
+[Mail Bombing]
+- Capture request → Intruder → send multiple times
+
+[No Rate Limiting]
+- Repeat form/login requests 20–30 times
+- Observe no restriction
+
+[Weak Login Protection]
+- Bruteforce passwords using wordlists
+
+[Username Enumeration]
+- Compare error messages for valid/invalid users
+
+[Default Credentials]
+- Check default creds from public databases
+
+[Weak 2FA]
+- Secret not rotatable
+- Secret still accessible
+- No failsafe
+
+[Weak Password Policy]
+- Accepts:
+  numeric only
+  lowercase only
+  common passwords
+  short passwords
+
+[Weak HTTP Usage]
+- Registration/login over HTTP
+
+========================================
+SESSION MANAGEMENT
+========================================
+
+[JWT Issues]
+- Stored in Local Storage
+- Sent via URL (GET)
+
+[Session Issues]
+- Session valid after logout
+- Session valid after password change
+- Same session reused (fixation)
+- Session timeout too long
+- Predictable tokens
+
+[Password Reset Issues]
+- Token reusable
+- Token not expiring
+- Token over HTTP
+- Host header injection
+- Referer leakage
+
+========================================
+ACCESS CONTROL
+========================================
+
+[Account Takeover]
+- Reset token exposed in response
+
+[Admin Panel]
+- Publicly accessible
+- Bruteforce admin login
+
+[AWS Misconfig]
+- List bucket files
+- Upload public file
+
+[Sensitive Data Exposure]
+- Passwords in directories
+- API keys in JS files
+
+[CSRF]
+- No CSRF token present
+
+[DB Misconfig]
+- Excessive DB privileges
+
+[Directory Listing]
+- Enabled directory browsing
+
+[EXIF Data Leakage]
+- Uploaded images reveal metadata
+
+[OAuth Issues]
+- Token leakage via redirect
+- Missing state parameter
+
+[Token Issues]
+- Token in URL
+- Token in referer header
+
+========================================
+INPUT VALIDATION
+========================================
+
+[SQL Injection]
+- Use ' or sleep payloads
+- Automate with sqlmap
+
+[XSS]
+- Reflected
+- Stored
+- DOM-based
+- Cookie-based
+- Referer-based
+
+[Command Injection]
+- Use:
+  ;
+  |
+  &&
+  newline
+
+[LFI / RFI]
+- ../../etc/passwd
+- file:///
+
+[XXE]
+- External entity injection
+
+[SSRF]
+- Access internal services (169.254.169.254)
+
+[Template Injection]
+- Test with {{7*3}}
+
+[LDAP Injection]
+- Modify LDAP query structure
+
+[HTML / CSS Injection]
+- Inject HTML/CSS payloads
+
+[HTTP Request Smuggling]
+- CL-TE / TE-CL techniques
+
+[CRLF Injection]
+- %0d%0a payloads
+
+========================================
+FILE & CODE EXECUTION
+========================================
+
+[File Upload Issues]
+- No size limit
+- Extension bypass (.php.jpg → .php)
+- Upload webshell
+
+[RCE]
+- Execute uploaded file
+
+[CSV Injection]
+- =cmd|' /C calc'!A0
+
+[Reflected File Download]
+- Inject payload into downloadable file
+
+========================================
+APPLICATION LOGIC
+========================================
+
+[Business Logic Bugs]
+- Payment manipulation
+- Negative balance
+- Discount abuse
+
+[Privilege Escalation]
+- Horizontal (UserA → UserB)
+- Vertical (User → Admin)
+
+[DoS]
+- Large file upload
+- Repeated requests
+
+========================================
+SECURITY CONFIGURATION
+========================================
+
+[CORS Misconfig]
+- Allow-Origin: *
+- Allow-Credentials: true
+
+[Email Issues]
+- Missing SPF / DKIM / DMARC
+- Email spoofing possible
+
+[HTTP Methods]
+- PUT enabled → upload file
+
+[DNS Issues]
+- Missing CAA record
+- Zone transfer enabled
+
+========================================
+CRYPTOGRAPHY
+========================================
+
+[Weak TLS]
+- Same encrypted cookie reused
+- Padding oracle possible
+
+========================================
+ERROR HANDLING
+========================================
+
+- Stack trace exposed
+- SQL queries leaked
+- Internal IP revealed
+- Debug pages visible
+
+========================================
+COMMUNICATION
+========================================
+
+- Sensitive data over HTTP
+- Weak TLS ciphers
+
+========================================
+ADVANCED ATTACKS
+========================================
+
+[Clickjacking]
+- Load site in iframe
+
+[Tabnabbing]
+- Redirect opener window
+
+[TRACE XSS]
+- TRACE method enabled
+
+[WAF Bypass]
+- Encode payloads
+- Use Unicode separators
+
+========================================
+TOOLS (REFERENCE)
+========================================
+
+- Burp Suite
+- sqlmap
+- dirsearch
+- nmap
+- testssl
+- ffuf
+- nuclei

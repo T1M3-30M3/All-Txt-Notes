@@ -1,0 +1,375 @@
+Here's 3 tools you can use to effectively find sensitive information in JS files:👇
+
+1. Hakrawler
+Extracting JavaScript files.
+🔗Link:- https://lnkd.in/gnxm9b7s
+
+2. LinkFinder
+Finding Endpoints in JS files.
+🔗Link:- https://lnkd.in/g783FFaG
+
+3. jsluice
+Extract URLs, paths, secrets and other interesting data from JavaScript source code.
+🔗Link:- https://lnkd.in/gKw7ypwH
+
+
+https://mega.nz/folder/96AhRazA#Qci5-I29JIQobl4btJ7w0g
+
+
+
+
+Github Dorks::
+"https://www.google.com" password
+"https://www.google.com" key
+"https://www.google.com" secret
+"https://www.google.com" pass
+"https://www.google.com" credentials
+"https://www.google.com" login
+"https://www.google.com" token
+"https://www.google.com" ftp
+"https://www.google.com" config
+"https://www.google.com" pwd
+"https://www.google.com" security_credentials
+"https://www.google.com" connectionstring
+"https://www.google.com" JDBC
+"https://www.google.com" ssh2_auth_password
+"https://www.google.com" send_keys or send,keys
+"https://www.google.com" vsphere
+
+
+More Dorks :: https://gist.githubusercontent.com/EdOverflow/8bd2faad513626c413b8fc6e9d955669/raw/06a0ef0fd83920d513c65767aae258ecf8382bdf/gistfile1.txt
+
+
+⚡️Dorks for various search tools⚡️
+
+🔸Almost everyone has heard of Google Dorks, but the dorks for Yandex, DuckDuckGo, Bing, VirusTotal, Github, Shodan, etc. are much less well known🔸
+
+♦️Here's a small collection of utilities and links to dorks lists♦️
+
+(https://github.com/cipher387/Dorks-collections-list/) for various search tools.
+
+Google, Bing, Ecosia, Yahoo or Yandex*
+https://github.com/Zarcolio/sitedorks
+
+Google dorks
+https://github.com/BullsEye0/google_dork_list
+https://github.com/sushiwushi/bug-bounty-dorks
+https://github.com/rootac355/SQL-injection-dorks-list
+https://github.com/unexpectedBy/SQLi-Dork-Repository
+https://github.com/thomasdesr/Google-dorks
+https://github.com/arimogi/Google-Dorks
+https://github.com/aleedhillon/7000-Google-Dork-List
+
+DuckDuckGo dorks
+https://github.com/d34dfr4m3/goDuck
+
+Github dorks
+https://github.com/techgaun/github-dorks
+https://github.com/jcesarstef/ghhdb-Github-Hacking-Database
+https://github.com/H4CK3RT3CH/github-dorks
+
+Shodan dorks
+https://github.com/humblelad/Shodan-Dorks
+https://github.com/AustrianEnergyCERT/ICS_IoT_Shodan_Dorks
+https://github.com/lothos612/shodan
+https://github.com/jakejarvis/awesome-shodan-queries
+https://github.com/IFLinfosec/shodan-dorks
+
+Virus Total dorks
+https://github.com/Neo23x0/vti-dorks
+
+Binary Edge + Shodan + Google
+https://github.com/iGotRootSRC/Dorkers
+
+
+https://github.com/netlas-io/netlas-dorks
+http://Netlas.io
+
+
+🔰 Google Dorks for Bug Bounty
+A list of Google Dorks for Bug Bounty, Web Application Security, and Pentesting
+#Broad domain search w/ negative search
+> site:example.com -www-shop-share -ir -mfa
+
+#PHP extension w/ parameters
+> site:example.com ext: php inurl:?
+Disclosed XSS and Open Redirects
+> site:openbugbounty.org inurl: reports intext: "example.com"
+
+#Juicy Extensions
+> site: "example[.]com" ext:log | ext:txt | ext:conf | ext: cnf | ext:ini |
+ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git |
+ext:svn | ext:htpasswd | ext: htaccess
+
+#XSS prone parameters
+> inurl:q= | inurl:s= | inurl: search= | inurl:query= | inurl: keyword= |
+inurl:lang= inurl:& site:example.com
+#Open Redirect prone parameters
+> inurl:url= | inurl: return= | inurl: next= | inurl: redirect= | inurl:redir= |
+inurl:ret= | inurl: r2= | inurl:page= inurl:& inurl:http site:example.com
+====================Join Our Telegram Channel
+https://t.me/ctftm
+
+
+Some Important Google Dorks::
+
+cache:example.com
+site:example.com
+filetype:pdf
+filetype:pdf & (before:2022-01-01 after:2023-01-01)
+related:www.google.com
+intext:"Google Dork Query"
+inanchor:"cyber attacks"
+example1 | example2 - dork
+example1 | example2
+intitle:"Index of /"
+intitle:"Apache2 Debian Default Page"
+intitle:"Index of /" or intitle:"Browse Directory"
+intitle:"config.json"
+intitle:"index of" inurl:.git
+intitle:"remote desktop inurl:rdweb"
+intitle:"Index of /ftp"
+
+#dorks
+
+
+Shodan Dork :: https://mr-koanti.github.io/shodan
+Github Dork :: https://mr-koanti.github.io/github.html
+Bug Bounty Helper :: https://dorks.faisalahmed.me/#
+
+
+I found lot bugs using this dorks in github
+
+"Target.com" language:yml
+"Target. com" language:yml "_key"
+"Target. com" language:yml "admin"
+"Target. com" language:yml "root"
+"Target. com" language:yml "host"
+
+
+Some Shodan Dorks that might useful in Bug Bounty.
+
+1. org:"http://target. com"
+2. http.status:"<status_code>"
+3. product:"<Product_Name>"
+4. port:<Port_Number> “Service_Message”
+5. port:<Port_Number> “Service_Name”
+6. http.component:"<Component_Name>"
+7. http.component_category:"<Component_Category>
+8. http.waf:"<firewall_name>"
+9. http.html:"<Name>"
+10. http.title:"<Title_Name>"
+11. ssl.alpn:"<Protocol>"
+12. http.favicon.hash:"<Favicon_Hash>"
+13. net:"<Net_Range>" (for e.g. 104.16.100.52/32)
+14. http://ssl.cert.subject.cn:"<http://Domain .com>"
+15. asn:"<ASnumber>"
+16. hostname:"<hosthame>"
+17. ip:"<IP_Address>"
+18. all:"<Keyword>"
+19. “Set-Cookie: phpMyAdmin”
+20. “Set-Cookie: lang="
+21. “Set-Cookie: PHPSESSID"
+22. “Set-Cookie: webvpn”
+23. “Set-Cookie:webvpnlogin=1"
+24. “Set-Cookie:webvpnLang=en”
+25. “Set-Cookie: mongo-express="
+26. “Set-Cookie: user_id="
+27. “Set-Cookie: phpMyAdmin="
+28. “Set-Cookie: _gitlab_session”
+29. “X-elastic-product: Elasticsearch”
+30. “x-drupal-cache”
+31. “access-control-allow-origin”
+32. “WWW-Authenticate”
+33. “X-Magento-Cache-Debug”
+34. “kbn-name: kibana”
+
+
+Google Dork - API Endpoints 🔗
+
+site:example.jcom inurl:api | site:*/rest | site:*/ v1 | site:*/v2 | site:*/v3
+Find juicy API Endpoints for further testing.
+
+
+Google Dork :
+https://github.com/TakSec/google-dorks-bug-bounty/
+https://taksec.github.io/google-dorks-bug-bounty/
+
+
+Google Dork - API Endpoints ⚙️
+site:example[.]com inurl:api | site:*/rest | site:*/v1 | site:*/v2 | site:*/v3
+
+Find juicy API Endpoints for further testing 🎯
+
+site:example[.]com - Put your bug bounty target here!
+inurl:api - Finds URLs with "api".
+site:*/rest - Targets RESTful APIs.
+site:/v1 | site:/v2 | site:*/v3 - Looks for API version paths
+
+I used "site:" instead of "inurl:" because it removes false positives due to the way google queries work.
+
+
+Google Dork - Login Pages
+inurl:login | inurl:signin | intitle:login | intitle:signin | inurl:secure site:example[.]com
+Find hidden login pages and admin panels
+
+Vulnerabilities to test for:
+🆕 Account Creation
+🔐 Default Credentials
+🗡️ SQLi Auth Bypass
+💪 Brute Force
+📬 Password Reset Host Header Poisoning
+🕸️ XSS on error or GET params
+
+#bugbounty #bugbountytips #cybersecurity #pentesting #seo #google #hacking #appsec
+
+
+How I Hacked NASA Using Google Dork in Just 10 Minutes : https://medium.com/@gaurish.main/how-i-hacked-nasa-using-google-dork-in-just-10-minutes-6ce3b3401512
+
+intitle:"index of /" site:nasa.gov
+intitle:"index of /" "database" site:nasa.gov
+intitle:"index of /" "admin" site:nasa.gov
+intitle:"index of /" "contact" site:nasa.gov
+
+
+Top 20 Google Dorks
+
+🐘 PHP
+ext:php inurl:? site:example[.]com
+
+🤫 Juicy Extensions
+ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess site:example[.]com
+
+
+🔰 Google Dorks for Bug Bounty
+
+A list of Google Dorks for Bug Bounty, Web Application Security, and Pentesting
+
+
+#Broad domain search w/ negative search
+
+> site:example.com -www-shop-share -ir -mfa
+
+
+#PHP extension w/ parameters
+
+> site:example.com ext: php inurl:?
+
+
+Disclosed XSS and Open Redirects
+
+> site:openbugbounty.org inurl: reports intext: "example.com"
+
+
+#Juicy Extensions
+
+> site: "example[.]com" ext:log | ext:txt | ext:conf | ext: cnf | ext:ini |
+
+ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git |
+
+ext:svn | ext:htpasswd | ext: htaccess
+
+
+#XSS prone parameters
+
+> inurl:q= | inurl:s= | inurl: search= | inurl:query= | inurl: keyword= |
+
+inurl:lang= inurl:& site:example.com
+
+
+#Open Redirect prone parameters
+
+> inurl:url= | inurl: return= | inurl: next= | inurl: redirect= | inurl:redir= |
+
+inurl:ret= | inurl: r2= | inurl:page= inurl:& inurl:http site:example.com
+====================
+Join Our Telegram Channel
+https://t.me/ctftm
+
+
+https://github.com/cipher387/Dorks-collections-list/
+https://github.com/sushiwushi/bug-bounty-dorks
+
+
+▪️SQL Injection dorks for government websites :
+
+inurl:index.php?id= site:gov.uk
+inurl:index.php?id= site:gov
+inurl:news.php?id= site:gov.uk
+inurl:oferta.php?id= site:gov.uk
+inurl:trainers.php?id= site:gov.uk
+inurl:article.php?ID= site:gov.uk
+inurl:play_old.php?id= site:gov.uk
+inurl:declaration_more.php?decl_id= site:gov.uk
+inurl:Pageid= site:gov
+inurl:pagina.php?left= site:.gov.au
+inurl:pagina.php?file= site:.gov.fr
+inurl:layout.php?id=120' site:gov.uk
+inurl:principal.php?id=123' site:gov.uk
+inurl:standard.php?base_dir= site:gov
+inurl:home.php?where= site:gov.uk
+inurl:page.php?sivu= site:gov.uk
+inurl:*inc*.php?adresa= site:gov
+inurl:padrao.php?str= site:gov
+inurl:include.php?my= site:.gov.uk
+inurl:show.php?home= site:gov.uk
+inurl:index.php?lid=20 site:gov.uk
+inurl:principal.php?id=30 site:gov
+inurl:file.php?id=205 site:gov.uk
+inurl:info.php?id=25155 site:gov.um
+inurl:enter.php?id=203 site:gov.uk
+inurl:general.php?id=50 site:gov
+inurl:principal.php?id=705 site:gov.za
+inurl:standard.php?id=303 site:.gov.ie
+nurl:nota.php?v= site:gov.bc.ca
+inurl:home.php?str= site:ed.gov
+inurl:press.php?panel= site:gov.mu
+inurl:page.php?mod= site:gov
+inurl:default.php?param= site:gov
+inurl:down*.php?texto= site:go.af
+inurl:mod*.php?dir= site:gov.ie
+inurl:view.php?where= site:gov.za
+inurl:blank.php?subject= site:gov.br
+inurl:path.php?play= site:gov.uk
+inurl:base.php?l= site:gov.au
+
+Replace the " gov.*** " with your target country domain. For example,
+
+.in
+.br
+.fr.
+
+———————————
+Invite Your Friends➛ https://t.me/ctftm
+
+
+I found lot bugs using this dorks in github
+
+"Target.com" language:yml
+"Target. com" language:yml "_key"
+"Target. com" language:yml "admin"
+"Target. com" language:yml "root"
+"Target. com" language:yml "host"
+
+credit: mouka0x
+
+#bugbountytip #bugbountytips #infosec
+
+
+Google Dork To Open Redirect
+
+site:*.target.com inurl:%2f
+
+%2f Is the URL encoding for /
+
+#bugbountips
+SQL injection Tip 🔥📢
+
+site:example[.]com intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"
+
+NB: - I missed the source, the above dork was copied from a random #infosec @Medium blog
+
+#bugbountytips #Hacking #BugBounty #web #SQL
+
+
+

