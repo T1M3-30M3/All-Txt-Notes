@@ -1,0 +1,109 @@
+--CSRF--
+▶ Remember CSRF on login/logout is not sensitive and out of scope
+▶ Checking for pages where sensitive data is stored and sensitive action can be performed
+▶ Making a CSRF PoC and updating the data on account
+▶ No input validation or sanitization is dangerous
+
+--Common Method:
+▶ First login website and then goto profile
+▶ then edit something and intercept the request
+▶ then right click > engagement tools > Genarate CSRF POC > Copy Html > and save it
+▶ And open the html file and execute it. If you see that name or something change that means it is bug
+
+--CSRF to Account TakeOver:
+▶ CSRF to TO by changing email id and password
+▶ Getting complete access of the account, permanent lockout of user
+
+▶ First Create 2 account in a website
+▶ then go to attacker account and edit their profile and intercept it
+▶ then right click > engagement tools > Genarate CSRF POC > Copy Html > and save it
+▶ And open the html file and execute it. If you see that name or something change that means it is bug
+
+--CSRF by Changing Method:
+▶ Some application validate based on POST methods for submitting user data for csrf
+▶ changing the method from POST to GET or vice versa
+
+--Chaining CSRF with XSS:
+▶ We are unable to perform csrf due to protection in place and all our requests with invalidation
+▶ We will get the csrftoken + cookie with help of XSS
+▶ unilisting the csrftoken protection token further make a CSRF attack
+▶ Fixing csrf but not other vulns which token can be leaked is dangerous
+▶ Thus by chaining XSS, we can do bypass the CSRF protection
+▶ Last words, if anyone got the cookie, you cannot protect CSRF
+
+--Target:
+▶ Profile Information
+▶ Changing Password
+▶ changing email
+▶ Changing Balance
+▶ Changing Method (GET/POST)
+
+--CSRF Migrations:
+▶ Check for all the requests that come to a server if coming a legitimate source
+▶ Always use rolling/dynamic tokens to protect from CSRF
+▶ Authenticate a request by some kind of protection which can be xsrf, CSRF tokens
+
+CSRF - Bonus Tricks
+▶ Remove Tokens : Some application validate based on if token param is present in the cookie rather than the correct value. Remove the token and submit the request
+▶ Bypass CSRF protection by identifying the csrf tokens are static and doesnot change keeping static csrf, xsrf token is dargerous
+▶ Some application validate based on Token is present of same entropy or not. Change the CSRF token but keep the length and entropy same and win
+
+▶ Reports:
+https://hackerone.com/reports/463330
+https://hackerone.com/reports/177472
+https://hackerone.com/reports/339352
+https://hackerone.com/reports/152569
+https://hackerone.com/reports/177472
+https://hackerone.com/reports/419891
+https://hackerone.com/reports/127703
+https://hackerone.com/reports/395731
+https://hackerone.com/reports/169699
+https://hackerone.com/reports/225326
+https://hackerone.com/reports/314518
+https://hackerone.com/reports/334139
+https://hackerone.com/reports/192131
+https://hackerone.com/reports/26866
+
+--CSRF-Breakdown of H1 Reports:
+▶ Always test for CSRF on sensitive actions
+▶ look for token, xsrf, csrf etc in sensitive fields
+▶ Try to change email and password to make a ATO
+▶ laways try for CSRF everywhere easy to win
+
+
+--CORS--
+
+Best Case 01:
+
+Request:					Response:
+Origin: attacker.com				Access-control-allow-origin:attacker.com
+						Access-control-allow-credentials:true
+
+Best Case 02:
+
+Origin: attacker.com				Access-control-allow-origin:null
+						Access-control-allow-credentials:true
+
+Best Case 03:
+
+Origin: attacker.com				Access-control-allow-origin:*
+						Access-control-allow-credentials:true
+
+curl "https://abc.com/wp-json" -I
+curl "https://abc.com/wp-json" -I -H Origin:https://xyz.xyz
+
+Exploit:
+
+https://github.com/topavankumarj/CORS-Exploit-Script
+https://github.com/ipentest/cors-exploit/blob/master/cors-exploit.html
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/CORS%20Misconfiguration/README.md
+
+Tools:
+https://github.com/chenjj/CORScanner
+
+
+
+
+
+
+ 

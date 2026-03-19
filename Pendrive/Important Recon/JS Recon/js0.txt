@@ -1,0 +1,33 @@
+<!--method 01:-->
+git clone https://github.com/m4ll0k/SecretFinder
+katana -u <link> -jc -d 2 | grep ".js$" | uniq | sort > text.txt
+cat text.txt | while read url; do python3 SecretFinder/SecretFinder.py -i $url -o cli >> secret.txt; done
+echo x.txt | gau | grep ".js$" | uniq | sort >> jsfiles.txt
+
+<!--Oneliner:-->
+cat alive.txt | rush 'hakrawler -plain -js -depth 2 -url {}' | rush 'python3 /root/Tools/SecretFinder/SecretFinder.py -i {} -o cli' | anew secretfinder
+
+gobuster dir -u http://example.com -w /usr/share/wordlists/dirbuster/directory-list.txt -x js -t 100 -e .js
+
+dirb http://example.com -w /usr/share/wordlists/dirbuster/directory-list.txt -X js -t 100 -e .js
+
+<!--Method02:-->
+cat domains.txt | katana | grep js | httpx -mc 200 | tee js.txt
+nuclei -l js.txt -t ~/nuclei-templates/exposures/ -o js_bugs.txt
+
+-----
+file="js.txt"
+# Loop through each line in the file
+while IFS= read -r link
+do
+    # Download the JavaScript file using wget
+    wget "$link"
+done < "$file"
+-----
+
+grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret|smtp" *.js
+
+<!--method03:-->
+subfinder -d domain.com | httpx -mc 200 | tee subdomains.txt && cat subdomains.txt | waybackurls | httpx -mc 200 | grep .js | tee js.txt
+nuclei -l js.txt -t ~/nuclei-templates/exposures/ -o js_exposures_results.txt
+grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret" /path/to/directory/*.js

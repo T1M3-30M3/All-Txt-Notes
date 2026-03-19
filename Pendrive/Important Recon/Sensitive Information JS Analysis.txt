@@ -1,0 +1,69 @@
+JS Analysis:
+
+Motive:
+--> Find a target
+--> Find all the possible subdomains or links from the target as well its subdomains
+--> Find all urls of domains
+--> Filters js urls
+--> Sort them and try to find secrets in js links
+
+Tools : katana, subjs, mantra
+BurpExtention : jsminer, Sensitive Discoverer, JS link finder
+
+JS Analyzer:
+https://github.com/ayadim/Nuclei-bug-hunter/blob/main/file/web/js/js-analyse.yaml
+
+Domain to JS:
+sudo subfinder -d rapyd.net -o 1.txt | sudo sublist3r -d rapyd.net -o 2.txt | sudo assetfinder --subs-only rapyd.net > 3.txt | sudo findomain -t rapyd.net --output
+cat * > full.txt | sort | uniq > final.txt
+cat final.txt | httpx > 200.txt
+cat 200.txt | subjs
+katana -u rapyd.net -d 5 -jc | grep ".js$"
+katana -list 200.txt -jc | grep ".js$" | uniq | sort
+katana -list 200.txt -jc -silent | grep ".js$" | tee katana.txt
+katana -list 200.txt -jc -silent -o katana.txt| grep ".js$"
+cat 1.txt 2.txt > 3.txt
+sort 1.txt 2.txt | uniq -d
+cat 3.txt | uniq | sort
+cat name.txt | while read url; do python3 SecretFinder/SecretFinder.py -i $url -o cli ; done
+cat name.txt | while read url; do python3 SecretFinder/SecretFinder.py -i $url -o cli > secret.txt; done
+grep -r -E 'aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret' x.txt
+nuclei -l x.txt -t nuclei-templates/javascript/
+cat x.txt | mantra
+
+Details:
+cat 200.txt | subjs
+cat 200.txt | subjs -c 40 -t 30
+subjs -i 200.txt
+cat 200.txt| gau | subjs
+
+katana -u https://tesla.com
+katana -u https://tesla.com,https://google.com
+cat url_list.txt
+echo https://tesla.com | katana
+cat domains | httpx | katana
+katana -u https://youtube.com
+
+cat x.txt | mantra
+
+git clone https://github.com/m4ll0k/SecretFinder
+python -m pip install -r requirements.txt or pip install -r requirements.txt
+
+Github Recon:
+
+--> Automated - Different tools are used
+--> Manual - Manual Human 
+
+Github Recon : https://drive.google.com/file/d/1rem0npoB9_EQoSMr4QxPsRcJQhgTUL4f/view
+Github Recon : https://raw.githubusercontent.com/Vaidik-pandya/Github_recon_dorks/main/gitdork.txt
+
+ApprGitDorker:   https://github.com/obheda12/GitDorker
+gitGraber:   https://github.com/hisxo/gitGraber
+trufflehog:  https://github.com/trufflesecurity/truffleHog
+
+Note : https://medium.com/@pawan_rawat/github-recon-for-finding-sensitive-information-aecdeb9c9dce
+
+apt install python3-termcolor
+apt install python3-tqdm
+
+Github API : Account > Settings > Developer > Personal Access TOken > Token > 

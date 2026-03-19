@@ -1,0 +1,11 @@
+Tools you need: 
+subfinder - https://github.com/projectdiscovery/subfinder
+httpx - https://github.com/projectdiscovery/httpx
+waybackurls - https://github.com/tomnomnom/waybackurls
+
+
+MAIN ONELINER: 
+subfinder -d domain.com | httpx -mc 200 | tee subdomains.txt && cat subdomains.txt | waybackurls | httpx -mc 200 | grep .js | tee js.txt
+
+GREP ONELINER FOR EXTRACTING TOKENS, AUTH,... :
+cat js.txt | grep -r -E “aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret”

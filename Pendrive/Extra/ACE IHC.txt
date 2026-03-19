@@ -1,0 +1,62 @@
+Cracking Method : Account Checker, Open Bullet/ Silver Bullet/Black Bullet, Stom, Senty MBA, Sniper
+
+Process to Cracking Any Account : ComboList[Keyword + Proxy + Combo Maker], Proxy, Checker/Config[Tools]
+
+Combo List : Mix Combo, Private Combo, HQ/UHQ Combo, Mail Access Combo
+
+BIN: 6 Digits. Example : 417805, 518502
+
+Card Number : American Express[3], Visa[4], MasterCard[5]
+
+Bin Genarator > Bin Checker > Credit Card Gen > 
+
+Bin Genarator:
+https://www.teamcsb.com/bin-genarator/
+https://www.vccgenerator.org/
+https://binov.net/
+
+Bin Checker:
+https://teamcsb.com/bin-checker/
+https://bincheck.io/
+https://www.bincodes.com/bin-checker/
+https://dnschecker.org/bin-checker.php
+https://binchecker.pro/
+
+Credit Card Genarator:
+https://namso-gen.com/?tab=basic&network=random
+https://www.bincodes.com/bin-creditcard-generator/
+https://www.akto.io/tools/credit-card-generator
+https://namso-gen.com/
+
+Fake Email:
+https://www.emailnator.com/
+https://www.mailticking.com/
+https://temp-mail.io/en
+https://temp-mail.org/en/
+
+Fake Identity:
+https://www.fakenamegenerator.com/
+https://www.fakexy.com/
+
+Bin not Working:
+- Use CCN
+- Use Good VPN
+- Clear Cookies
+- Use Different Browser [Firefox, DuckDuckGO, Brave]
+
+Carding: Credit Card, Live Card, Charged Card 
+
+Live Card Checker:
+https://checker.top/
+https://dnschecker.org/credit-card-validator.php
+https://mytoolz.net/tools/free-cc-checker
+https://mytoolz.net/tools/checkers
+
+https://trickbd.com/binning/1617168
+https://trickbd.com/binning/1619946
+
+Payment GateWay: Stripe, 2Checkout, SSLCommerz, ShourjoPay, AmarPay
+
+
+
+

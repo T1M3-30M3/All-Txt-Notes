@@ -1,0 +1,27 @@
+Finding Subdomains : subfinder -d www.example.com -all -recursive -o subdomains.txt
+
+Filtering Live Subdomains : cat subdomains.txt | httpx -ports 80,443,8080 | tee live_subdomains.txt
+
+Finding JavaScript Files : katana -u https://example.com -d 5 -jc | grep '\.js$' | tee alljs.txt
+
+Finding JavaScript Files Using GAU : echo https://example.com | gau | grep '\.js$' | anew alljs.txt
+
+Extracting Unique and Valid URLs : cat Your.txt | uro | sort -u | httpx-toolkit -mc 200 -o OUTPUT.txt
+
+Scanning for Leaks in JavaScript Files : cat OUTPUT.txt | jsleak -s -l -k | tee jsleak.txt
+
+Credentials Disclosure Search Using nuclei : cat OUTPUT.txt | nuclei -t /home/jiraiya/nuclei-templates/http/exposures/ -c 30
+
+Using Lazyegg for Scanning : cat /home/Your/OUTPUT.txt | xargs -i{} bash -c 'echo -e "\ntarget : {}\n" && python lazyegg.py "{}" --js_urls --domains --ips --leaked_creds --local_storage'
+
+Directory Fuzzing with FFUF : ffuf -request req.txt -request-proto https -w playloadpath -c -mr "root:"
+
+Finding Local File Inclusions (LFI) : echo www.example.com | waybackurls | gf lfi | urldedupe | tee crawlfi.txt
+
+Finding XSS Vulnerabilities : echo https://example.com | gau | gf xss | uro | Gxss | kxss | tee xss.txt
+
+Filtering XSS URLs : cat xss.txt | grep -oP '^URL: \K\S+' | sed 's/=.*/=/' | sort -u > final.txt
+
+Scanning for Alive Subdomains : echo https://example.com | httpx-toolkit -ports 80,443,8080,8000,8888 -threads 200 > alivesubdomain.txt
+
+Finding All URLs Using Katana : katana -list https://example.com -d 5 -ps -pss waybackarchive, commoncrawl, alienvault -kf -jc -fx -ef woff, css,png,svg,jpg,woff2,jpeg,gif,svg > allurls.txt

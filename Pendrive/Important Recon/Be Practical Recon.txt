@@ -1,0 +1,289 @@
+The Art Of Web Reconnaissance Bug Bounty Ethical Hacking : https://www.udemy.com/course/the-art-of-web-reconnaissance-bug-bounty-ethical-hacking/
+
+* Full Site Check:
+https://web-check.as93.net
+
+* Discovering Domains:
+https://www.whoxy.com/
+
+amass intel -org "SONY" -v
+amass intel -org "Google LLC" -v
+amass intel -asn <value> -o asn.txt -v
+amass intel -asn 9619 -v -o x.txt
+whois <link>
+
+Find Asn Number:
+https://hackertarget.com/as-ip-lookup/
+https://mxtoolbox.com/SuperTool.aspx
+https://bgp.he.net/
+
+Set API in Subfinder: subfinder -ls[go to yaml file and put API] → subfinder -d <link> -sources <source Name>
+For Counting: wc name.txt
+
+Find Suddomain:
+Subfinder -d <link>
+sublist3r -d <link>
+
+
+Find subdomain and Sorting:
+sudo apt install amass -y
+amass enum -d <link> -o name.txt -v
+cat name.txt | grep "<link>"
+cat name.txt | grep -o "<link>"
+cat name.txt | grep -Eo "([a-zA-Z0-9.-]+\.)*<link>"
+cat name.txt | grep -Eo "([a-zA-Z0-9.-]+\.)*<link>" | sort -u
+
+
+Add Custom Api:
+
+Process 01:
+sudo apt install amass -y
+amass enum -d <link> -o x.txt
+amass enum -list
+Go to https://github.com/ykankaya/Amass-1/blob/master/examples/config.ini and copy the file and put any api 
+amass enum -list --config config.ini
+amass enum -list
+
+Process 02:
+Go to https://github.com/owasp-amass/amass/blob/master/examples/config.yaml and Copy the flie 
+options:
+datasources: "./datasources.yaml" [Comment all the line expect those line]
+then again go to https://github.com/owasp-amass/amass/blob/master/examples/datasources.yaml and Copy the flie 
+nano config.yaml
+nano datasources.yaml [copy those and put API]
+amass enum -list
+amass enum -list --config config.yaml 
+
+
+* Finding Subdomain By BruteForcing:
+
+sudo apt install seclists -y
+seclists
+cd /usr/share/seclists/Discovery/DNS
+
+sudo apt install ffuf -y 
+ffuf -u "http://FUZZ.<link>" -w x.txt
+
+sudo apt install gobuster -y
+gobuster dns -d <link> -w words.txt -o gobuster
+
+amass enum -d <link> -brute -w words.txt -v
+
+sudo apt install golang -y
+git clone https://github.com/d3mondev/puredns
+cd puredns
+go build main.go
+sudo mv main /bin/puredns
+
+Download Resolvers from those links
+puredns bruteforce words.txt <link> --resolvers resolvers.txt
+sudo apt install massdns -y
+
+https://github.com/six2dez/resolvers_reconftw/blob/main/resolvers.txt
+https://github.com/blechschmidt/massdns/blob/master/lists/resolvers.txt
+https://github.com/trickest/resolvers/blob/main/resolvers.txt
+https://github.com/T1M3-30M3/My_Methalogy/blob/master/Txt%20Files/resolvers.txt
+
+
+* Subdomain By Online:
+
+https://subdomainfinder.c99.nl/
+https://www.nmmapper.com/sys/tools/subdomainfinder/
+https://seranking.com/free-tools/subdomain-finder.html
+https://osint.sh/subdomain/
+https://subdomains.whoisxmlapi.com/
+https://hackertarget.com/find-dns-host-records/
+
+
+
+OneLiner:
+
+amass enum -d <link> -o name.txt -nocolor -v
+cat name.txt | grep -Eo "([a-zA-Z0-9.-]+\.)*<link>" > name.txt
+subfinder -d <link> -o subfinder.txt -v
+cat name.txt subfinder.txt | sort -u > sorted.txt
+
+amass enum -d <link> -o amass.txt -nocolor -v | grep -Eo "([a-zA-Z0-9.-]+\.)*<link>" > name.txt && subfinder -d <link> -o subfinder.txt && cat amass.txt subfinder.txt | sort -u > sorted.txt
+
+sudo apt install golang
+git clone https://github.com/projectdiscovery/httpx
+cd httpx
+cd cmd
+cd httpx
+go build httpx.go
+./httpx
+sudo mv /bin/
+
+cat name.txt | httpx -o name.txt
+cat name.txt | httpx -o name.txt -title
+
+
+* Find Origin IP:
+
+sudo apt install python3 python3-pip
+https://github.com/christophetd/CloudFlair
+cd CloudFlair
+pip3 install -r requirements.txt
+export CENSYS_API_ID= [Find your API from here : https://search.censys.io/]
+export CENSYS_API_SECRET=
+python3 cloudflair.py --help
+ping <link> → whois <ip> [if you are finding cloudfare that means here has a cloudware you can use wafw00f for verfity]
+python3 cloudflair.py <link>
+
+* Create a account https://securitytrails.com/ or https://search.censys.io/ search by domain you may find real ip
+
+
+* Port Scanning:
+sudo apt install nmap -y
+nmap -sV -sC <link> -vv
+nmap -sV -sC <link> -vv -T 5 -p-
+nmap -sV -sC <ip> -p <pnum> --script=vuln -vv
+
+
+sudo apt install naabu -y 
+subfinder -d <link> -o x.txt -v
+naabu -l x.txt -o port.txt -top-ports -v
+
+
+* Content Discovery:
+
+sudo apt install ffuf -y
+sudo apt install dirsearch -y
+pip3 install dirsearch
+sudo apt install seclists -y 
+
+dirsearch -u example.com
+dirsearch -u example.com -x 403,301
+dirsearch -u example.com --exclude-status=403,401
+dirsearch -u example.com -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt
+dirsearch -u example.com -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -x 403
+dirsearch -u "http://localhost" -H "Authorization: Bearer YmF0bWFu"
+dirsearch -u example.com -w /usr/share/seclists/Discovery/Web-Content/common.txt -r -x 403 -o dir.txt
+
+dirsearch -e php,html,js -u example.com
+dirsearch -e php,html,js -u example.com common.txt
+dirsearch -e php,html,js -u example.com -r
+dirsearch -e php,html,js -u example.com -r -R 3
+dirsearch -e php,html,js -u example.com -t 30
+dirsearch -e php,html,js -u example.com -i 200,204,400,403 -x 500,501,429
+dirsearch -e php,html,js -u example.com -proxy 127.0.0.1:8080
+dirsearch -e php,html,js -u example.com -o x.txt
+
+
+ffuf -u "<link>/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt 
+ffuf -u "<link>/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -o ffuf.txt
+ffuf -u "<link>/FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt | tee -a dir.txt
+
+
+* ffuf json file to extract link ::
+
+import json
+
+filename = input("Enter JSON file from ffuf : ")
+
+with open(filename,'r') as file:
+    final = json.load(file)
+
+data = final['results']
+for url in data:
+    print(url['url'])
+
+
+* Discovery Content Like a Pro::
+
+ffuz -u <link/FUZZ> -w /usr/share/seclists/Discovery/Web-Content/common.txt
+ffuz -u <link/FUZZuser> -w /usr/share/seclists/Discovery/Web-Content/common.txt [suppose you have a link http:/www.abc.xyz/viewuser]
+ffuz -u <link/viewuser> -w /usr/share/seclists/Discovery/Web-Content/common.txt
+
+
+* Passive Recon:
+
+git clone https://github.com/lc/gau
+cd gau
+cd cmd
+cd gau
+go build main.go
+sudo mv main /bin/gau
+
+go install github.com/tomnomnom/waybackurls@latest
+cat domains.txt | waybackurls > urls
+
+git clone https://github.com/tomnomnom/waybackurls
+cd waybackurls
+go build main.go
+sudo mv main /bin/waybackurls
+
+echo "<link>" | waybackurls
+echo "<link>" | waybackurls > way.txt
+cat way.txt | sort -u > sorted.txt
+
+echo "<link>" | gau > gau.txt && echo "<link>" | waybackurls > way.txt && cat gau.txt way.txt | sort -u >sorted.txt
+
+go install github.com/projectdiscovery/katana/cmd/katana@latest
+
+git clone https://github.com/projectdiscovery/katana
+cd katana
+cd cmd
+cd katana
+go build main.go
+sudo mv main /bin/katana
+
+katana -u <link> -jc -d 4 -o katana.txt
+
+katana -u https://tesla.com
+katana -u https://tesla.com,https://google.com
+
+$ cat url_list.txt
+https://tesla.com
+https://google.com
+katana -list url_list.txt
+
+echo https://tesla.com | katana
+cat domains | httpx | katana
+
+katana -u https://tesla.com -headless -no-sandbox
+katana -u https://tesla.com -headless -no-incognito
+katana -u https://tesla.com -fs dn
+
+$ cat in_scope.txt
+login/
+admin/
+app/
+wordpress/
+katana -u https://tesla.com -cs in_scope.txt
+
+$ cat out_of_scope.txt
+/logout
+/log_out
+katana -u https://tesla.com -cos out_of_scope.txt
+
+katana -u https://tesla.com -ns
+katana -u https://tesla.com -do
+katana -u https://tesla.com -jc
+katana -u https://tesla.com -f qurl -silent
+
+
+* You Must follow :
+1. Passive enum
+2. Identify pattern
+3. Active enum [katana]
+4. Dive deep
+5. Use common.txt wordlist
+6. Use other wordlists
+7. Add new words to your wordlists
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

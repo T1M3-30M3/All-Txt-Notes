@@ -1,0 +1,181 @@
+-- Finding exposed directories:
+
+intitle:"Index of" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|wallywashis)
+
+-- Discovering open webcams:
+
+inurl:"viewerframe?mode=motion"
+
+-- Finding email lists:  
+
+filetype:txt @gmail.com OR @yahoo.com OR @hotmail.com OR @aol.com
+
+-- Uncovering vulnerable web servers:
+
+intitle:"Welcome to Windows 2000 Internet Services"
+
+-- Discovering exposed CCTV cameras:
+
+inurl:ViewerFrame?Mode=Motion
+
+-- Finding SQL injection vulnerabilities:
+
+inurl:index.php?id=
+
+-- Uncovering sensitive information in files:
+
+intitle:"Index of" password.txt
+
+-- Discovering login pages:
+
+inurl:admin/login
+
+-- Finding exposed databases:
+
+intext:"phpMyAdmin" "running on" inurl:"main.php"
+
+-- Discovering vulnerable WordPress sites:
+
+inurl:/wp-content/plugins/revslider/
+
+-- Finding open FTP servers:
+
+intitle:"index of" inurl:ftp
+
+-- Discovering exposed configuration files:
+
+intitle:"index of" config.yml
+
+-- Finding open Git repositories:
+
+intitle:index of .git
+
+-- Discovering vulnerable Joomla installations:
+
+inurl:/index.php?option=com_joomla
+
+-- Finding sensitive files:
+
+intitle:"index of" password OR passcode OR passphrase OR keyfile
+
+-- Discovering exposed MongoDB instances:
+
+intitle:"mongodb status" intext:"topologyVersion"
+
+-- Finding open network devices:
+
+intitle:"open network devices"
+
+-- Discovering exposed subdomains:
+
+site:\*.example.com -www
+
+-- Finding vulnerable Apache Tomcat installations:
+
+intitle:"Apache Tomcat" intext:"If you're seeing this, you've successfully installed Tomcat"
+
+-- Discovering exposed GitLab repositories:
+
+intitle:"GitLab"
+
+-- Finding exposed server directories:
+
+intitle:"index of" /admin
+
+-- Discovering sensitive Google Drive files:
+
+site:drive.google.com confidential
+
+-- Finding exposed Jenkins instances:
+
+intitle:"Dashboard [Jenkins]"
+
+-- Discovering exposed AWS S3 buckets:
+
+site:s3.amazonaws.com
+
+-- Finding vulnerable Magento installations:
+
+inurl:/index.php/admin
+
+-- Discovering exposed log files:
+
+intitle:"index of" error.log
+
+-- Finding open Elasticsearch instances:
+
+intitle:"Kibana" intext:"Welcome to Elastic"
+
+-- Discovering exposed API keys:
+
+filetype:env intext:API_KEY
+
+-- Finding exposed phpMyAdmin installations:
+
+inurl:"phpmyadmin/index.php"
+
+-- Discovering vulnerable OpenCart installations:
+
+inurl:/admin/config.php
+
+-- Finding exposed sensitive documents:
+
+filetype:pdf "Confidential"
+
+-- Discovering exposed network devices:
+
+intitle:"Device name" inurl:home.htm
+
+-- Finding open RDP (Remote Desktop Protocol) servers:
+
+intitle:"Remote Desktop Web Connection"
+
+-- Discovering exposed Firebase databases:
+
+intitle:"Firebase Console - Projects"
+
+-- Finding vulnerable Drupal installations:
+
+inurl:"/user/login" "Powered by Drupal"
+
+
+https://www.boxpiper.com/posts/top-35-google-dorks-list
+
+1. Amazon S3 Buckets
+site:s3.amazonaws.com "gov."
+
+2.Azure Blob Storage
+site:blob.core.windows.net "gov."
+
+3. Google Cloud Storage
+site:googleapis.com "gov."
+
+4. Google Drive Links
+site:drive.google.com "gov."
+
+5. Azure DevOps Repositories
+site:dev.azure.com "gov."
+
+6. Microsoft OneDrive
+site:onedrive.live.com "gov."
+
+7. DigitalOcean Spaces
+site:digitaloceanspaces.com "gov."
+
+8. Microsoft SharePoint
+site:sharepoint.com "gov."
+
+9. External Amazon S3 Buckets
+site:https://lnkd.in/dgdpTDJt "gov."
+
+10. Dual-Stack Amazon S3 Buckets
+site:https://lnkd.in/dPM76A3J "gov."
+
+11. Dropbox Shared Links
+site:dropbox.com/s "gov."
+
+12. Box Shared Links
+site:box.com/s "gov."
+
+13. Google Docs
+site:docs.google.com inurl:"/d/" "gov."

@@ -1,0 +1,84 @@
+SOC CB::
+
+Logs: A log is a recorded piece of information about events that happen in a system, application, or device. Logs are like a diary or history of what’s going on — helpful for monitoring, debugging, security analysis, and auditing.
+
+Various Types of Log:
+Application Logs: Messages about specific applications, including status, errors, warnings, etc.
+Audit Logs: Activities related to operational procedures crucial for regulatory compliance.
+Security Logs: Security events such as logins, permissions changes, firewall activity, etc.
+Server Logs: Various logs a server generates, including system, event, error, and access logs.
+System Logs: Kernel activities, system errors, boot sequences, and hardware status.
+Network Logs: Network traffic, connections, and other network-related events.
+Database Logs: Activities within a database system, such as queries and updates.
+Web Server Logs: Requests processed by a web server, including URLs, response codes,1 etc
+
+Windows Logs : C:\Windows\System32\winevt\Logs
+Linux Logs : /var/log/
+
+Log Analysis : 
+
+In Linux : cat, grep, awk, sed, sort, uniq
+
+Linux Command :
+
+du 
+du -a /home/
+du -a /home/ | grep user
+
+ls | grep -R "panse"
+grep -i "user" file_name
+grep -i "password" file_name
+grep "PATTERN" file_name
+
+cat file.txt | tr -s '[:lower:]' '[:upper:]'
+cat file_name | tr -s '[a-z]' '[A-Z]'
+
+awk [flags] [select pattern/find(sort)/commands] [input file]
+awk 'print $1' file_name
+awk 'BEGIN{FS=","} {print $1}' file_name
+awk 'print $2, $3,$4' file_name
+awk 'BEGIN {OFS="-"} {print $2, $3,$4}' file_name
+awk 'BEGIN {OFS=":"} {print $2, $3,$4}' file_name
+awk 'BEGIN {FS="," : OFS="-"} {print $2, $3,$4}' file_name
+
+sed
+sed ' ' file_name
+sed -n '3p' file_name
+sed -n '$p' file_name
+sed -n '3,5p' file_name
+sed -n '/india/p' file_name
+sed -n -e '2p' -e '4p' file_name
+sed -n -e '/India/p' -e '/Germany/p' file_name
+
+awk -F\" '{print $6}' access_log | sort | uniq -c | sort -fr
+awk '{print $1}' access_log # ip address (%h)
+awk '{print $1}' access_log | sort -fn | uniq
+awk '{print $2}' access_log # RFC 1413 identity (%l)
+awk '{print $3}' access_log # userid (%u)
+awk '{print $4,5}' access_log 
+awk '{print $9}' access_log 
+awk '{print $10}' access_log 
+awk -F\" '{print $2}' access_log # request line (%r)
+awk -F\" '{print $4}' access_log #referer
+awk -F\" '{print $6}' access_log # user agent
+awk -F\" '{print $6}' access.log | sed 's/\(([^;]+); ([^)]+)\) \([^)]*\)/\1/' | sort | uniq -c | sort -fr
+
+tail -5000 /access_log | awk '{print $7}' | sort | uniq -c | sort -rn | head -20
+tail -5000 /access_log | awk '{freq[$7]++} END {for (x in freq) {print freq[x], x}}' | sort -rn | head -20 
+
+tail -5000 /access_log | awk -F\" '{$7 !~ /POST/ {print $7}}' | sort | uniq -c | sort -rn | head -20
+tail -5000 /access_log | awk -F\" '{$7 !~ /POST/ {freq[$7]++}} END {for (x in freq) {print freq[x], x}}' | sort -rn | head -20
+
+tail -5000 /access_log | awk '{print $1}' | sort | uniq -c | sort -rn | head -20
+tail -5000 /access_log | awk '{freq[$1]++} END {for (x in freq) {print freq[x], x}}' | sort -rn | head -20
+
+IP=1.2.3.4; tail -5000 /access_log | fgrep $IP | awk -F\" '{$7 !~ /POST/ {print $7}}' | sort | uniq -c | sort -rn | head -20
+IP=1.2.3.4; tail -5000 /access_log | awk -F\" '{$7 !~ /POST/ && $1 ~ ip} {freq[$7]++} END {for (x in freq) {print freq[x], x}}' | sort -rn | head -20
+
+tail -5000 /access_log | awk '{print $11}' | tr -d '"' | sort | uniq -c | sort -rn | head -20
+tail -5000 /access_log | awk '{freq[$11]++} END {for (x in freq) {print freq[x], x}}' | tr -d '"' | sort -rn | head -20
+
+tail -5000 /access_log | cut -d/ -f12- | sort | uniq -c | sort -rn | head -20
+tail -5000 /access_log | awk '{sum+=$10} END {print sum/1048576}'
+
+

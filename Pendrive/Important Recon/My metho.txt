@@ -1,0 +1,88 @@
+--> Use Google Dorks, Github, Shodan, Censys, Securitytrails, nslookup, ping, dig, wappalyzer,fuzzing, 
+--> Use nmap, dirsearch, ffuf for open port scan and finding cool stuff and also try to find origin ip
+
+https://dnsdumpster.com/
+https://subdomainfinder.c99.nl/
+https://osint.sh/subdomain/
+https://hackertarget.com/find-dns-host-records/
+https://crt.sh/
+https://chaos.projectdiscovery.io/
+
+https://github.com/0xPugal/SubDomz
+https://github.com/RevoltSecurities/Subdominator
+https://github.com/musana/fuzzuli
+
+--> Finding subdomains -> sorting -> separate -> extracting links
+
+▶ sudo subfinder -d bracu.ac.bd -o 1.txt | sudo sublist3r -d bracu.ac.bd -o 2.txt | sudo assetfinder --subs-only bracu.ac.bd > 3.txt | sudo findomain -t bracu.ac.bd --output
+▶ cat * > full.txt | sort | uniq > final.txt
+▶ cat final.txt | httpx -status-code -mc 200 > 200.txt
+▶ cat final.txt | httpx -status-code -fc 200 > extra.txt
+▶ cat 200.txt | grep -o 'https://[^"]*\.bracu\.ac\.bd' 
+▶ cat 200.txt | grep -o 'https://[^"]*\.bracu.ac.bd' 
+▶ cat final.txt | grep -o 'https://[^"]*\.*' 
+▶ cat 200.txt | grep -oP '(?<=https://)[^"/]*\.bracu\.ac\.bd' 
+▶ gau teammatrix.net cyberbangla.org sattacademy.org jsbangladesh.com msbacademy.com sattacademy.org > links0.txt
+▶ gauplus teammatrix.net cyberbangla.org sattacademy.org jsbangladesh.com msbacademy.com sattacademy.org > link0.txt
+▶ cat x.txt | sudo waybackurls
+▶ cat x.txt | hakrawler
+▶ cat hak.txt| gauplus
+▶ sudo katana -list only200.txt
+▶ gospider -S hak.txt
+▶ sudo waybackurls <link>
+▶ sudo gau <link>
+▶ cat hak.txt| gau --subs --blacklist png,jpg,jpeg,gif,mp3,mp4,svg,woff,woff2,etf,eof,otf,css,exe,ttf,eot | tee passiveurls.txt >> /dev/null
+▶ cat * > full.txt | sort | uniq > final.txt
+
+cat final.txt | awk '{sub(/^https:\/\//, ""); print}'
+
+▶ amass enum -d pixabay.com -o amass.txt -nocolor -v | grep -Eo "([a-zA-Z0-9.-]+\.)*pixabay.com" > name.txt   
+
+▶ paramspider -d example.com
+▶ paramspider -l domains.txt
+
+▶ python3 waymore.py -i sub.domain.com -n -mode U -c config.yml
+▶ python3 waymore.py -i domain.com -mode U -c config.yml [API Need]
+▶ cat x.txt | python3 waymore.py
+▶ waymore -i www.cibil.com -mode U -oU w.txt
+
+--> Use GF And Separate your Pattern
+
+▶ cat subdomains.txt | waybackurls | sort -u >> waybackdata.txt | gf ssrf | tee -a ssfrparams.txt
+▶ cat waybackdata.txt| gf redirect | tee -a redirect.txt
+
+▶ cat urls.txt | gf xss | tee xss.txt
+▶ cat urls.txt | gf ssrf| tee ssrf.txt 
+▶ cat urls.txt | gf upload-fields| tee upload-fields.txt 
+▶ cat urls.txt | gf sqli| tee sqli.txt 
+▶ cat urls.txt | gf rce| tee rce.txt 
+
+▶▶▶ idor, lfi, rce, redirect, sqli, ssrf, ssti, xss
+
+--> Finding js and php and analyze it
+--> and use burpsuite
+--> Try Open Redirect also
+
+
+Common DOrks:
+site:target.com -www
+site:target.com intitle:”test” -support
+site:target.com ext:php | ext:html
+site:subdomain.target.com
+site:target.com inurl:auth
+site:target.com inurl:dev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

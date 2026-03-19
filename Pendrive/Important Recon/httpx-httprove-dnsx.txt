@@ -1,0 +1,33 @@
+cat subdomain.txt | wc -l
+cat subdomain.txt | httpx
+cat subdomain.txt | httpx -td
+cat subdomain.txt | httpx -status-code
+cat subdomain.txt | httpx -status-code -probe
+cat subdomain.txt | httpx -location -status-code
+cat subdomain.txt | httpx -location -status-code -server
+cat subdomain.txt | httpx -location -status-code -server -title -silent
+cat subdomain.txt | httpx -location -status-code -server -title | httpx-results.txt
+cat google.txt | httpx -status-code -mc 404
+cat google.txt | httpx -status-code -mc 200
+cat google.txt | httpx -mc 404,301
+
+cat domains.txt | httprobe
+cat domains.txt | httprobe -p http:81 -p https:8443
+cat domains.txt | httprobe -c 50
+cat domains.txt | httprobe -t 20000
+cat domains.txt | httprobe -s -p https:8443
+cat domains.txt | httprobe --prefer-https
+
+echo x.com | dnsx -recon
+subfinder -silent -d hackerone.com | dnsx -silent
+subfinder -silent -d hackerone.com | dnsx -silent -a -resp
+subfinder -silent -d hackerone.com | dnsx -silent -a -resp-only
+subfinder -silent -d hackerone.com | dnsx -silent -cname -resp
+subfinder -silent -d hackerone.com | dnsx -silent  -asn
+subfinder -silent -d hackerone.com | dnsx -silent -rcode noerror,servfail,refused
+echo 173.0.84.0/24 | dnsx -silent -resp-only -ptr
+echo AS17012 | dnsx -silent -resp-only -ptr 
+dnsx -silent -d facebook.com -w dns_worldlist.txt
+dnsx -silent -d domains.txt -w jira,grafana,jenkins
+cat domains.txt | dnsx -silent -w jira,grafana,jenkins -d -
+dnsx -l subdomain_list.txt -wd airbnb.com -o output.txt

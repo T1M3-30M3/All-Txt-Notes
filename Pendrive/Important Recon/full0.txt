@@ -1,0 +1,21 @@
+🚀 hashtag#Recon automation for hashtag#bughunters 
+
+✅ Subdomain discovery with Subfinder: subfinder -dL targets.txt -all -recursive -o target.txt
+
+✅ Check live subdomains with HTTPX: cat subdomains-target.txt | httpx -l subdomains-target.txt -ports 443,80,8080,8000,8888 -threads 200 > subdomains-target-alive.txt
+
+✅ Port scanning with Naabu: naabu -list subdomains-target.txt -c 50 -nmap-cli 'nmap -sV -sC' -o naabu-full.txt
+
+✅ Directory brute-forcing using Dirsearch: python3 dirsearch.py -l subdomains-target-alive.txt -x 500,502,429,404,400 -R 5 --random-agent -t 100 -F -o directory.txt -w OneListForAll/onelistforallshort.txt
+
+✅ Gather parameters with Gau: cat subdomains-faceboo-alive.txt | sudo gau > target-params.txt
+
+✅ Filter parameters with Uro: cat target-params.txt | uro -o target-filterparameters.txt
+
+✅ Extract JavaScript files: cat target-filterparameters.txt | grep ".js$" > target-jsfiles.txt
+
+✅ Find secrets with SecretFinder: cat target-jsfiles.txt | while read url; do python3 SecretFinder.py -i $url -o cli > target-secret-finder.txt; done
+
+✅ Sort all the urls 
+
+✅ Scan with Nuclei: nuclei -l sorted.txt -c 70 -rl 200 -fhr -lfa -t /nuclei/Custom-Nuclei-Templates/ -o target-nuclei.txt -es info

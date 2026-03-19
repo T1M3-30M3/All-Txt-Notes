@@ -1,0 +1,86 @@
+🔐 Credentials & Secrets:
+/js/credentials.js
+/js/secrets.js
+/js/passwords.js
+/js/passphrases.js
+/js/api_keys.js
+/js/auth_tokens.js
+/js/access_tokens.js
+/js/token.js
+/js/private_keys.js
+/js/keys.js
+
+⚙️ Configuration Files:
+/js/config.js
+/js/settings.js
+/js/env.js
+/js/environment.js
+/js/site_config.js
+/js/app_config.js
+/js/configuration.js
+
+🔒 Authentication & Authorization:
+/js/login.js
+/js/auth.js
+/js/authorization.js
+/js/session.js
+/js/sessions.js
+/js/user_session.js
+/js/jwt.js
+/js/oauth.js
+/js/id_token.js
+
+🔑 Certificates & Encryption:
+/js/encryption.js
+/js/certificates.js
+/js/ssl_keys.js
+/js/crypto.js
+/js/crypto_config.js
+/js/pem.js
+
+🔍 Logging & Debug Info:
+/js/debug.js
+/js/logger.js
+/js/logs.js
+/js/stacktrace.js
+/js/errors.js
+/js/devtools.js
+/js/tracing.js
+
+🔎 Hashing & Checksums:
+/js/hashes.js
+/js/checksums.js
+/js/md5.js
+/js/sha1.js
+/js/sha256.js
+
+🧪 Misc Useful Files:
+/js/internal.js
+/js/utils.js
+/js/helpers.js
+/js/test.js
+/js/dev.js
+/js/build.js
+/js/staging.js
+/js/backend.js
+/js/db.js
+/js/database.js
+
+inurl:/js/credentials.js
+inurl:/js/secrets.js
+inurl:/js/config.js
+
+site:* inurl:/js/config.js
+
+grep -Ei '/js/(config|credentials|secrets|password|api_keys|auth_tokens|access_tokens|sessions|authorization|encryption|certificates|ssl_keys|passphrases|policies|permissions|privileges|hashes)\.js' waybackurls.txt
+
+grep -Ei '/js/(config|credentials|secrets|password|api_keys|auth_tokens|access_tokens|sessions|authorization|encryption|certificates|ssl_keys|passphrases|policies|permissions|privileges|hashes)\.js' waybackurls.txt > sensitive_js_urls.txt
+
+cat sensitive_js_urls.txt | httpx -mc 200 -silent
+
+grep -i '\.js$' waybackurls.txt
+
+grep -Ei '(config|secret|auth|key|token|session|password).*\.js' waybackurls.txt
+
+
+

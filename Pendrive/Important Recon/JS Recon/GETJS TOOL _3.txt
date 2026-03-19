@@ -1,0 +1,7 @@
+Tool: GetJS
+Repo: https://github.com/003random/getJS
+Installation:
+go install github.com/003random/getJS@latest
+
+Usage: 
+cat domains.txt | getJS

@@ -1,0 +1,38 @@
+--Why CVE Hunting--
+
+▶ To increase the hunting Scope
+▶ Get CVE = Get More WINS
+▶ Play smart, make your hunting process more easy and effective
+▶ Find what others are missing 
+▶ Do better than others
+
+--VRT--
+▶ Vulnerability Rating Taxonomy
+▶ Vulnerability Rating Taxonomy is a resource outlining Bugcrowd baseline priority rating, including contain edge cases for common vulnerabilties
+
+--Technical Priority--
+▶ P1 = Critical
+▶ P2 = High
+▶ P3 = medium
+▶ P4 = Low
+▶ P5 = Informational
+
+
+--Important Links:
+https://shodan.io
+https://images.shodan.io/
+
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 
+▶ 

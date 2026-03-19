@@ -1,0 +1,15 @@
+Lab: Reflected XSS into HTML context with nothing encoded
+-> first find the parameter and search anything and read the source code 
+-> after analyzing this and then use payload and sometime modified it
+
+Lab: Reflected XSS into attribute with angle brackets HTML-encoded
+-> first find any search bar and use those payloads
+"onmouseover="javasCript:alert(1)"
+"onmouseover="alert(1)
+"onmouseover="alert('XSS')
+"onmouseover="alert()
+
+Lab: Stored XSS into HTML context with nothing encoded
+--> Find the comment section and try to use normal payload and triggure it
+
+

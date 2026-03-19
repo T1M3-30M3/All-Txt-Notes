@@ -1,0 +1,117 @@
+Finding Subdomains Oneliner:
+
+curl -s "https://crt.sh/?q=%25.dhakacollege.edu.bd&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
+
+subfinder -d <link> -silent | dnsx -silent | cut -d ' ' -f1  | grep --color 'api\|dev\|stg\|test\|admin\|demo\|stage\|pre\|vpn'
+
+nmap --script hostmap-crtsh.nse target.com
+
+curl -s "http://web.archive.org/cdx/search/cdx?url=*.target.com/*&output=text&fl=original&collapse=urlkey" | sed -e 's_https*://__' -e "s/\/.*//" | sort -u
+
+curl -s "https://api.hackertarget.com/hostsearch/?q=<link>"
+
+censys subdomains ewubd.edu
+
+curl "https://api.subdomain.center/?domain=ewubd.edu" | jq -r '.[]' | sort –u
+
+sudo subfinder -d <link> -o 1.txt | sudo sublist3r -d <link> -o 2.txt | sudo assetfinder --subs-only <link> > 3.txt | sudo findomain -t <link> --output
+
+
+How to Extract Js files from a Domain:
+
+Method 01:
+
+sudo subfinder -d <link> -o 1.txt | sudo sublist3r -d <link> -o 2.txt | sudo assetfinder --subs-only <link> > 3.txt | sudo findomain -t <link> --output
+knockpy <link>
+./crt.sh -d <link> | httpx
+cat *.txt > full.txt | sort | uniq > final.txt
+cat final.txt | waybackurls | grep "\.js" > js.txt
+cat js.txt | uniq | sort | tee -a jsfinal.txt
+
+cat final.txt | waybackurls | grep "\.js" | uniq | sort | tee -a js.txt
+
+Method 02:
+katana -u <link> -jc -d 2 | grep ".js$" | uniq | sort > test.txt
+
+Method 03:
+gau ewubd.edu | grep -iE '.js'|grep -iEv '(.jsp|.json)' | anew js.txt
+katana ewubd.edu | grep -iE '.js'|grep -iEv '(.jsp|.json)' | anew js.txt
+echo "http://ewubd.edu"| hakrawler -subs | grep -iE '.js'|grep -iEv '(.jsp|.json)' | anew js.txt
+waybackurls ewubd.edu | grep -iE '.js'|grep -iEv '(.jsp|.json)' | anew js.txt
+
+Method 04:
+<gau/katana/hakrawler/waybackurls> target.com | grep -iE '.js'|grep -iEv '(.jsp|.json)' | anew js.txt
+
+<subfinder/assetfinder/amass/chaos> target.com | <gau/katana/hakrawler/waybackurls> | egrep -v '(.css|.svg)' | while read url; do vars=$(curl -s $url | grep -Eo "var [a-zA-Z0-9]+" | sed -e 's,'var','"$url"?',g' -e 's/ //g' | grep -v '.js' | sed 's/.*/&=xss/g'); echo -e "\e[1;33m$url\n\e[1;32m$vars"
+
+Method 05:
+cat subs.txt | <gau/katana/hakrawler/waybackurls> | sort -u | httpx -silent -threads 100 | grep -Eiv '(.eot|.jpg|.jpeg|.gif|.css|.tif|.tiff|.png|.ttf|.otf|.woff|.woff2|.ico|.svg|.txt|.pdf)' | while read url; do vars=$(curl -s $url | grep -Eo "var [a-zA-Z0-9]+" | sed -e 's,'var','"$url"?',g' -e 's/ //g' | grep -Eiv '\.js$|([^.]+)\.js|([^.]+)\.js\.[0-9]+$|([^.]+)\.js[0-9]+$|([^.]+)\.js[a-z][A-Z][0-9]+$' | sed 's/.*/&=FUZZ/g'); echo -e "\e[1;33m$url\e[1;32m$vars";done
+
+Method 06:
+cat main.js | grep -oh "\"\/[a-zA-Z0-9_/?=&]*\"" | sed -e 's/^"//' -e 's/"$//' | sort -u
+
+Method 07:
+katana -u ewubd.edu -js-crawl -d 5 -hl| anew endpoint.txt
+
+echo https://google.com | hakrawler
+cat urls.txt | hakrawler
+cat urls.txt | hakrawler -timeout 5
+cat urls.txt | hakrawler -proxy http://localhost:8080
+echo https://google.com | hakrawler -subs
+
+go install -v github.com/hakluke/haktrails@latest && sudo cp haktrails /usr/bin/
+cat domains.txt | haktrails subdomains
+echo "yahoo.com" | haktrails subdomains
+cat domains.txt | haktrails associateddomains
+cat domains.txt | haktrails associatedips
+cat domains.txt | haktrails historicaldns
+cat domains.txt | haktrails historicalwhois
+cat domains.txt | haktrails company
+cat domains.txt | haktrails details
+cat domains.txt | haktrails whois
+cat domains.txt | haktrails tags
+
+method 08:
+subfinder -d domain.com | httpx -mc 200 | tee subdomains.txt && cat subdomains.txt | waybackurls | httpx -mc 200 | grep .js | tee js.txt
+
+subfinder -d <link>| httpx -mc 200 | tee subdomains.txt
+cat subdomains.txt | sudo waybackurls | httpx -mc 200 | grep .js | tee js.txt
+
+
+Method
+subfinder -d domain.com | httpx -mc 200 | tee subdomains.txt && cat subdomains.txt | waybackurls | httpx -mc 200 | grep .js | tee js.txt
+grep -r -E "aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret" /path/to/directory/*.js
+nuclei -l js.txt -t ~/nuclei-templates/exposures/ -o js_exposures_results.txt
+
+https://kongsec.medium.com/how-to-js-for-bug-bounties-edition-2023-7108b56d9db6
+
+Grep Format:
+grep -i 'datatables\|amazon'
+grep -E 'datatables|amazon'
+egrep 'datatables|amazon'
+grep -e datatables -e amazon
+
+grep -Ei '(password|apikey|secret|token|session|cookie|admin|superuser|root|debug|unauthenticated)' jsfinal.txt
+
+grep -Ei '(aws_access_key|aws_secret_key|api key|passwd|pwd|heroku|slack|firebase|swagger|aws_secret_key|aws key|password|ftp password|jdbc|db|sql|secret jet|config|admin|pwd|json|gcp|htaccess|.env|ssh key|.git|access key|secret token|oauth_token|oauth_token_secret)' jsfinal.txt
+
+Finding Api :
+
+Tools:
+https://github.com/jeetpal2007/extensor
+https://github.com/xnl-h4ck3r/waymore
+https://github.com/jeetpal2007/urlremover
+
+subfinder -d indeed.com -v -o subdomains.txt
+cat subdomains.txt | waybackurls > waybackurls.txt
+cat subdomains.txt | gau > gau.txt
+waymore -i subdomains.txt -mode U > waymore.txt
+python3 extensor.py
+cat js.txt  | while read url; do python3 /home/kali/tools/SecretFinder/SecretFinder.py  -i $url -o cli; done
+
+
+Taking Screenshot:
+
+https://github.com/jeetpal2007/screenshoter
+pip install -r requirements.txt
+python3 screenshoter.py
