@@ -1,0 +1,95 @@
+🔐 Initial Access (VPN): sudo openvpn crta.vpn
+🌐 Network Discovery:
+1. Ping Sweep : nmap -sn 10.10.10.0/24
+2. Service & Version Detection : nmap -sC -sV 10.10.10.0/24
+3. Aggressive Scan : nmap -A 10.10.10.0/24
+4. Specific Host Deep Scan : nmap -p- -sC -sV -T4 <target-ip>
+
+🔍 Web Enumeration:
+http://10.10.10.10
+gobuster dir -u http://10.10.10.10 -w /usr/share/wordlists/dirb/common.txt -t 50 -x php,html,txt
+ffuf -u http://10.10.10.10/FUZZ -w /usr/share/wordlists/dirb/common.txt -t 50 -e .php,.html,.txt
+dirsearch -u https://202.72.5.130/ -t 50 -x 429,404,502,503,400,500,403,428 -e conf,config,bak,backup,swp,old,db,sql,asp,aspx,py,rb,php,bkp 
+
+sublist3r -d example.com
+subfinder -d example.com 
+assetfinder --subs-only example.com 
+findomain -t example.com --output
+
+paramspider -d 10.10.10.10
+arjun -u http://10.10.10.10/page.php
+
+echo "10.10.10.10" | hakrawler -depth 3 -js -robots -sitemap -subs
+echo "10.10.10.10" | waybackurls
+
+wget http://10.10.10.10/js/main.js
+cat main.js | grep -Ei "api|key|token|admin|auth|password|login"
+
+Check for Input Fields: Search, Feedback, Contact, Signup, Login, Profile Update, File Upload
+
+curl -I http://10.10.10.10
+whatweb http://10.10.10.10
+wpscan --url http://10.10.10.10  # for WordPress
+nmap -p80,443 -sV --script=http-enum 10.10.10.10
+httprobe < list-of-urls.txt
+
+curl -s http://10.10.10.10/.git/config
+curl -s http://10.10.10.10/.env
+
+waybackurls example.com | grep '\.js$' | sort -u | tee js-urls.txt && mkdir -p js-files && cat js-urls.txt | while read url; do wget -q "$url" -P js-files; done && grep -Ei "api|key|token|admin|auth|password|login" js-files/*.js
+
+waybackurls example.com | grep '\.js$' | sort -u > js-urls.txt
+mkdir -p js-files
+cat js-urls.txt | while read url; do wget -q "$url" -P js-files; done
+grep -Ei "api|key|token|admin|auth|password|login" js-files/*.js
+
+sublist3r -d example.com
+assetfinder --subs-only example.com
+amass enum -d example.com
+subfinder -d example.com
+curl -s "https://crt.sh/?q=%25.example.com&output=json" | jq -r '.[].name_value' | sort -u
+
+nmap example.com
+nmap --top-ports 100 example.com
+nmap -sV example.com
+nmap -A example.com
+nmap -p- example.com
+nmap -sU example.com
+nmap -A -oN output.txt example.com
+
+whatweb example.com
+wappalyzer https://example.com
+curl -I https://example.com
+https://builtwith.com/example.com
+
+nikto -h https://example.com
+nmap --script vuln example.com
+nuclei -u https://example.com -t vulnerabilities/
+
+dirb https://example.com
+gobuster dir -u https://example.com -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+ffuf -u https://example.com/FUZZ -w /usr/share/wordlists/common.txt
+wfuzz -c -w /usr/share/wordlists/dirb/common.txt --hc 404 https://example.com/FUZZ
+
+dnsrecon -d example.com
+dig example.com any
+dig example.com mx
+dig example.com ns
+dnsenum example.com
+fierce --domain example.com
+
+whois example.com
+host example.com
+nslookup example.com
+theHarvester -d example.com -b all
+
+httpx -l domains.txt -status -title -tech-detect
+cat domains.txt | httprobe
+
+Search Engine: FOFA, Censys, ZoomEye, Searchtrails, Shodan
+
+--->> If a search input is found on the web page, intercept the request using Burp Suite and test for potential XSS vulnerabilities using both manual payloads and Linux-based tools and also try linux base command
+
+
+
+

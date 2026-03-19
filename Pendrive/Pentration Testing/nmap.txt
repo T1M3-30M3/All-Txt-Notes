@@ -1,0 +1,31 @@
+Nmap :
+
+For Single Website >>     nmap 192.168.1.100   
+For Dual Website   >>     nmap 192.168.1.100 192.168.1.101
+Scan The IP Adress >>     nmap 192.168.1.100-255
+Scan Site          >>     nmap ewubd.edu
+Output Format      >>     nmap -oN scan.txt 192.168.1.1 [Txt File]
+			  nmap -oX scan.xml 192.168.1.1 [Xml File]
+			  nmap -oG scan.txt 192.168.1.1 [Graph Format]
+Port scan          >>     nmap -p 80 192.168.1.1 [specific Port]
+			  nmap -p 80-200 192.168.1.1 [specific Port Range]
+			  nmap -p- 192.168.1.1 [All Port Scan]
+			  nmap -F  192.168.1.1 [Fast Port]
+Nmap Timing Option >>     nmap -T0 -p- 192.168.1.1[slowest Scan]
+			  nmap -T1 -p- 192.168.1.1[Tricky Scan to avoid IDS]
+			  nmap -T2 -p- 192.168.1.1[Timely Scan]
+			  nmap -T3 -p- 192.168.1.1[Default Scan]
+			  nmap -T4 -p- 192.168.1.1[Aggressive Scan]
+			  nmap -T5 -p- 192.168.1.1[Very Aggressive Scan]
+Version And OS     >>     nmap -A www.dlnsbd.net [OS and Version]
+			  nmap -O www.dlnsbd.net [OS]
+			  nmap -sV www.dlnsbd.net [Version]
+Nmap Script        >>     cd/usr/share/nmap/scripts/
+			  locate *.nse
+Commands           >>     sudo nmap --script-updated
+			  nmap --script=name of script 10.1.1.0/24
+			  nmap --script=default <target IP>
+			  nmap --script=mysql <target IP>
+			  nmap --script=vulners <target IP>
+NMap Standard      >>     nmap -sC -sV <ip>
+			  nmap -sC -sV -Pn <ip> [-Pn > donot perform host discovery Again, -sC > default Scrpit , -sV > Sevice Version]

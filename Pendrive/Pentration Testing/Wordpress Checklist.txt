@@ -1,0 +1,88 @@
+WORDPRESS PENETRATION TESTING CHECKLIST
+=======================================
+
+1. Reconnaissance
+-----------------
+[ ] Check domain/IP information (whois, nslookup, dig)
+[ ] Identify subdomains (Sublist3r, Amass, crt.sh)
+[ ] Check open ports and services (nmap -sV -Pn)
+[ ] Identify technologies (Wappalyzer, BuiltWith, whatweb)
+[ ] Verify WordPress CMS (Check /wp-login.php, /wp-admin/)
+
+2. Enumeration
+--------------
+[ ] Enumerate usernames (wpscan --enumerate u, /?author=1)
+[ ] Enumerate plugins and themes (wpscan --enumerate vp,vt)
+[ ] Identify WordPress version (wpscan or view source)
+[ ] Check for backup files (.zip, .tar.gz, .sql, .bak)
+[ ] Brute-force hidden directories (gobuster, ffuf)
+
+3. Vulnerability Scanning
+--------------------------
+[ ] Scan for known WordPress vulnerabilities (wpscan)
+[ ] Check for vulnerable plugins/themes (wpscan, searchsploit)
+[ ] Check response headers for X-Powered-By, Server
+[ ] Check REST API exposure (/wp-json/wp/v2/users)
+[ ] Check XML-RPC endpoint for abuse (/xmlrpc.php)
+
+4. Authentication Attacks
+--------------------------
+[ ] Try default credentials (admin:admin, admin:password)
+[ ] Brute-force login (wpscan, hydra, Burp Suite)
+[ ] Test for weak passwords (top 100/1000 wordlists)
+[ ] Check for password reset abuse (parameter tampering)
+
+5. File Upload & Input Handling
+-------------------------------
+[ ] Test media upload (upload .php, .jpg.php, etc.)
+[ ] Tamper content-type with Burp Suite
+[ ] Test contact/form plugins (WPForms, CF7)
+[ ] Check /wp-content/uploads/ for uploaded files
+
+6. Injection Vulnerabilities
+----------------------------
+[ ] SQL Injection in plugins (Burp, sqlmap, searchsploit)
+[ ] Command Injection (look for vulnerable parameters)
+[ ] XSS - Stored/Reflected/DOM (<script>alert(1)</script>)
+[ ] CSRF - Try forging authenticated actions
+
+7. LFI/RFI/File Disclosure
+--------------------------
+[ ] Test for LFI (file=../../../../etc/passwd)
+[ ] Test for RFI (load remote PHP file)
+[ ] Try including wp-config.php, .htaccess, etc.
+[ ] Look for arbitrary file download issues
+
+8. Gaining Access / Shell
+-------------------------
+[ ] Exploit plugin/theme RCE if found
+[ ] Upload reverse shell (PHP) via file upload
+[ ] Setup listener (nc -nlvp 4444)
+[ ] Search for web shells (C99, WSO)
+
+9. Post Exploitation
+--------------------
+[ ] Read wp-config.php (get DB creds)
+[ ] Dump database using credentials or tools
+[ ] Privilege escalation (sudo -l, cron, SUID)
+[ ] Check for system users (/etc/passwd)
+[ ] Search for API keys/tokens/secrets
+
+10. Reporting
+-------------
+[ ] Document each finding (title, severity, steps to reproduce)
+[ ] Add screenshots or PoC
+[ ] Provide fixes (patch, config hardening)
+[ ] Assign severity (Low/Med/High/Critical)
+
+11. Tools Reference
+-------------------
+- WPScan: WP-specific scanning
+- Nmap: Port & service scan
+- Gobuster / ffuf: Directory brute-forcing
+- Burp Suite: Manual testing, tampering
+- Hydra: Login brute-force
+- Nikto: Basic web vulnerability scanning
+- sqlmap: Automated SQLi
+- Metasploit: Exploitation framework
+- Searchsploit: Local CVE database

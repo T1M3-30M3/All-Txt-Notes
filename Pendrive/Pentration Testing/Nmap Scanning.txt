@@ -1,0 +1,34 @@
+Scanning:
+
+-> Ping Sweep
+-> Port Scanning
+-> Service Scanning
+
+nmap nmap.org
+nmap -sn 10.10.10.10
+nmap -sn 10.10.10.10
+nmap -sT 10.10.10.10
+nmap -sS 10.10.10.10
+nmap -sV 10.10.10.10
+nmap -p 80,443 10.10.10.10
+nmap -p- 10.10.10.10
+nmap --script vuln 10.10.10.10
+
+sudo masscan 10.10.10.10 -p80,443
+sudo masscan 10.10.10.10/24 -p80,443
+sudo masscan 10.10.10.10/24 -p80,443 --rate 100000 --exclude 255.255.255.255
+sudo masscan 10.10.10.10/24 -p1-1024 --exclude 255.255.255.255 --rate 5000
+
+nmap -O 10.10.10.10
+nmap -A 10.10.10.10
+nmap -Pn 10.10.10.10
+nmap -sF -p 80,443,21,22 10.10.10.10
+nmap -sU 10.10.10.10 -F
+nmap -sN -p 80,443,21,22 10.10.10.10
+nmap -f -p 80,443,21,22 10.10.10.10
+nmap -D 10.10.10.1,10.10.10.2 -p 80,443,21,22 10.10.10.10
+nmap -T5 10.10.10.10
+
+
+
+ 

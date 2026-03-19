@@ -1,0 +1,75 @@
+# Display help information : nuclei -h
+
+# Display the current version of Nuclei : nuclei -version
+
+# Load a list of targets from a file : nuclei -l targets.txt -t ~/nuclei-templates/
+
+# Specify a single target to test : nuclei -t https://example.com -t ~/nuclei-templates/
+
+# Specify a URL to test : nuclei -u https://example.com -t ~/nuclei-templates/
+
+# Run Nuclei in silent mode : nuclei -silent -t https://example.com -t ~/nuclei-templates/
+
+# Specify the number of concurrent threads to use : nuclei -c 10 -t https://example.com -t ~/nuclei-templates/
+
+# Skip templates that require authentication : nuclei -no-verify -t https://example.com -t ~/nuclei-templates/
+
+# Customize the output format of the Nuclei report : nuclei -o output.txt -t https://example.com -t ~/nuclei-templates/
+
+# Ignore SSL certificate errors : nuclei -insecure -t https://example.com -t ~/nuclei-templates/
+
+# Specify a custom HTTP header to include in requests : nuclei -headers "Authorization: Bearer TOKEN" -t https://example.com -t ~/nuclei-templates/
+
+# Specify a custom user agent string to include in requests : nuclei -user-agent "" -t https://example.com -t ~/nuclei-templates/
+
+nuclei -u http://example.com
+nuclei -target http://example.com
+nuclei -l targets.txt
+subfinder -d targetdomain.site -silent | httpx | nuclei -t http/exposures/
+nuclei -t http/exposures/
+nuclei -t http/technologies/tech-detect.yaml -t http/technologies/nginx/nginx-version.yaml
+nuclei -u https://jira.targetdomain.site -tags jira,generic
+nuclei -u https://targetdomain.site -s critical,high,medium
+nuclei -et http/fuzzing/
+nuclei -H 'User-Agent: ' -l targets.txt
+nuclei -l targets.txt -rl 20 -c 5
+nuclei -l targets.txt -timeout 3
+nuclei -l targets.txt - max-host-errors 5
+nuclei -l targets.txt -retries 3
+nuclei -l targets.txt -ss host-spray
+nuclei -l targets.txt -o nuclei.log
+nuclei -l targets.txt -jsonl
+nuclei -l targets.txt -stats
+nuclei -l targets.txt -me results/
+
+nuclei -u https://example.com
+nuclei -l urls.txt
+nuclei -u https://example.com -t cves/
+nuclei -update-templates
+nuclei -tl
+
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15
+Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0
+Mozilla/5.0 (Linux; Android 13; Pixel 7 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.140 Mobile Safari/537.36
+
+cat targets.txt | nuclei -t ~/nuclei-templates/ -severity critical,high,medium -tags cve,security,misc,exposures -H "User-Agent: )" -o nuclei-results.txt
+nuclei -l targets.txt -t ~/nuclei-templates/ -o full-scan.txt
+nuclei -l targets.txt -t cves/ -o cve-scan.txt
+nuclei -l targets.txt -severity high,critical -o high-severity.txt
+nuclei -l targets.txt -c 50 -rate-limit 100 -o fast-scan.txt
+nuclei -l targets.txt -H "User-Agent: Mozilla/5.0" -o custom-ua.txt
+nuclei -l targets.txt -tags exposures,misconfiguration -o exposure-check.txt
+nuclei -l subdomains.txt -t takeover/ -o takeover-results.txt
+nuclei -l targets.txt -t vulnerabilities/redirect/open-redirect.yaml -o open-redirect.txt
+waybackurls target.com | sort -u | nuclei -t ~/nuclei-templates/ -o wayback-scan.txt
+nuclei -l targets.txt -silent -severity medium,high,critical -o filtered-results.txt
+
+
+
+
+
+
+
