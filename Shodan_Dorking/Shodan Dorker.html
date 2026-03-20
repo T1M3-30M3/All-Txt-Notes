@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://dorks.s1rn3tz.ovh/shodandorks -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shodan Dorker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #212121;
+            color: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        label {
+            font-size: 1.2em;
+        }
+        input {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        button {
+            font-size: 1em;
+            background-color: #ad1010;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        button:hover {
+            background-color: #b03c3c;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #b03c3c;
+            margin-left: 50px;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #ad1010;
+        }
+        p {
+            margin: 0;
+        }
+        p.description {
+            margin: 20px;
+            font-weight: bold;
+        }
+        section {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        ul.link-list {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        ul.link-list li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shodan Dorks Generator</h1>
+
+    <label for="domainInput">Enter a domain:</label>
+    <input type="text" id="domainInput" placeholder="target.com">
+    <button id="updateDomainButton">Update Domain</button>
+    <ul id="dorkList"><li><p class="description">Default passwords</p><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20default%20password" class="dorkLink" target="_blank">ssl:target.com default password</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20guest%20login%20ok" class="dorkLink" target="_blank">ssl:target.com guest login ok</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22admin%2F1234%22" class="dorkLink" target="_blank">ssl:target.com "admin/1234"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20Sharename%20Type%20Comment%20port%3A445" class="dorkLink" target="_blank">ssl:target.com Sharename Type Comment port:445</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20ftpd%20Anonymous%20user%20logged%20in" class="dorkLink" target="_blank">ssl:target.com ftpd Anonymous user logged in</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20basic%20realm%3D%22default%22" class="dorkLink" target="_blank">ssl:target.com basic realm="default"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22%20Default%20name%3Aadmin%20password%3A%201234%22" class="dorkLink" target="_blank">ssl:target.com " Default name:admin password: 1234"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20password%20required%20but%20none%20set" class="dorkLink" target="_blank">ssl:target.com password required but none set</a></li><li><a href="https://www.shodan.io/search?query=target.com%20default%20password" class="dorkLink" target="_blank">target.com default password</a></li><li><a href="https://www.shodan.io/search?query=target.com%20guest%20login%20ok" class="dorkLink" target="_blank">target.com guest login ok</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22admin%2F1234%22" class="dorkLink" target="_blank">target.com "admin/1234"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20Sharename%20Type%20Comment%20port%3A445" class="dorkLink" target="_blank">target.com Sharename Type Comment port:445</a></li><li><a href="https://www.shodan.io/search?query=target.com%20ftpd%20Anonymous%20user%20logged%20in" class="dorkLink" target="_blank">target.com ftpd Anonymous user logged in</a></li><li><a href="https://www.shodan.io/search?query=target.com%20basic%20realm%3D%22default%22" class="dorkLink" target="_blank">target.com basic realm="default"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22%20Default%20name%3Aadmin%20password%3A%201234%22" class="dorkLink" target="_blank">target.com " Default name:admin password: 1234"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20password%20required%20but%20none%20set" class="dorkLink" target="_blank">target.com password required but none set</a></li><li><p class="description">Exposed services</p><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20port%3A23%20gateway%20console" class="dorkLink" target="_blank">ssl:target.com port:23 gateway console</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22root%40%22%20port%3A23%20-login%20-password%20-name%20-Session" class="dorkLink" target="_blank">ssl:target.com "root@" port:23 -login -password -name -Session</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20NO%20password%20required%20for%20telnet%20access.%20%3C%2Fbr%3E" class="dorkLink" target="_blank">ssl:target.com NO password required for telnet access. &lt;/br&gt;</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22220%22%20%22230%20Login%20successful.%22%20port%3A21" class="dorkLink" target="_blank">ssl:target.com "220" "230 Login successful." port:21</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20x-jenkins%20200" class="dorkLink" target="_blank">ssl:target.com x-jenkins 200</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20Jenkins%20Unrestricted%20Dashboard" class="dorkLink" target="_blank">ssl:target.com Jenkins Unrestricted Dashboard</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22X-Jenkins%22%20%22Set-Cookie%3A%20JSESSIONID%22%20http.title%3ADashboard" class="dorkLink" target="_blank">ssl:target.com "X-Jenkins" "Set-Cookie: JSESSIONID" http.title:Dashboard</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20port%3A2375%20product%3A%22docker%22" class="dorkLink" target="_blank">ssl:target.com port:2375 product:"docker"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22Docker-Distribution-Api-Version%3A%20registry%22%20%22200%20OK%22%20-gitlab" class="dorkLink" target="_blank">ssl:target.com "Docker-Distribution-Api-Version: registry" "200 OK" -gitlab</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20product%3Atomcat" class="dorkLink" target="_blank">ssl:target.com product:tomcat</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20proftpd%20port%3A21" class="dorkLink" target="_blank">ssl:target.com proftpd port:21</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20openssh%3Aport22" class="dorkLink" target="_blank">ssl:target.com openssh:port22</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20port%3A25%20product%3Aexim" class="dorkLink" target="_blank">ssl:target.com port:25 product:exim</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20remote%20desktop%20port%3A3389" class="dorkLink" target="_blank">ssl:target.com remote desktop port:3389</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22authentication%20disabled%22%20%22RFB%20003.008%22" class="dorkLink" target="_blank">ssl:target.com "authentication disabled" "RFB 003.008"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22authentication%20disabled%22%20port%3A5900%2C5901" class="dorkLink" target="_blank">ssl:target.com "authentication disabled" port:5900,5901</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22Authentication%3A%20disabled%22%20port%3A445" class="dorkLink" target="_blank">ssl:target.com "Authentication: disabled" port:445</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20200%20http.title%3A%22dashboard%22" class="dorkLink" target="_blank">ssl:target.com 200 http.title:"dashboard"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22MongoDB%20Server%20Information%20%7B%20%22metrics%22%3A%22" class="dorkLink" target="_blank">ssl:target.com "MongoDB Server Information { "metrics":"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22Set-Cookie%3A%20mongo-express%3D%22%20%22200%20OK%22" class="dorkLink" target="_blank">ssl:target.com "Set-Cookie: mongo-express=" "200 OK"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20kibana%20content-legth%3A217" class="dorkLink" target="_blank">ssl:target.com kibana content-legth:217</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.title%3A%22DisallowedHost%20at%20%2F%22" class="dorkLink" target="_blank">ssl:target.com http.title:"DisallowedHost at /"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20port%3A23%20gateway%20console" class="dorkLink" target="_blank">target.com port:23 gateway console</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22root%40%22%20port%3A23%20-login%20-password%20-name%20-Session" class="dorkLink" target="_blank">target.com "root@" port:23 -login -password -name -Session</a></li><li><a href="https://www.shodan.io/search?query=target.com%20NO%20password%20required%20for%20telnet%20access.%20%3C%2Fbr%3E" class="dorkLink" target="_blank">target.com NO password required for telnet access. &lt;/br&gt;</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22220%22%20%22230%20Login%20successful.%22%20port%3A21" class="dorkLink" target="_blank">target.com "220" "230 Login successful." port:21</a></li><li><a href="https://www.shodan.io/search?query=target.com%20x-jenkins%20200" class="dorkLink" target="_blank">target.com x-jenkins 200</a></li><li><a href="https://www.shodan.io/search?query=target.com%20Jenkins%20Unrestricted%20Dashboard" class="dorkLink" target="_blank">target.com Jenkins Unrestricted Dashboard</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22X-Jenkins%22%20%22Set-Cookie%3A%20JSESSIONID%22%20http.title%3ADashboard" class="dorkLink" target="_blank">target.com "X-Jenkins" "Set-Cookie: JSESSIONID" http.title:Dashboard</a></li><li><a href="https://www.shodan.io/search?query=target.com%20port%3A2375%20product%3A%22docker%22" class="dorkLink" target="_blank">target.com port:2375 product:"docker"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22Docker-Distribution-Api-Version%3A%20registry%22%20%22200%20OK%22%20-gitlab" class="dorkLink" target="_blank">target.com "Docker-Distribution-Api-Version: registry" "200 OK" -gitlab</a></li><li><a href="https://www.shodan.io/search?query=target.com%20product%3Atomcat" class="dorkLink" target="_blank">target.com product:tomcat</a></li><li><a href="https://www.shodan.io/search?query=target.com%20proftpd%20port%3A21" class="dorkLink" target="_blank">target.com proftpd port:21</a></li><li><a href="https://www.shodan.io/search?query=target.com%20openssh%3Aport22" class="dorkLink" target="_blank">target.com openssh:port22</a></li><li><a href="https://www.shodan.io/search?query=target.com%20port%3A25%20product%3Aexim" class="dorkLink" target="_blank">target.com port:25 product:exim</a></li><li><a href="https://www.shodan.io/search?query=target.com%20remote%20desktop%20port%3A3389" class="dorkLink" target="_blank">target.com remote desktop port:3389</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22authentication%20disabled%22%20%22RFB%20003.008%22" class="dorkLink" target="_blank">target.com "authentication disabled" "RFB 003.008"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22authentication%20disabled%22%20port%3A5900%2C5901" class="dorkLink" target="_blank">target.com "authentication disabled" port:5900,5901</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22Authentication%3A%20disabled%22%20port%3A445" class="dorkLink" target="_blank">target.com "Authentication: disabled" port:445</a></li><li><a href="https://www.shodan.io/search?query=target.com%20200%20http.title%3A%22dashboard%22" class="dorkLink" target="_blank">target.com 200 http.title:"dashboard"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22MongoDB%20Server%20Information%20%7B%20%22metrics%22%3A%22" class="dorkLink" target="_blank">target.com "MongoDB Server Information { "metrics":"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22Set-Cookie%3A%20mongo-express%3D%22%20%22200%20OK%22" class="dorkLink" target="_blank">target.com "Set-Cookie: mongo-express=" "200 OK"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20kibana%20content-legth%3A217" class="dorkLink" target="_blank">target.com kibana content-legth:217</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.title%3A%22DisallowedHost%20at%20%2F%22" class="dorkLink" target="_blank">target.com http.title:"DisallowedHost at /"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22Set-Cookie%3A%20webvpn%22" class="dorkLink" target="_blank">target.com "Set-Cookie: webvpn"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22webvpn%253D%22" class="dorkLink" target="_blank">target.com "webvpn%3D"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20Server%3A%2Bxxxxxxxx-xxxxx%2B-ssl%3A%22fortinet%22" class="dorkLink" target="_blank">target.com Server:+xxxxxxxx-xxxxx+-ssl:"fortinet"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20ssl%3A%22fortinet%22" class="dorkLink" target="_blank">target.com ssl:"fortinet"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20title%3A%22SSL%2BVPN%2BService%22" class="dorkLink" target="_blank">target.com title:"SSL+VPN+Service"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20Server%3A%2Bxxxxxxxx-xxxxx%2Bssl%3A%22fortinet%22" class="dorkLink" target="_blank">target.com Server:+xxxxxxxx-xxxxx+ssl:"fortinet"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html_hash%3A-1454941180" class="dorkLink" target="_blank">target.com http.html_hash:-1454941180</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.favicon.hash%3A945408572" class="dorkLink" target="_blank">target.com http.favicon.hash:945408572</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html_hash%3A-628873716" class="dorkLink" target="_blank">target.com http.html_hash:-628873716</a></li><li><p class="description">Information gathering / disclosure</p><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.title%3A%22Index%20of%20%2F%22%20http.html%3A%22.pem%22" class="dorkLink" target="_blank">ssl:target.com http.title:"Index of /" http.html:".pem"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.title%3A%22Directory%20Listing%22" class="dorkLink" target="_blank">ssl:target.com http.title:"Directory Listing"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22*%20The%20wp-config.php%20creation%20script%20uses%20this%20file%22" class="dorkLink" target="_blank">ssl:target.com http.html:"* The wp-config.php creation script uses this file"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.title%3A%22phpmyadmin%22" class="dorkLink" target="_blank">ssl:target.com http.title:"phpmyadmin"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22def_wirelesspassword%22" class="dorkLink" target="_blank">ssl:target.com http.html:"def_wirelesspassword"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.title%3A%22phpinfo()%22" class="dorkLink" target="_blank">ssl:target.com http.title:"phpinfo()"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.title%3A%22Apache%20Status%22" class="dorkLink" target="_blank">ssl:target.com http.title:"Apache Status"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.title%3A%22Oracle%20Weblogic%20Server%20Administration%20Console%22" class="dorkLink" target="_blank">ssl:target.com http.title:"Oracle Weblogic Server Administration Console"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.title%3A%22Swagger%20UI%22" class="dorkLink" target="_blank">ssl:target.com http.title:"Swagger UI"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22X-Debug-Token-Link%22%20port%3A443" class="dorkLink" target="_blank">ssl:target.com "X-Debug-Token-Link" port:443</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22AkamaiGHost%22" class="dorkLink" target="_blank">ssl:target.com "AkamaiGHost"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22GHost%22" class="dorkLink" target="_blank">ssl:target.com "GHost"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22Cloudflare%22%2C%22Cf%22%2C%22Cf-cache%22%2C%22CF-Connection_IP%22" class="dorkLink" target="_blank">ssl:target.com "Cloudflare","Cf","Cf-cache","CF-Connection_IP"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22Cloudfront%22" class="dorkLink" target="_blank">ssl:target.com "Cloudfront"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22X-API-Version%22" class="dorkLink" target="_blank">ssl:target.com "X-API-Version"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20%22X-Amz-Bucket-Region%22" class="dorkLink" target="_blank">ssl:target.com "X-Amz-Bucket-Region"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.title%3A%22Index%20of%20%2F%22%20http.html%3A%22.pem%22" class="dorkLink" target="_blank">target.com http.title:"Index of /" http.html:".pem"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.title%3A%22Directory%20Listing%22" class="dorkLink" target="_blank">target.com http.title:"Directory Listing"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22*%20The%20wp-config.php%20creation%20script%20uses%20this%20file%22" class="dorkLink" target="_blank">target.com http.html:"* The wp-config.php creation script uses this file"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.title%3A%22phpmyadmin%22" class="dorkLink" target="_blank">target.com http.title:"phpmyadmin"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22def_wirelesspassword%22" class="dorkLink" target="_blank">target.com http.html:"def_wirelesspassword"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.title%3A%22phpinfo()%22" class="dorkLink" target="_blank">target.com http.title:"phpinfo()"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.title%3A%22Apache%20Status%22" class="dorkLink" target="_blank">target.com http.title:"Apache Status"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.title%3A%22Oracle%20Weblogic%20Server%20Administration%20Console%22" class="dorkLink" target="_blank">target.com http.title:"Oracle Weblogic Server Administration Console"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.title%3A%22Swagger%20UI%22" class="dorkLink" target="_blank">target.com http.title:"Swagger UI"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22X-Debug-Token-Link%22%20port%3A443" class="dorkLink" target="_blank">target.com "X-Debug-Token-Link" port:443</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22AkamaiGHost%22" class="dorkLink" target="_blank">target.com "AkamaiGHost"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22GHost%22" class="dorkLink" target="_blank">target.com "GHost"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22Cloudflare%22%2C%22Cf%22%2C%22Cf-cache%22%2C%22CF-Connection_IP%22" class="dorkLink" target="_blank">target.com "Cloudflare","Cf","Cf-cache","CF-Connection_IP"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22Cloudfront%22" class="dorkLink" target="_blank">target.com "Cloudfront"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22X-API-Version%22" class="dorkLink" target="_blank">target.com "X-API-Version"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20%22X-Amz-Bucket-Region%22" class="dorkLink" target="_blank">target.com "X-Amz-Bucket-Region"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.favicon.hash%3A116323821" class="dorkLink" target="_blank">target.com http.favicon.hash:116323821</a></li><li><p class="description">Domain takeover</p><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22The%20specified%20bucket%20does%20not%20exist%22" class="dorkLink" target="_blank">ssl:target.com http.html:"The specified bucket does not exist"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22Trying%20to%20access%20your%20account%3F%22" class="dorkLink" target="_blank">ssl:target.com http.html:"Trying to access your account?"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22With%20GetResponse%20Landing%20Pages%2C%20lead%20generation%20has%20never%20been%20easier%22" class="dorkLink" target="_blank">ssl:target.com http.html:"With GetResponse Landing Pages, lead generation has never been easier"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22No%20settings%20were%20found%20for%20this%20company%3A%22" class="dorkLink" target="_blank">ssl:target.com http.html:"No settings were found for this company:"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22is%20not%20a%20registered%20InCloud%20YouTrack%22" class="dorkLink" target="_blank">ssl:target.com http.html:"is not a registered InCloud YouTrack"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22No%20Site%20For%20Domain%22" class="dorkLink" target="_blank">ssl:target.com http.html:"No Site For Domain"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22It%20looks%20like%20you%20may%20have%20taken%20a%20wrong%20turn%20somewhere.%20Don%27t%20worry...it%20happens%20to%20all%20of%20us.%22" class="dorkLink" target="_blank">ssl:target.com http.html:"It looks like you may have taken a wrong turn somewhere. Don't worry...it happens to all of us."</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22This%20job%20board%20website%20is%20either%20expired%20or%20its%20domain%20name%20is%20invalid.%22" class="dorkLink" target="_blank">ssl:target.com http.html:"This job board website is either expired or its domain name is invalid."</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22Non-hub%20domain%2C%20The%20URL%20you%27ve%20accessed%20does%20not%20provide%20a%20hub.%22" class="dorkLink" target="_blank">ssl:target.com http.html:"Non-hub domain, The URL you've accessed does not provide a hub."</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22Do%20you%20want%20to%20register%20*.wordpress.com%3F%22" class="dorkLink" target="_blank">ssl:target.com http.html:"Do you want to register *.wordpress.com?"</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22Hello!%20Sorry%2C%20but%20the%20website%20you%26rsquo%3Bre%20looking%20for%20doesn%26rsquo%3Bt%20exist.%22" class="dorkLink" target="_blank">ssl:target.com http.html:"Hello! Sorry, but the website you&amp;rsquo;re looking for doesn&amp;rsquo;t exist."</a></li><li><a href="https://www.shodan.io/search?query=ssl%3Atarget.com%20http.html%3A%22There%20isn%27t%20a%20GitHub%20Pages%20site%20here.%22" class="dorkLink" target="_blank">ssl:target.com http.html:"There isn't a GitHub Pages site here."</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22The%20specified%20bucket%20does%20not%20exist%22" class="dorkLink" target="_blank">target.com http.html:"The specified bucket does not exist"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22Trying%20to%20access%20your%20account%3F%22" class="dorkLink" target="_blank">target.com http.html:"Trying to access your account?"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22With%20GetResponse%20Landing%20Pages%2C%20lead%20generation%20has%20never%20been%20easier%22" class="dorkLink" target="_blank">target.com http.html:"With GetResponse Landing Pages, lead generation has never been easier"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22No%20settings%20were%20found%20for%20this%20company%3A%22" class="dorkLink" target="_blank">target.com http.html:"No settings were found for this company:"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22is%20not%20a%20registered%20InCloud%20YouTrack%22" class="dorkLink" target="_blank">target.com http.html:"is not a registered InCloud YouTrack"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22No%20Site%20For%20Domain%22" class="dorkLink" target="_blank">target.com http.html:"No Site For Domain"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22It%20looks%20like%20you%20may%20have%20taken%20a%20wrong%20turn%20somewhere.%20Don%27t%20worry...it%20happens%20to%20all%20of%20us.%22" class="dorkLink" target="_blank">target.com http.html:"It looks like you may have taken a wrong turn somewhere. Don't worry...it happens to all of us."</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22This%20job%20board%20website%20is%20either%20expired%20or%20its%20domain%20name%20is%20invalid.%22" class="dorkLink" target="_blank">target.com http.html:"This job board website is either expired or its domain name is invalid."</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22Non-hub%20domain%2C%20The%20URL%20you%27ve%20accessed%20does%20not%20provide%20a%20hub.%22" class="dorkLink" target="_blank">target.com http.html:"Non-hub domain, The URL you've accessed does not provide a hub."</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22Do%20you%20want%20to%20register%20*.wordpress.com%3F%22" class="dorkLink" target="_blank">target.com http.html:"Do you want to register *.wordpress.com?"</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22Hello!%20Sorry%2C%20but%20the%20website%20you%26rsquo%3Bre%20looking%20for%20doesn%26rsquo%3Bt%20exist.%22" class="dorkLink" target="_blank">target.com http.html:"Hello! Sorry, but the website you&amp;rsquo;re looking for doesn&amp;rsquo;t exist."</a></li><li><a href="https://www.shodan.io/search?query=target.com%20http.html%3A%22There%20isn%27t%20a%20GitHub%20Pages%20site%20here.%22" class="dorkLink" target="_blank">target.com http.html:"There isn't a GitHub Pages site here."</a></li></ul>
+    <section>
+        <h2>Additional Resources &amp; Credits</h2>
+        <ul class="link-list">
+            <li><a href="https://mathis2001.github.io/googledorks" target="_blank">Google Dorks Generator</a></li>
+            <li><a href="https://mathis2001.github.io/gitdorks" target="_blank">Github Dorks Generator</a></li>
+            <li><a href="https://s1rn3tz.gitbook.io/notes/pentest-web" target="_blank">Details and exploitation of results</a></li>
+            <li><a href="https://github.com/TakSec/google-dorks-bug-bounty/" target="_blank">Original page - TakSec</a></li>
+        </ul>
+    </section>
+    <script>
+        let originalDorks = [];
+
+        async function fetchDorks() {
+            const url = "https://raw.githubusercontent.com/mathis2001/mathis2001.github.io/main/Shodan%20Dorks.md";
+            const response = await fetch(url);
+            const text = await response.text();
+
+            const dorkList = document.getElementById("dorkList");
+            const regex = /(?:^### (.+)|^> (.+))/gm;
+            let match;
+            let title = '';
+            let firstDork = true;
+
+            while ((match = regex.exec(text)) !== null) {
+                if (match[1]) {
+                    // Title match
+                    title = match[1];
+                } else {
+                    // Dork match
+                    if (firstDork) {
+                        firstDork = false;
+                        continue;
+                    }
+                    const dork = match[2];
+                    originalDorks.push(dork);
+                    const listItem = createDorkListItem(dork, title);
+                    dorkList.appendChild(listItem);
+                }
+            }
+        }
+
+        let prevTitle = '';
+
+        function createDorkListItem(dork, description) {
+            const googleLink = `https://www.shodan.io/search?query=${encodeURIComponent(dork)}`;
+
+            const listItem = document.createElement("li");
+
+            if (description && description !== prevTitle) {
+                const desc = document.createElement("p");
+                desc.textContent = description;
+                desc.classList.add("description");
+                listItem.appendChild(desc);
+                prevTitle = description;
+            }
+
+            const link = document.createElement("a");
+            link.href = googleLink;
+            link.textContent = dork;
+            link.classList.add("dorkLink");
+            link.target = "_blank";
+
+            listItem.appendChild(link);
+
+            return listItem;
+        }
+
+        function updateDomain() {
+            const domainInput = document.getElementById("domainInput");
+            const domain = domainInput.value;
+            if (!domain) return;
+
+            const dorkLinks = document.querySelectorAll(".dorkLink");
+            dorkLinks.forEach((link, index) => {
+                const originalDork = originalDorks[index];
+                const updatedDork = originalDork.replace(/target(?:\[?\.\]?|\.)com/g, domain);
+                const updatedLink = `https://www.shodan.io/search?query=${encodeURIComponent(updatedDork)}`;
+
+                link.textContent = updatedDork;
+                link.href = updatedLink;
+            });
+        }
+
+        const updateDomainButton = document.getElementById("updateDomainButton");
+        updateDomainButton.addEventListener("click", updateDomain);
+
+        fetchDorks();
+    </script>
+
+
+</body></html>
