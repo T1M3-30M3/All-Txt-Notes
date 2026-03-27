@@ -1,0 +1,76 @@
+Google Dorking:
+inurl:/view.shtml
+intitle:"Live View / - AXIS"
+inurl:viewerframe?mode=
+inurl:"/view/index.shtml"
+inurl:"/control/userimage.html"
+intitle:"Network Camera Network Camera"
+intitle:"WebcamXP 5"
+
+Bosch: inurl:rcp.xml?command=
+Hikvision: inurl:/doc/page/login.asp?_
+Dahua: intitle:"Web Service" inurl:/webrender
+Toshiba: inurl:/user/cgi-bin/get_image.cgi?
+Linksys: inurl:/img/main.cgi?next_file=
+Sony: inurl:"/home/homeJ.html"
+
+Blue Iris: intitle:"Blue Iris - Group: Default"
+iSpy: intitle:"iSpy Server"
+QNAP VioStor: intitle:"VioStor" inurl:index.cgi
+Milestone XProtect: intitle:"XProtect Web Client"
+
+MJPEG Streams: inurl:"/mjpg/video.mjpg"
+CGI Streams: inurl:"/cgi-bin/snapshot.cgi?channel=1"
+Snapshots: inurl:viewerframe?mode=motion
+
+Generic Webcams: inurl:/view/index.shtml
+Generic IP Cameras: inurl:/view/view.shtml
+AXIS Network Cameras: intitle:"Network Camera Network Camera"
+Blue Iris Software: allintitle:"Blue Iris Login"
+Android IP Webcam: inurl:"videomgr.html"
+Canon VB Series: inurl:"/viewer/live/index.html"
+Linksys Cameras: inurl:"/main.cgi?next_file=index.htm"
+Panasonic Cameras: intitle:"Network Camera" inurl:"nphControlCamera"
+Mobotix Cameras: inurl:"/control/userimage.html"
+
+Hikvision (NVR/IP Cam): inurl:/doc/page/login.asp?
+Dahua (Web Service): intitle:"Web Service" inurl:/login
+AXIS (Live View): intitle:"Live View / - AXIS"
+Mobotix (Classic): inurl:/control/userimage.html
+WebcamXP 5: intitle:"WebcamXP 5"
+MJPG Streams: inurl:axis-cgi/mjpg/video.cgi
+Toshiba Network Camera: intitle:"Toshiba Network Camera" user
+Defway Cameras: intitle:"defway" inurl:index.php
+
+Open RTSP Streams: inurl:view/view.shtml?videos=
+Snapshot Pages: inurl:"/cgi-bin/guestimage.html"
+Directory of Camera Apps: intitle:"index of" "DCIM" "Camera"
+
+site:.uk inurl:/view/index.shtml (UK based)
+site:.jp intitle:"Network Camera" (Japan based)
+
+
+Pro Tip:::
+Shodan:
+Dahua
+Hikvision
+Hikvision country:BD
+
+Common Dork:
+"/doc/page/login.asp?_" country:BD
+Hikvision org:"Pusti Dairy Farm"
+Hikvision country:BD city:"Dhaka"
+
+Common Brand Name : WebcamXP, Dahua, Hikvision, Axis, Mobotix, Foscam, Amcrest, Vivotek, GeoVision, Bosch, Sony, Panasonic, Hanwha, Avigilon, Uniview, TP-Link Tapo, D-Link, Hikvision OEM, Dahua OEM, Zavio, Edimax, TRENDnet, Ubiquiti AirCam, Ubiquiti UniFi Protect, Grandstream, Reolink, Swann, Lorex, Q-See, Samsung SmartCam, Netgear Arlo, Ring Camera, Wyze Cam, Ezviz, Xiaomi Mi Home Camera, Zmodo, Instar, Apexis, Tenvis, Wanscam, Dericam, Digoo, HiLook, Imou, Annke, SV3C, Sricam, Yoosee
+
+
+Tips:
+intitle:"Live View"
+inurl:"/view.shtml"
+inurl:"login.asp"
+
+intitle:"Live View" Hikvision
+inurl:"/view.shtml" Dahua
+
+
+

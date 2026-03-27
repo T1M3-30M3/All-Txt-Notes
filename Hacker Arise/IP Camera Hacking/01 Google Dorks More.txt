@@ -1,0 +1,99 @@
+URL-Based Dorks (inurl:)
+inurl:"view/index.shtml"
+inurl:"MultiCameraFrame?Mode=Motion"
+inurl:/viewer/live/ja/live.html
+inurl:/view/view.shtml?id=
+inurl:/view/viewer_index.shtml
+inurl:control/camerainfo
+inurl:cgi-bin/guestimage.html
+inurl:shtml|pl|php|htm|asp|aspx|pdf|cfm
+
+itle-Based Dorks (intitle: & allintitle:)
+intitle:"IP CAMERA Viewer" intext:"setting | Client setting"
+intitle:"Device(" AND intext:"Network Camera" AND "Language:" AND "Password"
+intitle:"webcam 7" inurl:/gallery.html
+intitle:"Yawcam" inurl:8081
+intitle:"webcamXP 5" -download
+intitle:webcam 7 inurl:8080 -intext:8080
+intitle:"Live View / - AXIS" | inurl:view/view.shtml OR inurl:view/indexFrame.shtml | intitle:"MJPG Live Demo" | "intext:Select preset position"
+allintitle: Axis 2.10 OR 2.12 OR 2.30 OR 2.31 OR 2.32 OR 2.33 OR 2.34 OR 2.40 OR 2.42 OR 2.43 "Network Camera"
+allintitle:EdR1680 remote viewer
+allintitle: EverFocus | EDSR | EDSR400 Applet
+allintitle: EDR1600 login | Welcome
+intitle:"BlueNet Video Viewer"
+intitle:"SNC-RZ30" -demo
+(intitle:(EyeSpyFX|OptiCamFX) "go to camera") | (inurl:servlet/DetectBrowser)
+intitle:"Veo Observer XT"
+
+Text-Based Dorks (intext:)
+intext:"powered by webcamXP 5"
+
+Network & IP Camera Dorks:
+Mobotix Cameras: intitle:"Live View / - MOBOTIX"
+Linksys Wireless-G: intitle:"Linksys Wireless-G Camera" inurl:img/main.cgi
+Trendnet Cameras: inurl:"/view/view.shtml" intitle:"Network Camera"
+Generic H.264 DVRs: intitle:"H.264 Network Digital Video Recorder"
+D-Link Cameras: intitle:"D-Link Corporation." inurl:video.cgi
+
+Printers & Office Equipment:
+HP LaserJet Panels: intitle:"HP LaserJet" inurl:hp/device/this.LCDispatcher
+Brother Printers: intitle:"Brother" inurl:"/common/main.html"
+Epson Printers: intitle:"Epson" inurl:"/presentation/html/top/index.html"
+Xerox CentreWare: intitle:"Xerox CentreWare" inurl:status
+
+VoIP & Communication Systems:
+Cisco IP Phones: intitle:"Cisco Systems, Inc. - IP Phone"
+Asterisk PBX Panels: intitle:"Asterisk Information" "Uptime"
+Polycom Web Configuration: intitle:"Polycom Web Configuration Utility"
+
+Server & Database Misconfigurations:
+phpMyAdmin Panels: intitle:"phpMyAdmin" "Welcome to phpMyAdmin"
+Open Directory Listings: intitle:"index of" "parent directory" "backup"
+Exposed Log Files: filetype:log inurl:log "password" "login"
+Env Files (Credentials): filetype:env "DB_PASSWORD"
+
+
+
+# ===== CCTV / DEVICE GOOGLE DORKS =====
+
+iGuard Fingerprint
+intitle:"iGuard Fingerprint Security System"
+
+MOBOTIX Systems
+intitle:"MOBOTIX" intitle:"PDAS"
+
+Edr1680 Viewer
+intitle:"Edr1680 remote viewer"
+
+NetCam Live
+intitle:"NetCam Live Image" -edu -gov -johnny.ihackstuff.com
+
+INTELLINET IP Cam
+intitle:"INTELLINET" intitle:"IP Camera Homepage"
+
+WEB DVR
+intitle:"WEBDVR" -inurl:product -inurl:demo
+
+Videoconference Management
+intitle:"Middle frame of Videoconference Management System" ext:htm
+
+AXIS Live View
+intitle:"Live View / - AXIS" tilt
+
+AXIS 240 Server
+intitle:"AXIS 240 Camera Server" intext:"server push" -help
+
+Video Web Server
+intitle:"VIDEO WEB SERVER" intext:"Video Web Server" "Any time & Any where"
+
+HomeSeer Control
+intitle:"HomeSeer.Web.Control"
+
+CGI Camera Control
+inurl:"camctrl.cgi"
+
+SupervisionCam
+intitle:"supervisioncam protocol"
+
+Active Webcam
+intitle:"active webcam page"

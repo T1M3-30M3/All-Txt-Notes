@@ -1,0 +1,242 @@
+🔍 Core Shodan Filters (Learn These First):
+org:"Company Name" → filter by organization
+product:"Software/Device" → specific product
+country:"BD" → country (Bangladesh example)
+port:80 → specific port
+hostname:"example.com" → domain-related
+os:"Windows/Linux" → OS detection
+title:"login" → page title
+http.html:"keyword" → keyword in HTML
+ssl:"keyword" → SSL cert info
+net:"IP/CIDR" → IP range
+
+1. Organization Recon:
+org:"Your Target Company"
+org:"Your Target Company" port:443
+org:"Your Target Company" product:"Apache httpd"
+
+2. Web Service Discovery:
+port:80 http.title:"index of"
+port:443 ssl:"example.com"
+http.html:"login" country:"BD"
+
+3. Technology Fingerprinting:
+product:"nginx"
+product:"Apache httpd"
+product:"PHP"
+
+product:"Apache httpd" port:80 country:"BD"
+
+4. Version-Based Hunting:
+product:"OpenSSH" version:"7.2"
+product:"nginx" version:"1.14"
+
+5. SSL / Certificate OSINT:
+ssl:"company.com"
+ssl.cert.subject.CN:"company.com"
+
+6. Subdomain Discovery:
+hostname:".company.com"
+ssl:"*.company.com"
+
+7. Cloud / Infra Discovery:
+org:"Amazon.com"
+org:"Google LLC"
+org:"Microsoft Corporation"
+
+org:"Amazon.com" http.title:"login"
+
+💡 Pro Tip:
+org:"TARGET" product:"TECH"
+org:"TARGET" port:XXX
+hostname:"TARGET"
+ssl:"TARGET"
+
+Common Values for Shodan:
+🌐 Web Servers
+product:"Apache httpd"
+product:"nginx"
+product:"Microsoft IIS"
+product:"LiteSpeed"
+product:"Caddy"
+
+🖥️ Operating Systems / Remote Access
+product:"OpenSSH"
+product:"Dropbear sshd"
+product:"Remote Desktop Protocol"
+product:"VNC"
+product:"Telnet"
+
+🗄️ Databases
+product:"MySQL"
+product:"PostgreSQL"
+product:"MongoDB"
+product:"Redis"
+product:"Elasticsearch"
+product:"Microsoft SQL Server"
+
+📡 Network Devices / Routers / Firewalls
+product:"MikroTik RouterOS"
+product:"Cisco IOS"
+product:"Juniper"
+product:"Ubiquiti"
+product:"pfSense"
+product:"Fortinet FortiGate"
+
+📷 IP Cameras / CCTV (for research & defense only)
+product:"Hikvision"
+product:"Dahua"
+product:"Axis"
+product:"IP Webcam"
+product:"Yawcam webcam viewer httpd"
+product:"GoAhead-Webs"
+
+☁️ Cloud / DevOps / Panels
+product:"Docker"
+product:"Kubernetes"
+product:"Jenkins"
+product:"GitLab"
+product:"phpMyAdmin"
+product:"Webmin"
+product:"cPanel"
+
+📧 Mail Servers
+product:"Postfix smtpd"
+product:"Exim smtpd"
+product:"Sendmail"
+product:"Microsoft Exchange"
+
+📁 File Sharing / Storage
+product:"vsftpd"
+product:"ProFTPD"
+product:"Samba"
+product:"Nextcloud"
+
+🔐 Security / VPN
+product:"OpenVPN"
+product:"WireGuard"
+product:"StrongSwan"
+product:"Palo Alto Networks"
+
+🎯 Target-based
+org:"Company Name" product:"nginx"
+org:"Company Name" product:"OpenSSH"
+
+🌍 Country-based OSINT
+country:"BD" product:"Apache httpd"
+
+🔎 Combine filters
+product:"nginx" port:443 ssl:"example.com"
+
+🎯 Organization-Based Recon:
+org:"TARGET"
+org:"TARGET" port:443
+org:"TARGET" product:"nginx"
+org:"TARGET" product:"OpenSSH"
+org:"TARGET" os:"Linux"
+org:"TARGET" hostname:"TARGET.com"
+
+🌍 Country + Service Discovery
+country:"BD" port:80
+country:"BD" port:443
+country:"BD" product:"Apache httpd"
+country:"BD" product:"nginx"
+country:"BD" product:"OpenSSH"
+country:"BD" port:22
+
+🌐 Web Panels / Login Surfaces (OSINT)
+http.title:"login"
+http.title:"admin"
+http.html:"dashboard"
+http.html:"panel"
+http.html:"signin"
+
+Combine:
+product:"nginx" http.title:"login"
+country:"BD" http.html:"admin"
+
+🔐 SSL / Certificate Intelligence
+ssl:"DOMAIN.com"
+ssl.cert.subject.CN:"DOMAIN.com"
+ssl.cert.issuer.CN:"Let's Encrypt"
+ssl:"*.DOMAIN.com"
+
+🧠 Subdomain & Asset Discovery
+hostname:".DOMAIN.com"
+hostname:"dev.DOMAIN.com"
+hostname:"test.DOMAIN.com"
+hostname:"api.DOMAIN.com"
+
+⚙️ Port-Based Recon
+port:21
+port:22
+port:23
+port:25
+port:53
+port:80
+port:110
+port:143
+port:443
+port:445
+port:3389
+port:8080
+
+Combine:
+port:22 product:"OpenSSH"
+port:3389 os:"Windows"
+
+🖥️ Technology Fingerprinting:
+product:"Apache httpd"
+product:"nginx"
+product:"Microsoft IIS"
+product:"PHP"
+product:"Node.js"
+product:"Express"
+
+🗄️ Database Discovery (for awareness only)
+product:"MySQL"
+product:"MongoDB"
+product:"Redis"
+product:"PostgreSQL"
+product:"Elasticsearch"
+
+☁️ DevOps / Panels / Tools
+product:"Docker"
+product:"Kubernetes"
+product:"Jenkins"
+product:"GitLab"
+product:"phpMyAdmin"
+product:"Webmin"
+📡 Network Devices
+product:"MikroTik"
+product:"Cisco"
+product:"Fortinet"
+product:"Ubiquiti"
+product:"Juniper"
+
+📷 IoT / Embedded (Research Only)
+product:"Hikvision"
+product:"Dahua"
+product:"Axis"
+product:"GoAhead-Webs"
+
+⚡ Smart Combinations:
+Example 1: org:"TARGET" port:22 product:"OpenSSH"
+Example 2: hostname:"DOMAIN.com" port:443
+Example 3: country:"BD" product:"nginx" port:80
+Example 4: product:"Apache httpd" http.title:"login"
+
+🧠 Pro Bug Hunter Workflow
+Start broad: org:"TARGET"
+Identify tech: org:"TARGET" product:"nginx"
+Narrow attack surface: org:"TARGET" port:443
+Find entry points: http.title:"login"
+
+
+
+
+
+
+
+
+

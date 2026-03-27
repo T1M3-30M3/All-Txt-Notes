@@ -1,0 +1,99 @@
+🔍 Core Shodan Query Structure: filter:"value" filter:"value" keyword
+
+org:"Google" product:"Apache httpd"
+
+🏢 Organization / Company Targeting:
+org:"Company Name"
+isp:"ISP Name"
+
+org:"Amazon.com"
+org:"Microsoft Corporation"
+isp:"Cloudflare, Inc."
+
+🌐 Network / IP Range:
+net:"IP/CIDR"
+
+net:"8.8.8.0/24"
+net:"192.168.1.0/24"
+
+🖥️ Services & Ports:
+port:
+product:
+version:
+
+port:22
+port:3389
+product:"nginx"
+product:"OpenSSH" version:"7.2"
+
+🌍 Location-Based OSINT:
+country:
+city:
+geo:
+
+country:"BD"
+city:"Dhaka"
+geo:"23.81,90.41"
+
+🧾 Hostname / Domain:
+hostname:
+
+hostname:"*.gov.bd"
+hostname:"example.com"
+
+🔐 SSL / Certificates:
+sl:
+ssl.cert.subject.cn:
+
+ssl:"example.com"
+ssl.cert.subject.cn:"*.google.com"
+
+📡 HTTP / Web Data:
+http.title:
+http.html:
+http.server:
+
+http.title:"Login"
+http.server:"Apache"
+http.html:"password"
+
+🧠 OS Detection:
+os:
+
+os:"Windows 10"
+os:"Linux"
+
+⚙️ Device / IoT Discovery:
+device:
+
+device:"webcam"
+device:"router"
+device:"firewall"
+
+🧩 Example Dork Combinations:
+
+Company + Service: org:"Tesla, Inc." port:443
+Country + Service: country:"BD" product:"nginx"
+SSL + Organization: ssl:"bank" country:"US"
+Port + Product: port:21 product:"vsftpd"
+
+Web Titles (OSINT reconnaissance)
+http.title:"Dashboard"
+http.title:"Admin Panel"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
