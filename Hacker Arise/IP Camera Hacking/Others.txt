@@ -1,0 +1,117 @@
+org:"Amazon Web Services" os:"Linux 2.6.x" product:"nginx"
+org:"Amazon Web Services" product:"nginx" version:"1.2.1" port:"80"
+org:"Amazon Web Services" product:"nginx" version:"1.2.1" port:"80"
+country:"IE" city:"Dublin" product:"nginx" os:"Linux 2.6.x"
+org:"Amazon Web Services" country:"IE" city:"Dublin" port:"80"
+
+Router:
+port:"80,8080,443" country:"US" camera
+port:"80,8080" country:"US" tplink
+port:"80,8080" country:"US" netgear
+port:"80,8080" country:"US" linksys
+port:"80,8080" country:"US" dlink
+port:"80,8080" country:"US" asus
+port:"80,8080,554" country:"US" camera
+port:"80,8080,554" country:"US" webcam
+port:"80,8080" country:"US" live
+port:"80,8080" country:"US" belkin
+port:"80,8080" country:"US" "192.168.1.1"
+
+port:"80,8080,8728" country:"US" mikrotik
+port:"80,8080" country:"US" "RouterOS"
+port:8728 country:"US"
+
+port:"80,8080" country:"US" cisco
+port:"80,8080" country:"US" ubnt
+port:"80,8080" country:"US" "peplink"
+port:"80,8080" country:"US" juniper
+port:"80,8080" country:"US" "fortinet"
+
+INSTALL/SETUP:
+pip install -U shodan
+shodan init YOUR_API_KEY
+
+BASIC WEB/ADMIN PANELS:
+http.title:"Admin Login"
+http.title:"login" port:443
+http.html:"Username"
+http.title:"index of /"
+http.title:"Index of /.env"
+title:"Index of /.env"
+
+FAVICON / IDENTIFICATION:
+http.favicon.hash:-247388890
+
+CMS/DEV TOOLS:
+title:"phpMyAdmin"
+product:"phpMyAdmin"
+title:"GitLab" http.component:"gitlab"
+title:grafana hostname:target
+http.component:"Next.js" 200
+product:sonarqube
+x-jenkins 200
+
+DATABASES:
+product:"MongoDB" port:27017
+"MongoDB Server Information" port:27017 -authentication
+product:"Redis" port:6379
+product:"ElasticSearch" port:9200
+Elasticsearch port:9200
+port:9200 all:elastic
+
+DOCKER/CLOUD/API:
+product:"Docker" port:2375
+http.html:"api_key"
+org:"DigitalOcean" "Authorization: Bearer"
+
+SECURITY MISCONFIG/HEADERS:
+http.headers.location:"evil.com"
+"Access-Control-Allow-Origin: *"
+http.html:"DB_PASSWORD"
+
+SSL/CERT:
+ssl.cert.subject.cn:"internal.company.com"
+ssl.cert.issuer.cn:"Let's Encrypt"
+
+GEO/ORG FILTER:
+country:"IN"
+country:"US"
+city:"Washington"
+geo:"47.751076, -120.740135"
+org:"Facebook"
+
+SHODAN CLI/FACETS: shodan search --facets country,org,port "product:nginx"
+
+VNC/REMOTE ACCESS:
+port:5900 "VNC Viewer"
+port:5900 "VNC"
+
+FTP/SERVICES:
+Vsftpd 2.3.4
+port:21 country:US asus -530
+
+DEV/FILE LEAKS:
+http.html:"* The wp-config.php creation script uses this file"
+
+IOT/CAM/DEVICES:
+"Server: yawcam" "Mime-Type: text/html"
+"Serial Number:" "Built:" "Server: HP HTTP"
+"SERVER: EPSON_Linux UPnP" "200 OK"
+"Server: KS_HTTP" "200 OK"
+
+ICS/ODD SIGNATURES:
+"\x03\x00\x00\x0b\x06\xd0\x00\x00\x124\x00"
+"voter system serial" country:US
+
+RANDOM/OTHER:
+http.title:"Tesla PowerPack System"
+
+
+
+
+
+
+
+
+
+

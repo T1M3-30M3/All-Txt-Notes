@@ -1,0 +1,457 @@
+1. Exposed Panels & Admin Interfaces:
+org:"Name" product:"Apache Tomcat" port:8080
+org:"Name" product:"phpMyAdmin" port:80
+org:"Name" product:"Jenkins" port:8080
+org:"Name" product:"Grafana" port:3000
+org:"Name" product:" Kibana" port:5601
+org:"Name" product:"SonarQube" port:9000
+org:"Name" product:"GitLab" port:80
+org:"Name" product:"Apache Guacamole" port:8080
+org:"Name" product:"Mattermost" port:8065
+org:"Name" product:"Rocket.Chat" port:3000
+
+2. Databases & Storage:
+org:"Name" product:"MongoDB" port:27017
+org:"Name" product:"Redis" port:6379
+org:"Name" product:"Elasticsearch" port:9200
+org:"Name" product:"Memcached" port:11211
+org:"Name" product:"Cassandra" port:9042
+org:"Name" product:"CouchDB" port:5984
+org:"Name" product:"InfluxDB" port:8086
+org:"Name" product:"MySQL" port:3306 -authentication_enabled
+
+3. Cloud & DevOps:
+org:"Name" product:"AWS" "management console"
+org:"Name" product:"Azure" port:443
+org:"Name" product:"Docker" port:2375
+org:"Name" product:"Kubernetes" port:10250
+org:"Name" product:"Terraform" http.title:"Terraform"
+org:"Name" product:"Consul" port:8500
+org:"Name" product:"etcd" port:2379
+
+4. Vulnerable Software:
+org:"Name" "cpe:/a:wordpress:wordpress"
+org:"Name" "cpe:/a:apache:http_server:2.4.29"
+org:"Name" "cpe:/a:nginx:nginx:1.14.0"
+org:"Name" "cpe:/a:php:php:7.2.0"
+org:"Name" "cpe:/a:jenkins:jenkins"
+org:"Name" "cpe:/a:elastic:logstash"
+
+5. Remote Access & VPN:
+org:"Name" product:"OpenVPN" port:1194
+org:"Name" product:"WireGuard" port:51820
+org:"Name" product:"Cisco ASA" port:443
+org:"Name" product:"Palo Alto" port:443
+org:"Name" product:"Fortinet" port:443
+org:"Name" product:"TeamViewer" port:5938
+
+6. IoT & Industrial:
+org:"Name" product:"Modbus" port:502
+org:"Name" product:"Siemens" port:102
+org:"Name" product:"Schneider Electric" 
+org:"Name" product:"DNP3" port:20000
+org:"Name" product:"BACnet" port:47808
+org:"Name" "camera" webcam
+
+7. Misconfigurations & Info Disclosure:
+org:"Name" http.title:"Index of /"
+org:"Name" "Server: Apache" "X-Powered-By"
+org:"Name" port:22 "OpenSSH" version:7.4
+org:"Name" "debug=true" 
+org:"Name" http.component:"trace.axd"
+org:"Name" "api_key" 
+
+8. OSINT & Recon Dorks:
+org:"Name" port:22 os:"Linux"
+org:"Name" port:3389 "Terminal Services"
+org:"Name" country:"US" city:"New York"
+org:"Name" ssl.cert.subject.cn:"*.Name.com"
+org:"Name" "google-analytics.com" 
+
+9. Advanced Pentest Chains:
+org:"Name" product:"SpringBoot" port:8080 "actuator"
+org:"Name" product:"Struts" http.favicon.hash:"-1462394064"
+org:"Name" product:"Apache Struts" 
+org:"Name" "X-AspNet-Version" port:80
+org:"Name" product:"Drupal" http.title:"Drupal"
+
+Pro Tips for Bug Hunting:
+# Combine with filters
+org:"Name" product:"Grafana" port:3000 http.status:200 -http.html:"/login"
+org:"Name" product:"Jenkins" port:8080 "Configure System"
+org:"Name" product:"MongoDB" port:27017 http.title:"MongoDB"
+
+10. CI/CD & Build Tools:
+org:"Name" product:"CircleCI" port:80
+org:"Name" product:"Travis CI" 
+org:"Name" product:"Bamboo" port:8085
+org:"Name" product:"TeamCity" port:8111
+org:"Name" product:"Artifactory" port:8081
+org:"Name" product:"Nexus Repository" port:8081
+org:"Name" product:"Archiva" 
+
+11. Monitoring & Logging:
+org:"Name" product:"Prometheus" port:9090
+org:"Name" product:"Zabbix" port:10051
+org:"Name" product:"Nagios" port:80
+org:"Name" product:"New Relic" 
+org:"Name" product:"Datadog" 
+org:"Name" product:"Splunk" port:8000
+org:"Name" product:"Graylog" port:9000
+
+12. Collaboration & Productivity:
+org:"Name" product:"Nextcloud" port:80
+org:"Name" product:"ownCloud" 
+org:"Name" product:"Confluence" port:8090
+org:"Name" product:"Jira" port:8080
+org:"Name" product:"Discourse" port:3000
+org:"Name" product:"Taiga" port:80
+
+13. API Gateways & Proxies:
+org:"Name" product:"Kong" port:8001
+org:"Name" product:"Traefik" port:8080
+org:"Name" product:"HAProxy" port:80
+org:"Name" product:"NGINX" "X-Proxy" 
+org:"Name" product:"Envoy" port:9901
+org:"Name" product:"Istio" port:15000
+
+14. Messaging & Queues:
+org:"Name" product:"RabbitMQ" port:15672
+org:"Name" product:"ActiveMQ" port:8161
+org:"Name" product:"Apache Kafka" port:9092
+org:"Name" product:"NATS" port:4222
+org:"Name" product:"Apache Pulsar" port:6650
+
+15. Security Tools Exposed:
+org:"Name" product:"Nessus" port:8834
+org:"Name" product:"OpenVAS" port:9392
+org:"Name" product:"Burp Suite" port:8080
+org:"Name" product:"Metasploit" port:55553
+org:"Name" product:"Cobalt Strike" port:50050
+
+16. CMS & Frameworks:
+org:"Name" product:"Joomla" http.title:"Joomla"
+org:"Name" product:"TYPO3" 
+org:"Name" product:"Django" "DEBUG=True"
+org:"Name" product:"Ruby on Rails" "X-Runtime"
+org:"Name" product:"Laravel" "laravel_session"
+org:"Name" product:"Express" "X-Powered-By: Express"
+
+17. Network Devices:
+org:"Name" product:"Ubiquiti" port:80
+org:"Name" product:"MikroTik" port:80
+org:"Name" product:"pfSense" port:443
+org:"Name" product:"OPNsense" 
+org:"Name" product:"Sophos" port:443
+org:"Name" product:"WatchGuard" 
+
+18. Printers & Physical Devices:
+org:"Name" product:"HP JetDirect" port:9100
+org:"Name" product:"Xerox" port:80
+org:"Name" product:"Brother" printer
+org:"Name" product:"Canon" port:80
+org:"Name" "IPP" port:631
+
+19. Email & Communication Servers:
+org:"Name" product:"Postfix" port:25
+org:"Name" product:"Exim" port:25
+org:"Name" product:"iRedMail" 
+org:"Name" product:"Zimbra" port:80
+org:"Name" product:"Roundcube" 
+
+20. Advanced OSINT Chains:
+org:"Name" ssl.cert.serial:"*" country:"US" 
+org:"Name" "google-site-verification" 
+org:"Name" http.html:"facebook.com" 
+org:"Name" "twitter.com" http.title
+org:"Name" "linkedin.com" 
+org:"Name" port:53 dns
+
+21. Mobile & App Backends:
+org:"Name" product:"Firebase" 
+org:"Name" "graphql" port:4000
+org:"Name" product:"GraphQL" 
+org:"Name" "swagger" port:80
+org:"Name" product:"FastAPI" 
+
+22. Backup & File Servers:
+org:"Name" product:"SMB" port:445
+org:"Name" product:"NFS" port:2049
+org:"Name" product:"Samba" port:139
+org:"Name" "backup" port:80
+org:"Name" product:"Veeam" 
+
+23. Gaming & Entertainment:
+org:"Name" product:"Minecraft" port:25565
+org:"Name" product:"Steam" port:27015
+org:"Name" product:"Plex" port:32400
+org:"Name" product:"Emby" port:8096
+
+24. Crypto & Blockchain:
+org:"Name" product:"Bitcoin" port:8333
+org:"Name" product:"Ethereum" port:8545
+org:"Name" product:"Geth" port:8545
+org:"Name" "blockchain" port:80
+
+Bonus: High-Value Misconfigs:
+org:"Name" product:"Redis" port:6379 "requirepass"
+org:"Name" product:"Elasticsearch" port:9200 "_cat/indices"
+org:"Name" product:"MongoDB" port:27017 "test"
+org:"Name" http.title:"AWSELB" 
+org:"Name" "X-Amz" 
+
+🔥 Fresh Combos for Bug Bounties:
+org:"Name" product:"Strapi" port:1337
+org:"Name" product:"Directus" port:8055
+org:"Name" product:"Supabase" 
+org:"Name" product:"PocketBase" port:8090
+
+25. Government CCTV Systems:
+country:"US" city:"Washington" webcam "government"
+country:"US" city:"New York" port:80 "camera" "gov"
+country:"GB" "cctv" webcam org:"gov.uk"
+country:"IN" city:"Delhi" "camera" port:8080
+country:"CA" "surveillance" webcam
+country:"AU" city:"Canberra" "cctv" 
+country:"DE" city:"Berlin" "kamera" webcam
+country:"FR" city:"Paris" "caméra" 
+country:"RU" city:"Moscow" "камера" webcam
+country:"CN" city:"Beijing" "摄像头" 
+
+26. Government IoT Devices:
+country:"US" product:"Hikvision" org:"gov"
+country:"GB" product:"Dahua" "police"
+country:"IN" product:"CP Plus" city:"Mumbai"
+country:"US" product:"Axis" "government"
+country:"AU" product:"Bosch" org:"gov.au"
+country:"CA" product:"Honeywell" "gov.ca"
+
+27. Government Servers & Infrastructure:
+country:"US" org:"gov" port:22 "OpenSSH"
+country:"GB" org:"gov.uk" port:443 "nginx"
+country:"IN" org:"gov.in" port:8080
+country:"US" org:"state.gov" "apache"
+country:"AU" org:"gov.au" port:3306
+country:"DE" org:"bund.de" port:5432
+country:"FR" org:"gouv.fr" elasticsearch
+
+28. Police & Emergency Systems:
+country:"US" "police" port:80 webcam
+country:"GB" "police.uk" cctv
+country:"IN" "police.gov.in" camera
+country:"AU" "police" city:"Sydney" webcam
+country:"CA" "rcmp-grc.gc.ca" 
+country:"US" "911" port:80
+country:"GB" "999" emergency
+
+29. Military & Defense (HIGH SENSITIVITY):
+country:"US" org:"defense.gov" port:22
+country:"GB" org:"mod.uk" iot
+country:"IN" org:"mod.gov.in" camera
+country:"RU" org:"mil.ru" webcam
+country:"CN" org:"mod.gov.cn" 
+country:"US" "army.mil" port:8080
+
+30. Public Sector Databases:
+country:"US" org:"gov" mongodb port:27017
+country:"GB" org:"gov.uk" redis port:6379
+country:"IN" org:"gov.in" elasticsearch port:9200
+country:"AU" org:"gov.au" mysql port:3306
+country:"CA" org:"gc.ca" memcached port:11211
+
+31. Smart City Infrastructure:
+country:"US" city:"Smart City" iot
+country:"SG" "smart nation" webcam
+country:"IN" city:"Smart City" camera
+country:"CN" city:"Smart City" "摄像头"
+country:"KR" city:"Seoul" iot port:80
+country:"AE" city:"Dubai" smart camera
+
+32. Transportation & Traffic Cameras:
+country:"US" "traffic" webcam org:"gov"
+country:"GB" "highways" cctv
+country:"IN" "traffic police" camera
+country:"AU" "roads" city:"Melbourne" webcam
+country:"NL" "verkeerscamera" 
+country:"DE" "Verkehrskamera" 
+
+33. Healthcare & Hospital Systems:
+country:"US" org:"gov" "hospital" port:80
+country:"GB" org:"nhs.uk" iot
+country:"IN" org:"health.gov.in" camera
+country:"AU" org:"health.gov.au" port:8080
+country:"CA" org:"health.gc.ca" 
+
+34. Education & University Networks:
+country:"US" org:"edu" webcam campus
+country:"GB" org:"ac.uk" iot
+country:"IN" org:"ac.in" camera
+country:"AU" org:"edu.au" port:22
+country:"DE" org:"uni" 
+
+35. Utility & Critical Infrastructure:
+country:"US" org:"gov" "water" iot
+country:"GB" org:"gov.uk" "energy" 
+country:"IN" org:"gov.in" "power" camera
+country:"AU" org:"gov.au" "electricity" 
+country:"US" product:"SCADA" org:"gov"
+
+36. Country-Specific Power Combos:
+country:"US" org:"gov" port:8080 "tomcat"
+country:"US" org:"mil" elasticsearch
+country:"GB" org:"gov.uk" mongodb
+country:"GB" org:"nhs.uk" port:3000 grafana
+country:"IN" org:"gov.in" redis
+country:"IN" org:"nic.in" port:8080
+country:"AU" org:"gov.au" jenkins
+country:"AU" org:"defence.gov.au" iot
+country:"CA" org:"gc.ca" port:9200
+country:"CA" org:"canada.ca" camera
+
+37. Border & Airport Security:
+country:"US" "customs" webcam
+country:"GB" "border force" cctv
+country:"IN" "immigration" camera
+country:"AU" "border.gov.au" 
+country:"CA" "cbp" port:80
+
+🎯 Advanced Government Hunting:
+country:"US" ssl.cert.subject.O:"Government of"
+country:"GB" ssl.cert.subject.O:"Crown"
+country:"IN" ssl.cert.subject.O:"Government of India"
+country:"AU" ssl.cert.subject.O:"Australian Government"
+country:"US" http.title:"Dashboard" org:"gov"
+country:"GB" "admin" org:"gov.uk" port:80
+
+📍 Geo-Targeted Capital Cities:
+city:"Washington" country:"US" webcam gov
+city:"London" country:"GB" cctv government
+city:"New Delhi" country:"IN" camera gov
+city:"Canberra" country:"AU" iot gov
+city:"Ottawa" country:"CA" surveillance
+city:"Berlin" country:"DE" kamera
+
+38. ARMY Systems:
+country:"US" org:"army.mil" port:22
+country:"US" org:"army.mil" webcam
+country:"GB" org:"army.mod.uk" iot
+country:"IN" org:"indianarmy.nic.in" camera
+country:"IN" "indian army" port:8080
+country:"RU" org:"mil.ru" army
+country:"CN" "解放军" webcam
+country:"PK" org:"pakarmy.gov.pk" 
+
+39. POLICE Systems:
+country:"US" "police.gov" port:80
+country:"GB" org:"police.uk" cctv
+country:"IN" org:"police.gov.in" camera
+country:"IN" "uppolice.gov" webcam
+country:"AU" org:"police.vic.gov.au" 
+country:"CA" org:"rcmp-grc.gc.ca" iot
+country:"DE" "polizei" port:443
+country:"FR" "police.gouv.fr" 
+
+40. NAVY Systems:
+country:"US" org:"navy.mil" port:22
+country:"US" org:"navy.mil" camera
+country:"IN" org:"indiannavy.nic.in" iot
+country:"GB" org:"royalnavy.mod.uk" 
+country:"CN" "海军" webcam
+country:"PK" "paknavy.gov.pk" port:80
+country:"RU" "navy.mil.ru" 
+country:"AU" org:"navy.gov.au" 
+
+41. AIR FORCE Systems:
+country:"US" org:"af.mil" port:8080
+country:"US" org:"airforce.mil" webcam
+country:"IN" org:"indianairforce.nic.in" camera
+country:"GB" org:"raf.mod.uk" iot
+country:"PK" "paf.gov.pk" port:80
+country:"CN" "空军" 
+country:"RU" "airforce.mil.ru" 
+
+42. Intelligence Agencies :
+country:"IN" org:"nic.in" raw
+country:"IN" "raw.gov.in" port:443
+country:"GB" org:"sis.gov.uk" 
+country:"US" org:"cia.gov" iot
+country:"US" org:"nsa.gov" port:22
+country:"PK" "isi.gov.pk" camera
+country:"RU" org:"fsb.ru" 
+country:"IL" org:"mossad.gov.il" 
+
+43. Defense Contractors & Vendors:
+country:"US" org:"lockheedmartin.com" gov
+country:"US" org:"raytheon.com" military
+country:"US" org:"northropgrumman.com" army
+country:"IN" org:"hal-india.co.in" iot
+country:"GB" org:"BAE Systems" mod.uk
+country:"FR" org:"dassault-aviation.com" 
+
+44. Military Bases & Installations:
+country:"US" city:"Fort Bragg" webcam
+country:"US" city:"Fort Hood" camera
+country:"US" city:"Camp Pendleton" iot
+country:"GB" city:"Aldershot" military
+country:"IN" city:"Pune" army camera
+country:"IN" city:"Kochi" navy
+country:"PK" city:"Rawalpindi" army
+
+45. Defense Communication Systems:
+country:"US" org:"army.mil" port:5060 sip
+country:"GB" org:"mod.uk" port:554 rtsp
+country:"IN" org:"indianarmy.nic.in" port:1935
+country:"US" org:"navy.mil" port:1723 pptp
+country:"PK" org:"pakarmy.gov.pk" port:1194 vpn
+
+46. Weapon Systems & Radars:
+country:"US" "radar" org:"mil" port:80
+country:"IN" "radar" indianairforce camera
+country:"GB" "radar" raf.mod.uk
+country:"PK" "radar" paf.gov.pk iot
+country:"CN" "雷达" military
+
+47. Military Networks & C2:
+country:"US" org:"mil" mongodb port:27017
+country:"GB" org:"mod.uk" redis port:6379
+country:"IN" org:"nic.in" jenkins port:8080
+country:"PK" org:"gov.pk" grafana port:3000
+country:"RU" org:"mil.ru" elasticsearch
+
+48. Country-Specific Military Combos:
+country:"US" org:"*.mil" port:8080
+country:"US" "DoD" webcam
+country:"US" ssl.cert.subject.O:"US Army"
+country:"IN" org:"indianarmy.nic.in" 
+country:"IN" org:"indiannavy.nic.in" camera
+country:"IN" org:"indianairforce.nic.in" iot
+country:"GB" org:"mod.uk" port:22
+country:"GB" "British Army" cctv
+country:"PK" org:"pakarmy.gov.pk" 
+country:"PK" org:"paf.gov.pk" webcam
+country:"RU" org:"mil.ru" port:80
+country:"RU" "военная" camera
+
+49. Paramilitary & Special Forces:
+country:"IN" "crpf.gov.in" camera
+country:"IN" "bsf.gov.in" iot
+country:"GB" "sas" mod.uk
+country:"US" "delta force" mil
+country:"PK" "ssg.gov.pk" 
+
+50. Defense R&D & Testing:
+country:"US" org:"darpa.mil" port:80
+country:"IN" org:"drdo.gov.in" iot
+country:"GB" org:"dstl.gov.uk" 
+country:"IL" org:"rafael.co.il" military
+
+🎯 Elite Military Recon Chains:
+country:"US" org:"army.mil" http.title:"admin" port:8080
+country:"IN" org:"indianarmy.nic.in" "dashboard" 
+country:"GB" org:"mod.uk" product:"jenkins" 
+country:"PK" org:"pakarmy.gov.pk" mongodb
+country:"US" org:"navy.mil" ssl:"expired"
+
+
+
+
