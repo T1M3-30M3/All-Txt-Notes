@@ -1,0 +1,16 @@
+✅ Correct Shodan Queries:
+org:"Duranto Broadband Network" MikroTik
+org:"Duranto Broadband Network" "RouterOS"
+org:"Duranto Broadband Network" port:8291
+org:"Duranto Broadband Network" ("MikroTik" OR "RouterOS") port:8291
+
+org:"Duranto Broadband Network" port:161
+org:"Duranto Broadband Network" port:8728
+
+shodan search 'org:"Duranto Broadband Network" MikroTik'
+shodan search 'org:"Duranto Broadband Network" "RouterOS"'
+shodan search 'org:"Duranto Broadband Network" port:8291'
+shodan search 'org:"Duranto Broadband Network" ("MikroTik" OR "RouterOS") port:8291'
+shodan search 'org:"Duranto Broadband Network" "RouterOS router configuration page"'
+shodan search --limit 100 --fields ip_str,port,org 'org:"Duranto Broadband Network" port:8291' > mikrotik.json
+shodan search --fields ip_str,port,hostnames,org --separator " | " 'org:"Duranto Broadband Network" port:8291'
