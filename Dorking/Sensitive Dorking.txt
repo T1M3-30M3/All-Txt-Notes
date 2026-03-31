@@ -1,0 +1,154 @@
+Google Drive Leaks:
+site:drive.google.com "confidential"
+site:drive.google.com "password"
+site:drive.google.com "resume"
+site:drive.google.com "cyber security"
+site:drive.google.com "public dataset"
+site:drive.google.com "presentation"
+
+Mega.nz Files:
+site:mega.nz "course"
+site:mega.nz "pdf"
+site:mega.nz "hacking"
+site:mega.nz "ebook"
+site:mega.nz "tutorial"
+
+Pastebin / Data Dumps:
+site:pastebin.com "gmail.com"
+site:pastebin.com "password"
+site:pastebin.com "api key"
+site:pastebin.com "python script"
+site:pastebin.com "linux commands"
+
+Free Courses / Resources:
+"cyber security course" filetype:pdf
+"penetration testing" filetype:pdf
+"ethical hacking" filetype:ppt
+"cyber security course" "free"
+"ethical hacking course" "open course"
+site:edu "cyber security lecture"
+
+File Hunting:
+filetype:pdf "resume" "Dhaka"
+filetype:xlsx "employee data"
+filetype:txt "password"
+filetype:sql "dump"
+filetype:pdf "penetration testing guide"
+filetype:ppt "cyber security"
+filetype:xlsx "sample dataset"
+
+Public Sensitive Links:
+"index of" "backup"
+"index of" "database"
+"index of" "admin"
+
+Advanced Combo Queries:
+site:drive.google.com "password" "admin"
+site:pastebin.com "gmail.com" "password"
+site:linkedin.com/in "penetration tester" "Bangladesh"
+site:github.com "api_key"
+
+Exposure Checking:
+site:yourdomain.com filetype:pdf
+site:yourdomain.com "internal"
+site:yourdomain.com "confidential"
+
+Basic “Index of” Discovery:
+intitle:"index of" "backup"
+intitle:"index of" "database"
+intitle:"index of" "db"
+intitle:"index of" "sql"
+
+Database File Hunting:
+intitle:"index of" "dump.sql"
+intitle:"index of" "backup.sql"
+intitle:"index of" ".sql"
+
+Common Backup Files:
+intitle:"index of" "backup.zip"
+intitle:"index of" "backup.tar"
+intitle:"index of" "site_backup"
+
+Config Files:
+intitle:"index of" ".env"
+intitle:"index of" "config.php"
+intitle:"index of" "web.config"
+
+Log Files:
+intitle:"index of" "error.log"
+intitle:"index of" "access.log"
+
+CMS / Web App Dumps:
+intitle:"index of" "wp-content"
+intitle:"index of" "joomla"
+intitle:"index of" "drupal"
+
+Advanced Combo Queries:
+intitle:"index of" "backup" "sql"
+intitle:"index of" "database" "user"
+intitle:"index of" "admin" "login"
+
+Target-Specific:
+site:example.com intitle:"index of"
+site:example.com "index of" "backup"
+
+Oneliner:
+Index of + Database: intitle:"index of" ("backup" OR "database" OR "db") ("sql" OR "zip" OR "tar")
+
+SQL Dumps Only : intitle:"index of" ("dump.sql" OR "backup.sql" OR ".sql")
+
+Backup Files : intitle:"index of" ("backup" OR "site_backup") ("zip" OR "tar" OR "gz")
+
+Config Files Exposure : intitle:"index of" (".env" OR "config.php" OR "web.config" OR "settings.py")
+
+Logs + Debug Files : intitle:"index of" ("error.log" OR "access.log" OR "debug.log")
+
+Public File Leakage : ("index of" OR "parent directory") ("backup" OR "admin" OR "database")
+
+Google Drive Public Files : site:drive.google.com ("cyber security" OR "tutorial" OR "dataset")
+
+Paste Search : site:pastebin.com ("python" OR "bash" OR "script")
+
+File Hunting : (filetype:pdf OR filetype:ppt OR filetype:xls) ("cyber security" OR "penetration testing")
+
+Target Specific : site:example.com ("index of" OR "backup" OR "admin")
+
+Ultimate Combo : intitle:"index of" ("backup" OR "database") ("sql" OR "env" OR "log")
+
+Index of + Sensitive Keywords : intitle:"index of" ("admin" OR "private" OR "secret" OR "internal")
+
+Database + User Info Patterns : intitle:"index of" ("users" OR "accounts" OR "members") ("sql" OR "db")
+
+Backup + Config Combo : intitle:"index of" ("backup" OR "config") ("env" OR "ini" OR "json")
+
+Environment / Secrets Files : ("index of" OR "parent directory") (".env" OR ".git" OR ".htaccess")
+
+Logs + Errors + Debug : ("index of" OR "logs") ("error" OR "debug" OR "access")
+
+Open Directories : intitle:"index of" ("parent directory") ("upload" OR "files")
+
+Uploads / Media Exposure : intitle:"index of" ("uploads" OR "images" OR "files") ("jpg" OR "png" OR "pdf")
+
+Git / Source Code Exposure : intitle:"index of" ".git" ("HEAD" OR "config")
+
+API / Key Indicators : ("api_key" OR "token" OR "client_secret") ("test" OR "demo")
+
+Public Cloud Storage : ("index of" OR "bucket") ("s3" OR "storage") ("backup" OR "files")
+
+Research / Documents Combo : (filetype:pdf OR filetype:doc OR filetype:ppt) ("network security" OR "forensics")
+
+Excel / Data Sheets : filetype:xlsx ("employee" OR "report" OR "data")
+
+Open Redirect / URL Params : inurl:"redirect=" OR inurl:"url=" OR inurl:"next="
+
+Login Panels Discovery : inurl:"admin" OR inurl:"login" intitle:"login"
+
+Bug Bounty Target Combo : site:target.com ("login" OR "admin" OR "dashboard")
+
+Ultra Combo : ("index of" OR "parent directory") ("backup" OR "log" OR "config" OR "db")
+
+Pro Tips:
+site:.us intitle:"index of" "backup"
+intitle:"index of" "backup" -github -stackoverflow
+
+

@@ -1,0 +1,63 @@
+Target Profile Search:
+site:instagram.com "target name"
+site:instagram.com inurl:"username"
+site:instagram.com intitle:"target name" "Instagram"
+
+Post / Content Search:
+site:instagram.com/p/ "keyword"
+site:instagram.com "keyword" "likes"
+site:instagram.com "keyword" "comments"
+
+Location-Based Search:
+site:instagram.com/explore/locations/ "location name"
+"location name" "Instagram" "posts"
+
+Hashtag Search:
+site:instagram.com/explore/tags/ "keyword"
+"https://www.instagram.com/explore/tags/keyword/"
+
+Username Enumeration:
+"username" -site:instagram.com
+"username" site:twitter.com OR site:facebook.com OR site:tiktok.com
+
+Third-Party Viewer Search:
+site:picuki.com "keyword"
+site:dumpor.com "username"
+site:imginn.com "username"
+
+Find Emails / Contacts:
+site:instagram.com "gmail.com"
+site:instagram.com "@yahoo.com"
+site:instagram.com "contact me"
+site:instagram.com "email"
+
+Bio Information Extraction:
+site:instagram.com "bio" "developer"
+site:instagram.com "CEO" "Instagram"
+site:instagram.com "📍"
+
+Phone / WhatsApp Leakage:
+site:instagram.com "+880"
+site:instagram.com "WhatsApp"
+site:instagram.com "call me"
+
+Niche / Interest Targeting:
+site:instagram.com "bug bounty"
+site:instagram.com "pentester"
+site:instagram.com "cybersecurity"
+
+Reverse Discovery:
+"target name" "tagged"
+"target username" "friends"
+
+ile / Media Leakage:
+site:instagram.com "drive.google.com"
+site:instagram.com "pastebin.com"
+
+site:instagram.com "pentester" "Dhaka" -jobs
+
+site:instagram.com "pentester" "Bangladesh"
+site:instagram.com "bug bounty" "@gmail.com"
+site:instagram.com/p/ "giveaway" "winner"
+site:instagram.com "student" "EWU"
+

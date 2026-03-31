@@ -1,0 +1,92 @@
+Profile Search:
+site:linkedin.com/in "target name"
+site:linkedin.com/in "Zaber Mahmud"
+site:linkedin.com/in "username"
+
+Company Employee Search:
+site:linkedin.com "company name" "employees"
+site:linkedin.com "company name" "Works At"
+site:linkedin.com/in "software engineer" "Google"
+site:linkedin.com/in "student" "EWU"
+
+Education-Based Search:
+site:linkedin.com/in "East West University"
+site:linkedin.com/in "studied at EWU"
+
+Job / Role Targeting:
+site:linkedin.com/in "penetration tester"
+site:linkedin.com/in "cyber security analyst"
+site:linkedin.com/in "bug bounty hunter"
+
+Location-Based Search:
+site:linkedin.com/in "Dhaka"
+site:linkedin.com/in "Bangladesh" "developer"
+
+Email / Contact Leakage:
+site:linkedin.com/in "@gmail.com"
+site:linkedin.com "contact" "LinkedIn"
+
+Company Page Search:
+site:linkedin.com/company "company name"
+site:linkedin.com/company "startup"
+
+Resumes / CV Leakage:
+site:linkedin.com "resume" "pdf"
+site:linkedin.com "CV" "download"
+
+Username Enumeration:
+"username" site:linkedin.com
+"username" -site:linkedin.com
+
+Find Decision Makers:
+site:linkedin.com/in "CEO" "company name"
+site:linkedin.com/in "CTO" "startup"
+
+Tech Stack Discovery:
+site:linkedin.com/in "React developer" "Dhaka"
+site:linkedin.com/in "AWS" "engineer"
+
+Hiring / Opportunity Recon:
+site:linkedin.com/jobs "cyber security"
+site:linkedin.com "hiring" "developer"
+
+Combine Filters (POWER QUERY)
+site:linkedin.com/in "penetration tester" "Bangladesh" -intern
+
+Job Hunting:
+site:linkedin.com/jobs "cyber security"
+site:linkedin.com "hiring" "developer"
+site:indeed.com "penetration tester"
+site:bdjobs.com "cyber security"
+"we are hiring" "remote" "developer"
+
+Email Discovery:
+"@gmail.com" "cyber security"
+"@company.com" "contact"
+site:linkedin.com "@gmail.com"
+site:github.com "@gmail.com"
+
+"@tesla.com" "engineer"
+
+Phone Number Discovery:
+"+880" "developer"
+"+8801" "contact"
+site:facebook.com "+880"
+
+Find Profiles With External Links : site:linkedin.com/in ("github.com" OR "portfolio" OR "blog")
+
+GitHub Links via LinkedIn:
+site:linkedin.com/in "github.com" "developer"
+site:linkedin.com/in "github.io" "portfolio"
+
+Portfolio : site:linkedin.com/in ("portfolio" OR "personal website" OR "my site")
+
+Resume / CV : site:linkedin.com/in ("drive.google.com" OR "dropbox.com") "resume"
+
+Shared Project Links : site:linkedin.com "project" ("github.com" OR "demo" OR "live site")
+
+Tech-Specific Profiles With Links : site:linkedin.com/in "penetration tester" ("github.com" OR "lab")
+
+Cross Platform Pivoting : "username" ("github.com" OR "twitter.com" OR "medium.com")
+
+ 

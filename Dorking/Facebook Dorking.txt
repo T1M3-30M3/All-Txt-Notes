@@ -1,0 +1,46 @@
+Profile Search:
+site:facebook.com "target name"
+site:facebook.com "Zaber Mahmud"
+site:facebook.com inurl:"username"
+
+Pages & Groups:
+site:facebook.com "keyword" "page"
+site:facebook.com/groups "keyword"
+site:facebook.com "keyword" "group"
+
+Posts Search:
+site:facebook.com "keyword" "posts"
+site:facebook.com "target name" "commented"
+site:facebook.com "keyword" "shared"
+
+Location-Based Search:
+site:facebook.com "Dhaka" "lives in"
+site:facebook.com "from Dhaka"
+
+Email / Contact Leakage:
+site:facebook.com "@gmail.com"
+site:facebook.com "phone"
+site:facebook.com "+880"
+
+Workplace / Education:
+site:facebook.com "works at"
+site:facebook.com "studied at EWU"
+
+Cross Platform / Username Tracking:
+"username" site:facebook.com
+"username" -site:facebook.com
+
+Facebook IDs & URLs:
+site:facebook.com "profile.php?id="
+site:facebook.com "people" "name"
+
+site:facebook.com "target name" "commented on"
+
+Interest-Based Targeting:
+site:facebook.com "cyber security"
+site:facebook.com "bug bounty"
+
+External Links Shared on Facebook:
+site:facebook.com "drive.google.com"
+site:facebook.com "youtube.com"
+site:facebook.com "pastebin.com"
