@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Log Analysis Arsenal - Penetration Testing Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Fira Code', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e4e6f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(15, 20, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00d4ff, #ef4444);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #ef4444;
+            padding-left: 1rem;
+        }
+
+        .subtitle {
+            color: #8b9bcf;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            font-size: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2d3561;
+            color: #00d4ff;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #f87171;
+        }
+
+        pre {
+            background: #0a0e1a;
+            border-radius: 12px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #2d3561;
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            background: #0a0e1a;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #2d3561;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-family: monospace;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #4c5a8a;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ef4444;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .note {
+            background: #2d1f4a;
+            border-left: 3px solid #f59e0b;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            pre {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🔍 SSH Log Analysis Arsenal</h1>
+    <div class="subtitle">Senior Penetration Tester - Digital Forensics Edition (HTB Labs)</div>
+
+    <!-- Locate SSH Logs -->
+    <h2>📂 1. Locate SSH Logs</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Common SSH log locations
+find /var/log -name "*ssh*" -type f 2>/dev/null
+find /var/log -name "*auth*" -type f 2>/dev/null
+ls -la /var/log/auth.log* /var/log/secure* /var/log/messages*
+
+# Real-time SSH monitoring
+tail -f /var/log/auth.log | grep sshd</code></pre>
+
+    <!-- Brute Force Detection -->
+    <h2>📊 2. Brute Force Detection & Analysis</h2>
+    <h3>Failed login attempts (top attackers)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>IP-based attack analysis</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password.*for .* from" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr > ssh_attackers.txt</code></pre>
+
+    <h3>Successful logins after brute force</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -E "Accepted password|Accepted publickey" /var/log/auth.log | grep -A5 -B5 "Failed password"</code></pre>
+
+    <h3>Time-based attack windows</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | cut -d' ' -f1-3 | sort | uniq -c | sort -nr | head</code></pre>
+
+    <h3>GeoIP analysis of attackers</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>awk '{print $11}' ssh_attackers.txt | while read ip; do
+    geoiplookup $ip 2>/dev/null | head -1
+done | sort | uniq -c | sort -nr</code></pre>
+
+    <!-- Advanced SSH Pattern Analysis -->
+    <h2>🎯 3. Advanced SSH Pattern Analysis</h2>
+    <h3>User enumeration attempts</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Invalid user" /var/log/auth.log | awk '{print $9}' | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>Key-based auth analysis</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted publickey" /var/log/auth.log | awk '{print $9" "$11" "$13}' | sort | uniq -c</code></pre>
+
+    <h3>PAM module failures</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "pam_unix" /var/log/auth.log | grep "authentication failure" | awk '{print $11}' | sort | uniq -c</code></pre>
+
+    <h3>Complete SSH session timeline</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>awk '/sshd/ && /from/ {print $1" "$2" "$9" "$11}' /var/log/auth.log | sort > ssh_timeline.txt</code></pre>
+
+    <!-- Automated Script -->
+    <h2>🤖 4. Complete SSH Analyzer Script</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+LOGFILE=${1:-/var/log/auth.log}
+echo "=== SSH ATTACK ANALYSIS ==="
+echo "Top 20 Attackers:"
+grep "Failed password.*from" $LOGFILE | awk '{print $11}' | sort | uniq -c | sort -nr | head -20
+
+echo -e "\nSuccessful Logins (Last 24h):"
+grep "Accepted" $LOGFILE | tail -n 50
+
+echo -e "\nUser Enumeration Attempts:"
+grep "Invalid user" $LOGFILE | awk '{print $9}' | sort | uniq -c | sort -nr
+
+echo -e "\nAttack Timeline (hourly):"
+grep "Failed password" $LOGFILE | cut -d' ' -f1-2 | cut -d: -f1 | sort | uniq -c | sort -nr</code></pre>
+
+    <!-- Visualization -->
+    <h2>📈 5. Visualization & SIEM Integration</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Generate CSV for ELK/CSV analysis
+awk -F' ' '{print $11","$1","$2","$9}' ssh_attackers.txt > ssh_attacks.csv
+
+# Real-time attack dashboard
+watch -n 5 'grep "$(date +%b\ %d)" /var/log/auth.log | grep "Failed password" | wc -l'
+
+# ELK pipeline (Filebeat config snippet)
+cat > filebeat_ssh.yml << EOF
+- type: log
+  paths:
+    - /var/log/auth.log
+  fields:
+    service: ssh
+  fields_under_root: true
+EOF</code></pre>
+
+    <!-- Timeline Correlation -->
+    <h2>⏱️ 6. Timeline & Correlation Analysis</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Session duration analysis
+awk '/sshd.*Accepted/ {login[$11]=$2} /sshd.*disconnected/ && login[$11] {print $11" "$2-login[$11]"s"; delete login[$11]}' /var/log/auth.log</code></pre>
+
+    <!-- Forensic Memory Analysis -->
+    <h2>🕵️ 7. Forensic Memory Analysis</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Extract credentials from memory
+strings /proc/$(pgrep sshd)/mem | grep -i pass
+volatility -f memdump.raw --profile=LinuxUbuntu linux_pslist | grep sshd
+
+# Process monitoring
+lsof -i :22 | grep ESTABLISHED
+ss -tulp | grep ':22'</code></pre>
+
+    <!-- Statistical Analysis -->
+    <h2>📊 8. Advanced Statistical Analysis</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Attack velocity (requests per minute)
+grep "Failed password" /var/log/auth.log | awk '{print $1" "$2}' | cut -d: -f1 | uniq -c | awk '{print $2","$1}' > attack_velocity.csv
+
+# Entropy analysis of usernames
+ent -t users_extracted.txt
+
+# Poisson distribution of attacks (R script)
+Rscript -e "
+data <- read.csv('ssh_attacks.csv')
+hist(data\$V2, breaks=50, main='Attack Distribution')
+"</code></pre>
+
+    <!-- IDS Rules -->
+    <h2>🚨 9. Real-Time IDS Rules (Snort/Suricata)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># SSH Brute Force Signature
+alert tcp any any -> $HOME_NET 22 (msg:"SSH Brute Force"; flow:to_server,established; content:"SSH-"; threshold:type both, track by_src, count 10, seconds 60; sid:1000001;)</code></pre>
+
+    <!-- One-Liner Tools -->
+    <h2>⚡ 10. One-Liner Power Tools</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># SSH attack summary
+grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | head | column -t
+
+# Live attack count
+watch 'grep "$(date +%H):" /var/log/auth.log | grep "Failed" | wc -l'</code></pre>
+
+    <!-- Reporting Dashboard -->
+    <h2>📋 11. Reporting Dashboard Generator</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+echo "
+SSH SECURITY REPORT - $(date)
+=======================
+SSH Failed Logins (24h): $(grep "$(date +%b\ %d)" /var/log/auth.log | grep "Failed" | wc -l)
+Top SSH Attacker: $(grep "Failed" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | head -1)
+"</code></pre>
+
+    <div class="note">
+        <strong>💡 Pro Tip:</strong> Combine SSH logs with FTP logs to detect multi-service attacks. Use timeline correlation to identify attack patterns across both services.
+    </div>
+</div>
+
+<script>
+    function copyCode(btn) {
+        const pre = btn.parentElement;
+        const code = pre.querySelector('code');
+        const text = code.innerText;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = '✓ Copied!';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        });
+    }
+</script>
+</body>
+</html>

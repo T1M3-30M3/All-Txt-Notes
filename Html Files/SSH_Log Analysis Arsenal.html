@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced SSH Log Analysis - SOC/DFIR Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Fira Code', 'Monaco', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e4e6f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(15, 20, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #00d4ff;
+            padding-left: 1rem;
+        }
+
+        .subtitle {
+            color: #8b9bcf;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            font-size: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2d3561;
+            color: #00d4ff;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #a78bfa;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #2d3561;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        pre {
+            background: #0a0e1a;
+            border-radius: 12px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #2d3561;
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            background: #0a0e1a;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #2d3561;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-family: monospace;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #4c5a8a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: rgba(10, 14, 26, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #2d3561;
+        }
+
+        th {
+            background: #1a1f3a;
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        .indicator {
+            background: #2d1f4a;
+            border-left: 3px solid #f59e0b;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .severity-high { color: #ef4444; font-weight: bold; }
+        .severity-critical { color: #dc2626; background: rgba(220,38,38,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; }
+        .severity-medium { color: #f59e0b; }
+        .severity-low { color: #10b981; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .card {
+            background: rgba(26, 31, 58, 0.6);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid #2d3561;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #2d3561, transparent);
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            pre {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📄 Advanced SSH Log Analysis</h1>
+    <div class="subtitle">SOC / DFIR Level — Linux Security Investigation Toolkit</div>
+
+    <!-- Log Sources -->
+    <h2>📂 Log Sources</h2>
+    <pre><code>/var/log/auth.log
+/var/log/secure
+/var/log/syslog
+journalctl -u ssh</code></pre>
+
+    <!-- Deep Log Extraction -->
+    <h2>🔍 Deep Log Extraction (journalctl)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># All SSH logs
+journalctl -u ssh
+
+# Last boot SSH logs
+journalctl -u ssh -b
+
+# Time range
+journalctl -u ssh --since "2026-04-14 10:00" --until "2026-04-14 12:00"
+
+# Failed logins only
+journalctl -u ssh | grep "Failed password"</code></pre>
+
+    <!-- Brute Force Detection -->
+    <h2>🧠 Advanced Brute Force Detection</h2>
+    <h3>IP + Username Correlation</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $(NF-3), $9}' | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>Password Spray Detection (many users, same IP)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | awk '$1 > 10'</code></pre>
+
+    <h3>Targeted Attack (single user, many IPs)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password for root" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr</code></pre>
+
+    <!-- Attack Pattern Analysis -->
+    <h2>🕵️ Attack Pattern Analysis</h2>
+    <h3>Detect SSH Scanning Tools (Hydra/Ncrack)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head</code></pre>
+    <div class="indicator">
+        <strong>👉 Indicators:</strong><br>
+        • High frequency attempts<br>
+        • Sequential usernames<br>
+        • Same IP hitting many accounts
+    </div>
+
+    <!-- User Behavior Analysis -->
+    <h2>👤 User Behavior Analysis</h2>
+    <h3>Login Timeline per User</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted" /var/log/auth.log | awk '{print $1,$2,$3,$9}'</code></pre>
+
+    <h3>Rare / New User Login</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted" /var/log/auth.log | awk '{print $9}' | sort | uniq -c | sort -n</code></pre>
+
+    <!-- Geo/External IP Detection -->
+    <h2>🌐 Geo / External IP Detection</h2>
+    <h3>Extract External IPs</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted" /var/log/auth.log | awk '{print $(NF-3)}' | grep -vE "^192\.168|^10\.|^172\." | sort | uniq</code></pre>
+
+    <!-- Suspicious Login Detection -->
+    <h2>🚨 Suspicious Login Detection</h2>
+    <h3>Midnight / Off-hours Login</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted" /var/log/auth.log | awk '$3 ~ /00|01|02|03|04/'</code></pre>
+
+    <h3>First-time Login IP</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | awk '$1==1'</code></pre>
+
+    <!-- Privilege Escalation -->
+    <h2>🔑 Privilege Escalation Detection</h2>
+    <h3>sudo usage after SSH login</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "sudo" /var/log/auth.log</code></pre>
+
+    <h3>SSH → Root escalation chain</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -E "Accepted|sudo" /var/log/auth.log</code></pre>
+
+    <!-- Session Correlation -->
+    <h2>🔁 Session Correlation</h2>
+    <h3>Track full session (open → close)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -E "session opened|session closed" /var/log/auth.log</code></pre>
+
+    <!-- Lateral Movement -->
+    <h2>📡 Lateral Movement Detection</h2>
+    <h3>Same user from multiple IPs</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted" /var/log/auth.log | awk '{print $9,$(NF-3)}' | sort | uniq -c</code></pre>
+
+    <!-- Persistence Detection -->
+    <h2>🧪 Persistence Detection</h2>
+    <h3>SSH Key Injection</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "authorized_keys" /var/log/auth.log</code></pre>
+
+    <h3>New SSH key added</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted publickey" /var/log/auth.log</code></pre>
+
+    <!-- Data Exfiltration -->
+    <h2>🔥 Data Exfiltration Indicators</h2>
+    <h3>SCP / SFTP usage</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -E "scp|sftp" /var/log/auth.log</code></pre>
+
+    <!-- Advanced One-Liner -->
+    <h2>🧰 Advanced One-Liner (Full SOC Report)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>echo "==== SSH SOC REPORT ====" && \
+echo "[+] Failed Logins:" && grep -c "Failed password" /var/log/auth.log && \
+echo "[+] Successful Logins:" && grep -c "Accepted" /var/log/auth.log && \
+echo "[+] Top Attacker IPs:" && grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head && \
+echo "[+] Targeted Users:" && grep "Failed password" /var/log/auth.log | awk '{print $9}' | sort | uniq -c | sort -nr | head && \
+echo "[+] Suspicious Single-IP Logins:" && grep "Accepted" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | awk '$1==1'</code></pre>
+
+    <!-- Real-Time Detection -->
+    <h2>🔴 Real-Time Detection Pipeline</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>tail -f /var/log/auth.log | grep --line-buffered -E "Failed password|Accepted|Invalid user"</code></pre>
+
+    <!-- Advanced Bash Analyzer Script -->
+    <h2>🤖 Advanced Bash Analyzer Script</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+
+LOG="/var/log/auth.log"
+
+echo "===== ADVANCED SSH ANALYSIS ====="
+
+echo "[+] Failed Attempts:"
+grep "Failed password" $LOG | wc -l
+
+echo "[+] Success Logins:"
+grep "Accepted" $LOG | wc -l
+
+echo "[+] Top Attackers:"
+grep "Failed password" $LOG | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head
+
+echo "[+] Targeted Users:"
+grep "Failed password" $LOG | awk '{print $9}' | sort | uniq -c | sort -nr | head
+
+echo "[+] Invalid Users:"
+grep "Invalid user" $LOG | awk '{print $8}' | sort | uniq -c | sort -nr
+
+echo "[+] Possible Brute Force (>10 attempts):"
+grep "Failed password" $LOG | awk '{print $(NF-3)}' | sort | uniq -c | awk '$1>10'
+
+echo "[+] Unique Successful IPs:"
+grep "Accepted" $LOG | awk '{print $(NF-3)}' | sort | uniq</code></pre>
+
+    <!-- Quick Reference Table -->
+    <h2>📊 Quick Reference Card</h2>
+    <table>
+        <thead>
+            <tr><th>Detection Type</th><th>Key Pattern</th><th>Severity</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Brute Force</td><td><code>Failed password</code> >10 from same IP</td><td class="severity-high">High</td></tr>
+            <tr><td>Password Spray</td><td>Same IP, multiple usernames</td><td class="severity-critical">Critical</td></tr>
+            <tr><td>Off-hours Login</td><td>Time 00-04</td><td class="severity-medium">Medium</td></tr>
+            <tr><td>First-time IP</td><td>Single occurrence</td><td class="severity-medium">Medium</td></tr>
+            <tr><td>sudo after SSH</td><td><code>sudo</code> following <code>Accepted</code></td><td class="severity-high">High</td></tr>
+            <tr><td>Lateral Movement</td><td>Same user, different IPs</td><td class="severity-critical">Critical</td></tr>
+            <tr><td>SSH Key Addition</td><td><code>authorized_keys</code></td><td class="severity-critical">Critical</td></tr>
+            <tr><td>SCP/SFTP Usage</td><td><code>scp</code>/<code>sftp</code></td><td class="severity-low">Low-Medium</td></tr>
+        </tbody>
+    </table>
+
+    <hr>
+    <div style="text-align: center; color: #5a6a9a; font-size: 0.8rem; margin-top: 2rem;">
+        Advanced SSH Log Analysis — SOC / DFIR Level Toolkit
+    </div>
+</div>
+
+<script>
+    function copyCode(btn) {
+        const pre = btn.parentElement;
+        const code = pre.querySelector('code');
+        const text = code.innerText;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = '✓ Copied!';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        });
+    }
+</script>
+</body>
+</html>

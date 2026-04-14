@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTP Log Analysis Arsenal - Penetration Testing Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Fira Code', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e4e6f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(15, 20, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00d4ff, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #f59e0b;
+            padding-left: 1rem;
+        }
+
+        .subtitle {
+            color: #8b9bcf;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            font-size: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2d3561;
+            color: #00d4ff;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #fbbf24;
+        }
+
+        pre {
+            background: #0a0e1a;
+            border-radius: 12px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #2d3561;
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            background: #0a0e1a;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #2d3561;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-family: monospace;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #4c5a8a;
+        }
+
+        .warning {
+            background: #4a1f2a;
+            border-left: 3px solid #ef4444;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .note {
+            background: #1f2a3a;
+            border-left: 3px solid #10b981;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            pre {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📈 FTP Log Analysis Arsenal</h1>
+    <div class="subtitle">Senior Penetration Tester - Digital Forensics Edition (HTB Labs)</div>
+
+    <!-- Locate FTP Logs -->
+    <h2>📂 1. Locate FTP Logs</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Common FTP log locations
+find /var/log -name "*ftp*" -type f 2>/dev/null
+find /var/log -name "*vsftpd*" -type f 2>/dev/null
+ls -la /var/log/vsftpd.log* /var/log/proftpd/* /var/log/xferlog
+
+# Pure-FTPd logs
+journalctl -u pure-ftpd -f</code></pre>
+
+    <!-- FTP Brute Force & Access Analysis -->
+    <h2>🔐 2. FTP Brute Force & Access Analysis</h2>
+    <h3>Failed login attempts</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $7" "$9}' | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>Successful logins</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "OK LOGIN" /var/log/vsftpd.log | awk '{print $7" "$9" "$10}' | sort | uniq -c</code></pre>
+
+    <h3>Anonymous access</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "anon" /var/log/vsftpd.log | grep "OK LOGIN" | wc -l
+grep "anonymous" /var/log/xferlog | awk '{print $2" "$9}' | sort | uniq</code></pre>
+
+    <h3>Download/upload analysis (xferlog format)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Total Upload in MB
+awk '$9=="o" {sum+=10*$7/1024} END {print "Total Upload (MB): "sum}' /var/log/xferlog
+
+# Total Download in MB
+awk '$9=="i" {sum+=10*$7/1024} END {print "Total Download (MB): "sum}' /var/log/xferlog</code></pre>
+
+    <!-- Advanced FTP Behavioral Analysis -->
+    <h2>🎯 3. Advanced FTP Behavioral Analysis</h2>
+    <h3>Directory traversal attempts</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -i "\/..\/" /var/log/vsftpd.log | awk '{print $7" attempted: "$NF}'</code></pre>
+
+    <h3>Long sessions (potential exfil)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>awk '$5-$4 > 3600 {print $0}' /var/log/xferlog | wc -l</code></pre>
+
+    <h3>Top downloaded files</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "i" /var/log/xferlog | awk '{print $9" "$2}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>Chroot escapes</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -i "chroot" /var/log/vsftpd.log | grep -v "OK"</code></pre>
+
+    <!-- Automated FTP Analyzer -->
+    <h2>🤖 4. Complete FTP Analyzer Script</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+LOGFILE=${1:-/var/log/vsftpd.log}
+echo "=== FTP ACCESS ANALYSIS ==="
+echo "Failed Logins:"
+grep "FAIL LOGIN" $LOGFILE | awk '{print $7" "$9}' | sort | uniq -c | sort -nr | head -15
+
+echo -e "\nSuccessful Logins:"
+grep "OK LOGIN" $LOGFILE | awk '{print $7" "$9" "$10}' | sort | uniq -c | head -15
+
+echo -e "\nAnon Access:"
+grep -i anon $LOGFILE | grep "OK LOGIN" | wc -l
+
+echo -e "\nTop Downloads:"
+grep "i 1" $LOGFILE | awk '{print $NF" ("$7" bytes)"}' | sort | uniq -c | sort -nr | head -10</code></pre>
+
+    <!-- Visualization & SIEM -->
+    <h2>📊 5. Visualization & SIEM Integration</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Generate CSV for analysis
+grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $7","$1","$2","$9}' > ftp_failures.csv
+
+# GoAccess for FTP logs (web-style)
+goaccess /var/log/vsftpd.log -f vsftpd --log-format=COMBINED
+
+# ELK pipeline (Filebeat config snippet)
+cat > filebeat_ftp.yml << EOF
+- type: log
+  paths:
+    - /var/log/vsftpd.log
+  fields:
+    service: ftp
+  fields_under_root: true
+EOF</code></pre>
+
+    <!-- Timeline Correlation -->
+    <h2>⏱️ 6. Timeline & Correlation Analysis</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># FTP session timeline
+awk '/OK LOGIN/ {print $1" "$2" LOGIN:"$7" "$9}' /var/log/vsftpd.log > ftp_sessions.txt
+
+# Data transfer timeline
+awk '$9=="i" {print $1" "$2" DOWNLOAD:"$9" "$7"bytes"}' /var/log/xferlog > transfers.txt</code></pre>
+
+    <!-- Forensic Memory Analysis -->
+    <h2>🕵️ 7. Forensic Memory Analysis</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Extract FTP credentials from memory
+strings /proc/$(pgrep vsftpd)/mem | grep -E "USER|PASS"
+
+# Process monitoring
+lsof -i :21 | grep ESTABLISHED
+ss -tulp | grep ':21'
+
+# Active FTP connections
+netstat -anp | grep :21 | grep ESTABLISHED</code></pre>
+
+    <!-- Statistical Analysis -->
+    <h2>📈 8. Advanced Statistical Analysis</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Attack frequency by hour
+grep "FAIL LOGIN" /var/log/vsftpd.log | cut -d' ' -f2 | cut -d: -f1 | sort | uniq -c
+
+# Data exfiltration size estimation
+awk '$9=="i" {sum+=$7} END {print "Total Downloaded (bytes): "sum}' /var/log/xferlog
+
+# User activity ranking
+grep "OK LOGIN" /var/log/vsftpd.log | awk '{print $7}' | sort | uniq -c | sort -nr</code></pre>
+
+    <!-- IDS Rules -->
+    <h2>🚨 9. Real-Time IDS Rules (Snort/Suricata)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># FTP Brute Force
+alert tcp any any -> $HOME_NET 21 (msg:"FTP Brute Force"; flow:to_server,established; content:"USER"; threshold:type both, track by_src, count 15, seconds 300; sid:1000002;)
+
+# FTP Anonymous Access
+alert tcp any any -> $HOME_NET 21 (msg:"FTP Anonymous Login"; content:"USER anonymous"; sid:1000003;)</code></pre>
+
+    <!-- One-Liner Power Tools -->
+    <h2>⚡ 10. One-Liner Power Tools</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># FTP top users
+grep "OK LOGIN" /var/log/vsftpd.log | cut -d' ' -f7 | sort | uniq -c | sort -nr | head
+
+# FTP attack summary by IP
+grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $7}' | sort | uniq -c | sort -nr | column -t
+
+# Large file transfers (over 100MB)
+awk '$7 > 104857600 {print $0}' /var/log/xferlog
+
+# Failed login rate per minute
+grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $1,$2}' | cut -d: -f1,2 | sort | uniq -c</code></pre>
+
+    <!-- Reporting Dashboard -->
+    <h2>📋 11. Reporting Dashboard Generator</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+echo "
+FTP SECURITY REPORT - $(date)
+=======================
+FTP Failed Logins (24h): $(grep "$(date +%b\ %d)" /var/log/vsftpd.log | grep "FAIL" | wc -l)
+Top FTP Attacker: $(grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $7}' | sort | uniq -c | sort -nr | head -1)
+Anon FTP Access: $(grep "anon.*OK" /var/log/vsftpd.log | wc -l)
+Total Downloads (MB): $(awk '$9=="i" {sum+=10*$7/1024} END {print sum}' /var/log/xferlog)
+Total Uploads (MB): $(awk '$9=="o" {sum+=10*$7/1024} END {print sum}' /var/log/xferlog)
+"</code></pre>
+
+    <!-- Cross-Service Correlation -->
+    <h2>🔄 12. Cross-Service Correlation</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># SSH+FTP correlation (same IP attacking both)
+grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq > ssh_ips.txt
+grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $7}' | sort | uniq > ftp_ips.txt
+comm -12 <(sort ssh_ips.txt) <(sort ftp_ips.txt)
+
+# Time-correlated attacks
+grep "$(date --date='1 hour ago' +%b\ %d)" /var/log/auth.log /var/log/vsftpd.log | grep -E "(Failed|FAIL)"</code></pre>
+
+    <div class="warning">
+        <strong>⚠️ Security Alert:</strong> FTP transmits credentials in plaintext. Always investigate successful logins from unexpected IPs immediately.
+    </div>
+
+    <div class="note">
+        <strong>💡 Pro Tip:</strong> Use xferlog for data exfiltration detection. Large downloads during off-hours are a major red flag.
+    </div>
+</div>
+
+<script>
+    function copyCode(btn) {
+        const pre = btn.parentElement;
+        const code = pre.querySelector('code');
+        const text = code.innerText;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = '✓ Copied!';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        });
+    }
+</script>
+</body>
+</html>
