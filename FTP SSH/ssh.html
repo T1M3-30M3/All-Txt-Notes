@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Log Analysis Arsenal - Penetration Testing Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Fira Code', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e4e6f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(15, 20, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00d4ff, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #f59e0b;
+            padding-left: 1rem;
+        }
+
+        .subtitle {
+            color: #8b9bcf;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            font-size: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2d3561;
+            color: #00d4ff;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #fbbf24;
+        }
+
+        pre {
+            background: #0a0e1a;
+            border-radius: 12px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #2d3561;
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            background: #0a0e1a;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #2d3561;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-family: monospace;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #4c5a8a;
+        }
+
+        .warning {
+            background: #4a1f2a;
+            border-left: 3px solid #ef4444;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .note {
+            background: #1f2a3a;
+            border-left: 3px solid #10b981;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            pre {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🔐 SSH Log Analysis Arsenal</h1>
+    <div class="subtitle">Senior Penetration Testing Edition – Advanced Threat Hunting & Forensics (HTB / Real-World)</div>
+
+    <!-- ==================== 1. BASIC FAILED SSH ==================== -->
+    <h2>📉 1. Failed SSH – Attack Reconnaissance</h2>
+    
+    <h3>🎯 Top Attacker IPs (Basic)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>🎯 Top Attacker IPs (Advanced – precise "from" extraction)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -E "sshd.*Failed password" /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>👥 Most Targeted Usernames (Brute-force focus)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | sed -E 's/.*Failed password for (invalid user )?([^ ]+) from.*/\2/' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>⏰ Attack Peak Timestamps (When are we under siege?)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $1 " " $2 " " $3}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <!-- ==================== 2. SUCCESSFUL SSH ==================== -->
+    <h2>✅ 2. Successful SSH – Legit Access & Insider Threats</h2>
+
+    <h3>📍 Top Successful Login IPs (Source geolocation hint)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted " /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>👤 Most Active Users (Successful auth)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted " /var/log/auth.log | sed -E 's/.*Accepted .* for ([^ ]+) from.*/\1/' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>📅 Successful Login Timeline (Session pattern)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted " /var/log/auth.log | awk '{print $1 " " $2 " " $3}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <!-- ==================== 3. ULTRA ADVANCED ONE-LINER ==================== -->
+    <h2>⚡ 3. Ultra Advanced One-Liner (IP + Username + Timestamp)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{ip=$(NF-3); for(i=1;i<=NF;i++) if($i=="for" && $(i+1)!="invalid") user=$(i+2); else if($i=="invalid" && $(i+1)=="user") user=$(i+2); ts=$1" "$2" "$3; print ts " | User: " user " | IP: " ip}' | sort | uniq -c | sort -nr</code></pre>
+
+    <!-- ==================== 4. PERSISTENCE & EXTRACTION ==================== -->
+    <h2>💾 4. Attack Data Persistence – Save to Files</h2>
+    
+    <h3>📁 Save Failed SSH Artifacts (IPs, Usernames, Timestamps)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr > ssh_failed_ips.txt && \
+grep "Failed password" /var/log/auth.log | sed -E 's/.*Failed password for (invalid user )?([^ ]+) from.*/\2/' | sort | uniq -c | sort -nr > ssh_failed_usernames.txt && \
+grep "Failed password" /var/log/auth.log | awk '{print $1 " " $2 " " $3}' | sort | uniq -c | sort -nr > ssh_failed_timestamps.txt</code></pre>
+
+    <h3>📁 Save Successful SSH Artifacts (IPs, Usernames, Timestamps)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted " /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort | uniq -c | sort -nr > ssh_successful_ips.txt && \
+grep "Accepted " /var/log/auth.log | sed -E 's/.*Accepted .* for ([^ ]+) from.*/\1/' | sort | uniq -c | sort -nr > ssh_successful_usernames.txt && \
+grep "Accepted " /var/log/auth.log | awk '{print $1 " " $2 " " $3}' | sort | uniq -c | sort -nr > ssh_successful_timestamps.txt</code></pre>
+
+    <!-- ==================== 5. ADVANCED BEHAVIORAL ANALYSIS ==================== -->
+    <h2>🧠 5. Advanced Behavioral Forensics</h2>
+    
+    <h3>🔄 Password Spraying Detection (Same user, many IPs)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | sed -E 's/.*Failed password for (invalid user )?([^ ]+) from.*/\2/' | sort | uniq -c | sort -nr | awk '$1 > 5 {print "Suspicious user: "$2" - "$1" attempts"}'</code></pre>
+
+    <h3>🌍 Geographic correlation prep (IP to CIDR grouping)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | cut -d. -f1-3 | sort | uniq -c | sort -nr | head -15</code></pre>
+
+    <h3>🚨 Concurrent attacks – failed + success same IP</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>comm -12 <(grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort -u) <(grep "Accepted " /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort -u) | head -20</code></pre>
+
+    <!-- ==================== 6. SIEM & TIMELINE CORRELATION ==================== -->
+    <h2>⏱️ 6. Timeline Correlation & SIEM Integration</h2>
+    
+    <h3>📅 Hourly Attack Heatmap (Cron-ready)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $3}' | cut -d: -f1 | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>📊 Generate CSV for ELK / Splunk</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{ip=$(NF-3); for(i=1;i<=NF;i++) if($i=="for" && $(i+1)!="invalid") user=$(i+2); else if($i=="invalid" && $(i+1)=="user") user=$(i+2); print $1","$2","$3","user","ip}' > ssh_failures.csv</code></pre>
+
+    <h3>🕵️ Long-running SSH sessions (potential pivoting)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "session opened" /var/log/auth.log | awk '{print $1,$2,$3,$9}' | sort | uniq -c</code></pre>
+
+    <!-- ==================== 7. FORENSIC MEMORY & PROCESS ANALYSIS ==================== -->
+    <h2>🕵️ 7. Live Forensics & Memory Artifacts</h2>
+    
+    <h3>🔍 Active SSH connections (netstat + ss)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>netstat -anp | grep :22 | grep ESTABLISHED
+ss -tulp | grep ':22'</code></pre>
+
+    <h3>📂 Extract SSH credentials from memory (SSH daemon)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>strings /proc/$(pgrep -x sshd)/mem 2>/dev/null | grep -E "SSH|password|USER" | head -30</code></pre>
+
+    <!-- ==================== 8. REAL-TIME IDS & MONITORING ==================== -->
+    <h2>🚨 8. Real-Time Threat Detection (Tail + Fail2Ban style)</h2>
+    
+    <h3>📡 Live monitor failed logins</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>tail -f /var/log/auth.log | grep --color=always "Failed password"</code></pre>
+
+    <h3>🛡️ Suricata/Snort rule – SSH Brute Force</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>alert tcp any any -> $HOME_NET 22 (msg:"SSH Brute Force Attack"; flow:to_server,established; content:"SSH-"; threshold:type both, track by_src, count 10, seconds 120; sid:1000004; rev:1;)</code></pre>
+
+    <!-- ==================== 9. STATISTICAL DEEP DIVE ==================== -->
+    <h2>📈 9. Statistical Deep Dive</h2>
+    
+    <h3>📊 Failed vs Successful Ratio per IP</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>echo "=== FAILED per IP ==="; grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head -10; echo -e "\n=== SUCCESS per IP ==="; grep "Accepted " /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort | uniq -c | sort -nr | head -10</code></pre>
+
+    <h3>🔁 Credential Stuffing Indicator (same IP multiple users)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{ip=$(NF-3); for(i=1;i<=NF;i++) if($i=="for" && $(i+1)!="invalid") user=$(i+2); else if($i=="invalid" && $(i+1)=="user") user=$(i+2); print ip" -> "user}' | sort | uniq -c | sort -nr | awk '$1 > 3' | head -20</code></pre>
+
+    <!-- ==================== 10. AUTOMATED SSH ANALYZER SCRIPT ==================== -->
+    <h2>🤖 10. Complete SSH Automated Analyzer (Production Ready)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+LOGFILE=${1:-/var/log/auth.log}
+echo "╔════════════════════════════════════════╗"
+echo "║   SSH BRUTE FORCE & ACCESS REPORT      ║"
+echo "╚════════════════════════════════════════╝"
+echo -e "\n[🔥 TOP 15 ATTACKER IPs]"
+grep "Failed password" $LOGFILE | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head -15
+
+echo -e "\n[👥 TOP 15 TARGETED USERNAMES]"
+grep "Failed password" $LOGFILE | sed -E 's/.*Failed password for (invalid user )?([^ ]+) from.*/\2/' | sort | uniq -c | sort -nr | head -15
+
+echo -e "\n[✅ TOP 10 SUCCESSFUL LOGINS by IP]"
+grep "Accepted " $LOGFILE | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort | uniq -c | sort -nr | head -10
+
+echo -e "\n[⏰ PEAK ATTACK HOURS]"
+grep "Failed password" $LOGFILE | awk '{print $3}' | cut -d: -f1 | sort | uniq -c | sort -nr | head -8
+
+echo -e "\n[⚠️  ANOMALY: IPs that brute-forced AND succeeded]"
+comm -12 <(grep "Failed password" $LOGFILE | awk '{print $(NF-3)}' | sort -u) <(grep "Accepted " $LOGFILE | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort -u) | head -10
+
+echo -e "\n[📦 TOTAL FAILED ATTEMPTS] $(grep -c "Failed password" $LOGFILE)"
+echo "[🔓 TOTAL SUCCESSFUL LOGINS] $(grep -c "Accepted " $LOGFILE)"</code></pre>
+
+    <!-- ==================== 11. CROSS-SERVICE CORRELATION ==================== -->
+    <h2>🔄 11. Cross-Service Correlation (SSH + FTP + HTTP)</h2>
+    
+    <h3>🌐 Same IP attacking SSH and FTP</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort -u > ssh_attackers.txt
+grep "FAIL LOGIN" /var/log/vsftpd.log 2>/dev/null | awk '{print $7}' | sort -u > ftp_attackers.txt
+comm -12 <(sort ssh_attackers.txt) <(sort ftp_attackers.txt) | head -20</code></pre>
+
+    <h3>📡 Time-correlated multi-vector attacks (last hour)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "$(date --date='1 hour ago' +%b\ %d)" /var/log/auth.log | grep -E "Failed|Accepted" | wc -l</code></pre>
+
+    <!-- ==================== 12. REPORTING DASHBOARD GENERATOR ==================== -->
+    <h2>📋 12. Executive Dashboard – SSH Security Report</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+echo "
+╔════════════════════════════════════════════════════════════╗
+║            SSH SECURITY EXECUTIVE SUMMARY                  ║
+║                    $(date)                                  ║
+╚════════════════════════════════════════════════════════════╝
+▶ Total Failed SSH Attempts (24h): $(grep "$(date +%b\ %d)" /var/log/auth.log | grep -c "Failed password")
+▶ Unique Attacker IPs: $(grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort -u | wc -l)
+▶ Top Attacker: $(grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head -1 | awk '{print $2" ("$1" attempts)"}')
+▶ Most Targeted Username: $(grep "Failed password" /var/log/auth.log | sed -E 's/.*Failed password for (invalid user )?([^ ]+) from.*/\2/' | sort | uniq -c | sort -nr | head -1 | awk '{print $2" ("$1" attempts)"}')
+▶ Successful Logins (24h): $(grep "$(date +%b\ %d)" /var/log/auth.log | grep -c "Accepted ")
+▶ Suspicious IPs (both fail+success): $(comm -12 <(grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort -u) <(grep "Accepted " /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort -u) | wc -l)
+"</code></pre>
+
+    <!-- ==================== 13. ONE-LINER POWER TOOLS ==================== -->
+    <h2>⚡ 13. One-Liner Power Tools (Swiss Army Knife)</h2>
+    
+    <h3>🏆 Top 10 brute-force usernames with attempts</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | grep -oP 'for (invalid user )?\K[^ ]+' | sort | uniq -c | sort -nr | head -10</code></pre>
+
+    <h3>🌐 Unique attacking countries (requires geoip)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort -u | xargs -I{} geoiplookup {} | cut -d: -f2 | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>📉 Failed logins per user (including invalid users)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="for") {if($(i+1)=="invalid") print $(i+2); else print $(i+1)}}' | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>🕵️‍♂️ Extract all successful login timestamps per user (insider threat)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Accepted " /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="for") user=$(i+1); print $1,$2,$3" -> "user}' | sort -k4</code></pre>
+
+    <!-- PRO TIPS & WARNINGS -->
+    <div class="warning">
+        <strong>⚠️ Critical Security Alert:</strong> SSH brute-force attacks often precede lateral movement. Immediately investigate any IP that shows both failed and successful logins. Use `fail2ban` with custom recidive jail.
+    </div>
+
+    <div class="note">
+        <strong>💡 Pro Tip – Forensic Timeline:</strong> Combine `zgrep` for rotated logs: `zgrep "Failed password" /var/log/auth.log*` to analyze weeks of attack patterns. Always correlate SSH logs with `lastlog`, `w`, and `journalctl -u ssh`.
+    </div>
+
+    <div class="note">
+        <strong>🧠 HTB / CTF Edge:</strong> For HackTheBox labs, focus on "invalid user" enumeration — attackers often probe default usernames (root, admin, ubuntu, pi). The ultra advanced one-liner reveals exact recon tactics.
+    </div>
+</div>
+
+<script>
+    function copyCode(btn) {
+        const pre = btn.parentElement;
+        const code = pre.querySelector('code');
+        const text = code.innerText;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = '✓ Copied!';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        }).catch(err => {
+            console.error('Copy failed:', err);
+            btn.innerText = '⚠️ Error';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        });
+    }
+</script>
+</body>
+</html>

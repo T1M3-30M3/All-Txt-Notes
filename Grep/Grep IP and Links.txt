@@ -1,0 +1,19 @@
+strings file.bin | grep -Eo '(http|https)://[^ ]+'
+
+strings file.bin | grep -Eo '((http|https|ftp)://|www\.)[a-zA-Z0-9./?=_-]+'
+
+strings file.bin | grep -iEo '((http|https|ftp)://|www\.)[a-z0-9./?=_-]+'
+
+strings file.bin | grep -Eo '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b'
+
+strings filename | grep -Eo '((http|https|ftp)://[A-Za-z0-9./?=_-]+|[A-Za-z0-9.-]+\.[A-Za-z]{2,}(/[A-Za-z0-9./?=_-]+)?)'
+
+strings filename | grep -Eo 'https?://[A-Za-z0-9./?=_-]+'
+
+strings filename | grep -Eo '[A-Za-z0-9.-]+\.[A-Za-z]{2,}'
+
+strings filename | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+strings filename | grep -Eo 'https?://[A-Za-z0-9./?=_-]+|([0-9]{1,3}\.){3}[0-9]{1,3}'
+
+strings * | grep -Eo 'https?://[A-Za-z0-9./?=_-]+'

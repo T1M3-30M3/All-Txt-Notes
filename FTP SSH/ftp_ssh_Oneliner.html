@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH + FTP Log Analysis Arsenal | Penetration Testing Suite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Fira Code', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e4e6f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(15, 20, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00d4ff, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #f59e0b;
+            padding-left: 1rem;
+        }
+
+        .subtitle {
+            color: #8b9bcf;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            font-size: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2d3561;
+            color: #00d4ff;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #fbbf24;
+        }
+
+        pre {
+            background: #0a0e1a;
+            border-radius: 12px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #2d3561;
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            background: #0a0e1a;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #2d3561;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-family: monospace;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #4c5a8a;
+        }
+
+        .warning {
+            background: #4a1f2a;
+            border-left: 3px solid #ef4444;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .note {
+            background: #1f2a3a;
+            border-left: 3px solid #10b981;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #f59e0b;
+            color: #0a0e27;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            pre {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🔐 SSH + FTP Log Analysis Arsenal</h1>
+    <div class="subtitle">Senior Penetration Tester — Multi-Service Forensics & Threat Intelligence (HTB / SOC Edition)</div>
+
+    <!-- ==================== SSH Section ==================== -->
+    <h2>🖥️ 1. SSH Hardening & Intrusion Analysis</h2>
+    
+    <h3>🎯 SSH Top IP + User + Time</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $11" | "$9" | "$1" "$2" "$3}' | sort | uniq -c | sort -nr | head</code></pre>
+
+    <h3>📋 SSH Specific IP Timeline</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>ip="192.168.1.10"; grep "Failed password" /var/log/auth.log | grep "$ip" | awk '{print $1,$2,$3,"| USER:",$9}'</code></pre>
+
+    <h3>🌍 SSH Top Attacker IP (Count)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>🔗 SSH IP + Username Combo (Brute Force Pairs)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $11" -> "$9}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>⏱️ Burst Attack Detection (Failures per minute)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $1" "$2" "$3}' | sort | uniq -c | sort -nr | head</code></pre>
+
+    <h3>👤 Unique Username Count per IP</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $11" "$9}' | sort -u | awk '{print $1}' | sort | uniq -c | sort -nr | head</code></pre>
+
+    <h3>🎭 Detect Password Spraying (Most targeted usernames)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $9}' | sort | uniq -c | sort -nr | head</code></pre>
+
+    <h3>📡 Live Attack Monitor (Real-time tail)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>tail -f /var/log/auth.log | grep --line-buffered "Failed password" | awk '{print $1" "$2" "$3" | "$11" | "$9}'</code></pre>
+
+    <h3>📅 Timeline + IP + User (Full visibility)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $1,$2,$3,"| IP:",$11,"| USER:",$9}' | sort | head -50</code></pre>
+
+    <h3>🌐 Distributed Attack Detection (Same username across many IPs)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $9" "$11}' | sort -u | awk '{print $1}' | sort | uniq -c | sort -nr | head</code></pre>
+
+    <h3>📊 Suspicious IP Score (Attempts + Unique Users)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $11" "$9}' | sort | uniq | awk '{ip[$1]++; users[$1]=users[$1]" "$2} END {for (i in ip) {split(users[i],u); print i, ip[i], length(u)}}' | sort -k2 -nr | head</code></pre>
+
+    <h3>📟 JSON Output for SIEM Integration</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print "{\"ip\":\""$11"\",\"user\":\""$9"\",\"time\":\""$1" "$2" "$3"\"}"}'</code></pre>
+
+    <!-- ==================== FTP Section ==================== -->
+    <h2>📂 2. FTP Service Forensics & Attack Patterns</h2>
+
+    <h3>🔥 FTP Top IP + User + Time</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $(NF)" | "$(NF-3)" | "$1" "$2" "$3}' | sort | uniq -c | sort -nr | head</code></pre>
+
+    <h3>🏆 FTP Advanced Attacker Ranking (IP -> Username)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $(NF)" -> "$(NF-3)}' | sort | uniq -c | sort -nr | head</code></pre>
+
+    <h3>🔓 Anonymous FTP Access Detection</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -i "anon" /var/log/vsftpd.log | grep "OK LOGIN" | awk '{print $1,$2,$7}' | sort | uniq -c</code></pre>
+
+    <h3>📤 Data Exfiltration: Top Downloaded Files</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "i" /var/log/xferlog | awk '{print $9" "$2}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>📥 Total Download & Upload Size (MB)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>echo "Total Download (MB):"; awk '$9=="i" {sum+=10*$7/1024} END {print sum}' /var/log/xferlog
+echo "Total Upload (MB):"; awk '$9=="o" {sum+=10*$7/1024} END {print sum}' /var/log/xferlog</code></pre>
+
+    <h3>🚨 Directory Traversal & Chroot Escape Attempts</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -i "\/..\/" /var/log/vsftpd.log | awk '{print $7" attempted: "$NF}'
+grep -i "chroot" /var/log/vsftpd.log | grep -v "OK"</code></pre>
+
+    <!-- ==================== Combined Operations ==================== -->
+    <h2>⚡ 3. Cross-Service Correlation & Threat Hunting</h2>
+
+    <h3>🔥 Combined SSH + FTP Attackers (Unified Ranking)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>(cat /var/log/auth.log | grep "Failed password" | awk '{print $11" | "$9" | "$1" "$2" "$3}'; cat /var/log/vsftpd.log | grep "FAIL LOGIN" | awk '{print $(NF)" | "$(NF-3)" | "$1" "$2" "$3}') | sort | uniq -c | sort -nr | head</code></pre>
+
+    <h3>🔗 SSH + FTP Attacker IP Overlap</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>(grep "Failed password" /var/log/auth.log | awk '{print $11}'; grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $(NF)}') | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>⏲️ Time-Correlated Multi-Service Attack</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "$(date --date='1 hour ago' +%b\ %d)" /var/log/auth.log /var/log/vsftpd.log | grep -E "(Failed password|FAIL LOGIN)" | head -30</code></pre>
+
+    <h3>🛡️ Auto-Block Top 5 Attackers (SSH brute force)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>for ip in $(grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | head -5 | awk '{print $2}'); do iptables -A INPUT -s $ip -j DROP; done</code></pre>
+
+    <!-- ==================== GEOINT & Threat Intelligence ==================== -->
+    <h2>🌍 4. GeoIP Threat Intelligence (Country Attribution)</h2>
+    <div class="note">💡 Requires <code>geoip-bin</code> package: <code>sudo apt install geoip-bin</code></div>
+
+    <h3>🌍 🔥 SSH Attacker Country Detection</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | head -20 | awk '{print $2}' | xargs -I{} geoiplookup {} | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>📂 🔥 FTP Attacker Country Detection</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $(NF)}' | sort | uniq -c | sort -nr | head -20 | awk '{print $2}' | xargs -I{} geoiplookup {} | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>🧬 🔥 Combined SSH + FTP Country Ranking</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>(cat /var/log/auth.log | grep "Failed password" | awk '{print $11}'; cat /var/log/vsftpd.log | grep "FAIL LOGIN" | awk '{print $(NF)}') | sort | uniq -c | sort -nr | head -30 | awk '{print $2}' | xargs -I{} geoiplookup {} | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>⚡ Clean Output: IP + Country + Attack Count</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | head | while read count ip; do echo -n "$count $ip "; geoiplookup $ip | cut -d: -f2; done</code></pre>
+
+    <!-- ==================== Automation & Reporting ==================== -->
+    <h2>🤖 5. Automation Scripts & Reporting</h2>
+
+    <h3>📊 Complete SSH + FTP Analyzer (Bash Script)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+echo "=== MULTI-SERVICE ATTACK REPORT ==="
+echo "SSH Top Attackers:"
+grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | head -10
+echo -e "\nFTP Top Attackers:"
+grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $(NF)}' | sort | uniq -c | sort -nr | head -10
+echo -e "\nMost Targeted SSH Users:"
+grep "Failed password" /var/log/auth.log | awk '{print $9}' | sort | uniq -c | sort -nr | head -5
+echo -e "\nFTP Anonymous Access Count:"
+grep -i "anon.*OK LOGIN" /var/log/vsftpd.log | wc -l
+echo -e "\nCross-Service IP Overlap:"
+comm -12 <(grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort -u) <(grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $(NF)}' | sort -u) | wc -l</code></pre>
+
+    <h3>📋 Dashboard Generator (SOC Ready)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+echo "
+╔════════════════════════════════════════════════════════╗
+║     🔐 SSH + FTP SECURITY DASHBOARD - $(date)          ║
+╚════════════════════════════════════════════════════════╝
+📊 SSH Failed Logins (24h): $(grep "$(date +%b\ %d)" /var/log/auth.log | grep "Failed password" | wc -l)
+🎯 Top SSH Attacker IP: $(grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -nr | head -1 | awk '{print $2}')
+👤 Most Bruteforced SSH User: $(grep "Failed password" /var/log/auth.log | awk '{print $9}' | sort | uniq -c | sort -nr | head -1 | awk '{print $2}')
+📂 FTP Failed Logins (24h): $(grep "$(date +%b\ %d)" /var/log/vsftpd.log | grep "FAIL LOGIN" | wc -l)
+🌍 Top FTP Attacker IP: $(grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $(NF)}' | sort | uniq -c | sort -nr | head -1 | awk '{print $2}')
+🔄 Shared Attackers (SSH+FTP): $(comm -12 <(grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort -u) <(grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $(NF)}' | sort -u) | wc -l)
+"</code></pre>
+
+    <!-- ==================== Advanced Forensic Commands ==================== -->
+    <h2>🕵️ 6. Advanced Forensic & Memory Analysis</h2>
+
+    <h3>🧠 Extract SSH Credentials from Memory (Live Forensics)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>sudo strings /proc/$(pgrep sshd)/mem | grep -E "USER|PASS|password" 2>/dev/null | head -20</code></pre>
+
+    <h3>🔌 Active SSH & FTP Connections Monitoring</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>ss -tulp | grep -E ':22|:21'
+lsof -i :22 | grep ESTABLISHED
+lsof -i :21 | grep ESTABLISHED</code></pre>
+
+    <h3>⏱️ Session Duration & Anomaly Detection</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Long FTP sessions (over 1 hour) - xferlog format
+awk '$5-$4 > 3600 {print "Long session:",$0}' /var/log/xferlog | head -10</code></pre>
+
+    <h3>📈 Statistical Attack Frequency by Hour (SSH)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "Failed password" /var/log/auth.log | cut -d' ' -f2 | cut -d: -f1 | sort | uniq -c | sort -nr</code></pre>
+
+    <!-- ==================== IDS / SIEM Rules ==================== -->
+    <h2>🚨 7. Real-Time IDS Rules (Snort/Suricata)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># SSH Brute Force Detection
+alert tcp any any -> $HOME_NET 22 (msg:"SSH Brute Force"; flow:to_server,established; content:"SSH-"; threshold:type both, track by_src, count 10, seconds 120; sid:1000001;)
+
+# FTP Brute Force
+alert tcp any any -> $HOME_NET 21 (msg:"FTP Brute Force"; flow:to_server,established; content:"USER"; threshold:type both, track by_src, count 15, seconds 300; sid:1000002;)
+
+# Multi-Service Attack Correlation (SSH+FTP same src)
+alert tcp any any -> $HOME_NET [21,22] (msg:"Multi-Service Attack"; flow:to_server; threshold:type both, track by_src, count 20, seconds 600; sid:1000003;)</code></pre>
+
+    <!-- ==================== Bonus One-Liners ==================== -->
+    <h2>⚡ 8. Bonus Power One-Liners (Real SOC Style)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Top Attacker with Count + All Usernames (SSH)
+grep "Failed password" /var/log/auth.log | awk '{print $11" "$9}' | sort | uniq | awk '{ip[$1]++; user[$1]=user[$1]" "$2} END {for(i in ip) print ip[i], i, user[i]}' | sort -nr | head
+
+# Live Attackers Dashboard (SSH+FTP real-time)
+watch -n 2 'echo "=== SSH ==="; grep "Failed password" /var/log/auth.log | tail -5; echo "=== FTP ==="; grep "FAIL LOGIN" /var/log/vsftpd.log | tail -5'
+
+# Extract all unique credentials pairs from SSH logs
+grep "Failed password" /var/log/auth.log | awk '{print $9"@"$11}' | sort -u
+
+# Large data exfiltration via FTP (over 500MB)
+awk '$7 > 524288000 && $9=="i" {print "EXFIL ALERT:",$0}' /var/log/xferlog</code></pre>
+
+    <!-- Security Warnings & Pro Tips -->
+    <div class="warning">
+        <strong>⚠️ CRITICAL SECURITY ALERT:</strong> FTP transmits credentials in plaintext. Always investigate successful logins from unexpected IPs immediately. SSH brute force with common credentials (root/admin) requires immediate blocking.
+    </div>
+
+    <div class="note">
+        <strong>💡 Pro Tips for Penetration Testers:</strong><br>
+        • Combine SSH + FTP logs to identify multi-service attackers (lateral movement)<br>
+        • Use GeoIP to detect anomalous login attempts from non-business countries<br>
+        • Monitor for password spraying (single username across many IPs)<br>
+        • Xferlog is your best friend for data exfiltration detection (large downloads = red flag)<br>
+        • Always correlate failed logins with successful sessions to detect account compromise
+    </div>
+
+    <div class="note">
+        <strong>🔧 Log File Locations Reference:</strong><br>
+        SSH: <code>/var/log/auth.log</code> (Debian/Ubuntu) or <code>/var/log/secure</code> (RHEL/CentOS)<br>
+        FTP: <code>/var/log/vsftpd.log</code>, <code>/var/log/xferlog</code>, <code>/var/log/proftpd/</code><br>
+        Journal: <code>journalctl -u ssh -u vsftpd -f</code>
+    </div>
+</div>
+
+<script>
+    function copyCode(btn) {
+        const pre = btn.parentElement;
+        const code = pre.querySelector('code');
+        const text = code.innerText;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = '✓ Copied!';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        }).catch(err => {
+            console.error('Copy failed: ', err);
+            btn.innerText = '❌ Error';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        });
+    }
+</script>
+</body>
+</html>

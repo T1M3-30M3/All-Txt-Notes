@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTP Log Analysis Arsenal - Penetration Testing Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Fira Code', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e4e6f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(15, 20, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00d4ff, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #f59e0b;
+            padding-left: 1rem;
+        }
+
+        .subtitle {
+            color: #8b9bcf;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            font-size: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2d3561;
+            color: #00d4ff;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #fbbf24;
+        }
+
+        pre {
+            background: #0a0e1a;
+            border-radius: 12px;
+            padding: 1.2rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #2d3561;
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            background: #0a0e1a;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #2d3561;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-family: monospace;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #4c5a8a;
+        }
+
+        .warning {
+            background: #4a1f2a;
+            border-left: 3px solid #ef4444;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .note {
+            background: #1f2a3a;
+            border-left: 3px solid #10b981;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #2d3561;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            color: #00d4ff;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            pre {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📁 FTP Log Analysis Arsenal</h1>
+    <div class="subtitle">Senior Penetration Testing Edition – vsftpd / proftpd / pure-ftpd Forensics (HTB / Enterprise)</div>
+
+    <!-- ==================== 1. FAILED FTP ==================== -->
+    <h2>🔴 1. Failed FTP – Brute Force & Reconnaissance</h2>
+    
+    <h3>🎯 Top Attacker IPs (Failed Logins)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>👥 Most Targeted Usernames (Failed Logins)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | sed -E 's/.*\[([^\]]+)\] FAIL LOGIN.*/\1/' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>⏰ Attack Peak Timestamps (When FTP is under siege)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $1 " " $2 " " $3}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <!-- ==================== 2. SUCCESSFUL FTP ==================== -->
+    <h2>✅ 2. Successful FTP – Legitimate Access & Potential Data Theft</h2>
+
+    <h3>📍 Top Successful Login IPs</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "OK LOGIN" /var/log/vsftpd.log | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>👤 Most Active Users (Successful Auth)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "OK LOGIN" /var/log/vsftpd.log | sed -E 's/.*\[([^\]]+)\] OK LOGIN.*/\1/' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>📅 Successful Login Timeline (Session Pattern)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "OK LOGIN" /var/log/vsftpd.log | awk '{print $1 " " $2 " " $3}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <!-- ==================== 3. ADVANCED COMBINED ONE-LINER ==================== -->
+    <h2>⚡ 3. Advanced Combined One-Liner (IP + Username + Timestamp)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{ip=$(NF-1); gsub(/"/,"",ip); user=$3; gsub(/\[|\]/,"",user); ts=$1" "$2" "$3; print ts " | User: " user " | IP: " ip}' | sort | uniq -c | sort -nr</code></pre>
+
+    <!-- ==================== 4. PERSISTENCE – SAVE TO FILES ==================== -->
+    <h2>💾 4. Attack Data Persistence – Save Failed + Successful FTP Artifacts</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort | uniq -c | sort -nr > ftp_failed_ips.txt && \
+grep "FAIL LOGIN" /var/log/vsftpd.log | sed -E 's/.*\[([^\]]+)\] FAIL LOGIN.*/\1/' | sort | uniq -c | sort -nr > ftp_failed_usernames.txt && \
+grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $1 " " $2 " " $3}' | sort | uniq -c | sort -nr > ftp_failed_timestamps.txt && \
+grep "OK LOGIN" /var/log/vsftpd.log | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort | uniq -c | sort -nr > ftp_successful_ips.txt && \
+grep "OK LOGIN" /var/log/vsftpd.log | sed -E 's/.*\[([^\]]+)\] OK LOGIN.*/\1/' | sort | uniq -c | sort -nr > ftp_successful_usernames.txt && \
+grep "OK LOGIN" /var/log/vsftpd.log | awk '{print $1 " " $2 " " $3}' | sort | uniq -c | sort -nr > ftp_successful_timestamps.txt</code></pre>
+
+    <!-- ==================== 5. ADVANCED BEHAVIORAL ANALYSIS ==================== -->
+    <h2>🧠 5. Advanced Behavioral Forensics</h2>
+    
+    <h3>🔄 Credential Stuffing Detection (One IP, many usernames)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{ip=$(NF-1); gsub(/"/,"",ip); user=$3; gsub(/\[|\]/,"",user); print ip" -> "user}' | sort | uniq -c | sort -nr | awk '$1 > 3' | head -20</code></pre>
+
+    <h3>🚨 Concurrent Attacks – Same IP Failed + Success (Compromised)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>comm -12 <(grep "FAIL LOGIN" /var/log/vsftpd.log | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u) <(grep "OK LOGIN" /var/log/vsftpd.log | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u) | head -20</code></pre>
+
+    <h3>📁 Anonymous FTP Access Monitoring</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -i "anon" /var/log/vsftpd.log | grep "OK LOGIN" | awk '{print $1,$2,$3,$7}' | sort | uniq -c</code></pre>
+
+    <h3>🔓 Chroot Escape / Path Traversal Attempts</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep -iE "\.\./|chroot" /var/log/vsftpd.log | grep -v "OK" | head -30</code></pre>
+
+    <!-- ==================== 6. DATA EXFILTRATION DETECTION (XFERLOG) ==================== -->
+    <h2>📤 6. Data Exfiltration Detection (xferlog Analysis)</h2>
+    
+    <h3>📥 Top Downloaded Files (Potential Data Theft)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "i" /var/log/xferlog 2>/dev/null | awk '{print $9" "$2}' | sort | uniq -c | sort -nr | head -20</code></pre>
+
+    <h3>📤 Total Upload & Download Size (MB)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>echo "Total Download (MB): $(awk '$9=="i" {sum+=10*$7/1024} END {print sum}' /var/log/xferlog 2>/dev/null)" && echo "Total Upload (MB): $(awk '$9=="o" {sum+=10*$7/1024} END {print sum}' /var/log/xferlog 2>/dev/null)"</code></pre>
+
+    <h3>🚨 Large File Transfers (>100MB – Suspicious)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>awk '$7 > 104857600 {print "LARGE TRANSFER: " $9 " " $7/1048576 " MB - User: " $2}' /var/log/xferlog 2>/dev/null</code></pre>
+
+    <!-- ==================== 7. TIMELINE & SIEM INTEGRATION ==================== -->
+    <h2>⏱️ 7. Timeline Correlation & SIEM Integration</h2>
+    
+    <h3>📊 Hourly Attack Heatmap (Failed Logins per Hour)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $3}' | cut -d: -f1 | sort | uniq -c | sort -nr</code></pre>
+
+    <h3>📈 Generate CSV for ELK / Splunk (Failed Logins)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{ip=$(NF-1); gsub(/"/,"",ip); user=$3; gsub(/\[|\]/,"",user); print $1","$2","$3","user","ip}' > ftp_failures.csv</code></pre>
+
+    <h3>🕵️ Long FTP Sessions (Potential Pivoting / Slow Exfil)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>awk '$5-$4 > 3600 {print "Long session: " $2 " duration: " ($5-$4)/60 " minutes"}' /var/log/xferlog 2>/dev/null</code></pre>
+
+    <!-- ==================== 8. LIVE FORENSICS & MEMORY ==================== -->
+    <h2>🕵️ 8. Live Forensics & Memory Artifacts</h2>
+    
+    <h3>🔍 Active FTP Connections</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>netstat -anp | grep :21 | grep ESTABLISHED
+ss -tulp | grep ':21'</code></pre>
+
+    <h3>📂 Extract FTP Credentials from Memory (vsftpd)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>strings /proc/$(pgrep vsftpd)/mem 2>/dev/null | grep -E "USER|PASS|password" | head -20</code></pre>
+
+    <!-- ==================== 9. REAL-TIME IDS & MONITORING ==================== -->
+    <h2>🚨 9. Real-Time Threat Detection</h2>
+    
+    <h3>📡 Live Monitor Failed FTP Logins</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>tail -f /var/log/vsftpd.log | grep --color=always "FAIL LOGIN"</code></pre>
+
+    <h3>🛡️ Snort/Suricata Rule – FTP Brute Force</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>alert tcp any any -> $HOME_NET 21 (msg:"FTP Brute Force"; flow:to_server,established; content:"USER"; threshold:type both, track by_src, count 10, seconds 120; sid:1000005; rev:1;)</code></pre>
+
+    <!-- ==================== 10. COMPLETE FTP ANALYZER SCRIPT ==================== -->
+    <h2>🤖 10. Complete FTP Automated Analyzer (Production Ready)</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+LOGFILE=${1:-/var/log/vsftpd.log}
+XFERLOG=${2:-/var/log/xferlog}
+
+echo "╔════════════════════════════════════════════════╗"
+echo "║      FTP SECURITY FORENSICS REPORT             ║"
+echo "╚════════════════════════════════════════════════╝"
+echo -e "\n[🔥 TOP 15 ATTACKER IPs (Failed)]"
+grep "FAIL LOGIN" $LOGFILE | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort | uniq -c | sort -nr | head -15
+
+echo -e "\n[👥 TOP 15 TARGETED USERNAMES]"
+grep "FAIL LOGIN" $LOGFILE | sed -E 's/.*\[([^\]]+)\] FAIL LOGIN.*/\1/' | sort | uniq -c | sort -nr | head -15
+
+echo -e "\n[✅ TOP 10 SUCCESSFUL LOGINS by IP]"
+grep "OK LOGIN" $LOGFILE | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort | uniq -c | sort -nr | head -10
+
+echo -e "\n[⚠️ COMPROMISED IPS (Fail + Success)]"
+comm -12 <(grep "FAIL LOGIN" $LOGFILE | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u) <(grep "OK LOGIN" $LOGFILE | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u) | head -10
+
+echo -e "\n[📦 TOTAL FAILED ATTEMPTS] $(grep -c "FAIL LOGIN" $LOGFILE)"
+echo "[🔓 TOTAL SUCCESSFUL LOGINS] $(grep -c "OK LOGIN" $LOGFILE)"
+echo -e "\n[📤 EXFILTRATION RISK - Top Downloads]"
+grep "i" $XFERLOG 2>/dev/null | awk '{print $9}' | sort | uniq -c | sort -nr | head -10</code></pre>
+
+    <!-- ==================== 11. CROSS-SERVICE CORRELATION ==================== -->
+    <h2>🔄 11. Cross-Service Correlation (FTP + SSH + HTTP)</h2>
+    
+    <h3>🌐 Same IP Attacking FTP and SSH</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u > ftp_attackers.txt
+grep "Failed password" /var/log/auth.log 2>/dev/null | awk '{print $(NF-3)}' | sort -u > ssh_attackers.txt
+comm -12 <(sort ftp_attackers.txt) <(sort ssh_attackers.txt) | head -20</code></pre>
+
+    <h3>📡 Time-Correlated Multi-Vector Attacks (Last Hour)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "$(date --date='1 hour ago' +%b\ %d)" /var/log/vsftpd.log | grep -E "FAIL|OK" | wc -l</code></pre>
+
+    <!-- ==================== 12. EXECUTIVE DASHBOARD ==================== -->
+    <h2>📋 12. Executive Dashboard – FTP Security Report</h2>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>#!/bin/bash
+echo "
+╔════════════════════════════════════════════════════════════╗
+║            FTP SECURITY EXECUTIVE SUMMARY                  ║
+║                    $(date)                                  ║
+╚════════════════════════════════════════════════════════════╝
+▶ Total Failed FTP Attempts (24h): $(grep "$(date +%b\ %d)" /var/log/vsftpd.log 2>/dev/null | grep -c "FAIL LOGIN")
+▶ Unique Attacker IPs: $(grep "FAIL LOGIN" /var/log/vsftpd.log 2>/dev/null | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u | wc -l)
+▶ Top Attacker: $(grep "FAIL LOGIN" /var/log/vsftpd.log 2>/dev/null | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort | uniq -c | sort -nr | head -1 | awk '{print $2" ("$1" attempts)"}')
+▶ Most Targeted Username: $(grep "FAIL LOGIN" /var/log/vsftpd.log 2>/dev/null | sed -E 's/.*\[([^\]]+)\] FAIL LOGIN.*/\1/' | sort | uniq -c | sort -nr | head -1 | awk '{print $2" ("$1" attempts)"}')
+▶ Successful Logins (24h): $(grep "$(date +%b\ %d)" /var/log/vsftpd.log 2>/dev/null | grep -c "OK LOGIN")
+▶ Anonymous Access Detected: $(grep -i "anon" /var/log/vsftpd.log 2>/dev/null | grep "OK LOGIN" | wc -l)
+▶ Data Exfil Risk (Top Downloaded File): $(grep "i" /var/log/xferlog 2>/dev/null | awk '{print $9}' | sort | uniq -c | sort -nr | head -1 | awk '{print $2" ("$1" downloads)"}')
+"</code></pre>
+
+    <!-- ==================== 13. ONE-LINER POWER TOOLS ==================== -->
+    <h2>⚡ 13. One-Liner Power Tools (Swiss Army Knife)</h2>
+    
+    <h3>🏆 Top 10 Brute-Force Usernames with Attempts</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | sed -E 's/.*\[([^\]]+)\] FAIL LOGIN.*/\1/' | sort | uniq -c | sort -nr | head -10</code></pre>
+
+    <h3>📉 Failed Login Rate per Minute (Intensity Spike)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | awk '{print $1,$2}' | cut -d: -f1,2 | sort | uniq -c | sort -nr | head -15</code></pre>
+
+    <h3>🔎 Extract All Successful FTP Users with Timestamps</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "OK LOGIN" /var/log/vsftpd.log | awk '{user=$3; gsub(/\[|\]/,"",user); print $1,$2,$3" -> "user}' | sort -k4</code></pre>
+
+    <h3>🌍 Unique Attacking Subnets (/24) for Threat Intel</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>grep "FAIL LOGIN" /var/log/vsftpd.log | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | cut -d. -f1-3 | sort | uniq -c | sort -nr | head -15</code></pre>
+
+    <!-- PRO TIPS & WARNINGS -->
+    <div class="warning">
+        <strong>⚠️ Critical Security Alert:</strong> FTP transmits credentials in plaintext. Any successful login from an unexpected IP should trigger immediate incident response. Correlate with <code>/var/log/xferlog</code> for data exfiltration.
+    </div>
+
+    <div class="note">
+        <strong>💡 Pro Tip – Forensic Timeline:</strong> Use <code>zgrep "FAIL LOGIN" /var/log/vsftpd.log*.gz</code> to analyze rotated logs. Combine with <code>last</code> and <code>journalctl -u vsftpd</code> for complete attack reconstruction.
+    </div>
+
+    <div class="note">
+        <strong>🧠 HTB / CTF Edge:</strong> In HackTheBox labs, always check for anonymous FTP access first. The <code>ftp_failed_usernames.txt</code> output often reveals valid usernames for brute-forcing other services (SSH, SMB). Use the advanced combined one-liner to map attack patterns.
+    </div>
+</div>
+
+<script>
+    function copyCode(btn) {
+        const pre = btn.parentElement;
+        const code = pre.querySelector('code');
+        const text = code.innerText;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = '✓ Copied!';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        }).catch(err => {
+            console.error('Copy failed:', err);
+            btn.innerText = '⚠️ Error';
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+strings test.exe | grep -Ei '\.(exe|dll|sys|ps1|bat|sh|elf|so|zip|rar|7z|pdf|docx|xlsx|jpg|png|conf|ini|dat|tmp)'
+
+strings test.exe | grep -Ei '\.(exe|dll|sys|ocx|scr|cpl|msi|msp|com|bat|cmd|ps1|vbs|js|jse|ws|wsf|wsh)'
+
+strings test.exe | grep -Eo '\.(exe|dll|sys|ocx|scr|cpl|msi|msp|com|bat|cmd|ps1|vbs|js|jse|ws|wsf|wsh)'
+
+strings test.exe | grep -Eo '\.(exe|dll|sys|ocx|scr|cpl|msi|msp|com|bat|cmd|ps1|vbs|js|jse|ws|wsf|wsh)' | sort -u
+
+strings test.exe | grep -Ei '\.(elf|so|sh|bin|run|service|desktop|app|dylib|pkg|command)'
+
+strings test.exe | grep -Ei '\.(doc|docx|xls|xlsx|ppt|pptx|pdf|rtf|txt|csv|zip|rar|7z|tar|gz|bz2|xz|iso|cab|html|htm|php|asp|aspx|jsp|css|json|xml|conf|cfg|ini|log|dat|db|sqlite|pcap)'
+
+strings test.exe | grep -Ei '\.(jpg|jpeg|png|gif|bmp|ico|mp3|mp4|avi|pem|key|crt|der|pfx|p12|tmp|enc|lock|pay|ransom|backup|old)'
